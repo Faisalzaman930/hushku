@@ -250,19 +250,72 @@ function PawParticles() {
   );
 }
 
-// ── Floating phone with 3-D depth ─────────────────────────────────────────────
-function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0 }: {
-  src: string; alt: string; className?: string; delay?: number; rotate?: number;
+// ── Floating phone with deep 3-D hover ───────────────────────────────────────
+function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0, isSide = false }: {
+  src: string; alt: string; className?: string; delay?: number; rotate?: number; isSide?: boolean;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const rx = useSpring(0, { stiffness: 220, damping: 22 });
+  const ry = useSpring(0, { stiffness: 220, damping: 22 });
+  const gx = useSpring(50, { stiffness: 180, damping: 20 });
+  const gy = useSpring(50, { stiffness: 180, damping: 20 });
+  const sc = useSpring(1, { stiffness: 260, damping: 24 });
+  const [hovered, setHovered] = useState(false);
+
+  const glowBg = useTransform([gx, gy], ([x, y]) =>
+    `radial-gradient(ellipse at ${x}% ${y}%, rgba(139,92,246,0.45) 0%, rgba(236,72,153,0.2) 45%, transparent 70%)`
+  );
+  const sheenBg = useTransform([gx, gy], ([x, y]) =>
+    `linear-gradient(${135 + ((x as number) - 50) * 0.8}deg, rgba(255,255,255,0.18) 0%, transparent 60%)`
+  );
+
+  function onMove(e: React.MouseEvent) {
+    const el = ref.current;
+    if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    const nx = (e.clientX - left) / width;
+    const ny = (e.clientY - top) / height;
+    rx.set((ny - 0.5) * -28);
+    ry.set((nx - 0.5) * 28);
+    gx.set(nx * 100);
+    gy.set(ny * 100);
+  }
+  function onEnter() { sc.set(isSide ? 1.08 : 1.1); setHovered(true); }
+  function onLeave() { rx.set(0); ry.set(0); sc.set(1); gx.set(50); gy.set(50); setHovered(false); }
+
   return (
-    <motion.div className={className}
-      initial={{ opacity: 0, y: 60, rotateY: rotate > 0 ? 30 : -30 }}
+    <motion.div
+      ref={ref}
+      className={`relative ${className}`}
+      initial={{ opacity: 0, y: 70, rotateY: rotate > 0 ? 35 : rotate < 0 ? -35 : 0 }}
       animate={{ opacity: 1, y: 0, rotateY: 0 }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ transformStyle: "preserve-3d", rotate: `${rotate}deg` }}>
+      transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ transformStyle: "preserve-3d", rotate: `${rotate}deg`, perspective: 900, scale: sc }}
+      onMouseMove={onMove}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      {/* Glow halo */}
       <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 3.5 + delay, repeat: Infinity, ease: "easeInOut" }}>
+        className="pointer-events-none absolute inset-[-20%] rounded-[50%] blur-2xl z-0"
+        style={{ background: glowBg, opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Phone with tilt */}
+      <motion.div
+        style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+        animate={!hovered ? { y: [0, -12, 0] } : { y: 0 }}
+        transition={!hovered ? { duration: 3.5 + delay, repeat: Infinity, ease: "easeInOut" } : { duration: 0.2 }}
+        className="relative z-10"
+      >
+        {/* Sheen overlay — only visible on hover */}
+        {hovered && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 rounded-[2.5rem] z-20"
+            style={{ background: sheenBg }}
+          />
+        )}
         <PhoneFrame src={src} alt={alt} />
       </motion.div>
     </motion.div>
@@ -467,14 +520,41 @@ export default function Home() {
             </motion.div>
 
             {/* Right — 3-D floating phones */}
-            <div className="relative h-[580px] flex items-center justify-center" style={{ perspective: 1200 }}>
-              <FloatingPhone src="/screenshots/app-adoption.png" alt="Furrly adoption feature"
-                className="hidden lg:block absolute left-0 z-0 w-[185px] opacity-90" delay={0.3} rotate={-7} />
-              <FloatingPhone src="/screenshots/app-playdates.png" alt="Furrly playdates feature"
-                className="relative z-10 w-[230px]" delay={0} rotate={0} />
-              <FloatingPhone src="/screenshots/app-social-feed.png" alt="Furrly social feed"
-                className="hidden lg:block absolute right-0 z-0 w-[185px] opacity-90" delay={0.6} rotate={7} />
-            </div>
+            {(() => {
+              const [groupHover, setGroupHover] = useState(false);
+              return (
+                <div
+                  className="relative h-[580px] flex items-center justify-center"
+                  style={{ perspective: 1400 }}
+                  onMouseEnter={() => setGroupHover(true)}
+                  onMouseLeave={() => setGroupHover(false)}
+                >
+                  <motion.div
+                    className="hidden lg:block absolute left-0 z-0 w-[185px]"
+                    animate={{ x: groupHover ? -18 : 0, rotate: groupHover ? -12 : -7, opacity: groupHover ? 1 : 0.9 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                  >
+                    <FloatingPhone src="/screenshots/app-adoption.png" alt="Furrly adoption feature" delay={0.3} rotate={0} isSide />
+                  </motion.div>
+
+                  <motion.div
+                    className="relative z-10 w-[230px]"
+                    animate={{ y: groupHover ? -10 : 0, scale: groupHover ? 1.04 : 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                  >
+                    <FloatingPhone src="/screenshots/app-playdates.png" alt="Furrly playdates feature" delay={0} rotate={0} />
+                  </motion.div>
+
+                  <motion.div
+                    className="hidden lg:block absolute right-0 z-0 w-[185px]"
+                    animate={{ x: groupHover ? 18 : 0, rotate: groupHover ? 12 : 7, opacity: groupHover ? 1 : 0.9 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                  >
+                    <FloatingPhone src="/screenshots/app-social-feed.png" alt="Furrly social feed" delay={0.6} rotate={0} isSide />
+                  </motion.div>
+                </div>
+              );
+            })()}
           </div>
         </motion.div>
       </section>

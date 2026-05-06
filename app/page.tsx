@@ -262,9 +262,6 @@ function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0, isSide
   const sc = useSpring(1, { stiffness: 260, damping: 24 });
   const [hovered, setHovered] = useState(false);
 
-  const glowBg = useTransform([gx, gy], ([x, y]) =>
-    `radial-gradient(ellipse at ${x}% ${y}%, rgba(139,92,246,0.45) 0%, rgba(236,72,153,0.2) 45%, transparent 70%)`
-  );
   const sheenBg = useTransform([gx, gy], ([x, y]) =>
     `linear-gradient(${135 + ((x as number) - 50) * 0.8}deg, rgba(255,255,255,0.18) 0%, transparent 60%)`
   );
@@ -295,13 +292,6 @@ function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0, isSide
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      {/* Glow halo */}
-      <motion.div
-        className="pointer-events-none absolute inset-[-20%] rounded-[50%] blur-2xl z-0"
-        style={{ background: glowBg, opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
-
       {/* Phone with tilt */}
       <motion.div
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}

@@ -5,13 +5,16 @@ import DownloadButtons from "./components/DownloadButtons";
 import WaitingList from "./components/WaitingList";
 import Resources from "./components/Resources";
 import PhoneFrame from "./components/PhoneFrame";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
   useInView,
+  useMotionValue,
+  useVelocity,
+  useAnimationFrame,
   AnimatePresence,
   type Variants,
 } from "framer-motion";
@@ -21,14 +24,6 @@ const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.5 } },
-};
-const stagger = (delay = 0): Variants => ({
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: delay } },
-});
 const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
@@ -37,29 +32,70 @@ const slideLeft: Variants = {
   hidden: { opacity: 0, x: -50 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
 };
-const slideRight: Variants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-};
+const stagger = (delay = 0): Variants => ({
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: delay } },
+});
 
 // ── Scroll-triggered wrapper ──────────────────────────────────────────────────
 function Reveal({ children, variants = fadeUp, className = "", delay = 0 }: {
-  children: React.ReactNode;
-  variants?: Variants;
-  className?: string;
-  delay?: number;
+  children: React.ReactNode; variants?: Variants; className?: string; delay?: number;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <motion.div
-      ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      transition={{ delay }}
-      className={className}
-    >
+    <motion.div ref={ref} variants={variants} initial="hidden"
+      animate={inView ? "visible" : "hidden"} transition={{ delay }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+// ── Split-text hero heading ───────────────────────────────────────────────────
+function SplitHeading({ text, className = "", delay = 0 }: { text: string; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const words = text.split(" ");
+  return (
+    <span ref={ref} className={className} aria-label={text}>
+      {words.map((word, wi) => (
+        <span key={wi} className="inline-block overflow-hidden mr-[0.25em]">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.7, delay: delay + wi * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+// ── Magnetic button ───────────────────────────────────────────────────────────
+function MagneticButton({ children, className = "", strength = 0.35 }: {
+  children: React.ReactNode; className?: string; strength?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 180, damping: 16 });
+  const sy = useSpring(y, { stiffness: 180, damping: 16 });
+
+  function onMove(e: React.MouseEvent) {
+    const el = ref.current;
+    if (!el) return;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    x.set((e.clientX - left - width / 2) * strength);
+    y.set((e.clientY - top - height / 2) * strength);
+  }
+  function onLeave() { x.set(0); y.set(0); }
+
+  return (
+    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }} className={className}>
       {children}
     </motion.div>
   );
@@ -108,48 +144,204 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
   }
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={onMove}
+    <motion.div ref={ref} onMouseMove={onMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => { setRot({ x: 0, y: 0 }); setHovered(false); }}
-      animate={{
-        rotateX: rot.x,
-        rotateY: rot.y,
-        scale: hovered ? 1.03 : 1,
-        z: hovered ? 40 : 0,
-      }}
+      animate={{ rotateX: rot.x, rotateY: rot.y, scale: hovered ? 1.03 : 1, z: hovered ? 40 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       style={{ transformStyle: "preserve-3d", perspective: 800 }}
-      className={className}
-    >
+      className={className}>
       {children}
     </motion.div>
   );
 }
 
-// ── Floating phone with 3-D depth ─────────────────────────────────────────────
-function FloatingPhone({
-  src, alt, className = "", delay = 0, rotate = 0,
-}: { src: string; alt: string; className?: string; delay?: number; rotate?: number }) {
+// ── Spotlight card (dark) ─────────────────────────────────────────────────────
+function SpotlightCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [visible, setVisible] = useState(false);
+
+  function onMove(e: React.MouseEvent) {
+    const el = ref.current;
+    if (!el) return;
+    const { left, top } = el.getBoundingClientRect();
+    setPos({ x: e.clientX - left, y: e.clientY - top });
+  }
+
   return (
-    <motion.div
-      className={className}
+    <div ref={ref} onMouseMove={onMove}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+      className={`relative overflow-hidden ${className}`}>
+      {visible && (
+        <div
+          className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(280px circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.07), transparent 80%)`,
+          }}
+        />
+      )}
+      {children}
+    </div>
+  );
+}
+
+// ── Infinite marquee ticker ───────────────────────────────────────────────────
+function Marquee({ items, speed = 40 }: { items: { icon: string; label: string }[]; speed?: number }) {
+  const baseX = useMotionValue(0);
+  const scrollVelocity = useVelocity(baseX);
+  const skewX = useTransform(scrollVelocity, [-500, 0, 500], [-2, 0, 2]);
+  const ref = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (ref.current) setWidth(ref.current.scrollWidth / 2);
+  }, []);
+
+  useAnimationFrame((_, delta) => {
+    let newX = baseX.get() - (speed * delta) / 1000;
+    if (width && newX <= -width) newX = 0;
+    baseX.set(newX);
+  });
+
+  const doubled = [...items, ...items];
+
+  return (
+    <div className="overflow-hidden w-full" aria-hidden>
+      <motion.div ref={ref} className="flex gap-6 w-max" style={{ x: baseX, skewX }}>
+        {doubled.map((item, i) => (
+          <motion.div key={i}
+            className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-full text-white/80 text-xs font-black uppercase tracking-widest whitespace-nowrap border border-white/10"
+            whileHover={{ scale: 1.06, backgroundColor: "rgba(255,255,255,0.18)" }}>
+            <span>{item.icon}</span>{item.label}
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// ── Floating paw particles ────────────────────────────────────────────────────
+function PawParticles() {
+  const paws = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    size: 14 + Math.random() * 18,
+    duration: 8 + Math.random() * 12,
+    delay: Math.random() * 10,
+    opacity: 0.04 + Math.random() * 0.06,
+  }));
+
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {paws.map(p => (
+        <motion.div
+          key={p.id}
+          className="absolute text-brand-start select-none"
+          style={{ left: `${p.x}%`, bottom: "-40px", fontSize: p.size, opacity: p.opacity }}
+          animate={{ y: [0, -(typeof window !== "undefined" ? window.innerHeight + 80 : 900)], rotate: [0, 20, -10, 15, 0] }}
+          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "linear" }}
+        >
+          🐾
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// ── Floating phone with 3-D depth ─────────────────────────────────────────────
+function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0 }: {
+  src: string; alt: string; className?: string; delay?: number; rotate?: number;
+}) {
+  return (
+    <motion.div className={className}
       initial={{ opacity: 0, y: 60, rotateY: rotate > 0 ? 30 : -30 }}
       animate={{ opacity: 1, y: 0, rotateY: 0 }}
       transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ transformStyle: "preserve-3d", rotate: `${rotate}deg` }}
-    >
+      style={{ transformStyle: "preserve-3d", rotate: `${rotate}deg` }}>
       <motion.div
         animate={{ y: [0, -12, 0] }}
-        transition={{ duration: 3.5 + delay, repeat: Infinity, ease: "easeInOut" }}
-      >
+        transition={{ duration: 3.5 + delay, repeat: Infinity, ease: "easeInOut" }}>
         <PhoneFrame src={src} alt={alt} />
       </motion.div>
     </motion.div>
   );
 }
 
+// ── Drag testimonials carousel ────────────────────────────────────────────────
+function TestimonialsCarousel({ testimonials }: { testimonials: typeof testimonialsData }) {
+  const [idx, setIdx] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
+  function next() { setIdx(i => (i + 1) % testimonials.length); }
+  function prev() { setIdx(i => (i - 1 + testimonials.length) % testimonials.length); }
+
+  return (
+    <div className="relative">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={idx}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragStart={() => setDragging(true)}
+          onDragEnd={(_, info) => {
+            setDragging(false);
+            if (info.offset.x < -60) next();
+            if (info.offset.x > 60) prev();
+          }}
+          initial={{ opacity: 0, x: 80, scale: 0.96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          exit={{ opacity: 0, x: -80, scale: 0.96 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="cursor-grab active:cursor-grabbing select-none"
+        >
+          <SpotlightCard className="bg-white/5 border border-white/10 rounded-[2.5rem] p-10 md:p-14">
+            <div className="flex gap-1 mb-6">
+              {Array(testimonials[idx].stars).fill(0).map((_, j) => (
+                <motion.span key={j} className="text-brand-end text-xl"
+                  initial={{ opacity: 0, scale: 0, rotate: -20 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ delay: j * 0.06, type: "spring", stiffness: 400 }}>★</motion.span>
+              ))}
+            </div>
+            <blockquote className="text-white/90 text-xl md:text-2xl leading-relaxed italic mb-10 font-light">
+              &ldquo;{testimonials[idx].quote}&rdquo;
+            </blockquote>
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">🐾</div>
+              <div>
+                <p className="font-black text-white">{testimonials[idx].author}</p>
+                <p className="text-white/40 text-xs font-bold uppercase tracking-widest mt-0.5">{testimonials[idx].pet}</p>
+              </div>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Dots + arrows */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <motion.button onClick={prev} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+          className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white font-black flex items-center justify-center hover:bg-white/20 transition-colors">
+          ←
+        </motion.button>
+        {testimonials.map((_, i) => (
+          <motion.button key={i} onClick={() => setIdx(i)}
+            animate={{ scale: i === idx ? 1.4 : 1, opacity: i === idx ? 1 : 0.35 }}
+            className="w-2 h-2 rounded-full bg-white" />
+        ))}
+        <motion.button onClick={next} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+          className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white font-black flex items-center justify-center hover:bg-white/20 transition-colors">
+          →
+        </motion.button>
+      </div>
+      <p className="text-center text-white/30 text-xs mt-3 font-bold uppercase tracking-widest">Drag to navigate</p>
+    </div>
+  );
+}
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 const verticals = [
   { name: "Playdates", href: "/playdates", icon: "🎉", color: "bg-violet-100", description: "Find compatible pets nearby — filtered by size, breed & temperament.", live: true },
   { name: "Social Feed", href: "/social", icon: "📸", color: "bg-pink-100", description: "A neighborhood-first feed connecting the pet owners you'll actually meet.", live: true },
@@ -167,7 +359,7 @@ const steps = [
   { num: "03", title: "Access Everything Pet-Related", desc: "From playdate scheduling to emergency alerts — all from one app, on your phone." },
 ];
 
-const testimonials = [
+const testimonialsData = [
   { stars: 5, quote: "I found a playmate for my reactive dog in 2 days. The temperament filters are genuinely game-changing.", author: "Sarah L.", pet: "Cooper the Golden Retriever" },
   { stars: 5, quote: "The adoption process took 10 minutes instead of 3 weeks. I cried when I brought Luna home.", author: "Michael K.", pet: "Luna the Siamese" },
   { stars: 5, quote: "Simba went missing on a Tuesday. The neighborhood alert went out and someone found him in 2 hours.", author: "David R.", pet: "Simba the rescue cat" },
@@ -181,6 +373,16 @@ const faqs = [
   { q: "What cities is Furrly available in?", a: "Furrly works globally — the app works wherever you are because it's location-based rather than city-specific. Early user concentrations are in North America, the UK, and Australia, but the community is growing rapidly worldwide." },
 ];
 
+const marqueeItems = [
+  { icon: "🎉", label: "Playdates" }, { icon: "📸", label: "Social Feed" },
+  { icon: "🏠", label: "Shelters" }, { icon: "💛", label: "Adoption" },
+  { icon: "💖", label: "Fostering" }, { icon: "🏥", label: "Vets" },
+  { icon: "🔍", label: "Lost & Found" }, { icon: "🛍️", label: "Shop" },
+  { icon: "🐶", label: "Dogs" }, { icon: "🐱", label: "Cats" },
+  { icon: "🐾", label: "Pet Care" }, { icon: "🌍", label: "Global" },
+];
+
+// ── Page ──────────────────────────────────────────────────────────────────────
 export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
   const active = verticals[activeFeature];
@@ -194,62 +396,41 @@ export default function Home() {
     <div className="bg-white">
 
       {/* ── Scroll progress bar ── */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-0.5 bg-brand-gradient origin-left z-[100]"
-        style={{ scaleX }}
-      />
+      <motion.div className="fixed top-0 left-0 right-0 h-0.5 bg-brand-gradient origin-left z-[100]" style={{ scaleX }} />
 
       {/* ─── HERO ─── */}
       <section className="relative overflow-hidden bg-white pt-16 pb-24 lg:pt-24 lg:pb-32">
-        {/* Animated background orbs */}
-        <motion.div
-          className="pointer-events-none absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-brand-start/5 blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="pointer-events-none absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full bg-brand-end/5 blur-3xl"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
+        <PawParticles />
 
-        <motion.div
-          className="relative mx-auto max-w-7xl px-6 lg:px-8"
-          style={{ y: heroY, opacity: heroOpacity }}
-        >
+        {/* Animated orbs */}
+        <motion.div className="pointer-events-none absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-brand-start/5 blur-3xl"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+        <motion.div className="pointer-events-none absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full bg-brand-end/5 blur-3xl"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
+
+        <motion.div className="relative mx-auto max-w-7xl px-6 lg:px-8" style={{ y: heroY, opacity: heroOpacity }}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left */}
-            <motion.div
-              className="space-y-8"
-              variants={stagger(0.1)}
-              initial="hidden"
-              animate="visible"
-            >
+            <motion.div className="space-y-8" variants={stagger(0.1)} initial="hidden" animate="visible">
               <motion.div variants={fadeUp}
-                className="inline-flex items-center gap-2 rounded-full bg-brand-start/10 px-4 py-2 text-xs font-black text-brand-start ring-1 ring-brand-start/20 uppercase tracking-widest"
-              >
-                <motion.span
-                  className="h-2 w-2 rounded-full bg-brand-start"
+                className="inline-flex items-center gap-2 rounded-full bg-brand-start/10 px-4 py-2 text-xs font-black text-brand-start ring-1 ring-brand-start/20 uppercase tracking-widest">
+                <motion.span className="h-2 w-2 rounded-full bg-brand-start"
                   animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
+                  transition={{ duration: 1.5, repeat: Infinity }} />
                 Phase 1 Live — App Store & Play Store Coming Soon
               </motion.div>
 
-              <motion.h1
-                variants={fadeUp}
-                className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase"
-              >
-                Everything Your<br />
-                <motion.span
-                  className="text-brand-gradient inline-block"
+              <h1 className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase">
+                <SplitHeading text="Everything Your" delay={0.2} /><br />
+                <motion.span className="text-brand-gradient inline-block"
                   animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                >
-                  Pet Needs.
+                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}>
+                  <SplitHeading text="Pet Needs." delay={0.45} />
                 </motion.span><br />
-                One App.
-              </motion.h1>
+                <SplitHeading text="One App." delay={0.65} />
+              </h1>
 
               <motion.p variants={fadeUp} className="text-xl leading-relaxed text-slate-gray max-w-lg">
                 Furrly replaces five fragmented pet apps. Social networking, playdates, adoption, vet discovery, lost & found — all in one place, built for mobile-first pet parents.
@@ -257,17 +438,12 @@ export default function Home() {
 
               <motion.div variants={stagger()} className="flex flex-wrap gap-4 pt-2">
                 {[
-                  { val: "4", label: "Live Features" },
-                  { val: "🌍", label: "Global Mission" },
-                  { val: "Free", label: "Always Free" },
-                  { val: "Soon", label: "App Stores" },
-                ].map((s, i) => (
-                  <motion.div
-                    key={s.val}
-                    variants={scaleIn}
+                  { val: "4", label: "Live Features" }, { val: "🌍", label: "Global Mission" },
+                  { val: "Free", label: "Always Free" }, { val: "Soon", label: "App Stores" },
+                ].map((s) => (
+                  <motion.div key={s.val} variants={scaleIn}
                     whileHover={{ scale: 1.08, y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.1)" }}
-                    className="bg-gray-50 border border-gray-100 rounded-2xl px-5 py-3 text-center cursor-default"
-                  >
+                    className="bg-gray-50 border border-gray-100 rounded-2xl px-5 py-3 text-center cursor-default">
                     <p className="text-lg font-black text-ebony leading-none">{s.val}</p>
                     <p className="text-[10px] font-bold text-slate-gray uppercase tracking-widest mt-0.5">{s.label}</p>
                   </motion.div>
@@ -275,56 +451,44 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="pt-2">
-                <DownloadButtons light />
+                <MagneticButton>
+                  <DownloadButtons light />
+                </MagneticButton>
               </motion.div>
 
               <motion.div variants={fadeUp} className="pt-1">
-                <Link href="/about#volunteer"
-                  className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline"
-                >
-                  🙋 Or volunteer with us →
-                </Link>
+                <MagneticButton>
+                  <Link href="/about#volunteer"
+                    className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline">
+                    🙋 Or volunteer with us →
+                  </Link>
+                </MagneticButton>
               </motion.div>
             </motion.div>
 
-            {/* Right — 3-D floating phone mockups */}
+            {/* Right — 3-D floating phones */}
             <div className="relative h-[580px] flex items-center justify-center" style={{ perspective: 1200 }}>
-              <FloatingPhone
-                src="/screenshots/app-adoption.png"
-                alt="Furrly adoption feature"
-                className="hidden lg:block absolute left-0 z-0 w-[185px] opacity-90"
-                delay={0.3}
-                rotate={-7}
-              />
-              <FloatingPhone
-                src="/screenshots/app-playdates.png"
-                alt="Furrly playdates feature"
-                className="relative z-10 w-[230px]"
-                delay={0}
-                rotate={0}
-              />
-              <FloatingPhone
-                src="/screenshots/app-social-feed.png"
-                alt="Furrly social feed"
-                className="hidden lg:block absolute right-0 z-0 w-[185px] opacity-90"
-                delay={0.6}
-                rotate={7}
-              />
+              <FloatingPhone src="/screenshots/app-adoption.png" alt="Furrly adoption feature"
+                className="hidden lg:block absolute left-0 z-0 w-[185px] opacity-90" delay={0.3} rotate={-7} />
+              <FloatingPhone src="/screenshots/app-playdates.png" alt="Furrly playdates feature"
+                className="relative z-10 w-[230px]" delay={0} rotate={0} />
+              <FloatingPhone src="/screenshots/app-social-feed.png" alt="Furrly social feed"
+                className="hidden lg:block absolute right-0 z-0 w-[185px] opacity-90" delay={0.6} rotate={7} />
             </div>
           </div>
         </motion.div>
       </section>
 
+      {/* ─── MARQUEE TICKER ─── */}
+      <div className="bg-ebony py-5 overflow-hidden">
+        <Marquee items={marqueeItems} speed={35} />
+      </div>
+
       {/* ─── STATS BAR ─── */}
-      <section className="bg-ebony py-14 overflow-hidden">
+      <section className="bg-ebony pb-14 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10"
-            variants={stagger(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10"
+            variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
             <StatCounter target={4} suffix="" label="Phase 1 Features Live" />
             <StatCounter target={2} suffix="" label="Founders — Pet Lovers" />
             <StatCounter target={3} suffix="min" label="To Adopt a Pet" />
@@ -339,75 +503,62 @@ export default function Home() {
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Ecosystem</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-6xl leading-none">
-              4 Features Live.<br />More Coming Soon.
+              <SplitHeading text="4 Features Live." /><br />
+              <SplitHeading text="More Coming Soon." delay={0.25} />
             </h2>
             <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Phase 1 is live — Playdates, Social Feed, Shelters, and Adoption. Vets, Lost & Found, Fostering, and the Shop are in active development.</p>
           </Reveal>
 
-          {/* Tab switcher */}
           <Reveal>
             <div className="flex flex-wrap justify-center gap-2 mb-12">
               {verticals.map((v, i) => (
-                <motion.button
-                  key={v.name}
-                  onClick={() => setActiveFeature(i)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
-                    activeFeature === i
-                      ? "bg-ebony text-white shadow-lg"
-                      : "bg-white text-slate-gray border border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <span>{v.icon}</span>
-                  {v.name}
-                  {!v.live && <span className="ml-1 px-1.5 py-0.5 rounded-full bg-brand-start/10 text-brand-start text-[9px] font-black uppercase tracking-widest leading-none">Soon</span>}
-                </motion.button>
+                <MagneticButton key={v.name} strength={0.2}>
+                  <motion.button onClick={() => setActiveFeature(i)}
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
+                      activeFeature === i ? "bg-ebony text-white shadow-lg" : "bg-white text-slate-gray border border-gray-200 hover:border-gray-300"
+                    }`}>
+                    <span>{v.icon}</span>{v.name}
+                    {!v.live && <span className="ml-1 px-1.5 py-0.5 rounded-full bg-brand-start/10 text-brand-start text-[9px] font-black uppercase tracking-widest leading-none">Soon</span>}
+                  </motion.button>
+                </MagneticButton>
               ))}
             </div>
           </Reveal>
 
-          {/* Feature detail panel */}
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeFeature}
+            <motion.div key={activeFeature}
               initial={{ opacity: 0, y: 24, rotateX: -6 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               exit={{ opacity: 0, y: -16, rotateX: 4 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               style={{ transformStyle: "preserve-3d", perspective: 1000 }}
-              className="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-[3rem] p-12 shadow-sm border border-gray-100"
-            >
+              className="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-[3rem] p-12 shadow-sm border border-gray-100">
               <div>
-                <motion.div
-                  className={`w-16 h-16 ${active.color} rounded-[1.5rem] flex items-center justify-center text-3xl mb-8`}
+                <motion.div className={`w-16 h-16 ${active.color} rounded-[1.5rem] flex items-center justify-center text-3xl mb-8`}
                   animate={{ rotate: [0, -8, 8, 0], scale: [1, 1.1, 1] }}
-                  transition={{ duration: 0.6 }}
-                >
+                  transition={{ duration: 0.6 }}>
                   {active.icon}
                 </motion.div>
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="text-3xl font-black text-ebony uppercase tracking-tighter">{active.name}</h3>
                   {active.live
                     ? <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-widest border border-emerald-200">Live</span>
-                    : <span className="px-3 py-1 rounded-full bg-brand-start/10 text-brand-start text-[10px] font-black uppercase tracking-widest border border-brand-start/20">Coming Soon</span>
-                  }
+                    : <span className="px-3 py-1 rounded-full bg-brand-start/10 text-brand-start text-[10px] font-black uppercase tracking-widest border border-brand-start/20">Coming Soon</span>}
                 </div>
                 <p className="text-lg text-slate-gray leading-relaxed mb-8">{active.description}</p>
                 {active.live ? (
-                  <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                    <Link href={active.href}
-                      className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-[1.5rem] uppercase tracking-widest text-sm shadow-lg"
-                    >
-                      Explore Feature →
-                    </Link>
-                  </motion.div>
+                  <MagneticButton>
+                    <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+                      <Link href={active.href}
+                        className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-[1.5rem] uppercase tracking-widest text-sm shadow-lg">
+                        Explore Feature →
+                      </Link>
+                    </motion.div>
+                  </MagneticButton>
                 ) : (
-                  <motion.a
-                    href="#waitlist"
-                    whileHover={{ scale: 1.03 }}
-                    className="inline-flex items-center gap-2 bg-gray-50 border-2 border-dashed border-brand-start/30 text-brand-start font-black px-8 py-4 rounded-[1.5rem] hover:bg-brand-start/5 transition-colors uppercase tracking-widest text-sm"
-                  >
+                  <motion.a href="#waitlist" whileHover={{ scale: 1.03 }}
+                    className="inline-flex items-center gap-2 bg-gray-50 border-2 border-dashed border-brand-start/30 text-brand-start font-black px-8 py-4 rounded-[1.5rem] hover:bg-brand-start/5 transition-colors uppercase tracking-widest text-sm">
                     🔔 Get Notified When Live →
                   </motion.a>
                 )}
@@ -421,11 +572,9 @@ export default function Home() {
                 const shot = screenshots[active.href];
                 return shot ? (
                   <div className="flex justify-center items-center py-4">
-                    <motion.div
-                      className="w-[260px]"
+                    <motion.div className="w-[260px]"
                       animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
                       <PhoneFrame src={shot} alt={`Furrly ${active.name} screen`} />
                     </motion.div>
                   </div>
@@ -436,13 +585,9 @@ export default function Home() {
                       <div className={`h-8 w-8 ${active.color} rounded-xl flex items-center justify-center text-lg`}>{active.icon}</div>
                     </div>
                     {[0, 1, 2].map(j => (
-                      <motion.div
-                        key={j}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                      <motion.div key={j} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: j * 0.1 }}
-                        className="flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 mb-3"
-                      >
+                        className="flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 mb-3">
                         <div className={`w-10 h-10 ${active.color} rounded-xl flex-shrink-0`} />
                         <div className="flex-1">
                           <div className={`h-3 ${j === 0 ? "w-2/3" : j === 1 ? "w-1/2" : "w-3/4"} bg-gray-200 rounded-full mb-2`} />
@@ -466,24 +611,16 @@ export default function Home() {
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Getting Started</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Up and Running in Minutes</h2>
           </Reveal>
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={stagger(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
+          <motion.div className="grid md:grid-cols-3 gap-8"
+            variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
             {steps.map((step, i) => (
               <motion.div key={i} variants={fadeUp} className="relative">
                 {i < steps.length - 1 && (
                   <div className="hidden md:block absolute top-8 left-[calc(100%-1rem)] w-[calc(100%-4rem)] h-0.5 bg-gray-100 z-0" />
                 )}
                 <TiltCard className="relative bg-gray-50 rounded-[2.5rem] p-10 border border-gray-100 hover:shadow-xl transition-shadow">
-                  <motion.div
-                    className="w-16 h-16 bg-brand-gradient rounded-[1.5rem] flex items-center justify-center text-white font-black text-2xl mb-8 shadow-lg"
-                    whileHover={{ rotate: [0, -5, 5, 0] }}
-                    transition={{ duration: 0.4 }}
-                  >
+                  <motion.div className="w-16 h-16 bg-brand-gradient rounded-[1.5rem] flex items-center justify-center text-white font-black text-2xl mb-8 shadow-lg"
+                    whileHover={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 0.4 }}>
                     {step.num}
                   </motion.div>
                   <h3 className="text-xl font-black text-ebony uppercase tracking-tight mb-4">{step.title}</h3>
@@ -495,51 +632,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─── */}
+      {/* ─── TESTIMONIALS (drag carousel) ─── */}
       <section className="py-28 bg-ebony overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal className="text-center mb-20">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-white/40 uppercase tracking-widest mb-3">Success Stories</p>
             <h2 className="text-4xl font-black text-white uppercase tracking-tighter sm:text-5xl">Loved by Pet Parents</h2>
           </Reveal>
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={stagger(0.15)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="bg-white/5 border border-white/10 rounded-[2.5rem] p-10 hover:bg-white/10 transition-colors"
-              >
-                <div className="flex gap-1 mb-6">
-                  {Array(t.stars).fill(0).map((_, j) => (
-                    <motion.span
-                      key={j}
-                      className="text-brand-end text-lg"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 + j * 0.05, type: "spring" }}
-                    >★</motion.span>
-                  ))}
-                </div>
-                <blockquote className="text-white/90 text-lg leading-relaxed italic mb-8">"{t.quote}"</blockquote>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">🐾</div>
-                  <div>
-                    <p className="font-black text-white text-sm">{t.author}</p>
-                    <p className="text-white/40 text-xs font-bold uppercase tracking-widest mt-0.5">{t.pet}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <TestimonialsCarousel testimonials={testimonialsData} />
         </div>
       </section>
 
@@ -563,48 +663,40 @@ export default function Home() {
                 Every voice shapes the roadmap. Every contribution moves animals closer to loving homes. <strong className="text-ebony">This is your app as much as ours.</strong>
               </p>
               <div className="flex flex-wrap gap-3">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
-                  <Link href="/about#volunteer"
-                    className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm shadow-lg"
-                  >
-                    🙋 Join the Community →
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
-                  <Link href="/roadmap"
-                    className="inline-flex items-center gap-2 bg-gray-50 border-2 border-gray-200 text-ebony font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm hover:border-brand-start/40 transition-colors"
-                  >
-                    Vote on Roadmap →
-                  </Link>
-                </motion.div>
+                <MagneticButton>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+                    <Link href="/about#volunteer"
+                      className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm shadow-lg">
+                      🙋 Join the Community →
+                    </Link>
+                  </motion.div>
+                </MagneticButton>
+                <MagneticButton>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+                    <Link href="/roadmap"
+                      className="inline-flex items-center gap-2 bg-gray-50 border-2 border-gray-200 text-ebony font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm hover:border-brand-start/40 transition-colors">
+                      Vote on Roadmap →
+                    </Link>
+                  </motion.div>
+                </MagneticButton>
               </div>
             </Reveal>
 
-            <motion.div
-              className="space-y-4"
-              variants={stagger(0.1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-            >
+            <motion.div className="space-y-4" variants={stagger(0.1)} initial="hidden"
+              whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
               {[
                 { icon: "🆓", title: "Free Forever", desc: "Core features will always be free. Access to pet welfare tools should never cost you anything." },
                 { icon: "🗳️", title: "You Shape the Roadmap", desc: "Vote on what we build next. Your priorities become our priorities — literally." },
                 { icon: "🤝", title: "Everyone Has a Role", desc: "Pet owner, developer, shelter, vet, designer — there's a way for everyone to contribute." },
                 { icon: "🌍", title: "Built for Every Animal", desc: "A dog in Karachi. A cat in London. A rescue in Lagos. This platform is for all of them." },
               ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
+                <motion.div key={i} variants={fadeUp}
                   whileHover={{ x: 6, boxShadow: "0 8px 32px rgba(0,0,0,0.08)" }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="flex items-start gap-5 bg-gray-50 rounded-[2rem] p-7 border border-gray-100"
-                >
-                  <motion.div
-                    className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0"
+                  className="flex items-start gap-5 bg-gray-50 rounded-[2rem] p-7 border border-gray-100">
+                  <motion.div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0"
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                  >
+                    transition={{ duration: 0.4 }}>
                     {item.icon}
                   </motion.div>
                   <div>
@@ -625,13 +717,8 @@ export default function Home() {
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Common Questions</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter">Everything You Need to Know</h2>
           </Reveal>
-          <motion.div
-            className="space-y-3"
-            variants={stagger(0.05)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
+          <motion.div className="space-y-3" variants={stagger(0.05)} initial="hidden"
+            whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
             {faqs.map((faq, i) => (
               <motion.div key={i} variants={fadeUp}>
                 <FaqItem faq={faq} />
@@ -646,16 +733,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal variants={scaleIn}>
             <div className="relative overflow-hidden rounded-[3.5rem] bg-ebony px-10 py-20 shadow-2xl">
-              <motion.div
-                className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-start/10 blur-3xl"
+              <motion.div className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-start/10 blur-3xl"
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 30, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.div
-                className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl"
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
+              <motion.div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl"
                 animate={{ scale: [1, 1.15, 1], rotate: [0, -20, 0] }}
-                transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-              />
+                transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }} />
               <div className="relative grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                   <p className="text-xs font-black text-brand-end uppercase tracking-widest mb-4">Hey you 👋</p>
@@ -668,38 +751,29 @@ export default function Home() {
                   <p className="text-white/70 text-lg leading-relaxed mb-10">
                     Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals — <strong className="text-white">we want your help.</strong> Every single contribution counts. 🐾
                   </p>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link href="/about#volunteer"
-                      className="inline-flex items-center gap-3 bg-brand-gradient text-white font-black px-10 py-5 rounded-2xl uppercase tracking-widest text-sm shadow-xl shadow-brand-start/30"
-                    >
-                      🙋 Yes, I want to help →
-                    </Link>
-                  </motion.div>
+                  <MagneticButton>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Link href="/about#volunteer"
+                        className="inline-flex items-center gap-3 bg-brand-gradient text-white font-black px-10 py-5 rounded-2xl uppercase tracking-widest text-sm shadow-xl shadow-brand-start/30">
+                        🙋 Yes, I want to help →
+                      </Link>
+                    </motion.div>
+                  </MagneticButton>
                 </div>
-                <motion.div
-                  className="grid grid-cols-2 gap-4"
-                  variants={stagger(0.1)}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
+                <motion.div className="grid grid-cols-2 gap-4"
+                  variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                   {[
                     { icon: "💻", role: "Developers", desc: "Build features that connect pets with loving families." },
                     { icon: "🎨", role: "Designers", desc: "Make Furrly beautiful for every pet owner." },
                     { icon: "🏥", role: "Vets & Shelters", desc: "Help us build real tools for animal welfare." },
                     { icon: "❤️", role: "Pet Lovers", desc: "Spread the word. Share stories. Help animals get seen." },
                   ].map((v, i) => (
-                    <motion.div
-                      key={i}
-                      variants={scaleIn}
+                    <motion.div key={i} variants={scaleIn}
                       whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.12)" }}
-                      className="bg-white/5 border border-white/10 rounded-[1.5rem] p-6 transition-colors"
-                    >
-                      <motion.div
-                        className="text-3xl mb-3"
+                      className="bg-white/5 border border-white/10 rounded-[1.5rem] p-6 transition-colors">
+                      <motion.div className="text-3xl mb-3"
                         whileHover={{ rotate: [0, -15, 15, 0], scale: 1.2 }}
-                        transition={{ duration: 0.4 }}
-                      >
+                        transition={{ duration: 0.4 }}>
                         {v.icon}
                       </motion.div>
                       <h4 className="font-black text-white text-sm uppercase tracking-tight mb-2">{v.role}</h4>
@@ -722,13 +796,8 @@ export default function Home() {
               Everything You Need to Care for Your Pet
             </h2>
           </Reveal>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            variants={stagger(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
             {[
               { href: "/tools", emoji: "🛠️", title: "Free Tools", desc: "25+ calculators for calories, exercise, symptoms, breed matching and more.", cta: "Try the Tools", bg: "bg-violet-50", border: "border-violet-100", badge: "25+ tools" },
               { href: "/breeds", emoji: "🐾", title: "Breed Directory", desc: "Explore 450+ dog and cat breeds with scores, care guides, and comparisons.", cta: "Browse Breeds", bg: "bg-amber-50", border: "border-amber-100", badge: "450+ breeds" },
@@ -738,14 +807,11 @@ export default function Home() {
               <motion.div key={href} variants={fadeUp}>
                 <TiltCard className="h-full">
                   <Link href={href}
-                    className={`group flex flex-col h-full ${bg} border ${border} rounded-3xl p-7 hover:shadow-lg transition-shadow`}
-                  >
+                    className={`group flex flex-col h-full ${bg} border ${border} rounded-3xl p-7 hover:shadow-lg transition-shadow`}>
                     <div className="flex items-start justify-between mb-5">
-                      <motion.span
-                        className="text-4xl"
+                      <motion.span className="text-4xl"
                         whileHover={{ rotate: [0, -15, 15, 0], scale: 1.2 }}
-                        transition={{ duration: 0.4 }}
-                      >
+                        transition={{ duration: 0.4 }}>
                         {emoji}
                       </motion.span>
                       <span className="text-[9px] font-black uppercase tracking-widest bg-white/80 text-slate-gray px-2.5 py-1 rounded-full border border-white">
@@ -754,9 +820,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-lg font-black text-ebony uppercase tracking-tight mb-2">{title}</h3>
                     <p className="text-sm text-slate-gray leading-6 flex-1 mb-5">{desc}</p>
-                    <span className="text-xs font-black uppercase tracking-widest text-brand-start flex items-center gap-2">
-                      {cta} →
-                    </span>
+                    <span className="text-xs font-black uppercase tracking-widest text-brand-start flex items-center gap-2">{cta} →</span>
                   </Link>
                 </TiltCard>
               </motion.div>
@@ -805,11 +869,13 @@ export default function Home() {
                   Your Pet&apos;s Life,<br />Organized.
                 </h2>
                 <p className="text-xl text-white/80 max-w-xl mx-auto leading-relaxed mb-12">
-                  Join 50,000+ pet parents who've replaced five apps with one. Download Furrly free today.
+                  Join 50,000+ pet parents who&apos;ve replaced five apps with one. Download Furrly free today.
                 </p>
-                <div className="flex justify-center">
-                  <DownloadButtons light center />
-                </div>
+                <MagneticButton className="inline-block">
+                  <div className="flex justify-center">
+                    <DownloadButtons light center />
+                  </div>
+                </MagneticButton>
               </div>
             </div>
           </Reveal>
@@ -823,31 +889,23 @@ export default function Home() {
 function FaqItem({ faq }: { faq: { q: string; a: string } }) {
   const [open, setOpen] = useState(false);
   return (
-    <motion.div
-      className={`border rounded-[1.5rem] overflow-hidden ${open ? "border-brand-start/30 shadow-md" : "border-gray-100"}`}
-      layout
-    >
+    <motion.div className={`border rounded-[1.5rem] overflow-hidden ${open ? "border-brand-start/30 shadow-md" : "border-gray-100"}`} layout>
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between gap-4 px-7 py-5 text-left">
         <span className="font-black text-ebony text-base leading-snug">{faq.q}</span>
-        <motion.span
-          animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.2 }}
-          className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-black ${open ? "bg-brand-start text-white" : "bg-gray-100 text-slate-gray"}`}
-        >+</motion.span>
+        <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.2 }}
+          className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-black ${open ? "bg-brand-start text-white" : "bg-gray-100 text-slate-gray"}`}>
+          +
+        </motion.span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
-            key="answer"
+          <motion.div key="answer"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">
-              {faq.a}
-            </div>
+            className="overflow-hidden">
+            <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">{faq.a}</div>
           </motion.div>
         )}
       </AnimatePresence>

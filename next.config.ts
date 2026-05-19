@@ -13,14 +13,14 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "furrly.com" }],
-        destination: "https://hushku.com/:path*",
+        has: [{ type: "host", value: "furrly.co" }],
+        destination: "https://hushku.app/:path*",
         permanent: true,
       },
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.furrly.com" }],
-        destination: "https://hushku.com/:path*",
+        has: [{ type: "host", value: "www.furrly.co" }],
+        destination: "https://hushku.app/:path*",
         permanent: true,
       },
     ];

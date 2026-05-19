@@ -3,7 +3,7 @@ import React from "react";
 const Testimonials = () => {
   const testimonials = [
     {
-      quote: "Furrly made finding a playmate for my dog so easy. The safety features are top-notch!",
+      quote: "Hushku made finding a playmate for my dog so easy. The safety features are top-notch!",
       author: "Sarah L.",
       pet: "Owner of 'Cooper' the Golden Retriever",
       image: "🐶",

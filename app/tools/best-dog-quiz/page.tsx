@@ -98,7 +98,7 @@ const breedProfiles: Breed[] = [
     traits: ["Family-Friendly", "Active", "Easy to Train"],
     emoji: "🦮",
     match: (a) => a.activity !== "low" && a.family === "family",
-    adoptionTip: "Golden Retrievers are frequently in rescues. Download Furrly to find one near you.",
+    adoptionTip: "Golden Retrievers are frequently in rescues. Download Hushku to find one near you.",
   },
   {
     name: "French Bulldog",
@@ -106,7 +106,7 @@ const breedProfiles: Breed[] = [
     traits: ["Low Energy", "Apartment-Friendly", "Minimal Grooming"],
     emoji: "🐾",
     match: (a) => a.space === "small" && a.activity === "low",
-    adoptionTip: "Frenchies need love, not space. Find an adoptable one on Furrly.",
+    adoptionTip: "Frenchies need love, not space. Find an adoptable one on Hushku.",
   },
   {
     name: "Poodle (Standard)",
@@ -114,7 +114,7 @@ const breedProfiles: Breed[] = [
     traits: ["Hypoallergenic", "Smart", "Versatile"],
     emoji: "🐩",
     match: (a) => a.allergies !== "none" || a.experience === "expert",
-    adoptionTip: "Poodles are surprisingly common in rescues. Check the Furrly Adoption feed.",
+    adoptionTip: "Poodles are surprisingly common in rescues. Check the Hushku Adoption feed.",
   },
   {
     name: "Border Collie",
@@ -122,7 +122,7 @@ const breedProfiles: Breed[] = [
     traits: ["Highly Active", "Intelligent", "Needs Space"],
     emoji: "🐕",
     match: (a) => a.activity === "high" && a.experience !== "first",
-    adoptionTip: "Border Collies need jobs. Find a local rescue via Furrly.",
+    adoptionTip: "Border Collies need jobs. Find a local rescue via Hushku.",
   },
   {
     name: "Shih Tzu",
@@ -130,7 +130,7 @@ const breedProfiles: Breed[] = [
     traits: ["Apartment-Friendly", "Low Energy", "Senior-Friendly"],
     emoji: "👑",
     match: (a) => a.activity === "low" && a.space === "small" && a.family === "solo",
-    adoptionTip: "Shih Tzus are often surrendered to shelters. Adopt via Furrly.",
+    adoptionTip: "Shih Tzus are often surrendered to shelters. Adopt via Hushku.",
   },
   {
     name: "Labrador Retriever",
@@ -138,7 +138,7 @@ const breedProfiles: Breed[] = [
     traits: ["Friendly", "Trainable", "Great with Kids"],
     emoji: "🐶",
     match: (a) => a.experience === "first" && a.family === "family",
-    adoptionTip: "Labs are always in shelters looking for forever homes on Furrly.",
+    adoptionTip: "Labs are always in shelters looking for forever homes on Hushku.",
   },
   {
     name: "German Shepherd",
@@ -146,7 +146,7 @@ const breedProfiles: Breed[] = [
     traits: ["Guard Dog", "Loyal", "Experienced Owner Needed"],
     emoji: "🐺",
     match: (a) => a.purpose === "guard" && a.experience === "expert",
-    adoptionTip: "GSDs are often retired police dogs needing loving homes. Find on Furrly.",
+    adoptionTip: "GSDs are often retired police dogs needing loving homes. Find on Hushku.",
   },
   {
     name: "Beagle",
@@ -154,7 +154,7 @@ const breedProfiles: Breed[] = [
     traits: ["Family-Friendly", "Curious", "Vocal"],
     emoji: "🐕",
     match: (a) => a.family === "family" && a.activity === "medium",
-    adoptionTip: "Beagles are one of the most common rescue breeds. Find yours on Furrly.",
+    adoptionTip: "Beagles are one of the most common rescue breeds. Find yours on Hushku.",
   },
   {
     name: "Chihuahua",
@@ -162,7 +162,7 @@ const breedProfiles: Breed[] = [
     traits: ["Tiny", "Feisty", "Long Lifespan"],
     emoji: "🐕",
     match: (a) => a.space === "small" && a.family === "solo",
-    adoptionTip: "Chihuahuas are sadly overrepresented in shelters. Adopt via Furrly.",
+    adoptionTip: "Chihuahuas are sadly overrepresented in shelters. Adopt via Hushku.",
   },
   {
     name: "Australian Shepherd",
@@ -170,7 +170,7 @@ const breedProfiles: Breed[] = [
     traits: ["Highly Active", "Smart", "Needs a Job"],
     emoji: "🐕",
     match: (a) => a.activity === "high" && a.space === "large",
-    adoptionTip: "Aussies deserve active homes. Find one nearby on Furrly.",
+    adoptionTip: "Aussies deserve active homes. Find one nearby on Hushku.",
   },
   {
     name: "Cavalier King Charles Spaniel",
@@ -178,7 +178,7 @@ const breedProfiles: Breed[] = [
     traits: ["Cuddly", "Gentle", "Apartment-Friendly"],
     emoji: "🫶",
     match: (a) => a.purpose === "companion" && a.experience === "first",
-    adoptionTip: "Cavaliers are gentle souls looking for sofas and humans on Furrly.",
+    adoptionTip: "Cavaliers are gentle souls looking for sofas and humans on Hushku.",
   },
   {
     name: "Bernese Mountain Dog",
@@ -186,7 +186,7 @@ const breedProfiles: Breed[] = [
     traits: ["Gentle Giant", "Family-Friendly", "Space Needed"],
     emoji: "🏔️",
     match: (a) => a.space === "large" && a.family === "family",
-    adoptionTip: "Berners need big yards. Find a rescue on Furrly.",
+    adoptionTip: "Berners need big yards. Find a rescue on Hushku.",
   },
   {
     name: "Dachshund",
@@ -194,7 +194,7 @@ const breedProfiles: Breed[] = [
     traits: ["Small but Brave", "Apartment-Friendly", "Moderate Exercise"],
     emoji: "🌭",
     match: (a) => a.activity === "medium" && a.space === "small",
-    adoptionTip: "Dachshunds have dedicated rescues. Search on Furrly.",
+    adoptionTip: "Dachshunds have dedicated rescues. Search on Hushku.",
   },
   {
     name: "Rottweiler",
@@ -202,7 +202,7 @@ const breedProfiles: Breed[] = [
     traits: ["Guardian", "Loyal", "Experienced Owner"],
     emoji: "🛡️",
     match: (a) => a.purpose === "guard" && a.space === "large",
-    adoptionTip: "Rottweilers need patient and experienced owners. Find one on Furrly.",
+    adoptionTip: "Rottweilers need patient and experienced owners. Find one on Hushku.",
   },
   {
     name: "Maltese",
@@ -210,7 +210,7 @@ const breedProfiles: Breed[] = [
     traits: ["Hypoallergenic", "Tiny", "Affectionate"],
     emoji: "🤍",
     match: (a) => a.allergies !== "none" && a.space === "small",
-    adoptionTip: "Maltese dogs are often in breed-specific rescues. Check Furrly.",
+    adoptionTip: "Maltese dogs are often in breed-specific rescues. Check Hushku.",
   },
 ];
 
@@ -326,7 +326,7 @@ export default function BestDogBreedQuiz() {
               <p className="text-white/80 text-sm">{result.adoptionTip}</p>
             </div>
             <Link href="/adoption" className="bg-white text-brand-start font-black py-4 px-8 rounded-2xl hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest whitespace-nowrap shadow-xl">
-              Browse on Furrly
+              Browse on Hushku
             </Link>
           </div>
 

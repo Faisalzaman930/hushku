@@ -126,7 +126,7 @@ const InteractiveMockup = ({ title, subtitle, type, data }: InteractiveMockupPro
               {title}
             </h2>
             <p className="mt-8 text-xl leading-8 text-slate-gray">
-              See the power of our real-time networking engine in action. This simulation demonstrates how Furrly provides the speed and clarity required for modern pet care.
+              See the power of our real-time networking engine in action. This simulation demonstrates how Hushku provides the speed and clarity required for modern pet care.
             </p>
             <button 
               onClick={() => setActive(!active)}

@@ -651,7 +651,7 @@ The most commonly used medications for separation anxiety in dogs are fluoxetine
 Trazodone is sometimes used as a situational medication for known high-anxiety events (thunderstorms, fireworks) while long-term medications are being established. Ask your vet specifically about separation anxiety treatment, not just "anxiety medication" — the treatment goals differ.
 
 Most dogs on appropriate medication combined with behavioral treatment show significant improvement within 4–8 weeks.`,
-        tip: "Furrly's telehealth feature connects you with veterinary professionals 24/7 for initial guidance — but separation anxiety medication requires an in-person exam and prescription from your regular vet.",
+        tip: "Hushku's telehealth feature connects you with veterinary professionals 24/7 for initial guidance — but separation anxiety medication requires an in-person exam and prescription from your regular vet.",
       },
     ],
     commonMistakes: [
@@ -1306,7 +1306,7 @@ Continue providing:
 - **Each animal their own resources:** Separate beds, feeding stations, litter boxes (cats: N+1 rule — one more litter box than the number of cats)
 - **Individual attention time:** Resident animals should not experience the newcomer's arrival as the end of individual attention
 - **Refuge spaces:** Every animal should always have a space the other cannot access`,
-        tip: "Use [Furrly's social features](/social) to connect with other multi-pet households in your area — real-world experience from people who've navigated the same species combination is often the most practical guidance available.",
+        tip: "Use [Hushku's social features](/social) to connect with other multi-pet households in your area — real-world experience from people who've navigated the same species combination is often the most practical guidance available.",
       },
     ],
     commonMistakes: [
@@ -1353,7 +1353,7 @@ The [ASPCA recommends](https://www.aspca.org/pet-care/cat-care/cats-and-other-an
     relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "complete-guide-to-dog-training", "what-is-separation-anxiety"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/adoption",
-    ctaText: "Find Your Next Pet Through Furrly Adoption",
+    ctaText: "Find Your Next Pet Through Hushku Adoption",
   },
 
   {

@@ -6,10 +6,10 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Furrly",
-  description: "Find your next pet on Furrly. Browse verified shelters and rescues, submit paperless adoption applications, and track your process — all from your phone. Free to download.",
+  title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
+  description: "Find your next pet on Hushku. Browse verified shelters and rescues, submit paperless adoption applications, and track your process — all from your phone. Free to download.",
   openGraph: {
-    title: "Pet Adoption App | Furrly",
+    title: "Pet Adoption App | Hushku",
     description: "The only mobile app with end-to-end pet adoption — browse verified rescues, apply paperlessly, and get matched in minutes.",
     type: "website",
   },
@@ -19,7 +19,7 @@ const benefits = [
   {
     icon: "🏠",
     title: "Verified Rescue Network",
-    desc: "Every shelter and rescue on Furrly is audited before going live. Registered charity status, operating licenses, and animal welfare standards are all confirmed. No unverified listings.",
+    desc: "Every shelter and rescue on Hushku is audited before going live. Registered charity status, operating licenses, and animal welfare standards are all confirmed. No unverified listings.",
   },
   {
     icon: "📋",
@@ -46,11 +46,11 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How do I know the rescues on Furrly are legitimate?", a: "Every organization goes through a verification process before listings go live. We verify registered charity or business status, operating licenses, and require agreement with our animal welfare standards. Verified organizations display a checkmark badge. Listings without it are not active." },
+  { q: "How do I know the rescues on Hushku are legitimate?", a: "Every organization goes through a verification process before listings go live. We verify registered charity or business status, operating licenses, and require agreement with our animal welfare standards. Verified organizations display a checkmark badge. Listings without it are not active." },
   { q: "Can I apply to multiple rescues at once?", a: "Yes. Once you've built your adopter profile, you can submit it to any number of verified rescues simultaneously with one tap. You'll receive status updates for each application separately in your inbox." },
-  { q: "What does the adoption process look like on Furrly?", a: "After submitting your application, the rescue reviews your profile and either approves you for a meet-and-greet or asks follow-up questions through in-app chat. Home visits can be scheduled through the app. Once the rescue confirms the adoption, digital ownership documents are issued directly to your account." },
-  { q: "Is there a fee to use the adoption feature?", a: "Furrly is free to download and use. Adoption fees are set entirely by the individual rescue or shelter — Furrly does not charge adopters. Some rescues may charge a small application processing fee; this is disclosed on the listing." },
-  { q: "What happens to my pet's records when I adopt?", a: "When adoption is finalized, the rescue transfers all existing medical records, vaccination history, and microchip data to your Furrly health wallet. These are permanently accessible and can be shared with any vet in our network." },
+  { q: "What does the adoption process look like on Hushku?", a: "After submitting your application, the rescue reviews your profile and either approves you for a meet-and-greet or asks follow-up questions through in-app chat. Home visits can be scheduled through the app. Once the rescue confirms the adoption, digital ownership documents are issued directly to your account." },
+  { q: "Is there a fee to use the adoption feature?", a: "Hushku is free to download and use. Adoption fees are set entirely by the individual rescue or shelter — Hushku does not charge adopters. Some rescues may charge a small application processing fee; this is disclosed on the listing." },
+  { q: "What happens to my pet's records when I adopt?", a: "When adoption is finalized, the rescue transfers all existing medical records, vaccination history, and microchip data to your Hushku health wallet. These are permanently accessible and can be shared with any vet in our network." },
 ];
 
 const relatedResources = [
@@ -62,12 +62,12 @@ const relatedResources = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Furrly Pet Adoption — Verified Rescues & Paperless Applications",
-  "description": "Browse verified shelters and rescues, submit paperless adoption applications, and track your process on Furrly.",
-  "url": "https://furrly.app/adoption",
+  "name": "Hushku Pet Adoption — Verified Rescues & Paperless Applications",
+  "description": "Browse verified shelters and rescues, submit paperless adoption applications, and track your process on Hushku.",
+  "url": "https://hushku.app/adoption",
   "mainEntity": {
     "@type": "SoftwareApplication",
-    "name": "Furrly",
+    "name": "Hushku",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS, Android",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -93,7 +93,7 @@ export default function AdoptionPage() {
                   Find Their<br /><span className="text-amber-600">Forever.</span><br />In One Tap.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Furrly connects you directly with verified rescues. Browse real listings, submit paperless applications, and bring your next best friend home — all from your phone.
+                  Hushku connects you directly with verified rescues. Browse real listings, submit paperless applications, and bring your next best friend home — all from your phone.
                 </p>
                 <DownloadButtons />
               </div>
@@ -103,7 +103,7 @@ export default function AdoptionPage() {
                   className="w-[260px]"
                   style={{ animation: "float-a 3.5s ease-in-out infinite" }}
                 >
-                  <PhoneFrame src="/screenshots/app-adoption.png" alt="Furrly adoption feature — PawDiscover screen" />
+                  <PhoneFrame src="/screenshots/app-adoption.png" alt="Hushku adoption feature — PawDiscover screen" />
                 </div>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function AdoptionPage() {
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
-              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Furrly</p>
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku</p>
               <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Adoption Without the Paperwork</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

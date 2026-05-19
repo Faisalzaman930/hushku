@@ -13,7 +13,7 @@ export default function VetDisclaimer() {
           <a href="https://www.aspca.org/pet-care/animal-poison-control-center" target="_blank" rel="noopener noreferrer" className="font-bold underline">ASPCA Animal Poison Control Center (888-426-4435)</a>.
         </p>
         <p className="text-xs text-amber-700 mt-2">
-          Reviewed by the <Link href="/about/editorial" className="font-bold underline">Furrly Editorial Team</Link> · Sources: ASPCA, WSAVA, Cornell University College of Veterinary Medicine
+          Reviewed by the <Link href="/about/editorial" className="font-bold underline">Hushku Editorial Team</Link> · Sources: ASPCA, WSAVA, Cornell University College of Veterinary Medicine
         </p>
       </div>
     </div>

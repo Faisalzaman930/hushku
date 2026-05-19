@@ -533,7 +533,7 @@ Examine ears weekly from puppyhood: touch the ear flap, look inside, pair with t
       { q: "How do I stop my puppy from biting?", a: "Puppy biting (mouthing) is normal developmental behavior — puppies explore the world with their mouths and learn bite inhibition through interaction. The response to biting: yelp or say 'ouch' in a high-pitched voice, immediately withdraw attention (stand up, turn away, leave the room if needed), and wait 30–60 seconds before re-engaging. This teaches that teeth on skin ends the fun. Simultaneously redirect onto appropriate toys. Punishing puppy biting (tapping the nose, scruffing) interrupts bite inhibition learning and can create hand-shy dogs." },
     ],
     ctaFeature: "/adoption",
-    ctaText: "Find Your Puppy Through Furrly Adoption",
+    ctaText: "Find Your Puppy Through Hushku Adoption",
   },
 
   {
@@ -788,7 +788,7 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
       { q: "Is dental anesthesia safe for older dogs?", a: "The risk of anesthesia for a routine dental cleaning in a dog whose pre-anesthetic bloodwork is acceptable is very low — far lower than commonly feared. The risk of untreated periodontal disease (chronic pain, systemic infection, cardiac and kidney effects) is real and cumulative. Age alone is not a contraindication for anesthesia. Pre-anesthetic bloodwork and exam identify the cases where anesthesia risk is elevated. A vet who recommends dental care for a senior dog after appropriate pre-anesthetic evaluation is making the evidence-based recommendation." },
     ],
     ctaFeature: "/vets",
-    ctaText: "Access Veterinary Support in the Furrly App",
+    ctaText: "Access Veterinary Support in the Hushku App",
   },
 
   {

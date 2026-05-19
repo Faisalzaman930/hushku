@@ -34,7 +34,7 @@ export const appDetails: Record<string, AppDetail> = {
     slug: "playdates",
     name: "Playdates",
     fullTitle: "Safe, Meaningful Socialization for Every Pet.",
-    summary: "Furrly Playdates isn't just about meeting up; it's about finding the perfect compatible companion while prioritizing safety and owner peace of mind.",
+    summary: "Hushku Playdates isn't just about meeting up; it's about finding the perfect compatible companion while prioritizing safety and owner peace of mind.",
     detailedFeatures: [
       {
         title: "Proximity-Based Matching",
@@ -114,7 +114,7 @@ export const appDetails: Record<string, AppDetail> = {
     ],
     remedies: {
       title: "Community Safety & Etiquette",
-      description: "Guidelines to keep Furrly Social a safe, high-signal resource for all pet guardians.",
+      description: "Guidelines to keep Hushku Social a safe, high-signal resource for all pet guardians.",
       items: [
         {
           title: "Respect Privacy",
@@ -144,7 +144,7 @@ export const appDetails: Record<string, AppDetail> = {
     slug: "lost-found",
     name: "Lost & Found",
     fullTitle: "The Neighborhood Net: Recovery at the Speed of Life.",
-    summary: "When a pet is lost, every second counts. Furrly Reunited turns your neighbors into a hyper-local rescue squad.",
+    summary: "When a pet is lost, every second counts. Hushku Reunited turns your neighbors into a hyper-local rescue squad.",
     detailedFeatures: [
       {
         title: "Proximity Priority Alerts",
@@ -167,7 +167,7 @@ export const appDetails: Record<string, AppDetail> = {
       description: "Do NOT panic. Follow these exact steps within the first 60 minutes of your pet going missing.",
       items: [
         {
-          title: "Report on Furrly NOW",
+          title: "Report on Hushku NOW",
           content: "Tap 'Report Lost Pet' in the app immediately. This activates the Neighborhood Net broadcast to everyone nearby.",
           urgency: "EMERGENCY",
         },
@@ -268,7 +268,7 @@ export const appDetails: Record<string, AppDetail> = {
       },
       {
         title: "Clinic CRM Integration",
-        desc: "Book appointments and manage scheduling directly within the Furrly app.",
+        desc: "Book appointments and manage scheduling directly within the Hushku app.",
         icon: "📅",
       }
     ],
@@ -309,7 +309,7 @@ export const appDetails: Record<string, AppDetail> = {
     slug: "fostering",
     name: "Fostering",
     fullTitle: "Temporary Home, Permanent Impact.",
-    summary: "Furrly Fostering bridges the gap between rescues and caregivers with unmatched support and resources.",
+    summary: "Hushku Fostering bridges the gap between rescues and caregivers with unmatched support and resources.",
     detailedFeatures: [
       {
         title: "Supply Network",

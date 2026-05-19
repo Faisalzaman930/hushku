@@ -259,7 +259,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
           <div className="flex items-center justify-center gap-5 text-white/50 text-[10px] font-black uppercase tracking-widest mt-8">
             <span>Updated: {page.lastUpdated}</span>
             <span>•</span>
-            <span>Furrly Editorial Team</span>
+            <span>Hushku Editorial Team</span>
           </div>
         </div>
       </div>

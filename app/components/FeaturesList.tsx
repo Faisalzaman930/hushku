@@ -23,7 +23,7 @@ const FeaturesList = () => {
             A Feature-Rich Ecosystem
           </p>
           <p className="mt-6 text-lg leading-8 text-slate-gray">
-            We've thought of everything. From the smallest interaction to the biggest emergencies, Furrly is designed to be your complete pet parenting companion.
+            We've thought of everything. From the smallest interaction to the biggest emergencies, Hushku is designed to be your complete pet parenting companion.
           </p>
         </div>
         <div className="mt-16 sm:mt-20 lg:mt-24">

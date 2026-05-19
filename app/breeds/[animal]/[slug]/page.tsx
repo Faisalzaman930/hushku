@@ -32,9 +32,9 @@ export async function generateMetadata({
   const lifeStr = breed.lifeSpan ? ` Life expectancy: ${breed.lifeSpan}.` : "";
   const sizeStr = dog?.size ? ` Size: ${dog.size}.` : cat?.origin ? ` Origin: ${cat.origin}.` : "";
   return {
-    title: `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide — Temperament, Size & Care | Furrly`,
+    title: `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide — Temperament, Size & Care | Hushku`,
     description: `Complete ${breed.name} breed guide.${sizeStr}${lifeStr} Temperament scores, grooming needs, care tips & FAQs.`,
-    alternates: { canonical: `https://furrly.co/breeds/${animal}/${slug}` },
+    alternates: { canonical: `https://hushku.co/breeds/${animal}/${slug}` },
   };
 }
 
@@ -130,10 +130,10 @@ export default async function BreedPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://furrly.co" },
-      { "@type": "ListItem", position: 2, name: "Breeds", item: "https://furrly.co/breeds" },
-      { "@type": "ListItem", position: 3, name: animalLabel, item: `https://furrly.co/breeds/${animal}` },
-      { "@type": "ListItem", position: 4, name: breed.name, item: `https://furrly.co/breeds/${animal}/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.co" },
+      { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.co/breeds" },
+      { "@type": "ListItem", position: 3, name: animalLabel, item: `https://hushku.co/breeds/${animal}` },
+      { "@type": "ListItem", position: 4, name: breed.name, item: `https://hushku.co/breeds/${animal}/${slug}` },
     ],
   };
 
@@ -193,7 +193,7 @@ export default async function BreedPage({
                   <p className="text-white/40 text-xs mb-4 max-w-md">{cat.temperament}</p>
                 )}
                 <p className="text-white/30 text-xs mb-6">
-                  Reviewed by the Furrly editorial team · Updated {today}
+                  Reviewed by the Hushku editorial team · Updated {today}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {quickStats.slice(0, 4).map(({ label, value }) => value && value !== "—" ? (
@@ -248,7 +248,7 @@ export default async function BreedPage({
               Own a {breed.name}?
             </h2>
             <p className="text-white/50 mb-8 leading-7">
-              Track health records, set care reminders, and connect with other {breed.name} owners in Furrly.
+              Track health records, set care reminders, and connect with other {breed.name} owners in Hushku.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/tools" className="inline-flex items-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:opacity-90 transition-opacity text-sm">

@@ -80,7 +80,7 @@ export default function HowToLayout({ article }: { article: HowToArticle }) {
             <span>•</span>
             <span>{article.readTime}</span>
             <span>•</span>
-            <span>Furrly Editorial Team</span>
+            <span>Hushku Editorial Team</span>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function HowToLayout({ article }: { article: HowToArticle }) {
                 <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">{article.ctaFeature}</p>
                 <p className="font-black text-ebony text-sm mb-5 leading-snug">{article.ctaText}</p>
                 <Link href="/#download" className="block text-center bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
-                  Get Furrly Free
+                  Get Hushku Free
                 </Link>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -192,7 +192,7 @@ export default function HowToLayout({ article }: { article: HowToArticle }) {
                 href="/#download"
                 className="inline-block bg-white text-brand-start font-black py-4 px-10 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
               >
-                Get Furrly Free
+                Get Hushku Free
               </Link>
             </div>
           </main>

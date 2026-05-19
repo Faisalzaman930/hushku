@@ -27,7 +27,7 @@ export default function WaitlistBanner() {
 
         {/* sub */}
         <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-xl mx-auto mb-12">
-          Furrly is launching on iOS &amp; Android soon. Drop your email and get early access before the public — built by two pet lovers, for every pet lover on the planet.
+          Hushku is launching on iOS &amp; Android soon. Drop your email and get early access before the public — built by two pet lovers, for every pet lover on the planet.
         </p>
 
         {/* form */}

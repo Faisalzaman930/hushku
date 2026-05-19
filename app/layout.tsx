@@ -7,11 +7,11 @@ import VolunteerBanner from "./components/VolunteerBanner";
 
 export const metadata: Metadata = {
   title: {
-    default: "Furrly — One App for Every Pet Parent Need",
-    template: "%s | Furrly",
+    default: "Hushku — One App for Every Pet Parent Need",
+    template: "%s | Hushku",
   },
-  description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
-  keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Furrly app download"],
+  description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
+  keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Hushku app download"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   openGraph: {
-    siteName: "Furrly",
+    siteName: "Hushku",
     type: "website",
-    title: "Furrly — One App for Every Pet Parent Need",
-    description: "Download Furrly, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
+    title: "Hushku — One App for Every Pet Parent Need",
+    description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Furrly — One App for Every Pet Parent Need",
+    title: "Hushku — One App for Every Pet Parent Need",
     description: "Social networking, playdates, adoption, vet discovery, and lost & found — all in one free app for pet parents.",
   },
 };
@@ -54,17 +54,17 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Furrly",
-            "url": "https://furrly.co",
-            "logo": { "@type": "ImageObject", "url": "https://furrly.co/furrly-logo.png" },
+            "name": "Hushku",
+            "url": "https://hushku.co",
+            "logo": { "@type": "ImageObject", "url": "https://hushku.co/hushku-logo.png" },
             "sameAs": [
-              "https://www.instagram.com/furrlyapp",
-              "https://www.tiktok.com/@furrlyapp"
+              "https://www.instagram.com/hushkuapp",
+              "https://www.tiktok.com/@hushkuapp"
             ],
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "customer support",
-              "email": "hello@furrly.co"
+              "email": "hello@hushku.co"
             }
           })}}
         />

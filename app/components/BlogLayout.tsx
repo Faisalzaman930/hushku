@@ -122,7 +122,7 @@ function Callout({ type, title, children }: { type: "tip" | "warning" | "info"; 
 function ComparisonTable({ competitors }: { competitors: Article["competitors"] }) {
   const criteria = ["Best for", "Cost model", "Community size", "Integration"];
   const values: Record<string, string[]> = {
-    "Furrly": ["Unified pet management", "Free (core)", "Growing fast", "Full ecosystem"],
+    "Hushku": ["Unified pet management", "Free (core)", "Growing fast", "Full ecosystem"],
   };
   return (
     <div className="my-16 overflow-x-auto rounded-[2rem] border border-gray-200 shadow-sm">
@@ -275,7 +275,7 @@ export default function BlogLayout({ article, allArticles }: { article: Article;
         <div className="mx-auto max-w-5xl flex items-start gap-3">
           <span className="text-amber-600 text-base mt-0.5 flex-shrink-0">ℹ</span>
           <p className="text-xs text-amber-800 leading-relaxed">
-            <strong>Editorial disclosure:</strong> Furrly is one of the apps reviewed on this page. We have a direct commercial interest in this category. Our editorial process applies the same scoring criteria to all apps, including our own. Scores and rankings reflect our testing methodology, not promotional intent.{" "}
+            <strong>Editorial disclosure:</strong> Hushku is one of the apps reviewed on this page. We have a direct commercial interest in this category. Our editorial process applies the same scoring criteria to all apps, including our own. Scores and rankings reflect our testing methodology, not promotional intent.{" "}
             <Link href="/resources#editorial-standards" className="underline font-bold hover:text-amber-900 transition-colors">Read our editorial standards.</Link>
           </p>
         </div>
@@ -305,7 +305,7 @@ export default function BlogLayout({ article, allArticles }: { article: Article;
               {/* Winner CTA */}
               <div className="bg-brand-gradient rounded-[2rem] p-7 text-white">
                 <p className="text-[10px] font-black uppercase tracking-widest mb-2 text-white/70">Our Top Pick</p>
-                <p className="font-black text-xl mb-1">Furrly</p>
+                <p className="font-black text-xl mb-1">Hushku</p>
                 <div className="flex gap-0.5 mb-4">
                   {[...Array(5)].map((_, i) => <span key={i} className="text-white text-sm">★</span>)}
                   <span className="text-white/70 text-xs ml-1 font-bold">4.7</span>
@@ -457,7 +457,7 @@ export default function BlogLayout({ article, allArticles }: { article: Article;
                   <div className="bg-white border border-brand-start/20 rounded-[2rem] p-7 flex flex-col md:flex-row gap-6 items-start md:items-center mb-8">
                     <div className="flex-1">
                       <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">🏆 Top Pick for Most Pet Owners</p>
-                      <p className="font-black text-2xl text-ebony mb-1">Furrly</p>
+                      <p className="font-black text-2xl text-ebony mb-1">Hushku</p>
                       <div className="flex gap-0.5 mb-2">
                         {[...Array(5)].map((_, i) => <span key={i} className="text-brand-start">★</span>)}
                         <span className="text-slate-gray text-xs ml-2 font-bold">4.7 / 5.0</span>

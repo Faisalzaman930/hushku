@@ -409,11 +409,11 @@ const testimonialsData = [
 ];
 
 const faqs = [
-  { q: "Is Furrly free to download and use?", a: "Yes — Furrly is completely free to download on iOS and Android. All core features (playdates, social feed, lost & found alerts, adoption browsing, and vet directory) are free. Premium features for rescues and businesses are available on a subscription basis." },
-  { q: "How does the lost pet alert system work?", a: "When you report a lost pet, Furrly sends a push notification to every active user within a configurable radius (1–10km). Each user sees your pet's photo, description, and last-known location on a live map. When someone spots your pet, they tap 'I saw this pet' and their GPS coordinates are logged and sent to you instantly." },
-  { q: "Are the rescue organizations on Furrly verified?", a: "Every rescue and shelter on the platform goes through a verification process before listings go live. We check registered charity status, operating licenses, and require agreement with our animal welfare standards. Unverified listings are clearly labeled." },
-  { q: "How is Furrly different from Petfinder or Rover?", a: "Furrly is the only app that combines adoption, social networking, playdates, lost & found, and vet discovery in one unified experience. You don't need five separate apps. Your profile and pet data work across all features simultaneously." },
-  { q: "What cities is Furrly available in?", a: "Furrly works globally — the app works wherever you are because it's location-based rather than city-specific. Early user concentrations are in North America, the UK, and Australia, but the community is growing rapidly worldwide." },
+  { q: "Is Hushku free to download and use?", a: "Yes — Hushku is completely free to download on iOS and Android. All core features (playdates, social feed, lost & found alerts, adoption browsing, and vet directory) are free. Premium features for rescues and businesses are available on a subscription basis." },
+  { q: "How does the lost pet alert system work?", a: "When you report a lost pet, Hushku sends a push notification to every active user within a configurable radius (1–10km). Each user sees your pet's photo, description, and last-known location on a live map. When someone spots your pet, they tap 'I saw this pet' and their GPS coordinates are logged and sent to you instantly." },
+  { q: "Are the rescue organizations on Hushku verified?", a: "Every rescue and shelter on the platform goes through a verification process before listings go live. We check registered charity status, operating licenses, and require agreement with our animal welfare standards. Unverified listings are clearly labeled." },
+  { q: "How is Hushku different from Petfinder or Rover?", a: "Hushku is the only app that combines adoption, social networking, playdates, lost & found, and vet discovery in one unified experience. You don't need five separate apps. Your profile and pet data work across all features simultaneously." },
+  { q: "What cities is Hushku available in?", a: "Hushku works globally — the app works wherever you are because it's location-based rather than city-specific. Early user concentrations are in North America, the UK, and Australia, but the community is growing rapidly worldwide." },
 ];
 
 const marqueeItems = [
@@ -476,7 +476,7 @@ export default function Home() {
               </h1>
 
               <motion.p variants={fadeUp} className="text-xl leading-relaxed text-slate-gray max-w-lg">
-                Furrly replaces five fragmented pet apps. Social networking, playdates, adoption, vet discovery, lost & found — all in one place, built for mobile-first pet parents.
+                Hushku replaces five fragmented pet apps. Social networking, playdates, adoption, vet discovery, lost & found — all in one place, built for mobile-first pet parents.
               </motion.p>
 
               <motion.div variants={stagger()} className="flex flex-wrap gap-4 pt-2">
@@ -524,7 +524,7 @@ export default function Home() {
                     animate={{ x: groupHover ? -18 : 0, rotate: groupHover ? -12 : -7, opacity: groupHover ? 1 : 0.9 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-adoption.png" alt="Furrly adoption feature" delay={0.3} rotate={0} isSide />
+                    <FloatingPhone src="/screenshots/app-adoption.png" alt="Hushku adoption feature" delay={0.3} rotate={0} isSide />
                   </motion.div>
 
                   <motion.div
@@ -532,7 +532,7 @@ export default function Home() {
                     animate={{ y: groupHover ? -10 : 0, scale: groupHover ? 1.04 : 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-playdates.png" alt="Furrly playdates feature" delay={0} rotate={0} />
+                    <FloatingPhone src="/screenshots/app-playdates.png" alt="Hushku playdates feature" delay={0} rotate={0} />
                   </motion.div>
 
                   <motion.div
@@ -540,7 +540,7 @@ export default function Home() {
                     animate={{ x: groupHover ? 18 : 0, rotate: groupHover ? 12 : 7, opacity: groupHover ? 1 : 0.9 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-social-feed.png" alt="Furrly social feed" delay={0.6} rotate={0} isSide />
+                    <FloatingPhone src="/screenshots/app-social-feed.png" alt="Hushku social feed" delay={0.6} rotate={0} isSide />
                   </motion.div>
                 </div>
               );
@@ -645,7 +645,7 @@ export default function Home() {
                     <motion.div className="w-[260px]"
                       animate={{ y: [0, -10, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-                      <PhoneFrame src={shot} alt={`Furrly ${active.name} screen`} />
+                      <PhoneFrame src={shot} alt={`Hushku ${active.name} screen`} />
                     </motion.div>
                   </div>
                 ) : (
@@ -724,7 +724,7 @@ export default function Home() {
                 <span className="text-brand-gradient">A Community.</span>
               </h2>
               <p className="text-lg text-slate-gray leading-relaxed mb-6">
-                Furrly isn&apos;t a startup chasing revenue. It&apos;s a community project built by pet lovers, for pet lovers — and we want everyone to own a piece of it in their own way.
+                Hushku isn&apos;t a startup chasing revenue. It&apos;s a community project built by pet lovers, for pet lovers — and we want everyone to own a piece of it in their own way.
               </p>
               <p className="text-lg text-slate-gray leading-relaxed mb-6">
                 Whether you&apos;re a developer building features, a vet helping us understand animal care, a shelter giving animals a digital home, or just a pet owner sharing stories — <strong className="text-ebony">you are part of what makes this work.</strong>
@@ -816,7 +816,7 @@ export default function Home() {
                     Got a soft spot<br />for animals?
                   </h2>
                   <p className="text-white/70 text-lg leading-relaxed mb-6">
-                    Furrly is a free, community-driven project built by two pet lovers — Faizan & Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
+                    Hushku is a free, community-driven project built by two pet lovers — Faizan & Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
                   </p>
                   <p className="text-white/70 text-lg leading-relaxed mb-10">
                     Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals — <strong className="text-white">we want your help.</strong> Every single contribution counts. 🐾
@@ -834,7 +834,7 @@ export default function Home() {
                   variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                   {[
                     { icon: "💻", role: "Developers", desc: "Build features that connect pets with loving families." },
-                    { icon: "🎨", role: "Designers", desc: "Make Furrly beautiful for every pet owner." },
+                    { icon: "🎨", role: "Designers", desc: "Make Hushku beautiful for every pet owner." },
                     { icon: "🏥", role: "Vets & Shelters", desc: "Help us build real tools for animal welfare." },
                     { icon: "❤️", role: "Pet Lovers", desc: "Spread the word. Share stories. Help animals get seen." },
                   ].map((v, i) => (
@@ -939,7 +939,7 @@ export default function Home() {
                   Your Pet&apos;s Life,<br />Organized.
                 </h2>
                 <p className="text-xl text-white/80 max-w-xl mx-auto leading-relaxed mb-12">
-                  Join 50,000+ pet parents who&apos;ve replaced five apps with one. Download Furrly free today.
+                  Join 50,000+ pet parents who&apos;ve replaced five apps with one. Download Hushku free today.
                 </p>
                 <MagneticButton className="inline-block">
                   <div className="flex justify-center">

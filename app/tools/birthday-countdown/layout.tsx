@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pet Birthday Countdown Timer | Celebrate Your Pet's Big Day",
-  description: "Count down to your pet's birthday with a live timer. Set the date, share the excitement, and never miss your pet's special day again. Free tool by Furrly.",
+  description: "Count down to your pet's birthday with a live timer. Set the date, share the excitement, and never miss your pet's special day again. Free tool by Hushku.",
   openGraph: {
-    title: "Pet Birthday Countdown Timer — Furrly",
+    title: "Pet Birthday Countdown Timer — Hushku",
     description: "Live countdown to your pet's birthday. Set the date, share the excitement, and celebrate every milestone.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Birthday Countdown | Furrly",
+    title: "Pet Birthday Countdown | Hushku",
     description: "Live countdown to your pet's birthday. Never miss their special day again.",
   },
 };

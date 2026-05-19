@@ -160,7 +160,7 @@ function CommandsChecklist() {
   const [checked, setChecked] = useState<boolean[]>(() => {
     if (typeof window === "undefined") return new Array(commands.length).fill(false);
     try {
-      const saved = localStorage.getItem("furrly_commands_checklist");
+      const saved = localStorage.getItem("hushku_commands_checklist");
       return saved ? JSON.parse(saved) : new Array(commands.length).fill(false);
     } catch {
       return new Array(commands.length).fill(false);
@@ -170,7 +170,7 @@ function CommandsChecklist() {
   const toggle = (i: number) => {
     const next = checked.map((v, idx) => (idx === i ? !v : v));
     setChecked(next);
-    try { localStorage.setItem("furrly_commands_checklist", JSON.stringify(next)); } catch {}
+    try { localStorage.setItem("hushku_commands_checklist", JSON.stringify(next)); } catch {}
   };
 
   const count = checked.filter(Boolean).length;
@@ -461,12 +461,12 @@ function PuppySupplyChecklist() {
   const toggle = (item: string) => {
     const next = { ...checked, [item]: !checked[item] };
     setChecked(next);
-    try { localStorage.setItem("furrly_puppy_supplies", JSON.stringify(next)); } catch {}
+    try { localStorage.setItem("hushku_puppy_supplies", JSON.stringify(next)); } catch {}
   };
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("furrly_puppy_supplies");
+      const saved = localStorage.getItem("hushku_puppy_supplies");
       if (saved) setChecked(JSON.parse(saved));
     } catch {}
   }, []);
@@ -601,14 +601,14 @@ function SocializationTracker() {
   const [done, setDone] = useState<Record<string, boolean>>({});
   useEffect(() => {
     try {
-      const s = localStorage.getItem("furrly_socialization");
+      const s = localStorage.getItem("hushku_socialization");
       if (s) setDone(JSON.parse(s));
     } catch {}
   }, []);
   const toggle = (e: string) => {
     const next = { ...done, [e]: !done[e] };
     setDone(next);
-    try { localStorage.setItem("furrly_socialization", JSON.stringify(next)); } catch {}
+    try { localStorage.setItem("hushku_socialization", JSON.stringify(next)); } catch {}
   };
   const count = Object.values(done).filter(Boolean).length;
   return (

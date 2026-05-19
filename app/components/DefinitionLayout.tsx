@@ -40,7 +40,7 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
             <span>•</span>
             <span>{article.readTime}</span>
             <span>•</span>
-            <span>Furrly Editorial Team</span>
+            <span>Hushku Editorial Team</span>
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@ export default function DefinitionLayout({ article }: { article: DefinitionArtic
                 href="/vets"
                 className="inline-block bg-white text-brand-start font-black py-4 px-10 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
               >
-                Find a Vet on Furrly
+                Find a Vet on Hushku
               </Link>
             </div>
           </main>

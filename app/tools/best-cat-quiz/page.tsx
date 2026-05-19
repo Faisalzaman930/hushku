@@ -98,7 +98,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Extremely Gentle", "Low Energy", "Great with Kids"],
     emoji: "🫶",
     match: (a) => a.affection === "velcro" && a.energy !== "high",
-    tip: "Ragdolls are gentle giants often surrendered by families moving abroad. Find one on Furrly.",
+    tip: "Ragdolls are gentle giants often surrendered by families moving abroad. Find one on Hushku.",
   },
   {
     name: "Maine Coon",
@@ -106,7 +106,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Dog-Like", "Playful", "Large Breed"],
     emoji: "🦁",
     match: (a) => a.energy === "medium" && a.household === "family",
-    tip: "Maine Coons are the most people-friendly cats. Adopt yours via Furrly.",
+    tip: "Maine Coons are the most people-friendly cats. Adopt yours via Hushku.",
   },
   {
     name: "Siamese",
@@ -114,7 +114,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Highly Vocal", "Social", "Bond with One Owner"],
     emoji: "👑",
     match: (a) => a.noise === "vocal" && a.affection !== "independent",
-    tip: "Siamese cats bond deeply with their humans. Find a Siamese rescue on Furrly.",
+    tip: "Siamese cats bond deeply with their humans. Find a Siamese rescue on Hushku.",
   },
   {
     name: "Bengal",
@@ -122,7 +122,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Very Active", "Intelligent", "Loves Water"],
     emoji: "🐆",
     match: (a) => a.energy === "high" && a.space !== "apartment",
-    tip: "Bengals need space and enrichment. Find a Bengal rescue near you on Furrly.",
+    tip: "Bengals need space and enrichment. Find a Bengal rescue near you on Hushku.",
   },
   {
     name: "British Shorthair",
@@ -130,7 +130,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Quiet", "Independent", "Low Grooming"],
     emoji: "🎩",
     match: (a) => a.energy === "low" && a.noise === "quiet" && a.space === "apartment",
-    tip: "British Shorthairs are popular rescues. Check the Furrly adoption feed.",
+    tip: "British Shorthairs are popular rescues. Check the Hushku adoption feed.",
   },
   {
     name: "Persian",
@@ -138,7 +138,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Calm", "Needs Daily Grooming", "Quiet"],
     emoji: "🌸",
     match: (a) => a.grooming === "high" && a.energy === "low",
-    tip: "Persians are often surrendered to shelters. Find your Persian on Furrly.",
+    tip: "Persians are often surrendered to shelters. Find your Persian on Hushku.",
   },
   {
     name: "Sphynx",
@@ -146,7 +146,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Hypoallergenic", "Velcro Cat", "No Shedding"],
     emoji: "🫥",
     match: (a) => a.allergies !== "none" && a.affection === "velcro",
-    tip: "Sphynx cats are surprisingly common in rescues. Search on Furrly.",
+    tip: "Sphynx cats are surprisingly common in rescues. Search on Hushku.",
   },
   {
     name: "Scottish Fold",
@@ -154,7 +154,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Quiet", "Gentle", "Apartment-Friendly"],
     emoji: "🦉",
     match: (a) => a.noise === "quiet" && a.household === "solo",
-    tip: "Scottish Folds need attentive owners. Find yours on Furrly.",
+    tip: "Scottish Folds need attentive owners. Find yours on Hushku.",
   },
   {
     name: "Abyssinian",
@@ -162,7 +162,7 @@ const catBreeds: CatBreed[] = [
     traits: ["High Energy", "Curious", "Loves to Climb"],
     emoji: "🏃",
     match: (a) => a.energy === "high" && a.affection === "social",
-    tip: "Abyssinians are rare in shelters—act fast when one appears on Furrly.",
+    tip: "Abyssinians are rare in shelters—act fast when one appears on Hushku.",
   },
   {
     name: "Burmese",
@@ -170,7 +170,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Extremely Social", "Playful", "People-Oriented"],
     emoji: "🤗",
     match: (a) => a.household === "multipet" && a.affection !== "independent",
-    tip: "Burmese cats thrive in busy households. Find one on Furrly.",
+    tip: "Burmese cats thrive in busy households. Find one on Hushku.",
   },
   {
     name: "Norwegian Forest Cat",
@@ -178,7 +178,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Outdoor-Friendly", "Independent", "Hardy"],
     emoji: "🌲",
     match: (a) => a.space === "outdoor" && a.affection === "independent",
-    tip: "Norwegian Forest Cats love outdoor homes. Search local rescues on Furrly.",
+    tip: "Norwegian Forest Cats love outdoor homes. Search local rescues on Hushku.",
   },
   {
     name: "Devon Rex",
@@ -186,7 +186,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Hypoallergenic", "Playful", "Low Shedding"],
     emoji: "🧚",
     match: (a) => a.allergies !== "none" && a.energy === "medium",
-    tip: "Devon Rex cats are quirky and rare—find one on Furrly.",
+    tip: "Devon Rex cats are quirky and rare—find one on Hushku.",
   },
   {
     name: "Tonkinese",
@@ -194,7 +194,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Moderate Vocal", "Friendly", "Playful"],
     emoji: "⚖️",
     match: (a) => a.noise === "moderate" && a.energy === "medium",
-    tip: "Tonkinese cats are wonderful family pets. Find an adoptable one on Furrly.",
+    tip: "Tonkinese cats are wonderful family pets. Find an adoptable one on Hushku.",
   },
   {
     name: "Russian Blue",
@@ -202,7 +202,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Quiet", "Loyal", "Hypoallergenic-ish"],
     emoji: "💙",
     match: (a) => a.household === "solo" && a.noise === "quiet",
-    tip: "Russian Blues bond intensely with one person. Adopt yours via Furrly.",
+    tip: "Russian Blues bond intensely with one person. Adopt yours via Hushku.",
   },
   {
     name: "Turkish Angora",
@@ -210,7 +210,7 @@ const catBreeds: CatBreed[] = [
     traits: ["Active", "Sociable", "Long Coat"],
     emoji: "❄️",
     match: (a) => a.energy === "high" && a.grooming !== "low",
-    tip: "Turkish Angoras are rare finds in rescues—search Furrly daily.",
+    tip: "Turkish Angoras are rare finds in rescues—search Hushku daily.",
   },
 ];
 
@@ -355,7 +355,7 @@ export default function BestCatBreedQuiz() {
               href="/adoption"
               className="bg-white text-brand-start font-black py-4 px-8 rounded-2xl hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest whitespace-nowrap shadow-xl"
             >
-              Browse on Furrly
+              Browse on Hushku
             </Link>
           </div>
 

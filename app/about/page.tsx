@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 // Can't export metadata from "use client" — handled via layout/head tag
-// export const metadata: Metadata = { title: "About Furrly — Faizan & Faisal" };
+// export const metadata: Metadata = { title: "About Hushku — Faizan & Faisal" };
 
 function VolunteerForm() {
   const [form, setForm] = useState({ name: "", email: "", skills: "", message: "" });
@@ -160,7 +160,7 @@ export default function AboutPage() {
                 Zeus and Titan, his two German Shepherds, aren&apos;t just pets to Faizan — they&apos;re family. He&apos;s spent years navigating the frustrating patchwork of apps, Facebook groups, and WhatsApp chats just to find playdates, locate a trusted vet, or help a friend rehome a dog in need.
               </p>
               <p className="text-lg text-slate-gray leading-relaxed">
-                That frustration became his fuel. <strong className="text-ebony">Faizan leads product and community</strong> at Furrly — obsessing over making sure the app works as beautifully for a shepherd owner in Karachi as it does for a rescue worker in London.
+                That frustration became his fuel. <strong className="text-ebony">Faizan leads product and community</strong> at Hushku — obsessing over making sure the app works as beautifully for a shepherd owner in Karachi as it does for a rescue worker in London.
               </p>
               <div className="flex gap-3 flex-wrap pt-2">
                 <span className="bg-violet-50 border border-violet-100 text-violet-700 text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">🐕 2 German Shepherds</span>
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 Today, Nova — his Siberian Husky — rules his apartment and his schedule. Anyone who knows Faisal knows that Nova comes first. He&apos;s experienced firsthand the stress of a lost pet, the joy of a perfect playdate match, and the heartbreak of seeing animals stuck in shelters with no digital presence.
               </p>
               <p className="text-lg text-slate-gray leading-relaxed">
-                <strong className="text-ebony">Faisal leads technology and growth</strong> at Furrly — building the platform from the ground up with one belief: every animal deserves a loving home, and technology should make finding that home effortless.
+                <strong className="text-ebony">Faisal leads technology and growth</strong> at Hushku — building the platform from the ground up with one belief: every animal deserves a loving home, and technology should make finding that home effortless.
               </p>
               <div className="flex gap-3 flex-wrap pt-2">
                 <span className="bg-amber-50 border border-amber-100 text-amber-700 text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">🐺 1 Siberian Husky</span>
@@ -210,7 +210,7 @@ export default function AboutPage() {
             {[
               { icon: "🌍", title: "Global Mission", desc: "Built to serve pet owners and animals everywhere — not just one city or country." },
               { icon: "🆓", title: "Free Forever", desc: "Core features will always be free. We believe access to pet welfare tools should never cost you." },
-              { icon: "🤝", title: "Community First", desc: "Furrly belongs to its community. Every feature is driven by real feedback from real pet owners." },
+              { icon: "🤝", title: "Community First", desc: "Hushku belongs to its community. Every feature is driven by real feedback from real pet owners." },
             ].map((v, i) => (
               <div key={i} className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-shadow">
                 <div className="text-4xl mb-4">{v.icon}</div>
@@ -231,7 +231,7 @@ export default function AboutPage() {
               We&apos;d Love Your Help.
             </h2>
             <p className="text-xl text-slate-gray max-w-2xl mx-auto leading-relaxed">
-              Furrly is completely free and always will be. It&apos;s a community project built by people who love animals. Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who cares deeply about animals — <strong className="text-ebony">we want you on this team.</strong>
+              Hushku is completely free and always will be. It&apos;s a community project built by people who love animals. Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who cares deeply about animals — <strong className="text-ebony">we want you on this team.</strong>
             </p>
             <p className="text-lg text-slate-gray max-w-xl mx-auto leading-relaxed mt-4">
               Help us save animals. Help us find them homes. Help us build something that actually makes the world a little better for every pet out there. 🐾
@@ -242,7 +242,7 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {[
               { icon: "💻", role: "Developers", desc: "Got coding skills? Help us build features that connect pets with loving families worldwide." },
-              { icon: "🎨", role: "Designers", desc: "Make Furrly beautiful and easy to use for every pet owner on the planet." },
+              { icon: "🎨", role: "Designers", desc: "Make Hushku beautiful and easy to use for every pet owner on the planet." },
               { icon: "🏥", role: "Vets & Shelters", desc: "You&apos;re on the front lines. Help us build tools that actually work for animal welfare." },
               { icon: "❤️", role: "Pet Lovers", desc: "No skills needed — just passion. Spread the word, share stories, help animals get seen." },
             ].map((v, i) => (
@@ -270,7 +270,7 @@ export default function AboutPage() {
       {/* ── BACK TO HOME ── */}
       <section className="py-12 bg-gray-50 border-t border-gray-100 text-center">
         <Link href="/" className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline">
-          ← Back to Furrly
+          ← Back to Hushku
         </Link>
       </section>
 

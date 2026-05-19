@@ -107,7 +107,7 @@ const Footer = () => {
 
           <div className="mt-12 border-t border-gray-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-slate-gray">
-              &copy; {currentYear} Furrly App. All rights reserved. Built for pet lovers worldwide.
+              &copy; {currentYear} Hushku App. All rights reserved. Built for pet lovers worldwide.
             </p>
             <p className="text-xs text-slate-gray">
               Made with ❤️ by <strong className="text-ebony">Faizan & Faisal</strong>

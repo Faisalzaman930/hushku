@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pet Health Quiz | Rate Your Pet's Overall Wellbeing",
-  description: "Assess your pet's health across diet, exercise, mental stimulation, and vet care. Get a personalized wellness score and actionable tips. Free by Furrly.",
+  description: "Assess your pet's health across diet, exercise, mental stimulation, and vet care. Get a personalized wellness score and actionable tips. Free by Hushku.",
   openGraph: {
-    title: "Pet Health Quiz | Rate Your Pet's Overall Wellbeing — Furrly",
+    title: "Pet Health Quiz | Rate Your Pet's Overall Wellbeing — Hushku",
     description: "A comprehensive lifestyle audit for your pet. Get a wellness score across diet, exercise, mental stimulation, and vet care — with tips to improve.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Health Quiz | Furrly",
-    description: "Get your pet's wellness score and personalized tips. Free quiz by Furrly.",
+    title: "Pet Health Quiz | Hushku",
+    description: "Get your pet's wellness score and personalized tips. Free quiz by Hushku.",
   },
 };
 

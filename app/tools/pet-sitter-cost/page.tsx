@@ -164,7 +164,7 @@ export default function PetSitterCostCalculator() {
             <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
                <div className="text-center md:text-left">
                   <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-2">Know who you're hiring & Save Money.</h3>
-                  <p className="text-white/80 font-bold max-w-xl">Professional sitting costs are rising. Discover a safer, community-led alternative with Furrly Fostering.</p>
+                  <p className="text-white/80 font-bold max-w-xl">Professional sitting costs are rising. Discover a safer, community-led alternative with Hushku Fostering.</p>
                </div>
                <Link href="/fostering" className="bg-white text-brand-start font-black py-5 px-10 rounded-[2rem] shadow-xl hover:scale-105 active:scale-95 transition-all text-xs uppercase tracking-widest whitespace-nowrap">
                   Explore Fostering

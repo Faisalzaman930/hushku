@@ -6,10 +6,10 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Playdate App | Find Dog Playdates Near Me — Furrly",
-  description: "Find safe, compatible playmates for your dog or cat with Furrly. Proximity-based matching by breed, size & temperament. Coordinate meetups with encrypted chat. Free download.",
+  title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
+  description: "Find safe, compatible playmates for your dog or cat with Hushku. Proximity-based matching by breed, size & temperament. Coordinate meetups with encrypted chat. Free download.",
   openGraph: {
-    title: "Pet Playdate App | Find Dog Playdates Near Me — Furrly",
+    title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
     description: "AI-powered proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
     type: "website",
   },
@@ -47,10 +47,10 @@ const howItWorks = [
 
 const faqs = [
   { q: "How does the pet compatibility matching work?", a: "When you create your pet's profile, you fill in size, breed, energy level, play style (rough-and-tumble vs. chase-only vs. sniff-and-wander), and how they do with other dogs, cats, or children. Our matching algorithm weights these factors to calculate a compatibility score with nearby pets. Higher scores mean more similar play styles and fewer risk factors." },
-  { q: "Is it safe to arrange playdates with strangers?", a: "Furrly requires identity verification for all users before playdate functionality is enabled. You can see a user's verification badge, rating history, and how long they've been on the platform before agreeing to a meetup. Always meet in public, well-lit spaces — your in-app chat history is preserved for reference." },
-  { q: "Can I find playdates for reactive or shy dogs?", a: "Yes. The filter system includes 'calm energy only', 'experienced owners preferred', and 'one-on-one meetups' options. Many owners of reactive or anxious dogs use Furrly specifically because they can find patient, experienced owners who understand slow introductions rather than chaotic dog park encounters." },
+  { q: "Is it safe to arrange playdates with strangers?", a: "Hushku requires identity verification for all users before playdate functionality is enabled. You can see a user's verification badge, rating history, and how long they've been on the platform before agreeing to a meetup. Always meet in public, well-lit spaces — your in-app chat history is preserved for reference." },
+  { q: "Can I find playdates for reactive or shy dogs?", a: "Yes. The filter system includes 'calm energy only', 'experienced owners preferred', and 'one-on-one meetups' options. Many owners of reactive or anxious dogs use Hushku specifically because they can find patient, experienced owners who understand slow introductions rather than chaotic dog park encounters." },
   { q: "What if a playdate doesn't go well?", a: "Both owners can rate the playdate after it happens. If there was an incident (injury, aggression, owner misconduct), you can file a report through the app. Reported users are reviewed and may be suspended or removed from the matching pool. Your pet's safety history on the platform is always private." },
-  { q: "Does Furrly work for cats too?", a: "Yes, though cat playdates work differently. Most cat-to-cat socialization happens indoors. Furrly supports playdates for cats with appropriate filters (indoor meetups, calm environments, slow introductions). You can also connect with other cat owners in the social feed without committing to a physical meetup." },
+  { q: "Does Hushku work for cats too?", a: "Yes, though cat playdates work differently. Most cat-to-cat socialization happens indoors. Hushku supports playdates for cats with appropriate filters (indoor meetups, calm environments, slow introductions). You can also connect with other cat owners in the social feed without committing to a physical meetup." },
 ];
 
 const relatedResources = [
@@ -62,9 +62,9 @@ const relatedResources = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Furrly Playdates — Find Dog Playdates Near You",
+  "name": "Hushku Playdates — Find Dog Playdates Near You",
   "description": "Proximity-based pet matching for safe, compatible playdates. Filter by breed, size, and temperament.",
-  "url": "https://furrly.app/playdates",
+  "url": "https://hushku.app/playdates",
 };
 
 export default function PlaydatesPage() {
@@ -86,7 +86,7 @@ export default function PlaydatesPage() {
                   Find the Perfect<br /><span className="text-violet-600">Playmate.</span><br />In Your Area.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Stop relying on chaotic dog parks. Furrly matches your pet with compatible companions nearby — filtered by size, temperament, and energy level.
+                  Stop relying on chaotic dog parks. Hushku matches your pet with compatible companions nearby — filtered by size, temperament, and energy level.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   {[{ v: "Verified", l: "Owners Only" }, { v: "Filtered", l: "By Compatibility" }, { v: "Encrypted", l: "Meetup Chat" }].map(s => (
@@ -104,7 +104,7 @@ export default function PlaydatesPage() {
                   className="w-[260px]"
                   style={{ animation: "float-a 3.5s ease-in-out infinite" }}
                 >
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Furrly PawDates — pet swipe card screen" />
+                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku PawDates — pet swipe card screen" />
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function PlaydatesPage() {
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
-              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Furrly</p>
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku</p>
               <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Socialization Done Right</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

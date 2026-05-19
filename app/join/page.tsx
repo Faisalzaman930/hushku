@@ -35,7 +35,7 @@ function WaitlistForm() {
       <div className="flex flex-col items-center gap-4 py-8 text-center">
         <span className="text-5xl">🎉</span>
         <p className="text-xl font-black text-ebony uppercase tracking-tight">You&apos;re on the list!</p>
-        <p className="text-slate-gray text-sm max-w-xs">We&apos;ll email you the moment Furrly launches on App Store &amp; Google Play.</p>
+        <p className="text-slate-gray text-sm max-w-xs">We&apos;ll email you the moment Hushku launches on App Store &amp; Google Play.</p>
       </div>
     );
   }
@@ -234,7 +234,7 @@ export default function JoinPage() {
             {tab === "waitlist" ? (
               <>
                 <h2 className="text-2xl font-black text-ebony uppercase tracking-tight mb-1">Get Early Access</h2>
-                <p className="text-slate-gray text-sm mb-8">Be first to know when Furrly drops on iOS &amp; Android.</p>
+                <p className="text-slate-gray text-sm mb-8">Be first to know when Hushku drops on iOS &amp; Android.</p>
                 <WaitlistForm />
 
                 <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-3 gap-4 text-center">
@@ -264,8 +264,8 @@ export default function JoinPage() {
 
           <p className="text-center text-xs text-slate-gray mt-6">
             Questions?{" "}
-            <a href="mailto:hello@furrly.co" className="font-bold text-brand-start hover:underline">
-              hello@furrly.co
+            <a href="mailto:hello@hushku.co" className="font-bold text-brand-start hover:underline">
+              hello@hushku.co
             </a>
           </p>
         </div>

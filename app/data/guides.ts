@@ -43,7 +43,7 @@ export const guides: Guide[] = [
 
 It's also a logistical undertaking that many rescue organizations are genuinely unprepared to support their fosters through. The goodwill of foster families is enormous. The operational infrastructure behind them is frequently inadequate. The result is a high burnout rate among experienced fosters — not from the animals, but from the chaos of miscommunication, lost paperwork, and unclear coordination with overwhelmed rescue staff.
 
-This guide is the operational manual that most rescue organizations wish they had time to give every new foster. It covers the integration protocols, the medical management realities, the digital tools that eliminate the paperwork failures, and how to emotionally sustain a practice that requires you to love an animal deeply and then give them away. Learn more about the networks supporting this work through <a href="/fostering" class="text-brand-start font-bold hover:underline">Furrly's fostering hub</a>.`,
+This guide is the operational manual that most rescue organizations wish they had time to give every new foster. It covers the integration protocols, the medical management realities, the digital tools that eliminate the paperwork failures, and how to emotionally sustain a practice that requires you to love an animal deeply and then give them away. Learn more about the networks supporting this work through <a href="/fostering" class="text-brand-start font-bold hover:underline">Hushku's fostering hub</a>.`,
     chapters: [
       {
         title: "Chapter 1: The Introduction Protocol — Protecting Your Resident Animals",
@@ -71,7 +71,7 @@ This guide is the operational manual that most rescue organizations wish they ha
 
           <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Building a Digital Medical Record From Day One</h4>
           <p class="mb-6">Paper records from rescue organizations are lost with alarming regularity. Coordinators text you a photo of a handwritten medication schedule. Intake records are physical documents that get wet, misplaced, or left with the previous transport volunteer. The cost of this information loss is measured in missed doses, wrong dosages given at emergency vet visits, and decisions made without accurate history.</p>
-          <p class="mb-6">The correct approach: photograph or scan every document the moment it arrives. Upload to a centralized digital health vault — <a href="/vets" class="text-brand-start font-bold">Furrly's medical record system</a> supports this — so records are accessible from your phone at any hour, shareable with emergency vets via QR code, and backed up independently of the rescue organization's own systems.</p>
+          <p class="mb-6">The correct approach: photograph or scan every document the moment it arrives. Upload to a centralized digital health vault — <a href="/vets" class="text-brand-start font-bold">Hushku's medical record system</a> supports this — so records are accessible from your phone at any hour, shareable with emergency vets via QR code, and backed up independently of the rescue organization's own systems.</p>
 
           <h4 class="text-xl font-bold text-ebony mb-4 mt-8">The Go-Bag Protocol</h4>
           <p class="mb-6">Every foster animal should have a Go-Bag — a physical bag by the door containing the critical information an emergency vet would need at 2 AM:</p>
@@ -114,7 +114,7 @@ Get the logistics right so you can give the animal everything else they need: pr
 
 This guide exists to fill that gap. It covers the preparation work before the dog arrives, the critical first week, the training foundations that make every subsequent year easier, and the veterinary and financial planning that determines whether you're in a sustainable situation or an overwhelming one.
 
-The goal isn't to discourage anyone from getting a dog. It's to give new owners a realistic map so that the reality they encounter matches the reality they planned for. You can find dogs available for adoption through <a href="/adoption" class="text-brand-start font-bold hover:underline">Furrly's adoption listings</a> when you're ready to take the next step.`,
+The goal isn't to discourage anyone from getting a dog. It's to give new owners a realistic map so that the reality they encounter matches the reality they planned for. You can find dogs available for adoption through <a href="/adoption" class="text-brand-start font-bold hover:underline">Hushku's adoption listings</a> when you're ready to take the next step.`,
     chapters: [
       {
         title: "Chapter 1: Before the Dog Arrives — The Preparation Work That Matters",
@@ -272,7 +272,7 @@ A food that meets AAFCO complete nutrition standards for the correct life stage,
 
 This guide provides a framework for understanding when and how pets age across different species and size categories, what the essential veterinary workups look like for aging animals, how to manage the most common age-related conditions (pain, cognitive decline, mobility loss), and how to navigate the quality-of-life questions that eventually face every pet owner.
 
-The goal is to give you tools for being proactive rather than reactive — because most of the conditions that reduce senior pet quality of life are significantly more manageable when identified early. <a href="/vets" class="text-brand-start font-bold hover:underline">Furrly's health records system</a> can help you track the longitudinal data that makes early detection possible.`,
+The goal is to give you tools for being proactive rather than reactive — because most of the conditions that reduce senior pet quality of life are significantly more manageable when identified early. <a href="/vets" class="text-brand-start font-bold hover:underline">Hushku's health records system</a> can help you track the longitudinal data that makes early detection possible.`,
     chapters: [
       {
         title: "Chapter 1: When Is My Pet Actually 'Senior'?",

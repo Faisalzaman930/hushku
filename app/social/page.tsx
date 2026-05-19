@@ -6,10 +6,10 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Social Media App | Share Your Pet's Life — Furrly",
-  description: "Furrly's pet social feed puts your neighborhood first. Share photos, discover local pet owners, join breed groups, and build a real community — not a global algorithm. Free on iOS & Android.",
+  title: "Pet Social Media App | Share Your Pet's Life — Hushku",
+  description: "Hushku's pet social feed puts your neighborhood first. Share photos, discover local pet owners, join breed groups, and build a real community — not a global algorithm. Free on iOS & Android.",
   openGraph: {
-    title: "Pet Social Media App | Furrly",
+    title: "Pet Social Media App | Hushku",
     description: "A neighborhood-first pet social feed. Discover local owners, share your pet's story, and build a real community around the pets you'll actually meet.",
     type: "website",
   },
@@ -46,11 +46,11 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How is Furrly's social feed different from Instagram or TikTok?", a: "The key difference is the neighborhood-first algorithm. Instagram and TikTok prioritize content from accounts with large followings regardless of location. Furrly's feed is radius-based — you see the pets that live near you first. This means your engagement builds a local community you can actually interact with in real life, not just online." },
+  { q: "How is Hushku's social feed different from Instagram or TikTok?", a: "The key difference is the neighborhood-first algorithm. Instagram and TikTok prioritize content from accounts with large followings regardless of location. Hushku's feed is radius-based — you see the pets that live near you first. This means your engagement builds a local community you can actually interact with in real life, not just online." },
   { q: "Is there a public or private option for pet profiles?", a: "Yes. You can set your pet's profile to fully public (visible to anyone on the platform), local-only (visible only to users within your chosen radius), or friends-only (visible only to accounts you follow back). Your personal information is always separate from your pet's public profile." },
-  { q: "Are there breed-specific groups?", a: "Yes. Furrly has groups for hundreds of breeds as well as mix-type groups (e.g., 'Doodle Mixes', 'Rescue Mutts'). Groups include discussion boards, photo sharing, health Q&As, and member-organized local meetups. Any user can request a new group if their breed isn't listed." },
+  { q: "Are there breed-specific groups?", a: "Yes. Hushku has groups for hundreds of breeds as well as mix-type groups (e.g., 'Doodle Mixes', 'Rescue Mutts'). Groups include discussion boards, photo sharing, health Q&As, and member-organized local meetups. Any user can request a new group if their breed isn't listed." },
   { q: "Can I sell pet products on the social feed?", a: "Not currently. The social feed is community-first — no vendor listings, no sponsored posts, no selling in the feed. A marketplace feature is in development for a future app update, but it will be a separate section rather than integrated into the social feed to keep it clean." },
-  { q: "What content moderation does Furrly have?", a: "All posts go through automated content filtering for prohibited material (animal cruelty, graphic content, spam). Users can report any post or profile. Verified moderators review reports within 24 hours. Accounts with multiple verified reports are suspended pending review. Verified users have stricter accountability than unverified ones." },
+  { q: "What content moderation does Hushku have?", a: "All posts go through automated content filtering for prohibited material (animal cruelty, graphic content, spam). Users can report any post or profile. Verified moderators review reports within 24 hours. Accounts with multiple verified reports are suspended pending review. Verified users have stricter accountability than unverified ones." },
 ];
 
 const relatedResources = [
@@ -62,9 +62,9 @@ const relatedResources = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Furrly Social — Neighborhood-First Pet Social Feed",
+  "name": "Hushku Social — Neighborhood-First Pet Social Feed",
   "description": "A pet social media feed built around local discovery. Connect with pet owners near you, join breed groups, and build a real community.",
-  "url": "https://furrly.app/social",
+  "url": "https://hushku.app/social",
 };
 
 export default function SocialPage() {
@@ -86,7 +86,7 @@ export default function SocialPage() {
                   Your Pet's<br /><span className="text-pink-600">Community.</span><br />Right Outside.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Not another global algorithm. Furrly's feed shows you pets in your neighborhood first — so the connections you make online can actually become real-world friendships.
+                  Not another global algorithm. Hushku's feed shows you pets in your neighborhood first — so the connections you make online can actually become real-world friendships.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   {[{ v: "Local", l: "Feed First" }, { v: "No Ads", l: "In Feed" }, { v: "Breed", l: "Groups" }].map(s => (
@@ -104,13 +104,13 @@ export default function SocialPage() {
                   className="w-[200px] mb-6"
                   style={{ animation: "float-b 4.5s ease-in-out 0.4s infinite", transform: "rotate(-4deg)" }}
                 >
-                  <PhoneFrame src="/screenshots/app-social-profile.png" alt="Furrly pet profile screen" />
+                  <PhoneFrame src="/screenshots/app-social-profile.png" alt="Hushku pet profile screen" />
                 </div>
                 <div
                   className="w-[220px]"
                   style={{ animation: "float-a 3.5s ease-in-out 0s infinite" }}
                 >
-                  <PhoneFrame src="/screenshots/app-social-feed.png" alt="Furrly social feed screen" />
+                  <PhoneFrame src="/screenshots/app-social-feed.png" alt="Hushku social feed screen" />
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function SocialPage() {
         <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
-              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Furrly Social</p>
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku Social</p>
               <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Social Media Built for Pet Parents</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -177,7 +177,7 @@ export default function SocialPage() {
           <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
             <p className="text-white/40 font-black uppercase tracking-widest text-xs mb-4">Free to Join</p>
             <h2 className="text-5xl font-black text-white uppercase tracking-tighter mb-6">Your Neighborhood's Pet Community is Already Here.</h2>
-            <p className="text-xl text-white/70 max-w-xl mx-auto mb-12 leading-relaxed">Download Furrly and meet the pet owners you walk past every day.</p>
+            <p className="text-xl text-white/70 max-w-xl mx-auto mb-12 leading-relaxed">Download Hushku and meet the pet owners you walk past every day.</p>
             <DownloadButtons light center />
           </div>
         </section>

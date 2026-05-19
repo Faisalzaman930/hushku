@@ -17,7 +17,7 @@ const WishlistForm = () => {
       <div className="relative">
         <h3 className="text-3xl font-black text-ebony uppercase tracking-tight mb-4">Request a Feature</h3>
         <p className="text-lg text-slate-gray leading-8 mb-12 max-w-xl">
-           Shape the future of Furrly. Every piece of feedback is directly reviewed by our development leads.
+           Shape the future of Hushku. Every piece of feedback is directly reviewed by our development leads.
         </p>
 
         <form className="grid grid-cols-1 md:grid-cols-2 gap-10">

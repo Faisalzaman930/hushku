@@ -159,7 +159,7 @@ export default function FirstAidQuiz() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <button className="bg-brand-start text-white px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-brand-start/20">Find Vets on Furrly</button>
+              <button className="bg-brand-start text-white px-10 py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-brand-start/20">Find Vets on Hushku</button>
             </div>
           </div>
         )}

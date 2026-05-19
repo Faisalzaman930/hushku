@@ -107,7 +107,7 @@ export const featureSEO: Record<string, FeatureSEOData> = {
         title: "Managing Foster Supply Logistics",
         content: `
           <p class="mb-4">Fosters frequently burn out not because of the dogs, but because of the organizational chaos (coordinating vet drop-offs, picking up kibble across town, losing track of paperwork).</p>
-          <p class="mb-4">Furrly attempts to solve this natively using our network routing logic, but fundamentally, you must maintain an analog or digital "Go-Bag" for every foster containing their microchip number, explicitly requested intake medication, and rescue-coordinator contact numbers. Never assume the rescue organization has perfectly centralized data; they are overwhelmed volunteers.</p>
+          <p class="mb-4">Hushku attempts to solve this natively using our network routing logic, but fundamentally, you must maintain an analog or digital "Go-Bag" for every foster containing their microchip number, explicitly requested intake medication, and rescue-coordinator contact numbers. Never assume the rescue organization has perfectly centralized data; they are overwhelmed volunteers.</p>
         `
       }
     ]
@@ -151,7 +151,7 @@ export const featureSEO: Record<string, FeatureSEOData> = {
           <p class="mb-4">Panic wastes time. Here is the critical, systematic approach you must trigger the moment you realize your dog or cat has escaped.</p>
           <ul class="list-disc pl-6 mb-4 space-y-2">
             <li><strong>Minute 1-10 (The Immediate Perimeter):</strong> Do not run frantically yelling their name, which can spook a frightened animal. Grab high-value, powerfully smelling treats (like hot dogs or cheese) and calmly walk the immediate perimeter. For dogs, check your literal neighbors' front yards. For cats, look immediately UP in nearby trees or under directly adjacent porches (cats rarely run far; they hide).</li>
-            <li><strong>Minute 10-30 (The Digital Amber Alert):</strong> Trigger a Furrly Amber Alert to push notifications to locals in a 5-mile radius. Post clear, un-filtered photos to local Facebook Community boards and Nextdoor. Include cross-streets, collar descriptions, and whether the animal is skittish.</li>
+            <li><strong>Minute 10-30 (The Digital Amber Alert):</strong> Trigger a Hushku Amber Alert to push notifications to locals in a 5-mile radius. Post clear, un-filtered photos to local Facebook Community boards and Nextdoor. Include cross-streets, collar descriptions, and whether the animal is skittish.</li>
             <li><strong>Minute 30-60 (Targeted Scent Stations):</strong> Take heavily soiled articles of your clothing (like a laundry basket shirt) and the pet's bed, and place them on your front porch and the exact point they escaped from. Animals navigate via scent, and this acts as a beacon if they get turned around.</li>
           </ul>
         `

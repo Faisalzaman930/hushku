@@ -3,21 +3,21 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pet Care Resources: Guides, How-Tos & Breed Profiles",
   // Item 5: updated meta description
-  description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
+  description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Hushku.",
   // Item 8: canonical prevents thin-page dilution from any query-string variants
   alternates: {
-    canonical: "https://furrly.co/resources",
+    canonical: "https://hushku.co/resources",
   },
   openGraph: {
-    title: "Pet Care Resources: Guides, How-Tos & Breed Profiles | Furrly",
-    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
+    title: "Pet Care Resources: Guides, How-Tos & Breed Profiles | Hushku",
+    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Hushku.",
     type: "website",
-    url: "https://furrly.co/resources",
+    url: "https://hushku.co/resources",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Care Resources | Furrly",
-    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Furrly.",
+    title: "Pet Care Resources | Hushku",
+    description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Hushku.",
   },
 };
 

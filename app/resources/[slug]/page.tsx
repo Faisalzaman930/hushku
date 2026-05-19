@@ -156,22 +156,22 @@ function buildArticleSchema(item: { title: string; seoDescription: string; publi
     "dateModified": item.lastUpdated,
     "author": {
       "@type": "Organization",
-      "name": "Furrly Editorial Team",
-      "url": "https://furrly.co/resources#editorial-standards",
+      "name": "Hushku Editorial Team",
+      "url": "https://hushku.co/resources#editorial-standards",
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Furrly",
-      "url": "https://furrly.co",
-      "logo": { "@type": "ImageObject", "url": "https://furrly.co/furrly-logo.png" },
+      "name": "Hushku",
+      "url": "https://hushku.co",
+      "logo": { "@type": "ImageObject", "url": "https://hushku.co/hushku-logo.png" },
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://furrly.co/resources/${item.slug}` },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://hushku.co/resources/${item.slug}` },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://furrly.co" },
-        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://furrly.co/resources" },
-        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://furrly.co/resources/${item.slug}` },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hushku.co" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://hushku.co/resources" },
+        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://hushku.co/resources/${item.slug}` },
       ],
     },
   };

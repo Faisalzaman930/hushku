@@ -212,12 +212,12 @@ function CollectionPageSchema({ items }: { items: ResourceCard[] }) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Pet Care Resource Library",
-    "url": "https://furrly.co/resources",
-    "publisher": { "@type": "Organization", "name": "Furrly" },
+    "url": "https://hushku.co/resources",
+    "publisher": { "@type": "Organization", "name": "Hushku" },
     "hasPart": items.map(item => ({
       "@type": "Article",
       "name": item.title,
-      "url": `https://furrly.co/resources/${item.slug}`,
+      "url": `https://hushku.co/resources/${item.slug}`,
     })),
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
@@ -395,7 +395,7 @@ function ResourcesHubContent() {
           </p>
           <p className="text-xs text-slate-gray/60 mb-10">
             Written and reviewed by the{" "}
-            <Link href="/resources#editorial-standards" className="underline hover:text-brand-start transition-colors">Furrly editorial team</Link>
+            <Link href="/resources#editorial-standards" className="underline hover:text-brand-start transition-colors">Hushku editorial team</Link>
             {" "}· Content reviewed for accuracy and updated regularly.
           </p>
 
@@ -491,7 +491,7 @@ function ResourcesHubContent() {
         {/* Item 18a: Small inline app CTA after hub, before cluster sections */}
         <div className="py-6 px-6 bg-white border-b border-gray-100">
           <div className="mx-auto max-w-7xl flex items-center justify-between gap-6 flex-wrap">
-            <p className="text-sm font-bold text-ebony">Put it into practice — track health, log walks, find vets in Furrly.</p>
+            <p className="text-sm font-bold text-ebony">Put it into practice — track health, log walks, find vets in Hushku.</p>
             <Link
               href="/#download"
               className="flex-none bg-brand-gradient text-white font-black text-[10px] px-6 py-2.5 rounded-xl uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform shadow-sm"
@@ -623,10 +623,10 @@ function ResourcesHubContent() {
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-5">The knowledge is free.<br />The app makes it real.</h2>
             <p className="text-white/55 text-base max-w-lg mx-auto mb-10 leading-relaxed">
-              Connect with local pet owners, find breed-aware vets, track health records, and log your pet&apos;s daily wellness — all in Furrly.
+              Connect with local pet owners, find breed-aware vets, track health records, and log your pet&apos;s daily wellness — all in Hushku.
             </p>
             <Link href="/#download" className="inline-block bg-brand-gradient text-white font-black py-4 px-10 rounded-[2rem] shadow-xl hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm">
-              Download Furrly Free
+              Download Hushku Free
             </Link>
           </div>
         </section>
@@ -636,10 +636,10 @@ function ResourcesHubContent() {
           <div className="mx-auto max-w-3xl">
             <h2 className="text-lg font-black text-ebony uppercase tracking-tight mb-4">Editorial Standards</h2>
             <p className="text-sm text-slate-gray leading-relaxed mb-3">
-              All articles on Furrly are researched and written by our editorial team, which includes pet owners, trainers, and contributors with direct experience in animal care. Health and symptom content is reviewed for factual accuracy against published veterinary sources (AVMA, ASPCA, and peer-reviewed literature) before publication.
+              All articles on Hushku are researched and written by our editorial team, which includes pet owners, trainers, and contributors with direct experience in animal care. Health and symptom content is reviewed for factual accuracy against published veterinary sources (AVMA, ASPCA, and peer-reviewed literature) before publication.
             </p>
             <p className="text-sm text-slate-gray leading-relaxed mb-3">
-              <strong className="text-ebony">App Reviews disclosure:</strong> Furrly operates a pet care app and is reviewed alongside competitor products in our App Review category. We disclose this relationship on every review page. Our editorial process requires that scoring criteria are applied consistently to all apps, including our own.
+              <strong className="text-ebony">App Reviews disclosure:</strong> Hushku operates a pet care app and is reviewed alongside competitor products in our App Review category. We disclose this relationship on every review page. Our editorial process requires that scoring criteria are applied consistently to all apps, including our own.
             </p>
             <p className="text-sm text-slate-gray leading-relaxed">
               Content is updated when products change materially, veterinary guidance is revised, or reader feedback identifies inaccuracies. If you spot an error,{" "}

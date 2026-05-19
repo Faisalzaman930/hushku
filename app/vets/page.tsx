@@ -2,8 +2,8 @@ import ComingSoonPage from "../components/ComingSoonPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Vet Discovery — Coming Soon | Furrly",
-  description: "Furrly's Vet Portal is coming soon. Find trusted clinics nearby, read verified reviews, and call in one tap — all inside the Furrly app.",
+  title: "Vet Discovery — Coming Soon | Hushku",
+  description: "Hushku's Vet Portal is coming soon. Find trusted clinics nearby, read verified reviews, and call in one tap — all inside the Hushku app.",
 };
 
 export default function VetsPage() {

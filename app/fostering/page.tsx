@@ -2,8 +2,8 @@ import ComingSoonPage from "../components/ComingSoonPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Fostering — Coming Soon | Furrly",
-  description: "Furrly's Fostering platform is coming soon. Open your home temporarily and get matched with pets that need you most.",
+  title: "Pet Fostering — Coming Soon | Hushku",
+  description: "Hushku's Fostering platform is coming soon. Open your home temporarily and get matched with pets that need you most.",
 };
 
 export default function FosteringPage() {
@@ -12,7 +12,7 @@ export default function FosteringPage() {
       icon="💖"
       feature="Fostering"
       tagline="Open your home. Change a life."
-      description="Fostering saves lives. Furrly will match you with pets that need a temporary home based on your space, lifestyle, and experience — making fostering as easy as possible."
+      description="Fostering saves lives. Hushku will match you with pets that need a temporary home based on your space, lifestyle, and experience — making fostering as easy as possible."
       phase="Phase 2"
       bullets={[
         "Smart matching based on your home size, lifestyle, and experience",

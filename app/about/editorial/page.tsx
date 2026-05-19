@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Editorial Standards & Review Process",
-  description: "How Furrly researches, writes, fact-checks, and updates its pet care content. Our editorial standards, sourcing policy, and veterinary review process.",
+  description: "How Hushku researches, writes, fact-checks, and updates its pet care content. Our editorial standards, sourcing policy, and veterinary review process.",
 };
 
 const SOURCES = [
@@ -44,14 +44,14 @@ export default function EditorialPage() {
         <section>
           <h2 className="text-2xl font-black text-ebony mb-4">Our Mission</h2>
           <p className="text-slate-gray leading-relaxed">
-            Furrly exists to make pet ownership simpler, healthier, and more joyful. Every article, tool, and guide we publish is built around one question: <strong className="text-ebony">does this genuinely help a pet owner make a better decision?</strong> We do not publish content solely for traffic. If we can&apos;t add something useful, we don&apos;t publish it.
+            Hushku exists to make pet ownership simpler, healthier, and more joyful. Every article, tool, and guide we publish is built around one question: <strong className="text-ebony">does this genuinely help a pet owner make a better decision?</strong> We do not publish content solely for traffic. If we can&apos;t add something useful, we don&apos;t publish it.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-black text-ebony mb-4">Who We Are</h2>
           <p className="text-slate-gray leading-relaxed mb-4">
-            Furrly was founded by two pet owners — Faizan (German Shepherds Zeus and Titan) and Faisal (Husky Nova). Our editorial team combines lived experience as pet parents with research grounded in peer-reviewed veterinary science and guidelines from leading animal health organisations.
+            Hushku was founded by two pet owners — Faizan (German Shepherds Zeus and Titan) and Faisal (Husky Nova). Our editorial team combines lived experience as pet parents with research grounded in peer-reviewed veterinary science and guidelines from leading animal health organisations.
           </p>
           <p className="text-slate-gray leading-relaxed">
             We are not a replacement for a licensed veterinarian. For any medical concern, always consult your vet. Our content is designed to help you understand your options — not to substitute professional clinical judgment.
@@ -83,7 +83,7 @@ export default function EditorialPage() {
           <h2 className="text-2xl font-black text-ebony mb-4">Medical Disclaimer</h2>
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
             <p className="text-sm text-amber-900 leading-relaxed">
-              The health information on Furrly is provided for educational purposes only. It is not intended to be a substitute for professional veterinary advice, diagnosis, or treatment. Always seek the advice of a qualified veterinarian with any questions you have regarding your pet&apos;s medical condition. Never disregard professional veterinary advice or delay in seeking it because of something you have read on this website.
+              The health information on Hushku is provided for educational purposes only. It is not intended to be a substitute for professional veterinary advice, diagnosis, or treatment. Always seek the advice of a qualified veterinarian with any questions you have regarding your pet&apos;s medical condition. Never disregard professional veterinary advice or delay in seeking it because of something you have read on this website.
             </p>
             <p className="text-xs text-amber-700 mt-3 font-bold">
               For emergencies: contact your nearest emergency veterinary clinic or the ASPCA Animal Poison Control Center at 888-426-4435.
@@ -109,8 +109,8 @@ export default function EditorialPage() {
         <section>
           <h2 className="text-2xl font-black text-ebony mb-4">Corrections Policy</h2>
           <p className="text-slate-gray leading-relaxed">
-            If you believe any information on Furrly is inaccurate, outdated, or misleading, please contact us at{" "}
-            <a href="mailto:hello@furrly.co" className="text-brand-start font-bold hover:underline">hello@furrly.co</a>. We take corrections seriously and will investigate and update content promptly when errors are confirmed.
+            If you believe any information on Hushku is inaccurate, outdated, or misleading, please contact us at{" "}
+            <a href="mailto:hello@hushku.co" className="text-brand-start font-bold hover:underline">hello@hushku.co</a>. We take corrections seriously and will investigate and update content promptly when errors are confirmed.
           </p>
         </section>
 

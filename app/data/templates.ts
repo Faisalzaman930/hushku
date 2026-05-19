@@ -1288,7 +1288,7 @@ If you see [PET NAME], please do not chase — call or text immediately.
 Email: [YOUR EMAIL]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Also posted on Nextdoor · [LOCAL FB GROUP] · Furrly Lost & Found
+Also posted on Nextdoor · [LOCAL FB GROUP] · Hushku Lost & Found
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
     faqs: [
       { q: "Should I include the reward amount on the poster?", a: "It's generally recommended to say 'Reward offered' without specifying the amount. Specifying a large amount can attract dishonest responses; specifying a small amount may reduce response rate. 'Reward offered' captures the motivational benefit without anchoring the amount." },

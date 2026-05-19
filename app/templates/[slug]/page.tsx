@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t.seoTitle,
     description: t.seoDescription,
-    alternates: { canonical: `https://furrly.co/templates/${t.slug}` },
+    alternates: { canonical: `https://hushku.co/templates/${t.slug}` },
     openGraph: { title: t.seoTitle, description: t.seoDescription, type: "article" },
   };
 }

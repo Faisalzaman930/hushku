@@ -136,7 +136,7 @@ export default function PetInsuranceEstimator() {
              <div className="bg-brand-start p-10 rounded-[3rem] text-white flex items-center justify-between gap-6 hover:scale-[1.02] transition-all cursor-pointer">
                 <div>
                    <h4 className="text-sm font-black uppercase tracking-tight">Need specific quotes?</h4>
-                   <p className="text-[10px] text-white/80 mt-1">Get pre-approved in the Furrly app.</p>
+                   <p className="text-[10px] text-white/80 mt-1">Get pre-approved in the Hushku app.</p>
                 </div>
                 <div className="text-2xl">→</div>
              </div>

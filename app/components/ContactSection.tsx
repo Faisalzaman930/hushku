@@ -10,7 +10,7 @@ const ContactSection = () => {
             <h2 className="text-base font-bold text-brand-start uppercase tracking-widest mb-6">Contact Us</h2>
             <h2 className="text-4xl font-black text-ebony tracking-tight sm:text-6xl uppercase leading-none">Let's Connect.</h2>
             <p className="mt-8 text-xl text-slate-gray leading-8">
-              Whether you're a potential vendor, a rescue organization, or a pet parent with questions, we're here to help. Get in touch with the Furrly team today.
+              Whether you're a potential vendor, a rescue organization, or a pet parent with questions, we're here to help. Get in touch with the Hushku team today.
             </p>
             <div className="mt-12 space-y-6">
               <div className="flex items-center gap-6">
@@ -24,7 +24,7 @@ const ContactSection = () => {
                 <div className="h-14 w-14 rounded-2xl bg-gray-50 flex items-center justify-center text-2xl shadow-sm">✉️</div>
                 <div>
                    <h4 className="font-bold text-ebony">Email Support</h4>
-                   <p className="text-slate-gray">hello@furrly.com</p>
+                   <p className="text-slate-gray">hello@hushku.com</p>
                 </div>
               </div>
             </div>

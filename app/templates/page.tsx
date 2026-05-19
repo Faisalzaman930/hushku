@@ -3,10 +3,10 @@ import Link from "next/link";
 import { templateDocs, templateCategories } from "../data/templates";
 
 export const metadata: Metadata = {
-  title: "Free Pet Templates: Contracts, Records & Forms | Furrly Hub",
+  title: "Free Pet Templates: Contracts, Records & Forms | Hushku Hub",
   description:
     "Free, editable pet templates for every situation — custody agreements, adoption contracts, vaccination records, pet sitting invoices, lost pet posters, and more. Download instantly in PDF, Word, or Google Docs.",
-  alternates: { canonical: "https://furrly.co/templates" },
+  alternates: { canonical: "https://hushku.co/templates" },
 };
 
 const CAT_ICONS: Record<string, string> = {
@@ -176,7 +176,7 @@ export default function TemplatesHubPage() {
             Manage your pet's whole life in one app.
           </h2>
           <p className="text-white/50 max-w-lg mx-auto mb-10 leading-7">
-            Health records, lost & found alerts, adoption matching, and community playdates — all in Furrly.
+            Health records, lost & found alerts, adoption matching, and community playdates — all in Hushku.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

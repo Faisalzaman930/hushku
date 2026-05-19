@@ -226,10 +226,10 @@ const ToolLayout = ({ title, description, subtitle, children, illustration, rela
           <div className="absolute top-0 right-0 p-20 text-white/5 text-9xl font-black select-none pointer-events-none">APP</div>
           <h3 className="text-sm font-black text-brand-start uppercase tracking-widest mb-6">The End-to-End Solution</h3>
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8 leading-none max-w-3xl mx-auto">
-            Go Beyond The Browser. <br />Download the Furrly App.
+            Go Beyond The Browser. <br />Download the Hushku App.
           </h2>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto mb-12 text-lg">
-            While our web tools provide quick insights, the full Furrly experience — including localised playmate matching, paperless adoption, and emergency GPS recovery — is only available in our all-in-one mobile app.
+            While our web tools provide quick insights, the full Hushku experience — including localised playmate matching, paperless adoption, and emergency GPS recovery — is only available in our all-in-one mobile app.
           </p>
           <Link href="/#download" className="inline-block bg-brand-gradient text-white font-black py-6 px-12 rounded-[2.5rem] shadow-xl hover:scale-105 active:scale-95 transition-all text-lg uppercase tracking-widest">
             Get the Full Experience

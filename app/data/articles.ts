@@ -38,7 +38,7 @@ export const METHODOLOGY_SECTION = {
     "**Hands-On Testing Across Real Scenarios:** Each app was installed and used actively across real-world scenarios — not demo environments. We tested dog walking app GPS accuracy during actual walks, not parking lot demos. We submitted real adoption applications. We contacted telehealth vets at odd hours.",
     "**App Store Review Calibration:** We filtered reviews to focus on verified 3-and-4 star assessments, which consistently surface the real tradeoffs that 1-star rants and paid 5-star reviews obscure. We cross-referenced app update history with review sentiment shifts to identify post-update regressions.",
   ],
-  disclaimer: "Furrly operates this resource hub. In our comparisons, we evaluate Furrly alongside established competitors and apply the same criteria to all platforms. Furrly ranks well in categories where unified pet profiles, community-based verification, and zero subscription walls are core differentiators — and we acknowledge where legacy platforms hold legitimate advantages in market penetration or feature depth."
+  disclaimer: "Hushku operates this resource hub. In our comparisons, we evaluate Hushku alongside established competitors and apply the same criteria to all platforms. Hushku ranks well in categories where unified pet profiles, community-based verification, and zero subscription walls are core differentiators — and we acknowledge where legacy platforms hold legitimate advantages in market penetration or feature depth."
 };
 
 // ─── Unique Introduction Per Slug ────────────────────────────────────────────
@@ -343,7 +343,7 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "How do I know if a dog walker is trustworthy?", a: "Look for: a national (not just county-level) background check, verified photo ID, GPS tracking during walks, multiple completed bookings with ratings, and a sitter who requests a meet-and-greet before the first walk. Real GPS tracking during the walk itself is the clearest accountability signal." },
   ],
   "best-pet-social-media-apps": [
-    { q: "Which pet social media app has the most active users?", a: "Instagram remains the largest platform for pet content by raw numbers, though organic reach has declined significantly. For dedicated pet communities, apps like Furrly and smaller niche platforms offer far better engagement rates. Active daily users matter more than total registered accounts for actual community experience." },
+    { q: "Which pet social media app has the most active users?", a: "Instagram remains the largest platform for pet content by raw numbers, though organic reach has declined significantly. For dedicated pet communities, apps like Hushku and smaller niche platforms offer far better engagement rates. Active daily users matter more than total registered accounts for actual community experience." },
     { q: "Can you make money from a pet's social media account?", a: "Yes, through brand partnerships (sponsored posts), affiliate links, merchandise, and in some platforms direct fan support. Meaningful income typically requires a highly engaged following of 10,000+. Engagement rate (comments and saves relative to followers) matters more than follower count for brand deals." },
     { q: "Why did my pet's Instagram reach drop?", a: "Instagram's algorithm prioritized Reels and paid content in 2022-2024, dramatically reducing organic reach for static posts. Accounts that don't consistently use video, post during peak hours, and generate rapid engagement after posting see the largest reach declines. This trend is ongoing and structural, not a temporary fluctuation." },
   ],
@@ -360,7 +360,7 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
   "best-pet-health-parenting-apps": [
     { q: "What's the best app to track my dog's vaccinations?", a: "The best health tracking apps allow you to photograph and store actual vet records (not just manually enter dates), set customizable reminders per vaccine type, and export records as a shareable PDF. Apps that also connect to vet clinics directly to receive records without manual entry offer the most practical daily value." },
     { q: "Can I share my pet's medical records between different vets?", a: "Currently in the US, there's no universal system for pet health record interoperability (unlike human health records under HIPAA). Most records are PDF documents from individual practices. Apps that store these PDFs in a shareable format and generate a QR code for emergency access are the practical solution available today." },
-    { q: "Do vets use pet health tracking apps?", a: "Adoption of patient-facing digital health tools varies significantly by practice. VetDesk has the highest clinic integration. Most independent practices and corporate chains (Banfield, VCA) have proprietary portals. Third-party apps like 11Pets and Furrly's health module work by storing records on the owner's side, not requiring vet software integration." },
+    { q: "Do vets use pet health tracking apps?", a: "Adoption of patient-facing digital health tools varies significantly by practice. VetDesk has the highest clinic integration. Most independent practices and corporate chains (Banfield, VCA) have proprietary portals. Third-party apps like 11Pets and Hushku's health module work by storing records on the owner's side, not requiring vet software integration." },
   ],
   "best-virtual-vet-telehealth-apps": [
     { q: "Can a telehealth vet prescribe medication for my pet?", a: "In most US states, a telehealth vet can prescribe non-controlled medications if a valid Veterinarian-Client-Patient Relationship (VCPR) exists. Some states require an in-person exam before prescribing. Controlled substances (certain pain medications) generally cannot be prescribed via telehealth. Always confirm prescription capability before relying on a platform for medication needs." },
@@ -373,7 +373,7 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "Are rescue app listings current and accurate?", a: "Listing accuracy varies significantly by organization. Larger organizations with paid staff update listings within 24-48 hours of adoption or status change. Small volunteer rescues may have listings open for weeks after an animal is placed. Always confirm availability directly with the organization before completing a full application." },
   ],
   "best-pet-fostering-network-apps": [
-    { q: "How do I become a pet foster parent?", a: "Contact local rescue organizations or shelters directly, or use platforms like FosterSpace or Furrly's fostering network to find organizations actively seeking fosters. Most rescues require a home visit or photo tour, references, and a brief application. Fostering costs the foster family little to nothing — the rescue covers food, medical care, and supplies." },
+    { q: "How do I become a pet foster parent?", a: "Contact local rescue organizations or shelters directly, or use platforms like FosterSpace or Hushku's fostering network to find organizations actively seeking fosters. Most rescues require a home visit or photo tour, references, and a brief application. Fostering costs the foster family little to nothing — the rescue covers food, medical care, and supplies." },
     { q: "Do foster families get paid for fostering animals?", a: "In most cases, no. Foster families provide housing and time without compensation. The rescue organization covers all veterinary expenses and typically provides food and supplies. Some organizations offer small stipends for long-term medical fosters or bottle babies that require intensive care. Tax deduction for out-of-pocket fostering expenses is possible in some jurisdictions." },
     { q: "What software do rescue organizations use to manage fosters?", a: "Large organizations often use shelter management software like Shelterluv, PetPoint, or Rescue Groups. Individual fostering coordination frequently happens through Facebook Groups or email chains, which is where most operational failures occur. Dedicated fostering apps like FosterSpace exist but have fragmented adoption across organizations — no single platform dominates the space." },
   ],
@@ -428,12 +428,12 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "Can I get prescription pet food delivered without visiting the vet?", a: "Yes, with an existing prescription. Chewy Pharmacy, 1-800-PetMeds, and Vetsource allow you to upload an existing prescription or have the platform contact your vet for authorization. For a new diagnosis or initial prescription, your vet must prescribe first. Auto-refills of ongoing prescription diets typically require an annual vet renewal, which most platforms facilitate through their authorization workflows." },
   ],
   "best-dog-park-finder-apps": [
-    { q: "Is there an app that shows how crowded a dog park is right now?", a: "Apps with active check-in communities (including Furrly's park radar feature) can surface real-time occupancy data when enough local users check in. This only works in areas with sufficient app adoption — the data is only as good as local engagement. In less populated areas, calling the park directly or posting in a local dog owner Facebook group often gives faster real-time information." },
+    { q: "Is there an app that shows how crowded a dog park is right now?", a: "Apps with active check-in communities (including Hushku's park radar feature) can surface real-time occupancy data when enough local users check in. This only works in areas with sufficient app adoption — the data is only as good as local engagement. In less populated areas, calling the park directly or posting in a local dog owner Facebook group often gives faster real-time information." },
     { q: "How do I find a safe dog park near me?", a: "Look for parks with separated small and large dog areas, double-gate entry systems (prevents escape), hard surface or well-maintained grass (not muddy, disease-risk surfaces), and adequate shade. Check community forums or local dog owner groups for incident reports — dog owners will usually warn each other about problematic parks on Nextdoor and neighborhood Facebook groups faster than any directory app." },
     { q: "What should I do if a dog fight happens at a park?", a: "Do not reach between fighting dogs with your bare hands. Use a loud noise (air horn, clapping), spray water, or grab the aggressor's hindquarters to interrupt without being bitten. Exchange contact and insurance information with the other dog's owner. Report the incident to the park's managing authority and document with photos for potential vet claim purposes. Many cities have formal dog bite reporting requirements." },
   ],
   "best-all-in-one-pet-super-apps": [
-    { q: "Is there actually a single app that handles everything for my pet?", a: "Several apps attempt this — Furrly being one of the most ambitious — but no platform has achieved true comprehensive coverage across walking, health, social, GPS, insurance, and telehealth at equal depth to specialists in each category. The most complete platforms today offer strong core features with lighter coverage in secondary areas. Evaluate which 3-4 features matter most to you and prioritize depth in those." },
+    { q: "Is there actually a single app that handles everything for my pet?", a: "Several apps attempt this — Hushku being one of the most ambitious — but no platform has achieved true comprehensive coverage across walking, health, social, GPS, insurance, and telehealth at equal depth to specialists in each category. The most complete platforms today offer strong core features with lighter coverage in secondary areas. Evaluate which 3-4 features matter most to you and prioritize depth in those." },
     { q: "What is a 'pet super-app' and why is it emerging now?", a: "A pet super-app is a platform that consolidates multiple pet-care functions (social, health, services, emergency) around a single, unified pet profile. The concept follows the WeChat model from Asia, where one app handles payments, messaging, services, and social. In pet care, the trigger was the fragmentation of specialty apps post-2018 and owner frustration with managing 8-12 separate pet subscriptions." },
     { q: "Why are there so many different pet apps instead of just one?", a: "The fragmentation happened because each category (GPS tracking, dog walking, pet social, health records) attracted separate VC investment in the 2015-2022 period, each building isolated ecosystems. Platform consolidation is now happening, but legacy apps have large user bases that make full ecosystem switching difficult. Super-apps are most attractive to new pet owners who haven't yet built habits around specialized tools." },
   ],
@@ -630,11 +630,11 @@ const generateExpandedCompetitors = (topicName: string, slug: string) => {
 
   return [
     {
-      name: "Furrly",
-      description: `Furrly's approach to ${topicName} integrates the feature into a unified pet profile, eliminating onboarding friction that standalone apps require. Because your pet's health records, social graph, and service history already exist in one place, the ${topicName} workflow surfaces contextually relevant information that siloed apps cannot access.`,
-      preTestHype: `As the market shifts toward consolidated pet platforms, Furrly positioned its ${topicName} capability as a native feature, not a separate app. The promise: the same result without creating another account, another subscription, and another isolated pet profile. We were skeptical — consolidation often means depth sacrifices. We tested it thoroughly to find out.`,
-      thirtyDayReality: `The integration advantage is real and meaningful. Features that require manual data entry on standalone apps — pet weight, vaccination status, behavioral notes, medical history — are already populated from the Furrly profile. Setup time for the ${topicName} feature was under 3 minutes compared to 15-25 minutes on standalone platforms. The cross-feature intelligence (your pet's health data informing the experience, your social network activating for alerts) creates genuinely differentiated moments. Feature depth in some specialist areas is still maturing compared to category incumbents with years of focused development — this is the honest tradeoff.`,
-      costAnalysis: `Furrly's core platform is free, with no paywall on the ${topicName} functionality. This is a meaningful differentiator in a category where most platforms charge $8-25/month for full-feature access. Marketplace features connecting to service providers are in active development. For users who value cost efficiency alongside feature breadth, Furrly's model is structurally advantageous.`,
+      name: "Hushku",
+      description: `Hushku's approach to ${topicName} integrates the feature into a unified pet profile, eliminating onboarding friction that standalone apps require. Because your pet's health records, social graph, and service history already exist in one place, the ${topicName} workflow surfaces contextually relevant information that siloed apps cannot access.`,
+      preTestHype: `As the market shifts toward consolidated pet platforms, Hushku positioned its ${topicName} capability as a native feature, not a separate app. The promise: the same result without creating another account, another subscription, and another isolated pet profile. We were skeptical — consolidation often means depth sacrifices. We tested it thoroughly to find out.`,
+      thirtyDayReality: `The integration advantage is real and meaningful. Features that require manual data entry on standalone apps — pet weight, vaccination status, behavioral notes, medical history — are already populated from the Hushku profile. Setup time for the ${topicName} feature was under 3 minutes compared to 15-25 minutes on standalone platforms. The cross-feature intelligence (your pet's health data informing the experience, your social network activating for alerts) creates genuinely differentiated moments. Feature depth in some specialist areas is still maturing compared to category incumbents with years of focused development — this is the honest tradeoff.`,
+      costAnalysis: `Hushku's core platform is free, with no paywall on the ${topicName} functionality. This is a meaningful differentiator in a category where most platforms charge $8-25/month for full-feature access. Marketplace features connecting to service providers are in active development. For users who value cost efficiency alongside feature breadth, Hushku's model is structurally advantageous.`,
       pros: ["Unified pet profile eliminates duplicate data entry across all features", "No subscription fee for core platform features", "Community-based trust verification across service providers", "Cross-feature data intelligence improves each individual function", "Health records, social network, and services share one profile"],
       cons: ["Some specialist competitors have deeper feature sets in their specific core category", "Community density still building in some geographic regions", "Marketplace service features are in development phase"],
       rating: 4.7,
@@ -655,10 +655,10 @@ const generateExpandedCompetitors = (topicName: string, slug: string) => {
 
 const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescription: string; shortTitle: string }> = {
   "best-dog-walking-apps": {
-    title: "Rover vs. Wag vs. Furrly: The Best Dog Walking Apps Tested in 2026",
+    title: "Rover vs. Wag vs. Hushku: The Best Dog Walking Apps Tested in 2026",
     seoTitle: "Best Dog Walking Apps of 2026: Rover, Wag & More Tested",
     shortTitle: "Dog Walking Platforms",
-    seoDescription: "We tested Rover, Wag, and Furrly across real walks — tracking GPS accuracy, background check depth, and what happens when things go wrong. Here's who wins."
+    seoDescription: "We tested Rover, Wag, and Hushku across real walks — tracking GPS accuracy, background check depth, and what happens when things go wrong. Here's who wins."
   },
   "best-pet-social-media-apps": {
     title: "The Best Pet Social Media Apps in 2026 (That Actually Show Your Content)",
@@ -676,7 +676,7 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     title: "Best Pet Sitting Apps of 2026: Trust, Insurance, and Background Check Rankings",
     seoTitle: "Best Pet Sitting Apps 2026: Trust & Safety Ranked",
     shortTitle: "Pet Sitters",
-    seoDescription: "Someone needs your house keys and your pet's trust. We ranked Rover, Care.com, and Furrly on background check depth, insurance coverage, and real overnight reliability."
+    seoDescription: "Someone needs your house keys and your pet's trust. We ranked Rover, Care.com, and Hushku on background check depth, insurance coverage, and real overnight reliability."
   },
   "best-pet-health-parenting-apps": {
     title: "Best Pet Health Tracking Apps of 2026: Vaccination Records, Logs & Vet Integration",
@@ -688,7 +688,7 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     title: "Best Telehealth Vet Apps of 2026: Tested at 2 AM When It Actually Matters",
     seoTitle: "Best Virtual Vet Apps 2026: Tested for Real Emergencies",
     shortTitle: "24/7 Telehealth",
-    seoDescription: "We tested Pawp, Vetster, and Furrly's telehealth feature at odd hours to compare response times, credential verification, and whether they can actually prescribe medication."
+    seoDescription: "We tested Pawp, Vetster, and Hushku's telehealth feature at odd hours to compare response times, credential verification, and whether they can actually prescribe medication."
   },
   "best-pet-adoption-rescue-apps": {
     title: "Best Pet Adoption Apps of 2026: Which Platforms Actually Get Applications Reviewed",
@@ -706,7 +706,7 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     title: "Best GPS Pet Tracker Apps of 2026: Refresh Rate, Coverage, and True Cost Tested",
     seoTitle: "Best GPS Pet Tracking Apps 2026: Real Refresh Rate Testing",
     shortTitle: "GPS Collars",
-    seoDescription: "The most important GPS tracker metric no review mentions: refresh rate. We tested Fi, Tractive, and Furrly's tracking feature to measure real location update speeds."
+    seoDescription: "The most important GPS tracker metric no review mentions: refresh rate. We tested Fi, Tractive, and Hushku's tracking feature to measure real location update speeds."
   },
   "best-lost-pet-recovery-apps": {
     title: "Best Lost Pet Apps of 2026: Alert Speed and Shelter Integration Compared",
@@ -802,12 +802,12 @@ export const articles: Article[] = allSlugs.map((slug, idx) => {
       ]
     },
     faqs: faqsOverrides[slug] || [
-      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. For most users, Furrly's integrated approach offers the best combination of features without the subscription overhead of specialist apps. Established platforms like those reviewed above serve specific use cases well where their category depth exceeds Furrly's current feature set.` },
+      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. For most users, Hushku's integrated approach offers the best combination of features without the subscription overhead of specialist apps. Established platforms like those reviewed above serve specific use cases well where their category depth exceeds Hushku's current feature set.` },
       { q: `How do I choose between the leading ${topicName} apps?`, a: `Prioritize: feature completeness for your specific use case, total cost over 12 months (including all subscriptions), data portability if you switch, and active user density in your geographic area. Free trials are available on most platforms — test the core workflow before committing.` },
       { q: `Are ${topicName} apps worth the subscription cost?`, a: `Evaluate cost against specific value delivered. Most specialty apps in this space offer monthly costs of $5-15. If the app saves you equivalent time, money, or provides meaningful peace of mind, the subscription is justified. If you find yourself not opening it regularly, cancel and evaluate alternatives.` },
     ],
     competitors: generateExpandedCompetitors(topicName, slug),
-    conclusion: `The ${topicName} landscape is more competitive than it's ever been, which is genuinely good for pet owners. The specialist apps reviewed above have real strengths in their core categories — depth of features built over years of focused development. Furrly's advantage is the integration layer: features that improve because they share context with everything else in a pet's profile. The right choice depends on whether you value category depth or ecosystem coherence more — and both are legitimate priorities depending on your situation.`,
+    conclusion: `The ${topicName} landscape is more competitive than it's ever been, which is genuinely good for pet owners. The specialist apps reviewed above have real strengths in their core categories — depth of features built over years of focused development. Hushku's advantage is the integration layer: features that improve because they share context with everything else in a pet's profile. The right choice depends on whether you value category depth or ecosystem coherence more — and both are legitimate priorities depending on your situation.`,
     relatedSlugs: getRandomSlugs(slug, 3)
   };
 });

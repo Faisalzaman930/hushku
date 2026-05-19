@@ -9,7 +9,7 @@ import { pillarPages } from "./data/pillars";
 import { templateDocs } from "./data/templates";
 import { breedsByAnimal } from "./data/breeds";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://furrly.co";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.co";
 const TODAY = new Date();
 
 const STATIC_ROUTES: MetadataRoute.Sitemap = [

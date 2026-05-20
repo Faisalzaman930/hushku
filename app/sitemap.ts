@@ -81,6 +81,17 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/tools/photo-tips`,          changeFrequency: "monthly", priority: 0.6, lastModified: TODAY },
   { url: `${BASE_URL}/tools/birthday-countdown`,  changeFrequency: "monthly", priority: 0.6, lastModified: TODAY },
   { url: `${BASE_URL}/tools/pet-owner-quiz`,      changeFrequency: "monthly", priority: 0.6, lastModified: TODAY },
+
+  // ── New template static entries ──────────────────────────────────────────
+  { url: `${BASE_URL}/templates/pet-sitting-agreement-template`,  changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-profile-to-adopt-template`,   changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-sitter-instructions-template`,changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/missing-pet-poster-template`,     changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-care-instructions-template`,  changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-resume-template`,             changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-boarding-contract-template`,  changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-id-card-template`,            changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
+  { url: `${BASE_URL}/templates/pet-birth-certificate-template`,  changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1918,6 +1918,1066 @@ IMMEDIATE ACTION CHECKLIST
     relatedSlugs: ["lost-pet-poster-template", "pet-medical-history-template", "pet-vaccination-record-template"],
     downloadFormats: ["PDF (print)", "PNG (social media)", "Google Docs", "Word (.docx)"],
   },
+
+  // ─── NEW TIER 1 ────────────────────────────────────────────────────────────
+
+  {
+    slug: "pet-sitting-agreement-template",
+    title: "Pet Sitting Agreement Template (Free, Printable)",
+    seoTitle: "Pet Sitting Agreement Template — Free Download 2026",
+    shortTitle: "Pet Sitting Agreement",
+    seoDescription: "Free pet sitting agreement template covering rates, schedule, emergency contacts, medications, liability, and cancellation policy. Download as PDF, Word, or Google Docs.",
+    icon: "🐾",
+    tier: 1,
+    category: "Pet Sitting & Care",
+    targetKeywords: ["pet sitting agreement template", "pet sitter template", "pet sitting template", "free pet sitting templates"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "6 Min Read",
+    quickAnswer: "A pet sitting agreement is a written contract between a pet owner and a pet sitter covering visit schedule, rates, pet care instructions, emergency procedures, and liability — signed before the first visit.",
+    intro: `Handing your pet's care to someone else requires trust. A signed pet sitting agreement protects both sides: owners get written confirmation their pet's needs will be met; sitters get clear instructions, agreed rates, and legal protection if something unexpected happens.
+
+This free template works for in-home overnight sitting, daily drop-in visits, house-sitting arrangements, and dog walking. It's written in plain English — fill in the highlighted fields, both parties sign, and you're protected. For professional pet sitters taking on multiple clients, consider having a solicitor review your standard agreement once.`,
+    whenYouNeedIt: [
+      "Hiring a pet sitter for holidays or travel",
+      "Arranging regular daily dog walks or drop-in visits",
+      "Using a friend or neighbour to care for your pet",
+      "Professional pet sitters building a client intake process",
+      "House-sitting where pet care is included",
+    ],
+    whatToInclude: [
+      {
+        title: "Pet & owner information",
+        items: ["Owner full name, address, phone, email", "Emergency contact (different from owner)", "Pet name, species, breed, age, sex", "Microchip number and vet contact"],
+      },
+      {
+        title: "Service details",
+        items: ["Type of service (overnight, drop-in, dog walk)", "Start and end dates/times", "Visit frequency and duration", "Agreed daily/nightly rate", "Overtime or holiday surcharge"],
+      },
+      {
+        title: "Pet care instructions",
+        items: ["Feeding schedule: amounts, food brand, times", "Medication: name, dose, method, frequency", "Exercise requirements", "Behavioural notes (anxious, reactive, etc.)", "House rules (furniture, garden access)"],
+      },
+      {
+        title: "Emergency & vet procedures",
+        items: ["Primary vet name, address, phone", "Emergency/out-of-hours vet", "Authorisation to seek emergency care", "Spending limit before owner must be reached"],
+      },
+      {
+        title: "Liability & cancellation",
+        items: ["Liability waiver for accidents or injury", "Cancellation notice period (e.g. 48 hours)", "Refund policy for cancellations", "Key/access return procedure"],
+      },
+    ],
+    stateNotes: "This template is general-purpose and valid across all U.S. states. For professional pet sitters, your state may require a business licence and liability insurance — check with your state's Department of Consumer Affairs.",
+    templateText: `PET SITTING AGREEMENT
+
+Between: [OWNER NAME] ("Owner") and [SITTER NAME] ("Sitter")
+Service address: [PET'S HOME ADDRESS]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1 — PET INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pet name: ______________________
+Species/Breed: ______________________
+Date of birth / age: ______________________
+Sex (M/F): ___  Spayed/Neutered: Y / N
+Microchip #: ______________________
+Distinguishing markings: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2 — SERVICE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Service type:  ☐ Overnight  ☐ Drop-in visit  ☐ Dog walk  ☐ House-sit
+Start date & time: ______________________
+End date & time: ______________________
+Visit frequency: ______________________  Duration per visit: ______
+Agreed rate: $_______ per [ day / night / visit / walk ]
+Holiday surcharge: $_______ (dates: _______________)
+Total estimated cost: $_______
+Payment due: ☐ Before service  ☐ After service  ☐ Weekly
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3 — FEEDING & CARE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Food brand & type: ______________________
+Morning feed: _______ amount at _______ time
+Evening feed: _______ amount at _______ time
+Treats allowed: Y / N   Type: ______________________
+Fresh water: ☐ Always available  ☐ With meals only
+Special dietary restrictions: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4 — MEDICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Medication 1: ________  Dose: ______  Time: ______  Method: ______
+Medication 2: ________  Dose: ______  Time: ______  Method: ______
+Medications stored at: ______________________
+Additional notes: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5 — BEHAVIOURAL NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Temperament: ☐ Friendly  ☐ Shy  ☐ Anxious  ☐ Reactive on leash
+OK with strangers: Y / N   OK with other dogs: Y / N
+OK with cats: Y / N   OK with children: Y / N
+Known triggers or fears: ______________________
+Escape risk: Y / N   Notes: ______________________
+Favourite toys/activities: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 6 — VETERINARY & EMERGENCY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Primary vet: ______________________  Phone: ______________________
+Address: ______________________
+Emergency/out-of-hours vet: ______________________  Phone: ____________
+
+AUTHORISATION: In the event I cannot be reached and my pet requires
+emergency veterinary care, I authorise [SITTER NAME] to transport my
+pet to the nearest emergency veterinary clinic and consent to
+necessary treatment up to $_______ without prior owner approval.
+All costs beyond this amount will be discussed with the owner before
+treatment proceeds where possible.
+
+Emergency contact (not the sitter): ______________________
+Phone: ______________________  Relationship: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 7 — LIABILITY & CANCELLATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The Owner acknowledges that [SITTER NAME] is not liable for illness,
+injury, death, or loss resulting from pre-existing conditions,
+escapes due to faulty fencing or equipment not reported to the Sitter,
+or events beyond the Sitter's reasonable control.
+
+Cancellation by Owner: Full refund if cancelled more than [48] hours
+before service start. [50%] refund if cancelled within 48 hours.
+No refund for same-day cancellations.
+
+Cancellation by Sitter: Full refund of any deposit paid.
+Sitter will assist in finding alternative care where possible.
+
+Key/access: The Owner will provide [key / code / lockbox] access.
+The Sitter will return all keys/access at the end of service.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SIGNATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Owner signature: _____________________  Date: ____________
+Printed name: _____________________
+
+Sitter signature: _____________________  Date: ____________
+Printed name: _____________________`,
+    faqs: [
+      {
+        q: "Is a pet sitting agreement legally binding?",
+        a: "Yes. A signed pet sitting agreement is a binding contract in all U.S. states. It doesn't need to be notarised to be enforceable — both parties signing and dating it is sufficient. Keep a copy each.",
+      },
+      {
+        q: "What's the difference between a pet sitting agreement and a pet sitting contract?",
+        a: "The terms are interchangeable. 'Agreement' is slightly more informal; 'contract' is more common in professional/commercial contexts. Both create the same legal obligations.",
+      },
+      {
+        q: "Do I need a new agreement for each stay?",
+        a: "For repeat clients with the same sitter, you can use a standing agreement with an attached 'Service Confirmation' showing dates and rate. Only re-sign the full agreement if the pet's health, medications, or care needs change significantly.",
+      },
+      {
+        q: "Should I include a photo of the pet?",
+        a: "Yes — attach a recent clear photo. It's especially useful if the pet escapes, and it confirms both parties agree on which pet the contract covers. Keep it in the agreement file.",
+      },
+    ],
+    relatedSlugs: ["pet-sitting-contract-template-free", "pet-sitting-invoice-template", "pet-care-instructions-template"],
+    downloadFormats: ["PDF", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "pet-profile-to-adopt-template",
+    title: "Pet Profile to Adopt Template (Free, Printable)",
+    seoTitle: "Pet Profile to Adopt Template — Free Download 2026",
+    shortTitle: "Pet Adoption Profile",
+    seoDescription: "Free pet profile to adopt template for shelters, rescues, and private rehomers. A well-written adoption profile doubles enquiry rates. Download and fill in under 10 minutes.",
+    icon: "🐶",
+    tier: 1,
+    category: "Adoption & Rehoming",
+    targetKeywords: ["pet profile to adopt template", "pet adoption profile template", "pet bio template", "pet cv template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A pet adoption profile is a one-page document (or online listing) that describes a pet's personality, background, health status, and ideal home — used by shelters, rescues, and private rehomers to find the right match.",
+    intro: `A great adoption profile gets pets adopted faster. Shelters and rescues with compelling, honest profiles see higher enquiry rates, better adoption matches, and fewer returns. This template guides you through every section — from personality and quirks to medical history and ideal home requirements.
+
+Whether you're a shelter staff member, foster carer, or rehoming a personal pet, fill in this template with honest, specific detail. Vague descriptions like "good dog" or "loves cuddles" don't help adopters self-select. Specific ones like "would thrive in a quiet adult household with a garden" do.`,
+    whenYouNeedIt: [
+      "Shelters and rescues listing pets for adoption",
+      "Foster carers writing profiles for their foster animals",
+      "Private owners rehoming a pet",
+      "Anyone creating an Adopt-a-Pet, Petfinder, or Facebook listing",
+    ],
+    whatToInclude: [
+      {
+        title: "Basic information",
+        items: ["Name, species, breed (or mix)", "Age, sex, weight", "Colour and markings", "Microchip number (if applicable)", "Intake / in-care date"],
+      },
+      {
+        title: "Personality & temperament",
+        items: ["Energy level (low / medium / high)", "Affectionate vs independent", "Playful vs calm", "Confidence level", "Quirks and funny habits"],
+      },
+      {
+        title: "Compatibility",
+        items: ["Dogs: good / needs slow intro / no dogs", "Cats: good / untested / no cats", "Children: good / older children only / adults only", "Strangers: friendly / shy / needs time"],
+      },
+      {
+        title: "Training & behaviour",
+        items: ["House-trained: Y / N / in progress", "Leash-trained: Y / N / needs work", "Known commands", "Known behavioural challenges", "Separation anxiety level"],
+      },
+      {
+        title: "Health & medical",
+        items: ["Spayed / neutered", "Up-to-date vaccinations", "Current medications", "Known health conditions", "Date of last vet check"],
+      },
+      {
+        title: "Ideal home",
+        items: ["House or flat — garden preferred?", "Activity level of ideal owner", "Experience level required", "Household composition (adults only, family, etc.)", "Near-term commitment (travel, hours away)"],
+      },
+    ],
+    stateNotes: "No legal requirements for adoption profiles, but shelters should ensure health disclosures are accurate — misrepresenting a pet's medical or behavioural history can expose organisations to liability.",
+    templateText: `PET ADOPTION PROFILE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MEET [PET NAME]!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[2–3 sentence introduction. Write in a warm, direct voice. Lead with the most appealing quality, then add a realistic note. Example: "Bella is a social, playful 2-year-old who will have you laughing every day. She needs a confident owner who can help her build trust with new dogs — but once she's comfortable, she's the most loyal companion you'll find."]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THE BASICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: ______________________
+Species: ______________________
+Breed / mix: ______________________
+Age: ______________________
+Sex: M / F     Spayed/Neutered: Y / N
+Weight: _______ lbs / kg
+Colour: ______________________
+Microchip: Y / N   #: ______________________
+In care since: ______________________
+Listing reference: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PERSONALITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Energy level:   ☐ Low   ☐ Medium   ☐ High
+Affection level: ☐ Independent   ☐ Moderate   ☐ Very affectionate
+Play style: ______________________
+Confidence: ☐ Bold   ☐ Moderate   ☐ Shy / nervous
+Favourite activities: ______________________
+Funny quirks or habits: ______________________
+What [PET NAME] loves most: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPATIBILITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Other dogs:    ☐ Yes   ☐ Slow intro needed   ☐ No dogs
+Cats:          ☐ Yes   ☐ Untested   ☐ No cats
+Young children (under 10): ☐ Yes   ☐ 10+ only   ☐ Adults only
+Strangers:     ☐ Friendly   ☐ Warms up slowly   ☐ Needs time
+
+Notes on compatibility: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TRAINING & BEHAVIOUR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+House-trained:      ☐ Yes   ☐ In progress   ☐ No
+Leash manners:      ☐ Good   ☐ Needs work   ☐ Not leash-trained
+Known commands: ______________________
+Crate-trained:      ☐ Yes   ☐ No
+Separation anxiety: ☐ None   ☐ Mild   ☐ Moderate   ☐ Severe
+Behavioural challenges: ______________________
+Training history: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HEALTH & MEDICAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Vaccinations:    ☐ Up to date   ☐ Partial   ☐ Not vaccinated
+Flea/tick treatment: ☐ Current   ☐ Overdue
+Heartworm (dogs): ☐ Negative   ☐ Positive   ☐ Not tested
+Current medications: ______________________
+Known health conditions: ______________________
+Last vet check: ______________________
+Vet notes: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IDEAL HOME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Home type:   ☐ House with garden   ☐ Flat/apartment OK   ☐ Rural preferred
+Owner activity level: ☐ Active (daily exercise)   ☐ Moderate   ☐ Calm lifestyle
+Experience required: ☐ First-time owner OK   ☐ Some experience   ☐ Experienced only
+Household: ☐ Adults only   ☐ Family with children   ☐ Single person   ☐ Any
+Other requirements: ______________________
+
+[PET NAME] would NOT be suitable for: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ADOPTION REQUIREMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Adoption fee: $_______
+What's included: ☐ Vaccinations  ☐ Microchip  ☐ Spay/neuter  ☐ Starter pack
+Home check required: Y / N
+Trial period offered: Y / N   Duration: _______
+Contact: ______________________   Phone/Email: ______________________`,
+    faqs: [
+      {
+        q: "How long should a pet adoption profile be?",
+        a: "One page for print; 150–300 words for online listings. Online adopters scan quickly — lead with personality, highlight the ideal home, and be specific about any challenges upfront. Hiding issues leads to returns.",
+      },
+      {
+        q: "Should I mention behavioural challenges in the profile?",
+        a: "Yes, always. Shelters that disclose challenges honestly see fewer returns and better long-term outcomes. Frame them constructively: 'Needs an owner with leash training experience' rather than 'pulls on leash badly.'",
+      },
+      {
+        q: "What makes an adoption profile stand out?",
+        a: "Specific details over generic ones. 'Loves chasing a ball in the garden and falls asleep across your feet every evening' is far more compelling than 'playful and affectionate.' Mention one funny or endearing quirk — it makes the pet memorable.",
+      },
+      {
+        q: "Can I use this template for cats?",
+        a: "Yes. Remove dog-specific fields (heartworm, leash manners) and add cat-specific ones if needed: indoor/outdoor preference, litter box status, declawed or not. All other sections apply directly.",
+      },
+    ],
+    relatedSlugs: ["pet-adoption-contract-template", "pet-adoption-certificate-template", "pet-adoption-application-template"],
+    downloadFormats: ["PDF", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "pet-sitter-instructions-template",
+    title: "Pet Sitter Instructions Template (Free, Printable)",
+    seoTitle: "Pet Sitter Instructions Template — Free Download 2026",
+    shortTitle: "Pet Sitter Instructions",
+    seoDescription: "Free pet sitter instructions template covering feeding, medications, walking, emergencies, house rules, and vet contacts. Printable one-page format. Download in PDF, Word, or Google Docs.",
+    icon: "📋",
+    tier: 1,
+    category: "Pet Sitting & Care",
+    targetKeywords: ["pet sitter instructions template", "instructions for pet sitter template", "pet sitting instructions template", "house and pet sitting instructions template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A pet sitter instructions sheet is a one-page reference document left for whoever is caring for your pet — covering feeding times, medications, walking routine, emergency contacts, house access, and anything else the sitter needs to know.",
+    intro: `Leaving a clear, printed instructions sheet for your pet sitter reduces panicked phone calls, prevents missed medications, and gives your sitter the confidence to handle anything that comes up. This template covers everything in a logical order — your sitter can stick it on the fridge and refer to it throughout their stay.
+
+Fill it in completely, even the sections that seem obvious. What seems obvious to you (the pet's feeding routine, how the back door lock works) is new information to your sitter. The more detail you provide upfront, the less stress for everyone.`,
+    whenYouNeedIt: [
+      "Leaving a pet sitter in charge while you travel",
+      "Arranging a neighbour or friend to check in on your pet",
+      "Dropping a pet at a boarding facility",
+      "Hiring a dog walker or drop-in visitor",
+    ],
+    whatToInclude: [
+      {
+        title: "Pet information",
+        items: ["Name, age, breed", "Microchip number", "Any medical conditions", "Vet name and number"],
+      },
+      {
+        title: "Feeding",
+        items: ["Food brand and type", "Amount per meal", "Feeding times", "Treats allowed"],
+      },
+      {
+        title: "Medications",
+        items: ["Drug name and dose", "Time and method of administration", "Where medications are stored", "What to do if a dose is missed"],
+      },
+      {
+        title: "Exercise and toileting",
+        items: ["Walk frequency and duration", "Where to walk", "Leash or off-leash", "Toileting frequency"],
+      },
+      {
+        title: "House access and rules",
+        items: ["Key / lockbox code / alarm code", "WiFi password", "Rooms that are off-limits", "Bin collection / mail collection"],
+      },
+      {
+        title: "Emergency contacts",
+        items: ["Owner primary contact", "Backup emergency contact", "Vet name, address, phone", "Out-of-hours vet"],
+      },
+    ],
+    stateNotes: "No legal requirements apply to this document. It's an operational guide, not a contract. Use alongside a signed pet sitting agreement for full legal coverage.",
+    templateText: `PET SITTER INSTRUCTIONS
+For: [PET'S NAME]   Dates: [START DATE] – [END DATE]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EMERGENCY CONTACTS  (keep this section visible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Owner: ______________________   Phone: ______________________
+Backup contact: ______________________   Phone: ______________________
+Primary vet: ______________________   Phone: ______________________
+Emergency vet (24hr): ______________________   Phone: ______________________
+Vet address: ______________________
+
+If [PET NAME] is in distress and I am unreachable, go directly to
+the emergency vet listed above. I authorise emergency treatment.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABOUT [PET NAME]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Breed: ______________________   Age: ______________________
+Microchip #: ______________________
+Medical conditions: ______________________
+Allergies: ______________________
+Important personality notes: ______________________
+(e.g. "Barks at other dogs on leash — keep moving calmly." / "Hides if scared — don't force interaction.")
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FEEDING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Food: ______________________   Stored: ______________________
+Morning: _______ cups / grams   at _______ am
+Evening: _______ cups / grams   at _______ pm
+Fresh water: ☐ Always full   ☐ Refresh with each meal
+Treats: ______________________
+DO NOT feed: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MEDICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Medication 1: ________   Dose: ______   Time: ______   How: ______
+Medication 2: ________   Dose: ______   Time: ______   How: ______
+Stored at: ______________________
+Tip for giving meds: ______________________
+(e.g. "Hide in a small piece of cheese." / "Mix into wet food.")
+If a dose is missed: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WALKS & EXERCISE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Number of walks per day: ______   Duration: ______
+Preferred route: ______________________
+Leash required: ☐ Always   ☐ Off-leash in park OK   ☐ Off-leash everywhere
+Leash/harness stored at: ______________________
+Potty breaks (non-walk): ______________________
+Garden access: ☐ Safe, unsupervised OK   ☐ Supervised only   ☐ No garden
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SLEEPING & ROUTINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sleeps: ☐ Own bed/crate   ☐ Sofa OK   ☐ Owner bedroom
+Crate: ☐ Used at night   ☐ Used when alone   ☐ Not used
+Favourite toy: ______________________
+Usual bedtime routine: ______________________
+Separation anxiety: ☐ None   ☐ Mild   ☐ Needs gradual departure
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HOUSE & ACCESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Key location: ______________________
+Alarm code: ______   Alarm notes: ______________________
+WiFi: Network: ________________   Password: ________________
+Rooms off-limits: ______________________
+Bin collection day: ______________________
+Mail: ☐ Leave in box   ☐ Bring inside   ☐ Not expected
+Parking: ______________________
+Any other house notes: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ANYTHING ELSE TO KNOW?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+______________________
+
+Thank you for caring for [PET NAME]. Please text/call any time:
+Owner mobile: ______________________`,
+    faqs: [
+      {
+        q: "How detailed should I be?",
+        a: "As detailed as possible. Err on the side of too much information. A section your sitter doesn't need is easy to skip; a piece of missing information (where the medications are, what to do if the pet won't eat) can cause real stress.",
+      },
+      {
+        q: "Should I leave this as a physical sheet or send it digitally?",
+        a: "Both. Print a copy and stick it on the fridge or leave it on the kitchen counter — it should be visible without needing to unlock a phone. Also send a digital copy so your sitter can reference it easily when out walking.",
+      },
+      {
+        q: "Do I need a separate contract as well?",
+        a: "Yes. Instructions tell the sitter what to do; a pet sitting agreement (contract) covers payment, liability, and legal obligations. They work together — instructions for day-to-day care, contract for the formal arrangement.",
+      },
+      {
+        q: "What if my pet needs special care?",
+        a: "Add a dedicated section at the end with detailed notes. For diabetic pets or those on complex medication schedules, consider also creating a daily medication log the sitter can tick off so doses are never missed or doubled.",
+      },
+    ],
+    relatedSlugs: ["pet-sitting-agreement-template", "pet-sitting-contract-template-free", "pet-care-instructions-template"],
+    downloadFormats: ["PDF (printable A4)", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "missing-pet-poster-template",
+    title: "Missing Pet Poster Template (Free, Printable)",
+    seoTitle: "Missing Pet Poster Template — Free Download 2026",
+    shortTitle: "Missing Pet Poster",
+    seoDescription: "Free missing pet poster template — printable and social media formats. Designed to be spotted quickly and shared widely. Download as PDF, Word, or Canva-ready PNG.",
+    icon: "🔍",
+    tier: 1,
+    category: "Lost & Found",
+    targetKeywords: ["missing pet poster template", "missing pet template", "missing pet flyer template", "found pet poster template", "missing pet sign template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A missing pet poster is a flyer distributed in the local area and online when a pet goes missing — it needs a clear photo, the word MISSING in large type, your phone number, and the last known location.",
+    intro: `The first 24 hours after a pet goes missing are the most critical. A well-designed missing pet poster, distributed quickly, dramatically increases your chances of getting your pet home. This template gives you two formats: a print version for telephone poles, community boards, and letterbox drops, and a digital version optimised for social media sharing.
+
+Act fast — post online before printing. A shared post on Nextdoor or a local Facebook group can reach thousands of neighbours in minutes. Print and post the physical version to extend reach to people who aren't online.`,
+    whenYouNeedIt: [
+      "Your pet has escaped, gone missing, or not returned home",
+      "You want to create posters immediately after realising your pet is missing",
+      "A community member has found a pet and wants to locate the owner",
+      "You're a shelter or rescue assisting with a community missing pet alert",
+    ],
+    whatToInclude: [
+      {
+        title: "Print poster essentials",
+        items: ['"MISSING" in the largest possible font', "Clear, close-up photo of the pet", "Pet name, species, breed, colour, markings", "Phone number — large enough to read while driving", "Last seen: date, time, location"],
+      },
+      {
+        title: "Optional but helpful",
+        items: ["Reward offered (amount optional — see FAQ)", "Microchip number for shelters", "Personality note if shy (do not chase)", "Mention of any medical needs"],
+      },
+      {
+        title: "Digital / social version",
+        items: ["Square format (1080×1080) for Instagram and Facebook", "Dark background for high contrast", "Phone number as the largest text element", "Brief caption with hashtags"],
+      },
+    ],
+    stateNotes: "Physical poster placement is subject to local ordinances. Avoid posting on utility poles or public property where prohibited — use community boards, vet clinic windows, and shop fronts instead. Always ask permission before posting on private property.",
+    templateText: `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRINT VERSION (A4 / Letter)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌──────────────────────────────────────┐
+│                                      │
+│    ██  MISSING  ██                   │
+│    [ DOG / CAT / RABBIT / OTHER ]    │
+│                                      │
+│    ┌────────────────────────┐        │
+│    │                        │        │
+│    │   [CLEAR PHOTO HERE]   │        │
+│    │   (close crop, face)   │        │
+│    │                        │        │
+│    └────────────────────────┘        │
+│                                      │
+│  Name:  [PET NAME]                   │
+│  Breed: [BREED]   Colour: [COLOUR]   │
+│  Weight: ~[WEIGHT] lbs               │
+│  Sex: M/F   Collar: [YES/NO]         │
+│                                      │
+│  LAST SEEN                           │
+│  [DATE]  [TIME]                      │
+│  Near: [STREET / INTERSECTION]       │
+│                                      │
+│  [PET NAME] is [FRIENDLY / SHY —     │
+│  please DO NOT chase, call us]        │
+│                                      │
+│  ████████████████████████            │
+│  📞 [YOUR PHONE NUMBER]              │
+│  ████████████████████████            │
+│                                      │
+│  REWARD OFFERED                      │
+│  Also on: Nextdoor · PetFBI.org      │
+│  Microchip: [NUMBER]                 │
+└──────────────────────────────────────┘
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOCIAL MEDIA VERSION (1080 × 1080)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Use Canva, Google Slides, or any image editor.
+Recommended: dark background, white/bold text.
+
+Layout (top to bottom):
+  ── BOLD BANNER ── "MISSING DOG" / "MISSING CAT" / "MISSING PET"
+  ── PHOTO ── (takes 50% of image, close crop)
+  ── LARGE TEXT ── 📞 [PHONE NUMBER]
+  ── SMALLER TEXT ── [PET NAME] · [BREED] · [COLOUR]
+  Last seen: [DATE], [NEIGHBOURHOOD]
+  REWARD OFFERED
+
+── POST CAPTION ───────────────────────
+MISSING [DOG/CAT] in [NEIGHBOURHOOD/CITY] 😢
+
+[PET NAME] has been missing since [DATE] near [STREET/AREA].
+[He/She] is [friendly / shy and may hide from strangers].
+
+📞 Please call or text [YOUR NUMBER] if you see [him/her].
+💰 Reward offered.
+
+Please share — every share reaches someone who may have seen [PET NAME].
+
+#Missing[Dog/Cat] #Lost[Dog/Cat] #[City] #[Neighbourhood] #MissingPet #LostPet
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+IMMEDIATE ACTION CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+☐ Mark as MISSING with microchip registry NOW
+☐ Call all shelters within 10 miles
+☐ Post to Nextdoor immediately
+☐ Post to local Facebook community groups
+☐ File report at PetFBI.org
+☐ Print 50+ flyers and post within 1 mile radius
+☐ Knock on neighbours' doors directly
+☐ Leave unwashed clothing near escape point
+☐ Check shelters in person every 48 hours`,
+    faqs: [
+      {
+        q: "Should I include a reward amount?",
+        a: "Omit the specific amount. 'Reward offered' motivates people without attracting dishonest claims or anchoring expectations. Tell genuine callers the amount when they phone.",
+      },
+      {
+        q: "What size should I print the poster?",
+        a: "A4 or Letter for general posting. Print a few at A3/tabloid for high-traffic spots — park entrances, shop fronts. Always print in colour; a pet's markings are impossible to identify in black and white.",
+      },
+      {
+        q: "My pet is shy and hides from strangers. What should I say?",
+        a: "Add a clear note in bold: 'Very shy — please DO NOT approach. Call us with the location immediately.' A frightened pet will run from well-meaning strangers. A location tip is far more valuable than a failed catch attempt.",
+      },
+      {
+        q: "What's the difference between this and the Lost Pet Poster template?",
+        a: "This template is optimised for rapid, short-form deployment — grab-and-go poster format and a social media square. The Lost Pet Poster template is a longer, more detailed document for community boards and vet clinics. Use both.",
+      },
+    ],
+    relatedSlugs: ["lost-pet-poster-template", "lost-pet-flyer-template", "pet-medical-history-template"],
+    downloadFormats: ["PDF (print)", "PNG (social media)", "Word (.docx)", "Google Docs"],
+  },
+
+  // ─── TIER 2 ────────────────────────────────────────────────────────────────
+
+  {
+    slug: "pet-care-instructions-template",
+    title: "Pet Care Instructions Template (Free, Printable)",
+    seoTitle: "Pet Care Instructions Template — Free Printable 2026",
+    shortTitle: "Pet Care Instructions",
+    seoDescription: "Free pet care instructions template covering feeding, walking, medications, schedule, and emergency contacts. Perfect for vets, boarding, sitters, and family members.",
+    icon: "📝",
+    tier: 2,
+    category: "Pet Sitting & Care",
+    targetKeywords: ["pet care instructions template", "pet care checklist template", "pet care plan template", "pet care schedule template", "pet care sheet template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "4 Min Read",
+    quickAnswer: "A pet care instructions sheet is a reference document summarising everything someone needs to know to look after your pet — feeding, medications, routine, emergency contacts, and house access — left for sitters, vets, family, or boarding facilities.",
+    intro: `A pet care instructions sheet is the single most useful document you can prepare before leaving your pet with anyone. Whether it's your neighbour checking in, a boarding facility, or a family member covering for a week, a clear printed sheet means fewer phone calls and better care.
+
+This template is shorter and more flexible than a full pet sitting agreement — it's purely operational: what to do, when, and who to call if something goes wrong.`,
+    whenYouNeedIt: [
+      "Leaving your pet with a boarding facility",
+      "A family member is caring for your pet",
+      "Emergency situations where someone needs immediate instructions",
+      "Regular dog walkers who need a reference sheet",
+    ],
+    whatToInclude: [
+      { title: "Pet details", items: ["Name, breed, age, weight", "Microchip number", "Any allergies or medical conditions"] },
+      { title: "Daily schedule", items: ["Feeding times and amounts", "Walk/exercise times", "Medication schedule", "Bedtime routine"] },
+      { title: "Emergency info", items: ["Owner phone number", "Backup contact", "Vet name and phone", "Emergency vet"] },
+    ],
+    stateNotes: "No legal requirements. Use alongside a pet sitting agreement for formal arrangements.",
+    templateText: `PET CARE INSTRUCTIONS — [PET NAME]
+
+Owner: ______________________   Phone: ______________________
+Backup: ______________________   Phone: ______________________
+Vet: ______________________   Phone: ______________________
+Emergency vet (24hr): ______________________   Phone: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ABOUT [PET NAME]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Breed: _____________  Age: _____  Weight: _____  Microchip #: ___________
+Medical conditions: ______________________
+Allergies/do not feed: ______________________
+Personality notes: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DAILY SCHEDULE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Morning feed: _______ at _______am  |  Evening feed: _______ at _______pm
+Food: ______________________   Stored at: ______________________
+Walks: _______ times/day  |  Duration: _______  |  Off-leash OK: Y / N
+Potty breaks: ______________________
+Bedtime: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MEDICATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Medication: ________  Dose: ______  Time: ______  How: ______
+Stored at: ______________________
+Tip: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ADDITIONAL NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+______________________`,
+    faqs: [
+      { q: "Is this the same as a pet sitting instructions template?", a: "Very similar. Pet sitter instructions are slightly longer and include house access and host-specific info. This care sheet is a shorter, general-purpose version suitable for any caregiver." },
+      { q: "Should I laminate this?", a: "If it's for regular use (e.g. a boarding kit you use every year), yes. Laminate a copy and keep it with your pet's documents folder." },
+    ],
+    relatedSlugs: ["pet-sitter-instructions-template", "pet-sitting-agreement-template", "pet-medical-history-template"],
+    downloadFormats: ["PDF", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "pet-resume-template",
+    title: "Pet Resume Template for Rental (Free, Printable)",
+    seoTitle: "Pet Resume Template for Rental — Free Download 2026",
+    shortTitle: "Pet Resume",
+    seoDescription: "Free pet resume template to help pet owners rent with pets. Includes pet profile, vaccination records, references, and landlord letter. Download as PDF or Word.",
+    icon: "🏠",
+    tier: 2,
+    category: "Legal & Ownership",
+    targetKeywords: ["pet resume template", "pet resume for rental template", "pet reference letter template", "pet reference for rental property template", "pet resume template word"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A pet resume is a one-page document submitted to a landlord alongside a rental application — it introduces your pet, demonstrates responsible ownership, provides references, and pre-empts concerns about damage or noise.",
+    intro: `Finding a pet-friendly rental is hard. A pet resume gives you a real edge. Landlords are weighing risk — a well-presented pet resume reduces that risk by showing you're a responsible, organised pet owner who has thought about their concerns before they even raise them.
+
+A strong pet resume includes a clear photo, vaccination and training records, prior tenancy references (or character references if this is a first rental), and a brief personal statement about your commitment to the property.`,
+    whenYouNeedIt: [
+      "Applying for a rental property that allows pets",
+      "Requesting a pet clause be added to an existing tenancy",
+      "Providing a reference package for a new landlord",
+      "Reassuring a hesitant landlord about your pet",
+    ],
+    whatToInclude: [
+      { title: "Pet profile", items: ["Photo (clear, well-behaved pose)", "Name, breed, age, sex, weight", "Desexed: Y/N", "Microchip number"] },
+      { title: "Health & training", items: ["Vaccination status", "Flea/tick treatment up to date", "Training: obedience school, certificates", "Grooming routine"] },
+      { title: "Behaviour notes", items: ["Indoor vs outdoor habits", "Destructive behaviour history (honest)", "Noise level (barking)", "Previous rental history"] },
+      { title: "References", items: ["Previous landlord contact", "Vet reference", "Character reference (trainer, neighbour)"] },
+      { title: "Owner commitment", items: ["Pet insurance policy details", "Agreement to professional cleaning on exit", "Willingness to pay pet bond/deposit"] },
+    ],
+    stateNotes: "In most U.S. states, landlords can legally reject pets except for verified service animals and emotional support animals (which have different legal protections). A strong pet resume doesn't guarantee approval but significantly improves your chances.",
+    templateText: `PET RESUME
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTRODUCING [PET NAME]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ATTACH CLEAR PHOTO — a calm, well-composed shot helps]
+
+Name: ______________________
+Species/Breed: ______________________
+Age: ______   Sex: M / F   Desexed: Y / N
+Weight: _______ lbs   Colour: ______________________
+Microchip #: ______________________
+
+[2–3 sentence description. Be warm but factual. Example:
+"Biscuit is a 4-year-old desexed male Labrador. He is calm indoors,
+house-trained, and has lived in rented accommodation for 3 years
+without incident. His vaccinations are current and he is enrolled
+in ongoing obedience classes."]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HEALTH & VACCINATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Vaccinations: ☐ Fully up to date   Last done: ______________________
+Vet name: ______________________   Phone: ______________________
+Flea/tick treatment: ☐ Current   Frequency: ______________________
+Heartworm prevention: ☐ Yes   ☐ No
+Pet insurance: ☐ Yes   Provider: ______________________   Policy #: ______
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TRAINING & BEHAVIOUR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+House-trained: ☐ Yes   ☐ In progress
+Obedience training: ☐ Yes   School/trainer: ______________________
+Certificates: ______________________
+Barking: ☐ Rarely   ☐ When left alone   ☐ At strangers
+Indoor habits: ______________________
+Destructive behaviour history: ______________________
+Grooming: ______________________   Frequency: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RENTAL HISTORY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Previous rental address: ______________________
+Landlord/agent name: ______________________   Phone: ______________________
+Years at property: ______   Any damage caused: Y / N   Notes: ______
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REFERENCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ref 1 (vet/trainer/previous landlord):
+Name: ______________________   Role: ______________________
+Phone/Email: ______________________
+
+Ref 2:
+Name: ______________________   Role: ______________________
+Phone/Email: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OWNER COMMITMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+I, [OWNER NAME], commit to:
+☐ Professional carpet and flea-treatment clean on vacating
+☐ Prompt repair of any pet-related damage during tenancy
+☐ Maintaining [PET NAME]'s vaccinations, parasite treatment, and registration
+☐ Not permitting additional pets without written landlord approval
+☐ Keeping [PET NAME] on leash in all common areas
+
+Owner signature: _____________________   Date: ____________`,
+    faqs: [
+      { q: "Do pet resumes actually work?", a: "Yes. Landlords reject unknown risks. A pet resume turns your pet from a risk into a known, documented, well-managed animal. Many tenants report that submitting one is the deciding factor in pet-friendly applications." },
+      { q: "Should I attach vaccination records?", a: "Yes. Attach the most recent vet vaccination certificate. It takes 30 seconds to include and signals serious, responsible ownership." },
+      { q: "What if my pet has caused damage in a previous rental?", a: "Disclose it briefly and frame it with the resolution: 'Biscuit chewed a door frame in 2022 — we repaired it professionally before vacating, confirmed by the landlord reference above.' Honesty builds more trust than concealment." },
+    ],
+    relatedSlugs: ["pet-addendum-to-lease-agreement-template", "pet-custody-agreement-template"],
+    downloadFormats: ["PDF", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "pet-boarding-contract-template",
+    title: "Pet Boarding Contract Template (Free, Printable)",
+    seoTitle: "Pet Boarding Contract Template — Free Download 2026",
+    shortTitle: "Pet Boarding Contract",
+    seoDescription: "Free pet boarding contract template for boarding facilities, home boarders, and owners. Covers drop-off/pickup, care instructions, emergency authorisation, liability, and fees.",
+    icon: "🏡",
+    tier: 2,
+    category: "Pet Sitting & Care",
+    targetKeywords: ["pet boarding contract template", "pet boarding agreement template", "pet boarding form template", "pet boarding report card template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A pet boarding contract is an agreement between a boarding facility (or home boarder) and a pet owner that covers care instructions, fees, emergency authorisation, liability, and vaccination requirements.",
+    intro: `Whether you run a professional boarding kennel, home boarding service, or are simply looking after a friend's pet, a written boarding contract protects everyone. It sets clear expectations, documents care requirements, authorises emergency vet treatment, and protects the boarder from liability for pre-existing conditions.
+
+This template works for overnight boarding, day care, and extended stays.`,
+    whenYouNeedIt: [
+      "Running a home boarding or kennel business",
+      "Leaving your pet at a boarding facility",
+      "Informally boarding a friend or family member's pet",
+      "Setting up a day care or doggy daycare business",
+    ],
+    whatToInclude: [
+      { title: "Pet & owner info", items: ["Pet name, breed, age, vaccination status", "Owner name, address, emergency contact", "Vet name and phone"] },
+      { title: "Stay details", items: ["Drop-off and pickup date/time", "Boarding fee and payment terms", "Cancellation policy"] },
+      { title: "Care instructions", items: ["Feeding schedule and food", "Medications", "Exercise requirements", "Behavioural notes"] },
+      { title: "Emergency & liability", items: ["Authorisation for emergency vet care", "Spending limit", "Liability waiver for pre-existing conditions"] },
+    ],
+    stateNotes: "Professional pet boarding facilities may require a business licence and liability insurance in your state. Home boarders should check local regulations. All U.S. states recognise this type of service agreement.",
+    templateText: `PET BOARDING CONTRACT
+
+Boarding provider: ______________________   Phone: ______________________
+Address: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OWNER & PET INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Owner name: ______________________   Phone: ______________________
+Email: ______________________   Address: ______________________
+Emergency contact (different person): ______________________   Phone: ______
+
+Pet name: ______________________   Breed: ______________________
+Age: ______   Sex: M/F   Spayed/Neutered: Y/N   Weight: _____ lbs
+Microchip #: ______________________
+Vaccinations up to date: Y / N   Last updated: ______________________
+Primary vet: ______________________   Phone: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STAY DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Drop-off: _____________ at _______ am/pm
+Pickup: _____________ at _______ am/pm
+Total nights/days: _______
+Daily/nightly rate: $_______ x _______ = Total: $_______
+Deposit paid: $_______   Balance due at: ☐ Drop-off  ☐ Pickup
+Payment method: ______________________
+Holiday surcharge: $_______
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CARE INSTRUCTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Food brand: ______________________   Stored: ______________________
+Morning: _______ cups at _______ am   Evening: _______ cups at _______ pm
+Medication: ________  Dose: ______  Time: ______  How: ______
+Treats: ______________________   Do NOT feed: ______________________
+Walks per day: _______   Off-leash OK: Y / N
+Sleeps in: ☐ Crate  ☐ Own bed  ☐ Sofa OK
+Behavioural notes: ______________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VACCINATION REQUIREMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Required vaccinations confirmed: ______________________
+(Dogs: DHPP, Rabies, Bordetella minimum. Cats: FVRCP, Rabies minimum.)
+Proof attached: Y / N
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EMERGENCY AUTHORISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+I authorise [BOARDING PROVIDER] to seek emergency veterinary care for my
+pet if I cannot be reached. Emergency treatment authorised up to $_______.
+I agree to reimburse all veterinary costs on pickup.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIABILITY & CANCELLATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[BOARDING PROVIDER] is not liable for illness or injury resulting from
+pre-existing conditions, contagious illness from other animals, or
+events beyond reasonable control.
+
+Cancellation policy: Full refund if cancelled [72] hours+ before drop-off.
+[50%] refund within 72 hours. No refund same-day.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SIGNATURES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Owner: _____________________   Date: ____________
+Provider: _____________________   Date: ____________`,
+    faqs: [
+      { q: "Do I need this for home boarding as well as kennels?", a: "Yes. Home boarders have the same legal exposure as commercial facilities. A signed contract is especially important for home boarders who may lack the insurance and regulatory framework of a licensed kennel." },
+      { q: "Can I require vaccination records before accepting a booking?", a: "Absolutely, and you should. Requiring up-to-date vaccinations before accepting a pet protects your other boarders. State this clearly in your contract and ask for proof at drop-off." },
+    ],
+    relatedSlugs: ["pet-sitting-agreement-template", "pet-sitter-instructions-template", "pet-care-instructions-template"],
+    downloadFormats: ["PDF", "Word (.docx)", "Google Docs"],
+  },
+
+  {
+    slug: "pet-id-card-template",
+    title: "Pet ID Card Template (Free, Printable)",
+    seoTitle: "Pet ID Card Template — Free Printable 2026",
+    shortTitle: "Pet ID Card",
+    seoDescription: "Free printable pet ID card template. Wallet-size and tag-size formats. Includes pet photo, owner contact, vet number, microchip number, and medical notes. Download as PDF.",
+    icon: "🪪",
+    tier: 2,
+    category: "Legal & Ownership",
+    targetKeywords: ["pet id card template", "pet id card template free", "blank pet id card template", "pet identification card template", "pet id tag template", "printable pet id card template"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "4 Min Read",
+    quickAnswer: "A pet ID card is a wallet-size or tag-size card listing your pet's name, your contact details, vet number, microchip number, and any critical medical information — carried by owners and attached to travel crates.",
+    intro: `A pet ID card complements a microchip and collar tag — it gives anyone who finds your lost pet a wallet-size card with everything they need to help them get home. It's also essential for travel, boarding drop-off, and vet emergencies.
+
+This template provides two formats: a standard credit-card size (85×54mm / 3.4×2.1in) and a smaller tag size that can be laminated and attached to a carrier or crate.`,
+    whenYouNeedIt: [
+      "Travelling with your pet by car, plane, or train",
+      "Dropping a pet at boarding or daycare",
+      "Keeping an ID card in your wallet for emergencies",
+      "Attaching an ID to a travel crate or carrier",
+    ],
+    whatToInclude: [
+      { title: "Pet side", items: ["Pet name", "Species, breed, colour", "Microchip number", "Photo (optional but very helpful)"] },
+      { title: "Owner side", items: ["Owner name", "Primary phone", "Secondary phone", "Vet name and phone", "Critical medical info (e.g. 'On daily medication')"] },
+    ],
+    stateNotes: "No legal requirements. Laminate for durability — standard credit card laminating pouches work perfectly.",
+    templateText: `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WALLET CARD  (credit card size: 3.4 × 2.1 in / 85 × 54 mm)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FRONT:
+┌────────────────────────────────────┐
+│  [PET PHOTO — small, 1×1 in]       │
+│                                    │
+│  🐾  [PET NAME]                    │
+│  [BREED] · [COLOUR] · [AGE]        │
+│  Microchip: [NUMBER]               │
+└────────────────────────────────────┘
+
+BACK:
+┌────────────────────────────────────┐
+│  OWNER: [NAME]                     │
+│  📞 [PRIMARY PHONE]                │
+│  📞 [BACKUP PHONE]                 │
+│                                    │
+│  VET: [VET NAME]  [VET PHONE]      │
+│                                    │
+│  ⚠ [MEDICAL NOTE IF ANY]          │
+│  e.g. "On daily heart medication"  │
+└────────────────────────────────────┘
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CRATE TAG  (laminated, 2.5 × 1.5 in)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┌──────────────────────────┐
+│ 🐾 [PET NAME]            │
+│ Microchip: [NUMBER]      │
+│ Owner: [NAME]            │
+│ 📞 [PHONE]               │
+│ Vet: [VET PHONE]         │
+└──────────────────────────┘
+
+
+HOW TO PRINT:
+1. Open this template in Word, Canva, or Google Docs
+2. Insert your pet's photo into the front field
+3. Fill in all text fields
+4. Print on standard card stock (or plain paper + laminate)
+5. Cut to size and laminate for durability`,
+    faqs: [
+      { q: "Is a pet ID card a replacement for a microchip?", a: "No — it complements it. A microchip requires a scanner to read. An ID card provides contact information immediately to any person who finds your pet, without any equipment." },
+      { q: "What medical information should I include?", a: "Include only critical, time-sensitive information: 'On daily insulin injections', 'Severe bee sting allergy', 'Heart medication — must not miss doses.' Routine vaccinations don't need to be on the card." },
+      { q: "Can I make one for my cat?", a: "Yes — the template works for any pet. For indoor-only cats who escape occasionally, a wallet ID card is especially useful since they may not wear a collar regularly." },
+    ],
+    relatedSlugs: ["pet-medical-history-template", "pet-health-record-template", "pet-vaccination-record-template"],
+    downloadFormats: ["PDF (printable, crop marks)", "Word (.docx)", "Canva template"],
+  },
+
+  {
+    slug: "pet-birth-certificate-template",
+    title: "Pet Birth Certificate Template (Free, Printable)",
+    seoTitle: "Pet Birth Certificate Template — Free Printable 2026",
+    shortTitle: "Pet Birth Certificate",
+    seoDescription: "Free printable pet birth certificate template for dogs, cats, and other pets. Personalised, editable, and ready to print. Download as PDF or Word.",
+    icon: "🎀",
+    tier: 2,
+    category: "Celebration & Milestones",
+    targetKeywords: ["pet birth certificate template", "customizable pet birth certificate template", "free pet birth certificate template", "free printable pet birth certificate templates"],
+    publishDate: "May 2026",
+    lastUpdated: "May 2026",
+    readTime: "3 Min Read",
+    quickAnswer: "A pet birth certificate is a personalised keepsake document recording a pet's name, date of birth, breed, parents (if known), and owner — a fun tradition for new pet owners and breeders.",
+    intro: `A pet birth certificate is a charming tradition — breeders issue them with litters, adopters create them for their new arrivals, and foster carers use them to mark an animal's beginning of life in a loving home. It's a keepsake, not a legal document.
+
+This template is simple, printable, and fully editable. Print it on card stock, frame it, or include it in a new pet owner welcome pack.`,
+    whenYouNeedIt: [
+      "Welcoming a new puppy, kitten, or pet to the family",
+      "Breeders presenting a certificate to puppy/kitten buyers",
+      "Foster carers marking a pet's first day in care",
+      "Creating a keepsake for a pet adoption celebration",
+    ],
+    whatToInclude: [
+      { title: "Certificate fields", items: ["Pet's full name", "Date of birth (or adoption date)", "Species and breed", "Parent names (if known)", "Owner name", "Issued by / date"] },
+    ],
+    stateNotes: "This is a keepsake document only — it has no legal status. It does not replace a microchip registration, vaccination record, or breeder's KC/AKC registration papers.",
+    templateText: `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PET BIRTH CERTIFICATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+           ✦ CERTIFICATE OF BIRTH ✦
+
+This certifies that
+
+         ___________________________
+                [PET'S NAME]
+
+a [BREED] [DOG / CAT / RABBIT / OTHER]
+
+was born on  ___________________________
+             [DATE OF BIRTH]
+
+at  ___________________________
+    [CITY, STATE — or "at home"]
+
+
+Mother's name: ______________________
+Father's name: ______________________
+
+Colour/markings: ______________________
+Weight at birth: ______________________
+
+
+Lovingly welcomed by
+
+         ___________________________
+              [OWNER'S NAME]
+
+
+Issued by: ______________________
+Date: ______________________
+
+[Optional: add paw print here]`,
+    faqs: [
+      { q: "Is a pet birth certificate a legal document?", a: "No. It's a keepsake only. It does not replace AKC/CFA registration papers, microchip records, or vaccination certificates. For official breed registration, contact the relevant kennel club." },
+      { q: "What if I don't know the exact birth date?", a: "Use an approximate date or the adoption date. Many rescue pets have an estimated birth month — 'approximately May 2023' is perfectly fine for a keepsake certificate." },
+      { q: "Can I use this for all animals?", a: "Yes. Adjust the species/breed field accordingly. The template works for dogs, cats, rabbits, guinea pigs, birds, and any other pet." },
+    ],
+    relatedSlugs: ["pet-adoption-certificate-template", "pet-medical-history-template"],
+    downloadFormats: ["PDF (A4 / Letter)", "Word (.docx)", "Google Docs"],
+  },
 ];
 
 export const templatesByTier = {

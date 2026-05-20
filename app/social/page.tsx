@@ -202,6 +202,30 @@ export default function SocialPage() {
           </div>
         </section>
 
+        
+        {/* ── HELP BANNER ── */}
+        <section className="py-16 bg-gray-50 border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-10 flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 bg-brand-start/10 rounded-[1.5rem] flex items-center justify-center text-2xl flex-shrink-0">📸</div>
+                <div>
+                  <h2 className="text-xl font-black text-ebony uppercase tracking-tight mb-2">New to the Social Feed?</h2>
+                  <p className="text-sm text-slate-gray leading-relaxed max-w-lg">Learn how to post photos and videos, like and comment on posts, and follow your local pet community.</p>
+                  <ul className="mt-4 space-y-1.5">
+                    <li key="How to create a post" className="flex items-center gap-2 text-sm text-slate-gray"><span className="text-brand-start font-black">›</span><Link href="/help-center/social-feed" className="hover:text-ebony hover:underline transition-colors">How to create a post</Link></li>
+                    <li key="How to like, comment and share" className="flex items-center gap-2 text-sm text-slate-gray"><span className="text-brand-start font-black">›</span><Link href="/help-center/social-feed" className="hover:text-ebony hover:underline transition-colors">How to like, comment and share</Link></li>
+                    <li key="How to save posts to bookmarks" className="flex items-center gap-2 text-sm text-slate-gray"><span className="text-brand-start font-black">›</span><Link href="/help-center/social-feed" className="hover:text-ebony hover:underline transition-colors">How to save posts to bookmarks</Link></li>
+                  </ul>
+                </div>
+              </div>
+              <Link href="/help-center/social-feed" className="flex-shrink-0 inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-7 py-4 rounded-[1.5rem] uppercase tracking-widest text-sm shadow-lg whitespace-nowrap">
+                Read the Social Feed Guide →
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <ContactSection />
       </div>
     </>

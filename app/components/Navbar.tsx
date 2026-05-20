@@ -58,28 +58,40 @@ const Navbar = () => {
               </svg>
             </button>
             {isFeaturesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full w-[600px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 grid grid-cols-2 gap-6 animate-in fade-in slide-in-from-top-4 duration-300">
-                {verticals.map((feature) => (
-                  <div key={feature.name} className="relative">
-                    <Link
-                      href={feature.href}
-                      className={`flex items-start gap-4 p-4 rounded-2xl transition-all hover:bg-gray-50 group/item ${feature.isComingSoon ? "cursor-default pointer-events-none opacity-60" : ""}`}
-                    >
-                      <div className="h-12 w-12 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-2xl group-hover/item:scale-110 transition-transform shadow-inner">
-                        {feature.icon}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4 className="text-sm font-bold text-ebony uppercase tracking-widest">{feature.name}</h4>
-                          {feature.isComingSoon && (
-                            <span className="text-[10px] font-black bg-gray-100 text-slate-gray px-2 py-0.5 rounded-full uppercase tracking-tighter">Soon</span>
-                          )}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full w-[620px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 animate-in fade-in slide-in-from-top-4 duration-300">
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                  {verticals.map((feature) => (
+                    <div key={feature.name} className="relative">
+                      <Link
+                        href={feature.href}
+                        className={`flex items-start gap-4 p-4 rounded-2xl transition-all hover:bg-gray-50 group/item ${feature.isComingSoon ? "cursor-default pointer-events-none opacity-60" : ""}`}
+                      >
+                        <div className="h-12 w-12 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-2xl group-hover/item:scale-110 transition-transform shadow-inner">
+                          {feature.icon}
                         </div>
-                        <p className="text-xs text-slate-gray mt-1 leading-relaxed">{feature.desc}</p>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm font-bold text-ebony uppercase tracking-widest">{feature.name}</h4>
+                            {feature.isComingSoon && (
+                              <span className="text-[10px] font-black bg-gray-100 text-slate-gray px-2 py-0.5 rounded-full uppercase tracking-tighter">Soon</span>
+                            )}
+                          </div>
+                          <p className="text-xs text-slate-gray mt-1 leading-relaxed">{feature.desc}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+                <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
+                  <p className="text-xs text-slate-gray">New to Hushku?</p>
+                  <Link href="/help-center" className="flex items-center gap-2 bg-gray-50 hover:bg-brand-start/5 border border-gray-100 hover:border-brand-start/20 rounded-2xl px-4 py-2.5 transition-all group/help">
+                    <span className="text-base">💬</span>
+                    <div>
+                      <p className="text-xs font-black text-ebony uppercase tracking-widest group-hover/help:text-brand-start transition-colors">Help Center</p>
+                      <p className="text-[10px] text-slate-gray">Step-by-step guides for every feature</p>
+                    </div>
+                  </Link>
+                </div>
               </div>
             )}
           </div>

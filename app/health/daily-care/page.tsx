@@ -193,6 +193,25 @@ export default function DailyCarePage() {
           </div>
         </section>
 
+        
+        {/* ── HELP BANNER ── */}
+        <section className="py-16 bg-gray-50 border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-10 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 bg-emerald-50 rounded-[1.5rem] flex items-center justify-center text-2xl flex-shrink-0">🍽️</div>
+                <div>
+                  <h2 className="text-xl font-black text-ebony uppercase tracking-tight mb-2">How Does the Daily Care Log Work?</h2>
+                  <p className="text-sm text-slate-gray leading-relaxed max-w-lg">Learn exactly how to log fed, watered, and poop — and how the daily progress bar updates throughout the day.</p>
+                </div>
+              </div>
+              <Link href="/help-center/health-care" className="flex-shrink-0 inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-7 py-4 rounded-[1.5rem] uppercase tracking-widest text-sm shadow-lg whitespace-nowrap">
+                Read the Guide →
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <ContactSection />
       </div>
     </>

@@ -28,13 +28,16 @@ const Footer = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-10 xl:col-span-2 text-sm">
               <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Live Now</h3>
+                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Features</h3>
                 <ul className="space-y-3">
                   {[
                     { name: "Playdates", href: "/playdates" },
-                    { name: "Social Feed", href: "/social" },
-                    { name: "Shelters", href: "/adoption" },
                     { name: "Adoption", href: "/adoption" },
+                    { name: "Fostering", href: "/fostering" },
+                    { name: "Shelters", href: "/shelters" },
+                    { name: "Lost & Found", href: "/lost-and-found" },
+                    { name: "Health & Care", href: "/health" },
+                    { name: "Social Feed", href: "/social" },
                   ].map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
@@ -45,18 +48,20 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Coming Soon</h3>
+                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Help & Support</h3>
                 <ul className="space-y-3">
                   {[
-                    { name: "Vet Portal", href: "/vets" },
-                    { name: "Lost & Found", href: "/lost-found" },
-                    { name: "Fostering", href: "/fostering" },
-                    { name: "Shop", href: "#" },
+                    { name: "Help Center", href: "/help-center" },
+                    { name: "Playdate Guide", href: "/help-center/playdate-matching" },
+                    { name: "Adoption Guide", href: "/help-center/adoption-fostering" },
+                    { name: "Lost & Found Guide", href: "/help-center/lost-and-found" },
+                    { name: "Health & Care Guide", href: "/help-center/health-care" },
+                    { name: "Messaging Guide", href: "/help-center/messaging" },
+                    { name: "Contact Us", href: "mailto:hello@hushku.app" },
                   ].map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors flex items-center gap-2">
+                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
                         {item.name}
-                        <span className="text-[9px] font-black text-brand-start uppercase tracking-widest bg-brand-start/10 px-1.5 py-0.5 rounded-full">Soon</span>
                       </Link>
                     </li>
                   ))}
@@ -88,6 +93,7 @@ const Footer = () => {
                     { name: "Join Waitlist", href: "/join" },
                     { name: "Volunteer", href: "/join" },
                     { name: "Roadmap", href: "/roadmap" },
+                    { name: "Help Center", href: "/help-center" },
                     { name: "Resources", href: "/resources" },
                     { name: "About", href: "/about" },
                     { name: "Editorial Standards", href: "/about/editorial" },

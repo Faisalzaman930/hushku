@@ -387,14 +387,15 @@ function TestimonialsCarousel({ testimonials }: { testimonials: typeof testimoni
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const verticals = [
-  { name: "Playdates", href: "/playdates", icon: "🎉", color: "bg-violet-100", description: "Find compatible pets nearby — filtered by size, breed & temperament.", live: true },
-  { name: "Social Feed", href: "/social", icon: "📸", color: "bg-pink-100", description: "A neighborhood-first feed connecting the pet owners you'll actually meet.", live: true },
-  { name: "Shelters", href: "/adoption", icon: "🏠", color: "bg-amber-100", description: "Browse verified shelters and rescues near you — updated in real time.", live: true },
-  { name: "Adoption", href: "/adoption", icon: "💛", color: "bg-yellow-100", description: "Apply to adopt paperlessly. Connect directly with owners rehoming pets.", live: true },
-  { name: "Fostering", href: "/fostering", icon: "💖", color: "bg-red-100", description: "Open your home temporarily and join a network of foster parents worldwide.", live: false },
-  { name: "Vets", href: "/vets", icon: "🏥", color: "bg-emerald-100", description: "Real-time clinic discovery, verified reviews, one-tap emergency calls.", live: false },
-  { name: "Lost & Found", href: "/lost-found", icon: "🔍", color: "bg-blue-100", description: "Hyper-local alerts turn your entire neighborhood into a search party.", live: false },
-  { name: "Shop", href: "/shop", icon: "🛍️", color: "bg-orange-100", description: "A multi-vendor marketplace for pet food, accessories and health products.", live: false },
+  { name: "Meet & Match", href: "/playdates", icon: "🐾", color: "bg-violet-100", description: "Swipe-based proximity matching for playdates — filtered by breed, size, temperament, and energy level.", live: true },
+  { name: "Messaging", href: "/social", icon: "💬", color: "bg-pink-100", description: "Real-time in-app messaging with matched users. Online presence, unread counts, and message requests.", live: true },
+  { name: "Adoption", href: "/adoption", icon: "💛", color: "bg-yellow-100", description: "Post or browse pets for adoption. Submit requests, track status, and communicate directly with owners.", live: true },
+  { name: "Fostering", href: "/fostering", icon: "💖", color: "bg-red-100", description: "Browse pets that need temporary homes. Submit foster requests and coordinate handover in-app.", live: true },
+  { name: "Shelters", href: "/adoption", icon: "🏠", color: "bg-amber-100", description: "Browse verified shelters and rescues near you, with location-based filtering and direct contact.", live: true },
+  { name: "Lost & Found", href: "/lost-found", icon: "🔍", color: "bg-blue-100", description: "Report missing pets or found animals. Hyper-local push alerts turn your neighbourhood into a search party.", live: true },
+  { name: "Vets", href: "/vets", icon: "🏥", color: "bg-emerald-100", description: "Find nearby clinics, view detailed profiles, filter by specialty, and book appointments in-app.", live: true },
+  { name: "Health Records", href: "/vets", icon: "📋", color: "bg-teal-100", description: "Vaccination logs, weight tracking, care reminders, heat cycles, and flea/tick schedules — all in one health wallet.", live: true },
+  { name: "Shop", href: "/shop", icon: "🛍️", color: "bg-orange-100", description: "A multi-vendor marketplace for pet food, accessories and health products. Launching soon.", live: false },
 ];
 
 const steps = [
@@ -456,7 +457,7 @@ export default function Home() {
               <motion.div variants={fadeUp}
                 className="inline-flex items-center gap-2 rounded-full bg-brand-start/10 px-4 py-2 text-xs font-black text-brand-start ring-1 ring-brand-start/20 uppercase tracking-widest">
                 <span className="h-2 w-2 rounded-full bg-brand-start" />
-                Phase 1 Live — App Store & Play Store Coming Soon
+                App Built — App Store & Play Store Coming Soon
               </motion.div>
 
               <h1 className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase">
@@ -468,12 +469,12 @@ export default function Home() {
               </h1>
 
               <motion.p variants={fadeUp} className="text-xl leading-relaxed text-slate-gray max-w-lg">
-                Hushku replaces five fragmented pet apps. Social networking, playdates, adoption, vet discovery, lost & found — all in one place, built for mobile-first pet parents.
+                Hushku replaces every pet app you have. Matching, messaging, adoption, fostering, lost & found, vets, health records — all built, all free, one app.
               </motion.p>
 
               <motion.div variants={stagger()} className="flex flex-wrap gap-4 pt-2">
                 {[
-                  { val: "4", label: "Live Features" }, { val: "🌍", label: "Global Mission" },
+                  { val: "8", label: "Live Features" }, { val: "🌍", label: "Global Mission" },
                   { val: "Free", label: "Always Free" }, { val: "Soon", label: "App Stores" },
                 ].map((s) => (
                   <motion.div key={s.val} variants={scaleIn}
@@ -551,7 +552,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10"
             variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
-            <StatCounter target={4} suffix="" label="Phase 1 Features Live" />
+            <StatCounter target={8} suffix="" label="Live Features in App" />
             <StatCounter target={2} suffix="" label="Founders — Pet Lovers" />
             <StatCounter target={3} suffix="min" label="To Adopt a Pet" />
             <StatCounter target={100} suffix="%" label="Free Core Features" />
@@ -565,10 +566,10 @@ export default function Home() {
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Ecosystem</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-6xl leading-none">
-              <SplitHeading text="4 Features Live." /><br />
-              <SplitHeading text="More Coming Soon." delay={0.25} />
+              <SplitHeading text="8 Features Live." /><br />
+              <SplitHeading text="One App." delay={0.25} />
             </h2>
-            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Phase 1 is live — Playdates, Social Feed, Shelters, and Adoption. Vets, Lost & Found, Fostering, and the Shop are in active development.</p>
+            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Matching, messaging, adoption, fostering, shelters, lost & found, vets, and health records — all built and live. The marketplace is coming next.</p>
           </Reveal>
 
           <Reveal>

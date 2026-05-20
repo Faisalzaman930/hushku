@@ -87,6 +87,9 @@ const Navbar = () => {
           <Link href="/roadmap" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             Roadmap
           </Link>
+          <Link href="/help-center" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
+            Help
+          </Link>
           <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             About
           </Link>
@@ -191,7 +194,7 @@ const Navbar = () => {
 
           <div className="my-2 border-t border-gray-100" />
 
-          {[{ name: "Roadmap", href: "/roadmap" }, { name: "About", href: "/about" }].map(item => (
+          {[{ name: "Roadmap", href: "/roadmap" }, { name: "Help Center", href: "/help-center" }, { name: "About", href: "/about" }].map(item => (
             <Link
               key={item.name}
               href={item.href}

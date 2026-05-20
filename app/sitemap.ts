@@ -37,6 +37,17 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/health/flea-tick`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/health/heat-cycle`,       changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
 
+  // ── Help Center ──────────────────────────────────────────────────────────
+  { url: `${BASE_URL}/help-center`,                          changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/playdate-matching`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/adoption-fostering`,       changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/shelters`,                 changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/lost-and-found`,           changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/health-care`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/social-feed`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/messaging`,                changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/your-profile`,             changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+
   // ── Content hubs ─────────────────────────────────────────────────────────
   { url: `${BASE_URL}/resources`,               changeFrequency: "daily",   priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/tools`,                   changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },

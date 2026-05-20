@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet. Supports kg and lbs. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/weight-tracker",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Weight Tracker App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-weight-tracker.png", width: 1200, height: 630, alt: "Hushku Pet Weight Tracker App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight — Hushku",
     description: "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet. Supports kg and lbs. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-weight-tracker.png"],
   },
 };
 
@@ -118,7 +118,7 @@ export default function WeightTrackerPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Pet Weight Tracker" />
+                  <PhoneFrame src="/screenshots/app-weight-tracker.png" alt="Hushku Pet Weight Tracker" />
                 </div>
               </div>
             </div>

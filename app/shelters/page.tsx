@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/shelters",
-    images: [{ url: "https://hushku.app/screenshots/app-adoption.png", width: 1200, height: 630, alt: "Hushku Animal Shelters App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-shelters.png", width: 1200, height: 630, alt: "Hushku Animal Shelters App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Animal Shelters & Rescue Centres | Find & Support Local Shelters — Hushku",
     description: "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-adoption.png"],
+    images: ["https://hushku.app/screenshots/app-shelters.png"],
   },
 };
 

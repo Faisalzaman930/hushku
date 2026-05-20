@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/flea-tick",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Flea & Tick Treatment Tracker" }],
+    images: [{ url: "https://hushku.app/screenshots/app-flea-tick.png", width: 1200, height: 630, alt: "Hushku Flea & Tick Treatment Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Flea & Tick Treatment Tracker | Never Miss a Treatment — Hushku",
     description: "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-flea-tick.png"],
   },
 };
 
@@ -118,7 +118,7 @@ export default function FleaTickPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Flea & Tick Tracker" />
+                  <PhoneFrame src="/screenshots/app-flea-tick.png" alt="Hushku Flea & Tick Tracker" />
                 </div>
               </div>
             </div>

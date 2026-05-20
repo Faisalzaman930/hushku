@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Track your female pet's heat cycle with Hushku. Log cycle dates, predict the next season, and maintain a full history for your vet. For dogs, cats, and more. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/heat-cycle",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Heat Cycle Tracker" }],
+    images: [{ url: "https://hushku.app/screenshots/app-heat-cycle.png", width: 1200, height: 630, alt: "Hushku Pet Heat Cycle Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Heat Cycle Tracker App | Track Your Dog or Cat's Season — Hushku",
     description: "Track your female pet's heat cycle with Hushku. Log cycle dates, predict the next season, and maintain a full history for your vet. For dogs, cats, and more. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-heat-cycle.png"],
   },
 };
 
@@ -118,7 +118,7 @@ export default function HeatCyclePage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Pet Heat Cycle Tracker" />
+                  <PhoneFrame src="/screenshots/app-heat-cycle.png" alt="Hushku Pet Heat Cycle Tracker" />
                 </div>
               </div>
             </div>

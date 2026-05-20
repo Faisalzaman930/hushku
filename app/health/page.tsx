@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Health & Care App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-health.png", width: 1200, height: 630, alt: "Hushku Pet Health & Care App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Health & Care Tracker App | Vaccinations, Weight, Reminders & More — Hushku",
     description: "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-health.png"],
   },
 };
 
@@ -128,7 +128,7 @@ export default function HealthPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Pet Health & Care App" />
+                  <PhoneFrame src="/screenshots/app-health.png" alt="Hushku Pet Health & Care App" />
                 </div>
               </div>
             </div>

@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Report a lost or found pet on Hushku and instantly alert pet owners in your area. Community-powered lost pet alerts with location radius notifications. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/lost-and-found",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Lost & Found Pets App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-lost-found.png", width: 1200, height: 630, alt: "Hushku Lost & Found Pets App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lost & Found Pets App | Report Missing Pets & Alert Your Community — Hushku",
     description: "Report a lost or found pet on Hushku and instantly alert pet owners in your area. Community-powered lost pet alerts with location radius notifications. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-lost-found.png"],
   },
 };
 

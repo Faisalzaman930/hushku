@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure health wallet. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/records",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Health Records App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-health-records.png", width: 1200, height: 630, alt: "Hushku Pet Health Records App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More — Hushku",
     description: "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure health wallet. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-health-records.png"],
   },
 };
 
@@ -119,7 +119,7 @@ export default function RecordsPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Pet Health Records" />
+                  <PhoneFrame src="/screenshots/app-health-records.png" alt="Hushku Pet Health Records" />
                 </div>
               </div>
             </div>

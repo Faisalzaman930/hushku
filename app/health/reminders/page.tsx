@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more. Push notifications straight to your phone. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/reminders",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Care Reminders App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-reminders.png", width: 1200, height: 630, alt: "Hushku Pet Care Reminders App" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders — Hushku",
     description: "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more. Push notifications straight to your phone. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-reminders.png"],
   },
 };
 
@@ -118,7 +118,7 @@ export default function RemindersPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Pet Care Reminders" />
+                  <PhoneFrame src="/screenshots/app-reminders.png" alt="Hushku Pet Care Reminders" />
                 </div>
               </div>
             </div>

@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     description: "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap. Daily progress bar shows care completion at a glance. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/daily-care",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Daily Pet Care Tracker" }],
+    images: [{ url: "https://hushku.app/screenshots/app-daily-care.png", width: 1200, height: 630, alt: "Hushku Daily Pet Care Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Daily Pet Care Tracker | Log Fed, Watered & Poop — Hushku",
     description: "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap. Daily progress bar shows care completion at a glance. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/screenshots/app-daily-care.png"],
   },
 };
 
@@ -118,7 +118,7 @@ export default function DailyCarePage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-playdates.png" alt="Hushku Daily Care Tracker" />
+                  <PhoneFrame src="/screenshots/app-daily-care.png" alt="Hushku Daily Care Tracker" />
                 </div>
               </div>
             </div>

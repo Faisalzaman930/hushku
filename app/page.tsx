@@ -660,9 +660,9 @@ export default function Home() {
                   "/playdates": "/screenshots/app-playdates.png",
                   "/social": "/screenshots/app-social-feed.png",
                   "/adoption": "/screenshots/app-adoption.png",
-                  "/shelters": "/screenshots/app-adoption.png",
-                  "/lost-and-found": "/screenshots/app-playdates.png",
-                  "/health": "/screenshots/app-playdates.png",
+                  "/shelters": "/screenshots/app-shelters.png",
+                  "/lost-and-found": "/screenshots/app-lost-found.png",
+                  "/health": "/screenshots/app-health.png",
                 };
                 const shot = screenshots[active.href];
                 return shot ? (

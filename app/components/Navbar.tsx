@@ -42,7 +42,7 @@ const Navbar = () => {
         <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90" onClick={() => setIsMobileOpen(false)}>
           <Logo className="h-10 w-10" />
           <span className="text-2xl font-black tracking-tighter text-ebony">
-            Furr<span className="text-brand-gradient">ly</span>
+            Hush<span className="text-brand-gradient">ku</span>
           </span>
         </Link>
 

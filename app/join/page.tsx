@@ -180,7 +180,7 @@ export default function JoinPage() {
             <Link href="/" className="inline-flex items-center gap-3 transition-opacity hover:opacity-80">
               <Logo className="h-10 w-10" />
               <span className="text-2xl font-black tracking-tighter text-white">
-                Furr<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start to-brand-end" style={{ WebkitTextFillColor: "transparent" }}>ly</span>
+                Hush<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start to-brand-end" style={{ WebkitTextFillColor: "transparent" }}>ku</span>
               </span>
             </Link>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/70 uppercase tracking-widest">

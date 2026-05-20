@@ -14,7 +14,7 @@ const Footer = () => {
               <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
                 <Logo className="h-10 w-10" />
                 <span className="text-2xl font-black tracking-tighter text-ebony">
-                  Furr<span className="text-brand-gradient">ly</span>
+                  Hush<span className="text-brand-gradient">ku</span>
                 </span>
               </Link>
               <p className="max-w-xs text-sm leading-6 text-slate-gray">

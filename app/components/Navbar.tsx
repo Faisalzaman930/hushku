@@ -26,14 +26,14 @@ const Navbar = () => {
     pathname.startsWith("/breeds");
 
   const verticals = [
-    { name: "Playdates",   href: "/playdates",  icon: "🎉", desc: "Find compatible pets near you." },
-    { name: "Social Feed", href: "/social",      icon: "📸", desc: "Your neighborhood's pet feed." },
-    { name: "Shelters",    href: "/adoption",    icon: "🏠", desc: "Browse verified shelters near you." },
-    { name: "Adoption",    href: "/adoption",    icon: "💛", desc: "Connect with owners rehoming pets." },
-    { name: "Fostering",   href: "/fostering",   icon: "💖", desc: "Open your home temporarily.", isComingSoon: true },
-    { name: "Vets",        href: "/vets",        icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
-    { name: "Lost & Found",href: "/lost-found",  icon: "🔍", desc: "Reunite pets with owners.", isComingSoon: true },
-    { name: "Shop",        href: "#",            icon: "🛒", desc: "Pet gear & essentials.", isComingSoon: true },
+    { name: "Playdates",    href: "/playdates",      icon: "🐾", desc: "Swipe-match compatible pets near you." },
+    { name: "Adoption",     href: "/adoption",       icon: "💛", desc: "Browse pets available for adoption." },
+    { name: "Fostering",    href: "/fostering",      icon: "💖", desc: "Open your home temporarily." },
+    { name: "Shelters",     href: "/shelters",       icon: "🏢", desc: "Discover & contact verified shelters." },
+    { name: "Lost & Found", href: "/lost-and-found", icon: "🔍", desc: "Report missing pets. Alert your community." },
+    { name: "Health & Care",href: "/health",         icon: "🩺", desc: "Daily logs, records, reminders & more." },
+    { name: "Social Feed",  href: "/social",         icon: "📸", desc: "Your neighbourhood's pet feed." },
+    { name: "Vets",         href: "#",               icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
   ];
 
   return (

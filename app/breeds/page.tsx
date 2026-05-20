@@ -26,9 +26,9 @@ export default function BreedsHubPage() {
             Breed Directory
           </p>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-8 max-w-3xl">
-            Find the<br />
-            <span className="text-brand-start">perfect</span><br />
-            breed.
+            Dog &amp; Cat<br />
+            <span className="text-brand-start">Breed</span><br />
+            Directory.
           </h1>
           <p className="text-white/50 text-lg leading-7 max-w-xl mb-12">
             Detailed stats on size, temperament, trainability, health, and

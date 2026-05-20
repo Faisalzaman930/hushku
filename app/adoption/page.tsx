@@ -110,7 +110,7 @@ export default function AdoptionPage() {
                   🏠 Adoption Feature
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Find Their<br /><span className="text-amber-600">Forever.</span><br />In One Tap.
+                  Pet Adoption.<br />Find Their<br /><span className="text-amber-600">Forever.</span>
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Hushku connects you directly with verified rescues. Browse real listings, submit paperless applications, and bring your next best friend home — all from your phone.

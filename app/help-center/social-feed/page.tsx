@@ -62,7 +62,7 @@ export default function SocialFeedPage() {
               📸 Feature Guide
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-6xl leading-[0.9]">
-              Social Feed
+              How to Use the Pet Social Feed
             </h1>
             <p className="mt-6 text-xl text-white/70 leading-relaxed max-w-2xl">
               Post photos and videos, like and comment on your neighbours' pets, and stay connected with your local pet community.

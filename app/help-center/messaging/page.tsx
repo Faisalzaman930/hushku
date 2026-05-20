@@ -70,7 +70,7 @@ export default function MessagingPage() {
               💬 Feature Guide
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-6xl leading-[0.9]">
-              Messaging & Calls
+              How to Message & Call on Hushku
             </h1>
             <p className="mt-6 text-xl text-white/70 leading-relaxed max-w-2xl">
               Everything you need to communicate — text, photos, voice notes, audio calls, and video calls.

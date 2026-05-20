@@ -101,7 +101,7 @@ export default function DailyCarePage() {
                   🍽️ Daily Care Tracker
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Daily Care.<br /><span className="text-emerald-600">Logged.</span><br />Done.
+                  Daily Pet Care Tracker.<br /><span className="text-emerald-600">Logged.</span><br />Done.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Log fed, watered, and poop with a single tap. A daily progress bar keeps you on top of your pet's routine — no guessing, no forgetting.

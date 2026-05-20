@@ -101,7 +101,7 @@ export default function HeatCyclePage() {
                   🌡️ Heat Cycle Tracker
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Heat Cycle.<br /><span className="text-emerald-600">Tracked.</span><br />Predicted.
+                  Heat Cycle Tracker.<br /><span className="text-emerald-600">Tracked.</span><br />Predicted.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Log your female pet's heat cycles, predict the next season, and keep a full history your vet can use. For dogs, cats, and more.

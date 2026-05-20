@@ -103,7 +103,7 @@ export default function SocialPage() {
                   📸 Social Feed
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Your Pet's<br /><span className="text-pink-600">Community.</span><br />Right Outside.
+                  Pet Social App.<br />Your <span className="text-pink-600">Community.</span><br />Right Outside.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Not another global algorithm. Hushku's feed shows you pets in your neighborhood first — so the connections you make online can actually become real-world friendships.

@@ -103,7 +103,7 @@ export default function SheltersPage() {
                   🏢 Shelters Feature
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Find <span className="text-green-600">Shelters.</span><br />Save Lives.<br />Near You.
+                  Animal <span className="text-green-600">Shelters.</span><br />Find &amp; Connect.<br />Near You.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Browse verified animal shelters and rescue centres near you. Connect directly, explore adoptable pets, and make a difference — all from one app.

@@ -39,9 +39,9 @@ export default function TemplatesHubPage() {
             Free Pet Templates
           </p>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-8 max-w-3xl">
-            Every form a<br />
-            <span className="text-brand-start">pet owner</span><br />
-            ever needs.
+            Free Pet Templates.<br />
+            <span className="text-brand-start">Every form</span><br />
+            a pet owner needs.
           </h1>
           <p className="text-white/50 text-lg leading-7 max-w-xl mb-12">
             {total} free, editable templates — written for pet owners, rescues, and pet sitters.

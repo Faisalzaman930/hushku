@@ -70,7 +70,7 @@ export default function YourProfilePage() {
               👤 Feature Guide
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-6xl leading-[0.9]">
-              Your Profile
+              How to Set Up Your Pet Owner Profile
             </h1>
             <p className="mt-6 text-xl text-white/70 leading-relaxed max-w-2xl">
               Create your account, set up your owner profile, add your pets, and manage your settings.

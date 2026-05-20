@@ -111,7 +111,7 @@ export default function HealthPage() {
                   🏥 Health & Care Suite
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Your Pet's Health.<br /><span className="text-emerald-600">Tracked.</span><br />All in One Place.
+                  Pet Health Tracker.<br /><span className="text-emerald-600">All</span><br />In One Place.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   From daily fed &amp; watered logs to vaccination records and heat cycle tracking — Hushku's Health &amp; Care suite keeps every detail about your pet's wellbeing in one place.

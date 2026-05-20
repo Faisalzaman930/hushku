@@ -70,7 +70,7 @@ export default function AdoptionFosteringPage() {
               💛 Feature Guide
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-6xl leading-[0.9]">
-              Adoption & Fostering
+              How to Adopt or Foster a Pet
             </h1>
             <p className="mt-6 text-xl text-white/70 leading-relaxed max-w-2xl">
               Browse listings, submit requests, and track your adoption or foster application from start to finish.

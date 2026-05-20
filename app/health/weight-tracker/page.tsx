@@ -101,7 +101,7 @@ export default function WeightTrackerPage() {
                   ⚖️ Weight Tracker
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Track Their Weight.<br /><span className="text-emerald-600">Spot Changes</span><br />Early.
+                  Pet Weight Tracker.<br /><span className="text-emerald-600">Spot Changes</span><br />Early.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Log your pet's weight over time and visualise the trend. Spot gradual gain or loss before it becomes a problem. Share the history with your vet in seconds.

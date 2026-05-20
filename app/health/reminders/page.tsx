@@ -101,7 +101,7 @@ export default function RemindersPage() {
                   🔔 Care Reminders
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Never Miss a<br /><span className="text-emerald-600">Care Task.</span><br />Again.
+                  Pet Care Reminders.<br />Never Miss a<br /><span className="text-emerald-600">Care Task.</span>
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Set recurring reminders for walks, feeding, medication, vaccinations, and vet appointments. Push notifications straight to your phone — no app needed.

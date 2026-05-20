@@ -103,7 +103,7 @@ export default function LostAndFoundPage() {
                   📢 Lost & Found Feature
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Lost Pet? Your <span className="text-rose-600">Community.</span><br />On Alert.
+                  Lost &amp; Found.<br />Your <span className="text-rose-600">Community.</span><br />On Alert.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Report a missing pet and alert everyone nearby in seconds. Community-powered, location-targeted, and free to use on iOS & Android.

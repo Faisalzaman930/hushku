@@ -102,7 +102,7 @@ export default function RecordsPage() {
                   📋 Health Records
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  All Your Pet's Records.<br /><span className="text-emerald-600">One Digital</span><br />Wallet.
+                  Pet Health Records.<br /><span className="text-emerald-600">One Digital</span><br />Wallet.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure place you can access and share anywhere.

@@ -238,8 +238,8 @@ function CompareInner() {
 
   return (
     <ToolLayout
-      title="Breed Comparison"
-      subtitle="Side-by-Side Analysis"
+      title="Dog &amp; Cat Breed Comparison Tool"
+      subtitle="Side-by-Side Breed Analysis"
       relatedToolSlugs={["best-dog-quiz","best-cat-quiz","exercise-calculator","calorie-calculator"]}
       relatedArticles={[
         { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Guide", category: "Expert Guide", emoji: "🏠" },

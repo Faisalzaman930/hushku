@@ -126,7 +126,7 @@ export default function HelpCenterPage() {
               🐾 Hushku Help Center
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-7xl leading-[0.9] mb-6">
-              Help Center
+              Pet Owner Help Center
             </h1>
             <p className="text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-12">
               Step-by-step guides for every Hushku feature

@@ -101,7 +101,7 @@ export default function FleaTickPage() {
                   🦟 Flea & Tick Tracker
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Flea & Tick.<br /><span className="text-emerald-600">Treated.</span><br />On Schedule.
+                  Flea &amp; Tick Treatment Tracker.<br /><span className="text-emerald-600">On</span><br />Schedule.
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Log flea and tick treatment dates, set reminders for the next dose, and keep a full treatment history. Never miss a treatment window again.

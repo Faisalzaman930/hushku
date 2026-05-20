@@ -70,7 +70,7 @@ export default function LostAndFoundPage() {
               🔍 Feature Guide
             </span>
             <h1 className="text-5xl font-black text-white uppercase tracking-tighter sm:text-6xl leading-[0.9]">
-              Lost & Found
+              How to Find & Report Lost Pets
             </h1>
             <p className="mt-6 text-xl text-white/70 leading-relaxed max-w-2xl">
               Report a missing pet, post a found animal, and alert your local community — instantly.

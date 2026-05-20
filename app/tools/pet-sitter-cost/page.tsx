@@ -78,8 +78,8 @@ export default function PetSitterCostCalculator() {
 
   return (
     <ToolLayout 
-      subtitle="Advanced Global Hub"
-      title="Pet Sitter Pro Calculator"
+      subtitle="Cost Estimator"
+      title="Pet Sitter Cost Calculator"
       description="Calculate comprehensive pet care costs with medication surcharges, food provision adjustments, and long-term projections."
       illustration={<ToolIllustration type="calculator" />}
     >

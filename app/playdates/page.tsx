@@ -103,7 +103,7 @@ export default function PlaydatesPage() {
                   🎉 Playdates Feature
                 </span>
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
-                  Find the Perfect<br /><span className="text-violet-600">Playmate.</span><br />In Your Area.
+                  Dog Playdates.<br />Find the Perfect<br /><span className="text-violet-600">Playmate.</span>
                 </h1>
                 <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
                   Stop relying on chaotic dog parks. Hushku matches your pet with compatible companions nearby — filtered by size, temperament, and energy level.

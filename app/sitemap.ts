@@ -27,8 +27,15 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/playdates`,               changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/social`,                  changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/fostering`,               changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
-  { url: `${BASE_URL}/vets`,                    changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
-  { url: `${BASE_URL}/lost-found`,              changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/shelters`,                changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/lost-and-found`,          changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/health`,                  changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/health/daily-care`,       changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/health/reminders`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/health/weight-tracker`,   changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/health/records`,          changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/health/flea-tick`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/health/heat-cycle`,       changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
 
   // ── Content hubs ─────────────────────────────────────────────────────────
   { url: `${BASE_URL}/resources`,               changeFrequency: "daily",   priority: 0.9, lastModified: TODAY },

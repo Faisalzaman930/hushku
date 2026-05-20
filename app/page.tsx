@@ -387,15 +387,36 @@ function TestimonialsCarousel({ testimonials }: { testimonials: typeof testimoni
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const verticals = [
-  { name: "Meet & Match", href: "/playdates", icon: "🐾", color: "bg-violet-100", description: "Swipe-based proximity matching for playdates — filtered by breed, size, temperament, and energy level.", live: true },
-  { name: "Messaging", href: "/social", icon: "💬", color: "bg-pink-100", description: "Real-time in-app messaging with matched users. Online presence, unread counts, and message requests.", live: true },
-  { name: "Adoption", href: "/adoption", icon: "💛", color: "bg-yellow-100", description: "Post or browse pets for adoption. Submit requests, track status, and communicate directly with owners.", live: true },
-  { name: "Fostering", href: "/fostering", icon: "💖", color: "bg-red-100", description: "Browse pets that need temporary homes. Submit foster requests and coordinate handover in-app.", live: true },
-  { name: "Shelters", href: "/adoption", icon: "🏠", color: "bg-amber-100", description: "Browse verified shelters and rescues near you, with location-based filtering and direct contact.", live: true },
-  { name: "Lost & Found", href: "/lost-found", icon: "🔍", color: "bg-blue-100", description: "Report missing pets or found animals. Hyper-local push alerts turn your neighbourhood into a search party.", live: true },
-  { name: "Vets", href: "/vets", icon: "🏥", color: "bg-emerald-100", description: "Find nearby clinics, view detailed profiles, filter by specialty, and book appointments in-app.", live: true },
-  { name: "Health Records", href: "/vets", icon: "📋", color: "bg-teal-100", description: "Vaccination logs, weight tracking, care reminders, heat cycles, and flea/tick schedules — all in one health wallet.", live: true },
-  { name: "Shop", href: "/shop", icon: "🛍️", color: "bg-orange-100", description: "A multi-vendor marketplace for pet food, accessories and health products. Launching soon.", live: false },
+  {
+    name: "Playdate Matching", href: "/playdates", icon: "🐾", color: "bg-violet-100",
+    description: "Swipe-based proximity matching for playdates — filtered by breed, size, temperament, and energy level.", live: true,
+    sub: ["Swipe Matching", "Purpose Filters", "Location-Based", "Compatible Pairs"],
+  },
+  {
+    name: "Adoption & Fostering", href: "/adoption", icon: "💛", color: "bg-yellow-100",
+    description: "Post or browse pets for adoption or fostering. Submit requests, track status, and communicate directly with owners.", live: true,
+    sub: ["Browse Listings", "One-Tap Apply", "Foster Requests", "Track Status"],
+  },
+  {
+    name: "Shelters", href: "/shelters", icon: "🏢", color: "bg-green-100",
+    description: "Discover verified shelters near you. Adopt from them, request admission, and shelters manage their own listings.", live: true,
+    sub: ["Browse Shelters", "Shelter Profiles", "Admission Requests", "Shelter Dashboard"],
+  },
+  {
+    name: "Lost & Found", href: "/lost-and-found", icon: "🔍", color: "bg-blue-100",
+    description: "Report missing pets or found animals. Hyper-local push alerts turn your neighbourhood into a search party.", live: true,
+    sub: ["Instant Alerts", "Location Radius", "Photo Reports", "Mark as Found"],
+  },
+  {
+    name: "Health & Care", href: "/health", icon: "🩺", color: "bg-emerald-100",
+    description: "Daily care logs, weight tracking, vaccination records, reminders, flea & tick, and heat cycle — all in one health suite.", live: true,
+    sub: ["Daily Care Log", "Weight Tracker", "Health Records", "Care Reminders", "Flea & Tick", "Heat Cycle"],
+  },
+  {
+    name: "Social Feed", href: "/social", icon: "📸", color: "bg-pink-100",
+    description: "Share moments from walks, playdates, and adventures. Follow local pet owners and discover pets in your area.", live: true,
+    sub: ["Photo Posts", "Follow Owners", "Local Discovery", "Pet Stories"],
+  },
 ];
 
 const steps = [
@@ -411,20 +432,21 @@ const testimonialsData = [
 ];
 
 const faqs = [
-  { q: "Is Hushku free to download and use?", a: "Yes — Hushku is completely free to download on iOS and Android. All core features (playdates, social feed, lost & found alerts, adoption browsing, and vet directory) are free. Premium features for rescues and businesses are available on a subscription basis." },
+  { q: "Is Hushku free to download and use?", a: "Yes — Hushku is completely free to download on iOS and Android. All core features — playdates, adoption & fostering, shelters, lost & found alerts, health & care tracking, and the social feed — are free. Premium features are available on a subscription basis." },
   { q: "How does the lost pet alert system work?", a: "When you report a lost pet, Hushku sends a push notification to every active user within a configurable radius (1–10km). Each user sees your pet's photo, description, and last-known location on a live map. When someone spots your pet, they tap 'I saw this pet' and their GPS coordinates are logged and sent to you instantly." },
   { q: "Are the rescue organizations on Hushku verified?", a: "Every rescue and shelter on the platform goes through a verification process before listings go live. We check registered charity status, operating licenses, and require agreement with our animal welfare standards. Unverified listings are clearly labeled." },
-  { q: "How is Hushku different from Petfinder or Rover?", a: "Hushku is the only app that combines adoption, social networking, playdates, lost & found, and vet discovery in one unified experience. You don't need five separate apps. Your profile and pet data work across all features simultaneously." },
+  { q: "How is Hushku different from Petfinder or Rover?", a: "Hushku is the only app that combines playdate matching, adoption, fostering, shelters, lost & found alerts, health & care tracking, and a social feed in one unified experience. You don't need five separate apps — your profile and pet data work across all features simultaneously." },
   { q: "What cities is Hushku available in?", a: "Hushku works globally — the app works wherever you are because it's location-based rather than city-specific. Early user concentrations are in North America, the UK, and Australia, but the community is growing rapidly worldwide." },
 ];
 
 const marqueeItems = [
-  { icon: "🎉", label: "Playdates" }, { icon: "📸", label: "Social Feed" },
-  { icon: "🏠", label: "Shelters" }, { icon: "💛", label: "Adoption" },
-  { icon: "💖", label: "Fostering" }, { icon: "🏥", label: "Vets" },
-  { icon: "🔍", label: "Lost & Found" }, { icon: "🛍️", label: "Shop" },
-  { icon: "🐶", label: "Dogs" }, { icon: "🐱", label: "Cats" },
-  { icon: "🐾", label: "Pet Care" }, { icon: "🌍", label: "Global" },
+  { icon: "🐾", label: "Playdate Matching" }, { icon: "📸", label: "Social Feed" },
+  { icon: "🏢", label: "Shelters" }, { icon: "💛", label: "Adoption" },
+  { icon: "💖", label: "Fostering" }, { icon: "🔍", label: "Lost & Found" },
+  { icon: "🩺", label: "Health & Care" }, { icon: "🍽️", label: "Daily Care Log" },
+  { icon: "⚖️", label: "Weight Tracker" }, { icon: "💉", label: "Vaccination Records" },
+  { icon: "🔔", label: "Care Reminders" }, { icon: "🦟", label: "Flea & Tick" },
+  { icon: "🌡️", label: "Heat Cycle" }, { icon: "🐶", label: "Dogs" }, { icon: "🐱", label: "Cats" },
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -552,7 +574,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10"
             variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
-            <StatCounter target={8} suffix="" label="Live Features in App" />
+            <StatCounter target={6} suffix="" label="Core Features Live" />
             <StatCounter target={2} suffix="" label="Founders — Pet Lovers" />
             <StatCounter target={3} suffix="min" label="To Adopt a Pet" />
             <StatCounter target={100} suffix="%" label="Free Core Features" />
@@ -566,10 +588,10 @@ export default function Home() {
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Ecosystem</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-6xl leading-none">
-              <SplitHeading text="8 Features Live." /><br />
+              <SplitHeading text="6 Core Features." /><br />
               <SplitHeading text="One App." delay={0.25} />
             </h2>
-            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Matching, messaging, adoption, fostering, shelters, lost & found, vets, and health records — all built and live. The marketplace is coming next.</p>
+            <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Playdate matching, adoption & fostering, shelters, lost & found, health & care, and a social feed — all live. Each with its own set of powerful sub-features.</p>
           </Reveal>
 
           <Reveal>
@@ -609,7 +631,14 @@ export default function Home() {
                     ? <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-widest border border-emerald-200">Live</span>
                     : <span className="px-3 py-1 rounded-full bg-brand-start/10 text-brand-start text-[10px] font-black uppercase tracking-widest border border-brand-start/20">Coming Soon</span>}
                 </div>
-                <p className="text-lg text-slate-gray leading-relaxed mb-8">{active.description}</p>
+                <p className="text-lg text-slate-gray leading-relaxed mb-4">{active.description}</p>
+                {active.sub && (
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {active.sub.map((s: string) => (
+                      <span key={s} className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border ${active.color} border-gray-200 text-ebony`}>{s}</span>
+                    ))}
+                  </div>
+                )}
                 {active.live ? (
                   <MagneticButton>
                     <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -631,6 +660,9 @@ export default function Home() {
                   "/playdates": "/screenshots/app-playdates.png",
                   "/social": "/screenshots/app-social-feed.png",
                   "/adoption": "/screenshots/app-adoption.png",
+                  "/shelters": "/screenshots/app-adoption.png",
+                  "/lost-and-found": "/screenshots/app-playdates.png",
+                  "/health": "/screenshots/app-playdates.png",
                 };
                 const shot = screenshots[active.href];
                 return shot ? (

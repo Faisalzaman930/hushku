@@ -8,10 +8,19 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
   description: "Find your next pet on Hushku. Browse verified shelters and rescues, submit paperless adoption applications, and track your process — all from your phone. Free to download.",
+  alternates: { canonical: "https://hushku.app/adoption" },
   openGraph: {
-    title: "Pet Adoption App | Hushku",
+    title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
     description: "The only mobile app with end-to-end pet adoption — browse verified rescues, apply paperlessly, and get matched in minutes.",
     type: "website",
+    url: "https://hushku.app/adoption",
+    images: [{ url: "https://hushku.app/screenshots/app-adoption.png", width: 1200, height: 630, alt: "Hushku Pet Adoption App" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
+    description: "The only mobile app with end-to-end pet adoption — browse verified rescues, apply paperlessly, and get matched in minutes.",
+    images: ["https://hushku.app/screenshots/app-adoption.png"],
   },
 };
 
@@ -74,10 +83,21 @@ const jsonLd = {
   },
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function AdoptionPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">
         {/* HERO */}

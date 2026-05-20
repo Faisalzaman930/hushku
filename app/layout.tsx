@@ -5,13 +5,20 @@ import Footer from "./components/Footer";
 import WaitlistBanner from "./components/WaitlistBanner";
 import VolunteerBanner from "./components/VolunteerBanner";
 
+const BASE_URL = "https://hushku.app";
+const DEFAULT_OG_IMAGE = `${BASE_URL}/screenshots/app-playdates.png`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Hushku — One App for Every Pet Parent Need",
     template: "%s | Hushku",
   },
   description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
   keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Hushku app download"],
+  alternates: {
+    canonical: BASE_URL,
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -30,13 +37,16 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Hushku",
     type: "website",
+    url: BASE_URL,
     title: "Hushku — One App for Every Pet Parent Need",
     description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "Hushku — One App for Every Pet Parent Need" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Hushku — One App for Every Pet Parent Need",
     description: "Social networking, playdates, adoption, vet discovery, and lost & found — all in one free app for pet parents.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

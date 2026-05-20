@@ -1,5 +1,10 @@
 import { guide333Rescue } from "./guide-333-rescue";
 import { guidePuppySocialization } from "./guide-puppy-socialization";
+import { guideCatNutrition } from "./guide-cat-nutrition";
+import { guideSeparationAnxiety } from "./guide-separation-anxiety";
+import { guideSeniorPetCare } from "./guide-senior-pet-care";
+import { guidePetFirstAid } from "./guide-pet-first-aid";
+import { guideAdoptingRescueDog } from "./guide-adopting-rescue-dog";
 
 export interface GuideChapter {
   title: string;
@@ -27,6 +32,11 @@ export interface Guide {
 export const guides: Guide[] = [
   guide333Rescue,
   guidePuppySocialization,
+  guideCatNutrition,
+  guideSeparationAnxiety,
+  guideSeniorPetCare,
+  guidePetFirstAid,
+  guideAdoptingRescueDog,
 
   {
     slug: "logistics-and-heartbreak-foster-parent-manual",

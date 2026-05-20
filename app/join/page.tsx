@@ -54,7 +54,7 @@ function WaitlistForm() {
       <button
         type="submit"
         disabled={loading}
-        className="flex items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-brand-start/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-70"
+        className="flex items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-brand-start/20 disabled:opacity-70"
       >
         {loading
           ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -154,7 +154,7 @@ function VolunteerForm() {
       <button
         type="submit"
         disabled={loading}
-        className="flex items-center justify-center gap-2 rounded-2xl bg-ebony px-8 py-4 text-sm font-black uppercase tracking-widest text-white hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all disabled:opacity-70"
+        className="flex items-center justify-center gap-2 rounded-2xl bg-ebony px-8 py-4 text-sm font-black uppercase tracking-widest text-white hover:bg-zinc-800 disabled:opacity-70"
       >
         {loading
           ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -184,7 +184,7 @@ export default function JoinPage() {
               </span>
             </Link>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/70 uppercase tracking-widest">
-              <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="h-2 w-2 rounded-full bg-green-400" />
               App Store &amp; Google Play — Coming Very Soon
             </div>
           </div>

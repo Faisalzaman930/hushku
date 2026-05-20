@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface PhoneFrameProps {
   src: string;
   alt: string;
@@ -14,11 +16,13 @@ export default function PhoneFrame({ src, alt, className = "" }: PhoneFrameProps
           className="relative rounded-[2.5rem] overflow-hidden bg-white"
           style={{ aspectRatio: "9 / 19.5" }}
         >
-          <img
+          <Image
             src={src}
             alt={alt}
-            className="w-full h-full object-cover object-top"
+            fill
+            className="object-cover object-top"
             draggable={false}
+            sizes="(max-width: 768px) 240px, 300px"
           />
         </div>
         {/* Volume buttons */}

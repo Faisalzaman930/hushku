@@ -223,24 +223,27 @@ function Marquee({ items, speed = 40 }: { items: { icon: string; label: string }
 }
 
 // ── Floating paw particles ────────────────────────────────────────────────────
+const PAW_DATA = Array.from({ length: 6 }, (_, i) => ({
+  id: i,
+  x: [8, 22, 40, 58, 75, 90][i],
+  size: [14, 20, 16, 22, 15, 18][i],
+  duration: [10, 14, 12, 16, 11, 13][i],
+  delay: [0, 3, 6, 1.5, 8, 4.5][i],
+  opacity: [0.05, 0.07, 0.04, 0.06, 0.05, 0.08][i],
+}));
+
 function PawParticles() {
-  const paws = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    size: 14 + Math.random() * 18,
-    duration: 8 + Math.random() * 12,
-    delay: Math.random() * 10,
-    opacity: 0.04 + Math.random() * 0.06,
-  }));
+  const [travelY, setTravelY] = useState(900);
+  useEffect(() => { setTravelY(window.innerHeight + 80); }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {paws.map(p => (
+      {PAW_DATA.map(p => (
         <motion.div
           key={p.id}
-          className="absolute text-brand-start select-none"
+          className="absolute text-brand-start select-none will-change-transform"
           style={{ left: `${p.x}%`, bottom: "-40px", fontSize: p.size, opacity: p.opacity }}
-          animate={{ y: [0, -(typeof window !== "undefined" ? window.innerHeight + 80 : 900)], rotate: [0, 20, -10, 15, 0] }}
+          animate={{ y: [0, -travelY], rotate: [0, 20, -10, 15, 0] }}
           transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "linear" }}
         >
           🐾
@@ -295,8 +298,6 @@ function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0, isSide
       {/* Phone with tilt */}
       <motion.div
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-        animate={!hovered ? { y: [0, -12, 0] } : { y: 0 }}
-        transition={!hovered ? { duration: 3.5 + delay, repeat: Infinity, ease: "easeInOut" } : { duration: 0.2 }}
         className="relative z-10"
       >
         {/* Sheen overlay — only visible on hover */}
@@ -443,35 +444,26 @@ export default function Home() {
 
       {/* ─── HERO ─── */}
       <section className="relative overflow-hidden bg-white pt-16 pb-24 lg:pt-24 lg:pb-32">
-        <PawParticles />
 
-        {/* Animated orbs */}
-        <motion.div className="pointer-events-none absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-brand-start/5 blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
-        <motion.div className="pointer-events-none absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full bg-brand-end/5 blur-3xl"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }} />
+        {/* Static ambient orbs — no animation to avoid GPU thrash */}
+        <div className="pointer-events-none absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-brand-start/5 blur-3xl opacity-60" />
+        <div className="pointer-events-none absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full bg-brand-end/5 blur-3xl opacity-50" />
 
-        <motion.div className="relative mx-auto max-w-7xl px-6 lg:px-8" style={{ y: heroY, opacity: heroOpacity }}>
+        <motion.div className="relative mx-auto max-w-7xl px-6 lg:px-8 will-change-transform" style={{ y: heroY, opacity: heroOpacity }}>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left */}
             <motion.div className="space-y-8" variants={stagger(0.1)} initial="hidden" animate="visible">
               <motion.div variants={fadeUp}
                 className="inline-flex items-center gap-2 rounded-full bg-brand-start/10 px-4 py-2 text-xs font-black text-brand-start ring-1 ring-brand-start/20 uppercase tracking-widest">
-                <motion.span className="h-2 w-2 rounded-full bg-brand-start"
-                  animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }} />
+                <span className="h-2 w-2 rounded-full bg-brand-start" />
                 Phase 1 Live — App Store & Play Store Coming Soon
               </motion.div>
 
               <h1 className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase">
                 <SplitHeading text="Everything Your" delay={0.2} /><br />
-                <motion.span className="text-brand-gradient inline-block"
-                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}>
+                <span className="text-brand-gradient inline-block">
                   <SplitHeading text="Pet Needs." delay={0.45} />
-                </motion.span><br />
+                </span><br />
                 <SplitHeading text="One App." delay={0.65} />
               </h1>
 
@@ -643,8 +635,7 @@ export default function Home() {
                 return shot ? (
                   <div className="flex justify-center items-center py-4">
                     <motion.div className="w-[260px]"
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
+                      >
                       <PhoneFrame src={shot} alt={`Hushku ${active.name} screen`} />
                     </motion.div>
                   </div>
@@ -803,12 +794,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal variants={scaleIn}>
             <div className="relative overflow-hidden rounded-[3.5rem] bg-ebony px-10 py-20 shadow-2xl">
-              <motion.div className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-start/10 blur-3xl"
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 30, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
-              <motion.div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl"
-                animate={{ scale: [1, 1.15, 1], rotate: [0, -20, 0] }}
-                transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 3 }} />
+              <div className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-start/10 blur-3xl opacity-80" />
+              <div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl opacity-70" />
               <div className="relative grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                   <p className="text-xs font-black text-brand-end uppercase tracking-widest mb-4">Hey you 👋</p>

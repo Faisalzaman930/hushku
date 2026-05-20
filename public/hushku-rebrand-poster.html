@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080" />
+<title>Furrly → Hushku Rebrand Poster</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+  }
+
+  .poster {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ── Background decoration ── */
+  .bg-orb-1 {
+    position: absolute;
+    top: -180px;
+    right: -180px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(225,29,72,0.08) 0%, transparent 70%);
+  }
+  .bg-orb-2 {
+    position: absolute;
+    bottom: -140px;
+    left: -140px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251,146,60,0.08) 0%, transparent 70%);
+  }
+  .bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #e5e7eb 1.5px, transparent 1.5px);
+    background-size: 40px 40px;
+    opacity: 0.5;
+  }
+
+  /* ── Content ── */
+  .content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 80px;
+  }
+
+  /* Announcement badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(225,29,72,0.08), rgba(251,146,60,0.08));
+    border: 1.5px solid rgba(225,29,72,0.18);
+    border-radius: 100px;
+    padding: 10px 24px;
+    margin-bottom: 56px;
+  }
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E11D48, #FB923C);
+  }
+  .badge-text {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Arrow transition block */
+  .transition-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  .brand-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* Old brand — faded/crossed out feel */
+  .brand-old .brand-name {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #d1d5db;
+    text-decoration: line-through;
+    text-decoration-color: #9ca3af;
+    text-decoration-thickness: 4px;
+  }
+  .brand-old .brand-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  /* Arrow */
+  .arrow-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .arrow-line {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    border-radius: 2px;
+    position: relative;
+  }
+  .arrow-line::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 14px solid #FB923C;
+  }
+  .arrow-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  /* New brand */
+  .brand-new .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .paw-svg {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+  }
+
+  .brand-new .brand-name {
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #111827;
+    line-height: 1;
+  }
+  .brand-new .brand-name .gradient {
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .brand-new .brand-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Main headline */
+  .headline {
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #111827;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .headline .gradient {
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subline */
+  .subline {
+    font-size: 20px;
+    font-weight: 500;
+    color: #6a7282;
+    line-height: 1.6;
+    max-width: 640px;
+    margin-bottom: 52px;
+  }
+
+  /* CTA pill */
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #E11D48, #FB923C);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+  }
+
+  /* Bottom domain */
+  .domain-bar {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .domain-line {
+    height: 1px;
+    width: 120px;
+    background: #e5e7eb;
+  }
+  .domain-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9ca3af;
+  }
+
+  /* Paw decorations */
+  .paw-deco {
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.06;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Background -->
+  <div class="bg-dots"></div>
+  <div class="bg-orb-1"></div>
+  <div class="bg-orb-2"></div>
+
+  <!-- Decorative paws -->
+  <span class="paw-deco" style="top:60px;left:60px;transform:rotate(-20deg)">🐾</span>
+  <span class="paw-deco" style="top:80px;right:100px;transform:rotate(15deg);font-size:28px">🐾</span>
+  <span class="paw-deco" style="bottom:130px;right:70px;transform:rotate(-10deg)">🐾</span>
+  <span class="paw-deco" style="bottom:160px;left:80px;transform:rotate(25deg);font-size:28px">🐾</span>
+
+  <!-- Main content -->
+  <div class="content">
+
+    <!-- Announcement badge -->
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">Big News</span>
+    </div>
+
+    <!-- Old → New brand transition -->
+    <div class="transition-block">
+
+      <!-- Old brand -->
+      <div class="brand-card brand-old">
+        <div class="brand-name">Furrly</div>
+        <div class="brand-label">The old name</div>
+      </div>
+
+      <!-- Arrow -->
+      <div class="arrow-wrap">
+        <div class="arrow-line"></div>
+        <div class="arrow-label">becomes</div>
+      </div>
+
+      <!-- New brand -->
+      <div class="brand-card brand-new">
+        <div class="logo-row">
+          <!-- Paw print SVG (matches hushku.app logo) -->
+          <svg class="paw-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E11D48"/>
+                <stop offset="100%" stop-color="#FB923C"/>
+              </linearGradient>
+            </defs>
+            <circle cx="30" cy="40" r="12" fill="url(#g)"/>
+            <circle cx="50" cy="30" r="14" fill="url(#g)"/>
+            <circle cx="70" cy="40" r="12" fill="url(#g)"/>
+            <path d="M30 65C30 55 40 50 50 50C60 50 70 55 70 65C70 75 60 85 50 85C40 85 30 75 30 65Z" fill="url(#g)"/>
+          </svg>
+          <div class="brand-name">Hush<span class="gradient">ku</span></div>
+        </div>
+        <div class="brand-label">Same mission. New name.</div>
+      </div>
+
+    </div>
+
+    <!-- Headline -->
+    <div class="headline">
+      We're getting<br/><span class="gradient">a new name.</span>
+    </div>
+
+    <!-- Subline -->
+    <p class="subline">
+      Furrly is now Hushku — the all-in-one app for modern pet parents.
+      Same team, same mission, better name.
+    </p>
+
+    <!-- CTA -->
+    <div class="cta">
+      🐾 &nbsp;Visit hushku.app
+    </div>
+
+  </div>
+
+  <!-- Bottom domain bar -->
+  <div class="domain-bar">
+    <div class="domain-line"></div>
+    <span class="domain-text">hushku.app</span>
+    <div class="domain-line"></div>
+  </div>
+
+</div>
+</body>
+</html>

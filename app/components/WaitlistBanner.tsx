@@ -13,7 +13,7 @@ export default function WaitlistBanner() {
       <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
         {/* badge */}
         <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/80 uppercase tracking-widest mb-8">
-          <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-green-400" />
           App Store &amp; Google Play — Coming Very Soon
         </div>
 

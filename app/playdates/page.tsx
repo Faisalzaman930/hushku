@@ -8,10 +8,19 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
   description: "Find safe, compatible playmates for your dog or cat with Hushku. Proximity-based matching by breed, size & temperament. Coordinate meetups with encrypted chat. Free download.",
+  alternates: { canonical: "https://hushku.app/playdates" },
   openGraph: {
     title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
-    description: "AI-powered proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
+    description: "Proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
     type: "website",
+    url: "https://hushku.app/playdates",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Playdate App" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
+    description: "Proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
   },
 };
 
@@ -67,10 +76,21 @@ const jsonLd = {
   "url": "https://hushku.app/playdates",
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function PlaydatesPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">
         {/* HERO */}

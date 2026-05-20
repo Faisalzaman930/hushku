@@ -8,10 +8,19 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pet Social Media App | Share Your Pet's Life — Hushku",
   description: "Hushku's pet social feed puts your neighborhood first. Share photos, discover local pet owners, join breed groups, and build a real community — not a global algorithm. Free on iOS & Android.",
+  alternates: { canonical: "https://hushku.app/social" },
   openGraph: {
-    title: "Pet Social Media App | Hushku",
+    title: "Pet Social Media App | Share Your Pet's Life — Hushku",
     description: "A neighborhood-first pet social feed. Discover local owners, share your pet's story, and build a real community around the pets you'll actually meet.",
     type: "website",
+    url: "https://hushku.app/social",
+    images: [{ url: "https://hushku.app/screenshots/app-social-feed.png", width: 1200, height: 630, alt: "Hushku Pet Social Media App" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pet Social Media App | Share Your Pet's Life — Hushku",
+    description: "A neighborhood-first pet social feed. Discover local owners, share your pet's story, and build a real community around the pets you'll actually meet.",
+    images: ["https://hushku.app/screenshots/app-social-feed.png"],
   },
 };
 
@@ -67,10 +76,21 @@ const jsonLd = {
   "url": "https://hushku.app/social",
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function SocialPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">
         {/* HERO */}

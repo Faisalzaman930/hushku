@@ -55,7 +55,7 @@ const ContactSection = () => {
                  <label htmlFor="message" className="block text-xs font-black text-ebony uppercase tracking-widest mb-2 px-2">Message</label>
                  <textarea id="message" rows={4} className="w-full bg-white border-2 border-transparent rounded-[2.5rem] px-8 py-6 focus:border-brand-start outline-none transition-all placeholder:text-gray-300 font-medium" placeholder="How can we help you?"></textarea>
               </div>
-              <button className="w-full bg-ebony text-white font-bold py-6 px-10 rounded-[2.5rem] shadow-xl hover:bg-brand-gradient active:scale-95 transition-all text-lg tracking-wide uppercase">Send Message</button>
+              <button className="w-full bg-ebony text-white font-bold py-6 px-10 rounded-[2.5rem] shadow-xl hover:bg-zinc-800 text-lg tracking-wide uppercase">Send Message</button>
             </form>
           </div>
         </div>

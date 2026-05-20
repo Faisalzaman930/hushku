@@ -13,7 +13,7 @@ const WishlistForm = () => {
 
   return (
     <div className="bg-white p-12 rounded-[4rem] border border-gray-100 shadow-2xl relative overflow-hidden group">
-      <div className="absolute top-0 right-0 p-12 text-brand-start/5 text-9xl transform translate-x-1/4 -translate-y-1/4 group-hover:scale-110 transition-transform font-black">🗳️</div>
+      <div className="absolute top-0 right-0 p-12 text-brand-start/5 text-9xl transform translate-x-1/4 -translate-y-1/4 font-black">🗳️</div>
       <div className="relative">
         <h3 className="text-3xl font-black text-ebony uppercase tracking-tight mb-4">Request a Feature</h3>
         <p className="text-lg text-slate-gray leading-8 mb-12 max-w-xl">
@@ -54,7 +54,7 @@ const WishlistForm = () => {
                  <label htmlFor="feature-description" className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Tell us more</label>
                  <textarea id="feature-description" rows={10} className="w-full bg-gray-50 border-2 border-transparent rounded-[2.5rem] px-8 py-6 focus:bg-white focus:border-brand-start outline-none transition-all font-medium placeholder:text-gray-300" placeholder="Describe the feature and why it's important to you..."></textarea>
               </div>
-              <button className="w-full bg-brand-gradient text-white font-black py-6 px-10 rounded-[2.5rem] shadow-xl shadow-brand-start/20 hover:scale-[1.02] active:scale-95 transition-all text-xl uppercase tracking-widest">Submit My Idea</button>
+              <button className="w-full bg-brand-gradient text-white font-black py-6 px-10 rounded-[2.5rem] shadow-xl shadow-brand-start/20 text-xl uppercase tracking-widest">Submit My Idea</button>
            </div>
         </form>
       </div>

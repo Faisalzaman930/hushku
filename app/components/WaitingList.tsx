@@ -74,10 +74,10 @@ export default function WaitingList({ light = false, center = false, large = fal
         <button
           type="submit"
           disabled={loading}
-          className={`flex items-center justify-center gap-2 rounded-2xl px-8 text-xs font-black uppercase tracking-widest transition-all active:scale-95 shadow-xl whitespace-nowrap disabled:opacity-70 ${large ? "py-5 text-sm" : "py-4"} ${
+          className={`flex items-center justify-center gap-2 rounded-2xl px-8 text-xs font-black uppercase tracking-widest shadow-xl whitespace-nowrap disabled:opacity-70 ${large ? "py-5 text-sm" : "py-4"} ${
             light
-              ? "bg-ebony text-white hover:bg-zinc-800 hover:scale-105"
-              : "bg-white text-ebony hover:bg-gray-50 hover:scale-105"
+              ? "bg-ebony text-white hover:bg-zinc-800"
+              : "bg-white text-ebony hover:bg-gray-50"
           }`}
         >
           {loading ? (

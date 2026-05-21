@@ -4,12 +4,13 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { BookOpen, FileText, Wrench, LayoutGrid, Zap, Heart, Home, Search, Activity, Camera, Building2, type LucideIcon } from "lucide-react";
 
-const learnItems = [
-  { name: "Resources",  href: "/resources",  icon: "📚", desc: "Guides, tips & expert pet advice." },
-  { name: "Templates",  href: "/templates",  icon: "📄", desc: "Free forms, contracts & records." },
-  { name: "Tools",      href: "/tools",      icon: "🛠️", desc: "Calculators & interactive tools." },
-  { name: "Breeds",     href: "/breeds",     icon: "🐾", desc: "Dog & cat breed directory." },
+const learnItems: { name: string; href: string; icon: LucideIcon; desc: string }[] = [
+  { name: "Resources",  href: "/resources",  icon: BookOpen,    desc: "Guides, tips & expert pet advice." },
+  { name: "Templates",  href: "/templates",  icon: FileText,    desc: "Free forms, contracts & records." },
+  { name: "Tools",      href: "/tools",      icon: Wrench,      desc: "Calculators & interactive tools." },
+  { name: "Breeds",     href: "/breeds",     icon: LayoutGrid,  desc: "Dog & cat breed directory." },
 ];
 
 const Navbar = () => {
@@ -26,14 +27,14 @@ const Navbar = () => {
     pathname.startsWith("/breeds");
 
   const verticals = [
-    { name: "Playdates",    href: "/playdates",      icon: "🐾", desc: "Swipe-match compatible pets near you." },
-    { name: "Adoption",     href: "/adoption",       icon: "💛", desc: "Browse pets available for adoption." },
-    { name: "Fostering",    href: "/fostering",      icon: "💖", desc: "Open your home temporarily." },
-    { name: "Shelters",     href: "/shelters",       icon: "🏢", desc: "Discover & contact verified shelters." },
-    { name: "Lost & Found", href: "/lost-and-found", icon: "🔍", desc: "Report missing pets. Alert your community." },
-    { name: "Health & Care",href: "/health",         icon: "🩺", desc: "Daily logs, records, reminders & more." },
-    { name: "Social Feed",  href: "/social",         icon: "📸", desc: "Your neighbourhood's pet feed." },
-    { name: "Vets",         href: "#",               icon: "🏥", desc: "Find trusted clinics nearby.", isComingSoon: true },
+    { name: "Playdates",    href: "/playdates",      icon: Zap,       desc: "Swipe-match compatible pets near you." },
+    { name: "Adoption",     href: "/adoption",       icon: Heart,     desc: "Browse pets available for adoption." },
+    { name: "Fostering",    href: "/fostering",      icon: Home,      desc: "Open your home temporarily." },
+    { name: "Shelters",     href: "/shelters",       icon: Building2, desc: "Discover & contact verified shelters." },
+    { name: "Lost & Found", href: "/lost-and-found", icon: Search,    desc: "Report missing pets. Alert your community." },
+    { name: "Health & Care",href: "/health",         icon: Activity,  desc: "Daily logs, records, reminders & more." },
+    { name: "Social Feed",  href: "/social",         icon: Camera,    desc: "Your neighbourhood's pet feed." },
+    { name: "Vets",         href: "#",               icon: Building2, desc: "Find trusted clinics nearby.", isComingSoon: true },
   ];
 
   return (
@@ -66,8 +67,8 @@ const Navbar = () => {
                         href={feature.href}
                         className={`flex items-start gap-4 p-4 rounded-2xl transition-all hover:bg-gray-50 group/item ${feature.isComingSoon ? "cursor-default pointer-events-none opacity-60" : ""}`}
                       >
-                        <div className="h-12 w-12 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-2xl group-hover/item:scale-110 transition-transform shadow-inner">
-                          {feature.icon}
+                        <div className="h-12 w-12 flex-none rounded-xl bg-gray-50 flex items-center justify-center group-hover/item:scale-110 transition-transform shadow-inner text-slate-gray">
+                          <feature.icon size={20} strokeWidth={1.5} />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
@@ -85,7 +86,7 @@ const Navbar = () => {
                 <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
                   <p className="text-xs text-slate-gray">New to Hushku?</p>
                   <Link href="/help-center" className="flex items-center gap-2 bg-gray-50 hover:bg-brand-start/5 border border-gray-100 hover:border-brand-start/20 rounded-2xl px-4 py-2.5 transition-all group/help">
-                    <span className="text-base">💬</span>
+                    <span className="text-slate-gray"><Activity size={16} strokeWidth={1.5} /></span>
                     <div>
                       <p className="text-xs font-black text-ebony uppercase tracking-widest group-hover/help:text-brand-start transition-colors">Help Center</p>
                       <p className="text-[10px] text-slate-gray">Step-by-step guides for every feature</p>
@@ -122,8 +123,8 @@ const Navbar = () => {
                     href={item.href}
                     className={`flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-gray-50 group/item ${pathname.startsWith(item.href) ? "bg-brand-start/5" : ""}`}
                   >
-                    <div className="h-10 w-10 flex-none rounded-xl bg-gray-50 flex items-center justify-center text-xl group-hover/item:scale-110 transition-transform shadow-inner">
-                      {item.icon}
+                    <div className="h-10 w-10 flex-none rounded-xl bg-gray-50 flex items-center justify-center group-hover/item:scale-110 transition-transform shadow-inner text-slate-gray">
+                      <item.icon size={18} strokeWidth={1.5} />
                     </div>
                     <div>
                       <p className={`text-sm font-bold uppercase tracking-widest ${pathname.startsWith(item.href) ? "text-brand-start" : "text-ebony"}`}>{item.name}</p>
@@ -139,7 +140,7 @@ const Navbar = () => {
             href="/join"
             className="rounded-xl bg-brand-gradient px-8 py-3 text-sm font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-start/20"
           >
-            🐾 Join Waitlist
+            Join Waitlist
           </Link>
         </div>
 
@@ -168,7 +169,7 @@ const Navbar = () => {
               onClick={() => setIsMobileOpen(false)}
               className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${feature.isComingSoon ? "opacity-50 pointer-events-none" : ""}`}
             >
-              <span className="text-xl">{feature.icon}</span>
+              <span className="text-slate-gray"><feature.icon size={18} strokeWidth={1.5} /></span>
               <span className="text-sm font-bold text-ebony">{feature.name}</span>
               {feature.isComingSoon && (
                 <span className="ml-auto text-[9px] font-black bg-gray-100 text-slate-gray px-2 py-0.5 rounded-full uppercase tracking-tighter">Soon</span>
@@ -197,7 +198,7 @@ const Navbar = () => {
                   onClick={() => setIsMobileOpen(false)}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${pathname.startsWith(item.href) ? "text-brand-start bg-brand-start/5" : "text-ebony"}`}
                 >
-                  <span className="text-xl">{item.icon}</span>
+                  <span className="text-slate-gray"><item.icon size={16} strokeWidth={1.5} /></span>
                   <span className="text-sm font-bold">{item.name}</span>
                 </Link>
               ))}
@@ -223,7 +224,7 @@ const Navbar = () => {
               onClick={() => setIsMobileOpen(false)}
               className="flex items-center justify-center gap-2 rounded-2xl bg-brand-gradient px-8 py-4 text-sm font-black uppercase tracking-widest text-white shadow-lg shadow-brand-start/20"
             >
-              🐾 Join Waitlist
+              Join Waitlist
             </Link>
           </div>
         </div>

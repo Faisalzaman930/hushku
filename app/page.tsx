@@ -18,6 +18,23 @@ import {
   AnimatePresence,
   type Variants,
 } from "framer-motion";
+import {
+  Zap, Heart, Building2, Search, Activity, Camera,
+  Gift, BarChart2, Users, Globe, Code2, Palette,
+  Wrench, LayoutGrid, FileText, BookOpen, Bell,
+} from "lucide-react";
+
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>> = {
+  zap: Zap, heart: Heart, building: Building2, search: Search,
+  activity: Activity, camera: Camera, gift: Gift, chart: BarChart2,
+  users: Users, globe: Globe, code: Code2, palette: Palette,
+  wrench: Wrench, grid: LayoutGrid, file: FileText, book: BookOpen, bell: Bell,
+};
+
+function Icon({ name, size = 20, className = "", strokeWidth = 2 }: { name: string; size?: number; className?: string; strokeWidth?: number }) {
+  const C = iconMap[name];
+  return C ? <C size={size} className={className} strokeWidth={strokeWidth} /> : null;
+}
 
 // ── Reusable animation variants ──────────────────────────────────────────────
 const fadeUp: Variants = {
@@ -188,7 +205,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 }
 
 // ── Infinite marquee ticker ───────────────────────────────────────────────────
-function Marquee({ items, speed = 40 }: { items: { icon: string; label: string }[]; speed?: number }) {
+function Marquee({ items, speed = 40 }: { items: { label: string }[]; speed?: number }) {
   const baseX = useMotionValue(0);
   const scrollVelocity = useVelocity(baseX);
   const skewX = useTransform(scrollVelocity, [-500, 0, 500], [-2, 0, 2]);
@@ -214,7 +231,7 @@ function Marquee({ items, speed = 40 }: { items: { icon: string; label: string }
           <motion.div key={i}
             className="flex items-center gap-2 px-5 py-2.5 bg-white/10 rounded-full text-white/80 text-xs font-black uppercase tracking-widest whitespace-nowrap border border-white/10"
             whileHover={{ scale: 1.06, backgroundColor: "rgba(255,255,255,0.18)" }}>
-            <span>{item.icon}</span>{item.label}
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-start inline-block" />{item.label}
           </motion.div>
         ))}
       </motion.div>
@@ -223,36 +240,6 @@ function Marquee({ items, speed = 40 }: { items: { icon: string; label: string }
 }
 
 // ── Floating paw particles ────────────────────────────────────────────────────
-const PAW_DATA = Array.from({ length: 6 }, (_, i) => ({
-  id: i,
-  x: [8, 22, 40, 58, 75, 90][i],
-  size: [14, 20, 16, 22, 15, 18][i],
-  duration: [10, 14, 12, 16, 11, 13][i],
-  delay: [0, 3, 6, 1.5, 8, 4.5][i],
-  opacity: [0.05, 0.07, 0.04, 0.06, 0.05, 0.08][i],
-}));
-
-function PawParticles() {
-  const [travelY, setTravelY] = useState(900);
-  useEffect(() => { setTravelY(window.innerHeight + 80); }, []);
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {PAW_DATA.map(p => (
-        <motion.div
-          key={p.id}
-          className="absolute text-brand-start select-none will-change-transform"
-          style={{ left: `${p.x}%`, bottom: "-40px", fontSize: p.size, opacity: p.opacity }}
-          animate={{ y: [0, -travelY], rotate: [0, 20, -10, 15, 0] }}
-          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "linear" }}
-        >
-          🐾
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
 // ── Floating phone with deep 3-D hover ───────────────────────────────────────
 function FloatingPhone({ src, alt, className = "", delay = 0, rotate = 0, isSide = false }: {
   src: string; alt: string; className?: string; delay?: number; rotate?: number; isSide?: boolean;
@@ -354,7 +341,9 @@ function TestimonialsCarousel({ testimonials }: { testimonials: typeof testimoni
               &ldquo;{testimonials[idx].quote}&rdquo;
             </blockquote>
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-2xl">🐾</div>
+              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7 text-white/60"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7"/></svg>
+              </div>
               <div>
                 <p className="font-black text-white">{testimonials[idx].author}</p>
                 <p className="text-white/40 text-xs font-bold uppercase tracking-widest mt-0.5">{testimonials[idx].pet}</p>
@@ -388,32 +377,32 @@ function TestimonialsCarousel({ testimonials }: { testimonials: typeof testimoni
 // ── Data ──────────────────────────────────────────────────────────────────────
 const verticals = [
   {
-    name: "Playdate Matching", href: "/playdates", icon: "🐾", color: "bg-violet-100",
-    description: "Swipe-based proximity matching for playdates — filtered by breed, size, temperament, and energy level.", live: true,
+    name: "Playdate Matching", href: "/playdates", icon: "zap", color: "bg-violet-100",
+    description: "Swipe-based proximity matching for playdates, filtered by breed, size, temperament, and energy level.", live: true,
     sub: ["Swipe Matching", "Purpose Filters", "Location-Based", "Compatible Pairs"],
   },
   {
-    name: "Adoption & Fostering", href: "/adoption", icon: "💛", color: "bg-yellow-100",
+    name: "Adoption & Fostering", href: "/adoption", icon: "heart", color: "bg-yellow-100",
     description: "Post or browse pets for adoption or fostering. Submit requests, track status, and communicate directly with owners.", live: true,
     sub: ["Browse Listings", "One-Tap Apply", "Foster Requests", "Track Status"],
   },
   {
-    name: "Shelters", href: "/shelters", icon: "🏢", color: "bg-green-100",
+    name: "Shelters", href: "/shelters", icon: "building", color: "bg-green-100",
     description: "Discover verified shelters near you. Adopt from them, request admission, and shelters manage their own listings.", live: true,
     sub: ["Browse Shelters", "Shelter Profiles", "Admission Requests", "Shelter Dashboard"],
   },
   {
-    name: "Lost & Found", href: "/lost-and-found", icon: "🔍", color: "bg-blue-100",
+    name: "Lost & Found", href: "/lost-and-found", icon: "search", color: "bg-blue-100",
     description: "Report missing pets or found animals. Hyper-local push alerts turn your neighbourhood into a search party.", live: true,
     sub: ["Instant Alerts", "Location Radius", "Photo Reports", "Mark as Found"],
   },
   {
-    name: "Health & Care", href: "/health", icon: "🩺", color: "bg-emerald-100",
-    description: "Daily care logs, weight tracking, vaccination records, reminders, flea & tick, and heat cycle — all in one health suite.", live: true,
+    name: "Health & Care", href: "/health", icon: "activity", color: "bg-emerald-100",
+    description: "Daily care logs, weight tracking, vaccination records, reminders, flea and tick, and heat cycle. All in one health suite.", live: true,
     sub: ["Daily Care Log", "Weight Tracker", "Health Records", "Care Reminders", "Flea & Tick", "Heat Cycle"],
   },
   {
-    name: "Social Feed", href: "/social", icon: "📸", color: "bg-pink-100",
+    name: "Social Feed", href: "/social", icon: "camera", color: "bg-pink-100",
     description: "Share moments from walks, playdates, and adventures. Follow local pet owners and discover pets in your area.", live: true,
     sub: ["Photo Posts", "Follow Owners", "Local Discovery", "Pet Stories"],
   },
@@ -440,13 +429,13 @@ const faqs = [
 ];
 
 const marqueeItems = [
-  { icon: "🐾", label: "Playdate Matching" }, { icon: "📸", label: "Social Feed" },
-  { icon: "🏢", label: "Shelters" }, { icon: "💛", label: "Adoption" },
-  { icon: "💖", label: "Fostering" }, { icon: "🔍", label: "Lost & Found" },
-  { icon: "🩺", label: "Health & Care" }, { icon: "🍽️", label: "Daily Care Log" },
-  { icon: "⚖️", label: "Weight Tracker" }, { icon: "💉", label: "Vaccination Records" },
-  { icon: "🔔", label: "Care Reminders" }, { icon: "🦟", label: "Flea & Tick" },
-  { icon: "🌡️", label: "Heat Cycle" }, { icon: "🐶", label: "Dogs" }, { icon: "🐱", label: "Cats" },
+  { label: "Playdate Matching" }, { label: "Social Feed" },
+  { label: "Shelters" }, { label: "Adoption" },
+  { label: "Fostering" }, { label: "Lost & Found" },
+  { label: "Health & Care" }, { label: "Daily Care Log" },
+  { label: "Weight Tracker" }, { label: "Vaccination Records" },
+  { label: "Care Reminders" }, { label: "Flea & Tick" },
+  { label: "Heat Cycle" }, { label: "Dogs" }, { label: "Cats" },
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -491,12 +480,12 @@ export default function Home() {
               </h1>
 
               <motion.p variants={fadeUp} className="text-xl leading-relaxed text-slate-gray max-w-lg">
-                Hushku replaces every pet app you have. Matching, messaging, adoption, fostering, lost & found, vets, health records — all built, all free, one app.
+                Hushku replaces every pet app you have. Matching, adoption, fostering, lost and found, health records. All built, all free, one app.
               </motion.p>
 
               <motion.div variants={stagger()} className="flex flex-wrap gap-4 pt-2">
                 {[
-                  { val: "8", label: "Live Features" }, { val: "🌍", label: "Global Mission" },
+                  { val: "8", label: "Live Features" }, { val: "Global", label: "Mission" },
                   { val: "Free", label: "Always Free" }, { val: "Soon", label: "App Stores" },
                 ].map((s) => (
                   <motion.div key={s.val} variants={scaleIn}
@@ -518,7 +507,7 @@ export default function Home() {
                 <MagneticButton>
                   <Link href="/about#volunteer"
                     className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline">
-                    🙋 Or volunteer with us →
+                    Or volunteer with us →
                   </Link>
                 </MagneticButton>
               </motion.div>
@@ -603,7 +592,7 @@ export default function Home() {
                     className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
                       activeFeature === i ? "bg-ebony text-white shadow-lg" : "bg-white text-slate-gray border border-gray-200 hover:border-gray-300"
                     }`}>
-                    <span>{v.icon}</span>{v.name}
+                    <Icon name={v.icon} size={14} />{v.name}
                     {!v.live && <span className="ml-1 px-1.5 py-0.5 rounded-full bg-brand-start/10 text-brand-start text-[9px] font-black uppercase tracking-widest leading-none">Soon</span>}
                   </motion.button>
                 </MagneticButton>
@@ -620,10 +609,10 @@ export default function Home() {
               style={{ transformStyle: "preserve-3d", perspective: 1000 }}
               className="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-[3rem] p-12 shadow-sm border border-gray-100">
               <div>
-                <motion.div className={`w-16 h-16 ${active.color} rounded-[1.5rem] flex items-center justify-center text-3xl mb-8`}
+                <motion.div className={`w-16 h-16 ${active.color} rounded-[1.5rem] flex items-center justify-center mb-8`}
                   animate={{ rotate: [0, -8, 8, 0], scale: [1, 1.1, 1] }}
                   transition={{ duration: 0.6 }}>
-                  {active.icon}
+                  <Icon name={active.icon} size={28} className="text-ebony/70" />
                 </motion.div>
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="text-3xl font-black text-ebony uppercase tracking-tighter">{active.name}</h3>
@@ -651,7 +640,7 @@ export default function Home() {
                 ) : (
                   <motion.a href="#waitlist" whileHover={{ scale: 1.03 }}
                     className="inline-flex items-center gap-2 bg-gray-50 border-2 border-dashed border-brand-start/30 text-brand-start font-black px-8 py-4 rounded-[1.5rem] hover:bg-brand-start/5 transition-colors uppercase tracking-widest text-sm">
-                    🔔 Get Notified When Live →
+                    <Bell size={15} /> Get Notified When Live →
                   </motion.a>
                 )}
               </div>
@@ -676,7 +665,7 @@ export default function Home() {
                   <div className="bg-gray-50 rounded-[2.5rem] p-8 border border-gray-100 min-h-[280px] flex flex-col justify-between">
                     <div className="flex items-center justify-between mb-6">
                       <div className="h-3 w-24 bg-gray-200 rounded-full" />
-                      <div className={`h-8 w-8 ${active.color} rounded-xl flex items-center justify-center text-lg`}>{active.icon}</div>
+                      <div className={`h-8 w-8 ${active.color} rounded-xl flex items-center justify-center`}><Icon name={active.icon} size={16} className="text-ebony/60" /></div>
                     </div>
                     {[0, 1, 2].map(j => (
                       <motion.div key={j} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
@@ -761,7 +750,7 @@ export default function Home() {
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
                     <Link href="/about#volunteer"
                       className="inline-flex items-center gap-2 bg-brand-gradient text-white font-black px-8 py-4 rounded-2xl uppercase tracking-widest text-sm shadow-lg">
-                      🙋 Join the Community →
+                      Join the Community →
                     </Link>
                   </motion.div>
                 </MagneticButton>
@@ -779,19 +768,19 @@ export default function Home() {
             <motion.div className="space-y-4" variants={stagger(0.1)} initial="hidden"
               whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
               {[
-                { icon: "🆓", title: "Free Forever", desc: "Core features will always be free. Access to pet welfare tools should never cost you anything." },
-                { icon: "🗳️", title: "You Shape the Roadmap", desc: "Vote on what we build next. Your priorities become our priorities — literally." },
-                { icon: "🤝", title: "Everyone Has a Role", desc: "Pet owner, developer, shelter, vet, designer — there's a way for everyone to contribute." },
-                { icon: "🌍", title: "Built for Every Animal", desc: "A dog in Karachi. A cat in London. A rescue in Lagos. This platform is for all of them." },
+                { icon: "gift", title: "Free Forever", desc: "Core features will always be free. Access to pet welfare tools should never cost you anything." },
+                { icon: "chart", title: "You Shape the Roadmap", desc: "Vote on what we build next. Your priorities become our priorities." },
+                { icon: "users", title: "Everyone Has a Role", desc: "Pet owner, developer, shelter, vet, designer. There is a way for everyone to contribute." },
+                { icon: "globe", title: "Built for Every Animal", desc: "A dog in Karachi. A cat in London. A rescue in Lagos. This platform is for all of them." },
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeUp}
                   whileHover={{ x: 6, boxShadow: "0 8px 32px rgba(0,0,0,0.08)" }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className="flex items-start gap-5 bg-gray-50 rounded-[2rem] p-7 border border-gray-100">
-                  <motion.div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm flex-shrink-0"
+                  <motion.div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm flex-shrink-0"
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                     transition={{ duration: 0.4 }}>
-                    {item.icon}
+                    <Icon name={item.icon} size={22} className="text-brand-start" />
                   </motion.div>
                   <div>
                     <h4 className="font-black text-ebony text-base uppercase tracking-tight mb-1">{item.title}</h4>
@@ -831,21 +820,21 @@ export default function Home() {
               <div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-end/10 blur-3xl opacity-70" />
               <div className="relative grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <p className="text-xs font-black text-brand-end uppercase tracking-widest mb-4">Hey you 👋</p>
+                  <p className="text-xs font-black text-brand-end uppercase tracking-widest mb-4">For You</p>
                   <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight mb-6">
                     Got a soft spot<br />for animals?
                   </h2>
                   <p className="text-white/70 text-lg leading-relaxed mb-6">
-                    Hushku is a free, community-driven project built by two pet lovers — Faizan & Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
+                    Hushku is a free, community-driven project built by two pet lovers, Faizan and Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
                   </p>
                   <p className="text-white/70 text-lg leading-relaxed mb-10">
-                    Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals — <strong className="text-white">we want your help.</strong> Every single contribution counts. 🐾
+                    Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals, <strong className="text-white">we want your help.</strong> Every single contribution counts.
                   </p>
                   <MagneticButton>
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <Link href="/about#volunteer"
                         className="inline-flex items-center gap-3 bg-brand-gradient text-white font-black px-10 py-5 rounded-2xl uppercase tracking-widest text-sm shadow-xl shadow-brand-start/30">
-                        🙋 Yes, I want to help →
+                        Yes, I want to help →
                       </Link>
                     </motion.div>
                   </MagneticButton>
@@ -853,18 +842,18 @@ export default function Home() {
                 <motion.div className="grid grid-cols-2 gap-4"
                   variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                   {[
-                    { icon: "💻", role: "Developers", desc: "Build features that connect pets with loving families." },
-                    { icon: "🎨", role: "Designers", desc: "Make Hushku beautiful for every pet owner." },
-                    { icon: "🏥", role: "Vets & Shelters", desc: "Help us build real tools for animal welfare." },
-                    { icon: "❤️", role: "Pet Lovers", desc: "Spread the word. Share stories. Help animals get seen." },
+                    { icon: "code", role: "Developers", desc: "Build features that connect pets with loving families." },
+                    { icon: "palette", role: "Designers", desc: "Make Hushku beautiful for every pet owner." },
+                    { icon: "building", role: "Vets & Shelters", desc: "Help us build real tools for animal welfare." },
+                    { icon: "heart", role: "Pet Lovers", desc: "Spread the word. Share stories. Help animals get seen." },
                   ].map((v, i) => (
                     <motion.div key={i} variants={scaleIn}
                       whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.12)" }}
                       className="bg-white/5 border border-white/10 rounded-[1.5rem] p-6 transition-colors">
-                      <motion.div className="text-3xl mb-3"
+                      <motion.div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-3"
                         whileHover={{ rotate: [0, -15, 15, 0], scale: 1.2 }}
                         transition={{ duration: 0.4 }}>
-                        {v.icon}
+                        <Icon name={v.icon} size={18} className="text-white/80" />
                       </motion.div>
                       <h4 className="font-black text-white text-sm uppercase tracking-tight mb-2">{v.role}</h4>
                       <p className="text-white/50 text-xs leading-relaxed">{v.desc}</p>
@@ -889,21 +878,21 @@ export default function Home() {
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
             {[
-              { href: "/tools", emoji: "🛠️", title: "Free Tools", desc: "25+ calculators for calories, exercise, symptoms, breed matching and more.", cta: "Try the Tools", bg: "bg-violet-50", border: "border-violet-100", badge: "25+ tools" },
-              { href: "/breeds", emoji: "🐾", title: "Breed Directory", desc: "Explore 450+ dog and cat breeds with scores, care guides, and comparisons.", cta: "Browse Breeds", bg: "bg-amber-50", border: "border-amber-100", badge: "450+ breeds" },
-              { href: "/templates", emoji: "📄", title: "Free Templates", desc: "Fill-in contracts, health records, vaccination forms and custody agreements.", cta: "Get Templates", bg: "bg-emerald-50", border: "border-emerald-100", badge: "50+ templates" },
-              { href: "/resources", emoji: "📚", title: "Pet Guides", desc: "Expert-written guides, how-tos, symptom articles and complete pillar guides.", cta: "Read Guides", bg: "bg-sky-50", border: "border-sky-100", badge: "200+ articles" },
-            ].map(({ href, emoji, title, desc, cta, bg, border, badge }) => (
+              { href: "/tools", icon: "wrench", title: "Free Tools", desc: "25+ calculators for calories, exercise, symptoms, breed matching and more.", cta: "Try the Tools", bg: "bg-violet-50", border: "border-violet-100", badge: "25+ tools", iconColor: "text-violet-500" },
+              { href: "/breeds", icon: "grid", title: "Breed Directory", desc: "Explore 450+ dog and cat breeds with scores, care guides, and comparisons.", cta: "Browse Breeds", bg: "bg-amber-50", border: "border-amber-100", badge: "450+ breeds", iconColor: "text-amber-500" },
+              { href: "/templates", icon: "file", title: "Free Templates", desc: "Fill-in contracts, health records, vaccination forms and custody agreements.", cta: "Get Templates", bg: "bg-emerald-50", border: "border-emerald-100", badge: "50+ templates", iconColor: "text-emerald-500" },
+              { href: "/resources", icon: "book", title: "Pet Guides", desc: "Expert-written guides, how-tos, symptom articles and complete pillar guides.", cta: "Read Guides", bg: "bg-sky-50", border: "border-sky-100", badge: "200+ articles", iconColor: "text-sky-500" },
+            ].map(({ href, icon, title, desc, cta, bg, border, badge, iconColor }) => (
               <motion.div key={href} variants={fadeUp}>
                 <TiltCard className="h-full">
                   <Link href={href}
                     className={`group flex flex-col h-full ${bg} border ${border} rounded-3xl p-7 hover:shadow-lg transition-shadow`}>
                     <div className="flex items-start justify-between mb-5">
-                      <motion.span className="text-4xl"
+                      <motion.div className={`w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm ${iconColor}`}
                         whileHover={{ rotate: [0, -15, 15, 0], scale: 1.2 }}
                         transition={{ duration: 0.4 }}>
-                        {emoji}
-                      </motion.span>
+                        <Icon name={icon} size={22} />
+                      </motion.div>
                       <span className="text-[9px] font-black uppercase tracking-widest bg-white/80 text-slate-gray px-2.5 py-1 rounded-full border border-white">
                         {badge}
                       </span>
@@ -932,7 +921,7 @@ export default function Home() {
               <span className="text-brand-gradient">Coming Very Soon</span>
             </h2>
             <p className="text-lg text-slate-gray leading-relaxed mb-10 max-w-xl mx-auto">
-              We&apos;re putting the finishing touches on our iOS and Android apps. Join the waiting list and be the first to know when we launch — plus get early access before the public release.
+              We&apos;re putting the finishing touches on our iOS and Android apps. Join the waiting list to get early access before the public release.
             </p>
             <div className="flex justify-center">
               <WaitingList light center />

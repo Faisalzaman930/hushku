@@ -18,11 +18,11 @@ const Footer = () => {
                 </span>
               </Link>
               <p className="max-w-xs text-sm leading-6 text-slate-gray">
-                Built by Faizan & Faisal — two pet lovers on a mission to improve the livelihoods of animals all across the world.
+                Built by Faizan and Faisal, two pet lovers on a mission to improve the livelihoods of animals all across the world.
               </p>
               <div className="flex gap-3">
-                <span className="text-xs font-black text-slate-gray uppercase tracking-widest bg-gray-50 border border-gray-100 rounded-xl px-4 py-2">Phase 1 Live ✅</span>
-                <span className="text-xs font-black text-brand-start uppercase tracking-widest bg-brand-start/5 border border-brand-start/20 rounded-xl px-4 py-2">App Stores Soon 🚀</span>
+                <span className="text-xs font-black text-slate-gray uppercase tracking-widest bg-gray-50 border border-gray-100 rounded-xl px-4 py-2">Phase 1 Live</span>
+                <span className="text-xs font-black text-brand-start uppercase tracking-widest bg-brand-start/5 border border-brand-start/20 rounded-xl px-4 py-2">App Stores Soon</span>
               </div>
             </div>
 
@@ -116,7 +116,7 @@ const Footer = () => {
               &copy; {currentYear} Hushku App. All rights reserved. Built for pet lovers worldwide.
             </p>
             <p className="text-xs text-slate-gray">
-              Made with ❤️ by <strong className="text-ebony">Faizan & Faisal</strong>
+              Built by <strong className="text-ebony">Faizan & Faisal</strong>
             </p>
           </div>
         </div>

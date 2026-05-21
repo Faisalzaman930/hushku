@@ -942,35 +942,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FINAL CTA ─── */}
-      <section id="download" className="py-28 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal variants={scaleIn}>
-            <div className="relative overflow-hidden bg-brand-gradient rounded-[3.5rem] px-10 py-24 text-center shadow-2xl">
-              <div className="pointer-events-none absolute inset-0 opacity-20">
-                <svg viewBox="0 0 1024 1024" className="absolute inset-0 h-full w-full" aria-hidden="true">
-                  <circle cx="512" cy="512" r="512" fill="url(#grad2)" />
-                  <defs><radialGradient id="grad2"><stop stopColor="#fff" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient></defs>
-                </svg>
-              </div>
-              <div className="relative text-center">
-                <p className="text-white/70 font-black uppercase tracking-widest text-xs mb-4">Free to Download</p>
-                <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9] uppercase mb-6">
-                  Your Pet&apos;s Life,<br />Organized.
-                </h2>
-                <p className="text-xl text-white/80 max-w-xl mx-auto leading-relaxed mb-12">
-                  Join 50,000+ pet parents who&apos;ve replaced five apps with one. Download Hushku free today.
-                </p>
-                <MagneticButton className="inline-block">
-                  <div className="flex justify-center">
-                    <DownloadButtons light center />
-                  </div>
-                </MagneticButton>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
     </div>
   );
 }

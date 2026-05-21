@@ -187,16 +187,6 @@ export default function LostAndFoundPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-ebony">
-          <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-            <p className="text-white/40 font-black uppercase tracking-widest text-xs mb-4">Free to Download</p>
-            <h2 className="text-5xl font-black text-white uppercase tracking-tighter mb-6">Your Whole Neighbourhood. Searching Together.</h2>
-            <p className="text-xl text-white/70 max-w-xl mx-auto mb-12 leading-relaxed">Instant alerts. Location-targeted. Community-powered. Download free.</p>
-            <DownloadButtons light center />
-          </div>
-        </section>
-
-        
         {/* ── HELP BANNER ── */}
         <section className="py-16 bg-gray-50 border-t border-gray-100">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">

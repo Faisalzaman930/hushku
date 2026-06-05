@@ -256,30 +256,24 @@ export default function BreedTabs({
         <div className="space-y-6">
           {isCat && cat ? (
             <div className="bg-gray-50 rounded-3xl p-6">
-              <div className="space-y-4">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                 {(Object.entries(catScoreLabels) as [keyof CatScores, string][]).map(([key, label]) => (
-                  <div key={key} className="flex items-center gap-4">
-                    <span className="text-xs text-slate-gray w-40 shrink-0">{label}</span>
-                    <ScoreBar score={cat.scores[key]} />
-                  </div>
+                  <ScoreCard key={key} label={label} score={cat.scores[key]} emoji="" />
                 ))}
               </div>
             </div>
           ) : dog ? (
             dogScoreGroups.map((group) => (
               <div key={group.label} className="bg-gray-50 rounded-3xl p-6">
-                <div className={`flex items-center gap-3 mb-5 pb-4 border-b border-gray-200`}>
+                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200">
                   <span className={`w-8 h-8 rounded-xl bg-gradient-to-br ${group.color} flex items-center justify-center text-sm`}>
                     {group.emoji}
                   </span>
                   <h3 className="text-sm font-black text-ebony uppercase tracking-widest">{group.label}</h3>
                 </div>
-                <div className="space-y-4">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                   {group.keys.map((key) => (
-                    <div key={key} className="flex items-center gap-4">
-                      <span className="text-xs text-slate-gray w-48 shrink-0">{dogScoreLabels[key]}</span>
-                      <ScoreBar score={dog.scores[key]} />
-                    </div>
+                    <ScoreCard key={key} label={dogScoreLabels[key]} score={dog.scores[key]} emoji="" />
                   ))}
                 </div>
               </div>

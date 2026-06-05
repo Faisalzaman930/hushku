@@ -65,8 +65,8 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Hushku",
-            "url": "https://hushku.co",
-            "logo": { "@type": "ImageObject", "url": "https://hushku.co/hushku-logo.png" },
+            "url": "https://hushku.app",
+            "logo": { "@type": "ImageObject", "url": "https://hushku.app/icon.svg" },
             "sameAs": [
               "https://www.instagram.com/hushkuapp",
               "https://www.tiktok.com/@hushkuapp"

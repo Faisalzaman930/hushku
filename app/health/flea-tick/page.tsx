@@ -6,8 +6,9 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Flea & Tick Treatment Tracker | Never Miss a Treatment — Hushku",
-  description: "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history. Free on iOS & Android.",
+  title: "Flea & Tick Treatment Tracker for Dogs & Cats | Never Miss a Dose — Hushku",
+  description: "Track flea and tick treatments for your dog or cat. Log Frontline, Advocate, NexGard, Bravecto and more — with next-dose reminders and full treatment history. Free on iOS & Android.",
+  keywords: "flea tick treatment tracker, dog flea treatment reminder, cat flea treatment log, flea prevention app, tick treatment reminder, Frontline tracker, NexGard reminder, pet parasite prevention",
   alternates: { canonical: "https://hushku.app/health/flea-tick" },
   openGraph: {
     title: "Flea & Tick Treatment Tracker | Never Miss a Treatment — Hushku",

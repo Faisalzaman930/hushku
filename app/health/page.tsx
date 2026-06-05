@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Health & Care Tracker App | Vaccinations, Weight, Reminders & More — Hushku",
-  description: "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more. Free on iOS & Android.",
+  title: "Pet Health Tracker App | Dog & Cat Vaccinations, Weight, Vet Records & Reminders — Hushku",
+  description: "Track your dog or cat's health in one place. Hushku's free Health & Care suite covers daily care logs, weight tracking, vaccination records, vet visit history, flea & tick treatment reminders, heat cycle tracking, and medication logs. Free on iOS & Android.",
+  keywords: "pet health tracker app, dog health app, cat health app, pet vaccination records app, pet weight tracker, vet record app, flea tick reminder, pet medication reminder, dog health log, cat health log",
   alternates: { canonical: "https://hushku.app/health" },
   openGraph: {
-    title: "Pet Health & Care Tracker App | Vaccinations, Weight, Reminders & More — Hushku",
-    description: "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more. Free on iOS & Android.",
+    title: "Pet Health Tracker App | Dog & Cat Vaccinations, Weight & Vet Records — Hushku",
+    description: "Track your dog or cat's health in one place — vaccinations, weight, vet history, flea & tick reminders, heat cycles, and daily care logs. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health",
-    images: [{ url: "https://hushku.app/screenshots/app-health.png", width: 1200, height: 630, alt: "Hushku Pet Health & Care App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-health.png", width: 1200, height: 630, alt: "Hushku Pet Health & Care Tracker App" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Health & Care Tracker App | Vaccinations, Weight, Reminders & More — Hushku",
-    description: "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more. Free on iOS & Android.",
+    title: "Pet Health Tracker App | Dog & Cat Vaccinations, Weight & Vet Records — Hushku",
+    description: "Track your dog or cat's health in one place — vaccinations, weight, vet history, flea & tick reminders, heat cycles, and daily care logs. Free on iOS & Android.",
     images: ["https://hushku.app/screenshots/app-health.png"],
   },
 };
@@ -70,10 +71,12 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "Is the health data stored on my device or in the cloud?", a: "Health logs and care records are securely stored in your Hushku account via Supabase. You can access them from any device you're logged into. Uploaded files like vaccination certificates are stored in our cloud storage." },
-  { q: "Can I use the health features for cats and other pets?", a: "Yes. All health and care features support dogs, cats, and other pets. Species-specific features like heat cycle tracking are shown only for applicable pet types." },
-  { q: "Is there a cost to use the health features?", a: "All core health and care tracking features are free. No subscription required to log daily care, track weight, store health records, or set reminders." },
-  { q: "Can I share health records with my vet?", a: "Yes. From the Health Records screen, you can export or share your pet's complete health history. This includes vaccination records, vet visit summaries, medication logs, and uploaded documents." },
+  { q: "Is the health data stored on my device or in the cloud?", a: "Health logs and care records are securely stored in your Hushku account. You can access them from any device you are logged into. Uploaded documents such as vaccination certificates and vet reports are stored in encrypted cloud storage. Your data is never sold to third parties." },
+  { q: "Can I use the health features for cats and other pets?", a: "Yes. All health and care features support dogs, cats, rabbits, guinea pigs, and other small animals. Species-specific features — such as heat cycle tracking for intact female dogs and cats, and breed-specific weight reference ranges — are shown only for applicable pet types." },
+  { q: "Why should I track my dog or cat's weight over time?", a: "Over 60% of dogs and 56% of cats in the US are classified as overweight or obese, according to the Association for Pet Obesity Prevention (APOP). Obesity in pets is directly linked to shortened lifespan, osteoarthritis, diabetes mellitus, respiratory disease, and increased anaesthetic risk. Regular weight logging creates the early-warning system that lets you and your vet catch weight creep before it becomes a clinical problem. Even a 10–15% reduction in body weight produces measurable improvement in mobility for arthritic dogs." },
+  { q: "What vaccinations should I be tracking for my dog?", a: "Core vaccinations for dogs (recommended universally by the World Small Animal Veterinary Association, WSAVA) include distemper, adenovirus, parvovirus, and rabies where required by law. Non-core vaccines — recommended based on lifestyle and geography — include Bordetella bronchiseptica (kennel cough), leptospirosis, canine influenza, and Lyme disease. Hushku's vaccination records let you log each vaccine, the date administered, the batch number, and the due date for the next booster." },
+  { q: "Is there a cost to use the health features?", a: "All core health and care tracking features are permanently free — daily care log, weight tracker, vaccination records, vet visit history, flea and tick reminders, heat cycle tracker, and care reminders. No subscription is required." },
+  { q: "Can I share health records with my vet?", a: "Yes. From the Health Records screen, you can export or share your pet's complete health history as a PDF or via a shareable link. This includes vaccination records with batch numbers and expiry dates, vet visit summaries, medication logs with dosage history, uploaded documents, and weight trend charts. Having this data at your vet appointment eliminates the common situation where a re-vaccination is administered unnecessarily because the original record can't be found." },
 ];
 
 const jsonLd = {

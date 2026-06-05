@@ -6,8 +6,9 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Heat Cycle Tracker App | Track Your Dog or Cat's Season — Hushku",
-  description: "Track your female pet's heat cycle with Hushku. Log cycle dates, predict the next season, and maintain a full history for your vet. For dogs, cats, and more. Free on iOS & Android.",
+  title: "Dog & Cat Heat Cycle Tracker | Log Seasons & Predict Next Cycle — Hushku",
+  description: "Track your female dog or cat's heat cycle with Hushku. Log cycle start and end dates, predict the next season, and maintain a full history for your vet. Helps plan spaying timing. Free on iOS & Android.",
+  keywords: "dog heat cycle tracker, cat heat cycle app, dog season tracker, female dog estrus tracker, cat in heat tracker, dog reproductive cycle, spaying timing tracker, pet heat cycle prediction",
   alternates: { canonical: "https://hushku.app/health/heat-cycle" },
   openGraph: {
     title: "Pet Heat Cycle Tracker App | Track Your Dog or Cat's Season — Hushku",

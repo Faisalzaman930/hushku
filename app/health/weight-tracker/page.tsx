@@ -6,8 +6,9 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight — Hushku",
-  description: "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet. Supports kg and lbs. Free on iOS & Android.",
+  title: "Pet Weight Tracker App | Monitor Dog & Cat Weight Gain or Loss — Hushku",
+  description: "Track your dog or cat's weight over time with Hushku. Log weight entries, visualise trends, and share history with your vet. Over 60% of pets are overweight — catch it early. Supports kg and lbs. Free on iOS & Android.",
+  keywords: "pet weight tracker app, dog weight tracker, cat weight monitor, pet obesity tracker, dog weight log, cat weight gain, pet body condition score, healthy dog weight, healthy cat weight",
   alternates: { canonical: "https://hushku.app/health/weight-tracker" },
   openGraph: {
     title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight — Hushku",

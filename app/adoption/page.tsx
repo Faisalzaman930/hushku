@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
-  description: "Find your next pet on Hushku. Browse verified shelters and rescues, submit paperless adoption applications, and track your process — all from your phone. Free to download.",
+  title: "Pet Adoption App | Adopt Dogs & Cats from Verified Rescues — Hushku",
+  description: "Adopt a dog, cat, or small animal on Hushku. Browse verified shelters and rescue organisations, submit paperless adoption applications, and track every step — free on iOS & Android. Approximately 920,000 shelter animals are euthanised in the US annually. Help change that.",
+  keywords: "pet adoption app, adopt a dog near me, adopt a cat near me, dog adoption app, shelter pet adoption, rescue dog adoption app, puppy adoption, kitten adoption, paperless adoption application",
   alternates: { canonical: "https://hushku.app/adoption" },
   openGraph: {
-    title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
-    description: "The only mobile app with end-to-end pet adoption — browse verified rescues, apply paperlessly, and get matched in minutes.",
+    title: "Pet Adoption App | Adopt Dogs & Cats from Verified Rescues — Hushku",
+    description: "Browse verified shelters and rescue organisations, submit paperless adoption applications, and track your process. Adopt a dog or cat in minutes, not weeks.",
     type: "website",
     url: "https://hushku.app/adoption",
-    images: [{ url: "https://hushku.app/screenshots/app-adoption.png", width: 1200, height: 630, alt: "Hushku Pet Adoption App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-adoption.png", width: 1200, height: 630, alt: "Hushku Pet Adoption App — browse verified rescues" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Adoption App | Browse Verified Rescues & Apply in One Tap — Hushku",
-    description: "The only mobile app with end-to-end pet adoption — browse verified rescues, apply paperlessly, and get matched in minutes.",
+    title: "Pet Adoption App | Adopt Dogs & Cats from Verified Rescues — Hushku",
+    description: "Browse verified shelters and rescue organisations, submit paperless adoption applications, and track your process. Adopt a dog or cat in minutes, not weeks.",
     images: ["https://hushku.app/screenshots/app-adoption.png"],
   },
 };
@@ -55,11 +56,13 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How do I know the rescues on Hushku are legitimate?", a: "Every organization goes through a verification process before listings go live. We verify registered charity or business status, operating licenses, and require agreement with our animal welfare standards. Verified organizations display a checkmark badge. Listings without it are not active." },
-  { q: "Can I apply to multiple rescues at once?", a: "Yes. Once you've built your adopter profile, you can submit it to any number of verified rescues simultaneously with one tap. You'll receive status updates for each application separately in your inbox." },
-  { q: "What does the adoption process look like on Hushku?", a: "After submitting your application, the rescue reviews your profile and either approves you for a meet-and-greet or asks follow-up questions through in-app chat. Home visits can be scheduled through the app. Once the rescue confirms the adoption, digital ownership documents are issued directly to your account." },
-  { q: "Is there a fee to use the adoption feature?", a: "Hushku is free to download and use. Adoption fees are set entirely by the individual rescue or shelter — Hushku does not charge adopters. Some rescues may charge a small application processing fee; this is disclosed on the listing." },
-  { q: "What happens to my pet's records when I adopt?", a: "When adoption is finalized, the rescue transfers all existing medical records, vaccination history, and microchip data to your Hushku health wallet. These are permanently accessible and can be shared with any vet in our network." },
+  { q: "How do I know the rescues on Hushku are legitimate?", a: "Every organisation goes through a verification process before listings go live. We verify registered charity or business status, operating licences, and require agreement with our animal welfare standards — including compliance with the Five Freedoms of animal welfare. Verified organisations display a checkmark badge. Listings without it are not active on the platform." },
+  { q: "Can I apply to multiple rescues at once?", a: "Yes. Once you've built your adopter profile, you can submit it to any number of verified rescues simultaneously with one tap. You'll receive status updates for each application separately in your inbox. This eliminates the repetitive PDF forms and email chains that make traditional rescue adoption slow and frustrating — the average traditional adoption application takes 3–6 weeks; Hushku's process takes days." },
+  { q: "What does the adoption process look like on Hushku?", a: "After submitting your application, the rescue reviews your profile and either approves you for a meet-and-greet or asks follow-up questions through in-app chat. Home visits — required by most UK and Australian rescues, and many US shelters — can be coordinated through the app. Once the rescue confirms the adoption, digital ownership documents are issued directly to your account." },
+  { q: "What should I prepare before adopting a rescue dog or cat?", a: "Before your new pet arrives: puppy-proof or kitten-proof your home by securing loose cables, removing toxic plants (lilies are highly toxic to cats; grapes, xylitol, and chocolate are toxic to dogs), and setting up a safe, quiet room for the initial settling-in period. Have a vet appointment booked within the first week. Stock up on species-appropriate food and have a carrier ready for the journey home. Our complete guide to adopting a rescue dog covers the full preparation checklist." },
+  { q: "Is there a fee to use the adoption feature?", a: "Hushku is free to download and use. Adoption fees are set entirely by the individual rescue or shelter — Hushku does not charge adopters. Rescue adoption fees typically range from £50–£250 in the UK, $50–$500 in the US, and $150–$400 in Australia, and usually include desexing, microchipping, initial vaccinations, and a health check." },
+  { q: "What happens to my pet's records when I adopt?", a: "When adoption is finalised, the rescue transfers all existing medical records, vaccination history, microchip registration data, and desexing certificates to your Hushku health wallet. These records are permanently accessible and exportable to share with any vet. Microchip transfer to your name is handled digitally through the app." },
+  { q: "Can I adopt a specific breed through Hushku?", a: "Yes. Breed-specific rescue organisations for hundreds of breeds — including Golden Retrievers, Labrador Retrievers, German Shepherd Dogs, Greyhounds, Staffies, French Bulldogs, and many more — are listed alongside general rescues. You can filter listings by breed when searching. Breed-specific rescues often have deep expertise in the specific health and behavioural needs of that breed, making them an excellent resource even if their current listings don't include exactly what you're looking for." },
 ];
 
 const relatedResources = [

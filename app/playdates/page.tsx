@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
-  description: "Find safe, compatible playmates for your dog or cat with Hushku. Proximity-based matching by breed, size & temperament. Coordinate meetups with encrypted chat. Free download.",
+  title: "Dog Playdate App | Find Compatible Dog & Cat Playmates Near You — Hushku",
+  description: "Hushku matches dogs and cats with compatible playmates nearby — filtered by breed, size, energy level, and temperament. Safer than a dog park. Verified owners only. Free on iOS & Android.",
+  keywords: "dog playdate app, find dog playdates near me, pet playdate matching, dog socialization app, dog park alternative, compatible dog playmates, dog meetup app, puppy playdates, reactive dog playdates",
   alternates: { canonical: "https://hushku.app/playdates" },
   openGraph: {
-    title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
-    description: "Proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
+    title: "Dog Playdate App | Find Compatible Dog & Cat Playmates Near You — Hushku",
+    description: "Hushku matches dogs and cats with compatible playmates nearby — filtered by breed, size, energy level, and temperament. Safer than a dog park. Verified owners only.",
     type: "website",
     url: "https://hushku.app/playdates",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Playdate App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Dog Playdate App — swipe-based pet matching" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Playdate App | Find Dog Playdates Near Me — Hushku",
-    description: "Proximity matching helps you find the right playmate for your pet — filter by size, temperament, and breed. Free on iOS & Android.",
+    title: "Dog Playdate App | Find Compatible Dog & Cat Playmates Near You — Hushku",
+    description: "Hushku matches dogs and cats with compatible playmates nearby — filtered by breed, size, energy level, and temperament. Safer than a dog park. Verified owners only.",
     images: ["https://hushku.app/screenshots/app-playdates.png"],
   },
 };
@@ -28,22 +29,22 @@ const benefits = [
   {
     icon: "📍",
     title: "Proximity-Based Matching",
-    desc: "See pets available for playdates within your chosen radius. Sorted by distance so you only meet owners you could realistically see at the park.",
+    desc: "See dogs and cats available for playdates within your chosen radius — 1 km to 10 km. Sorted by distance so you only meet owners you could realistically reach. Ideal for urban dog owners who want to build a regular social circle without long drives.",
   },
   {
     icon: "🎯",
     title: "Compatibility Filters",
-    desc: "Filter by size, breed, energy level, play style, and whether a pet is good with dogs, cats, or children. Find genuinely compatible matches, not just nearby ones.",
+    desc: "Filter by size, breed, energy level, play style (rough-and-tumble, chase-only, or sniff-and-wander), and whether a pet is good with dogs, cats, or children. Especially useful for reactive dogs, anxious dogs, and brachycephalic breeds like French Bulldogs and Pugs who need calmer, compatible matches.",
   },
   {
     icon: "🔒",
     title: "Secure Owner Verification",
-    desc: "Every user goes through identity verification before being able to send playdate requests. No anonymous profiles. You always know who you're meeting.",
+    desc: "Every user goes through identity verification before playdate functionality is enabled. No anonymous profiles. You can see verification badges, rating history, and account age before agreeing to a meetup — the trust infrastructure dog parks simply do not have.",
   },
   {
     icon: "💬",
     title: "Encrypted Meetup Chat",
-    desc: "Coordinate playdates through end-to-end encrypted messaging. Share meeting spots, reschedule, or cancel — without sharing personal contact info first.",
+    desc: "Coordinate playdates through end-to-end encrypted in-app messaging. Share meeting spots, reschedule, or cancel — without sharing personal phone numbers or email addresses first. Every conversation is preserved in your chat history.",
   },
 ];
 
@@ -55,26 +56,39 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How does the pet compatibility matching work?", a: "When you create your pet's profile, you fill in size, breed, energy level, play style (rough-and-tumble vs. chase-only vs. sniff-and-wander), and how they do with other dogs, cats, or children. Our matching algorithm weights these factors to calculate a compatibility score with nearby pets. Higher scores mean more similar play styles and fewer risk factors." },
-  { q: "Is it safe to arrange playdates with strangers?", a: "Hushku requires identity verification for all users before playdate functionality is enabled. You can see a user's verification badge, rating history, and how long they've been on the platform before agreeing to a meetup. Always meet in public, well-lit spaces — your in-app chat history is preserved for reference." },
-  { q: "Can I find playdates for reactive or shy dogs?", a: "Yes. The filter system includes 'calm energy only', 'experienced owners preferred', and 'one-on-one meetups' options. Many owners of reactive or anxious dogs use Hushku specifically because they can find patient, experienced owners who understand slow introductions rather than chaotic dog park encounters." },
-  { q: "What if a playdate doesn't go well?", a: "Both owners can rate the playdate after it happens. If there was an incident (injury, aggression, owner misconduct), you can file a report through the app. Reported users are reviewed and may be suspended or removed from the matching pool. Your pet's safety history on the platform is always private." },
-  { q: "Does Hushku work for cats too?", a: "Yes, though cat playdates work differently. Most cat-to-cat socialization happens indoors. Hushku supports playdates for cats with appropriate filters (indoor meetups, calm environments, slow introductions). You can also connect with other cat owners in the social feed without committing to a physical meetup." },
+  { q: "How does the pet compatibility matching work?", a: "When you create your pet's profile, you fill in size, breed, energy level, play style (rough-and-tumble vs. chase-only vs. sniff-and-wander), and how they do with other dogs, cats, or children. Our matching algorithm weights these factors to calculate a compatibility score with nearby pets. Higher scores mean more similar play styles and fewer risk factors. Breed-specific energy profiles are pre-loaded — so a Border Collie and a Basset Hound are flagged as a low-compatibility pairing before you ever swipe." },
+  { q: "Is it safe to arrange playdates with strangers?", a: "Hushku requires identity verification for all users before playdate functionality is enabled. You can see a user's verification badge, rating history, and how long they've been on the platform before agreeing to a meetup. Always meet in public, well-lit spaces — your in-app chat history is preserved for reference. Veterinary behaviourists recommend structured one-on-one playdates over dog parks specifically because you control who your dog meets and how the introduction is managed." },
+  { q: "Can I find playdates for reactive or shy dogs?", a: "Yes. The filter system includes 'calm energy only', 'experienced owners preferred', and 'one-on-one meetups' options. Many owners of reactive or anxious dogs — including dogs with barrier reactivity, leash reactivity, or fear-based aggression — use Hushku specifically because they can find patient, experienced owners who understand slow introductions rather than chaotic dog park encounters. Read our guide on reading dog body language to prepare for any first meeting." },
+  { q: "How do I know if my dog is ready for a playdate?", a: "Your dog is ready for structured playdates if they have completed basic vaccination protocol (including Bordetella/kennel cough for dogs meeting other dogs), respond to a reliable recall in low-distraction environments, and have been socialised with at least some other dogs. Puppies should have completed their primary vaccination course before meeting unfamiliar dogs. Dogs do not need to be perfect — many reactive and anxious dogs benefit greatly from well-matched, structured one-on-one socialisation." },
+  { q: "What if a playdate doesn't go well?", a: "Both owners can rate the playdate after it happens. If there was an incident (injury, aggression, owner misconduct), you can file a report through the app. Reported users are reviewed and may be suspended or removed from the matching pool. If a dog-to-dog altercation occurred, separate the dogs calmly, check both for injuries, and seek veterinary assessment for any bite wounds — even minor ones carry infection risk." },
+  { q: "Does Hushku work for cats too?", a: "Yes, though cat playdates work differently. Most cat-to-cat socialisation happens indoors over multiple sessions using the two-door isolation protocol recommended by feline behaviourists. Hushku supports playdates for cats with appropriate filters (indoor meetups, calm environments, slow introductions). Cats, unlike dogs, require significantly longer introduction timelines — typically 2–4 weeks for full integration with an unfamiliar cat." },
 ];
 
 const relatedResources = [
-  { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Dog Pulling on Leash", type: "How-To" },
   { slug: "how-to-read-dog-body-language", title: "How to Read Dog Body Language", type: "How-To" },
   { slug: "complete-guide-to-dog-training", title: "Complete Guide to Dog Training", type: "Complete Guide" },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Hushku Playdates — Find Dog Playdates Near You",
-  "description": "Proximity-based pet matching for safe, compatible playdates. Filter by breed, size, and temperament.",
-  "url": "https://hushku.app/playdates",
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hushku Playdates — Find Dog Playdates Near You",
+    "description": "Proximity-based pet matching for safe, compatible playdates. Filter by breed, size, and temperament.",
+    "url": "https://hushku.app/playdates",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hushku — Dog Playdate Matching",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "LifestyleApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Find compatible dog and cat playmates nearby. Filter by breed, size, energy level, and temperament. Verified owners only.",
+    "featureList": ["Proximity-based matching", "Breed and temperament filters", "Identity-verified owners", "End-to-end encrypted chat", "Post-playdate ratings"],
+    "url": "https://hushku.app/playdates",
+  },
+];
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -89,7 +103,9 @@ const faqSchema = {
 export default function PlaydatesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {jsonLd.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">

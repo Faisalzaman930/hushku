@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Lost & Found Pets App | Report Missing Pets & Alert Your Community — Hushku",
-  description: "Report a lost or found pet on Hushku and instantly alert pet owners in your area. Community-powered lost pet alerts with location radius notifications. Free on iOS & Android.",
+  title: "Lost & Found Pets App | Report a Missing Dog or Cat & Alert Your Neighbourhood — Hushku",
+  description: "Lost your dog or cat? Report it on Hushku and instantly alert everyone within your chosen radius. 1 in 3 pets will be lost in their lifetime — recovery rates drop dramatically after the first 2 hours. Free on iOS & Android.",
+  keywords: "lost pet app, found pet app, report lost dog, report lost cat, missing pet alert, lost dog near me, found dog near me, pet recovery app, lost pet notification, community pet alerts",
   alternates: { canonical: "https://hushku.app/lost-and-found" },
   openGraph: {
-    title: "Lost & Found Pets App | Report Missing Pets & Alert Your Community — Hushku",
-    description: "Report a lost or found pet on Hushku and instantly alert pet owners in your area. Community-powered lost pet alerts with location radius notifications. Free on iOS & Android.",
+    title: "Lost & Found Pets App | Report a Missing Dog or Cat — Hushku",
+    description: "Report a lost or found pet and instantly alert your neighbourhood. Community-powered GPS alerts. 1 in 3 pets are lost in their lifetime — the first 2 hours are critical.",
     type: "website",
     url: "https://hushku.app/lost-and-found",
-    images: [{ url: "https://hushku.app/screenshots/app-lost-found.png", width: 1200, height: 630, alt: "Hushku Lost & Found Pets App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-lost-found.png", width: 1200, height: 630, alt: "Hushku Lost & Found Pets App — instant community alerts" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lost & Found Pets App | Report Missing Pets & Alert Your Community — Hushku",
-    description: "Report a lost or found pet on Hushku and instantly alert pet owners in your area. Community-powered lost pet alerts with location radius notifications. Free on iOS & Android.",
+    title: "Lost & Found Pets App | Report a Missing Dog or Cat — Hushku",
+    description: "Report a lost or found pet and instantly alert your neighbourhood. Community-powered GPS alerts. 1 in 3 pets are lost in their lifetime — the first 2 hours are critical.",
     images: ["https://hushku.app/screenshots/app-lost-found.png"],
   },
 };
@@ -55,11 +56,13 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How quickly do lost pet alerts go out?", a: "Instantly. The moment you submit a lost pet report and hit publish, Hushku sends push notifications to all users within your chosen radius. There's no moderation delay — the alert goes live immediately." },
-  { q: "How far do lost pet alerts reach?", a: "You choose the radius when you submit your report — options range from 1 km to 25 km. You can expand the radius if the initial search doesn't produce results. Alerts only go to users whose location overlaps with your chosen search area." },
-  { q: "What happens if someone finds my pet?", a: "Anyone who finds a pet can submit a \"Found Pet\" report in the app. Hushku cross-references it against active missing reports and notifies you if there's a location and description match. You can then contact the finder directly through in-app messaging." },
-  { q: "Is my contact information shared publicly?", a: "Only the contact details you choose to include in your report are visible to other users. You can opt to receive contact via in-app messaging only, which means other users can reach you without you sharing a phone number or email address." },
-  { q: "How long do reports stay active?", a: "Active lost pet reports stay live until you mark them as found or manually close them. Found pet reports are automatically deleted 90 days after the pet is marked as reunited." },
+  { q: "How quickly do lost pet alerts go out?", a: "Instantly. The moment you submit a lost pet report and hit publish, Hushku sends push notifications to all users within your chosen radius. There is no moderation delay — the alert goes live immediately. Recovery rates for lost pets drop dramatically after the first two hours, which is why instant alerting is the most important feature in any lost pet tool." },
+  { q: "How far do lost pet alerts reach?", a: "You choose the radius when you submit your report — options range from 1 km to 25 km. You can expand the radius if the initial search doesn't produce results. Alerts only reach users whose GPS location overlaps with your chosen search area, keeping alerts relevant rather than spam. For a dog who has bolted on a walk, start with 3–5 km. For a cat who has gone missing from home, 1–2 km is usually appropriate — most lost cats are found within 400 metres of their home." },
+  { q: "What should I do immediately when my dog or cat goes missing?", a: "Act in the first two hours: (1) report immediately on Hushku to trigger neighbourhood alerts; (2) check inside your home thoroughly — cats especially hide in tiny spaces when frightened; (3) walk the immediate area calling their name calmly (avoid panicked shouting, which can cause fearful animals to hide); (4) contact your local council's dog warden and all nearby veterinary clinics in case your pet is brought in; (5) check local Facebook community groups; (6) if microchipped, contact the microchip database to flag your pet as missing. A microchip dramatically increases the chance of reunification — in the UK, microchipping has been legally required for dogs since 2016." },
+  { q: "What happens if someone finds my pet?", a: "Anyone who finds a pet can submit a Found Pet report in the app. Hushku automatically cross-references it against active missing reports by location and species and notifies you if there is a match. You can then contact the finder directly through in-app encrypted messaging — without sharing your personal phone number." },
+  { q: "Is my contact information shared publicly?", a: "Only the details you choose to include in your report are visible. You can opt to receive all contact via in-app messaging only, meaning other users can reach you without you ever sharing a phone number or email address publicly." },
+  { q: "What information should I include in a lost pet report?", a: "The more detail, the faster the resolution. Include: clear recent photos from multiple angles, your pet's species and breed, age, sex, and whether desexed, distinctive markings or features (unusual colouring, scars, collar colour), microchip number if known, the last-seen location and time, and any context (escaped through a fence, bolted from a car, slipped collar). If your pet has a medical condition requiring regular medication — such as diabetes requiring insulin or epilepsy requiring phenobarbitone — include this so any finder knows urgency." },
+  { q: "How long do reports stay active?", a: "Active lost pet reports stay live until you mark them as found or manually close them. Found pet reports are automatically archived 90 days after the pet is marked as reunited. You will receive a reminder to close the report once your pet is home safe." },
 ];
 
 const relatedResources = [

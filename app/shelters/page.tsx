@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Animal Shelters & Rescue Centres | Find & Support Local Shelters — Hushku",
-  description: "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly. Free on iOS & Android.",
+  title: "Animal Shelters Near Me | Find Verified Rescue Centres & Adoptable Pets — Hushku",
+  description: "Find verified animal shelters and rescue centres near you on Hushku. Browse adoptable dogs, cats, and small animals, request admission, and connect directly with shelters — all from your phone. Free on iOS & Android.",
+  keywords: "animal shelters near me, rescue centres near me, dog shelter near me, cat rescue near me, find animal shelter, adoptable pets near me, shelter dog adoption, rescue cat adoption, animal rescue app",
   alternates: { canonical: "https://hushku.app/shelters" },
   openGraph: {
-    title: "Animal Shelters & Rescue Centres | Find & Support Local Shelters — Hushku",
-    description: "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly. Free on iOS & Android.",
+    title: "Animal Shelters Near Me | Find Verified Rescue Centres & Adoptable Pets — Hushku",
+    description: "Find verified animal shelters and rescue centres near you. Browse adoptable dogs, cats, and small animals. Request admission directly through the app.",
     type: "website",
     url: "https://hushku.app/shelters",
-    images: [{ url: "https://hushku.app/screenshots/app-shelters.png", width: 1200, height: 630, alt: "Hushku Animal Shelters App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-shelters.png", width: 1200, height: 630, alt: "Hushku Animal Shelters App — find verified rescue centres near you" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Animal Shelters & Rescue Centres | Find & Support Local Shelters — Hushku",
-    description: "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly. Free on iOS & Android.",
+    title: "Animal Shelters Near Me | Find Verified Rescue Centres & Adoptable Pets — Hushku",
+    description: "Find verified animal shelters and rescue centres near you. Browse adoptable dogs, cats, and small animals. Request admission directly through the app.",
     images: ["https://hushku.app/screenshots/app-shelters.png"],
   },
 };
@@ -55,11 +56,12 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How do I find shelters near me?", a: "Open the Shelters tab in Hushku and allow location access. You'll see verified shelters sorted by distance. You can also search by postcode, city, or shelter name. Each listing shows the shelter's address, available pets, and contact options." },
-  { q: "Are all shelters on Hushku verified?", a: "Yes. Every shelter and rescue organisation goes through a verification process before their listing goes live. We check registered charity or business status, operating licences, and animal welfare compliance. Verified organisations display a checkmark badge on their profile." },
-  { q: "Can I apply to adopt directly through the app?", a: "Yes. When you find a pet you'd like to adopt, tap \"Request Adoption\" on their listing. Your adopter profile is sent to the shelter instantly. You can track the status of your application and communicate with the shelter via in-app messaging without sharing personal contact details." },
-  { q: "How does the shelter dashboard work?", a: "Shelters sign up through a dedicated portal on Hushku. Once verified, they get access to a dashboard where they can add and update pet listings, receive and manage adoption enquiries, and communicate with potential adopters — all in one place." },
-  { q: "Can I foster a pet through Hushku?", a: "Yes. Many shelters on Hushku offer fostering as well as adoption. You can filter listings to show fostering opportunities. The request process is the same — submit your profile, chat with the shelter, and arrange the handover through the app." },
+  { q: "How do I find animal shelters near me?", a: "Open the Shelters tab in Hushku and allow location access. You will see verified shelters and rescue centres sorted by distance from your current location. You can also search by postcode, city name, or shelter name. Each listing shows the shelter's address, species they house, available pets, adoption policies, and direct contact options — all in one place without needing to visit multiple websites." },
+  { q: "Are all shelters on Hushku verified?", a: "Yes. Every shelter and rescue organisation goes through a verification process before their listing goes live. We check registered charity or non-profit status, operating licences, and animal welfare compliance — including alignment with the Five Freedoms of animal welfare established by the Farm Animal Welfare Council. Verified organisations display a checkmark badge on their profile." },
+  { q: "What is the difference between a shelter and a rescue on Hushku?", a: "Animal shelters are typically local government-operated or council-contracted facilities that accept stray and surrendered animals. Rescue organisations are usually volunteer-run charities that pull animals from shelters, operate foster networks, and often specialise by species or breed — such as Greyhound rescues, brachycephalic breed rescues, or senior cat rescues. Both are listed on Hushku, clearly labelled, and both go through the same verification process." },
+  { q: "Can I apply to adopt directly through the app?", a: "Yes. When you find a pet you would like to adopt, tap Request Adoption on their listing. Your adopter profile is sent to the shelter instantly. You can track the status of your application and communicate with the shelter via in-app messaging without sharing personal contact details until you choose to. Most shelters respond within 24–72 hours." },
+  { q: "How does the shelter dashboard work?", a: "Shelters sign up through a dedicated portal. Once verified, they get access to a dashboard where they can add and update pet listings with photos and full profiles, receive and manage adoption and fostering enquiries, respond to applicants via in-app messaging, and update availability when a pet is rehomed. It replaces the fragmented mix of spreadsheets, email chains, and Facebook posts that most small rescues currently rely on." },
+  { q: "Can I foster a pet through Hushku?", a: "Yes. Many shelters on Hushku offer fostering as well as adoption — fostering is particularly critical during kitten season (spring–summer) when shelters face capacity overflow. You can filter listings to show fostering opportunities specifically. The process is the same as adoption: submit your profile, communicate with the shelter via in-app chat, and arrange the handover. Foster care guides and support resources are available in the app." },
 ];
 
 const relatedResources = [

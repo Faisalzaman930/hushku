@@ -6,20 +6,21 @@ import PhoneFrame from "../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Social Media App | Share Your Pet's Life — Hushku",
-  description: "Hushku's pet social feed puts your neighborhood first. Share photos, discover local pet owners, join breed groups, and build a real community — not a global algorithm. Free on iOS & Android.",
+  title: "Pet Social Media App | Neighbourhood-First Dog & Cat Community — Hushku",
+  description: "Hushku's pet social feed puts your neighbourhood first. Share dog and cat photos, discover local pet owners, join breed-specific groups, and build a real local community — not a global algorithm. Free on iOS & Android.",
+  keywords: "pet social media app, dog social network, cat community app, pet photo sharing app, local dog owners app, breed groups app, pet community near me, dog instagram alternative, pet owner network",
   alternates: { canonical: "https://hushku.app/social" },
   openGraph: {
-    title: "Pet Social Media App | Share Your Pet's Life — Hushku",
-    description: "A neighborhood-first pet social feed. Discover local owners, share your pet's story, and build a real community around the pets you'll actually meet.",
+    title: "Pet Social Media App | Neighbourhood-First Dog & Cat Community — Hushku",
+    description: "A neighbourhood-first pet social feed. Discover local dog and cat owners, share your pet's story, join breed groups, and build a real community around pets you'll actually meet.",
     type: "website",
     url: "https://hushku.app/social",
-    images: [{ url: "https://hushku.app/screenshots/app-social-feed.png", width: 1200, height: 630, alt: "Hushku Pet Social Media App" }],
+    images: [{ url: "https://hushku.app/screenshots/app-social-feed.png", width: 1200, height: 630, alt: "Hushku Pet Social Feed — neighbourhood-first dog and cat community" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Social Media App | Share Your Pet's Life — Hushku",
-    description: "A neighborhood-first pet social feed. Discover local owners, share your pet's story, and build a real community around the pets you'll actually meet.",
+    title: "Pet Social Media App | Neighbourhood-First Dog & Cat Community — Hushku",
+    description: "A neighbourhood-first pet social feed. Discover local dog and cat owners, share your pet's story, join breed groups, and build a real community around pets you'll actually meet.",
     images: ["https://hushku.app/screenshots/app-social-feed.png"],
   },
 };
@@ -55,11 +56,12 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "How is Hushku's social feed different from Instagram or TikTok?", a: "The key difference is the neighborhood-first algorithm. Instagram and TikTok prioritize content from accounts with large followings regardless of location. Hushku's feed is radius-based — you see the pets that live near you first. This means your engagement builds a local community you can actually interact with in real life, not just online." },
-  { q: "Is there a public or private option for pet profiles?", a: "Yes. You can set your pet's profile to fully public (visible to anyone on the platform), local-only (visible only to users within your chosen radius), or friends-only (visible only to accounts you follow back). Your personal information is always separate from your pet's public profile." },
-  { q: "Are there breed-specific groups?", a: "Yes. Hushku has groups for hundreds of breeds as well as mix-type groups (e.g., 'Doodle Mixes', 'Rescue Mutts'). Groups include discussion boards, photo sharing, health Q&As, and member-organized local meetups. Any user can request a new group if their breed isn't listed." },
-  { q: "Can I sell pet products on the social feed?", a: "Not currently. The social feed is community-first — no vendor listings, no sponsored posts, no selling in the feed. A marketplace feature is in development for a future app update, but it will be a separate section rather than integrated into the social feed to keep it clean." },
-  { q: "What content moderation does Hushku have?", a: "All posts go through automated content filtering for prohibited material (animal cruelty, graphic content, spam). Users can report any post or profile. Verified moderators review reports within 24 hours. Accounts with multiple verified reports are suspended pending review. Verified users have stricter accountability than unverified ones." },
+  { q: "How is Hushku's social feed different from Instagram or TikTok?", a: "The core difference is the neighbourhood-first algorithm. Instagram and TikTok prioritise content from high-follower accounts regardless of geography — by 2024, average organic reach for pet accounts had dropped to under 2%. Hushku's feed is GPS radius-based: you see pets that live near you first. Your engagement builds a local community you can interact with in real life — the dog owners you will see at the park, the cat whose owner lives two streets over. No viral fame required to be seen by the people who matter." },
+  { q: "Is there a public or private option for pet profiles?", a: "Yes. You can set your pet's profile to fully public (visible to all platform users), local-only (visible only to users within your chosen radius), or friends-only (visible only to accounts you follow back). Your personal information — full name, address, phone number — is always completely separate from your pet's public profile." },
+  { q: "Are there breed-specific groups?", a: "Yes. Hushku has groups for hundreds of breeds — including popular breeds like Labrador Retrievers, French Bulldogs, Golden Retrievers, Cockapoos, Border Collies, Bengal cats, and British Shorthairs — as well as mix-type groups such as Doodle Mixes and Rescue Mutts. Groups include discussion boards, photo sharing, health Q&As moderated by breed experts, and member-organised local meetups. Any user can request a new group if their breed or mix is not yet listed." },
+  { q: "Can I use the social feed to find playdates?", a: "Yes — the social feed and the playdate matching feature are integrated. You can follow local pet owners through the feed and then send a structured playdate request through the Playdates feature when you find a compatible match. Many owners use the feed to get a sense of a dog's personality and energy level before committing to a formal playdate request." },
+  { q: "Can I sell pet products on the social feed?", a: "Not currently. The social feed is community-first — no vendor listings, no sponsored posts, no selling in the feed. A marketplace feature is in development for a future update, but it will be a separate dedicated section rather than integrated into the social feed." },
+  { q: "What content moderation does Hushku have?", a: "All posts go through automated content filtering for prohibited material including animal cruelty content, graphic violence, and spam. Users can report any post or profile. Verified moderators review reports within 24 hours. Accounts with multiple verified reports are suspended pending review. Hushku has a zero-tolerance policy for any content depicting animal abuse or neglect — such reports are escalated to the relevant animal welfare authorities as well as being removed from the platform." },
 ];
 
 const relatedResources = [

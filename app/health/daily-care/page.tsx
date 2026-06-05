@@ -6,20 +6,21 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Daily Pet Care Tracker | Log Fed, Watered & Poop — Hushku",
-  description: "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap. Daily progress bar shows care completion at a glance. Free on iOS & Android.",
+  title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
+  description: "Track your dog or cat's daily care with Hushku. One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Daily progress bar included. Free on iOS & Android.",
+  keywords: "daily pet care tracker, dog feeding tracker, cat feeding log, pet water intake tracker, dog bowel movement log, pet care app, daily dog care, pet routine tracker",
   alternates: { canonical: "https://hushku.app/health/daily-care" },
   openGraph: {
-    title: "Daily Pet Care Tracker | Log Fed, Watered & Poop — Hushku",
-    description: "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap. Daily progress bar shows care completion at a glance. Free on iOS & Android.",
+    title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
+    description: "One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/daily-care",
     images: [{ url: "https://hushku.app/screenshots/app-daily-care.png", width: 1200, height: 630, alt: "Hushku Daily Pet Care Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daily Pet Care Tracker | Log Fed, Watered & Poop — Hushku",
-    description: "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap. Daily progress bar shows care completion at a glance. Free on iOS & Android.",
+    title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
+    description: "One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Free on iOS & Android.",
     images: ["https://hushku.app/screenshots/app-daily-care.png"],
   },
 };
@@ -54,9 +55,10 @@ const howItWorks = [
 ];
 
 const faqs = [
-  { q: "Why should I log my pet's daily care?", a: "Daily care logs help you spot patterns and irregularities early. A missed meal, reduced water intake, or change in bowel habits are often the first signs of illness. Having a log means you can give your vet accurate information instead of guessing." },
-  { q: "Does the daily care tracker reset each day?", a: "Yes. Each day starts fresh at midnight. Your previous logs are saved in history so you can look back at any date." },
-  { q: "Can I log care for multiple pets?", a: "Yes. Each pet has its own Today Dashboard. Switch between pets from the home screen to log care for each one separately." },
+  { q: "Why should I log my dog or cat's daily care?", a: "Daily care logs help you spot patterns and irregularities early — often before clinical symptoms develop. A missed meal, reduced water intake, or change in bowel habit frequency or consistency are frequently the first signs of conditions including gastrointestinal illness, dental pain, kidney disease, or diabetes. Veterinarians consistently report that owners who track daily habits can provide far more useful clinical history than those who estimate from memory. 'She seems to be eating less lately' is much less useful than 'she has eaten 60–70% of her usual portion for the past 5 days.'" },
+  { q: "What does normal bowel movement frequency look like for dogs and cats?", a: "Most healthy adult dogs defecate 1–3 times per day, typically within 30 minutes of eating due to the gastrocolic reflex. Puppies and dogs on high-fibre diets may go more frequently. Adult cats typically defecate once per day. Fewer than once per day for more than 48–72 hours (constipation) or more than 4–5 times per day with loose consistency (diarrhoea) are both worth monitoring and discussing with your vet if persistent." },
+  { q: "Does the daily care tracker reset each day?", a: "Yes. Each day starts fresh at midnight local time. All previous logs are saved in your history — you can review any past date to see exactly what was logged and when." },
+  { q: "Can I log care for multiple pets?", a: "Yes. Each pet has its own Today Dashboard and independent care log. Switch between pets from the home screen to log care for each one separately. Households with multiple dogs, cats, or mixed species can track all of them from a single account." },
   { q: "Is the daily care tracker free?", a: "Yes, completely free. No subscription required." },
 ];
 

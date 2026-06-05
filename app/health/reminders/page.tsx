@@ -6,8 +6,9 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders — Hushku",
-  description: "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more. Push notifications straight to your phone. Free on iOS & Android.",
+  title: "Pet Care Reminders App | Dog & Cat Medication, Vaccination & Vet Reminders — Hushku",
+  description: "Never miss a pet care task. Set recurring push notification reminders for dog and cat medication, vaccinations, vet appointments, flea treatment, feeding, and walks. Free on iOS & Android.",
+  keywords: "pet care reminders app, dog medication reminder, cat vaccination reminder, vet appointment reminder app, pet reminder app, flea treatment reminder, dog care schedule, pet health reminders",
   alternates: { canonical: "https://hushku.app/health/reminders" },
   openGraph: {
     title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders — Hushku",

@@ -6,8 +6,9 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More — Hushku",
-  description: "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure health wallet. Free on iOS & Android.",
+  title: "Pet Health Records App | Digital Vaccination Certificates, Vet Visits & Medication Logs — Hushku",
+  description: "Store your dog or cat's health records digitally. Upload vaccination certificates with batch numbers, log vet visits, track medications with dosage history, and store blood test results. Shareable with any vet. Free on iOS & Android.",
+  keywords: "pet health records app, dog vaccination records, cat vaccination certificate, pet medical records app, vet visit log, pet medication tracker, digital pet health wallet, pet health history",
   alternates: { canonical: "https://hushku.app/health/records" },
   openGraph: {
     title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More — Hushku",

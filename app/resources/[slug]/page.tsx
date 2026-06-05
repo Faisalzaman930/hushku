@@ -157,21 +157,21 @@ function buildArticleSchema(item: { title: string; seoDescription: string; publi
     "author": {
       "@type": "Organization",
       "name": "Hushku Editorial Team",
-      "url": "https://hushku.co/resources#editorial-standards",
+      "url": "https://hushku.app/resources#editorial-standards",
     },
     "publisher": {
       "@type": "Organization",
       "name": "Hushku",
-      "url": "https://hushku.co",
-      "logo": { "@type": "ImageObject", "url": "https://hushku.co/hushku-logo.png" },
+      "url": "https://hushku.app",
+      "logo": { "@type": "ImageObject", "url": "https://hushku.app/icon.svg" },
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://hushku.co/resources/${item.slug}` },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://hushku.app/resources/${item.slug}` },
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hushku.co" },
-        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://hushku.co/resources" },
-        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://hushku.co/resources/${item.slug}` },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hushku.app" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://hushku.app/resources" },
+        { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://hushku.app/resources/${item.slug}` },
       ],
     },
   };

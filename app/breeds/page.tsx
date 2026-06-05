@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Dog & Cat Breed Directory | Hushku Hub",
   description:
     "Browse 391 dog breeds and counting — full stats on size, temperament, trainability, health, and more. Free breed guides for every pet owner.",
-  alternates: { canonical: "https://hushku.co/breeds" },
+  alternates: { canonical: "https://hushku.app/breeds" },
 };
 
 export default function BreedsHubPage() {

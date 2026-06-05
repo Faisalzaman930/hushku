@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Free Pet Templates: Contracts, Records & Forms | Hushku Hub",
   description:
     "Free, editable pet templates for every situation — custody agreements, adoption contracts, vaccination records, pet sitting invoices, lost pet posters, and more. Download instantly in PDF, Word, or Google Docs.",
-  alternates: { canonical: "https://hushku.co/templates" },
+  alternates: { canonical: "https://hushku.app/templates" },
 };
 
 const CAT_ICONS: Record<string, string> = {

@@ -212,12 +212,12 @@ function CollectionPageSchema({ items }: { items: ResourceCard[] }) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Pet Care Resource Library",
-    "url": "https://hushku.co/resources",
+    "url": "https://hushku.app/resources",
     "publisher": { "@type": "Organization", "name": "Hushku" },
     "hasPart": items.map(item => ({
       "@type": "Article",
       "name": item.title,
-      "url": `https://hushku.co/resources/${item.slug}`,
+      "url": `https://hushku.app/resources/${item.slug}`,
     })),
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;

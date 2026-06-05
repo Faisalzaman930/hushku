@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Hushku.",
   // Item 8: canonical prevents thin-page dilution from any query-string variants
   alternates: {
-    canonical: "https://hushku.co/resources",
+    canonical: "https://hushku.app/resources",
   },
   openGraph: {
     title: "Pet Care Resources: Guides, How-Tos & Breed Profiles | Hushku",
     description: "Evidence-based pet care guides, how-tos, breed profiles, and symptom references — reviewed by vets. Free library from Hushku.",
     type: "website",
-    url: "https://hushku.co/resources",
+    url: "https://hushku.app/resources",
   },
   twitter: {
     card: "summary_large_image",

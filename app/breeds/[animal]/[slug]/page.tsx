@@ -29,12 +29,50 @@ export async function generateMetadata({
   const isCat = breed.animal === "cats";
   const cat = isCat ? (breed as CatBreedDoc) : null;
   const dog = !isCat ? (breed as BreedDoc) : null;
+
   const lifeStr = breed.lifeSpan ? ` Life expectancy: ${breed.lifeSpan}.` : "";
   const sizeStr = dog?.size ? ` Size: ${dog.size}.` : cat?.origin ? ` Origin: ${cat.origin}.` : "";
+  const parentStr = dog?.parentBreeds ? ` A cross between the ${dog.parentBreeds}.` : "";
+  const weightStr = dog?.weight ? ` Weight: ${dog.weight}.` : cat?.weight ? ` Weight: ${cat.weight}.` : "";
+
+  const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
+  const ogImage = breed.image
+    ? `https://hushku.app${breed.image}`
+    : `https://hushku.app/screenshots/app-playdates.png`;
+
+  const title = `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide: Temperament, Size, Care & Health | Hushku`;
+  const description = `Complete ${breed.name} breed guide.${parentStr}${sizeStr}${weightStr}${lifeStr} Temperament scores, grooming needs, training tips, health info & FAQs — by Hushku.`;
+
   return {
-    title: `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide — Temperament, Size & Care | Hushku`,
-    description: `Complete ${breed.name} breed guide.${sizeStr}${lifeStr} Temperament scores, grooming needs, care tips & FAQs.`,
-    alternates: { canonical: `https://hushku.co/breeds/${animal}/${slug}` },
+    title: { absolute: title },
+    description,
+    keywords: [
+      `${breed.name}`,
+      `${breed.name} ${isCat ? "cat" : "dog"} breed`,
+      `${breed.name} temperament`,
+      `${breed.name} size`,
+      `${breed.name} care`,
+      `${breed.name} grooming`,
+      `${breed.name} health`,
+      `${breed.name} lifespan`,
+      ...(dog?.parentBreeds ? [`${breed.name} mix`, `${dog.parentBreeds} mix`] : []),
+      `${animalLabel} breeds`,
+    ],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: canonicalUrl,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${breed.name} ${isCat ? "cat" : "dog"} breed guide` }],
+      siteName: "Hushku",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -117,7 +155,10 @@ export default async function BreedPage({
 
   // JSON-LD
   const faqs = content?.faqs ?? catFaqs;
-  const faqSchema = {
+  const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
+  const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/screenshots/app-playdates.png`;
+
+  const faqSchema = faqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map((f) => ({
@@ -125,15 +166,29 @@ export default async function BreedPage({
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
+  } : null;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide: Temperament, Size, Care & Health`,
+    description: `Complete guide to the ${breed.name} — temperament, size, grooming, training, health, and suitability.`,
+    image: ogImage,
+    url: canonicalUrl,
+    dateModified: today,
+    author: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+    publisher: { "@type": "Organization", name: "Hushku", url: "https://hushku.app", logo: { "@type": "ImageObject", url: "https://hushku.app/icon.svg" } },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
   };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.co" },
-      { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.co/breeds" },
-      { "@type": "ListItem", position: 3, name: animalLabel, item: `https://hushku.co/breeds/${animal}` },
-      { "@type": "ListItem", position: 4, name: breed.name, item: `https://hushku.co/breeds/${animal}/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+      { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.app/breeds" },
+      { "@type": "ListItem", position: 3, name: animalLabel, item: `https://hushku.app/breeds/${animal}` },
+      { "@type": "ListItem", position: 4, name: breed.name, item: canonicalUrl },
     ],
   };
 
@@ -154,7 +209,8 @@ export default async function BreedPage({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <div className="bg-white">

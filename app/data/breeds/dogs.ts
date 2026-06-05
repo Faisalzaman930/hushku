@@ -6,7 +6,7 @@ export const dogs: BreedDoc[] = [
     name: "Afador",
     animal: "dogs",
     group: "Mixed Breed Dogs",
-    size: "Very Large",
+    size: "Large",
     height: "20 to 29 inches",
     heightCm: 62.23,
     weight: "50 to 75 pounds",
@@ -14,6 +14,8 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/afador.jpg",
+    origin: "United States",
+    parentBreeds: "Afghan Hound and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,

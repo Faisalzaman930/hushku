@@ -58,6 +58,8 @@ export interface BreedDoc {
   lifeSpanYears: number | null;
   image: string | null;
   scores: BreedScores;
+  origin?: string;
+  parentBreeds?: string;
 }
 
 export interface CatBreedDoc {

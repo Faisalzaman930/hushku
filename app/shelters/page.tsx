@@ -70,13 +70,26 @@ const relatedResources = [
   { slug: "complete-guide-to-puppy-care", title: "The Complete Guide to Puppy Care", type: "Complete Guide" },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Hushku Shelters — Find Verified Animal Shelters & Rescue Centres Near You",
-  "description": "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly.",
-  "url": "https://hushku.app/shelters",
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hushku Shelters — Find Verified Animal Shelters & Rescue Centres Near You",
+    "description": "Discover verified animal shelters and rescue centres near you on Hushku. Browse adoptable pets, request admission, and connect with shelters directly.",
+    "url": "https://hushku.app/shelters",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hushku — Animal Shelter Finder",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "LifestyleApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Find verified animal shelters and rescue centres near you. Browse adoptable dogs, cats and small animals. Submit admission requests directly through the app.",
+    "featureList": ["Verified shelter listings", "Live adoptable pet listings", "Species and breed filters", "In-app admission requests", "Shelter dashboard for organisations"],
+    "url": "https://hushku.app/shelters",
+  },
+];
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -91,7 +104,9 @@ const faqSchema = {
 export default function SheltersPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {jsonLd.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">
@@ -107,9 +122,17 @@ export default function SheltersPage() {
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
                   Animal <span className="text-green-600">Shelters.</span><br />Find &amp; Connect.<br />Near You.
                 </h1>
-                <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Browse verified animal shelters and rescue centres near you. Connect directly, explore adoptable pets, and make a difference — all from one app.
+                <p className="text-lg text-slate-gray leading-relaxed max-w-lg">
+                  Hushku Shelters is a free animal shelter finder available globally on iOS and Android. It maps verified shelters and rescue centres near you, shows their live adoptable pet listings, and lets you submit admission requests directly — no phone tag, no email chains.
                 </p>
+                <div className="bg-white border border-green-100 rounded-2xl px-5 py-4 max-w-lg">
+                  <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">What Hushku Shelters Does</p>
+                  <ul className="space-y-1.5">
+                    {["Find verified shelters and rescues near you globally", "Browse live adoptable dog, cat & small animal listings", "Filter by species, breed, age & size", "Submit admission or foster requests in-app", "Shelters manage listings via dedicated dashboard"].map(item => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-slate-gray"><span className="text-brand-start font-black">›</span>{item}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="flex flex-wrap gap-4">
                   {[{ v: "Verified", l: "Shelters Only" }, { v: "Live", l: "Pet Listings" }, { v: "Direct", l: "Admission Requests" }].map(s => (
                     <div key={s.v} className="bg-white border border-green-100 rounded-2xl px-5 py-3 text-center shadow-sm">
@@ -138,7 +161,7 @@ export default function SheltersPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Shelters, Simplified</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How to Find Animal Shelters Near You</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((b) => (
@@ -157,7 +180,7 @@ export default function SheltersPage() {
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Process</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Search. Connect. Adopt.</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How to Adopt from a Shelter on Hushku</h2>
             </div>
             <div className="space-y-6">
               {howItWorks.map((step, i) => (
@@ -170,6 +193,35 @@ export default function SheltersPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* WHY SHELTER ADOPTION MATTERS */}
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Impact</p>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">Why Shelters Need Better Technology</h2>
+              <p className="text-lg text-slate-gray leading-relaxed max-w-2xl mx-auto">
+                The <strong>ASPCA</strong> estimates that approximately 6.5 million animals enter US shelters every year. Around 920,000 are euthanised annually — not because they are unadoptable, but because shelters lack the digital infrastructure to connect them with the right families quickly enough. Most rescues still manage enquiries through email threads, paper forms, and Facebook posts. Hushku gives every shelter a real-time digital presence and a direct channel to adopters.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                { stat: "6.5M", label: "Animals enter US shelters annually", source: "ASPCA" },
+                { stat: "920,000", label: "Euthanised each year due to capacity and logistics", source: "ASPCA" },
+                { stat: "3×", label: "Faster adoption when listings are digital and searchable", source: "Maddie's Fund Research" },
+              ].map(({ stat, label, source }) => (
+                <div key={stat} className="bg-gray-50 rounded-3xl p-6 border border-gray-100 text-center">
+                  <p className="text-3xl font-black text-brand-start mb-2">{stat}</p>
+                  <p className="text-sm text-ebony font-bold mb-1">{label}</p>
+                  <p className="text-[10px] text-slate-gray uppercase tracking-widest">Source: {source}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-slate-gray leading-relaxed max-w-2xl mx-auto text-center">
+              Finding the right shelter is only the first step. Once you have adopted, <Link href="/health" className="text-brand-start font-bold hover:underline">Hushku's health tracker</Link> stores your new pet's vaccination records and medication history — and <Link href="/playdates" className="text-brand-start font-bold hover:underline">playdate matching</Link> helps newly adopted dogs build confidence through structured one-on-one socialisation. If you are not ready to adopt, <Link href="/fostering" className="text-brand-start font-bold hover:underline">fostering</Link> is available through many shelters on the platform.
+            </p>
           </div>
         </section>
 

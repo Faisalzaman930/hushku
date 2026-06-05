@@ -115,9 +115,17 @@ export default function AdoptionPage() {
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
                   Pet Adoption.<br />Find Their<br /><span className="text-amber-600">Forever.</span>
                 </h1>
-                <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Hushku connects you directly with verified rescues. Browse real listings, submit paperless applications, and bring your next best friend home — all from your phone.
+                <p className="text-lg text-slate-gray leading-relaxed max-w-lg">
+                  Hushku is a free pet adoption app available globally on iOS and Android. It connects adopters directly with verified shelters and rescue organisations — no PDFs, no email chains, no weeks of waiting. Browse real listings, apply in one tap, and bring your next best friend home.
                 </p>
+                <div className="bg-white border border-amber-100 rounded-2xl px-5 py-4 max-w-lg">
+                  <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">What Hushku Adoption Does</p>
+                  <ul className="space-y-1.5">
+                    {["Browse verified shelters and rescues globally", "One-tap paperless adoption applications", "Real-time application status tracking", "Direct in-app messaging with rescues", "Digital health records transfer on adoption"].map(item => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-slate-gray"><span className="text-brand-start font-black">›</span>{item}</li>
+                    ))}
+                  </ul>
+                </div>
                 <DownloadButtons />
               </div>
               {/* Phone screenshot */}
@@ -138,7 +146,7 @@ export default function AdoptionPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Adoption Without the Paperwork</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How Does Pet Adoption Work on Hushku?</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((b) => (
@@ -157,7 +165,7 @@ export default function AdoptionPage() {
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Process</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">From Browse to Bringing Home</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How to Adopt a Dog or Cat in 4 Steps</h2>
             </div>
             <div className="space-y-6">
               {howItWorks.map((step, i) => (
@@ -174,6 +182,35 @@ export default function AdoptionPage() {
         </section>
 
         {/* FAQ */}
+        {/* WHY SHELTER ADOPTION MATTERS */}
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Impact</p>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">Why Adopting from a Rescue Matters</h2>
+              <p className="text-lg text-slate-gray leading-relaxed max-w-2xl mx-auto">
+                Approximately <strong>920,000 shelter animals are euthanised in the United States every year</strong>, according to the ASPCA — not because they are unadoptable, but because the logistics of connecting them with approved adopters remain broken. The average traditional adoption process takes 3–6 weeks and involves multiple PDF forms, unreturned phone calls, and in-person visits that require time off work. Hushku replaces that entire process with a mobile-first, paperless flow that reduces adoption time to days.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                { stat: "920,000", label: "Animals euthanised in US shelters annually", source: "ASPCA" },
+                { stat: "3–6 weeks", label: "Average traditional adoption timeline", source: "Shelter Research" },
+                { stat: "25%", label: "Of adopted pets come from shelters or rescues", source: "APPA" },
+              ].map(({ stat, label, source }) => (
+                <div key={stat} className="bg-gray-50 rounded-3xl p-6 border border-gray-100 text-center">
+                  <p className="text-3xl font-black text-brand-start mb-2">{stat}</p>
+                  <p className="text-sm text-ebony font-bold mb-1">{label}</p>
+                  <p className="text-[10px] text-slate-gray uppercase tracking-widest">Source: {source}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-slate-gray leading-relaxed max-w-2xl mx-auto text-center">
+              Every adoption reduces shelter overcrowding and creates space for another animal in need. Once you have adopted, <Link href="/health" className="text-brand-start font-bold hover:underline">Hushku's health tracker</Link> stores your new pet's vaccination records, vet visit history, and medication logs — and <Link href="/playdates" className="text-brand-start font-bold hover:underline">playdate matching</Link> helps newly adopted dogs build confidence through structured socialisation with compatible companions.
+            </p>
+          </div>
+        </section>
+
         <FaqAccordion faqs={faqs} title="Adoption Questions Answered" />
 
         {/* RELATED RESOURCES */}

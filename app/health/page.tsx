@@ -79,13 +79,26 @@ const faqs = [
   { q: "Can I share health records with my vet?", a: "Yes. From the Health Records screen, you can export or share your pet's complete health history as a PDF or via a shareable link. This includes vaccination records with batch numbers and expiry dates, vet visit summaries, medication logs with dosage history, uploaded documents, and weight trend charts. Having this data at your vet appointment eliminates the common situation where a re-vaccination is administered unnecessarily because the original record can't be found." },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Pet Health & Care Tracker App — Hushku",
-  "description": "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more.",
-  "url": "https://hushku.app/health",
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pet Health & Care Tracker App — Hushku",
+    "description": "Track your pet's health from one place. Hushku's Health & Care suite includes daily care logs, weight tracker, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and more.",
+    "url": "https://hushku.app/health",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hushku — Pet Health & Care Tracker",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "HealthApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Track your dog or cat's health in one place — daily care logs, weight tracking, vaccination records, vet visit history, flea & tick reminders, heat cycle tracker, and medication logs.",
+    "featureList": ["Daily care log", "Weight tracker", "Vaccination records", "Vet visit history", "Flea & tick reminders", "Heat cycle tracker", "Medication log"],
+    "url": "https://hushku.app/health",
+  },
+];
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -100,7 +113,9 @@ const faqSchema = {
 export default function HealthPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {jsonLd.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="bg-white">
@@ -116,9 +131,17 @@ export default function HealthPage() {
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
                   Pet Health Tracker.<br /><span className="text-emerald-600">All</span><br />In One Place.
                 </h1>
-                <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  From daily fed &amp; watered logs to vaccination records and heat cycle tracking — Hushku's Health &amp; Care suite keeps every detail about your pet's wellbeing in one place.
+                <p className="text-lg text-slate-gray leading-relaxed max-w-lg">
+                  Hushku Health is a free pet health tracking app available globally on iOS and Android. It covers daily care logs, weight tracking, vaccination records, vet visit history, medication logs, flea &amp; tick reminders, and heat cycle tracking — everything in one place, shareable with your vet in one tap.
                 </p>
+                <div className="bg-white border border-emerald-100 rounded-2xl px-5 py-4 max-w-lg">
+                  <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">What Hushku Health Tracks</p>
+                  <ul className="space-y-1.5">
+                    {["Daily care log — fed, watered, bowel movements", "Weight tracker with visual trend graph", "Vaccination records with batch numbers & due dates", "Flea & tick treatment reminders", "Vet visit history & medication logs — shareable as PDF"].map(item => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-slate-gray"><span className="text-brand-start font-black">›</span>{item}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="flex flex-wrap gap-4">
                   {[{ v: "7", l: "Health Trackers" }, { v: "Free", l: "To Use" }, { v: "All Pets", l: "Supported" }].map(s => (
                     <div key={s.v} className="bg-white border border-emerald-100 rounded-2xl px-5 py-3 text-center shadow-sm">
@@ -143,7 +166,7 @@ export default function HealthPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Health & Care Features</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Everything Your Pet's Health Needs</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">What Does Hushku's Pet Health Tracker Include?</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((f) => (
@@ -162,7 +185,7 @@ export default function HealthPage() {
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Process</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Log. Track. Share.</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How to Track Your Pet's Health in Hushku</h2>
             </div>
             <div className="space-y-6">
               {howItWorks.map((step, i) => (
@@ -175,6 +198,35 @@ export default function HealthPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* WHY PET HEALTH TRACKING MATTERS */}
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Evidence</p>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">Why Tracking Your Pet's Health Matters</h2>
+              <p className="text-lg text-slate-gray leading-relaxed max-w-2xl mx-auto">
+                The <strong>Association for Pet Obesity Prevention (APOP)</strong> estimates that over 60% of dogs and 56% of cats in the US are overweight or obese — and the majority of owners do not realise it. Weight gain in pets is gradual and easy to miss without consistent measurement. Similarly, the <strong>American Animal Hospital Association (AAHA)</strong> reports that pets who receive regular preventive care — tracked and scheduled through a health log — live on average 20% longer than those that receive only reactive care.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                { stat: "60%+", label: "Of US dogs are overweight or obese", source: "APOP 2024" },
+                { stat: "20%", label: "Longer lifespan with consistent preventive care", source: "AAHA Research" },
+                { stat: "47%", label: "Of vet visits involve preventable conditions", source: "Banfield Pet Hospital" },
+              ].map(({ stat, label, source }) => (
+                <div key={stat} className="bg-gray-50 rounded-3xl p-6 border border-gray-100 text-center">
+                  <p className="text-3xl font-black text-brand-start mb-2">{stat}</p>
+                  <p className="text-sm text-ebony font-bold mb-1">{label}</p>
+                  <p className="text-[10px] text-slate-gray uppercase tracking-widest">Source: {source}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-slate-gray leading-relaxed max-w-2xl mx-auto text-center">
+              Many of the most serious conditions in dogs and cats — kidney disease, diabetes mellitus, Cushing's disease, and hypothyroidism — are detectable through pattern changes in daily behaviour weeks before clinical symptoms appear. A daily care log that tracks water intake, appetite, and activity creates the early warning system that a vet visit every 12 months cannot. Combine health tracking with <Link href="/playdates" className="text-brand-start font-bold hover:underline">structured socialisation</Link> and <Link href="/lost-and-found" className="text-brand-start font-bold hover:underline">lost pet alerts</Link> for complete peace of mind as a pet owner.
+            </p>
           </div>
         </section>
 

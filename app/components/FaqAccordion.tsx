@@ -33,11 +33,11 @@ export default function FaqAccordion({ faqs, title = "Frequently Asked Questions
                   +
                 </span>
               </button>
-              {open === i && (
+              <div className={`overflow-hidden transition-all duration-300 ${open === i ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
                 <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">
                   {faq.a}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

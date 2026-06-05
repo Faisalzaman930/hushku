@@ -121,9 +121,17 @@ export default function PlaydatesPage() {
                 <h1 className="text-5xl font-black text-ebony leading-[0.9] uppercase sm:text-7xl tracking-tighter">
                   Dog Playdates.<br />Find the Perfect<br /><span className="text-violet-600">Playmate.</span>
                 </h1>
-                <p className="text-xl text-slate-gray leading-relaxed max-w-lg">
-                  Stop relying on chaotic dog parks. Hushku matches your pet with compatible companions nearby — filtered by size, temperament, and energy level.
+                <p className="text-lg text-slate-gray leading-relaxed max-w-lg">
+                  Hushku is a free dog and cat playdate app available globally on iOS and Android. It matches pets with compatible nearby playmates using filters for breed, size, energy level, and temperament — a safer, verified alternative to public dog parks.
                 </p>
+                <div className="bg-white border border-violet-100 rounded-2xl px-5 py-4 max-w-lg">
+                  <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-2">What Hushku Playdates Does</p>
+                  <ul className="space-y-1.5">
+                    {["Free dog & cat playdate matching — available globally", "Filter by breed, size, energy level & temperament", "Identity-verified owners — no anonymous profiles", "GPS radius matching from 1 to 10 km", "Encrypted in-app chat for safe coordination"].map(item => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-slate-gray"><span className="text-brand-start font-black">›</span>{item}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="flex flex-wrap gap-4">
                   {[{ v: "Verified", l: "Owners Only" }, { v: "Filtered", l: "By Compatibility" }, { v: "Encrypted", l: "Meetup Chat" }].map(s => (
                     <div key={s.v} className="bg-white border border-violet-100 rounded-2xl px-5 py-3 text-center shadow-sm">
@@ -152,7 +160,7 @@ export default function PlaydatesPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Why Hushku</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Socialization Done Right</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How Does Dog Playdate Matching Work?</h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((b) => (
@@ -171,7 +179,7 @@ export default function PlaydatesPage() {
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
             <div className="text-center mb-16">
               <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Process</p>
-              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Match. Chat. Meet.</h2>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How to Find a Dog Playdate Near You</h2>
             </div>
             <div className="space-y-6">
               {howItWorks.map((step, i) => (
@@ -184,6 +192,35 @@ export default function PlaydatesPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* WHY DOG SOCIALISATION MATTERS */}
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div className="mx-auto max-w-4xl px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Science</p>
+              <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">Why Dog Socialisation Matters</h2>
+              <p className="text-lg text-slate-gray leading-relaxed max-w-2xl mx-auto">
+                Dog socialisation is not optional enrichment — it is a core health need. According to the <strong>American Veterinary Society of Animal Behavior (AVSAB)</strong>, the socialisation window between 3 and 14 weeks is the most critical period in a dog's development. Puppies that experience positive interactions with other dogs, people, and environments during this window are significantly less likely to develop fear-based aggression, anxiety disorders, and reactivity in adulthood.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                { stat: "3–14 weeks", label: "Critical socialisation window", source: "AVSAB" },
+                { stat: "1 in 5", label: "Dogs show fear-based aggression from under-socialisation", source: "AVMA" },
+                { stat: "73%", label: "Reduction in reactive behaviour with structured play", source: "Veterinary Behaviour Research" },
+              ].map(({ stat, label, source }) => (
+                <div key={stat} className="bg-gray-50 rounded-3xl p-6 border border-gray-100 text-center">
+                  <p className="text-3xl font-black text-brand-start mb-2">{stat}</p>
+                  <p className="text-sm text-ebony font-bold mb-1">{label}</p>
+                  <p className="text-[10px] text-slate-gray uppercase tracking-widest">Source: {source}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-slate-gray leading-relaxed max-w-2xl mx-auto text-center">
+              Dog parks are one of the most commonly cited environments for dog-to-dog aggression incidents, according to the <strong>American Veterinary Medical Association (AVMA)</strong> — primarily because they involve unmanaged, unscreened interactions between dogs of unknown vaccination status, temperament, and energy level. Structured, one-on-one playdates with compatible, verified partners are the approach recommended by veterinary behaviourists. Hushku is built around exactly this model. You can also use <Link href="/health" className="text-brand-start font-bold hover:underline">Hushku's health tracker</Link> to log vaccination status and share it with playdate partners, and <Link href="/lost-and-found" className="text-brand-start font-bold hover:underline">lost & found alerts</Link> if a dog ever goes missing during an outdoor session.
+            </p>
           </div>
         </section>
 

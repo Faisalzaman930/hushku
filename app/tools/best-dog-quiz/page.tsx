@@ -95,29 +95,16 @@ export default function BestDogBreedQuizPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      {/* Breadcrumb */}
-      <nav className="max-w-4xl mx-auto px-6 pt-6 flex items-center gap-2 text-[10px] font-black text-slate-gray uppercase tracking-widest">
-        <Link href="/" className="hover:text-ebony transition-colors">Home</Link>
-        <span>/</span>
-        <Link href="/tools" className="hover:text-ebony transition-colors">Tools</Link>
-        <span>/</span>
-        <span className="text-ebony">Best Dog Breed Quiz</span>
-      </nav>
-
-      {/* GEO Answer Block */}
-      <section className="max-w-4xl mx-auto px-6 pt-6 pb-2">
-        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4">
-          <p className="text-sm text-slate-gray leading-relaxed">
-            <strong className="text-ebony">What is this quiz?</strong> The Hushku Best Dog Breed Quiz is a free, interactive tool that matches you with the ideal dog breed based on 7 lifestyle questions — covering your activity level, living space, grooming commitment, experience with dogs, household composition, allergy requirements, and what you want from a dog. Results link directly to Hushku&apos;s adoption feed so you can find your matched breed from a verified rescue. According to the <strong>American Kennel Club (AKC)</strong>, there are over 200 recognised dog breeds in the US, each with distinct energy, care, and temperament profiles — this quiz narrows them to your best match in under 2 minutes.
-          </p>
-        </div>
-      </section>
-
       {/* The interactive quiz (client component) */}
       <BestDogQuizClient />
 
-      {/* How the quiz works — static, crawlable */}
+      {/* How the quiz works — static, crawlable — GEO content starts here */}
       <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">
+            <strong className="text-ebony">What is this quiz?</strong> The Hushku Best Dog Breed Quiz is a free tool that matches you with the ideal dog breed based on 7 lifestyle questions — covering activity level, living space, grooming commitment, experience, household composition, allergy requirements, and purpose. According to the <strong>American Kennel Club (AKC)</strong>, there are over 200 recognised dog breeds in the US, each with distinct energy and care profiles — this quiz narrows them to your best match in under 2 minutes.
+          </p>
+        </div>
         <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-4">How the Dog Breed Matching Works</h2>
         <p className="text-slate-gray leading-relaxed mb-4">
           The quiz asks 7 questions that cover the five factors veterinary behaviourists and breed experts consistently identify as the most important determinants of breed compatibility: <strong>living space</strong>, <strong>activity level</strong>, <strong>owner experience</strong>, <strong>household composition</strong>, and <strong>grooming tolerance</strong>. Two additional questions cover allergy requirements and the primary role you want the dog to play in your life.

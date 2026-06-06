@@ -36,12 +36,19 @@ export function generateBreedContent(b: BreedDoc): BreedContent {
   // ── Overview ─────────────────────────────────────────────────────────────
   const aptLabel = scoreLabel(s.apartmentFriendly, ["better suited to homes with space", "adaptable to most living situations", "well-suited to apartment living"]);
   const noviceLabel = scoreLabel(s.goodForNovice, ["best matched with experienced owners", "manageable for most owners", "an excellent choice for first-time dog owners"]);
+  // Convert plural group name to singular adjective form ("Herding Dogs" → "herding dog")
+  const groupSingular = (group ?? "dog")
+    .toLowerCase()
+    .replace(/ dogs$/, " dog")
+    .replace(/ cats$/, " cat")
+    .replace(/breeds$/, "breed");
+
   const parentBreedLine = b.parentBreeds
     ? `The ${name} is a cross between the ${b.parentBreeds}${b.origin ? `, first developed in the ${b.origin}` : ""}. `
     : "";
-  const overview = `${parentBreedLine}The ${name} is a ${size.toLowerCase()} ${group.toLowerCase()} known for its ${scoreLabel(s.friendliness, ["independent", "balanced", "outgoing"])} nature and ${scoreLabel(s.intelligence, ["straightforward", "capable", "highly intelligent"])} mind. ${aptLabel.charAt(0).toUpperCase() + aptLabel.slice(1)}, the ${name} is ${noviceLabel}. Typically standing ${height} and weighing ${weight}, this breed has a life expectancy of ${lifeSpan}, making it a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived companion" : "devoted companion"} for the right family.
+  const overview = `${parentBreedLine}The ${name} is a ${size.toLowerCase()} ${groupSingular} known for its ${scoreLabel(s.friendliness, ["independent", "balanced", "outgoing"])} nature and ${scoreLabel(s.intelligence, ["straightforward", "capable", "highly intelligent"])} mind. ${aptLabel.charAt(0).toUpperCase() + aptLabel.slice(1)}, the ${name} is ${noviceLabel}. Typically standing ${height} and weighing ${weight}, this breed has a life expectancy of ${lifeSpan}, making it a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived companion" : "devoted companion"} for the right family.
 
-Originally classified within the ${group} group, the ${name} brings a distinct combination of traits that sets it apart. ${pick(s.energy, `On the calmer end of the energy spectrum, the ${name} is content with moderate daily activity.`, `The ${name} has a moderate energy level that suits an active household without being overwhelming.`, `The ${name} is a high-energy breed that thrives with plenty of daily exercise and mental stimulation.`)} ${pick(s.affectionate, `While not the most demonstrative breed, the ${name} forms loyal bonds with its family.`, `Affectionate with its family, the ${name} strikes a healthy balance between independence and closeness.`, `Deeply affectionate, the ${name} loves being close to its people and forms strong bonds with every member of the household.`)}`;
+Originally classified within the ${group ?? "Mixed Breed"} group, the ${name} brings a distinct combination of traits that sets it apart. ${pick(s.energy, `On the calmer end of the energy spectrum, the ${name} is content with moderate daily activity.`, `The ${name} has a moderate energy level that suits an active household without being overwhelming.`, `The ${name} is a high-energy breed that thrives with plenty of daily exercise and mental stimulation.`)} ${pick(s.affectionate, `While not the most demonstrative breed, the ${name} forms loyal bonds with its family.`, `Affectionate with its family, the ${name} strikes a healthy balance between independence and closeness.`, `Deeply affectionate, the ${name} loves being close to its people and forms strong bonds with every member of the household.`)}`;
 
   // ── Temperament ───────────────────────────────────────────────────────────
   const kidLine = pick(s.kidFriendly,
@@ -103,9 +110,12 @@ ${trainLine} ${pick(s.intelligence, "While not the quickest learner, the " + nam
     `The ${name} has a moderate tendency to gain weight — monitor portion sizes and avoid too many treats.`,
     `The ${name} can be prone to weight gain. Measure meals carefully, limit treats, and ensure adequate daily exercise to keep them at a healthy weight.`
   );
+  const mixedBreedHealthNote = b.parentBreeds
+    ? `As a cross between the ${b.parentBreeds}, the ${name} may inherit health predispositions from either parent line. The Orthopedic Foundation for Animals (OFA) recommends health screening for hip and elbow dysplasia in all large-breed dogs, which is relevant for any mix involving high-risk breeds. Ask breeders for documented OFA clearances for both parent dogs. `
+    : "";
   const healthLifespan = `With a life expectancy of ${lifeSpan}, the ${name} is a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived breed — a serious commitment" : "medium-lived breed"}. ${healthLine}
 
-Common health areas to discuss with your vet for ${group.toLowerCase()} breeds like the ${name} include joint health, dental hygiene, and routine parasite prevention. ${weightLine} Pet insurance is strongly recommended from puppyhood — it provides peace of mind and helps manage unexpected veterinary costs throughout your ${name}'s life.`;
+${mixedBreedHealthNote}Common health areas to discuss with your vet include joint health (hip and elbow dysplasia), dental hygiene, eye health, and routine parasite prevention including flea, tick, and heartworm. ${weightLine} Annual wellness bloodwork — including a complete blood count and biochemistry panel — is recommended from middle age onward to catch conditions like hypothyroidism, kidney disease, and diabetes early. Pet insurance is strongly recommended from puppyhood.`;
 
   // ── Suitability ──────────────────────────────────────────────────────────
   const suitability = `The ${name} is ${pick(s.goodForNovice, "best suited to experienced dog owners", "a good fit for a wide range of owners", "one of the most approachable breeds for first-time owners")} who can provide ${pick(s.exerciseNeeds, "a calm, low-activity lifestyle", "regular daily exercise and mental engagement", "an active lifestyle with plenty of outdoor time")}. ${pick(s.apartmentFriendly, "A home with outdoor space is strongly preferred.", "This breed can adapt to apartment life provided exercise needs are met.", "Compact living spaces are no problem for this breed.")}

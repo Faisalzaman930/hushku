@@ -230,7 +230,11 @@ export default async function BreedPage({
               {/* Image — bleeds into content area */}
               <div className="flex-none w-52 h-52 md:w-72 md:h-72 rounded-t-3xl overflow-hidden bg-white/10 relative shadow-2xl self-end">
                 {breed.image ? (
-                  <Image src={breed.image} alt={`${breed.name} breed`} fill className="object-cover object-top" sizes="288px" priority />
+                  <Image
+                    src={breed.image}
+                    alt={dog?.parentBreeds ? `${breed.name} dog — ${dog.parentBreeds} mix` : `${breed.name} ${isCat ? "cat" : "dog"} breed`}
+                    fill className="object-cover object-top" sizes="288px" priority
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center text-7xl">
                     {animal === "dogs" ? "🐕" : "🐈"}

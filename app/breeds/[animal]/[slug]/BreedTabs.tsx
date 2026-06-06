@@ -126,8 +126,54 @@ export default function BreedTabs({
 
       {/* ── Tab: Overview ─────────────────────────────────────────── */}
       {activeTab === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="space-y-6">
+        <div className="space-y-6">
+
+          {/* ── Key Facts — plain text block (AI/GEO extraction target) ── */}
+          <div className="bg-brand-start/5 border border-brand-start/15 rounded-3xl p-6">
+            <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-3">{breed.name} — Key Facts</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-2 text-sm text-slate-gray">
+              {dog && (
+                <>
+                  {dog.weight && <div><strong className="text-ebony">Weight:</strong> {dog.weight}</div>}
+                  {dog.height && <div><strong className="text-ebony">Height:</strong> {dog.height}</div>}
+                  {dog.size && <div><strong className="text-ebony">Size:</strong> {dog.size}</div>}
+                  {dog.lifeSpan && <div><strong className="text-ebony">Lifespan:</strong> {dog.lifeSpan}</div>}
+                  {dog.group && <div><strong className="text-ebony">Group:</strong> {dog.group}</div>}
+                  {dog.parentBreeds && <div className="col-span-2 sm:col-span-3"><strong className="text-ebony">Parent Breeds:</strong> {dog.parentBreeds}</div>}
+                  {dog.origin && <div><strong className="text-ebony">Origin:</strong> {dog.origin}</div>}
+                </>
+              )}
+              {cat && (
+                <>
+                  {cat.weight && <div><strong className="text-ebony">Weight:</strong> {cat.weight}</div>}
+                  {cat.lifeSpan && <div><strong className="text-ebony">Lifespan:</strong> {cat.lifeSpan}</div>}
+                  {cat.origin && <div><strong className="text-ebony">Origin:</strong> {cat.origin}</div>}
+                  {cat.indoor !== null && <div><strong className="text-ebony">Indoor:</strong> {cat.indoor ? "Indoor" : "Indoor/Outdoor"}</div>}
+                  {cat.hypoallergenic !== null && <div><strong className="text-ebony">Hypoallergenic:</strong> {cat.hypoallergenic ? "Yes" : "No"}</div>}
+                </>
+              )}
+            </div>
+            {/* Parent breed entity links for mixed breeds */}
+            {dog?.parentBreeds && (
+              <div className="mt-4 pt-4 border-t border-brand-start/10">
+                <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-2">Learn about the parent breeds</p>
+                <div className="flex flex-wrap gap-2">
+                  {dog.parentBreeds.split(" and ").map((pb) => {
+                    const slug = pb.trim().toLowerCase().replace(/\s+/g, "-");
+                    return (
+                      <Link key={pb} href={`/breeds/dogs/${slug}`}
+                        className="text-xs font-bold text-brand-start hover:underline bg-brand-start/10 px-3 py-1.5 rounded-full">
+                        {pb.trim()} →
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-6">
             {content && (
               <>
                 <div className="bg-gray-50 rounded-3xl p-6">
@@ -248,6 +294,29 @@ export default function BreedTabs({
               </div>
             </div>
           </div>
+          </div>{/* end grid */}
+
+          {/* ── FAQ Preview — top 3 questions visible without tab click ── */}
+          {faqs.length > 0 && (
+            <div className="bg-gray-50 rounded-3xl p-6">
+              <h2 className="text-sm font-black text-ebony uppercase tracking-widest mb-4">Frequently Asked Questions</h2>
+              <div className="space-y-4">
+                {faqs.slice(0, 3).map((faq, i) => (
+                  <div key={i} className="border-b border-gray-200 pb-4 last:border-0 last:pb-0">
+                    <p className="text-sm font-bold text-ebony mb-1">{faq.q}</p>
+                    <p className="text-sm text-slate-gray leading-relaxed">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+              {faqs.length > 3 && (
+                <button onClick={() => setActiveTab("faq")}
+                  className="mt-4 text-xs font-black text-brand-start uppercase tracking-widest hover:underline">
+                  See all {faqs.length} FAQs →
+                </button>
+              )}
+            </div>
+          )}
+
         </div>
       )}
 

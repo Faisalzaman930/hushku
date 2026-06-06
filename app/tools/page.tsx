@@ -3,8 +3,23 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Free Pet Care Calculators & Tools | Hushku Hub",
-  description: "Free interactive pet care calculators for the global community. From age converters to toxic food checkers, explore our web-based tools designed for every pet parent.",
+  title: "Free Pet Care Calculators & Tools | 25+ Free Tools | Hushku",
+  description: "25+ free interactive pet care tools — calorie calculators, breed quizzes, symptom checkers, toxic food databases, vaccination schedules, and more. Built for dog and cat owners worldwide. No account required.",
+  keywords: "free pet care tools, dog calorie calculator, pet symptom checker, toxic food checker, dog breed quiz, cat breed quiz, pet age calculator, puppy weight predictor, dog exercise calculator",
+  alternates: { canonical: "https://hushku.app/tools" },
+  openGraph: {
+    title: "Free Pet Care Calculators & Tools | Hushku",
+    description: "25+ free interactive pet care tools for dog and cat owners. Calorie calculators, breed quizzes, symptom checkers, and more.",
+    type: "website",
+    url: "https://hushku.app/tools",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Free Pet Care Tools" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "25+ Free Pet Care Tools | Hushku",
+    description: "Free dog & cat calculators, breed quizzes, symptom checkers and more. No account required.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 export default function ToolsHubPage() {
@@ -182,7 +197,25 @@ export default function ToolsHubPage() {
     },
   ];
 
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Pet Care Calculators & Tools",
+    "description": "25+ free interactive pet care tools for dog and cat owners — calorie calculators, breed quizzes, symptom checkers, vaccination schedules, and more.",
+    "url": "https://hushku.app/tools",
+    "publisher": { "@type": "Organization", "name": "Hushku", "url": "https://hushku.app" },
+    "hasPart": tools.map(t => ({
+      "@type": "WebApplication",
+      "name": t.title,
+      "url": `https://hushku.app${t.href}`,
+      "applicationCategory": "LifestyleApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    })),
+  };
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="bg-white">
       <Hero
         subtitle="Free Community Resources"
@@ -190,6 +223,17 @@ export default function ToolsHubPage() {
         description="Hushku is more than just an app. We're building a global resource hub for pet parents. Explore our free web-based calculators and interactive guides—designed to give you instant utility, right in your browser."
         showDownloads={true}
       />
+
+      {/* GEO intro block */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4">
+            <p className="text-sm text-slate-gray leading-relaxed">
+              <strong className="text-ebony">What are Hushku's free tools?</strong> Hushku offers 25+ free, browser-based pet care calculators, quizzes, and interactive guides — available globally with no account required. Tools are built on veterinary evidence, including guidelines from the <strong>WSAVA</strong>, <strong>AAHA</strong>, <strong>AVMA</strong>, and the <strong>American Kennel Club (AKC)</strong>. Categories include nutrition calculators, health assessment quizzes, breed matching tools, safety databases, and care planning resources for dogs, cats, and other pets.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="py-24 bg-white relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -221,5 +265,6 @@ export default function ToolsHubPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

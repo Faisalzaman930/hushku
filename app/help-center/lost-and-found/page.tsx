@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Step-by-step guide to reporting a missing pet, posting a found animal, and alerting your local community on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/lost-and-found" },
+  openGraph: {
+    title: "How to Report a Lost or Found Pet on Hushku",
+    description: "Step-by-step guide to reporting a missing pet and alerting your community on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/lost-and-found",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Report a Lost or Found Pet on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Report a Lost or Found Pet on Hushku",
+    description: "Step-by-step guide to reporting a missing pet and alerting your community on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

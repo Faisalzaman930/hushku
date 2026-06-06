@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Step-by-step guide to finding compatible playdate partners for your dog or cat on Hushku. Learn how to swipe, filter by purpose, and arrange meetups.",
   alternates: { canonical: "https://hushku.app/help-center/playdate-matching" },
+  openGraph: {
+    title: "How to Find Pet Playdates on Hushku",
+    description: "Step-by-step guide to finding compatible playdate partners for your dog or cat on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/playdate-matching",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Find Pet Playdates on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Find Pet Playdates on Hushku",
+    description: "Step-by-step guide to finding compatible playdate partners for your dog or cat on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const tips = [

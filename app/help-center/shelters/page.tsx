@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to search for verified animal shelters near you, browse their available pets, and send admission requests on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/shelters" },
+  openGraph: {
+    title: "How to Find & Contact Animal Shelters on Hushku",
+    description: "Learn how to search for verified animal shelters near you and send admission requests on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/shelters",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Find & Contact Animal Shelters on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Find & Contact Animal Shelters on Hushku",
+    description: "Learn how to search for verified animal shelters near you and send admission requests on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to post photos and videos, interact with other pet owners, and follow your local pet community on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/social-feed" },
+  openGraph: {
+    title: "How to Use the Hushku Social Feed",
+    description: "Learn how to post photos, interact with other pet owners, and follow your local pet community on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/social-feed",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Use the Hushku Social Feed" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Use the Hushku Social Feed",
+    description: "Learn how to post photos, interact with other pet owners, and follow your local pet community on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

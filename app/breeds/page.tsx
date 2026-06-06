@@ -7,12 +7,46 @@ export const metadata: Metadata = {
   description:
     "Browse 391 dog breeds and counting — full stats on size, temperament, trainability, health, and more. Free breed guides for every pet owner.",
   alternates: { canonical: "https://hushku.app/breeds" },
+  openGraph: {
+    title: "Dog & Cat Breed Directory | Hushku",
+    description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
+    type: "website",
+    url: "https://hushku.app/breeds",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Dog & Cat Breed Directory | Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dog & Cat Breed Directory | Hushku",
+    description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 export default function BreedsHubPage() {
   const animals = Object.keys(breedsByAnimal);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+      { "@type": "ListItem", position: 2, name: "Breed Directory", item: "https://hushku.app/breeds" },
+    ],
+  };
+
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Dog & Cat Breed Directory",
+    "description": "Complete breed guides for 450+ dog and cat breeds — temperament scores, size, care requirements, health information, and FAQs.",
+    "url": "https://hushku.app/breeds",
+    "publisher": { "@type": "Organization", "name": "Hushku", "url": "https://hushku.app" },
+  };
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="bg-white">
       {/* Hero */}
       <div className="bg-ebony pt-32 pb-28 relative overflow-hidden">
@@ -126,5 +160,6 @@ export default function BreedsHubPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

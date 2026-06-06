@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to browse adoption and fostering listings, submit requests, and track your application status on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/adoption-fostering" },
+  openGraph: {
+    title: "How to Adopt or Foster a Pet on Hushku",
+    description: "Learn how to browse adoption and fostering listings and submit requests on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/adoption-fostering",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Adopt or Foster a Pet on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Adopt or Foster a Pet on Hushku",
+    description: "Learn how to browse adoption and fostering listings and submit requests on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

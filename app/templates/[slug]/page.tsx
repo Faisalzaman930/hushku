@@ -20,7 +20,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t.seoTitle,
     description: t.seoDescription,
     alternates: { canonical: `https://hushku.app/templates/${t.slug}` },
-    openGraph: { title: t.seoTitle, description: t.seoDescription, type: "article" },
+    openGraph: {
+      title: t.seoTitle,
+      description: t.seoDescription,
+      type: "article",
+      url: `https://hushku.app/templates/${t.slug}`,
+      images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.seoTitle,
+      description: t.seoDescription,
+      images: ["https://hushku.app/screenshots/app-playdates.png"],
+    },
   };
 }
 

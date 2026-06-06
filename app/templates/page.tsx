@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Free, editable pet templates for every situation — custody agreements, adoption contracts, vaccination records, pet sitting invoices, lost pet posters, and more. Download instantly in PDF, Word, or Google Docs.",
   alternates: { canonical: "https://hushku.app/templates" },
+  openGraph: {
+    title: "Free Pet Templates | Hushku",
+    description: "Free editable pet templates — adoption contracts, vaccination records, pet sitting forms and more.",
+    type: "website",
+    url: "https://hushku.app/templates",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Free Pet Templates | Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Pet Templates | Hushku",
+    description: "Free editable pet templates — adoption contracts, vaccination records, pet sitting forms and more.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const CAT_ICONS: Record<string, string> = {
@@ -22,7 +35,28 @@ export default function TemplatesHubPage() {
   const categories = templateCategories;
   const total = templateDocs.length;
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+      { "@type": "ListItem", position: 2, name: "Free Pet Templates", item: "https://hushku.app/templates" },
+    ],
+  };
+
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Pet Templates — Contracts, Records & Forms",
+    "description": "Free editable pet templates for every situation — adoption contracts, vaccination records, custody agreements, pet sitting invoices, and lost pet posters.",
+    "url": "https://hushku.app/templates",
+    "publisher": { "@type": "Organization", "name": "Hushku", "url": "https://hushku.app" },
+  };
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="bg-white">
 
       {/* ── Hero ───────────────────────────────────────────── */}
@@ -195,5 +229,6 @@ export default function TemplatesHubPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

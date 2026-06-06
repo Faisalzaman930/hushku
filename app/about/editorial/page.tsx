@@ -2,8 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Editorial Standards & Review Process",
+  title: "Editorial Standards & Review Process | Hushku",
   description: "How Hushku researches, writes, fact-checks, and updates its pet care content. Our editorial standards, sourcing policy, and veterinary review process.",
+  alternates: { canonical: "https://hushku.app/about/editorial" },
+  openGraph: {
+    title: "Editorial Standards & Review Process | Hushku",
+    description: "How Hushku researches, writes, fact-checks, and updates its pet care content.",
+    type: "website",
+    url: "https://hushku.app/about/editorial",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Editorial Standards | Hushku",
+    description: "Our editorial standards, sourcing policy, and veterinary review process.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const SOURCES = [

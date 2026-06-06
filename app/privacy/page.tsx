@@ -5,6 +5,19 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Hushku",
   description: "Learn how Hushku collects, uses, and protects your personal data — including location, pet profiles, messaging, health records, and push notifications.",
   alternates: { canonical: "https://hushku.app/privacy" },
+  openGraph: {
+    title: "Privacy Policy | Hushku",
+    description: "Learn how Hushku collects, uses, and protects your personal data.",
+    type: "website",
+    url: "https://hushku.app/privacy",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Privacy Policy | Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Hushku",
+    description: "Learn how Hushku collects, uses, and protects your personal data.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const LAST_UPDATED = "May 20, 2026";

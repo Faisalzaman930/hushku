@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Complete guide to Hushku's health features — daily care logs, care reminders, weight tracker, health records, flea & tick tracker, and heat cycle tracker.",
   alternates: { canonical: "https://hushku.app/help-center/health-care" },
+  openGraph: {
+    title: "How to Use Hushku's Health & Care Tracker",
+    description: "Complete guide to Hushku's health features — daily care logs, weight tracker, health records and more.",
+    type: "website",
+    url: "https://hushku.app/help-center/health-care",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Use Hushku's Health & Care Tracker" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Use Hushku's Health & Care Tracker",
+    description: "Complete guide to Hushku's health features — daily care logs, weight tracker, health records and more.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

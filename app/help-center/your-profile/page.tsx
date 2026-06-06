@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to create your owner profile, add your pets, and manage your account settings on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/your-profile" },
+  openGraph: {
+    title: "How to Set Up Your Profile on Hushku",
+    description: "Learn how to create your owner profile, add your pets, and manage account settings on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/your-profile",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Set Up Your Profile on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Set Up Your Profile on Hushku",
+    description: "Learn how to create your owner profile, add your pets, and manage account settings on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

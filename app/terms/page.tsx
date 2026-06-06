@@ -5,6 +5,19 @@ export const metadata: Metadata = {
   title: "Terms & Conditions | Hushku",
   description: "Read the Terms and Conditions governing your use of the Hushku app — covering pet matching, adoption, fostering, messaging, lost & found, vets, and premium features.",
   alternates: { canonical: "https://hushku.app/terms" },
+  openGraph: {
+    title: "Terms & Conditions | Hushku",
+    description: "Read the Terms and Conditions governing your use of the Hushku app.",
+    type: "website",
+    url: "https://hushku.app/terms",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Terms & Conditions | Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms & Conditions | Hushku",
+    description: "Read the Terms and Conditions governing your use of the Hushku app.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const LAST_UPDATED = "May 20, 2026";

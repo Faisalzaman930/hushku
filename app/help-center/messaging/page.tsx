@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to send messages, photos, voice notes, and make audio or video calls on Hushku.",
   alternates: { canonical: "https://hushku.app/help-center/messaging" },
+  openGraph: {
+    title: "How to Message on Hushku",
+    description: "Learn how to send messages, photos, voice notes, and make calls on Hushku.",
+    type: "website",
+    url: "https://hushku.app/help-center/messaging",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "How to Message on Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Message on Hushku",
+    description: "Learn how to send messages, photos, voice notes, and make calls on Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const faqSchema = {

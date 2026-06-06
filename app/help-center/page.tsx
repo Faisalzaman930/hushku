@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description:
     "Learn how to use every feature of the Hushku pet app. Step-by-step guides for playdate matching, adoption, lost & found, health tracking, shelters, and more.",
   alternates: { canonical: "https://hushku.app/help-center" },
+  openGraph: {
+    title: "Help Center | How to Use Hushku",
+    description: "Learn how to use every feature of the Hushku pet app.",
+    type: "website",
+    url: "https://hushku.app/help-center",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Help Center | How to Use Hushku" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Help Center | How to Use Hushku",
+    description: "Learn how to use every feature of the Hushku pet app.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 const categories = [

@@ -1,226 +1,94 @@
-"use client";
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
-import { symptomData, SymptomCategory, SymptomRecord } from "../../data/symptoms";
+import Link from "next/link";
+import SymptomCheckerTool from "./SymptomCheckerTool";
 
-const urgencyConfig = {
-  emergency: { 
-    label: "Emergency — Go Now", 
-    color: "bg-red-600 text-white", 
-    border: "border-red-500", 
-    bg: "bg-red-50", 
-    tip: "Do NOT wait. Transport to an emergency clinic immediately." 
-  },
-  "vet-soon": { 
-    label: "See a Vet Soon", 
-    color: "bg-amber-500 text-white", 
-    border: "border-amber-400", 
-    bg: "bg-amber-50", 
-    tip: "Call your vet and schedule an exam within 24 hours." 
-  },
-  monitor: { 
-    label: "Monitor at Home", 
-    color: "bg-sky-500 text-white", 
-    border: "border-sky-400", 
-    bg: "bg-sky-50", 
-    tip: "Keep a close eye. If symptoms worsen, call your vet." 
-  },
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Symptom Checker", item: "https://hushku.app/tools/symptom-checker" },
+  ],
 };
 
-const categories: (SymptomCategory | "All")[] = [
-  "All",
-  "Emergency/Systemic",
-  "Gastrointestinal",
-  "Respiratory",
-  "Neurological",
-  "Physical/Mobility",
-  "Skin/Coat",
-  "Ocular/Head"
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Symptom Checker",
+  url: "https://hushku.app/tools/symptom-checker",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
+
+const faqs = [
+  { q: 'When should I take my dog to an emergency vet?', a: 'Seek emergency veterinary care immediately for: difficulty breathing or open-mouth breathing (especially in cats), collapse or inability to stand, seizures lasting more than 2 minutes or cluster seizures, suspected poisoning (call ASPCA Poison Control first), distended abdomen in large dogs (possible GDV/bloat), inability to urinate — especially in male cats (complete urethral obstruction is fatal within 24–48 hours without treatment), pale, white, blue, or grey gums, severe and uncontrolled bleeding, trauma (road accident, fall from height, dog attack), and sudden-onset extreme lethargy.' },
+  { q: 'Is my dog vomiting serious?', a: 'Occasional vomiting (once or twice) in an otherwise normal, alert dog is usually benign — common causes include eating too fast, eating grass, or minor dietary indiscretion. Concerning signs that warrant same-day or emergency vet care: vomiting blood or material that looks like coffee grounds, vomiting combined with extreme lethargy or pain, vomiting plus abdominal distension in large breeds (potential GDV), repeated vomiting (5+ times in a day), vomiting in a puppy or senior dog, or vomiting combined with known or suspected toxin ingestion.' },
+  { q: 'Why is my cat not eating?', a: 'Cats that stop eating for more than 24–48 hours require veterinary attention regardless of apparent cause. Unlike dogs, cats that go without food for 3–5 days are at risk of hepatic lipidosis — a severe and potentially fatal liver condition where fat accumulates in liver cells during caloric restriction. Common causes of anorexia in cats include dental pain (the most common cause in adult cats), upper respiratory infection (loss of smell eliminates appetite), nausea from various systemic conditions, stress from environmental changes, and serious underlying disease.' },
+  { q: 'What does it mean if my dog has pale gums?', a: 'Pale, white, grey, or blue gums are a veterinary emergency indicating poor oxygen delivery to tissues — this can result from severe anaemia, internal bleeding, shock, circulatory failure, or respiratory compromise. Normal dog gum colour is pink (like bubblegum) and returns to pink within 2 seconds of pressing firmly with a finger (capillary refill time). Any deviation from pink warrants immediate emergency vet assessment.' },
+  { q: 'How do I know if my cat is in pain?', a: 'Cats are stoic and mask pain effectively. Signs of pain in cats: reduced activity or hiding, change in posture (hunched with feet tucked under), reduced grooming or over-grooming a specific area, changes in facial expression (orbital tightening, ear flattening, whisker position changes — the validated Feline Grimace Scale describes these), vocalisation when touched in a specific area, reluctance to jump or climb, reduced appetite, and increased aggression when handled. Dental disease is the most common unrecognised source of chronic pain in cats.' },
 ];
 
-export default function SymptomChecker() {
-  const [animal, setAnimal] = useState<"dog" | "cat">("dog");
-  const [selected, setSelected] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState<(SymptomCategory | "All")>("All");
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-  const filteredSymptoms = useMemo(() => {
-    return symptomData.filter(s => {
-      const matchesSearch = s.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = activeCategory === "All" || s.category === activeCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchTerm, activeCategory]);
-
-  const symptom = useMemo(() => {
-    return symptomData.find(s => s.name === selected);
-  }, [selected]);
-
+export default function Page() {
   return (
-    <ToolLayout 
-      subtitle="Advanced Diagnostic Guide"
-      relatedToolSlugs={["toxic-food","first-aid-quiz","pet-health-quiz","vaccine-tracker","insurance-cost"]}
-      relatedArticles={[
-        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
-        { slug: "why-is-my-dog-not-eating", title: "Why Is My Dog Not Eating?", category: "Symptom Guide", emoji: "🍽️" },
-        { slug: "why-is-my-dog-limping", title: "Why Is My Dog Limping?", category: "Symptom Guide", emoji: "🦵" },
-      ]} 
-      title="Pet Symptom Pro Checker" 
-      description="Instant urgency ratings and first-aid remedies for 40+ common pet symptoms. Always prioritize professional veterinary diagnosis."
-      illustration={<ToolIllustration type="health" />}
-    >
-      <div className="max-w-4xl mx-auto space-y-12">
-        {/* controls */}
-        <div className="bg-gray-50 p-8 rounded-[3.5rem] border border-gray-100 shadow-inner space-y-8">
-           <div className="flex flex-col md:flex-row gap-6">
-              {/* Animal toggle */}
-              <div className="flex gap-2 bg-white p-2 rounded-[2rem] border border-gray-100 shadow-sm w-full md:w-auto">
-                {(["dog", "cat"] as const).map(a => (
-                  <button key={a} onClick={() => { setAnimal(a); setSelected(null); }}
-                    className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all
-                      ${animal === a ? "bg-ebony text-white shadow-lg" : "text-slate-gray hover:bg-gray-50"}`}>
-                    <span className="text-xl">{a === "dog" ? "🐕" : "🐈"}</span> {a}
-                  </button>
-                ))}
-              </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-              {/* Search */}
-              <div className="flex-1 relative">
-                <input 
-                  type="text" 
-                  placeholder="Search symptoms (e.g. vomiting, sneezing...)" 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-white border-2 border-transparent rounded-full px-8 py-4 font-bold focus:border-brand-start outline-none transition-all shadow-sm"
-                />
-              </div>
-           </div>
+      <SymptomCheckerTool />
 
-           {/* Category filter */}
-           <div className="flex flex-wrap gap-2">
-              {categories.map(cat => (
-                <button 
-                  key={cat} 
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border-2 transition-all
-                    ${activeCategory === cat ? "bg-brand-start border-brand-start text-white shadow-md scale-105" : "bg-white border-transparent text-slate-gray hover:border-gray-200"}`}
-                >
-                  {cat}
-                </button>
-              ))}
-           </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">This tool allows you to search or browse 40+ common pet symptoms and returns an urgency rating (Emergency, See Vet Soon, Monitor at Home), a list of potential causes, and immediate action guidance. It is designed for triage — helping you decide whether a symptom requires an emergency vet visit tonight, a next-day appointment, or careful home monitoring.
+  <strong>This tool is not a substitute for veterinary diagnosis.</strong> When in doubt, call your vet's emergency line — most practices offer 24/7 telephone triage. For poisoning, call the <strong>ASPCA Animal Poison Control Center at 888-426-4435</strong>.</p>
         </div>
 
-        {/* Result Area */}
-        {symptom && (
-          <div className={`p-10 md:p-16 rounded-[4.5rem] border-2 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-500
-            ${urgencyConfig[symptom.urgency].border} ${urgencyConfig[symptom.urgency].bg}`}>
-            
-            <div className="absolute top-0 right-0 p-12 text-ebony/5 text-[15rem] leading-none font-black select-none pointer-events-none transform translate-x-1/4 -translate-y-1/4">
-               {symptom.icon}
-            </div>
-
-            <div className="relative">
-              <div className="flex items-start justify-between mb-10">
-                <div className="flex items-center gap-6">
-                  <span className="text-6xl bg-white w-24 h-24 rounded-3xl flex items-center justify-center shadow-inner border border-gray-100">{symptom.icon}</span>
-                  <div>
-                    <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter leading-tight">{symptom.name}</h2>
-                    <div className="flex items-center gap-3 mt-4">
-                      <span className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-md ${urgencyConfig[symptom.urgency].color}`}>
-                        {urgencyConfig[symptom.urgency].label}
-                      </span>
-                      <span className="text-[10px] font-black text-slate-gray uppercase tracking-widest bg-white px-5 py-2 rounded-full border border-gray-100">{symptom.category}</span>
-                    </div>
-                  </div>
-                </div>
-                <button onClick={() => setSelected(null)} className="text-slate-gray hover:text-red-500 text-3xl font-black transition-colors">✕</button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="bg-white/60 p-8 rounded-[3rem] border border-white backdrop-blur-sm">
-                  <h3 className="text-[11px] font-black text-ebony uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-brand-start"></span> Possible Causes
-                  </h3>
-                  <p className="text-lg font-bold text-ebony leading-relaxed">
-                    {animal === "dog" ? symptom.dog.description : symptom.cat.description}
-                  </p>
-                </div>
-
-                <div className="bg-ebony text-white p-8 rounded-[3rem] shadow-xl">
-                  <h3 className="text-[11px] font-black text-brand-start uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-brand-start"></span> Immediate Remedies
-                  </h3>
-                  <p className="text-lg font-bold leading-relaxed opacity-90 italic">
-                    "{animal === "dog" ? symptom.dog.remedy : symptom.cat.remedy}"
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-col md:flex-row items-center justify-between gap-6 p-8 bg-white/40 rounded-3xl border border-white/60">
-                <p className="text-sm font-bold text-slate-gray italic max-w-xl">
-                  ⚠️ {urgencyConfig[symptom.urgency].tip}
-                </p>
-                <Link href="/vets" className="bg-ebony text-white px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-brand-start transition-all whitespace-nowrap">
-                   Find Local Vet 🏥
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Symptom grid */}
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
         <div className="space-y-6">
-           <h3 className="text-[11px] font-black text-slate-gray uppercase tracking-widest px-4">Browse All Symptoms ({filteredSymptoms.length})</h3>
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredSymptoms.map((s: SymptomRecord) => {
-              const cfg = urgencyConfig[s.urgency];
-              const isSelected = selected === s.name;
-              return (
-                <button 
-                  key={s.name} 
-                  onClick={() => {
-                    setSelected(isSelected ? null : s.name);
-                    if (!isSelected) {
-                      window.scrollTo({ top: 300, behavior: 'smooth' });
-                    }
-                  }}
-                  className={`flex flex-col p-8 rounded-[2.5rem] border-2 text-left transition-all group relative overflow-hidden
-                    ${isSelected ? `${cfg.border} ${cfg.bg} ring-4 ring-brand-start/10` : "border-gray-100 bg-white hover:bg-gray-50 hover:border-gray-200 hover:shadow-xl hover:-translate-y-1"}`}
-                >
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-4xl bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">{s.icon}</span>
-                    <span className={`px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${cfg.color}`}>
-                      {s.urgency === "emergency" ? "CRITICAL" : s.urgency === "vet-soon" ? "URGENT" : "INFO"}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-black text-ebony text-lg leading-tight uppercase mb-2">{s.name}</p>
-                    <p className="text-[9px] font-black text-slate-gray/60 uppercase tracking-widest">{s.category}</p>
-                  </div>
-                </button>
-              );
-            })}
+          <div key='When should I take my dog to an emergency vet?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">When should I take my dog to an emergency vet?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Seek emergency veterinary care immediately for: difficulty breathing or open-mouth breathing (especially in cats), collapse or inability to stand, seizures lasting more than 2 minutes or cluster seizures, suspected poisoning (call ASPCA Poison Control first), distended abdomen in large dogs (possible GDV/bloat), inability to urinate — especially in male cats (complete urethral obstruction is fatal within 24–48 hours without treatment), pale, white, blue, or grey gums, severe and uncontrolled bleeding, trauma (road accident, fall from height, dog attack), and sudden-onset extreme lethargy.</p>
           </div>
-          {filteredSymptoms.length === 0 && (
-            <div className="text-center py-20 bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
-               <p className="text-6xl mb-4">🔍</p>
-               <p className="font-black text-xl text-ebony uppercase">No symptoms found for "{searchTerm}"</p>
-               <button onClick={() => { setSearchTerm(""); setActiveCategory("All"); }} className="mt-4 text-brand-start font-black uppercase text-xs hover:underline">Clear all filters</button>
-            </div>
-          )}
+          <div key='Is my dog vomiting serious?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is my dog vomiting serious?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Occasional vomiting (once or twice) in an otherwise normal, alert dog is usually benign — common causes include eating too fast, eating grass, or minor dietary indiscretion. Concerning signs that warrant same-day or emergency vet care: vomiting blood or material that looks like coffee grounds, vomiting combined with extreme lethargy or pain, vomiting plus abdominal distension in large breeds (potential GDV), repeated vomiting (5+ times in a day), vomiting in a puppy or senior dog, or vomiting combined with known or suspected toxin ingestion.</p>
+          </div>
+          <div key='Why is my cat not eating?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Why is my cat not eating?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Cats that stop eating for more than 24–48 hours require veterinary attention regardless of apparent cause. Unlike dogs, cats that go without food for 3–5 days are at risk of hepatic lipidosis — a severe and potentially fatal liver condition where fat accumulates in liver cells during caloric restriction. Common causes of anorexia in cats include dental pain (the most common cause in adult cats), upper respiratory infection (loss of smell eliminates appetite), nausea from various systemic conditions, stress from environmental changes, and serious underlying disease.</p>
+          </div>
+          <div key='What does it mean if my dog has pale gums?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What does it mean if my dog has pale gums?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Pale, white, grey, or blue gums are a veterinary emergency indicating poor oxygen delivery to tissues — this can result from severe anaemia, internal bleeding, shock, circulatory failure, or respiratory compromise. Normal dog gum colour is pink (like bubblegum) and returns to pink within 2 seconds of pressing firmly with a finger (capillary refill time). Any deviation from pink warrants immediate emergency vet assessment.</p>
+          </div>
+          <div key='How do I know if my cat is in pain?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How do I know if my cat is in pain?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Cats are stoic and mask pain effectively. Signs of pain in cats: reduced activity or hiding, change in posture (hunched with feet tucked under), reduced grooming or over-grooming a specific area, changes in facial expression (orbital tightening, ear flattening, whisker position changes — the validated Feline Grimace Scale describes these), vocalisation when touched in a specific area, reluctance to jump or climb, reduced appetite, and increased aggression when handled. Dental disease is the most common unrecognised source of chronic pain in cats.</p>
+          </div>
         </div>
-        
-        <div className="bg-emerald-50 p-10 rounded-[3rem] border border-emerald-100 text-center">
-           <h4 className="text-emerald-700 font-black text-xl mb-4">🩺 Professional Note</h4>
-           <p className="text-sm text-emerald-800/80 leading-relaxed max-w-2xl mx-auto">
-             This tool uses veterinary-reviewed triage data to help you decide the urgency of your pet's condition. 
-             It is NOT a replacement for a clinical diagnosis. If you are in doubt, always call your nearest emergency animal hospital.
-           </p>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/toxic-food" href="/tools/toxic-food" className="text-brand-start font-bold hover:underline text-sm">/tools/toxic-food →</Link>
+          <Link key="/tools/first-aid-quiz" href="/tools/first-aid-quiz" className="text-brand-start font-bold hover:underline text-sm">/tools/first-aid-quiz →</Link>
+          <Link key="/health/records" href="/health/records" className="text-brand-start font-bold hover:underline text-sm">/health/records →</Link>
+          <Link key="/health/reminders" href="/health/reminders" className="text-brand-start font-bold hover:underline text-sm">/health/reminders →</Link>
+          </div>
         </div>
-      </div>
-    </ToolLayout>
+      </section>
+    </>
   );
 }
-import Link from "next/link";

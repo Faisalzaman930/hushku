@@ -1,196 +1,93 @@
-"use client";
+import Link from "next/link";
+import PetWaterCalculator from "./PetWaterCalculator";
 
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-
-const ACTIVITY_LEVELS = [
-  { id: "low",    label: "Low",    desc: "Mostly indoor, light walks",      icon: "🛋️", multiplier: 0.9  },
-  { id: "normal", label: "Normal", desc: "Daily walks, moderate play",       icon: "🚶", multiplier: 1.0  },
-  { id: "high",   label: "High",   desc: "Running, hiking, working dog",     icon: "🏃", multiplier: 1.4  },
-];
-
-const WEATHER = [
-  { id: "cool",   label: "Cool / Indoor", icon: "❄️",  multiplier: 1.0 },
-  { id: "normal", label: "Moderate",      icon: "☁️",  multiplier: 1.1 },
-  { id: "hot",    label: "Hot & Humid",   icon: "☀️",  multiplier: 1.35 },
-];
-
-const DIET = [
-  { id: "dry",    label: "Dry kibble",              icon: "🥣", waterFactor: 1.0  },
-  { id: "mixed",  label: "Mix of wet & dry",         icon: "🍽️", waterFactor: 0.75 },
-  { id: "wet",    label: "Wet / raw food only",      icon: "🥩", waterFactor: 0.5  },
-];
-
-const SIGNS = {
-  dehydrated: ["Dry or tacky gums", "Skin tent (skin doesn't snap back)", "Sunken eyes", "Lethargy or weakness", "Dark-coloured urine"],
-  overhydrated: ["Vomiting", "Bloating", "Hyponatremia in extreme cases (very rare)"],
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Water Calculator", item: "https://hushku.app/tools/water-calculator" },
+  ],
 };
 
-export default function WaterCalculator() {
-  const [species, setSpecies] = useState<"dog" | "cat">("dog");
-  const [unit, setUnit] = useState<"kg" | "lbs">("kg");
-  const [weight, setWeight] = useState(10);
-  const [activityId, setActivityId] = useState("normal");
-  const [weatherId, setWeatherId] = useState("normal");
-  const [dietId, setDietId] = useState("dry");
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Water Calculator",
+  url: "https://hushku.app/tools/water-calculator",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  const result = useMemo(() => {
-    const wKg = unit === "lbs" ? weight * 0.453592 : weight;
-    // Base: 50 ml/kg/day for dogs; 60 ml/kg/day for cats (cats have higher baseline need)
-    const basePerKg = species === "dog" ? 50 : 60;
-    const base = wKg * basePerKg;
-    const activity = ACTIVITY_LEVELS.find(a => a.id === activityId)?.multiplier ?? 1;
-    const weather  = WEATHER.find(w => w.id === weatherId)?.multiplier ?? 1;
-    const diet     = DIET.find(d => d.id === dietId)?.waterFactor ?? 1;
-    const dailyMl  = base * activity * weather * diet;
-    return { dailyMl, dailyOz: dailyMl / 29.5735, cups: dailyMl / 240 };
-  }, [species, unit, weight, activityId, weatherId, dietId]);
+const faqs = [
+  { q: 'How much water should a dog drink per day?', a: 'A healthy adult dog should drink approximately 20–70 ml per kg of body weight per day. For a 20 kg Labrador Retriever, that is 400–1,400 ml (roughly 1.5–6 cups). Dogs on wet food need significantly less from their bowl — wet food is 60–80% water. A dog who has just exercised vigorously will drink more immediately after. Consistent measurement over 3 days gives a reliable individual baseline.' },
+  { q: 'How much water should a cat drink per day?', a: 'Healthy cats need approximately 40–60 ml per kg of body weight per day. A 4 kg cat needs about 160–240 ml daily. However, most of this should come from food — cats evolved as desert animals and naturally have a low thirst drive. A cat eating wet food may drink almost nothing from a bowl; a cat on dry kibble needs to drink substantially more. Low water intake in cats on dry food is a risk factor for lower urinary tract disease (FLUTD) and kidney disease.' },
+  { q: 'Why is my dog drinking more water than usual?', a: "Increased water consumption (polydipsia) in dogs is associated with several conditions: diabetes mellitus (polyuria/polydipsia is a hallmark symptom), Cushing's disease (hyperadrenocorticism), chronic kidney disease, pyometra in intact females, hypercalcaemia, and liver disease. Medications such as corticosteroids and phenobarbitone also increase thirst as a known side effect. If your dog is consistently drinking more than 90–100 ml/kg/day without an obvious benign cause (heat, exercise, diet change), a veterinary blood and urine panel is warranted." },
+  { q: 'Does diet affect how much water my pet needs?', a: 'Yes — significantly. Wet food is 70–80% water and substantially reduces how much a dog or cat needs to drink from a bowl. Dry kibble is only 8–12% water, so dogs and cats on dry diets need to drink much more. If you recently switched from wet to dry food and notice your pet drinking more, this is the expected and appropriate response — not a health concern.' },
+  { q: 'How can I encourage my cat to drink more water?', a: 'Cats are attracted to moving water — a pet water fountain increases consumption in most cats compared to a static bowl. Multiple water stations around the home also help. Feeding wet or raw food, adding water to dry food, or offering a small amount of low-sodium broth are evidence-supported strategies. Stainless steel or ceramic bowls are preferable to plastic, which can harbour bacteria that some cats find aversive.' },
+];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
+export default function Page() {
   return (
-    <ToolLayout
-      subtitle="Pet Water Calculator"
-      relatedToolSlugs={["calorie-calculator","exercise-calculator","feeding-calculator","symptom-checker"]}
-      relatedArticles={[
-        { slug: "why-is-my-dog-drinking-so-much-water", title: "Why Is My Dog Drinking So Much Water?", category: "Symptom Guide", emoji: "💧" },
-        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
-        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
-      ]}
-      title="How Much Water Should My Pet Drink?"
-      description="Calculate your dog or cat's daily water intake needs based on weight, activity, weather, and diet type."
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-        {/* Inputs */}
-        <div className="space-y-10">
-          {/* Species */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Species</label>
-            <div className="flex gap-4">
-              {(["dog", "cat"] as const).map(s => (
-                <button key={s} onClick={() => setSpecies(s)}
-                  className={`flex-1 py-5 rounded-3xl border-4 transition-all flex flex-col items-center gap-2 ${species === s ? "bg-ebony text-white border-ebony shadow-xl" : "bg-gray-50 text-slate-gray border-transparent hover:bg-white hover:border-gray-100 hover:shadow-md"}`}>
-                  <span className="text-4xl">{s === "dog" ? "🐕" : "🐈"}</span>
-                  <span className="font-black uppercase tracking-tight text-xs">{s}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+      <PetWaterCalculator />
 
-          {/* Weight */}
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-xs font-black text-ebony uppercase tracking-widest">
-                Weight: <span className="text-brand-start">{weight} {unit}</span>
-              </label>
-              <div className="flex gap-2">
-                {(["kg", "lbs"] as const).map(u => (
-                  <button key={u} onClick={() => setUnit(u)}
-                    className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all ${unit === u ? "bg-ebony text-white border-ebony" : "border-gray-200 text-slate-gray hover:border-gray-300"}`}>
-                    {u}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <input type="range" min="0.5" max={unit === "kg" ? 60 : 132} step="0.5" value={weight}
-              onChange={e => setWeight(+e.target.value)}
-              className="w-full h-3 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start" />
-          </div>
-
-          {/* Activity */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Activity Level</label>
-            <div className="space-y-2">
-              {ACTIVITY_LEVELS.map(a => (
-                <button key={a.id} onClick={() => setActivityId(a.id)}
-                  className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl border-2 text-left transition-all ${activityId === a.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <span className="text-2xl">{a.icon}</span>
-                  <div>
-                    <p className={`font-black text-sm ${activityId === a.id ? "text-ebony" : "text-slate-gray"}`}>{a.label}</p>
-                    <p className="text-xs text-slate-gray/70">{a.desc}</p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Weather */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Weather / Environment</label>
-            <div className="flex gap-3">
-              {WEATHER.map(w => (
-                <button key={w.id} onClick={() => setWeatherId(w.id)}
-                  className={`flex-1 py-3 rounded-2xl border-2 text-center transition-all ${weatherId === w.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <span className="text-2xl block mb-1">{w.icon}</span>
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${weatherId === w.id ? "text-ebony" : "text-slate-gray"}`}>{w.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Diet */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Food Type</label>
-            <div className="space-y-2">
-              {DIET.map(d => (
-                <button key={d.id} onClick={() => setDietId(d.id)}
-                  className={`w-full flex items-center gap-4 px-4 py-3 rounded-2xl border-2 text-left transition-all ${dietId === d.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <span className="text-xl">{d.icon}</span>
-                  <span className={`font-bold text-sm ${dietId === d.id ? "text-ebony" : "text-slate-gray"}`}>{d.label}</span>
-                  {d.id !== "dry" && <span className="ml-auto text-[10px] text-slate-gray/60 font-bold">Food provides moisture</span>}
-                </button>
-              ))}
-            </div>
-          </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Normal daily water intake for dogs and cats is <strong>20–70 ml per kg of body weight</strong>, according to veterinary internal medicine guidelines. The precise requirement varies by diet type (wet food contributes 60–80% of moisture needs; dry kibble almost none), ambient temperature, exercise level, and health status. Polydipsia — excessive thirst defined as drinking more than 90–100 ml/kg/day — is a clinically significant symptom associated with diabetes mellitus, Cushing's disease, kidney disease, and pyometra.
+  This calculator gives you a personalised daily water target so you can establish a baseline and recognise deviations early.</p>
         </div>
 
-        {/* Results */}
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          <div className="bg-ebony rounded-[2rem] p-8 text-center">
-            <p className="text-[10px] font-black text-brand-start uppercase tracking-[0.2em] mb-2">Daily Water Target</p>
-            <p className="text-7xl font-black text-white leading-none">{Math.round(result.dailyMl)}</p>
-            <p className="text-white/50 text-sm mt-1">ml / day</p>
+          <div key='How much water should a dog drink per day?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much water should a dog drink per day?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">A healthy adult dog should drink approximately 20–70 ml per kg of body weight per day. For a 20 kg Labrador Retriever, that is 400–1,400 ml (roughly 1.5–6 cups). Dogs on wet food need significantly less from their bowl — wet food is 60–80% water. A dog who has just exercised vigorously will drink more immediately after. Consistent measurement over 3 days gives a reliable individual baseline.</p>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-gray-50 rounded-2xl p-5 text-center">
-              <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-1">In fl. oz</p>
-              <p className="text-3xl font-black text-ebony">{result.dailyOz.toFixed(1)}</p>
-              <p className="text-xs text-slate-gray">fl oz / day</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-5 text-center">
-              <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-1">Approx cups</p>
-              <p className="text-3xl font-black text-ebony">{result.cups.toFixed(1)}</p>
-              <p className="text-xs text-slate-gray">240 ml cups</p>
-            </div>
+          <div key='How much water should a cat drink per day?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much water should a cat drink per day?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Healthy cats need approximately 40–60 ml per kg of body weight per day. A 4 kg cat needs about 160–240 ml daily. However, most of this should come from food — cats evolved as desert animals and naturally have a low thirst drive. A cat eating wet food may drink almost nothing from a bowl; a cat on dry kibble needs to drink substantially more. Low water intake in cats on dry food is a risk factor for lower urinary tract disease (FLUTD) and kidney disease.</p>
           </div>
-
-          {/* Practical tip */}
-          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
-            <p className="font-black text-blue-900 text-sm mb-2">💡 Practical tip</p>
-            <p className="text-xs text-blue-800 leading-relaxed">
-              Always have fresh water available. Instead of measuring exactly, watch that your pet drains their bowl {Math.round(result.cups)} time{result.cups >= 2 ? "s" : ""} per day. If they&apos;re drinking significantly more or less, mention it to your vet.
-            </p>
+          <div key='Why is my dog drinking more water than usual?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Why is my dog drinking more water than usual?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Increased water consumption (polydipsia) in dogs is associated with several conditions: diabetes mellitus (polyuria/polydipsia is a hallmark symptom), Cushing's disease (hyperadrenocorticism), chronic kidney disease, pyometra in intact females, hypercalcaemia, and liver disease. Medications such as corticosteroids and phenobarbitone also increase thirst as a known side effect. If your dog is consistently drinking more than 90–100 ml/kg/day without an obvious benign cause (heat, exercise, diet change), a veterinary blood and urine panel is warranted.</p>
           </div>
-
-          {/* Warning signs */}
-          <div className="space-y-4">
-            <div className="bg-red-50 border border-red-100 rounded-2xl p-5">
-              <p className="font-black text-red-900 text-xs uppercase tracking-widest mb-3">Signs of Dehydration</p>
-              <ul className="space-y-1">
-                {SIGNS.dehydrated.map(s => (
-                  <li key={s} className="flex gap-2 text-xs text-red-800">
-                    <span className="text-red-500 font-black">•</span>{s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div key='Does diet affect how much water my pet needs?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Does diet affect how much water my pet needs?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes — significantly. Wet food is 70–80% water and substantially reduces how much a dog or cat needs to drink from a bowl. Dry kibble is only 8–12% water, so dogs and cats on dry diets need to drink much more. If you recently switched from wet to dry food and notice your pet drinking more, this is the expected and appropriate response — not a health concern.</p>
           </div>
-
-          <p className="text-[10px] text-slate-gray/60 leading-relaxed">
-            Based on standard veterinary guidelines (50–60 ml/kg/day baseline). Illness, medications, nursing, and kidney conditions significantly affect needs — always consult your vet for medical cases.
-          </p>
+          <div key='How can I encourage my cat to drink more water?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How can I encourage my cat to drink more water?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Cats are attracted to moving water — a pet water fountain increases consumption in most cats compared to a static bowl. Multiple water stations around the home also help. Feeding wet or raw food, adding water to dry food, or offering a small amount of low-sodium broth are evidence-supported strategies. Stainless steel or ceramic bowls are preferable to plastic, which can harbour bacteria that some cats find aversive.</p>
+          </div>
         </div>
-      </div>
-    </ToolLayout>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          <Link key="/resources/why-is-my-dog-drinking-so-much-water" href="/resources/why-is-my-dog-drinking-so-much-water" className="text-brand-start font-bold hover:underline text-sm">/resources/why-is-my-dog-drinking-so-much-water →</Link>
+          <Link key="/health/daily-care" href="/health/daily-care" className="text-brand-start font-bold hover:underline text-sm">/health/daily-care →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

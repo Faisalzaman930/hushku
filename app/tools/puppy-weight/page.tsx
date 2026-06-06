@@ -1,205 +1,94 @@
-"use client";
+import Link from "next/link";
+import PuppyWeightPredictor from "./PuppyWeightPredictor";
 
-import { useState, useMemo } from "react";
-import { Metadata } from "next";
-import ToolLayout from "../../components/ToolLayout";
-
-// Growth % of adult weight at each age (weeks) by size category
-const GROWTH_TABLES: Record<string, { week: number; pct: number }[]> = {
-  toy: [
-    { week: 6, pct: 60 }, { week: 8, pct: 75 }, { week: 10, pct: 84 },
-    { week: 12, pct: 90 }, { week: 16, pct: 96 }, { week: 20, pct: 99 }, { week: 24, pct: 100 },
-  ],
-  small: [
-    { week: 6, pct: 52 }, { week: 8, pct: 65 }, { week: 10, pct: 74 },
-    { week: 12, pct: 80 }, { week: 16, pct: 88 }, { week: 20, pct: 94 },
-    { week: 24, pct: 98 }, { week: 28, pct: 100 },
-  ],
-  medium: [
-    { week: 6, pct: 40 }, { week: 8, pct: 52 }, { week: 10, pct: 60 },
-    { week: 12, pct: 66 }, { week: 16, pct: 76 }, { week: 20, pct: 83 },
-    { week: 24, pct: 89 }, { week: 28, pct: 94 }, { week: 32, pct: 98 }, { week: 36, pct: 100 },
-  ],
-  large: [
-    { week: 8, pct: 36 }, { week: 10, pct: 43 }, { week: 12, pct: 50 },
-    { week: 16, pct: 60 }, { week: 20, pct: 69 }, { week: 24, pct: 77 },
-    { week: 28, pct: 84 }, { week: 32, pct: 90 }, { week: 40, pct: 97 }, { week: 52, pct: 100 },
-  ],
-  giant: [
-    { week: 8, pct: 25 }, { week: 12, pct: 35 }, { week: 16, pct: 45 },
-    { week: 20, pct: 55 }, { week: 24, pct: 64 }, { week: 32, pct: 75 },
-    { week: 40, pct: 85 }, { week: 52, pct: 93 }, { week: 65, pct: 100 },
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Puppy Weight", item: "https://hushku.app/tools/puppy-weight" },
   ],
 };
 
-const SIZE_CONFIG = {
-  toy:    { label: "Toy",    adult: "Under 4.5 kg (10 lbs)",   examples: "Chihuahua, Pomeranian, Yorkie",    color: "bg-pink-100 text-pink-800" },
-  small:  { label: "Small",  adult: "4.5–11 kg (10–25 lbs)",  examples: "Beagle, Shih Tzu, Dachshund",      color: "bg-orange-100 text-orange-800" },
-  medium: { label: "Medium", adult: "11–23 kg (25–50 lbs)",   examples: "Border Collie, Cocker Spaniel",     color: "bg-blue-100 text-blue-800" },
-  large:  { label: "Large",  adult: "23–45 kg (50–100 lbs)",  examples: "Labrador, Golden Retriever, GSD",   color: "bg-emerald-100 text-emerald-800" },
-  giant:  { label: "Giant",  adult: "Over 45 kg (100 lbs+)",  examples: "Great Dane, Mastiff, Newfoundland", color: "bg-purple-100 text-purple-800" },
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Puppy Weight",
+  url: "https://hushku.app/tools/puppy-weight",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
 };
 
-function interpolateGrowthPct(sizeKey: string, ageWeeks: number): number {
-  const table = GROWTH_TABLES[sizeKey];
-  if (ageWeeks <= table[0].week) return table[0].pct;
-  if (ageWeeks >= table[table.length - 1].week) return 100;
-  for (let i = 0; i < table.length - 1; i++) {
-    const a = table[i], b = table[i + 1];
-    if (ageWeeks >= a.week && ageWeeks <= b.week) {
-      const t = (ageWeeks - a.week) / (b.week - a.week);
-      return a.pct + t * (b.pct - a.pct);
-    }
-  }
-  return 100;
-}
+const faqs = [
+  { q: "How do I predict my puppy's adult weight?", a: "The simplest approach: for large breeds, take current weight in pounds, divide by the puppy's age in weeks, and multiply by 52. A 10 lb puppy at 10 weeks: (10 ÷ 10) × 52 = 52 lbs adult. For small breeds, adult weight is roughly double the 8-week weight. For medium breeds, weigh at 14 weeks and multiply by 2.5. These are approximations — parent sizes are the most reliable predictor for purebreds." },
+  { q: 'At what age is a puppy fully grown?', a: 'Small breeds (under 10 lbs adult) are fully grown at 8–10 months. Medium breeds (10–50 lbs) at 12–14 months. Large breeds (50–100 lbs) at 15–18 months. Giant breeds (over 100 lbs — Great Dane, Saint Bernard, Mastiff) continue growing until 18–24 months. Growth plate closure, not simply reaching adult weight, marks true skeletal maturity — this is why high-impact exercise is restricted in large and giant breeds until 18 months.' },
+  { q: 'Are mixed breed puppies harder to predict?', a: 'Yes. For mixed breeds, breed size composition drives the estimate — if both parents are known, averaging their adult weights gives a reasonable target. DNA breed test results (Embark, Wisdom Panel) provide breed composition that improves estimates. Without parent information, weight at 16 weeks is a reasonable predictor: adult weight is typically 3–4× the 16-week weight for medium dogs.' },
+  { q: 'Why does growth rate matter for large breed puppies?', a: 'Rapid growth in large and giant breed puppies is a documented risk factor for developmental orthopaedic diseases including osteochondrosis (OCD), hip dysplasia, and elbow dysplasia. The Orthopedic Foundation for Animals (OFA) recommends feeding large breed puppies a diet formulated specifically for large breed growth — with controlled calcium and calorie levels — to avoid accelerated bone development. Overfeeding a large breed puppy is more harmful than overfeeding a small breed.' },
+  { q: 'How often should I weigh my puppy?', a: "Weekly weigh-ins during the first 6 months, then monthly until adulthood. Weight is most reliably measured at the same time of day (before morning feeding) on the same scale. A consistent slight upward trend is healthy; rapid weight gain or any weight loss warrants a veterinary discussion. Log weights in Hushku's health tracker to maintain a growth chart over time." },
+];
 
-export default function PuppyGrowthPredictor() {
-  const [unit, setUnit] = useState<"kg" | "lbs">("kg");
-  const [size, setSize] = useState<keyof typeof SIZE_CONFIG>("medium");
-  const [ageWeeks, setAgeWeeks] = useState(8);
-  const [weight, setWeight] = useState(3);
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-  const result = useMemo(() => {
-    const wKg = unit === "lbs" ? weight * 0.453592 : weight;
-    const pct = interpolateGrowthPct(size, ageWeeks);
-    const adultKg = pct > 0 ? wKg / (pct / 100) : 0;
-    const adultLbs = adultKg * 2.20462;
-
-    // Milestone weights
-    const table = GROWTH_TABLES[size];
-    const milestones = table.map(row => ({
-      week: row.week,
-      kg: adultKg * (row.pct / 100),
-      lbs: adultKg * 2.20462 * (row.pct / 100),
-    }));
-
-    return { adultKg, adultLbs, milestones, pct };
-  }, [unit, size, ageWeeks, weight]);
-
-  const confidenceLabel =
-    ageWeeks < 6  ? "Low — too young for accuracy" :
-    ageWeeks < 10 ? "Moderate" : "Good";
-
+export default function Page() {
   return (
-    <ToolLayout
-      subtitle="Puppy Growth Predictor"
-      relatedToolSlugs={["exercise-calculator","calorie-calculator","whelping-calculator","vaccine-tracker"]}
-      relatedArticles={[
-        { slug: "complete-guide-to-puppy-care", title: "Complete Guide to Puppy Care", category: "Pillar Guide", emoji: "🐶" },
-        { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Guide", category: "Expert Guide", emoji: "🏠" },
-        { slug: "how-to-crate-train-a-puppy", title: "How to Crate Train a Puppy", category: "How-To", emoji: "🏡" },
-      ]}
-      title="How Big Will My Puppy Get?"
-      description="Enter your puppy's current age and weight to predict their adult size and track growth milestones."
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-        {/* Inputs */}
-        <div className="space-y-10">
-          {/* Unit */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Units</label>
-            <div className="flex gap-3">
-              {(["kg", "lbs"] as const).map(u => (
-                <button key={u} onClick={() => setUnit(u)}
-                  className={`flex-1 py-3 rounded-2xl font-black uppercase tracking-wide text-sm border-2 transition-all ${unit === u ? "bg-ebony text-white border-ebony" : "bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100"}`}>
-                  {u}
-                </button>
-              ))}
-            </div>
-          </div>
+      <PuppyWeightPredictor />
 
-          {/* Breed size */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Breed Size</label>
-            <div className="space-y-2">
-              {(Object.entries(SIZE_CONFIG) as [keyof typeof SIZE_CONFIG, typeof SIZE_CONFIG[keyof typeof SIZE_CONFIG]][]).map(([key, cfg]) => (
-                <button key={key} onClick={() => setSize(key)}
-                  className={`w-full flex items-start gap-4 p-4 rounded-2xl border-2 text-left transition-all ${size === key ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="font-black text-ebony text-sm">{cfg.label}</span>
-                      <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${cfg.color}`}>{cfg.adult}</span>
-                    </div>
-                    <p className="text-xs text-slate-gray">{cfg.examples}</p>
-                  </div>
-                  <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-none transition-all ${size === key ? "border-ebony bg-ebony" : "border-gray-300"}`} />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Age */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-2">
-              Current Age: <span className="text-brand-start">{ageWeeks} weeks</span>
-            </label>
-            <input type="range" min="4" max="52" step="1" value={ageWeeks}
-              onChange={e => setAgeWeeks(+e.target.value)}
-              className="w-full h-3 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start" />
-            <div className="flex justify-between text-[10px] font-bold text-slate-gray mt-2 uppercase tracking-tighter">
-              <span>4 wks</span><span>52 wks</span>
-            </div>
-          </div>
-
-          {/* Weight */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-2">
-              Current Weight: <span className="text-brand-start">{weight} {unit}</span>
-            </label>
-            <input type="range" min="0.5" max={unit === "kg" ? 40 : 88} step="0.5" value={weight}
-              onChange={e => setWeight(+e.target.value)}
-              className="w-full h-3 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start" />
-            <div className="flex justify-between text-[10px] font-bold text-slate-gray mt-2 uppercase tracking-tighter">
-              <span>0.5</span><span>{unit === "kg" ? "40 kg" : "88 lbs"}</span>
-            </div>
-          </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Predicting adult size from puppy weight helps owners plan appropriately for food costs, housing space, and equipment sizing. The calculation uses breed size category (small, medium, large, giant) and applies published growth curve data: small breeds typically reach adult weight by 8–10 months; medium breeds by 12–14 months; large breeds by 15–18 months; giant breeds by 18–24 months.
+  The most widely used formula for large and giant breeds is the <strong>Purina formula</strong>: adult weight ≈ (current weight ÷ age in weeks) × 52. Results are estimates — individual variation within breed size categories is significant.</p>
         </div>
 
-        {/* Results */}
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          <div className="bg-ebony rounded-[2rem] p-8 text-center">
-            <p className="text-[10px] font-black text-brand-start uppercase tracking-[0.2em] mb-2">Estimated Adult Weight</p>
-            <p className="text-6xl font-black text-white leading-none mb-1">
-              {result.adultKg.toFixed(1)}
-              <span className="text-2xl ml-2 text-white/60">kg</span>
-            </p>
-            <p className="text-white/50 text-sm">{result.adultLbs.toFixed(1)} lbs</p>
-            <div className="mt-4 inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5">
-              <span className="text-[10px] font-black text-white/60 uppercase tracking-widest">Confidence:</span>
-              <span className="text-[10px] font-black text-white uppercase tracking-widest">{confidenceLabel}</span>
-            </div>
+          <div key="How do I predict my puppy's adult weight?" className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How do I predict my puppy's adult weight?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">The simplest approach: for large breeds, take current weight in pounds, divide by the puppy's age in weeks, and multiply by 52. A 10 lb puppy at 10 weeks: (10 ÷ 10) × 52 = 52 lbs adult. For small breeds, adult weight is roughly double the 8-week weight. For medium breeds, weigh at 14 weeks and multiply by 2.5. These are approximations — parent sizes are the most reliable predictor for purebreds.</p>
           </div>
-
-          <div className="bg-brand-start/5 border border-brand-start/20 rounded-2xl p-5">
-            <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-1">Currently at</p>
-            <p className="text-2xl font-black text-ebony">{result.pct.toFixed(0)}% of adult weight</p>
-            <div className="mt-3 h-2.5 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-brand-gradient rounded-full transition-all duration-500" style={{ width: `${Math.min(result.pct, 100)}%` }} />
-            </div>
+          <div key='At what age is a puppy fully grown?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">At what age is a puppy fully grown?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Small breeds (under 10 lbs adult) are fully grown at 8–10 months. Medium breeds (10–50 lbs) at 12–14 months. Large breeds (50–100 lbs) at 15–18 months. Giant breeds (over 100 lbs — Great Dane, Saint Bernard, Mastiff) continue growing until 18–24 months. Growth plate closure, not simply reaching adult weight, marks true skeletal maturity — this is why high-impact exercise is restricted in large and giant breeds until 18 months.</p>
           </div>
-
-          {/* Growth milestones */}
-          <div>
-            <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-3">Growth Milestones</p>
-            <div className="space-y-2">
-              {result.milestones.map(m => (
-                <div key={m.week} className={`flex items-center justify-between px-4 py-2.5 rounded-xl ${m.week === ageWeeks ? "bg-brand-start/10 border border-brand-start/30" : "bg-gray-50"}`}>
-                  <span className={`text-xs font-bold ${m.week === ageWeeks ? "text-brand-start" : "text-slate-gray"}`}>Week {m.week}</span>
-                  <span className="font-black text-ebony text-sm">
-                    {unit === "kg" ? `${m.kg.toFixed(1)} kg` : `${m.lbs.toFixed(1)} lbs`}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div key='Are mixed breed puppies harder to predict?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Are mixed breed puppies harder to predict?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes. For mixed breeds, breed size composition drives the estimate — if both parents are known, averaging their adult weights gives a reasonable target. DNA breed test results (Embark, Wisdom Panel) provide breed composition that improves estimates. Without parent information, weight at 16 weeks is a reasonable predictor: adult weight is typically 3–4× the 16-week weight for medium dogs.</p>
           </div>
-
-          <p className="text-[10px] text-slate-gray/60 leading-relaxed">
-            Estimates are based on published breed-size growth curves. Individual dogs may vary by ±15–20%. Consult your vet for precise tracking.
-          </p>
+          <div key='Why does growth rate matter for large breed puppies?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Why does growth rate matter for large breed puppies?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Rapid growth in large and giant breed puppies is a documented risk factor for developmental orthopaedic diseases including osteochondrosis (OCD), hip dysplasia, and elbow dysplasia. The Orthopedic Foundation for Animals (OFA) recommends feeding large breed puppies a diet formulated specifically for large breed growth — with controlled calcium and calorie levels — to avoid accelerated bone development. Overfeeding a large breed puppy is more harmful than overfeeding a small breed.</p>
+          </div>
+          <div key='How often should I weigh my puppy?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How often should I weigh my puppy?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Weekly weigh-ins during the first 6 months, then monthly until adulthood. Weight is most reliably measured at the same time of day (before morning feeding) on the same scale. A consistent slight upward trend is healthy; rapid weight gain or any weight loss warrants a veterinary discussion. Log weights in Hushku's health tracker to maintain a growth chart over time.</p>
+          </div>
         </div>
-      </div>
-    </ToolLayout>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          <Link key="/tools/exercise-calculator" href="/tools/exercise-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/exercise-calculator →</Link>
+          <Link key="/health/weight-tracker" href="/health/weight-tracker" className="text-brand-start font-bold hover:underline text-sm">/health/weight-tracker →</Link>
+          <Link key="/resources/complete-guide-to-puppy-care" href="/resources/complete-guide-to-puppy-care" className="text-brand-start font-bold hover:underline text-sm">/resources/complete-guide-to-puppy-care →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

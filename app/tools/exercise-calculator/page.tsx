@@ -1,233 +1,93 @@
-"use client";
+import Link from "next/link";
+import DogExerciseCalculator from "./DogExerciseCalculator";
 
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-
-type EnergyLevel = "very-high" | "high" | "medium" | "low" | "very-low";
-
-const BREED_TYPES: { id: EnergyLevel; label: string; examples: string; emoji: string; baseMin: number; baseMax: number }[] = [
-  { id: "very-high", label: "Working / Herding",    examples: "Border Collie, Husky, Belgian Malinois, Dalmatian", emoji: "🏃", baseMin: 120, baseMax: 180 },
-  { id: "high",      label: "Sporting / Hound",     examples: "Labrador, Golden Retriever, Weimaraner, Beagle",    emoji: "⚡", baseMin: 90,  baseMax: 120 },
-  { id: "medium",    label: "Terrier / Mixed breed", examples: "Jack Russell, Springer Spaniel, Cocker Spaniel",    emoji: "🐕", baseMin: 60,  baseMax: 90  },
-  { id: "low",       label: "Companion / Toy",       examples: "Shih Tzu, Cavalier, Maltese, Pug, French Bulldog", emoji: "🐩", baseMin: 30,  baseMax: 45  },
-  { id: "very-low",  label: "Giant / Brachycephalic", examples: "Basset Hound, Saint Bernard, English Bulldog",    emoji: "😴", baseMin: 20,  baseMax: 30  },
-];
-
-const AGE_STAGES = [
-  { id: "puppy",  label: "Puppy (under 1 yr)", desc: "5 min per month of age, twice daily",         multiplier: null, isPuppy: true  },
-  { id: "adult",  label: "Adult (1–7 yrs)",    desc: "Full breed recommendation applies",             multiplier: 1.0,  isPuppy: false },
-  { id: "senior", label: "Senior (7+ yrs)",    desc: "Reduce by 30–40%, watch for fatigue",          multiplier: 0.65, isPuppy: false },
-];
-
-const HEALTH_FACTORS = [
-  { id: "healthy",   label: "Healthy",                  multiplier: 1.0  },
-  { id: "overweight", label: "Overweight / needs to lose", multiplier: 1.2  },
-  { id: "recovering", label: "Recovering from injury",   multiplier: 0.4  },
-  { id: "joint",     label: "Joint issues / arthritis",  multiplier: 0.6  },
-];
-
-const ACTIVITY_IDEAS: Record<EnergyLevel, { activity: string; duration: string; icon: string }[]> = {
-  "very-high": [
-    { activity: "Off-leash run in a field",   duration: "30–45 min",  icon: "🌿" },
-    { activity: "Fetch / frisbee",            duration: "20–30 min",  icon: "🥏" },
-    { activity: "Canicross or cycling",       duration: "30–60 min",  icon: "🚴" },
-    { activity: "Agility or nose work",       duration: "20–30 min",  icon: "🏅" },
-    { activity: "Swimming",                   duration: "15–20 min",  icon: "🏊" },
-  ],
-  "high": [
-    { activity: "Brisk on-leash walk",        duration: "30–40 min",  icon: "🚶" },
-    { activity: "Fetch in the park",          duration: "20–30 min",  icon: "🎾" },
-    { activity: "Hiking",                     duration: "45–60 min",  icon: "🥾" },
-    { activity: "Swimming",                   duration: "15–20 min",  icon: "🏊" },
-  ],
-  "medium": [
-    { activity: "On-leash walk",              duration: "20–30 min",  icon: "🚶" },
-    { activity: "Garden / yard play",         duration: "15–20 min",  icon: "🏡" },
-    { activity: "Interactive toy session",    duration: "10–15 min",  icon: "🦴" },
-  ],
-  "low": [
-    { activity: "Gentle leash walk",          duration: "15–20 min",  icon: "🐾" },
-    { activity: "Sniff walk (slow-paced)",    duration: "20 min",     icon: "👃" },
-    { activity: "Indoor play / puzzle toys",  duration: "10–15 min",  icon: "🧩" },
-  ],
-  "very-low": [
-    { activity: "Short gentle walk",          duration: "10–15 min",  icon: "🚶" },
-    { activity: "Garden potter",              duration: "10 min",     icon: "🌱" },
-    { activity: "Sniff walk",                 duration: "15 min",     icon: "👃" },
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Exercise Calculator", item: "https://hushku.app/tools/exercise-calculator" },
   ],
 };
 
-export default function ExerciseCalculator() {
-  const [breedType, setBreedType] = useState<EnergyLevel>("high");
-  const [ageStage, setAgeStage] = useState("adult");
-  const [puppyMonths, setPuppyMonths] = useState(4);
-  const [healthId, setHealthId] = useState("healthy");
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Exercise Calculator",
+  url: "https://hushku.app/tools/exercise-calculator",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  const result = useMemo(() => {
-    const breed = BREED_TYPES.find(b => b.id === breedType)!;
-    const age   = AGE_STAGES.find(a => a.id === ageStage)!;
-    const health = HEALTH_FACTORS.find(h => h.id === healthId)!;
+const faqs = [
+  { q: 'How much exercise does a dog need per day?', a: 'Exercise needs vary enormously by breed. Low-energy breeds (Basset Hound, Shih Tzu, French Bulldog) need 20–30 minutes daily. Medium-energy breeds (Labrador Retriever, Beagle, Cocker Spaniel) need 45–60 minutes. High-energy working breeds (Border Collie, Australian Shepherd, Vizsla, Weimaraner) need 90–120+ minutes. These are minimums — most dogs benefit from more. Age matters too: puppies need shorter, more frequent play sessions; seniors need gentler, shorter walks.' },
+  { q: 'Is walking enough exercise for my dog?', a: 'For low and medium-energy breeds, a combination of walks and off-lead play is usually sufficient. For high-energy working breeds, walks alone are rarely adequate — these breeds require activities that challenge them physically and mentally: fetch, agility, swimming, off-lead running, or structured training sessions. A dog who is adequately exercised will be calm and settled indoors; a dog who is under-exercised is frequently restless, destructive, or attention-seeking.' },
+  { q: 'How much exercise is too much for a puppy?', a: 'The widely cited guideline for puppies is 5 minutes of structured exercise per month of age, twice daily (so a 4-month-old puppy: 20 minutes twice daily). This applies to leash walking and structured play — not free play, which puppies self-regulate. Excessive repetitive exercise on hard surfaces during the growth period can damage developing joints, particularly in large breeds prone to hip and elbow dysplasia. From 12–18 months, gradually increase to adult exercise levels.' },
+  { q: 'Do brachycephalic breeds like French Bulldogs need less exercise?', a: 'Yes — and their exercise must be managed carefully. Brachycephalic breeds (French Bulldogs, Pugs, Bulldogs, Boxers) have anatomically compromised airways that limit their ability to cool themselves through panting. They are at high risk of heatstroke in temperatures above 20°C (68°F) and should never be exercised in direct sun during warm weather. Short walks (15–20 minutes), multiple times daily in cool parts of the day, are safer than one long walk. Owners should watch for rapid panting, drooling, or distress as warning signs.' },
+  { q: 'What counts as mental exercise for dogs?', a: 'Mental stimulation is as tiring as physical exercise for most dogs. Sniffing on a walk (allowing the dog to follow scents rather than walk at heel) is cognitively demanding. Training sessions (5–10 minutes of reinforcement-based obedience or trick training) are highly effective. Puzzle feeders, Kongs, licking mats, and scatter feeding reduce arousal and provide enrichment. For working breeds, scent work and nose games can exhaust a dog mentally more effectively than an hour-long run.' },
+];
 
-    if (age.isPuppy) {
-      const minPerSession = puppyMonths * 5;
-      return {
-        minDay: minPerSession * 2,
-        maxDay: minPerSession * 2 + 5,
-        sessions: 2,
-        note: `${minPerSession} min × 2 sessions/day (5 min per month of age rule)`,
-        isPuppy: true,
-      };
-    }
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-    const minDay = Math.round(breed.baseMin * (age.multiplier ?? 1) * health.multiplier);
-    const maxDay = Math.round(breed.baseMax * (age.multiplier ?? 1) * health.multiplier);
-    return {
-      minDay,
-      maxDay,
-      sessions: minDay >= 90 ? 3 : 2,
-      note: "",
-      isPuppy: false,
-    };
-  }, [breedType, ageStage, puppyMonths, healthId]);
-
-  const activities = ACTIVITY_IDEAS[breedType] ?? [];
-
+export default function Page() {
   return (
-    <ToolLayout
-      subtitle="Dog Exercise Calculator"
-      relatedToolSlugs={["calorie-calculator","water-calculator","puppy-weight","pet-bmi"]}
-      relatedArticles={[
-        { slug: "complete-guide-to-dog-training", title: "Complete Guide to Dog Training", category: "Pillar Guide", emoji: "🎓" },
-        { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Your Dog Pulling on the Lead", category: "How-To", emoji: "🦮" },
-        { slug: "how-to-manage-leash-reactive-dog", title: "How to Manage a Leash-Reactive Dog", category: "How-To", emoji: "😤" },
-      ]}
-      title="How Much Exercise Does My Dog Need?"
-      description="Get a personalised daily exercise recommendation for your dog based on breed energy level, age, and health status."
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-        {/* Inputs */}
-        <div className="space-y-10">
-          {/* Breed type */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Breed Energy Level</label>
-            <div className="space-y-2">
-              {BREED_TYPES.map(b => (
-                <button key={b.id} onClick={() => setBreedType(b.id)}
-                  className={`w-full flex items-start gap-4 p-4 rounded-2xl border-2 text-left transition-all ${breedType === b.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <span className="text-2xl flex-none mt-0.5">{b.emoji}</span>
-                  <div className="flex-1">
-                    <p className={`font-black text-sm ${breedType === b.id ? "text-ebony" : "text-slate-gray"}`}>{b.label}</p>
-                    <p className="text-xs text-slate-gray/70 mt-0.5">{b.examples}</p>
-                  </div>
-                  <span className={`flex-none text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full ${breedType === b.id ? "bg-ebony text-white" : "bg-gray-200 text-slate-gray"}`}>
-                    {b.baseMin}–{b.baseMax} min
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
+      <DogExerciseCalculator />
 
-          {/* Age stage */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Life Stage</label>
-            <div className="space-y-2">
-              {AGE_STAGES.map(a => (
-                <button key={a.id} onClick={() => setAgeStage(a.id)}
-                  className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl border-2 text-left transition-all ${ageStage === a.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <div className="flex-1">
-                    <p className={`font-black text-sm ${ageStage === a.id ? "text-ebony" : "text-slate-gray"}`}>{a.label}</p>
-                    <p className="text-xs text-slate-gray/70">{a.desc}</p>
-                  </div>
-                </button>
-              ))}
-            </div>
-            {ageStage === "puppy" && (
-              <div className="mt-4">
-                <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-2">
-                  Puppy Age: <span className="text-brand-start">{puppyMonths} months</span>
-                </label>
-                <input type="range" min="2" max="12" step="1" value={puppyMonths}
-                  onChange={e => setPuppyMonths(+e.target.value)}
-                  className="w-full h-3 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start" />
-                <div className="flex justify-between text-[10px] font-bold text-slate-gray mt-1 uppercase tracking-tighter">
-                  <span>2 mo</span><span>12 mo</span>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Health */}
-          <div>
-            <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4">Health Status</label>
-            <div className="space-y-2">
-              {HEALTH_FACTORS.map(h => (
-                <button key={h.id} onClick={() => setHealthId(h.id)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all ${healthId === h.id ? "border-ebony bg-ebony/5" : "border-transparent bg-gray-50 hover:bg-gray-100"}`}>
-                  <span className={`text-sm font-bold ${healthId === h.id ? "text-ebony" : "text-slate-gray"}`}>{h.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Daily exercise requirements vary dramatically by breed, age, and health status. A Border Collie needs 90–120 minutes of vigorous exercise daily; a Basset Hound needs 20–30 minutes. The <strong>American Kennel Club (AKC)</strong> and veterinary behaviourists consistently identify insufficient exercise as the primary cause of destructive behaviour, obesity, and anxiety disorders in dogs.
+  This calculator combines breed energy profile, age stage, and health flags to produce a daily exercise recommendation in minutes — split between structured activity (walks, runs, fetch) and mental enrichment (training, puzzle feeders, scent work).</p>
         </div>
 
-        {/* Results */}
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
         <div className="space-y-6">
-          <div className="bg-ebony rounded-[2rem] p-8 text-center">
-            <p className="text-[10px] font-black text-brand-start uppercase tracking-[0.2em] mb-2">Daily Exercise</p>
-            <p className="text-7xl font-black text-white leading-none">
-              {result.minDay}
-              {result.maxDay !== result.minDay && <span className="text-4xl text-white/60">–{result.maxDay}</span>}
-            </p>
-            <p className="text-white/50 text-sm mt-1">minutes per day</p>
-            <p className="text-white/40 text-xs mt-2">{result.sessions} sessions recommended</p>
+          <div key='How much exercise does a dog need per day?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much exercise does a dog need per day?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Exercise needs vary enormously by breed. Low-energy breeds (Basset Hound, Shih Tzu, French Bulldog) need 20–30 minutes daily. Medium-energy breeds (Labrador Retriever, Beagle, Cocker Spaniel) need 45–60 minutes. High-energy working breeds (Border Collie, Australian Shepherd, Vizsla, Weimaraner) need 90–120+ minutes. These are minimums — most dogs benefit from more. Age matters too: puppies need shorter, more frequent play sessions; seniors need gentler, shorter walks.</p>
           </div>
-
-          {result.isPuppy && (
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-              <p className="font-black text-amber-900 text-sm mb-1">🐾 Puppy rule of thumb</p>
-              <p className="text-xs text-amber-800 leading-relaxed">{result.note}</p>
-              <p className="text-xs text-amber-800 mt-2 leading-relaxed">
-                Over-exercising puppies can damage developing growth plates. Avoid hard surfaces, jumping, and forced long runs until 12–18 months (18–24 months for large breeds).
-              </p>
-            </div>
-          )}
-
-          {/* Session breakdown */}
-          <div className="bg-gray-50 rounded-2xl p-6">
-            <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-4">Suggested Session Split</p>
-            <div className="space-y-3">
-              {Array.from({ length: result.sessions }, (_, i) => {
-                const perSession = Math.round(result.minDay / result.sessions);
-                return (
-                  <div key={i} className="flex items-center justify-between bg-white rounded-xl px-4 py-3 border border-gray-100">
-                    <span className="text-sm font-bold text-slate-gray">Session {i + 1}</span>
-                    <span className="font-black text-ebony">{perSession}–{Math.round(result.maxDay / result.sessions)} min</span>
-                  </div>
-                );
-              })}
-            </div>
+          <div key='Is walking enough exercise for my dog?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is walking enough exercise for my dog?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">For low and medium-energy breeds, a combination of walks and off-lead play is usually sufficient. For high-energy working breeds, walks alone are rarely adequate — these breeds require activities that challenge them physically and mentally: fetch, agility, swimming, off-lead running, or structured training sessions. A dog who is adequately exercised will be calm and settled indoors; a dog who is under-exercised is frequently restless, destructive, or attention-seeking.</p>
           </div>
-
-          {/* Activity ideas */}
-          <div>
-            <p className="text-[10px] font-black text-ebony uppercase tracking-widest mb-3">Activity Ideas for This Breed Type</p>
-            <div className="space-y-2">
-              {activities.map(a => (
-                <div key={a.activity} className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3">
-                  <span className="text-xl flex-none">{a.icon}</span>
-                  <span className="text-sm font-bold text-ebony flex-1">{a.activity}</span>
-                  <span className="text-xs text-slate-gray flex-none">{a.duration}</span>
-                </div>
-              ))}
-            </div>
+          <div key='How much exercise is too much for a puppy?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much exercise is too much for a puppy?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">The widely cited guideline for puppies is 5 minutes of structured exercise per month of age, twice daily (so a 4-month-old puppy: 20 minutes twice daily). This applies to leash walking and structured play — not free play, which puppies self-regulate. Excessive repetitive exercise on hard surfaces during the growth period can damage developing joints, particularly in large breeds prone to hip and elbow dysplasia. From 12–18 months, gradually increase to adult exercise levels.</p>
           </div>
-
-          <p className="text-[10px] text-slate-gray/60 leading-relaxed">
-            This is a general guide. Weather, individual temperament, and health conditions can significantly alter needs. Watch for signs of over-exercise: excessive panting, limping, or reluctance to continue.
-          </p>
+          <div key='Do brachycephalic breeds like French Bulldogs need less exercise?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Do brachycephalic breeds like French Bulldogs need less exercise?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes — and their exercise must be managed carefully. Brachycephalic breeds (French Bulldogs, Pugs, Bulldogs, Boxers) have anatomically compromised airways that limit their ability to cool themselves through panting. They are at high risk of heatstroke in temperatures above 20°C (68°F) and should never be exercised in direct sun during warm weather. Short walks (15–20 minutes), multiple times daily in cool parts of the day, are safer than one long walk. Owners should watch for rapid panting, drooling, or distress as warning signs.</p>
+          </div>
+          <div key='What counts as mental exercise for dogs?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What counts as mental exercise for dogs?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Mental stimulation is as tiring as physical exercise for most dogs. Sniffing on a walk (allowing the dog to follow scents rather than walk at heel) is cognitively demanding. Training sessions (5–10 minutes of reinforcement-based obedience or trick training) are highly effective. Puzzle feeders, Kongs, licking mats, and scatter feeding reduce arousal and provide enrichment. For working breeds, scent work and nose games can exhaust a dog mentally more effectively than an hour-long run.</p>
+          </div>
         </div>
-      </div>
-    </ToolLayout>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          <Link key="/tools/breed-compare" href="/tools/breed-compare" className="text-brand-start font-bold hover:underline text-sm">/tools/breed-compare →</Link>
+          <Link key="/resources/complete-guide-to-dog-training" href="/resources/complete-guide-to-dog-training" className="text-brand-start font-bold hover:underline text-sm">/resources/complete-guide-to-dog-training →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

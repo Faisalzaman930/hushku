@@ -1,109 +1,87 @@
-"use client";
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import Link from "next/link";
+import PetNameGenerator from "./PetNameGenerator";
 
-const nameData: Record<string, Record<string, string[]>> = {
-  dog: {
-    black: ["Shadow", "Midnight", "Onyx", "Raven", "Coal", "Noir", "Ebony", "Ace", "Jet", "Obsidian"],
-    white: ["Blizzard", "Cloud", "Pearl", "Snowball", "Ghost", "Cotton", "Ivory", "Frost", "Casper", "Nimbus"],
-    brown: ["Mocha", "Hazel", "Coco", "Brownie", "Fudge", "Chestnut", "Toffee", "Walnut", "Rusty", "Caramel"],
-    golden: ["Honey", "Amber", "Goldie", "Sunny", "Sandy", "Maple", "Biscuit", "Butterscotch", "Harvest", "Wheat"],
-    playful: ["Biscuit", "Zigzag", "Boing", "Ruckus", "Chaos", "Doodle", "Rascal", "Pudding", "Snickers", "Gizmo"],
-    calm: ["Zen", "Mellow", "Serene", "Willow", "Pebble", "Gentle", "Sage", "Misty", "Breeze", "Vale"],
-    brave: ["Titan", "Atlas", "Rex", "Storm", "Thor", "Blaze", "Ranger", "Duke", "Marshall", "Diesel"],
-    tiny: ["Peanut", "Nugget", "Bean", "Pip", "Dot", "Tiny", "Munchkin", "Button", "Sprout", "Micro"],
-  },
-  cat: {
-    black: ["Phantom", "Salem", "Morticia", "Hex", "Sable", "Licorice", "Zorro", "Cinder", "Binx", "Vesper"],
-    white: ["Snowdrop", "Opal", "Alba", "Fleur", "Vanilla", "Winter", "Misty", "Luna", "Comet", "Stardust"],
-    orange: ["Mandarin", "Paprika", "Rusty", "Ginger", "Sunny", "Marigold", "Saffron", "Tiger", "Coral", "Phoenix"],
-    grey: ["Ash", "Sterling", "Slate", "Pewter", "Smokey", "Dusk", "Earl", "Gregor", "Fog", "Nimbus"],
-    playful: ["Zap", "Bolt", "Prankster", "Zippy", "Mischief", "Chaos", "Whimsy", "Jinks", "Dex", "Frenzy"],
-    calm: ["Duchess", "Seraph", "Velvet", "Soleil", "Celeste", "Sienna", "Lyric", "Moonbeam", "Halo", "Dusk"],
-    regal: ["Empress", "Duke", "Majesty", "Cleopatra", "Caesar", "Athena", "Leopold", "Contessa", "Perseus", "Vienna"],
-    tiny: ["Pebble", "Beet", "Thimble", "Dot", "Crumb", "Nibble", "Pip", "Fleck", "Mite", "Tiara"],
-  },
-  rabbit: {
-    white: ["Snowball", "Blanche", "Cotton", "Cloud", "Pearl", "Ivory", "Vanilla", "Ghost", "Marshmallow", "Milk"],
-    brown: ["Biscuit", "Cinnamon", "Nutmeg", "Tawny", "Mocha", "Fern", "Cork", "Peanut", "Toast", "Caramel"],
-    playful: ["Hopscotch", "Zoom", "Binky", "Ziggy", "Bounce", "Pogo", "Flop", "Twitch", "Jolt", "Leap"],
-    calm: ["Clover", "Thistle", "Fern", "Willow", "Daisy", "Moss", "Sage", "Petal", "Breeze", "Meadow"],
-  },
-  bird: {
-    colourful: ["Mosaic", "Prism", "Harlequin", "Spectrum", "Fiesta", "Vivid", "Calypso", "Dazzle", "Swatch", "Tint"],
-    green: ["Sage", "Olive", "Fern", "Basil", "Clover", "Mint", "Forest", "Cedar", "Juniper", "Pistachio"],
-    vocal: ["Aria", "Lyric", "Sonata", "Jazz", "Chorus", "Melody", "Riff", "Tempo", "Alto", "Cadence"],
-    playful: ["Jester", "Trickster", "Zip", "Zany", "Jiffy", "Mischief", "Flit", "Gadget", "Chaos", "Tumble"],
-  },
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Name Generator", item: "https://hushku.app/tools/name-generator" },
+  ],
 };
 
-export default function PetNameGenerator() {
-  const [species, setSpecies] = useState<keyof typeof nameData>("dog");
-  const [trait, setTrait] = useState("");
-  const [generated, setGenerated] = useState<string[]>([]);
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Name Generator",
+  url: "https://hushku.app/tools/name-generator",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  const traits = Object.keys(nameData[species]);
+const faqs = [
+  { q: 'What makes a good name for a dog?', a: "Veterinary behaviourists and animal trainers recommend names that are: 1–2 syllables (easier to say quickly in training), end in a vowel or 'y' sound (higher pitch carries better and gets the dog's attention), and do not sound like common commands (avoid 'Kit' which sounds like 'sit', 'Bo' which sounds like 'no', 'Ray' which sounds like 'stay'). Short, distinctive names produce the fastest conditioned response in training. That said, any name works with consistent use — the dog learns the sound, not the meaning." },
+  { q: 'Do cats actually respond to their names?', a: 'Yes — a 2019 study published in <em>Scientific Reports</em> by Atsuko Saito and colleagues demonstrated that domestic cats can distinguish their own name from other words, responding with head movements and ear orientation. Cats are more selective in showing this response than dogs, but the ability is well-documented. Cats respond better to names with sharp consonants (K, T, P sounds) and higher-pitched vowels, consistent with the sounds their owners use when speaking to them in excited or affectionate tones.' },
+  { q: "Is it bad to change a rescue pet's name?", a: "Not at all — rescue pets adapt to new names within days to weeks with consistent positive reinforcement. Say the new name whenever the pet looks at you or comes toward you, and immediately reward. Avoid repeating the name when the pet is not responding, which can teach them to ignore it. If you want to ease the transition, choose a new name that sounds similar to the original (e.g. transitioning 'Buster' to 'Rusty' uses the same vowel sounds and ending)." },
+  { q: 'What are the most popular pet names?', a: "According to Rover and VetStreet annual surveys, the top dog names in the US are consistently: Luna, Bella, Daisy, Max, Charlie, Cooper, Buddy, Milo, Lola, and Sadie. Top cat names include: Luna, Bella, Oliver, Leo, Milo, Charlie, Max, Lucy, Lily, and Nala. If uniqueness matters to you, avoid these — at any dog park, calling 'Luna' or 'Bella' will produce multiple responses." },
+];
 
-  const generate = () => {
-    if (!trait) return;
-    const pool = nameData[species][trait];
-    const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, 8);
-    setGenerated(shuffled);
-  };
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
+export default function Page() {
   return (
-    <ToolLayout subtitle="Free Creative Tool" title="Pet Name Generator" description="Pick your pet's species and personality or colour, and get 8 uniquely matched name suggestions instantly."  illustration={<ToolIllustration type="text" />}
-    >
-      <div className="max-w-2xl mx-auto">
-        <div className="space-y-8 mb-12">
-          <div>
-            <label className="block text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4">Species</label>
-            <div className="grid grid-cols-4 gap-4">
-              {(["dog", "cat", "rabbit", "bird"] as const).map(s => (
-                <button key={s} onClick={() => { setSpecies(s); setTrait(""); setGenerated([]); }}
-                  className={`py-5 rounded-2xl border-2 text-[10px] font-black uppercase tracking-widest flex flex-col items-center gap-1 transition-all
-                    ${species === s ? "bg-ebony text-white border-ebony" : "bg-gray-50 border-transparent text-slate-gray hover:bg-gray-100"}`}>
-                  <span className="text-xl">{s === "dog" ? "🐕" : s === "cat" ? "🐈" : s === "rabbit" ? "🐇" : "🦜"}</span>
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div>
-            <label className="block text-[10px] font-black text-slate-gray uppercase tracking-widest mb-4">Colour or Personality</label>
-            <div className="flex flex-wrap gap-3">
-              {traits.map(t => (
-                <button key={t} onClick={() => { setTrait(t); setGenerated([]); }}
-                  className={`px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest border-2 transition-all capitalize
-                    ${trait === t ? "bg-brand-start text-white border-brand-start" : "bg-gray-50 border-transparent text-slate-gray hover:bg-gray-100"}`}>
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-          <button onClick={generate} disabled={!trait}
-            className="w-full py-6 bg-ebony text-white rounded-[2.5rem] text-xs font-black uppercase tracking-widest hover:bg-brand-start transition-all shadow-xl disabled:opacity-30 disabled:cursor-not-allowed">
-            ✨ Generate Names
-          </button>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <PetNameGenerator />
+
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Naming a pet is a surprisingly significant decision — you will say the name thousands of times, and the dog or cat will learn to respond to it. Research in animal cognition suggests dogs respond best to names with 2 syllables ending in a vowel sound (the 'soft' consonant ending carries better in outdoor environments and in excited states). This generator produces name suggestions based on species, personality type, and coat colour — drawing from a database of hundreds of options organised by theme, origin, and phonetic quality.</p>
         </div>
 
-        {generated.length > 0 && (
-          <div className="animate-in fade-in zoom-in-95 duration-500">
-            <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-6 text-center">Your Name Matches</p>
-            <div className="grid grid-cols-2 gap-4">
-              {generated.map(name => (
-                <div key={name} className="bg-gray-50 hover:bg-white hover:shadow-xl border border-gray-100 rounded-3xl p-8 text-center transition-all group cursor-default">
-                  <h3 className="text-2xl font-black text-ebony group-hover:text-brand-start transition-colors uppercase tracking-tight">{name}</h3>
-                </div>
-              ))}
-            </div>
-            <button onClick={generate} className="w-full mt-8 py-4 border-2 border-gray-200 rounded-3xl text-xs font-black text-slate-gray uppercase tracking-widest hover:border-brand-start hover:text-brand-start transition-all">
-              ↺ Regenerate
-            </button>
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div key='What makes a good name for a dog?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What makes a good name for a dog?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Veterinary behaviourists and animal trainers recommend names that are: 1–2 syllables (easier to say quickly in training), end in a vowel or 'y' sound (higher pitch carries better and gets the dog's attention), and do not sound like common commands (avoid 'Kit' which sounds like 'sit', 'Bo' which sounds like 'no', 'Ray' which sounds like 'stay'). Short, distinctive names produce the fastest conditioned response in training. That said, any name works with consistent use — the dog learns the sound, not the meaning.</p>
           </div>
-        )}
-      </div>
-    </ToolLayout>
+          <div key='Do cats actually respond to their names?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Do cats actually respond to their names?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes — a 2019 study published in <em>Scientific Reports</em> by Atsuko Saito and colleagues demonstrated that domestic cats can distinguish their own name from other words, responding with head movements and ear orientation. Cats are more selective in showing this response than dogs, but the ability is well-documented. Cats respond better to names with sharp consonants (K, T, P sounds) and higher-pitched vowels, consistent with the sounds their owners use when speaking to them in excited or affectionate tones.</p>
+          </div>
+          <div key="Is it bad to change a rescue pet's name?" className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is it bad to change a rescue pet's name?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Not at all — rescue pets adapt to new names within days to weeks with consistent positive reinforcement. Say the new name whenever the pet looks at you or comes toward you, and immediately reward. Avoid repeating the name when the pet is not responding, which can teach them to ignore it. If you want to ease the transition, choose a new name that sounds similar to the original (e.g. transitioning 'Buster' to 'Rusty' uses the same vowel sounds and ending).</p>
+          </div>
+          <div key='What are the most popular pet names?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What are the most popular pet names?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">According to Rover and VetStreet annual surveys, the top dog names in the US are consistently: Luna, Bella, Daisy, Max, Charlie, Cooper, Buddy, Milo, Lola, and Sadie. Top cat names include: Luna, Bella, Oliver, Leo, Milo, Charlie, Max, Lucy, Lily, and Nala. If uniqueness matters to you, avoid these — at any dog park, calling 'Luna' or 'Bella' will produce multiple responses.</p>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/birthday-countdown" href="/tools/birthday-countdown" className="text-brand-start font-bold hover:underline text-sm">/tools/birthday-countdown →</Link>
+          <Link key="/breeds/dogs" href="/breeds/dogs" className="text-brand-start font-bold hover:underline text-sm">/breeds/dogs →</Link>
+          <Link key="/adoption" href="/adoption" className="text-brand-start font-bold hover:underline text-sm">/adoption →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,124 +1,93 @@
-"use client";
+import Link from "next/link";
+import VaccineTrackerTool from "./VaccineTrackerTool";
 
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Vaccine Tracker", item: "https://hushku.app/tools/vaccine-tracker" },
+  ],
+};
 
-const dogVaccines = [
-  { name: "Distemper, Adenovirus, Parvovirus (DHP)", schedule: "6-8 weeks, 10-12 weeks, 14-16 weeks, then every 3 years", category: "Core" },
-  { name: "Rabies (1-year or 3-year)", schedule: "12-16 weeks, then according to local law", category: "Core" },
-  { name: "Bordetella (Kennel Cough)", schedule: "6-8 weeks, then every 6-12 months", category: "Non-Core" },
-  { name: "Leptospirosis", schedule: "10-12 weeks, 14-16 weeks, then annually", category: "Non-Core" },
-  { name: "Lyme Disease", schedule: "Initial series (2 doses), then annually", category: "Non-Core" },
-  { name: "Canine Influenza", schedule: "Initial series (2 doses), then annually", category: "Non-Core" }
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Vaccine Tracker",
+  url: "https://hushku.app/tools/vaccine-tracker",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
+
+const faqs = [
+  { q: 'What vaccinations does a puppy need and when?', a: 'The standard puppy vaccination schedule recommended by WSAVA: first combination vaccine (distemper/adenovirus/parvovirus) at 6–8 weeks; second at 10–12 weeks; third at 14–16 weeks; booster at 12 months. Rabies as required by local law (typically 12–16 weeks with a booster at 12 months). Non-core vaccines based on lifestyle: Bordetella (kennel cough) — recommended before any dog-to-dog contact, kennelling, or training classes; leptospirosis — recommended in areas with wildlife exposure; Lyme disease — recommended in tick-endemic regions.' },
+  { q: 'What vaccinations does a kitten need?', a: 'Core kitten vaccines per WSAVA guidelines: feline herpesvirus-1 + calicivirus + panleukopenia (FVRCP combination) starting at 6–8 weeks, then every 3–4 weeks until 16 weeks. Booster at 12 months. Rabies as required. Non-core: FeLV (feline leukaemia virus) — recommended for any cat with outdoor access or contact with other cats; FIV — not universally recommended.' },
+  { q: 'How often do adult dogs need vaccinations?', a: 'Following the initial puppy series and 12-month booster, most core vaccines are effective for 3 years and should be given every 3 years in adult dogs, according to WSAVA guidelines. Rabies vaccination schedules are set by local law (1-year or 3-year depending on jurisdiction). Bordetella and leptospirosis vaccines typically require annual boosters. Your vet can run titre tests (blood tests measuring antibody levels) as an alternative to automatic booster vaccination — many practices now offer this.' },
+  { q: 'Is it safe to vaccinate an adult dog that has no vaccination history?', a: "Yes — a dog with unknown vaccination history should receive the full primary course as if a puppy. For an adult dog with no records: one combination vaccine immediately, a second 3–4 weeks later. No harm comes from vaccinating a dog that was previously vaccinated — the immune response from a booster in a dog that is already immune is normal and does not cause 'over-vaccination' problems. Titre testing first is an alternative if you want to confirm whether immunity already exists before vaccinating." },
+  { q: 'What is kennel cough and should my dog be vaccinated?', a: 'Kennel cough (infectious tracheobronchitis) is a highly contagious respiratory infection caused primarily by Bordetella bronchiseptica and canine parainfluenza virus. It spreads rapidly in any context where dogs meet — kennels, training classes, dog parks, grooming facilities. Symptoms: harsh honking cough, retching, nasal discharge. Usually self-limiting in healthy adults but can progress to pneumonia in puppies, seniors, or immunocompromised dogs. The Bordetella vaccine (intranasal or injectable) does not prevent all strains but significantly reduces severity. It is recommended at least 7–10 days before any dog-to-dog contact.' },
 ];
 
-const catVaccines = [
-  { name: "Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia (FVRCP)", schedule: "6-8 weeks, then every 3-4 weeks until 16-20 weeks, then every 3 years", category: "Core" },
-  { name: "Rabies", schedule: "12-16 weeks, then according to local law", category: "Core" },
-  { name: "Feline Leukaemia (FeLV)", schedule: "Initial series (2 doses), then annually", category: "Non-Core" },
-  { name: "Bordetella", schedule: "When risk is high, annually", category: "Non-Core" }
-];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-export default function VaccinationTracker() {
-  const [petType, setPetType] = useState<"dog" | "cat">("dog");
-  const [ageRange, setAgeRange] = useState<"puppy" | "adult">("puppy");
-
-  const vaccines = petType === "dog" ? dogVaccines : catVaccines;
-
+export default function Page() {
   return (
-    <ToolLayout 
-      subtitle="Preventative Care"
-      relatedToolSlugs={["symptom-checker","age-calculator","insurance-cost","pet-health-quiz"]}
-      relatedArticles={[
-        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
-        { slug: "what-is-kennel-cough", title: "What Is Kennel Cough?", category: "Definition", emoji: "🤧" },
-        { slug: "what-is-parvo-in-dogs", title: "What Is Parvo in Dogs?", category: "Definition", emoji: "⚠️" },
-      ]}
-      title="Pet Vaccination Schedule Tracker"
-      description="Stay on top of your pet's health. Get the recommended vaccination schedule for puppies, kittens, and adult dogs and cats."
-      illustration={<ToolIllustration type="health" />}
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-8">
-            <div className="flex gap-4">
-              {["dog", "cat"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setPetType(t as "dog" | "cat")}
-                  className={`flex-1 py-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-2 ${petType === t ? 'bg-ebony text-white border-ebony shadow-xl' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                >
-                  <span className="text-3xl">{t === "dog" ? "🐕" : "🐈"}</span>
-                  <span className="font-black uppercase tracking-widest text-[10px]">{t}</span>
-                </button>
-              ))}
-            </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-            <div className="grid grid-cols-2 gap-4">
-               {["puppy", "adult"].map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => setAgeRange(l as "puppy" | "adult")}
-                    className={`flex-1 py-4 rounded-2xl border-2 transition-all font-black text-[10px] uppercase tracking-[0.2em] ${ageRange === l ? 'bg-brand-start text-white border-brand-start' : 'bg-gray-50 text-slate-gray border-transparent'}`}
-                  >
-                    {l === "puppy" ? (petType === "dog" ? "Puppy" : "Kitten") : "Adult"}
-                  </button>
-                ))}
-            </div>
-          </div>
+      <VaccineTrackerTool />
 
-          <div className="bg-ebony rounded-[3rem] p-10 text-white relative overflow-hidden group shadow-2xl">
-            <div className="relative z-10 flex flex-col h-full justify-between">
-               <div>
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-4">Why Vaccinate?</h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-8">Vaccines protect your pet from deadly diseases. Core vaccines are essential for every pet, while non-core vaccines depend on your pet's lifestyle and surroundings.</p>
-               </div>
-               <div className="bg-white/10 p-6 rounded-2xl border border-white/10 text-xs font-medium backdrop-blur-sm">
-                  <span className="font-black text-brand-start uppercase tracking-widest block mb-2 underline decoration-brand-start decoration-2 underline-offset-4">Veterinary Tip</span>
-                  Always consult with your local vet for a personalized immunisation plan tailored to your area.
-               </div>
-            </div>
-            <div className="absolute top-0 right-0 p-8 text-white/5 text-9xl font-black select-none leading-none pointer-events-none transform translate-x-1/4 -translate-y-1/4">VAX</div>
-          </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Vaccination schedules differ by species, age, geographic location, and lifestyle factors. This tracker displays the recommended vaccination timelines for puppies, kittens, and adult dogs and cats — separated into core vaccines (recommended for all animals regardless of lifestyle) and non-core vaccines (recommended based on risk factors).
+  Core vaccines for dogs are established by the <strong>WSAVA Vaccination Guidelines Group</strong> and include distemper, adenovirus (hepatitis), parvovirus, and rabies (where required by law). Core vaccines for cats include panleukopenia (feline parvovirus), feline herpesvirus-1, and calicivirus.</p>
         </div>
 
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
         <div className="space-y-6">
-           <div className="flex items-center justify-between px-4">
-              <h3 className="text-[10px] font-black text-ebony uppercase tracking-widest">Recommended Vaccines</h3>
-              <div className="flex gap-4">
-                 <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
-                    <span className="text-[10px] font-black uppercase text-slate-gray">Core</span>
-                 </div>
-                 <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-sky-500" />
-                    <span className="text-[10px] font-black uppercase text-slate-gray">Non-Core</span>
-                 </div>
-              </div>
-           </div>
-
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {vaccines.map((v, index) => (
-                <div key={index} className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 hover:bg-white transition-all shadow-sm hover:shadow-xl relative overflow-hidden group">
-                  <div className={`absolute top-0 right-0 h-16 w-16 -mr-4 -mt-4 rounded-full opacity-10 group-hover:scale-150 transition-transform ${v.category === "Core" ? "bg-emerald-500" : "bg-sky-500"}`} />
-                  <div className="relative">
-                    <div className="flex justify-between items-center mb-6">
-                        <span className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white ${v.category === "Core" ? "bg-emerald-500" : "bg-sky-500"}`}>
-                          {v.category}
-                        </span>
-                    </div>
-                    <h4 className="text-lg font-black text-ebony leading-tight mb-4 uppercase tracking-tight">{v.name}</h4>
-                    <div className="bg-white/50 p-4 rounded-2xl border border-gray-100">
-                       <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-1">Standard Schedule</p>
-                       <p className="text-xs font-bold text-ebony">{v.schedule}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-           </div>
+          <div key='What vaccinations does a puppy need and when?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What vaccinations does a puppy need and when?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">The standard puppy vaccination schedule recommended by WSAVA: first combination vaccine (distemper/adenovirus/parvovirus) at 6–8 weeks; second at 10–12 weeks; third at 14–16 weeks; booster at 12 months. Rabies as required by local law (typically 12–16 weeks with a booster at 12 months). Non-core vaccines based on lifestyle: Bordetella (kennel cough) — recommended before any dog-to-dog contact, kennelling, or training classes; leptospirosis — recommended in areas with wildlife exposure; Lyme disease — recommended in tick-endemic regions.</p>
+          </div>
+          <div key='What vaccinations does a kitten need?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What vaccinations does a kitten need?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Core kitten vaccines per WSAVA guidelines: feline herpesvirus-1 + calicivirus + panleukopenia (FVRCP combination) starting at 6–8 weeks, then every 3–4 weeks until 16 weeks. Booster at 12 months. Rabies as required. Non-core: FeLV (feline leukaemia virus) — recommended for any cat with outdoor access or contact with other cats; FIV — not universally recommended.</p>
+          </div>
+          <div key='How often do adult dogs need vaccinations?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How often do adult dogs need vaccinations?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Following the initial puppy series and 12-month booster, most core vaccines are effective for 3 years and should be given every 3 years in adult dogs, according to WSAVA guidelines. Rabies vaccination schedules are set by local law (1-year or 3-year depending on jurisdiction). Bordetella and leptospirosis vaccines typically require annual boosters. Your vet can run titre tests (blood tests measuring antibody levels) as an alternative to automatic booster vaccination — many practices now offer this.</p>
+          </div>
+          <div key='Is it safe to vaccinate an adult dog that has no vaccination history?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is it safe to vaccinate an adult dog that has no vaccination history?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes — a dog with unknown vaccination history should receive the full primary course as if a puppy. For an adult dog with no records: one combination vaccine immediately, a second 3–4 weeks later. No harm comes from vaccinating a dog that was previously vaccinated — the immune response from a booster in a dog that is already immune is normal and does not cause 'over-vaccination' problems. Titre testing first is an alternative if you want to confirm whether immunity already exists before vaccinating.</p>
+          </div>
+          <div key='What is kennel cough and should my dog be vaccinated?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What is kennel cough and should my dog be vaccinated?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Kennel cough (infectious tracheobronchitis) is a highly contagious respiratory infection caused primarily by Bordetella bronchiseptica and canine parainfluenza virus. It spreads rapidly in any context where dogs meet — kennels, training classes, dog parks, grooming facilities. Symptoms: harsh honking cough, retching, nasal discharge. Usually self-limiting in healthy adults but can progress to pneumonia in puppies, seniors, or immunocompromised dogs. The Bordetella vaccine (intranasal or injectable) does not prevent all strains but significantly reduces severity. It is recommended at least 7–10 days before any dog-to-dog contact.</p>
+          </div>
         </div>
-      </div>
-    </ToolLayout>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/health/records" href="/health/records" className="text-brand-start font-bold hover:underline text-sm">/health/records →</Link>
+          <Link key="/health/reminders" href="/health/reminders" className="text-brand-start font-bold hover:underline text-sm">/health/reminders →</Link>
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

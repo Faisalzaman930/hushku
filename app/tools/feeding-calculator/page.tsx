@@ -1,106 +1,92 @@
-"use client";
+import Link from "next/link";
+import PetFeedingCalculator from "./PetFeedingCalculator";
 
-import { useState, useEffect } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Feeding Calculator", item: "https://hushku.app/tools/feeding-calculator" },
+  ],
+};
 
-export default function PetFeedingCalculator() {
-  const [petType, setPetType] = useState("dog");
-  const [weight, setWeight] = useState(10);
-  const [age, setAge] = useState("adult");
-  const [feedingAmount, setFeedingAmount] = useState({ min: 0, max: 0 });
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Feeding Calculator",
+  url: "https://hushku.app/tools/feeding-calculator",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  useEffect(() => {
-    // Basic feeding logic (simplified)
-    // Adult Dog: ~2-3% of body weight in calories/amount
-    let base = weight * 0.25; // Base cups/units
-    if (age === "puppy") base *= 1.5;
-    if (age === "senior") base *= 0.8;
-    if (petType === "cat") base *= 0.4;
-    
-    setFeedingAmount({
-       min: Math.round(base * 0.9 * 10) / 10,
-       max: Math.round(base * 1.1 * 10) / 10,
-    });
-  }, [petType, weight, age]);
+const faqs = [
+  { q: 'How much should I feed my dog per day?', a: "Daily feeding amounts depend on your dog's weight, age, activity level, and the caloric density of the food. As a baseline: a 10 kg adult neutered dog at maintenance activity needs roughly 700 kcal/day. Dry kibble typically provides 300–400 kcal per 100g; wet food 70–100 kcal per 100g (85g tin). Always check the specific caloric content on your food label and calculate from that — never rely solely on the bag's feeding guide. Weigh food with a kitchen scale rather than using cups, which can vary by 20–30%." },
+  { q: 'How many times a day should I feed my dog?', a: 'Adult dogs (over 12 months) do well with two meals daily. Puppies under 12 weeks need 4 meals per day; 12 weeks to 6 months need 3 meals; 6–12 months need 2–3 meals. Splitting the daily ration into two meals reduces hunger, stabilises blood sugar, and decreases the risk of bloat (Gastric Dilatation-Volvulus) in large and deep-chested breeds, which are at highest risk when fed one large meal. Breeds prone to bloat include Great Danes, German Shepherds, Dobermans, and Standard Poodles.' },
+  { q: 'How much should I feed my cat?', a: 'An average 4 kg adult indoor neutered cat needs approximately 180–220 kcal/day, split into 2–4 small meals (cats are natural grazers). Free-feeding dry food leads to overconsumption in most cats. Measured wet food meals are preferable for weight management and urinary health. The exact amount depends on the caloric density of the specific food — check the label for kcal per 100g or per tin and calculate accordingly.' },
+  { q: 'Should I feed my dog once or twice a day?', a: 'Twice daily is the veterinary consensus recommendation for adult dogs for the reasons above. Some owners prefer once daily; this is acceptable for most small and medium breeds but increases bloat risk in large, deep-chested breeds. Regardless of frequency, total daily calories should remain the same — splitting into multiple meals does not mean feeding more.' },
+  { q: 'What is the difference between feeding for weight loss vs maintenance?', a: 'Weight loss in pets requires feeding approximately 80% of the RER (Resting Energy Requirement) rather than the full maintenance level (typically 1.4–1.8× RER). This is a modest caloric restriction that produces safe, gradual weight loss of approximately 1–2% of body weight per week — the rate recommended by veterinary nutritionists to preserve lean muscle mass. Rapid weight restriction (below 60–70% RER) should only be attempted under veterinary supervision, particularly in cats where it risks hepatic lipidosis.' },
+];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
+export default function Page() {
   return (
-    <ToolLayout 
-      subtitle="Feeding Calculator"
-      relatedToolSlugs={["calorie-calculator","water-calculator","toxic-food","pet-bmi"]}
-      relatedArticles={[
-        { slug: "how-to-read-pet-food-labels", title: "How to Read a Pet Food Label", category: "Expert Guide", emoji: "🥫" },
-        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
-        { slug: "how-to-switch-dog-food-safely", title: "How to Switch Dog Food Safely", category: "How-To", emoji: "🔄" },
-      ]}
-      title="Pet Feeding Schedule"
-      description="Calculate the optimal daily feeding amounts for your pet based on weight, age, and activity level."
-      illustration={<ToolIllustration type="food" />}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-         <div className="space-y-10">
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Pet Species</label>
-               <div className="flex gap-4">
-                  {["dog", "cat"].map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setPetType(t)}
-                      className={`flex-1 py-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-2 ${petType === t ? 'bg-ebony text-white border-ebony shadow-xl' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-white hover:border-gray-100 hover:shadow-lg'}`}
-                    >
-                      <span className="text-4xl">{t === "dog" ? "🐕" : "🐈"}</span>
-                      <span className="font-black uppercase tracking-tight text-xs">{t}</span>
-                    </button>
-                  ))}
-               </div>
-            </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Pet Weight ({weight}kg)</label>
-               <input 
-                  type="range" 
-                  min="1" 
-                  max="50" 
-                  step="1"
-                  value={weight}
-                  onChange={(e) => setWeight(parseInt(e.target.value))}
-                  className="w-full h-4 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start"
-               />
-               <div className="flex justify-between text-[10px] font-black text-slate-gray mt-4 uppercase tracking-tighter">
-                  <span>1kg</span>
-                  <span>50kg+</span>
-               </div>
-            </div>
+      <PetFeedingCalculator />
 
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Life Stage</label>
-               <div className="flex gap-4">
-                  {["puppy", "adult", "senior"].map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => setAge(s)}
-                      className={`flex-1 py-4 rounded-2xl font-black uppercase tracking-wide text-[10px] border-2 transition-all ${age === s ? 'bg-brand-start text-white border-brand-start shadow-md' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                    >
-                      {s}
-                    </button>
-                  ))}
-               </div>
-            </div>
-         </div>
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Portion sizes on pet food packaging are notoriously overestimated — manufacturers have a commercial incentive to recommend higher amounts, and the ranges given are typically based on unspayed/unneutered animals at maintenance activity. This calculator provides feeding amounts based on your pet's actual weight, age, reproductive status, and activity level — adjusted for the caloric density of common food types.</p>
+        </div>
 
-         <div className="bg-gray-50 rounded-[4.5rem] p-16 flex flex-col items-center justify-center text-center relative overflow-hidden group shadow-inner">
-            <div className="absolute top-0 right-0 p-12 text-brand-start/5 text-9xl transform translate-x-1/4 -translate-y-1/4 select-none font-black opacity-30 group-hover:scale-110 transition-transform">Bowl</div>
-            <div className="h-48 w-48 rounded-full border-8 border-white bg-white shadow-2xl flex items-center justify-center text-8xl mb-8 group-hover:rotate-12 transition-transform">🥣</div>
-            <h4 className="text-sm font-black text-slate-gray uppercase tracking-widest mb-6 leading-none">Daily Feeding Recommendation</h4>
-            <div className="flex items-baseline gap-2 mb-6">
-               <span className="text-7xl font-black text-ebony">{feedingAmount.min}</span>
-               <span className="text-2xl font-bold text-slate-gray">−</span>
-               <span className="text-7xl font-black text-ebony">{feedingAmount.max}</span>
-            </div>
-            <p className="text-2xl font-black text-brand-start uppercase tracking-widest leading-none">Cups Per Day</p>
-            <p className="mt-8 text-xs font-bold text-slate-gray max-w-xs mx-auto leading-relaxed italic opacity-80 uppercase tracking-widest">Calculations are based on 350-400 kcal per cup. Consult your vet for precise dietary medical needs.</p>
-         </div>
-      </div>
-    </ToolLayout>
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div key='How much should I feed my dog per day?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much should I feed my dog per day?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Daily feeding amounts depend on your dog's weight, age, activity level, and the caloric density of the food. As a baseline: a 10 kg adult neutered dog at maintenance activity needs roughly 700 kcal/day. Dry kibble typically provides 300–400 kcal per 100g; wet food 70–100 kcal per 100g (85g tin). Always check the specific caloric content on your food label and calculate from that — never rely solely on the bag's feeding guide. Weigh food with a kitchen scale rather than using cups, which can vary by 20–30%.</p>
+          </div>
+          <div key='How many times a day should I feed my dog?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How many times a day should I feed my dog?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Adult dogs (over 12 months) do well with two meals daily. Puppies under 12 weeks need 4 meals per day; 12 weeks to 6 months need 3 meals; 6–12 months need 2–3 meals. Splitting the daily ration into two meals reduces hunger, stabilises blood sugar, and decreases the risk of bloat (Gastric Dilatation-Volvulus) in large and deep-chested breeds, which are at highest risk when fed one large meal. Breeds prone to bloat include Great Danes, German Shepherds, Dobermans, and Standard Poodles.</p>
+          </div>
+          <div key='How much should I feed my cat?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much should I feed my cat?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">An average 4 kg adult indoor neutered cat needs approximately 180–220 kcal/day, split into 2–4 small meals (cats are natural grazers). Free-feeding dry food leads to overconsumption in most cats. Measured wet food meals are preferable for weight management and urinary health. The exact amount depends on the caloric density of the specific food — check the label for kcal per 100g or per tin and calculate accordingly.</p>
+          </div>
+          <div key='Should I feed my dog once or twice a day?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Should I feed my dog once or twice a day?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Twice daily is the veterinary consensus recommendation for adult dogs for the reasons above. Some owners prefer once daily; this is acceptable for most small and medium breeds but increases bloat risk in large, deep-chested breeds. Regardless of frequency, total daily calories should remain the same — splitting into multiple meals does not mean feeding more.</p>
+          </div>
+          <div key='What is the difference between feeding for weight loss vs maintenance?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What is the difference between feeding for weight loss vs maintenance?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Weight loss in pets requires feeding approximately 80% of the RER (Resting Energy Requirement) rather than the full maintenance level (typically 1.4–1.8× RER). This is a modest caloric restriction that produces safe, gradual weight loss of approximately 1–2% of body weight per week — the rate recommended by veterinary nutritionists to preserve lean muscle mass. Rapid weight restriction (below 60–70% RER) should only be attempted under veterinary supervision, particularly in cats where it risks hepatic lipidosis.</p>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          <Link key="/tools/water-calculator" href="/tools/water-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/water-calculator →</Link>
+          <Link key="/tools/pet-bmi" href="/tools/pet-bmi" className="text-brand-start font-bold hover:underline text-sm">/tools/pet-bmi →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

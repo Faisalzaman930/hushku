@@ -1,229 +1,92 @@
-"use client";
-
-import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
-import { breeds, birdSpecies, BreedData } from "../../data/species";
+import PetAgeCalculator from "./PetAgeCalculator";
 
-type Species = "dog" | "cat" | "rabbit" | "bird";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Age Calculator", item: "https://hushku.app/tools/age-calculator" },
+  ],
+};
 
-export default function PetAgeCalculator() {
-  const [species, setSpecies] = useState<Species>("dog");
-  const [age, setAge] = useState(1);
-  
-  // Dog Specifics
-  const [dogSize, setDogSize] = useState<BreedData["size"]>("medium");
-  const [breedSearch, setBreedSearch] = useState("");
-  const [isBreedOpen, setIsBreedOpen] = useState(false);
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Age Calculator",
+  url: "https://hushku.app/tools/age-calculator",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  // Bird Specifics
-  const [selectedBird, setSelectedBird] = useState(birdSpecies[0]);
+const faqs = [
+  { q: 'Is the 7-year rule for dog ages accurate?', a: 'No — the 7-year rule is a rough average that is inaccurate at most life stages. A 1-year-old dog is sexually mature and physically adult, equivalent to a human in their mid-teens to early twenties, not age 7. A 2-year-old large breed dog has already completed most of its aging, while a 2-year-old small breed dog ages much more slowly. Research from UC San Diego (2020) using DNA methylation analysis provides a more accurate model that this calculator is based on.' },
+  { q: 'Do large dogs age faster than small dogs?', a: "Yes — significantly so. A 10-year-old Great Dane is geriatric; a 10-year-old Chihuahua is middle-aged. The AKC and veterinary geriatric research consistently show that giant breeds (over 45 kg) have lifespans of 7–10 years, while toy breeds regularly live 14–16 years. The accelerated aging of large breeds is linked to their faster growth rates and higher metabolic turnover. Veterinarians typically consider large breeds 'senior' from age 7 and giant breeds from age 5–6." },
+  { q: 'At what age is a cat considered senior?', a: 'The American Association of Feline Practitioners (AAFP) classifies cats as senior from age 11 and geriatric from age 15. In human-equivalent terms, an 11-year-old cat is roughly equivalent to a 60-year-old human. Biannual veterinary check-ups (rather than annual) are recommended from age 11 onwards to catch age-related conditions — kidney disease, hyperthyroidism, dental disease, arthritis, and hypertension — early.' },
+  { q: "How does breed affect a dog's lifespan?", a: 'Breed and body size are the strongest predictors of canine lifespan. Small breeds (under 10 kg): 12–16 years. Medium breeds (10–25 kg): 10–14 years. Large breeds (25–45 kg): 9–12 years. Giant breeds (over 45 kg): 7–10 years. Within size categories, certain breeds have known longevity (Dachshund, Miniature Poodle) or shortened lifespans due to breed-specific health conditions (Bulldog, Boxer, Great Dane).' },
+  { q: 'When should I start treating my pet as a senior?', a: 'Dogs: age 7 for medium and large breeds, age 5–6 for giant breeds, age 9–10 for small breeds. Cats: age 11. Senior status means increasing vet check-ups to twice yearly, asking about senior blood panels (kidney function, thyroid, glucose, CBC), transitioning to senior or joint-support diet formulations if appropriate, and monitoring for mobility changes, weight loss, increased thirst/urination, or behavioural changes.' },
+];
 
-  const [humanAge, setHumanAge] = useState(0);
-  const [lifeStage, setLifeStage] = useState({ name: "", tip: "" });
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-  const filteredBreeds = useMemo(() => {
-    return breeds.filter(b => b.name.toLowerCase().includes(breedSearch.toLowerCase())).slice(0, 5);
-  }, [breedSearch]);
-
-  useEffect(() => {
-    let calculated = 0;
-
-    if (species === "cat") {
-      if (age === 1) calculated = 15;
-      else if (age === 2) calculated = 24;
-      else calculated = 24 + (age - 2) * 4;
-    } 
-    else if (species === "rabbit") {
-      calculated = 21 + (age - 1) * 6;
-    }
-    else if (species === "bird") {
-      calculated = Math.round(age * (selectedBird.factor ?? 4));
-    }
-    else if (species === "dog") {
-      // Dog Size Multipliers after age 2
-      const year1 = 15;
-      const year2 = 24;
-      if (age === 1) calculated = year1;
-      else if (age === 2) calculated = year2;
-      else {
-        let multi = 4; // Small
-        if (dogSize === "medium") multi = 5;
-        if (dogSize === "large") multi = 6;
-        if (dogSize === "giant") multi = 8;
-        calculated = year2 + (age - 2) * multi;
-      }
-    }
-
-    setHumanAge(calculated);
-
-    // Life Stage Logic
-    if (calculated < 15) setLifeStage({ name: "Juvenile", tip: "Rapid growth! High-protein diet and socialization are key." });
-    else if (calculated < 40) setLifeStage({ name: "Young Adult", tip: "Peak physical health. Maintain consistent exercise and training." });
-    else if (calculated < 60) setLifeStage({ name: "Mature Adult", tip: "Monitor weight closely. Annual wellness exams become critical." });
-    else if (calculated < 80) setLifeStage({ name: "Senior", tip: "Vision and joint health checks recommended. Bi-annual vet visits." });
-    else setLifeStage({ name: "Geriatric", tip: "Focus on comfort and palliative care. Gentle, low-impact exercise." });
-
-  }, [species, age, dogSize, selectedBird]);
-
+export default function Page() {
   return (
-    <ToolLayout 
-      subtitle="Advanced Biological Model"
-      relatedToolSlugs={["insurance-cost","pet-health-quiz","vaccine-tracker","symptom-checker"]}
-      relatedArticles={[
-        { slug: "senior-pet-care-guide", title: "Senior Pet Care Guide", category: "Expert Guide", emoji: "👴" },
-        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
-      ]}
-      title="Pet Human Age Calculator"
-      description="Modern veterinary aging formulas for Dogs, Cats, Rabbits, and Birds. No more '7-year' myths—get the true life stage of your companion."
-      illustration={<ToolIllustration type="calculator" />}
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-         <div className="space-y-10">
-            {/* Species Selection */}
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Select Species</label>
-               <div className="grid grid-cols-4 gap-4">
-                  {(["dog", "cat", "rabbit", "bird"] as Species[]).map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => setSpecies(s)}
-                      className={`flex flex-col items-center justify-center p-4 rounded-3xl border-2 transition-all ${species === s ? 'bg-ebony text-white border-ebony' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                    >
-                      <span className="text-2xl mb-1">{s === "dog" ? "🐕" : s === "cat" ? "🐈" : s === "rabbit" ? "🐇" : "🦜"}</span>
-                      <span className="text-[10px] font-black uppercase tracking-widest">{s}</span>
-                    </button>
-                  ))}
-               </div>
-            </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-            {/* Conditional Dog Detail / Breed Search */}
-            {species === "dog" && (
-               <div className="space-y-6 animate-in fade-in duration-500">
-                  <div className="relative">
-                     <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Quick Breed Search (Optional)</label>
-                     <input 
-                       type="text"
-                       placeholder="Enter breed (e.g. Beagle, Great Dane...)"
-                       value={breedSearch}
-                       onChange={(e) => { setBreedSearch(e.target.value); setIsBreedOpen(true); }}
-                       className="w-full bg-gray-50 border-2 border-transparent rounded-3xl px-8 py-4 focus:bg-white focus:border-brand-start outline-none transition-all font-bold"
-                     />
-                     {isBreedOpen && breedSearch && (
-                        <div className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-3xl shadow-xl overflow-hidden">
-                           {filteredBreeds.map(b => (
-                              <button 
-                                key={b.name}
-                                onClick={() => { setDogSize(b.size); setBreedSearch(b.name); setIsBreedOpen(false); }}
-                                className="w-full text-left px-8 py-3 hover:bg-gray-50 text-sm font-bold text-ebony flex justify-between"
-                              >
-                                <span>{b.name}</span>
-                                <span className="text-[10px] uppercase text-brand-start">{b.size}</span>
-                              </button>
-                           ))}
-                        </div>
-                     )}
-                  </div>
-                  
-                  <div>
-                    <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Manual Size Selection</label>
-                    <div className="grid grid-cols-2 gap-4">
-                       {(["small", "medium", "large", "giant"] as BreedData["size"][]).map(s => (
-                          <button 
-                            key={s} 
-                            onClick={() => setDogSize(s)}
-                            className={`py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest border-2 transition-all ${dogSize === s ? 'bg-brand-start/10 text-brand-start border-brand-start' : 'bg-gray-50 text-slate-gray border-transparent'}`}
-                          >
-                             {s}
-                          </button>
-                       ))}
-                    </div>
-                  </div>
-               </div>
-            )}
+      <PetAgeCalculator />
 
-            {/* Bird Selection */}
-            {species === "bird" && (
-              <div className="animate-in fade-in duration-500">
-                <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Bird Species</label>
-                <div className="grid grid-cols-2 gap-4">
-                   {birdSpecies.map(b => (
-                      <button 
-                        key={b.name} 
-                        onClick={() => setSelectedBird(b)}
-                        className={`py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest border-2 transition-all ${selectedBird.name === b.name ? 'bg-sky-500/10 text-sky-600 border-sky-500' : 'bg-gray-50 text-slate-gray border-transparent'}`}
-                      >
-                         {b.name}
-                      </button>
-                   ))}
-                </div>
-              </div>
-            )}
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">The old "1 dog year = 7 human years" formula is scientifically inaccurate. Research published in <em>Cell Systems</em> (2020) by Trey Ideker and colleagues at UC San Diego used DNA methylation patterns to establish that dogs age rapidly in the first two years and more slowly thereafter — and that large breeds age faster than small breeds. This calculator uses species-specific and size-specific aging models to give a biologically grounded human-age equivalent.</p>
+        </div>
 
-            {/* Core Age Input */}
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-4 px-2">Pet Age (Years: {age})</label>
-               <input 
-                  type="range" 
-                  min="0.5" 
-                  max="25" 
-                  step="0.5"
-                  value={age}
-                  onChange={(e) => setAge(parseFloat(e.target.value))}
-                  className="w-full h-4 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start"
-               />
-               <div className="flex justify-between mt-4 px-2 text-[10px] font-black text-slate-gray/50 uppercase tracking-widest">
-                  <span>Newborn</span>
-                  <span>Senior</span>
-                  <span>Lifespan Limit</span>
-               </div>
-            </div>
-         </div>
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div key='Is the 7-year rule for dog ages accurate?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is the 7-year rule for dog ages accurate?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">No — the 7-year rule is a rough average that is inaccurate at most life stages. A 1-year-old dog is sexually mature and physically adult, equivalent to a human in their mid-teens to early twenties, not age 7. A 2-year-old large breed dog has already completed most of its aging, while a 2-year-old small breed dog ages much more slowly. Research from UC San Diego (2020) using DNA methylation analysis provides a more accurate model that this calculator is based on.</p>
+          </div>
+          <div key='Do large dogs age faster than small dogs?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Do large dogs age faster than small dogs?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Yes — significantly so. A 10-year-old Great Dane is geriatric; a 10-year-old Chihuahua is middle-aged. The AKC and veterinary geriatric research consistently show that giant breeds (over 45 kg) have lifespans of 7–10 years, while toy breeds regularly live 14–16 years. The accelerated aging of large breeds is linked to their faster growth rates and higher metabolic turnover. Veterinarians typically consider large breeds 'senior' from age 7 and giant breeds from age 5–6.</p>
+          </div>
+          <div key='At what age is a cat considered senior?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">At what age is a cat considered senior?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">The American Association of Feline Practitioners (AAFP) classifies cats as senior from age 11 and geriatric from age 15. In human-equivalent terms, an 11-year-old cat is roughly equivalent to a 60-year-old human. Biannual veterinary check-ups (rather than annual) are recommended from age 11 onwards to catch age-related conditions — kidney disease, hyperthyroidism, dental disease, arthritis, and hypertension — early.</p>
+          </div>
+          <div key="How does breed affect a dog's lifespan?" className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How does breed affect a dog's lifespan?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Breed and body size are the strongest predictors of canine lifespan. Small breeds (under 10 kg): 12–16 years. Medium breeds (10–25 kg): 10–14 years. Large breeds (25–45 kg): 9–12 years. Giant breeds (over 45 kg): 7–10 years. Within size categories, certain breeds have known longevity (Dachshund, Miniature Poodle) or shortened lifespans due to breed-specific health conditions (Bulldog, Boxer, Great Dane).</p>
+          </div>
+          <div key='When should I start treating my pet as a senior?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">When should I start treating my pet as a senior?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Dogs: age 7 for medium and large breeds, age 5–6 for giant breeds, age 9–10 for small breeds. Cats: age 11. Senior status means increasing vet check-ups to twice yearly, asking about senior blood panels (kidney function, thyroid, glucose, CBC), transitioning to senior or joint-support diet formulations if appropriate, and monitoring for mobility changes, weight loss, increased thirst/urination, or behavioural changes.</p>
+          </div>
+        </div>
 
-         {/* Result Visualization */}
-         <div className="space-y-8">
-            <div className="bg-white border-4 border-gray-50 rounded-[4.5rem] p-12 md:p-16 flex flex-col items-center justify-center text-center relative overflow-hidden group shadow-inner">
-               <div className="absolute top-0 right-0 p-12 text-brand-start/5 text-[15rem] leading-none select-none font-black opacity-30 transform translate-x-1/4 -translate-y-1/4">AGE</div>
-               
-               <span className="px-6 py-2 rounded-full bg-brand-start/10 text-brand-start text-[10px] font-black uppercase tracking-widest mb-8 border border-brand-start/20 leading-none">
-                 Equivalent Human Age
-               </span>
-               
-               <div className="flex items-baseline gap-4 mb-4 relative">
-                  <span className="text-8xl md:text-[10rem] font-black text-ebony group-hover:scale-105 transition-transform tracking-tighter leading-none">
-                     {humanAge}
-                  </span>
-                  <span className="text-2xl font-black text-slate-gray/50 tracking-widest uppercase">Years</span>
-               </div>
-               
-               <p className="text-2xl font-black text-ebony uppercase tracking-[0.2em] mb-12 opacity-80 decoration-brand-start decoration-4 underline underline-offset-8">
-                 Scientific Projection
-               </p>
-               
-               <div className="w-full p-8 bg-gray-50 rounded-3xl border border-gray-100 flex flex-col gap-4">
-                  <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-gray">
-                     <span>Breed Formula</span>
-                     <span className="text-ebony uppercase">{species} / {species === "dog" ? dogSize : "Standard"}</span>
-                  </div>
-                  <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-gray">
-                     <span>Metabolic Rate</span>
-                     <span className="text-ebony">Species Optimized</span>
-                  </div>
-               </div>
-            </div>
-
-            {/* Life Stage Card */}
-            <div className="bg-ebony rounded-[3rem] p-10 text-white relative overflow-hidden group">
-               <div className="absolute bottom-0 right-0 p-8 text-white/5 text-7xl font-black uppercase select-none">{lifeStage.name}</div>
-               <h4 className="text-[10px] font-black text-brand-start uppercase tracking-[0.3em] mb-4">Biological Life Stage</h4>
-               <h3 className="text-4xl font-black uppercase tracking-tight mb-4">{lifeStage.name}</h3>
-               <p className="text-white/60 font-medium leading-relaxed max-w-sm">
-                  {lifeStage.tip}
-               </p>
-            </div>
-         </div>
-      </div>
-    </ToolLayout>
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/health" href="/health" className="text-brand-start font-bold hover:underline text-sm">/health →</Link>
+          <Link key="/health/weight-tracker" href="/health/weight-tracker" className="text-brand-start font-bold hover:underline text-sm">/health/weight-tracker →</Link>
+          <Link key="/tools/calorie-calculator" href="/tools/calorie-calculator" className="text-brand-start font-bold hover:underline text-sm">/tools/calorie-calculator →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

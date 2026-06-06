@@ -1,74 +1,87 @@
-"use client";
-import { useState } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import Link from "next/link";
+import PetOwnerQuiz from "./PetOwnerQuiz";
 
-const questions = [
-  { q: "How often does your pet visit the vet?", options: [{ t: "Annually or more", s: 3 }, { t: "Every 2 years", s: 2 }, { t: "Only when sick", s: 1 }, { t: "Never", s: 0 }] },
-  { q: "Is your pet vaccinated and up to date?", options: [{ t: "Yes, fully", s: 3 }, { t: "Partially", s: 1 }, { t: "No", s: 0 }] },
-  { q: "How would you describe their diet?", options: [{ t: "Balanced, vet-approved food", s: 3 }, { t: "Commercial food, not premium", s: 2 }, { t: "Mostly table scraps", s: 0 }, { t: "I'm not sure", s: 1 }] },
-  { q: "How much exercise does your pet get daily?", options: [{ t: "30+ mins structured activity", s: 3 }, { t: "Short walks or play sessions", s: 2 }, { t: "Minimal, mostly indoors", s: 1 }, { t: "None", s: 0 }] },
-  { q: "Is your pet spayed or neutered?", options: [{ t: "Yes", s: 3 }, { t: "No, but planned", s: 1 }, { t: "No", s: 0 }] },
-  { q: "How is your pet's dental health?", options: [{ t: "Regular brushing or dental treats", s: 3 }, { t: "Occasional treats only", s: 2 }, { t: "I never think about it", s: 0 }] },
-  { q: "Are they on flea, tick, or worm treatment?", options: [{ t: "Yes, year-round", s: 3 }, { t: "Seasonally", s: 2 }, { t: "No", s: 0 }] },
-  { q: "Does your pet have an ID tag or microchip?", options: [{ t: "Both", s: 3 }, { t: "Just one", s: 1 }, { t: "Neither", s: 0 }] },
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Pet Owner Quiz", item: "https://hushku.app/tools/pet-owner-quiz" },
+  ],
+};
+
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Pet Owner Quiz",
+  url: "https://hushku.app/tools/pet-owner-quiz",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
+
+const faqs = [
+  { q: 'What are the most important things a pet owner should do?', a: 'According to the AVMA, the five most important commitments for responsible pet ownership are: (1) annual wellness veterinary visits and keeping vaccinations current; (2) microchipping and registration — microchipped pets are reunited with owners at rates 2.5× higher for dogs and 21× higher for cats than unchipped pets; (3) desexing unless breeding is planned — reduces roaming, aggression, and several cancers; (4) providing appropriate nutrition and preventing obesity; (5) providing adequate exercise and mental stimulation appropriate to the species and breed.' },
+  { q: 'How can I tell if I am a good pet owner?', a: 'Signs of responsible ownership: your pet maintains a healthy body weight (BCS 4–5/9), has up-to-date vaccinations and annual vet checks, their teeth are clean, they are microchipped, you have an emergency vet fund or pet insurance, they get appropriate daily exercise, and they exhibit calm, confident behaviour without fear or aggression. If any of these areas are lacking, the quiz provides specific, actionable improvements.' },
+  { q: 'Is microchipping compulsory?', a: 'Microchipping is legally compulsory for dogs in the UK (since 2016), Australia (in most states), and many EU countries. In the US there is no federal requirement, but many states and municipalities have mandatory microchipping laws. Regardless of legality, microchipping is strongly recommended by all major veterinary and welfare bodies — it is a permanent, inexpensive (typically $25–50) form of identification that dramatically improves lost pet recovery rates.' },
+  { q: 'What does responsible pet ownership cost per year?', a: 'Average annual costs for a dog in the US (APPA 2023–24): vet care $400–$700, food $300–$700, grooming $100–$400, supplies and accessories $100–$200, boarding/pet sitting when travelling $200–$600. Total: $1,100–$2,600/year minimum for a healthy dog. Unexpected veterinary costs (surgery, illness) can add $2,000–$15,000. Annual costs for cats are generally lower: $800–$1,800/year. These costs should be factored into the decision to get a pet.' },
 ];
 
-const results = [
-  { min: 19, max: 24, label: "Superstar Pet Parent 🏆", desc: "You're doing an amazing job. Your pet is lucky to have such a dedicated guardian. Keep up the excellent preventative care!", color: "bg-emerald-500" },
-  { min: 13, max: 18, label: "Caring & Committed 🌟", desc: "You clearly love your pet. A few tweaks—like more consistent vet visits or dental care—could take you to the next level.", color: "bg-sky-500" },
-  { min: 7, max: 12, label: "Room to Grow 🌱", desc: "You care, but some key areas need attention. Consider scheduling a vet check-up and reviewing your pet's diet and preventatives.", color: "bg-amber-500" },
-  { min: 0, max: 6, label: "Let's Level Up 🐾", desc: "Your pet needs more consistent care. Start small: book a vet visit, check their vaccinations, and explore preventative treatments.", color: "bg-red-500" },
-];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
-export default function PetOwnerQuiz() {
-  const [step, setStep] = useState(0);
-  const [score, setScore] = useState(0);
-  const [done, setDone] = useState(false);
-
-  function answer(s: number) {
-    const newScore = score + s;
-    if (step < questions.length - 1) { setScore(newScore); setStep(step + 1); }
-    else { setScore(newScore); setDone(true); }
-  }
-
-  const outcome = done ? results.find(r => score >= r.min && score <= r.max) : null;
-
+export default function Page() {
   return (
-    <ToolLayout subtitle="Fun Self-Assessment" title="Are You a Good Pet Owner?" description="8 quick questions to rate your pet parenthood. Shareable results — be honest!"  illustration={<ToolIllustration type="quiz" />}
-    >
-      <div className="max-w-xl mx-auto">
-        {!done ? (
-          <>
-            <div className="mb-10">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-[10px] font-black text-slate-gray uppercase tracking-widest">Question {step + 1} of {questions.length}</span>
-                <span className="text-[10px] font-black text-brand-start uppercase tracking-widest">{Math.round((step / questions.length) * 100)}%</span>
-              </div>
-              <div className="w-full h-2 bg-gray-100 rounded-full"><div className="h-full bg-brand-start rounded-full transition-all duration-500" style={{ width: `${(step / questions.length) * 100}%` }} /></div>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-ebony uppercase tracking-tight leading-tight mb-10" key={step}>{questions[step].q}</h2>
-            <div className="grid grid-cols-1 gap-4" key={`opts-${step}`}>
-              {questions[step].options.map(o => (
-                <button key={o.t} onClick={() => answer(o.s)}
-                  className="w-full text-left p-7 rounded-3xl border-2 border-gray-100 bg-gray-50 hover:bg-white hover:border-brand-start hover:shadow-xl transition-all group font-bold text-ebony group-hover:text-brand-start">
-                  {o.t}
-                </button>
-              ))}
-            </div>
-          </>
-        ) : outcome ? (
-          <div className="animate-in fade-in zoom-in-95 duration-500 text-center">
-            <div className="bg-ebony rounded-[4rem] p-12 md:p-16 relative overflow-hidden mb-8">
-              <div className="text-7xl mb-6">{outcome.label.slice(-2)}</div>
-              <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4">{outcome.label.slice(0, -2)}</h2>
-              <p className="text-white/70 font-medium">{outcome.desc}</p>
-              <div className={`mt-8 inline-block px-8 py-3 ${outcome.color} rounded-full text-white text-xs font-black uppercase tracking-widest`}>Score: {score} / 24</div>
-            </div>
-            <button onClick={() => { setStep(0); setScore(0); setDone(false); }} className="text-xs font-black text-slate-gray uppercase tracking-widest hover:text-brand-start transition-colors">↺ Retake Quiz</button>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
+      <PetOwnerQuiz />
+
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">This 8-question self-assessment scores your pet ownership practices across the areas veterinary and welfare organisations identify as most predictive of pet wellbeing: veterinary care regularity, vaccination compliance, diet quality and portion control, dental care, emergency preparedness, physical activity, identification (microchipping), and safety practices. The result gives an honest rating with specific areas to improve.</p>
+        </div>
+
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div key='What are the most important things a pet owner should do?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What are the most important things a pet owner should do?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">According to the AVMA, the five most important commitments for responsible pet ownership are: (1) annual wellness veterinary visits and keeping vaccinations current; (2) microchipping and registration — microchipped pets are reunited with owners at rates 2.5× higher for dogs and 21× higher for cats than unchipped pets; (3) desexing unless breeding is planned — reduces roaming, aggression, and several cancers; (4) providing appropriate nutrition and preventing obesity; (5) providing adequate exercise and mental stimulation appropriate to the species and breed.</p>
           </div>
-        ) : null}
-      </div>
-    </ToolLayout>
+          <div key='How can I tell if I am a good pet owner?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How can I tell if I am a good pet owner?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Signs of responsible ownership: your pet maintains a healthy body weight (BCS 4–5/9), has up-to-date vaccinations and annual vet checks, their teeth are clean, they are microchipped, you have an emergency vet fund or pet insurance, they get appropriate daily exercise, and they exhibit calm, confident behaviour without fear or aggression. If any of these areas are lacking, the quiz provides specific, actionable improvements.</p>
+          </div>
+          <div key='Is microchipping compulsory?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is microchipping compulsory?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Microchipping is legally compulsory for dogs in the UK (since 2016), Australia (in most states), and many EU countries. In the US there is no federal requirement, but many states and municipalities have mandatory microchipping laws. Regardless of legality, microchipping is strongly recommended by all major veterinary and welfare bodies — it is a permanent, inexpensive (typically $25–50) form of identification that dramatically improves lost pet recovery rates.</p>
+          </div>
+          <div key='What does responsible pet ownership cost per year?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What does responsible pet ownership cost per year?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Average annual costs for a dog in the US (APPA 2023–24): vet care $400–$700, food $300–$700, grooming $100–$400, supplies and accessories $100–$200, boarding/pet sitting when travelling $200–$600. Total: $1,100–$2,600/year minimum for a healthy dog. Unexpected veterinary costs (surgery, illness) can add $2,000–$15,000. Annual costs for cats are generally lower: $800–$1,800/year. These costs should be factored into the decision to get a pet.</p>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/health" href="/health" className="text-brand-start font-bold hover:underline text-sm">/health →</Link>
+          <Link key="/adoption" href="/adoption" className="text-brand-start font-bold hover:underline text-sm">/adoption →</Link>
+          <Link key="/tools/pet-health-quiz" href="/tools/pet-health-quiz" className="text-brand-start font-bold hover:underline text-sm">/tools/pet-health-quiz →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

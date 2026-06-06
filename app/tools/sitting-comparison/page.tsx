@@ -1,87 +1,87 @@
-"use client";
+import Link from "next/link";
+import SittingComparisonTool from "./SittingComparisonTool";
 
-import { useState } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+    { "@type": "ListItem", position: 2, name: "Free Tools", item: "https://hushku.app/tools" },
+    { "@type": "ListItem", position: 3, name: "Sitting Comparison", item: "https://hushku.app/tools/sitting-comparison" },
+  ],
+};
 
-export default function PetSittingComparison() {
-  const platforms = [
-    { name: "Rover", price: "$$$", platform: "iOS / Android", rating: "4.8", feature: "Dog Walking & Sitting", bestFor: "Local Variety" },
-    { name: "Wag!", price: "$$", platform: "iOS / Android", rating: "4.6", feature: "On-demand Walking", bestFor: "Speed" },
-    { name: "TrustedHousesitters", price: "$$$$", platform: "Web / iOS", rating: "4.7", feature: "Free Sits (Membership)", bestFor: "Long Travel" },
-    { name: "Meowtel", price: "$$", platform: "iOS / Android", rating: "4.9", feature: "Strictly Cats", bestFor: "Cat Owners" },
-  ];
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Sitting Comparison",
+  url: "https://hushku.app/tools/sitting-comparison",
+  applicationCategory: "LifestyleApplication",
+  operatingSystem: "Web, iOS, Android",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  creator: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+};
 
-  const [filter, setFilter] = useState("");
+const faqs = [
+  { q: 'Is Rover or Wag better?', a: "Rover and Wag serve different use cases. Rover has a larger sitter network, requires a meet-and-greet before the first booking, allows you to review a sitter's full profile and reviews before booking, and has a dedicated trust & safety team. Wag functions more like an on-demand service — faster booking but less pre-screening. Rover is generally recommended for first-time bookings or extended stays where building a relationship with the sitter matters. Wag can be convenient for last-minute dog walks where the primary requirement is availability." },
+  { q: 'What background checks do pet sitting platforms do?', a: "Rover runs a criminal background check via Checkr (covering national criminal records and sex offender databases) but does not verify references or conduct in-person interviews. Wag runs similar background checks. Neither platform guarantees the sitter's experience level with specific breeds or health conditions — that requires direct assessment through meet-and-greet. Care.com offers more thorough background checks as an add-on but does not specialise in pet care. No platform is a substitute for personal verification." },
+  { q: 'What happens if my pet gets injured while being sat?', a: "Rover provides up to $25,000 in veterinary coverage per incident for injuries occurring while under a Rover sitter's care, plus $1,000,000 in liability insurance. Wag offers similar coverage. However, claims require documentation and approval — in a genuine emergency, instruct the sitter to go to the nearest emergency vet immediately and worry about coverage paperwork later. Ensure your sitter has your vet's contact information and a signed emergency treatment authorisation before you travel." },
+  { q: 'How much does Rover cost compared to Wag?', a: "Pricing varies by location and sitter, but national US averages are comparable: $25–$45/night for in-home sitting, $30–$60/night for boarding at the sitter's home, $15–$30 for a 30-minute dog walk. Rover charges a 20% service fee on the booking amount; Wag charges a 40% commission. Both sitters set their own base rates. Urban markets (NYC, SF, London) run significantly higher — $60–$100+/night for in-home sitting is not unusual." },
+];
 
-  const filtered = platforms.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.bestFor.toLowerCase().includes(filter.toLowerCase()));
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
+export default function Page() {
   return (
-    <ToolLayout 
-      subtitle="Comparison Guide"
-      title="Pet Sitting App Comparison"
-      description="Compare the top platforms for pet sitting and dog walking. Filter by price, availability, and specialty."
-      illustration={<ToolIllustration type="calculator" />}
-    >
-      <div className="space-y-12">
-         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <input 
-               type="text" 
-               placeholder="Search by platform or specialty..."
-               value={filter}
-               onChange={(e) => setFilter(e.target.value)}
-               className="w-full md:max-w-md bg-gray-50 border-2 border-transparent rounded-[2rem] px-8 py-5 focus:bg-white focus:border-brand-start outline-none transition-all font-bold placeholder:text-gray-300 shadow-inner"
-            />
-            <div className="text-xs font-black text-slate-gray uppercase tracking-widest bg-gray-50 px-6 py-3 rounded-full border border-gray-100">
-               Comparing {filtered.length} Platforms
-            </div>
-         </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-         <div className="relative overflow-hidden rounded-[4rem] border border-gray-100 shadow-2xl bg-white animate-in fade-in duration-700">
-            <div className="overflow-x-auto">
-               <table className="w-full text-left border-collapse">
-                  <thead>
-                     <tr className="bg-gray-50 border-b-2 border-gray-100">
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Platform</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Price Tier</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Availability</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest text-center">Rating</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Best For</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {filtered.map((item, idx) => (
-                        <tr key={idx} className={`border-b border-gray-50 transition-colors hover:bg-gray-50/50 group`}>
-                           <td className="px-10 py-10">
-                              <span className="text-xl font-black text-ebony group-hover:text-brand-start transition-colors uppercase tracking-tight">{item.name}</span>
-                              <p className="text-xs text-slate-gray uppercase font-bold tracking-widest mt-1 opacity-60">{item.feature}</p>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-lg font-black text-brand-start">{item.price}</span>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-sm font-bold text-slate-gray uppercase tracking-widest">{item.platform}</span>
-                           </td>
-                           <td className="px-10 py-10 text-center">
-                              <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-black uppercase tracking-widest border border-emerald-100">★ {item.rating}</span>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-sm font-black text-ebony opacity-80 uppercase tracking-tight italic">"{item.bestFor}"</span>
-                           </td>
-                        </tr>
-                     ))}
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         
-         <div className="p-10 bg-gray-50 rounded-[3rem] border border-gray-100 text-center relative overflow-hidden group">
-            <div className="absolute top-0 left-0 p-8 text-brand-start/5 text-8xl font-black select-none pointer-events-none group-hover:scale-110 transition-transform">ℹ️</div>
-            <p className="text-sm font-black text-slate-gray uppercase tracking-widest max-w-2xl mx-auto leading-relaxed relative">
-               Pricing tiers indicate relative cost: $ (Free/Low Membership) to $$$$ (High-End Premium). Rankings are based on aggregated community feedback and platform reviews.
-            </p>
-         </div>
-      </div>
-    </ToolLayout>
+      <SittingComparisonTool />
+
+      <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
+        <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">
+          <p className="text-sm text-slate-gray leading-relaxed">Comparing pet sitting platforms requires evaluating more than just price. This comparison covers the four major platforms (Rover, Wag, Care.com, local alternatives) across the criteria that matter most for pet safety: sitter screening depth (background check scope, criminal database coverage), insurance and liability coverage, what happens in a veterinary emergency, the transparency of the review system, and cancellation policies. Price is the least important variable when trusting a stranger with your pet.</p>
+        </div>
+
+        <h2 className="text-2xl font-black text-ebony uppercase tracking-tighter mb-8">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div key='Is Rover or Wag better?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">Is Rover or Wag better?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Rover and Wag serve different use cases. Rover has a larger sitter network, requires a meet-and-greet before the first booking, allows you to review a sitter's full profile and reviews before booking, and has a dedicated trust & safety team. Wag functions more like an on-demand service — faster booking but less pre-screening. Rover is generally recommended for first-time bookings or extended stays where building a relationship with the sitter matters. Wag can be convenient for last-minute dog walks where the primary requirement is availability.</p>
+          </div>
+          <div key='What background checks do pet sitting platforms do?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What background checks do pet sitting platforms do?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Rover runs a criminal background check via Checkr (covering national criminal records and sex offender databases) but does not verify references or conduct in-person interviews. Wag runs similar background checks. Neither platform guarantees the sitter's experience level with specific breeds or health conditions — that requires direct assessment through meet-and-greet. Care.com offers more thorough background checks as an add-on but does not specialise in pet care. No platform is a substitute for personal verification.</p>
+          </div>
+          <div key='What happens if my pet gets injured while being sat?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">What happens if my pet gets injured while being sat?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Rover provides up to $25,000 in veterinary coverage per incident for injuries occurring while under a Rover sitter's care, plus $1,000,000 in liability insurance. Wag offers similar coverage. However, claims require documentation and approval — in a genuine emergency, instruct the sitter to go to the nearest emergency vet immediately and worry about coverage paperwork later. Ensure your sitter has your vet's contact information and a signed emergency treatment authorisation before you travel.</p>
+          </div>
+          <div key='How much does Rover cost compared to Wag?' className="border-b border-gray-100 pb-6 last:border-0">
+            <h3 className="text-base font-black text-ebony mb-2">How much does Rover cost compared to Wag?</h3>
+            <p className="text-sm text-slate-gray leading-relaxed">Pricing varies by location and sitter, but national US averages are comparable: $25–$45/night for in-home sitting, $30–$60/night for boarding at the sitter's home, $15–$30 for a 30-minute dog walk. Rover charges a 20% service fee on the booking amount; Wag charges a 40% commission. Both sitters set their own base rates. Urban markets (NYC, SF, London) run significantly higher — $60–$100+/night for in-home sitting is not unusual.</p>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-8 border-t border-gray-100">
+          <p className="text-xs font-black text-slate-gray uppercase tracking-widest mb-3">Related</p>
+          <div className="flex flex-wrap gap-4">
+          <Link key="/tools/pet-sitter-cost" href="/tools/pet-sitter-cost" className="text-brand-start font-bold hover:underline text-sm">/tools/pet-sitter-cost →</Link>
+          <Link key="/playdates" href="/playdates" className="text-brand-start font-bold hover:underline text-sm">/playdates →</Link>
+          <Link key="/health/records" href="/health/records" className="text-brand-start font-bold hover:underline text-sm">/health/records →</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

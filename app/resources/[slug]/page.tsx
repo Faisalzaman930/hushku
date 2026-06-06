@@ -28,19 +28,25 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const canonicalUrl = `https://hushku.app/resources/${slug}`;
+  const ogImage = [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630 }];
 
   const article = articles.find((a) => a.slug === slug);
   if (article) {
     return {
       title: article.seoTitle || article.title,
       description: article.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: article.seoTitle || article.title,
         description: article.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: article.publishDate,
         modifiedTime: article.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: article.seoTitle || article.title, description: article.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -49,13 +55,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: guide.seoTitle || guide.title,
       description: guide.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: guide.seoTitle || guide.title,
         description: guide.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: guide.publishDate,
         modifiedTime: guide.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: guide.seoTitle || guide.title, description: guide.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -64,13 +74,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: howTo.seoTitle || howTo.title,
       description: howTo.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: howTo.seoTitle || howTo.title,
         description: howTo.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: howTo.publishDate,
         modifiedTime: howTo.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: howTo.seoTitle || howTo.title, description: howTo.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -79,13 +93,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: symptom.seoTitle || symptom.title,
       description: symptom.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: symptom.seoTitle || symptom.title,
         description: symptom.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: symptom.publishDate,
         modifiedTime: symptom.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: symptom.seoTitle || symptom.title, description: symptom.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -94,13 +112,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: breed.seoTitle || breed.title,
       description: breed.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: breed.seoTitle || breed.title,
         description: breed.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: breed.publishDate,
         modifiedTime: breed.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: breed.seoTitle || breed.title, description: breed.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -109,13 +131,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: definition.seoTitle || definition.title,
       description: definition.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: definition.seoTitle || definition.title,
         description: definition.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: definition.publishDate,
         modifiedTime: definition.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: definition.seoTitle || definition.title, description: definition.seoDescription, images: [ogImage[0].url] },
     };
   }
 
@@ -124,13 +150,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: pillar.seoTitle || pillar.title,
       description: pillar.seoDescription,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
         title: pillar.seoTitle || pillar.title,
         description: pillar.seoDescription,
         type: "article",
+        url: canonicalUrl,
+        images: ogImage,
         publishedTime: pillar.publishDate,
         modifiedTime: pillar.lastUpdated,
       },
+      twitter: { card: "summary_large_image", title: pillar.seoTitle || pillar.title, description: pillar.seoDescription, images: [ogImage[0].url] },
     };
   }
 

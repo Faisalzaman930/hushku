@@ -60,6 +60,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 18 years",
     lifeSpanYears: 16.0,
     image: "/breeds/dogs/affenhuahua.jpg",
+    parentBreeds: "Affenpinscher and Chihuahua",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -324,6 +325,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/chow.jpg",
+    parentBreeds: "Akita and Chow Chow",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -368,6 +370,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/akita-pit.jpg",
+    parentBreeds: "Akita and American Pit Bull Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -412,6 +415,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/akita-shepherd.jpg",
+    parentBreeds: "Akita and German Shepherd Dog",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -852,6 +856,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/pug.jpg",
+    parentBreeds: "American Bulldog and Pug",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -1072,6 +1077,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/auggie.jpg",
+    parentBreeds: "Australian Shepherd and Pembroke Welsh Corgi",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -1116,6 +1122,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/aussiedoodle.jpg",
+    parentBreeds: "Australian Shepherd and Poodle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -1160,6 +1167,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/aussiepom.jpg",
+    parentBreeds: "Australian Shepherd and Pomeranian",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -1292,6 +1300,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/australian-retriever.jpg",
+    parentBreeds: "Australian Shepherd and Golden Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -1380,6 +1389,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/australian-shepherd-husky.jpg",
+    parentBreeds: "Australian Shepherd and Siberian Husky",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -1424,6 +1434,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/australian-shepherd-lab-mix.jpg",
+    parentBreeds: "Australian Shepherd and Labrador Retriever",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -1468,6 +1479,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 16 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/australian-shepherd-pit-bull-mix.jpg",
+    parentBreeds: "Australian Shepherd and American Pit Bull Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -1732,6 +1744,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/bassador.jpg",
+    parentBreeds: "Basset Hound and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -1864,6 +1877,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/basset.jpg",
+    parentBreeds: "Basset Hound and Golden Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -1952,6 +1966,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/beabull.jpg",
+    parentBreeds: "Beagle and English Bulldog",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -2040,6 +2055,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/beaglier.jpg",
+    parentBreeds: "Beagle and Cavalier King Charles Spaniel",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -2436,6 +2452,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 18 years. Tiny Bernedoodles tend to live longer than standard.",
     lifeSpanYears: 15.0,
     image: "/breeds/dogs/bernedoodle.jpg",
+    parentBreeds: "Bernese Mountain Dog and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -2876,6 +2893,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/bocker.jpg",
+    parentBreeds: "Beagle and Cocker Spaniel",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -2964,6 +2982,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/boglen-terrier.jpg",
+    parentBreeds: "Boston Terrier and Beagle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -3184,6 +3203,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/border-sheepdog.jpg",
+    parentBreeds: "Border Collie and Shetland Sheepdog",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -3272,6 +3292,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/bordoodle.jpg",
+    parentBreeds: "Border Collie and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -3360,6 +3381,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/boshih.jpg",
+    parentBreeds: "Boston Terrier and Shih Tzu",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -3404,6 +3426,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/bossie.jpg",
+    parentBreeds: "Boston Terrier and Australian Shepherd",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -3448,6 +3471,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/boxer.jpg",
+    parentBreeds: "Boston Terrier and Boxer",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -3536,6 +3560,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/boston-terrier-pekingese-mix.jpg",
+    parentBreeds: "Boston Terrier and Pekingese",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -3624,6 +3649,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/boxador.jpg",
+    parentBreeds: "Boxer and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -3712,6 +3738,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/boxer.jpg",
+    parentBreeds: "Boxer and Poodle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -3756,6 +3783,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/boxmatian.jpg",
+    parentBreeds: "Boxer and Dalmatian",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -3800,6 +3828,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 13 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/boxweiler.jpg",
+    parentBreeds: "Boxer and Rottweiler",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -4152,6 +4181,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/bugg.jpg",
+    parentBreeds: "Boston Terrier and Pug",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -4240,6 +4270,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "9 to 11 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/bull-pei.jpg",
+    parentBreeds: "English Bulldog and Chinese Shar-Pei",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -4328,6 +4359,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/bullador.jpg",
+    parentBreeds: "English Bulldog and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -4372,6 +4404,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/boxer.jpg",
+    parentBreeds: "American Pit Bull Terrier and Boxer",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -4504,6 +4537,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/bullmatian.jpg",
+    parentBreeds: "English Bulldog and Dalmatian",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -4768,6 +4802,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/catahoula-bulldog.jpg",
+    parentBreeds: "Catahoula Leopard Dog and American Bulldog",
     scores: {
       adaptability: 1,
       apartmentFriendly: 1,
@@ -4900,6 +4935,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 17 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/cav-a-jack.jpg",
+    parentBreeds: "Cavalier King Charles Spaniel and Jack Russell Terrier",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -4944,6 +4980,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/cavachon.jpg",
+    parentBreeds: "Cavalier King Charles Spaniel and Bichon Frise",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -4988,6 +5025,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/cavador.jpg",
+    parentBreeds: "Cavalier King Charles Spaniel and Labrador Retriever",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -5076,6 +5114,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/cavapoo.jpg",
+    parentBreeds: "Cavalier King Charles Spaniel and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -5208,6 +5247,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "9 to 13 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/chabrador.jpg",
+    parentBreeds: "Chow Chow and Labrador Retriever",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -5252,6 +5292,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/cheagle.jpg",
+    parentBreeds: "Chihuahua and Beagle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -5340,6 +5381,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "11 to 20 years",
     lifeSpanYears: 16.0,
     image: "/breeds/dogs/chi-chi.jpg",
+    parentBreeds: "Chihuahua and Chinese Crested",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -5384,6 +5426,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/chi-poo.jpg",
+    parentBreeds: "Chihuahua and Poodle",
     scores: {
       adaptability: 4,
       apartmentFriendly: 5,
@@ -5428,6 +5471,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/chigi.jpg",
+    parentBreeds: "Chihuahua and Pembroke Welsh Corgi",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -5516,6 +5560,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/chilier.jpg",
+    parentBreeds: "Chihuahua and Cavalier King Charles Spaniel",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -5692,6 +5737,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/chion.jpg",
+    parentBreeds: "Chihuahua and Papillon",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -5736,6 +5782,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/chipin.jpg",
+    parentBreeds: "Chihuahua and Miniature Pinscher",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -5780,6 +5827,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/chiweenie.jpg",
+    parentBreeds: "Chihuahua and Dachshund",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -5824,6 +5872,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/chorkie.jpg",
+    parentBreeds: "Chihuahua and Yorkshire Terrier",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -5912,6 +5961,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/chow.jpg",
+    parentBreeds: "Chow Chow and German Shepherd Dog",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -5956,6 +6006,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/chug.jpg",
+    parentBreeds: "Chihuahua and Pug",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -6000,6 +6051,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/chusky.jpg",
+    parentBreeds: "Chow Chow and Siberian Husky",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -6132,6 +6184,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/cockalier.jpg",
+    parentBreeds: "Cocker Spaniel and Cavalier King Charles Spaniel",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -6308,6 +6361,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/corgi-inu.jpg",
+    parentBreeds: "Pembroke Welsh Corgi and Shiba Inu",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -6352,6 +6406,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/corgidor.jpg",
+    parentBreeds: "Pembroke Welsh Corgi and Labrador Retriever",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -6396,6 +6451,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/corman-shepherd.jpg",
+    parentBreeds: "Pembroke Welsh Corgi and German Shepherd Dog",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -6572,6 +6628,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/dachsador.jpg",
+    parentBreeds: "Dachshund and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -6748,6 +6805,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/daniff.jpg",
+    parentBreeds: "Great Dane and Mastiff",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -6880,6 +6938,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/doberdor.jpg",
+    parentBreeds: "Doberman Pinscher and Labrador Retriever",
     scores: {
       adaptability: 1,
       apartmentFriendly: 1,
@@ -6968,6 +7027,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 Years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/docker.jpg",
+    parentBreeds: "Dachshund and Cocker Spaniel",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -7100,6 +7160,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/dorgi.jpg",
+    parentBreeds: "Dachshund and Pembroke Welsh Corgi",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -7144,6 +7205,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/dorkie.jpg",
+    parentBreeds: "Dachshund and Yorkshire Terrier",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -7188,6 +7250,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/doxiepoo.jpg",
+    parentBreeds: "Dachshund and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -7232,6 +7295,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/doxle.jpg",
+    parentBreeds: "Dachshund and Beagle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -8068,6 +8132,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/french-bullhuahua.jpg",
+    parentBreeds: "French Bulldog and Chihuahua",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -8156,6 +8221,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/frenchton.jpg",
+    parentBreeds: "French Bulldog and Boston Terrier",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -8200,6 +8266,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/frengle.jpg",
+    parentBreeds: "French Bulldog and Beagle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -8376,6 +8443,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/german-shepherd.jpg",
+    parentBreeds: "German Shepherd Dog and American Pit Bull Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -8420,6 +8488,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "9 to 13 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/german-shepherd.jpg",
+    parentBreeds: "German Shepherd Dog and Rottweiler",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -8464,6 +8533,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/german-sheprador.jpg",
+    parentBreeds: "German Shepherd Dog and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -8728,6 +8798,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/goberian.jpg",
+    parentBreeds: "Golden Retriever and Siberian Husky",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -8816,6 +8887,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/golden-cocker-retriever.jpg",
+    parentBreeds: "Golden Retriever and Cocker Spaniel",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -8860,6 +8932,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "9 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/golden-mountain-dog.jpg",
+    parentBreeds: "Golden Retriever and Bernese Mountain Dog",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -8948,6 +9021,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/golden-retriever.jpg",
+    parentBreeds: "Golden Retriever and Pembroke Welsh Corgi",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -8992,6 +9066,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/golden-shepherd.jpg",
+    parentBreeds: "Golden Retriever and German Shepherd Dog",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -9080,6 +9155,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/gollie.jpg",
+    parentBreeds: "Golden Retriever and Collie",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -9300,6 +9376,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "11 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/greyador.jpg",
+    parentBreeds: "Greyhound and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -9564,6 +9641,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/havapoo.jpg",
+    parentBreeds: "Havanese and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -9652,6 +9730,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/horgi.jpg",
+    parentBreeds: "Siberian Husky and Pembroke Welsh Corgi",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -9740,6 +9819,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 13 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/huskita.jpg",
+    parentBreeds: "Siberian Husky and Akita",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -9784,6 +9864,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/huskydoodle.jpg",
+    parentBreeds: "Siberian Husky and Poodle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -10180,6 +10261,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/jack-a-poo.jpg",
+    parentBreeds: "Jack Russell Terrier and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -10224,6 +10306,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 18 years",
     lifeSpanYears: 16.0,
     image: "/breeds/dogs/jack-chi.jpg",
+    parentBreeds: "Jack Russell Terrier and Chihuahua",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -10312,6 +10395,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/jackshund.jpg",
+    parentBreeds: "Jack Russell Terrier and Dachshund",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -10884,6 +10968,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/kyi-leo.jpg",
+    parentBreeds: "Maltese and Lhasa Apso",
     scores: {
       adaptability: 4,
       apartmentFriendly: 5,
@@ -10928,6 +11013,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/lab-pointer.jpg",
+    parentBreeds: "Labrador Retriever and Pointer",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -10972,6 +11058,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "6 to 12 years",
     lifeSpanYears: 9.0,
     image: "/breeds/dogs/labernese.jpg",
+    parentBreeds: "Labrador Retriever and Bernese Mountain Dog",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -11016,6 +11103,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/labmaraner.jpg",
+    parentBreeds: "Labrador Retriever and Weimaraner",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -11060,6 +11148,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/labrabull.jpg",
+    parentBreeds: "Labrador Retriever and American Pit Bull Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -11104,6 +11193,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/labradane.jpg",
+    parentBreeds: "Labrador Retriever and Great Dane",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -11236,6 +11326,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/labrastaff.jpg",
+    parentBreeds: "Labrador Retriever and Staffordshire Bull Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -11280,6 +11371,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/labsky.jpg",
+    parentBreeds: "Labrador Retriever and Siberian Husky",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -11544,6 +11636,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/lhasa.jpg",
+    parentBreeds: "Lhasa Apso and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -11852,6 +11945,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/mastador.jpg",
+    parentBreeds: "Mastiff and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -12028,6 +12122,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/morkie.jpg",
+    parentBreeds: "Maltese and Yorkshire Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 3,
@@ -12732,6 +12827,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/papipoo.jpg",
+    parentBreeds: "Papillon and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -13040,6 +13136,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/pitsky.jpg",
+    parentBreeds: "American Pit Bull Terrier and Siberian Husky",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -13260,6 +13357,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/pomapoo.jpg",
+    parentBreeds: "Pomeranian and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -13304,6 +13402,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 18 years",
     lifeSpanYears: 15.0,
     image: "/breeds/dogs/pomchi.jpg",
+    parentBreeds: "Pomeranian and Chihuahua",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -13348,6 +13447,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/pomeagle.jpg",
+    parentBreeds: "Pomeranian and Beagle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -13436,6 +13536,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/pomsky.jpg",
+    parentBreeds: "Pomeranian and Siberian Husky",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -13480,6 +13581,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/poochon.jpg",
+    parentBreeds: "Poodle and Bichon Frise",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -13832,6 +13934,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/pug.jpg",
+    parentBreeds: "Pug and Cavalier King Charles Spaniel",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -13920,6 +14023,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 14 years",
     lifeSpanYears: 13.0,
     image: "/breeds/dogs/pug.jpg",
+    parentBreeds: "Pug and Pekingese",
     scores: {
       adaptability: 4,
       apartmentFriendly: 5,
@@ -14008,6 +14112,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/pyredoodle.jpg",
+    parentBreeds: "Great Pyrenees and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -14272,6 +14377,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 12 years",
     lifeSpanYears: 11.0,
     image: "/breeds/dogs/rottador.jpg",
+    parentBreeds: "Rottweiler and Labrador Retriever",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -14316,6 +14422,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "9 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/rottle.jpg",
+    parentBreeds: "Rottweiler and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -14404,6 +14511,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
     image: "/breeds/dogs/saint-berdoodle.jpg",
+    parentBreeds: "Saint Bernard and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -14580,6 +14688,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/samusky.jpg",
+    parentBreeds: "Samoyed and Siberian Husky",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -14844,6 +14953,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/sheepadoodle.jpg",
+    parentBreeds: "Old English Sheepdog and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -14888,6 +14998,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/shepsky.jpg",
+    parentBreeds: "German Shepherd Dog and Siberian Husky",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -15020,6 +15131,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 18 years",
     lifeSpanYears: 15.0,
     image: "/breeds/dogs/shichon.jpg",
+    parentBreeds: "Shih Tzu and Bichon Frise",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -15064,6 +15176,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 17+ years",
     lifeSpanYears: 15.0,
     image: "/breeds/dogs/shih-poo.jpg",
+    parentBreeds: "Shih Tzu and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -15240,6 +15353,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/shiranian.jpg",
+    parentBreeds: "Shih Tzu and Pomeranian",
     scores: {
       adaptability: 3,
       apartmentFriendly: 4,
@@ -15284,6 +15398,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "13 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/shollie.jpg",
+    parentBreeds: "German Shepherd Dog and Rough Collie",
     scores: {
       adaptability: 2,
       apartmentFriendly: 1,
@@ -15328,6 +15443,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "11 to 16 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/shorkie.jpg",
+    parentBreeds: "Shih Tzu and Yorkshire Terrier",
     scores: {
       adaptability: 2,
       apartmentFriendly: 5,
@@ -15768,6 +15884,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 14 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/springador.jpg",
+    parentBreeds: "English Springer Spaniel and Labrador Retriever",
     scores: {
       adaptability: 2,
       apartmentFriendly: 2,
@@ -16164,6 +16281,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "10 to 15 years",
     lifeSpanYears: 12.0,
     image: "/breeds/dogs/terripoo.jpg",
+    parentBreeds: "Australian Terrier and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 5,
@@ -16208,6 +16326,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: "/breeds/dogs/texas-heeler.jpg",
+    parentBreeds: "Australian Cattle Dog and Australian Shepherd",
     scores: {
       adaptability: 3,
       apartmentFriendly: 2,
@@ -16604,6 +16723,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "8 to 12 years",
     lifeSpanYears: 10.0,
     image: null,
+    parentBreeds: "English Bulldog and Boxer",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,
@@ -16868,6 +16988,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: null,
+    parentBreeds: "West Highland White Terrier and Poodle",
     scores: {
       adaptability: 3,
       apartmentFriendly: 3,
@@ -16956,6 +17077,7 @@ export const dogs: BreedDoc[] = [
     lifeSpan: "12 to 15 years",
     lifeSpanYears: 14.0,
     image: null,
+    parentBreeds: "Soft Coated Wheaten Terrier and Poodle",
     scores: {
       adaptability: 2,
       apartmentFriendly: 4,

@@ -4,6 +4,20 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Vet Discovery — Coming Soon | Hushku",
   description: "Hushku's Vet Portal is coming soon. Find trusted clinics nearby, read verified reviews, and call in one tap — all inside the Hushku app.",
+  alternates: { canonical: "https://hushku.app/vets" },
+  openGraph: {
+    title: "Vet Discovery — Coming Soon | Hushku",
+    description: "Find trusted vets nearby, read verified reviews, and call in one tap. Coming soon to Hushku.",
+    type: "website",
+    url: "https://hushku.app/vets",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Vet Discovery" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vet Discovery — Coming Soon | Hushku",
+    description: "Find trusted vets nearby. Coming soon to Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 export default function VetsPage() {

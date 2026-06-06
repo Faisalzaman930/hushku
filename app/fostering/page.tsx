@@ -2,8 +2,22 @@ import ComingSoonPage from "../components/ComingSoonPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Fostering — Coming Soon | Hushku",
-  description: "Hushku's Fostering platform is coming soon. Open your home temporarily and get matched with pets that need you most.",
+  title: "Pet Fostering App — Coming Soon | Hushku",
+  description: "Hushku's Fostering platform is coming soon. Open your home temporarily and get matched with pets that need you most — dogs, cats, and small animals from verified shelters.",
+  alternates: { canonical: "https://hushku.app/fostering" },
+  openGraph: {
+    title: "Pet Fostering App — Coming Soon | Hushku",
+    description: "Open your home temporarily and get matched with pets that need you most. Coming soon to Hushku.",
+    type: "website",
+    url: "https://hushku.app/fostering",
+    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Fostering" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pet Fostering App — Coming Soon | Hushku",
+    description: "Foster a dog or cat from a verified shelter near you. Coming soon to Hushku.",
+    images: ["https://hushku.app/screenshots/app-playdates.png"],
+  },
 };
 
 export default function FosteringPage() {

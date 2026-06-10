@@ -115,9 +115,11 @@ const Footer = () => {
             <p className="text-xs text-slate-gray">
               &copy; {currentYear} Hushku App. All rights reserved. Built for pet lovers worldwide.
             </p>
-            <p className="text-xs text-slate-gray">
-              Built by <strong className="text-ebony">Faizan & Faisal</strong>
-            </p>
+            <div className="flex items-center gap-4 text-xs text-slate-gray">
+              <Link href="https://instagram.com/hushkuapp" rel="me" className="hover:text-ebony transition-colors">Instagram</Link>
+              <Link href="https://tiktok.com/@hushkuapp" rel="me" className="hover:text-ebony transition-colors">TikTok</Link>
+              <span>Built by <strong className="text-ebony">Faizan &amp; Faisal</strong></span>
+            </div>
           </div>
         </div>
       </div>

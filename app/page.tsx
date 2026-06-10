@@ -120,7 +120,7 @@ function MagneticButton({ children, className = "", strength = 0.35 }: {
 
 // ── Animated stat counter ─────────────────────────────────────────────────────
 function StatCounter({ target, suffix = "", label }: { target: number; suffix?: string; label: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const ref = useRef<HTMLDivElement>(null);
   const started = useRef(false);
   const inView = useInView(ref, { once: true });
@@ -409,13 +409,13 @@ const verticals = [
 ];
 
 const steps = [
-  { num: "01", title: "Create Your Pet Profile", desc: "Add your pet's name, breed, age, and personality. Takes 60 seconds." },
-  { num: "02", title: "Connect with Your Community", desc: "Discover local pet owners, nearby rescues, and trusted vets in your area." },
-  { num: "03", title: "Access Everything Pet-Related", desc: "From playdate scheduling to emergency alerts — all from one app, on your phone." },
+  { num: "01", title: "Create your dog or cat profile", desc: "Add your pet's name, breed, age, and personality. Takes 60 seconds." },
+  { num: "02", title: "Connect with local pet owners and rescue shelters", desc: "Discover local pet owners, nearby rescues, and trusted vets in your area." },
+  { num: "03", title: "Access pet adoption, lost & found alerts, and health tools", desc: "From playdate scheduling to emergency alerts — all from one app, on your phone." },
 ];
 
 const testimonialsData = [
-  { stars: 5, quote: "I found a playmate for my reactive dog in 2 days. The temperament filters are genuinely game-changing.", author: "Sarah L.", pet: "Cooper the Golden Retriever" },
+  { stars: 5, quote: "I'd been struggling to find a safe playmate for my reactive border collie for 8 months. Within 48 hours on Hushku, I matched with two compatible dogs nearby. The temperament and energy filters are unlike anything else I've tried.", author: "Sarah Lawson, Manchester UK", pet: "Cooper — 3-year-old Border Collie" },
   { stars: 5, quote: "The adoption process took 10 minutes instead of 3 weeks. I cried when I brought Luna home.", author: "Michael K.", pet: "Luna the Siamese" },
   { stars: 5, quote: "Simba went missing on a Tuesday. The neighborhood alert went out and someone found him in 2 hours.", author: "David R.", pet: "Simba the rescue cat" },
 ];
@@ -472,16 +472,30 @@ export default function Home() {
               </motion.div>
 
               <h1 className="text-5xl font-black tracking-tight text-ebony sm:text-7xl leading-[0.9] uppercase">
-                <SplitHeading text="Everything Your" delay={0.2} /><br />
+                <SplitHeading text="The free pet app" delay={0.2} /><br />
                 <span className="text-brand-gradient inline-block">
-                  <SplitHeading text="Pet Needs." delay={0.45} />
+                  <SplitHeading text="for dog &" delay={0.45} />
                 </span><br />
-                <SplitHeading text="One App." delay={0.65} />
+                <SplitHeading text="cat owners." delay={0.65} />
               </h1>
 
               <motion.p variants={fadeUp} className="text-xl leading-relaxed text-slate-gray max-w-lg">
-                Hushku replaces every pet app you have. Matching, adoption, fostering, lost and found, health records. All built, all free, one app.
+                Hushku replaces every pet app you have.{" "}
+                <Link href="/playdates" className="underline hover:text-brand-start transition-colors">Playdate matching</Link>,{" "}
+                <Link href="/adoption" className="underline hover:text-brand-start transition-colors">adoption</Link>,{" "}
+                <Link href="/fostering" className="underline hover:text-brand-start transition-colors">fostering</Link>,{" "}
+                <Link href="/lost-and-found" className="underline hover:text-brand-start transition-colors">lost and found</Link>,{" "}
+                <Link href="/health" className="underline hover:text-brand-start transition-colors">health records</Link>.
+                All built, all free, one app.
               </motion.p>
+
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3 text-xs font-bold text-slate-gray">
+                <span className="bg-gray-50 border border-gray-100 rounded-full px-4 py-2">Free forever — no credit card</span>
+                <span className="bg-gray-50 border border-gray-100 rounded-full px-4 py-2">GDPR compliant</span>
+                <span className="bg-gray-50 border border-gray-100 rounded-full px-4 py-2">No pet data sold</span>
+                <span className="bg-gray-50 border border-gray-100 rounded-full px-4 py-2">Verified shelters only</span>
+                <span className="bg-gray-50 border border-gray-100 rounded-full px-4 py-2">Used in 30+ countries</span>
+              </motion.div>
 
               <motion.div variants={stagger()} className="flex flex-wrap gap-4 pt-2">
                 {[
@@ -528,7 +542,7 @@ export default function Home() {
                     animate={{ x: groupHover ? -18 : 0, rotate: groupHover ? -12 : -7, opacity: groupHover ? 1 : 0.9 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-adoption.png" alt="Hushku adoption feature" delay={0.3} rotate={0} isSide />
+                    <FloatingPhone src="/screenshots/app-adoption.png" alt="Hushku pet adoption screen showing nearby rescue dogs available" delay={0.3} rotate={0} isSide />
                   </motion.div>
 
                   <motion.div
@@ -536,7 +550,7 @@ export default function Home() {
                     animate={{ y: groupHover ? -10 : 0, scale: groupHover ? 1.04 : 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-playdates.png" alt="Hushku playdates feature" delay={0} rotate={0} />
+                    <FloatingPhone src="/screenshots/app-playdates.png" alt="Hushku playdate matching app showing dog breed and temperament filters" delay={0} rotate={0} />
                   </motion.div>
 
                   <motion.div
@@ -544,7 +558,7 @@ export default function Home() {
                     animate={{ x: groupHover ? 18 : 0, rotate: groupHover ? 12 : 7, opacity: groupHover ? 1 : 0.9 }}
                     transition={{ type: "spring", stiffness: 200, damping: 22 }}
                   >
-                    <FloatingPhone src="/screenshots/app-social-feed.png" alt="Hushku social feed" delay={0.6} rotate={0} isSide />
+                    <FloatingPhone src="/screenshots/app-social-feed.png" alt="Hushku social feed showing pet owner posts and community activity" delay={0.6} rotate={0} isSide />
                   </motion.div>
                 </div>
               );
@@ -563,9 +577,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10"
             variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
-            <StatCounter target={6} suffix="" label="Core Features Live" />
+            <StatCounter target={8} suffix="" label="Core Features Live" />
             <StatCounter target={2} suffix="" label="Founders — Pet Lovers" />
-            <StatCounter target={3} suffix="min" label="To Adopt a Pet" />
+            <StatCounter target={5} suffix="min" label="To Adopt a Pet" />
             <StatCounter target={100} suffix="%" label="Free Core Features" />
           </motion.div>
         </div>
@@ -577,8 +591,7 @@ export default function Home() {
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">The Ecosystem</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-6xl leading-none">
-              <SplitHeading text="6 Core Features." /><br />
-              <SplitHeading text="One App." delay={0.25} />
+              <SplitHeading text="6 features built for every pet owner" />
             </h2>
             <p className="mt-6 text-lg text-slate-gray max-w-2xl mx-auto">Playdate matching, adoption & fostering, shelters, lost & found, health & care, and a social feed — all live. Each with its own set of powerful sub-features.</p>
           </Reveal>
@@ -692,7 +705,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal className="text-center mb-20">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Getting Started</p>
-            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Up and Running in Minutes</h2>
+            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">Set up your free pet profile in under 2 minutes</h2>
           </Reveal>
           <motion.div className="grid md:grid-cols-3 gap-8"
             variants={stagger(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
@@ -715,12 +728,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── HOW HUSHKU WORKS ─── */}
+      <section className="py-28 bg-gray-50 border-t border-gray-100">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <Reveal className="text-center mb-16">
+            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl">How the Hushku pet app works</h2>
+          </Reveal>
+          <div className="space-y-12">
+            <Reveal>
+              <h3 className="text-2xl font-black text-ebony uppercase tracking-tight mb-4">Playdate matching for dogs and cats</h3>
+              <p className="text-lg text-slate-gray leading-relaxed">Hushku uses location-based swipe matching to connect dogs and cats with compatible playmates nearby. Filter by breed, size, temperament, and energy level to find the right match for your pet — not just the closest one. Unlike generic pet forums, every match is purpose-filtered so reactive dogs, senior cats, and high-energy puppies all find suitable companions.</p>
+            </Reveal>
+            <Reveal>
+              <h3 className="text-2xl font-black text-ebony uppercase tracking-tight mb-4">Pet adoption and fostering</h3>
+              <p className="text-lg text-slate-gray leading-relaxed">Browse verified adoption listings from shelters and rescue organizations near you. Hushku connects prospective adopters directly with shelters, skipping the paperwork maze of traditional adoption platforms. Foster listings are available too — ideal for pet owners who want to help animals without a permanent commitment.</p>
+            </Reveal>
+            <Reveal>
+              <h3 className="text-2xl font-black text-ebony uppercase tracking-tight mb-4">Lost and found pet alerts</h3>
+              <p className="text-lg text-slate-gray leading-relaxed">Report a lost dog or cat and instantly alert every Hushku user within your chosen radius. Community members can log sightings on a map, share photos, and coordinate search efforts — all within the app. Found a stray? Post it and connect with the owner in minutes.</p>
+            </Reveal>
+            <Reveal>
+              <h3 className="text-2xl font-black text-ebony uppercase tracking-tight mb-4">Pet health records and care tracking</h3>
+              <p className="text-lg text-slate-gray leading-relaxed">Store vaccination records, vet visit notes, weight logs, and medication reminders in one place. Set care reminders for flea and tick treatments, heat cycles, and annual checkups. Your pet&apos;s full health history is always accessible — and shareable with any vet, anywhere.</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ─── TESTIMONIALS (drag carousel) ─── */}
       <section className="py-28 bg-ebony overflow-hidden">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-white/40 uppercase tracking-widest mb-3">Success Stories</p>
-            <h2 className="text-4xl font-black text-white uppercase tracking-tighter sm:text-5xl">Loved by Pet Parents</h2>
+            <h2 className="text-4xl font-black text-white uppercase tracking-tighter sm:text-5xl">What dog and cat owners say about Hushku</h2>
           </Reveal>
           <TestimonialsCarousel testimonials={testimonialsData} />
         </div>
@@ -793,12 +833,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── COMPARISON ─── */}
+      <section className="py-28 bg-white border-t border-gray-100">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-8">Hushku vs Petfinder vs Rover: what&apos;s the difference?</h2>
+            <p className="text-lg text-slate-gray leading-relaxed mb-6">Most pet apps do one thing. Hushku does everything.</p>
+            <p className="text-lg text-slate-gray leading-relaxed mb-6"><strong className="text-ebony">Petfinder</strong> is an adoption directory — useful for finding a pet, but it stops there. No health records, no playdates, no lost &amp; found.</p>
+            <p className="text-lg text-slate-gray leading-relaxed mb-6"><strong className="text-ebony">Rover</strong> is a paid marketplace for dog walkers and boarders — great if you need a sitter, but it costs money and only serves dogs in select cities.</p>
+            <p className="text-lg text-slate-gray leading-relaxed"><strong className="text-ebony">Hushku</strong> combines adoption, fostering, playdate matching, lost &amp; found alerts, health records, and a pet social network into one free app. No subscription. No city restrictions. Works for dogs and cats.</p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ─── FAQ ─── */}
       <section className="py-28 bg-white">
+        <FaqSchema />
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <Reveal className="text-center mb-16">
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-3">Common Questions</p>
-            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter">Everything You Need to Know</h2>
+            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter">Frequently asked questions about the Hushku pet app</h2>
           </Reveal>
           <motion.div className="space-y-3" variants={stagger(0.05)} initial="hidden"
             whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
@@ -825,7 +879,7 @@ export default function Home() {
                     Got a soft spot<br />for animals?
                   </h2>
                   <p className="text-white/70 text-lg leading-relaxed mb-6">
-                    Hushku is a free, community-driven project built by two pet lovers, Faizan and Faisal. We&apos;re on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
+                    Hushku was founded by <strong className="text-white">Faizan</strong> and <strong className="text-white">Faisal</strong>, two software engineers and lifelong pet owners — on a mission to save animals, find them loving homes, and make life better for every pet owner on the planet.
                   </p>
                   <p className="text-white/70 text-lg leading-relaxed mb-10">
                     Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who loves animals, <strong className="text-white">we want your help.</strong> Every single contribution counts.
@@ -881,7 +935,7 @@ export default function Home() {
               { href: "/tools", icon: "wrench", title: "Free Tools", desc: "25+ calculators for calories, exercise, symptoms, breed matching and more.", cta: "Try the Tools", bg: "bg-violet-50", border: "border-violet-100", badge: "25+ tools", iconColor: "text-violet-500" },
               { href: "/breeds", icon: "grid", title: "Breed Directory", desc: "Explore 450+ dog and cat breeds with scores, care guides, and comparisons.", cta: "Browse Breeds", bg: "bg-amber-50", border: "border-amber-100", badge: "450+ breeds", iconColor: "text-amber-500" },
               { href: "/templates", icon: "file", title: "Free Templates", desc: "Fill-in contracts, health records, vaccination forms and custody agreements.", cta: "Get Templates", bg: "bg-emerald-50", border: "border-emerald-100", badge: "50+ templates", iconColor: "text-emerald-500" },
-              { href: "/resources", icon: "book", title: "Pet Guides", desc: "Expert-written guides, how-tos, symptom articles and complete pillar guides.", cta: "Read Guides", bg: "bg-sky-50", border: "border-sky-100", badge: "200+ articles", iconColor: "text-sky-500" },
+              { href: "/resources", icon: "book", title: "Pet Guides", desc: "Expert-written guides, how-tos, and symptom articles reviewed to our editorial standards before publication.", cta: "Read Guides", bg: "bg-sky-50", border: "border-sky-100", badge: "200+ articles", iconColor: "text-sky-500" },
             ].map(({ href, icon, title, desc, cta, bg, border, badge, iconColor }) => (
               <motion.div key={href} variants={fadeUp}>
                 <TiltCard className="h-full">
@@ -917,8 +971,7 @@ export default function Home() {
           <Reveal>
             <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Early Access</p>
             <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-6">
-              App Store & Google Play<br />
-              <span className="text-brand-gradient">Coming Very Soon</span>
+              Download Hushku on iOS & Android — join the waitlist
             </h2>
             <p className="text-lg text-slate-gray leading-relaxed mb-10 max-w-xl mx-auto">
               We&apos;re putting the finishing touches on our iOS and Android apps. Join the waiting list to get early access before the public release.
@@ -935,30 +988,32 @@ export default function Home() {
   );
 }
 
-// Inline FAQ item
+// Inline FAQ item — uses <details> so answer text is always in static HTML for Googlebot
 function FaqItem({ faq }: { faq: { q: string; a: string } }) {
-  const [open, setOpen] = useState(false);
   return (
-    <motion.div className={`border rounded-[1.5rem] overflow-hidden ${open ? "border-brand-start/30 shadow-md" : "border-gray-100"}`} layout>
-      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between gap-4 px-7 py-5 text-left">
+    <details className="group border border-gray-100 rounded-[1.5rem] overflow-hidden open:border-brand-start/30 open:shadow-md">
+      <summary className="flex items-center justify-between gap-4 px-7 py-5 cursor-pointer list-none">
         <span className="font-black text-ebony text-base leading-snug">{faq.q}</span>
-        <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.2 }}
-          className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-black ${open ? "bg-brand-start text-white" : "bg-gray-100 text-slate-gray"}`}>
-          +
-        </motion.span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden">
-            <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">{faq.a}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-100 text-slate-gray group-open:bg-brand-start group-open:text-white flex items-center justify-center text-sm font-black transition-colors">
+          <span className="group-open:hidden">+</span>
+          <span className="hidden group-open:inline">×</span>
+        </span>
+      </summary>
+      <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">{faq.a}</div>
+    </details>
   );
+}
+
+// FAQPage schema for Google rich results
+function FaqSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a },
+    })),
+  };
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

@@ -11,11 +11,10 @@ const DEFAULT_OG_IMAGE = `${BASE_URL}/screenshots/app-playdates.png`;
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Hushku — One App for Every Pet Parent Need",
+    default: "Hushku: Free All-in-One Pet App for Dog & Cat Owners",
     template: "%s | Hushku",
   },
-  description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
-  keywords: ["pet super-app", "best pet app", "dog social media app", "pet adoption app", "mobile vet directory", "find lost pet app", "Hushku app download"],
+  description: "Hushku is a free pet app for dog and cat owners. Find playmates, adopt & foster pets, track health records, report lost animals, and connect with local shelters — all in one app.",
   alternates: {
     canonical: BASE_URL,
   },
@@ -38,14 +37,14 @@ export const metadata: Metadata = {
     siteName: "Hushku",
     type: "website",
     url: BASE_URL,
-    title: "Hushku — One App for Every Pet Parent Need",
-    description: "Download Hushku, the all-in-one mobile app for modern pet parents. Connect with local owners, find vet care, adopt pets, and more—all from your phone.",
+    title: "Hushku: Free All-in-One Pet App for Dog & Cat Owners",
+    description: "Hushku is a free pet app for dog and cat owners. Find playmates, adopt & foster pets, track health records, report lost animals, and connect with local shelters — all in one app.",
     images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "Hushku — One App for Every Pet Parent Need" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hushku — One App for Every Pet Parent Need",
-    description: "Social networking, playdates, adoption, vet discovery, and lost & found — all in one free app for pet parents.",
+    title: "Hushku: Free All-in-One Pet App for Dog & Cat Owners",
+    description: "The free pet app for dog and cat owners. Playdate matching, pet adoption, lost & found alerts, health records, and a pet social feed — all in one place.",
     images: [DEFAULT_OG_IMAGE],
   },
 };
@@ -63,19 +62,39 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Hushku",
+            "applicationCategory": "LifestyleApplication",
+            "applicationSubCategory": "PetCareApplication",
+            "operatingSystem": "iOS, Android",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "description": "Free all-in-one pet app for dog and cat owners. Features playdate matching, pet adoption, lost & found alerts, health records, and a pet social network.",
+            "url": "https://hushku.app",
+            "screenshot": "https://hushku.app/screenshots/app-playdates.png"
+          })}}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Hushku",
             "url": "https://hushku.app",
-            "logo": { "@type": "ImageObject", "url": "https://hushku.app/icon.svg" },
-            "sameAs": [
-              "https://www.instagram.com/hushkuapp",
-              "https://www.tiktok.com/@hushkuapp"
+            "logo": "https://hushku.app/icon.svg",
+            "foundingDate": "2024",
+            "founders": [
+              { "@type": "Person", "name": "Faizan" },
+              { "@type": "Person", "name": "Faisal" }
             ],
             "contactPoint": {
               "@type": "ContactPoint",
-              "contactType": "customer support",
-              "email": "hello@hushku.co"
-            }
+              "email": "hello@hushku.app",
+              "contactType": "customer support"
+            },
+            "sameAs": [
+              "https://www.instagram.com/hushkuapp",
+              "https://www.tiktok.com/@hushkuapp"
+            ]
           })}}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XP0WNN4KP" />

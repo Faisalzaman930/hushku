@@ -4,27 +4,12 @@ import Link from "next/link";
 import Logo from "./Logo";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { BookOpen, FileText, Wrench, LayoutGrid, Zap, Heart, Home, Search, Activity, Camera, Building2, type LucideIcon } from "lucide-react";
-
-const learnItems: { name: string; href: string; icon: LucideIcon; desc: string }[] = [
-  { name: "Resources",  href: "/resources",  icon: BookOpen,    desc: "Guides, tips & expert pet advice." },
-  { name: "Templates",  href: "/templates",  icon: FileText,    desc: "Free forms, contracts & records." },
-  { name: "Tools",      href: "/tools",      icon: Wrench,      desc: "Calculators & interactive tools." },
-  { name: "Breeds",     href: "/breeds",     icon: LayoutGrid,  desc: "Dog & cat breed directory." },
-];
+import { Zap, Heart, Home, Search, Activity, Camera, Building2 } from "lucide-react";
 
 const Navbar = () => {
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
-  const [isLearnOpen, setIsLearnOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [mobileLearnOpen, setMobileLearnOpen] = useState(false);
   const pathname = usePathname();
-
-  const isLearnActive =
-    pathname.startsWith("/resources") ||
-    pathname.startsWith("/templates") ||
-    pathname.startsWith("/tools") ||
-    pathname.startsWith("/breeds");
 
   const verticals = [
     { name: "Playdates",    href: "/playdates",      icon: Zap,       desc: "Swipe-match compatible pets near you." },
@@ -97,44 +82,21 @@ const Navbar = () => {
             )}
           </div>
 
+          <Link href="/tools" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-ebony ${pathname.startsWith("/tools") ? "text-brand-start" : "text-slate-gray"}`}>
+            Tools
+          </Link>
+          <Link href="/breeds" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-ebony ${pathname.startsWith("/breeds") ? "text-brand-start" : "text-slate-gray"}`}>
+            Breeds
+          </Link>
+          <Link href="/resources" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-ebony ${pathname.startsWith("/resources") ? "text-brand-start" : "text-slate-gray"}`}>
+            Resources
+          </Link>
           <Link href="/roadmap" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             Roadmap
-          </Link>
-          <Link href="/help-center" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
-            Help
           </Link>
           <Link href="/about" className="text-sm font-bold uppercase tracking-widest text-slate-gray transition-colors hover:text-ebony">
             About
           </Link>
-
-          {/* Learn dropdown */}
-          <div className="relative group" onMouseEnter={() => setIsLearnOpen(true)} onMouseLeave={() => setIsLearnOpen(false)}>
-            <button className={`flex items-center gap-1 text-sm font-bold uppercase tracking-widest transition-colors hover:text-ebony py-4 ${isLearnActive ? "text-brand-start" : "text-slate-gray"}`}>
-              Learn
-              <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${isLearnOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            {isLearnOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full w-72 bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 animate-in fade-in slide-in-from-top-4 duration-300">
-                {learnItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center gap-4 px-4 py-3 rounded-2xl transition-all hover:bg-gray-50 group/item ${pathname.startsWith(item.href) ? "bg-brand-start/5" : ""}`}
-                  >
-                    <div className="h-10 w-10 flex-none rounded-xl bg-gray-50 flex items-center justify-center group-hover/item:scale-110 transition-transform shadow-inner text-slate-gray">
-                      <item.icon size={18} strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <p className={`text-sm font-bold uppercase tracking-widest ${pathname.startsWith(item.href) ? "text-brand-start" : "text-ebony"}`}>{item.name}</p>
-                      <p className="text-[11px] text-slate-gray leading-relaxed">{item.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
 
           <Link
             href="/join"
@@ -180,34 +142,9 @@ const Navbar = () => {
           <div className="my-4 border-t border-gray-100" />
 
           {/* Learn section mobile */}
-          <button
-            onClick={() => setMobileLearnOpen(o => !o)}
-            className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-bold text-ebony hover:bg-gray-50 transition-colors"
-          >
-            <span className={isLearnActive ? "text-brand-start" : ""}>Learn</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${mobileLearnOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          {mobileLearnOpen && (
-            <div className="ml-4 flex flex-col gap-1">
-              {learnItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileOpen(false)}
-                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 transition-colors hover:bg-gray-50 ${pathname.startsWith(item.href) ? "text-brand-start bg-brand-start/5" : "text-ebony"}`}
-                >
-                  <span className="text-slate-gray"><item.icon size={16} strokeWidth={1.5} /></span>
-                  <span className="text-sm font-bold">{item.name}</span>
-                </Link>
-              ))}
-            </div>
-          )}
-
           <div className="my-2 border-t border-gray-100" />
 
-          {[{ name: "Roadmap", href: "/roadmap" }, { name: "Help Center", href: "/help-center" }, { name: "About", href: "/about" }].map(item => (
+          {[{ name: "Tools", href: "/tools" }, { name: "Breeds", href: "/breeds" }, { name: "Resources", href: "/resources" }, { name: "Roadmap", href: "/roadmap" }, { name: "About", href: "/about" }].map(item => (
             <Link
               key={item.name}
               href={item.href}

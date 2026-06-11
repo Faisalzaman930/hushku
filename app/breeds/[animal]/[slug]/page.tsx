@@ -46,18 +46,6 @@ export async function generateMetadata({
   return {
     title: { absolute: title },
     description,
-    keywords: [
-      `${breed.name}`,
-      `${breed.name} ${isCat ? "cat" : "dog"} breed`,
-      `${breed.name} temperament`,
-      `${breed.name} size`,
-      `${breed.name} care`,
-      `${breed.name} grooming`,
-      `${breed.name} health`,
-      `${breed.name} lifespan`,
-      ...(dog?.parentBreeds ? [`${breed.name} mix`, `${dog.parentBreeds} mix`] : []),
-      `${animalLabel} breeds`,
-    ],
     alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
@@ -175,10 +163,21 @@ export default async function BreedPage({
     description: `Complete guide to the ${breed.name} — temperament, size, grooming, training, health, and suitability.`,
     image: ogImage,
     url: canonicalUrl,
+    datePublished: "2024-01-01",
     dateModified: today,
-    author: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
-    publisher: { "@type": "Organization", name: "Hushku", url: "https://hushku.app", logo: { "@type": "ImageObject", url: "https://hushku.app/icon.svg" } },
+    author: {
+      "@type": "Organization",
+      name: "Hushku Editorial Team",
+      url: "https://hushku.app/about/editorial",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Hushku",
+      url: "https://hushku.app",
+      logo: { "@type": "ImageObject", url: "https://hushku.app/icon.svg" },
+    },
     mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    about: { "@type": "Thing", name: `${breed!.name} ${isCat ? "cat" : "dog"} breed` },
   };
 
   const breadcrumbSchema = {
@@ -253,7 +252,11 @@ export default async function BreedPage({
                   <p className="text-white/40 text-xs mb-4 max-w-md">{cat.temperament}</p>
                 )}
                 <p className="text-white/30 text-xs mb-6">
-                  Reviewed by the Hushku editorial team · Updated {today}
+                  Reviewed to our{" "}
+                  <Link href="/about/editorial" className="underline hover:text-white/60 transition-colors">
+                    editorial standards
+                  </Link>
+                  {" "}· Updated {today}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {quickStats.slice(0, 4).map(({ label, value }) => value && value !== "—" ? (

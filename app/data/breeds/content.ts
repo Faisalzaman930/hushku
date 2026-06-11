@@ -34,7 +34,12 @@ export function generateBreedContent(b: BreedDoc): BreedContent {
   const animalSingular = "dog";
 
   // ── Overview ─────────────────────────────────────────────────────────────
-  const aptLabel = scoreLabel(s.apartmentFriendly, ["better suited to homes with space", "adaptable to most living situations", "well-suited to apartment living"]);
+  // Cap apartment-friendly claim for high-energy breeds — prevents contradictions
+  // like "well-suited to apartment living" for a breed with exerciseNeeds: 5
+  const aptScore = (s.apartmentFriendly !== null && s.exerciseNeeds !== null && s.exerciseNeeds >= 4)
+    ? Math.min(s.apartmentFriendly, 3) as number
+    : s.apartmentFriendly;
+  const aptLabel = scoreLabel(aptScore, ["better suited to homes with outdoor space", "adaptable to most living situations", "well-suited to apartment living"]);
   const noviceLabel = scoreLabel(s.goodForNovice, ["best matched with experienced owners", "manageable for most owners", "an excellent choice for first-time dog owners"]);
   // Convert plural group name to singular adjective form ("Herding Dogs" → "herding dog")
   const groupSingular = (group ?? "dog")
@@ -46,7 +51,12 @@ export function generateBreedContent(b: BreedDoc): BreedContent {
   const parentBreedLine = b.parentBreeds
     ? `The ${name} is a cross between the ${b.parentBreeds}${b.origin ? `, first developed in the ${b.origin}` : ""}. `
     : "";
-  const overview = `${parentBreedLine}The ${name} is a ${size.toLowerCase()} ${groupSingular} known for its ${scoreLabel(s.friendliness, ["independent", "balanced", "outgoing"])} nature and ${scoreLabel(s.intelligence, ["straightforward", "capable", "highly intelligent"])} mind. ${aptLabel.charAt(0).toUpperCase() + aptLabel.slice(1)}, the ${name} is ${noviceLabel}. Typically standing ${height} and weighing ${weight}, this breed has a life expectancy of ${lifeSpan}, making it a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived companion" : "devoted companion"} for the right family.
+  // Separate family affection from stranger temperament to prevent contradictions
+  // e.g. "outgoing nature" appearing for breeds that are aloof with strangers
+  const familyBondLabel = scoreLabel(s.affectionate, ["loyal and reserved", "affectionate", "deeply loving"]);
+  const socialLabel = scoreLabel(s.strangerFriendly, ["reserved with strangers", "friendly once acquainted", "outgoing and sociable"]);
+  const intelligenceLabel = scoreLabel(s.intelligence, ["straightforward", "capable", "highly intelligent"]);
+  const overview = `${parentBreedLine}The ${name} is a ${size.toLowerCase()} ${groupSingular} known for being ${familyBondLabel} with its family and ${socialLabel}. With a ${intelligenceLabel} mind, ${aptLabel}, the ${name} is ${noviceLabel}. Typically standing ${height} and weighing ${weight}, this breed has a life expectancy of ${lifeSpan}, making it a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived companion" : "devoted companion"} for the right family.
 
 Originally classified within the ${group ?? "Mixed Breed"} group, the ${name} brings a distinct combination of traits that sets it apart. ${pick(s.energy, `On the calmer end of the energy spectrum, the ${name} is content with moderate daily activity.`, `The ${name} has a moderate energy level that suits an active household without being overwhelming.`, `The ${name} is a high-energy breed that thrives with plenty of daily exercise and mental stimulation.`)} ${pick(s.affectionate, `While not the most demonstrative breed, the ${name} forms loyal bonds with its family.`, `Affectionate with its family, the ${name} strikes a healthy balance between independence and closeness.`, `Deeply affectionate, the ${name} loves being close to its people and forms strong bonds with every member of the household.`)}`;
 

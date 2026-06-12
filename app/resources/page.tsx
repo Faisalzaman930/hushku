@@ -212,13 +212,32 @@ function CollectionPageSchema({ items }: { items: ResourceCard[] }) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Pet Care Resource Library",
+    "description": "Evidence-based how-to guides, breed profiles, symptom references, and expert nutrition advice for dog and cat owners.",
     "url": "https://hushku.app/resources",
-    "publisher": { "@type": "Organization", "name": "Hushku" },
-    "hasPart": items.map(item => ({
-      "@type": "Article",
-      "name": item.title,
-      "url": `https://hushku.app/resources/${item.slug}`,
-    })),
+    "publisher": {
+      "@type": "Organization",
+      "name": "Hushku",
+      "url": "https://hushku.app",
+      "logo": { "@type": "ImageObject", "url": "https://hushku.app/icon.svg" },
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hushku.app" },
+        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://hushku.app/resources" },
+      ],
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Pet Care Guides and Articles",
+      "numberOfItems": items.length,
+      "itemListElement": items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.title,
+        "url": `https://hushku.app/resources/${item.slug}`,
+      })),
+    },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 }

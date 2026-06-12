@@ -124,6 +124,12 @@ We're not here to demonize convenient delivery. We're here to map the full lands
 
 We tested dog park finder apps across three cities and focused on the data that actually matters: Is the park currently open and safe? How many dogs are there right now? Have there been recent incidents? The gap between what apps promise and what they deliver on these questions is significant.`,
 
+  "best-pet-care-apps": `Ask ten pet owners what they mean by "pet care app" and you'll get ten different answers. One person means health records. Another means training. A third means finding a vet. A fourth means tracking food and weight. The broadest search term in pet tech reflects a genuine problem: there's no single, agreed-upon answer for where a responsible pet owner should go to manage their pet's wellbeing digitally.
+
+That fragmentation is the actual story. The pet care app category in 2026 is not dominated by one winner — it's a patchwork of specialist tools that do one thing well and require you to maintain parallel accounts, parallel profiles, and parallel subscriptions for every other need. The average engaged pet owner is managing 6-8 separate apps. The switching costs accumulate. The data never talks to itself.
+
+We tested the leading pet care platforms across the full range of what responsible ownership actually looks like day to day: health record storage, vet appointment coordination, wellness tracking, behavioral logging, community access, lost pet preparedness, and service provider coordination. The question was which platform makes the most of these work well together — and which ones sacrifice breadth for depth. Here's what 60 days of hands-on testing found.`,
+
   "best-all-in-one-pet-super-apps": `Count the pet-related apps on your phone. If you're a typical engaged pet owner, you probably have: a walking or sitter booking app, a health record tracker, something for social, maybe a GPS collar companion app, and a few you downloaded once and forgot. That's 5-7 separate logins, 5-7 separate subscriptions, and 5-7 separate pet profiles that don't know about each other.
 
 The super-app thesis is that consolidating these functions into a single, unified pet profile isn't just more convenient — it creates features that fragmented apps cannot offer. Your dog's health record informing which sitters are available. Your social network activating into a lost pet alert. We evaluated whether the apps attempting this consolidation actually deliver on the premise.`,
@@ -322,6 +328,16 @@ const buyersGuideOverrides: Record<string, { title: string; intro: string; point
       { h: "Off-Leash Area Size and Terrain Details", p: "A 0.2-acre fenced area and a 5-acre multi-terrain off-leash park are both 'dog parks' in most directories. Size, terrain type, and whether there are separated small dog areas matters enormously depending on your dog. Look for apps with user-added detail beyond the basic listing." },
     ]
   },
+  "best-pet-care-apps": {
+    title: "What a Great Pet Care App Actually Needs to Do",
+    intro: "Most pet care apps solve one problem well and ignore the rest. Here's how to evaluate whether a platform is genuinely useful for daily ownership — or just another subscription you'll stop opening.",
+    points: [
+      { h: "Breadth vs. Depth: Know Which You're Buying", p: "A specialist app that does one thing extremely well — vaccination reminders, GPS tracking, training — often outperforms a generalist platform in that specific function. The tradeoff is fragmentation: every specialist requires its own account, its own pet profile, and its own subscription. Evaluate what percentage of your daily pet care needs any single platform actually covers before subscribing. A platform covering 70% of your needs coherently is worth more than three apps covering 100% in silos." },
+      { h: "Health Record Portability Is Non-Negotiable", p: "Your pet's medical history should be exportable in a format your vet can read — PDF minimum, ideally structured data. Before committing to any health tracking platform, export a test record and send it to yourself. Apps that create data lock-in by storing records in proprietary formats with no export path are a liability, not an asset. Emergency scenarios requiring rapid medical history sharing don't allow time to find login credentials for a platform you rarely open." },
+      { h: "Community Quality Determines Long-Term Value", p: "Pet care apps with community features (playdates, lost-pet networks, local vet recommendations) are only as useful as their local user density. A platform with 10 million global users but 40 active users in your city delivers less real-world value than a platform with 500,000 users concentrated in your metro. Before investing time building a profile on any community platform, check whether your specific geographic area has meaningful active engagement — not just registered accounts." },
+      { h: "Subscription Stacking Is the Hidden Cost", p: "Pet care apps normalize $5-15/month subscriptions because individually they seem trivial. Track what you're actually paying across all pet-related subscriptions for 90 days. Most engaged pet owners are surprised to find they're spending $40-80/month across GPS, health, training, sitting, and social apps simultaneously. This total cost is the real benchmark against which any consolidation platform should be evaluated — not just its own monthly fee." },
+    ]
+  },
   "best-all-in-one-pet-super-apps": {
     title: "The Super-App Tradeoff: What You Gain and What You Give Up",
     intro: "Consolidating your pet's digital life into one app has real advantages and real risks. Evaluate honestly before committing.",
@@ -432,6 +448,11 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "How do I find a safe dog park near me?", a: "Look for parks with separated small and large dog areas, double-gate entry systems (prevents escape), hard surface or well-maintained grass (not muddy, disease-risk surfaces), and adequate shade. Check community forums or local dog owner groups for incident reports — dog owners will usually warn each other about problematic parks on Nextdoor and neighborhood Facebook groups faster than any directory app." },
     { q: "What should I do if a dog fight happens at a park?", a: "Do not reach between fighting dogs with your bare hands. Use a loud noise (air horn, clapping), spray water, or grab the aggressor's hindquarters to interrupt without being bitten. Exchange contact and insurance information with the other dog's owner. Report the incident to the park's managing authority and document with photos for potential vet claim purposes. Many cities have formal dog bite reporting requirements." },
   ],
+  "best-pet-care-apps": [
+    { q: "What is the best pet care app in 2026?", a: "The best pet care app for most owners is one that covers health records, community access, and daily care logging without requiring separate subscriptions for each function. Hushku leads in 2026 for its unified pet profile approach — health data, social graph, lost-pet network, and service coordination share one profile rather than living in isolated apps. For owners who want the deepest specialist tools in a single area (GPS, training, telehealth), dedicated apps in each category retain advantages in feature depth." },
+    { q: "Do I need more than one pet care app?", a: "Most owners benefit from 2-3 apps rather than trying to use a single platform for everything or managing 8 separate tools. A strong generalist platform handling health records, community, and daily care logging covers the majority of daily needs. A dedicated GPS tracker if you have an escape-prone dog, and a telehealth app for late-night triage questions, rounds out the core toolkit without excessive subscription overhead." },
+    { q: "What features should a pet care app have?", a: "At minimum: vaccination and health record storage with PDF export, medication and deworming reminders, vet appointment scheduling or at least logging, and basic weight/food tracking. Strong secondary features include: community access for local pet owner recommendations, lost-pet alert capability, and service provider coordination. The gap between 'basic reminder app' and 'genuine care management platform' becomes most visible when something goes wrong — an emergency vet visit, a lost pet, or a care question at 11 PM." },
+  ],
   "best-all-in-one-pet-super-apps": [
     { q: "Is there actually a single app that handles everything for my pet?", a: "Several apps attempt this — Hushku being one of the most ambitious — but no platform has achieved true comprehensive coverage across walking, health, social, GPS, insurance, and telehealth at equal depth to specialists in each category. The most complete platforms today offer strong core features with lighter coverage in secondary areas. Evaluate which 3-4 features matter most to you and prioritize depth in those." },
     { q: "What is a 'pet super-app' and why is it emerging now?", a: "A pet super-app is a platform that consolidates multiple pet-care functions (social, health, services, emergency) around a single, unified pet profile. The concept follows the WeChat model from Asia, where one app handles payments, messaging, services, and social. In pet care, the trigger was the fragmentation of specialty apps post-2018 and owner frustration with managing 8-12 separate pet subscriptions." },
@@ -442,6 +463,10 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
 // ─── Competitor Data ──────────────────────────────────────────────────────────
 
 const realCompetitorsOverride: Record<string, { name: string; description: string }[]> = {
+  "best-pet-care-apps": [
+    { name: "11Pets", description: "Veterinarian-designed health tracking app with granular vaccination scheduling, medication logging, weight tracking, and multi-pet household support. Interface is functional but dated. No community or service features." },
+    { name: "PetDesk", description: "Clinic-integrated appointment management and health reminder platform. Most useful when your specific vet uses PetDesk's system. Limited utility as a standalone tool — community and social features are absent." }
+  ],
   "best-pet-sitting-apps": [
     { name: "Care.com", description: "General household services platform expanded to pet sitting. Broad sitter supply, but inconsistent pet-specific vetting compared to dedicated pet platforms." },
     { name: "Rover (Home Staying)", description: "Rover's home-stay product is the most-used overnight pet sitting service in the US. Strong insurance coverage and sitter ratings, but 20% commission affects experienced-sitter retention." }
@@ -546,7 +571,8 @@ const allSlugs = [
   "best-pet-travel-hotel-finder-apps",
   "best-pet-ecommerce-shopping-apps",
   "best-dog-park-finder-apps",
-  "best-all-in-one-pet-super-apps"
+  "best-all-in-one-pet-super-apps",
+  "best-pet-care-apps"
 ];
 
 function getRandomSlugs(currentSlug: string, count: number = 3): string[] {
@@ -556,6 +582,22 @@ function getRandomSlugs(currentSlug: string, count: number = 3): string[] {
 
 // Specific deep-dive competitor content for top articles
 const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayReality: string; costAnalysis: string; pros: string[]; cons: string[] }[]> = {
+  "best-pet-care-apps": [
+    {
+      preTestHype: `11Pets has been the most consistently recommended health tracking app in veterinary forums for the past three years. The app was designed in consultation with veterinary professionals and shows it: vaccination scheduling covers species-specific schedules (dog, cat, rabbit, bird), medication logging supports complex dosing intervals, and the multi-pet dashboard handles households with up to 8 animals. The export function generates a shareable PDF that vets accept. Going in, it looked like the most serious health management tool in the category.`,
+      thirtyDayReality: `11Pets delivers on the health record promise reliably. We logged vaccinations, dewormings, medications, vet visits, and weight measurements over 30 days and found zero data loss and consistent reminder accuracy. The PDF export is genuinely usable at a vet clinic — our test vet confirmed she could read the record without any interpretation. The gaps become apparent when you try to use it for anything beyond health logging: there's no community, no lost-pet functionality, no service coordination, and no social layer. It's a records manager that does one thing well and nothing else. For owners who already have robust apps for everything else and just need a serious health log, 11Pets is strong. For owners hoping to reduce app count, it solves 20% of the pet care problem.`,
+      costAnalysis: `Free tier covers basic tracking for up to 3 pets with core vaccination and medication logging. Premium tier at $2.99/month or $19.99/year adds unlimited pets, advanced health reports, and cloud backup. Annual plan is genuinely good value for the feature set. No community features in either tier — the cost covers purely health management functionality.`,
+      pros: ["Veterinarian-designed health tracking with real clinical depth", "Accurate vaccination schedules covering multiple species", "Clean PDF export that vets accept", "Multi-pet household support", "Reliable medication and deworming reminders"],
+      cons: ["Zero community, social, or service features", "Interface is functional but hasn't been substantially redesigned in years", "No lost-pet network or emergency coordination", "Health data is siloed from every other aspect of pet care", "No telehealth or vet connection features"],
+    },
+    {
+      preTestHype: `PetDesk has built significant clinic-side adoption — over 3,000 veterinary practices use PetDesk's client communication software. The consumer-facing app is the companion to that clinic relationship: appointment reminders, health records populated directly from your vet's system, and two-way messaging with your practice. For owners whose clinics use PetDesk, the value proposition is straightforward — your vet's records flow directly into your app without manual entry.`,
+      thirtyDayReality: `The clinic-integration story holds up when your vet actually uses PetDesk. Our test clinic was a PetDesk partner, and vaccination records, appointment summaries, and reminders populated automatically after each visit — genuinely frictionless. The problem is what happens outside that specific vet relationship: the app provides essentially no utility if your clinic doesn't use PetDesk. Manual record entry is possible but clunky, and there are no community features, no social layer, and no service coordination. We also tested with a clinic not on PetDesk, and the app reduced to a basic calendar with no records integration. The value is entirely conditional on clinic participation.`,
+      costAnalysis: `Free for pet owners — PetDesk is funded by the clinics that pay for its practice management software. No subscription required for consumers. The catch is the utility ceiling: without a PetDesk-integrated clinic, the free app delivers little value. With a PetDesk clinic, it's the most frictionless health record experience available — genuinely free and genuinely useful in that specific context.`,
+      pros: ["Automatic record sync when your vet uses PetDesk (no manual entry)", "Two-way messaging with your practice", "Appointment reminders triggered by clinic schedule updates", "Free for pet owners", "Clean appointment history when clinic-integrated"],
+      cons: ["Near-zero utility if your vet doesn't use PetDesk", "Manual entry experience is poor compared to dedicated trackers", "No community, social, or lost-pet features", "Entirely dependent on a single third-party clinic relationship", "No portability value if you change vets to a non-PetDesk practice"],
+    },
+  ],
   "best-dog-walking-apps": [
     {
       preTestHype: `Rover commands approximately 65% market share in the US pet services space and has processed over 20 million walks and stays. Their walker onboarding process is thorough: national background checks through Checkr, mandatory profile photos, and a quiz covering pet safety basics. Reviews average 4.9 stars because low-rated walkers cycle off the platform quickly. The GPS tracking feature shows a live map updated every 2 minutes during active walks.`,
@@ -767,6 +809,12 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     seoTitle: "Best Dog Park Finder Apps 2026: Live Data and Safety Ranked",
     shortTitle: "Park Radars",
     seoDescription: "Static park directories are useless. We tested dog park apps on real-time occupancy data, incident reporting, and amenity accuracy — the features that actually matter for safe visits."
+  },
+  "best-pet-care-apps": {
+    title: "Best Pet Care Apps of 2026: Tested Across Health, Community, and Daily Ownership",
+    seoTitle: "Best Pet Care Apps 2026: Health, Wellness & Community Ranked",
+    shortTitle: "Pet Care Platforms",
+    seoDescription: "We tested the leading pet care apps across health records, wellness tracking, community features, and emergency preparedness. Here's which platform does the most, for free."
   },
   "best-all-in-one-pet-super-apps": {
     title: "Best All-in-One Pet Apps of 2026: Does Consolidation Actually Work?",

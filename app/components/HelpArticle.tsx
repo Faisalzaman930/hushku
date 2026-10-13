@@ -4,6 +4,7 @@ import FaqAccordion from "./FaqAccordion";
 import { Section, SectionHeader } from "./ui";
 import AppTour from "./tour/AppTour";
 import { TOURS } from "./tour/tours";
+import { ALL_QUESTIONS } from "../help-center/questions/data";
 
 export type HelpSection = {
   id: string;
@@ -139,6 +140,24 @@ export default function HelpArticle({
       </Section>
 
       {faqs.length ? <FaqAccordion faqs={faqs} title="Questions." /> : null}
+
+      {ALL_QUESTIONS.some((q) => q.guide?.href === href) ? (
+        <Section alt>
+          <div className="mx-auto flex max-w-[880px] flex-col gap-6">
+            <h2 className="text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label">Answers with demos</h2>
+            <ul className="flex flex-col border-t border-separator">
+              {ALL_QUESTIONS.filter((q) => q.guide?.href === href).map((q) => (
+                <li key={q.slug} className="border-b border-separator">
+                  <Link href={`/help-center/questions/${q.slug}`} className="group flex min-h-14 items-center gap-3 py-3 text-[17px] text-label">
+                    <span className="flex-1 group-hover:underline underline-offset-[3px]">{q.q}</span>
+                    <ChevronRight size={18} className="flex-none text-label-3" aria-hidden />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ) : null}
 
       <Section>
         <div className="mx-auto flex max-w-[880px] flex-col gap-6">

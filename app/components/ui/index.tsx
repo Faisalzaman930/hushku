@@ -149,7 +149,7 @@ export type AppScreen =
   | "care-team" | "invite-member" | "notifications" | "remind-sheet" | "add-reminder" | "health-records" | "weight"
   | "filters" | "request-confirm" | "listing" | "post-listing" | "shelters" | "shelter-signup"
   | "lost-report" | "lost-detail" | "lost-contact" | "chat-actions" | "role" | "add-pet" | "privacy" | "notification-settings"
-  | "home-lower" | "flea-tick" | "heat-cycle" | "discover-adopt" | "listing-requests" | "profile" | "settings";
+  | "home-lower" | "flea-tick" | "heat-cycle" | "discover-adopt" | "listing-requests" | "profile" | "settings" | "pet-switcher";
 
 export const SCREEN_ALT: Record<AppScreen, string> = {
   welcome: "Hushku app welcome screen with Create Account, Google and Apple sign-in",
@@ -187,7 +187,8 @@ export const SCREEN_ALT: Record<AppScreen, string> = {
   "discover-adopt": "Discover’s Adopt tab with pets looking for a home nearby",
   "listing-requests": "An owner’s adoption screen: people interested, Accept, Decline and Choose as adopter",
   profile: "Your Hushku profile: your pets, Circle, listings and settings",
-  settings: "Hushku Settings: account, privacy, blocked accounts and notifications",
+  settings: "Hushku Settings: account, privacy, blocked accounts, notifications, log out and delete account",
+  "pet-switcher": "Switch pet sheet on Home: Bella and Luna you own, and Pepper you help care for",
 };
 
 /** A phone showing a real Hushku app screen. The web never shows a working feature. */

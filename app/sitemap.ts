@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ALL_QUESTIONS } from "./help-center/questions/data";
 import { articles } from "./data/articles";
 import { guides } from "./data/guides";
 import { howToArticles } from "./data/howto";
@@ -46,6 +47,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/help-center/lost-and-found`,           changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/health-care`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/care-team`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/questions`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/messaging`,                changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/your-profile`,             changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
 
@@ -161,5 +163,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }))
   );
 
-  return [...STATIC_ROUTES, ...resourceRoutes, ...templateRoutes, ...breedRoutes];
+  const questionRoutes: MetadataRoute.Sitemap = ALL_QUESTIONS.map((q) => ({
+    url: `${BASE_URL}/help-center/questions/${q.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+    lastModified: TODAY,
+  }));
+
+  return [...STATIC_ROUTES, ...resourceRoutes, ...templateRoutes, ...breedRoutes, ...questionRoutes];
 }

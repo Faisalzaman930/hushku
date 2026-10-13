@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="adoption-fostering"
+      tour="adoption-fostering"
       title="Adoption and fostering"
       lead="Browse pets looking for a home or a foster in Discover, send a request, and talk it through in chat. You can also post a listing yourself."
       sections={[

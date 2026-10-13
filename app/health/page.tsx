@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function HealthPage() {
   return (
     <FeaturePage
+      tour={{ key: "health-care", guide: "/help-center/health-care" }}
       slug="health"
       eyebrow="Health & care"
       title="Their whole health, in your pocket."
@@ -48,12 +49,14 @@ export default function HealthPage() {
         { q: "Is it free?", a: "Yes. Every health and care feature is free." },
       ]}
       related={[
+        { title: "Care Team: share care with family and sitters", href: "/care-team", icon: Users },
         { title: "Weight tracker", href: "/health/weight-tracker", icon: Scale },
         { title: "Health records", href: "/health/records", icon: FileHeart },
         { title: "Care reminders", href: "/health/reminders", icon: Bell },
         { title: "Flea & tick", href: "/health/flea-tick", icon: ShieldCheck },
         { title: "Heat cycles", href: "/health/heat-cycle", icon: Flower2 },
         { title: "Health and care help", href: "/help-center/health-care", icon: LifeBuoy },
+        { title: "Care Team help", href: "/help-center/care-team", icon: LifeBuoy },
       ]}
     />
   );

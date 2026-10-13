@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Bell, Building2, ChevronRight, FileText, HeartPulse, Home, Mail, MessageCircle, PawPrint, UserRound } from "lucide-react";
+import { UsersRound, Bell, Building2, ChevronRight, FileText, HeartPulse, Home, Mail, MessageCircle, PawPrint, UserRound } from "lucide-react";
 import { Section, SectionHeader } from "../components/ui";
 
 const TITLE = "Help Center: How to Use the Hushku App";
@@ -20,6 +20,7 @@ const categories = [
   { icon: Home, title: "Adoption and fostering", href: "/help-center/adoption-fostering", desc: "Browse listings, send a request and follow up in chat." },
   { icon: Building2, title: "Shelters", href: "/help-center/shelters", desc: "Find shelters and rescues near you, or set up a shelter account." },
   { icon: Bell, title: "Lost and found", href: "/help-center/lost-and-found", desc: "Report a lost or found pet, and mark your pet as home safe." },
+  { icon: UsersRound, title: "Care Team", href: "/help-center/care-team", desc: "Invite family or a sitter, choose roles and remind each other." },
   { icon: HeartPulse, title: "Health and care", href: "/help-center/health-care", desc: "Reminders, the quick log, weight, records and your care team." },
   { icon: MessageCircle, title: "Messaging", href: "/help-center/messaging", desc: "Chats open when a request is accepted. Photos, video and voice notes." },
   { icon: UserRound, title: "Your profile", href: "/help-center/your-profile", desc: "Set up your owner profile and add your pets." },
@@ -29,7 +30,7 @@ const popularArticles = [
   { q: "How do I report a lost pet?", href: "/help-center/lost-and-found" },
   { q: "How do I send an adoption request?", href: "/help-center/adoption-fostering" },
   { q: "How do I set a care reminder?", href: "/help-center/health-care" },
-  { q: "How do I invite someone to my care team?", href: "/help-center/health-care" },
+  { q: "How do I invite someone to my care team?", href: "/help-center/care-team" },
   { q: "How do I filter pets near me?", href: "/help-center/playdate-matching" },
   { q: "How do I upload a vaccination record?", href: "/help-center/health-care" },
 ];
@@ -61,7 +62,7 @@ export default function HelpCenterPage() {
       </Section>
 
       <Section className="!pt-0">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((c) => (
             <Link key={c.href} href={c.href} className="group flex flex-col gap-3 rounded-3xl bg-surface p-6 transition-colors hover:bg-separator">
               <span className="grid h-12 w-12 place-items-center rounded-[14px] bg-white text-brand-text">

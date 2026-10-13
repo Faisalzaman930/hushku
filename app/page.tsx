@@ -11,6 +11,7 @@ import {
   PawPrint,
   ShieldCheck,
   Syringe,
+  UsersRound,
 } from "lucide-react";
 import WaitingList from "./components/WaitingList";
 import FaqAccordion from "./components/FaqAccordion";
@@ -111,7 +112,6 @@ export default function Home() {
             />
             <FeatureTile
               className="md:col-span-2 lg:col-span-1 lg:row-span-2"
-              tone="brand"
               icon={MapPin}
               eyebrow="Lost & found"
               title="Lost, then found."
@@ -120,9 +120,19 @@ export default function Home() {
               linkLabel="Learn more"
             />
             <FeatureTile icon={Syringe} eyebrow="Health & care" title="Their whole health, in your pocket." href="/health" linkLabel="Learn more" />
+            <FeatureTile
+              className="md:col-span-2 lg:col-span-1"
+              tone="brand"
+              icon={UsersRound}
+              eyebrow="Care Team"
+              title="“Did anyone feed the dog?” Never ask again."
+              body="Share care with your partner, family or sitter, and see who did what."
+              href="/care-team"
+              linkLabel="Meet Care Team"
+            />
             <FeatureTile icon={HomeIcon} eyebrow="Adoption & fostering" title="Find the one who’s looking for you." href="/adoption" linkLabel="Learn more" />
             <FeatureTile
-              className="md:col-span-2 lg:col-span-3"
+              className="md:col-span-2 lg:col-span-2"
               icon={Building2}
               eyebrow="Shelters & rescues"
               title="Every rescue near you, in one place."
@@ -170,18 +180,19 @@ export default function Home() {
       {/* Story: care team */}
       <Section>
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div className="order-2 flex justify-center md:order-1">
-            <Device screen="home" />
+          <div className="order-2 flex justify-center gap-6 md:order-1">
+            <Device screen="home" size="sm" tilt="left" className="hidden lg:block" />
+            <Device screen="home-synced" />
           </div>
           <div className="order-1 md:order-2">
             <SectionHeader
               align="start"
               size="l"
-              eyebrow="Health & care"
+              eyebrow="Care Team"
               title="Care, shared."
-              lead="Reminders, a quick log of meals and walks, weight, records, flea and tick and heat cycles. Invite family or a sitter, and see who fed Bella this morning."
+              lead="Invite your partner, family or sitter. Everyone sees the same checklist, every task shows who did it, and a tap on the bell sends a gentle reminder. Nobody feeds Bella twice."
             >
-              <TextLink href="/health">Explore health & care</TextLink>
+              <TextLink href="/care-team">Meet Care Team</TextLink>
             </SectionHeader>
           </div>
         </div>

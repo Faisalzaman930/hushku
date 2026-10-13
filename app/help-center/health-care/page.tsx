@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="health-care"
+      tour="health-care"
       title="Health and care"
       lead="Everything about your pet’s day lives on the Home tab: reminders, a quick log, weight, health records, flea and tick, heat cycles and your care team."
       sections={[

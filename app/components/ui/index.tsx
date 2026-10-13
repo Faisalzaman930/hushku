@@ -143,16 +143,42 @@ export function Badge({ children, tone = "neutral" }: { children: ReactNode; ton
 
 /* ── App presentation ────────────────────────────────────────────────────── */
 
-export type AppScreen = "welcome" | "home" | "discover" | "pet-profile" | "alerts" | "messages" | "chat";
+export type AppScreen =
+  | "welcome" | "home" | "home-synced" | "discover" | "pet-profile" | "alerts" | "messages" | "chat"
+  | "care-team" | "invite-member" | "notifications" | "remind-sheet" | "add-reminder" | "health-records" | "weight"
+  | "filters" | "request-confirm" | "listing" | "post-listing" | "shelters" | "shelter-signup"
+  | "lost-report" | "lost-detail" | "lost-contact" | "chat-actions" | "role" | "add-pet" | "privacy" | "notification-settings";
 
 export const SCREEN_ALT: Record<AppScreen, string> = {
   welcome: "Hushku app welcome screen with Create Account, Google and Apple sign-in",
   home: "Hushku Home screen: Bella’s care team, today’s care checklist and upcoming reminders",
+  "home-synced": "Hushku Home on a care team member’s phone: Heartworm tablet ticked, done by Faisal",
   discover: "Hushku Discover feed showing Bruno, a French Bulldog looking for a playdate",
   "pet-profile": "Bruno’s pet profile in Hushku with a Send playdate invite button",
   alerts: "Hushku Alerts: Luna, a lost Ragdoll, last seen two hours ago",
   messages: "Hushku Messages inbox",
   chat: "A Hushku chat planning a playdate after a request was accepted",
+  "care-team": "Hushku Care Team screen: an owner, a caregiver, a viewer and a pending invite",
+  "invite-member": "Inviting Sarah to a pet’s care team as a Caregiver",
+  notifications: "Hushku notifications: a care team invite, a care reminder and a playdate invite",
+  "remind-sheet": "Send a reminder sheet: choosing which care team member to remind about Heartworm tablet",
+  "add-reminder": "New reminder form with type, title, date, time and repeat",
+  "health-records": "Health records list: vaccination, vet visit, medication and lab report",
+  weight: "Weight tracker with current weight, a trend chart and history",
+  filters: "Discover filters: looking for, location, distance, pet type, gender and breed",
+  "request-confirm": "Confirmation sheet: Send playdate invite?",
+  listing: "Adoption listing for Miso, a Scottish Fold, posted by a verified shelter",
+  "post-listing": "New foster listing form with photos, basics, how long and special care",
+  shelters: "Shelters tab in Discover listing shelters and rescues nearby",
+  "shelter-signup": "Shelter profile setup with logo, name, location and services offered",
+  "lost-report": "Report a lost pet form: whose pet, photos, markings, last seen area and reward",
+  "lost-detail": "A lost pet report with last seen time, approximate area and Mark as found",
+  "lost-contact": "Help with Luna sheet: I found Luna, I saw Luna, I have information",
+  "chat-actions": "Message actions: Reply, Copy, Unsend and Report",
+  role: "Choosing how to use Hushku: Pet owner, Shelter or Explorer",
+  "add-pet": "Add your pet: photos, name, type, breed, spayed or neutered and what you’re looking for",
+  privacy: "Account privacy: public or private, who can add you to their Circle, blocked accounts",
+  "notification-settings": "Notification settings with switches for each kind of notification",
 };
 
 /** A phone showing a real Hushku app screen. The web never shows a working feature. */

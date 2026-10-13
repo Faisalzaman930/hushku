@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ChevronRight, LifeBuoy } from "lucide-react";
 import FaqAccordion from "./FaqAccordion";
 import { Section, SectionHeader } from "./ui";
+import AppTour from "./tour/AppTour";
+import { TOURS } from "./tour/tours";
 
 export type HelpSection = {
   id: string;
@@ -13,6 +15,7 @@ export type HelpSection = {
 };
 
 export const HELP_TOPICS = [
+  { title: "Care Team", href: "/help-center/care-team" },
   { title: "Playdates", href: "/help-center/playdate-matching" },
   { title: "Adoption and fostering", href: "/help-center/adoption-fostering" },
   { title: "Shelters", href: "/help-center/shelters" },
@@ -29,13 +32,17 @@ export default function HelpArticle({
   lead,
   sections,
   faqs = [],
+  tour,
 }: {
   slug: string;
   title: string;
   lead: string;
   sections: HelpSection[];
   faqs?: { q: string; a: string }[];
+  /** Walkthrough key (see tour/tours.ts). */
+  tour?: string;
 }) {
+  const steps = tour ? TOURS[tour] : undefined;
   const href = `/help-center/${slug}`;
   const schema = faqs.length
     ? {
@@ -62,10 +69,29 @@ export default function HelpArticle({
           </nav>
           <SectionHeader as="h1" size="l" align="start" eyebrow="Help center" title={title} lead={lead} />
           <p className="text-[13px] text-label-2">Hushku is an app for iPhone and Android, coming soon to the App Store and Google Play. These steps are for the app.</p>
+          {steps ? (
+            <a href="#walkthrough" className="inline-flex min-h-11 items-center self-start rounded-full bg-label px-5 text-[15px] font-medium text-white transition-colors hover:bg-label-2">
+              Start the interactive walkthrough
+            </a>
+          ) : null}
         </div>
       </Section>
 
-      <Section className="!pt-0">
+      {steps ? (
+        <Section alt id="walkthrough">
+          <div className="mx-auto flex max-w-[1080px] flex-col gap-10">
+            <SectionHeader
+              align="start"
+              eyebrow="Interactive walkthrough"
+              title="See each screen."
+              lead={`${steps.length} screens from the app. Tap a number to see what it does, then use the arrows to move through.`}
+            />
+            <AppTour steps={steps} label={`${title} walkthrough`} />
+          </div>
+        </Section>
+      ) : null}
+
+      <Section className={steps ? "" : "!pt-0"}>
         <div className="mx-auto grid max-w-[880px] gap-12 lg:max-w-[1200px] lg:grid-cols-[220px_1fr] lg:gap-16">
           <nav aria-label="On this page" className="lg:sticky lg:top-24 lg:self-start">
             <p className="mb-3 text-[13px] font-semibold text-label-2">On this page</p>

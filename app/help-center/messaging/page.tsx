@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="messaging"
+      tour="messaging"
       title="Messaging"
       lead="Every conversation on Hushku starts with a request about a pet. When it’s accepted, a private chat opens in the Messages tab."
       sections={[

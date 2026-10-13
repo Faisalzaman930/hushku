@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import FaqAccordion from "./FaqAccordion";
 import WaitingList from "./WaitingList";
 import { ChipList, Device, LinkCard, Section, SectionHeader, Steps, type AppScreen } from "./ui";
+import SeeItInTheApp from "./tour/SeeItInTheApp";
 
 export interface FeaturePageProps {
   slug: string;
@@ -19,6 +20,8 @@ export interface FeaturePageProps {
   stepsTitle?: string;
   faqs: { q: string; a: string }[];
   related?: { title: string; href: string; body?: string; icon?: LucideIcon }[];
+  /** Walkthrough key (see tour/tours.ts) and its full help guide. */
+  tour?: { key: string; guide: string; steps?: number };
 }
 
 /**
@@ -79,8 +82,10 @@ export default function FeaturePage(p: FeaturePageProps) {
         </div>
       </Section>
 
+      {p.tour ? <SeeItInTheApp tour={p.tour.key} guide={p.tour.guide} steps={p.tour.steps} /> : null}
+
       {p.steps ? (
-        <Section>
+        <Section alt={!!p.tour}>
           <div className="flex flex-col gap-12">
             <SectionHeader eyebrow="In the app" title={p.stepsTitle ?? "Three steps."} />
             <Steps items={p.steps} />

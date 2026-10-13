@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="playdate-matching"
+      tour="playdate-matching"
       title="Playdates and walk buddies"
       lead="Find pets near you in Discover, check what they’re looking for, and send an invite. When the owner accepts, a chat opens."
       sections={[

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function AdoptionPage() {
   return (
     <FeaturePage
+      tour={{ key: "adoption-fostering", guide: "/help-center/adoption-fostering" }}
       slug="adoption"
       eyebrow="Adoption"
       title="Find the one who’s looking for you."

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function SheltersPage() {
   return (
     <FeaturePage
+      tour={{ key: "shelters", guide: "/help-center/shelters" }}
       slug="shelters"
       eyebrow="Shelters & rescues"
       title="Every rescue near you, in one place."

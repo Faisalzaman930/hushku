@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function PlaydatesPage() {
   return (
     <FeaturePage
+      tour={{ key: "playdate-matching", guide: "/help-center/playdate-matching" }}
       slug="playdates"
       eyebrow="Playdates"
       title="Meet their match."

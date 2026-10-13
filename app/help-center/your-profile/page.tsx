@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="your-profile"
+      tour="your-profile"
       title="Your profile"
       lead="Set up your profile, add your pets and choose who can see them."
       sections={[

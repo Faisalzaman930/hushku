@@ -30,6 +30,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/shelters`,                changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/lost-and-found`,          changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/health`,                  changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/care-team`,                  changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/health/daily-care`,       changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/health/reminders`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/health/weight-tracker`,   changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
@@ -44,6 +45,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/help-center/shelters`,                 changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/lost-and-found`,           changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/health-care`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/help-center/care-team`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/messaging`,                changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/your-profile`,             changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
 

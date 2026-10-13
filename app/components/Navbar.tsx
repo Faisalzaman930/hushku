@@ -14,6 +14,7 @@ import {
   Stethoscope,
   Syringe,
   Users,
+  UsersRound,
   type LucideIcon,
 } from "lucide-react";
 import { HushkuLogo } from "./Logo";
@@ -26,6 +27,7 @@ const FEATURES: Feature[] = [
   { name: "Fostering", href: "/fostering", icon: Users, desc: "Open your home for a while" },
   { name: "Shelters", href: "/shelters", icon: ShieldCheck, desc: "Rescues and shelters near you" },
   { name: "Lost & found", href: "/lost-and-found", icon: MapPin, desc: "Lost, found and rescue alerts" },
+  { name: "Care Team", href: "/care-team", icon: UsersRound, desc: "Share your pet’s care" },
   { name: "Health & care", href: "/health", icon: Syringe, desc: "Reminders, weight and records" },
   { name: "Social feed", href: "/social", icon: MessageCircle, desc: "Coming soon", soon: true },
   { name: "Vets", href: "/vets", icon: Stethoscope, desc: "Coming soon", soon: true },

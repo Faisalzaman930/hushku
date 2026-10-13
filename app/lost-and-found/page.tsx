@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default function LostAndFoundPage() {
   return (
     <FeaturePage
+      tour={{ key: "lost-and-found", guide: "/help-center/lost-and-found" }}
       slug="lost-and-found"
       eyebrow="Lost & found"
       title="Lost, then found."

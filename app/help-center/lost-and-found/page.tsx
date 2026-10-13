@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="lost-and-found"
+      tour="lost-and-found"
       title="Lost and found"
       lead="Report a lost pet in a minute. People nearby see it in the Alerts tab and can reach you in the app."
       sections={[

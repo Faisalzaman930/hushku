@@ -16,6 +16,7 @@ export default function Page() {
   return (
     <HelpArticle
       slug="shelters"
+      tour="shelters"
       title="Shelters and rescues"
       lead="Find shelters and rescues near you in Discover, see their animals and get in touch. Shelters get a free account of their own."
       sections={[

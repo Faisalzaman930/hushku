@@ -265,10 +265,10 @@ export default function CareTeamPage() {
       <SeeItInTheApp
         tour="care-team"
         guide="/help-center/care-team"
-        steps={6}
+        steps={7}
         alt
         title="Try it: one evening, two phones."
-        lead="Tap the numbers and follow the arrows through the real app screens."
+        lead="Start from the Home tab and tap through. Dark numbers open the next screen."
       />
 
       {/* Privacy */}

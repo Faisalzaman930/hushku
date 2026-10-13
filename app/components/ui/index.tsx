@@ -148,7 +148,8 @@ export type AppScreen =
   | "welcome" | "home" | "home-synced" | "discover" | "pet-profile" | "alerts" | "messages" | "chat"
   | "care-team" | "invite-member" | "notifications" | "remind-sheet" | "add-reminder" | "health-records" | "weight"
   | "filters" | "request-confirm" | "listing" | "post-listing" | "shelters" | "shelter-signup"
-  | "lost-report" | "lost-detail" | "lost-contact" | "chat-actions" | "role" | "add-pet" | "privacy" | "notification-settings";
+  | "lost-report" | "lost-detail" | "lost-contact" | "chat-actions" | "role" | "add-pet" | "privacy" | "notification-settings"
+  | "home-lower" | "flea-tick" | "heat-cycle" | "discover-adopt" | "listing-requests" | "profile" | "settings";
 
 export const SCREEN_ALT: Record<AppScreen, string> = {
   welcome: "Hushku app welcome screen with Create Account, Google and Apple sign-in",
@@ -180,6 +181,13 @@ export const SCREEN_ALT: Record<AppScreen, string> = {
   "add-pet": "Add your pet: photos, name, type, breed, spayed or neutered and what you’re looking for",
   privacy: "Account privacy: public or private, who can add you to their Circle, blocked accounts",
   "notification-settings": "Notification settings with switches for each kind of notification",
+  "home-lower": "Hushku Home scrolled down: Quick Log buttons and the Care & Health list",
+  "flea-tick": "Flea and tick tracker with the next treatment and history",
+  "heat-cycle": "Heat and season tracker with the next estimated cycle and history",
+  "discover-adopt": "Discover’s Adopt tab with pets looking for a home nearby",
+  "listing-requests": "An owner’s adoption screen: people interested, Accept, Decline and Choose as adopter",
+  profile: "Your Hushku profile: your pets, Circle, listings and settings",
+  settings: "Hushku Settings: account, privacy, blocked accounts and notifications",
 };
 
 /** A phone showing a real Hushku app screen. The web never shows a working feature. */

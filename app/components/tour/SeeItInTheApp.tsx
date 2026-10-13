@@ -10,7 +10,7 @@ export default function SeeItInTheApp({
   guide,
   steps = 3,
   title = "See it in the app.",
-  lead = "Tap the numbers to see what each part of the screen does.",
+  lead = "Start from the tab bar and tap through. Dark numbers open the next screen.",
   alt = false,
 }: {
   tour: keyof typeof TOURS | string;

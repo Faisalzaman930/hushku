@@ -11,10 +11,16 @@ export type TourSpot = {
   at: string | [number, number, number, number];
   label: string;
   body?: string;
+  /** This is where you tap to reach the next screen. Tapping the pin goes there. */
+  next?: boolean;
+  /** Where this flow starts (usually a bottom tab). */
+  start?: boolean;
 };
 
 export type TourStep = {
   screen: AppScreen;
+  /** How to reach this screen, e.g. ["Home tab", "Care Team", "Manage"]. */
+  path?: string[];
   title: string;
   body?: string;
   spots: TourSpot[];
@@ -190,17 +196,17 @@ export default function AppTour({
                 <button
                   key={`${step.screen}-${s.i}`}
                   type="button"
-                  aria-label={`${n + 1}. ${s.label}`}
+                  aria-label={`${n + 1}. ${s.label}${s.next && stepIndex < steps.length - 1 ? `. Opens ${steps[stepIndex + 1].title}` : ""}`}
                   aria-pressed={pinned === s.i}
                   aria-describedby={`${uid}-spot-${s.i}`}
                   onMouseEnter={() => setActive(s.i)}
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(s.i)}
                   onBlur={() => setActive(null)}
-                  onClick={() => setPinned(pinned === s.i ? null : s.i)}
+                  onClick={() => (s.next && stepIndex < steps.length - 1 ? go(stepIndex + 1) : setPinned(pinned === s.i ? null : s.i))}
                   className={cx(
                     "pointer-events-auto absolute grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full text-[13px] font-semibold tabular-nums outline-offset-2 transition-[transform,background-color,opacity] duration-150 motion-reduce:transition-none",
-                    on ? "scale-110 bg-brand text-white shadow-[0_2px_8px_rgba(225,26,69,0.35)]" : "bg-white text-brand-text ring-2 ring-brand",
+                    on ? "scale-110 bg-brand text-white shadow-[0_2px_8px_rgba(225,26,69,0.35)]" : s.next || s.start ? "bg-label text-white ring-2 ring-label" : "bg-white text-brand-text ring-2 ring-brand",
                     shown !== null && !on && "opacity-50"
                   )}
                   style={{ left: "calc(113% - 2px)", top: `${y}%` }}
@@ -263,6 +269,17 @@ export default function AppTour({
               Screen {stepIndex + 1} of {steps.length}
             </p>
           ) : null}
+          {step.path?.length ? (
+            <nav aria-label="How to get to this screen" className="flex flex-wrap items-center gap-1.5 text-[13px] text-label-2">
+              <span className="mr-0.5 font-medium text-label-3">How to get here</span>
+              {step.path.map((p, i) => (
+                <span key={p + i} className="inline-flex items-center gap-1.5">
+                  {i > 0 ? <ChevronRight size={13} className="text-label-3" aria-hidden /> : null}
+                  <span className="rounded-full bg-surface px-2.5 py-0.5 font-medium text-label">{p}</span>
+                </span>
+              ))}
+            </nav>
+          ) : null}
           <h3 className={cx("font-semibold tracking-[-0.012em] text-label", compact ? "text-[22px] leading-[28px]" : "text-[26px] leading-[32px] md:text-[28px]")}>{step.title}</h3>
           {step.body ? <p className="max-w-[56ch] text-[17px] leading-[26px] text-label-2">{step.body}</p> : null}
         </div>
@@ -286,12 +303,18 @@ export default function AppTour({
                     on ? "bg-brand-tint" : "hover:bg-surface"
                   )}
                 >
-                  <span className={cx("grid h-7 w-7 flex-none place-items-center rounded-full text-[13px] font-semibold tabular-nums", on ? "bg-brand text-white" : "bg-white text-brand-text ring-2 ring-brand")}>
+                  <span className={cx("grid h-7 w-7 flex-none place-items-center rounded-full text-[13px] font-semibold tabular-nums", on ? "bg-brand text-white" : s.next || s.start ? "bg-label text-white" : "bg-white text-brand-text ring-2 ring-brand")}>
                     {n + 1}
                   </span>
                   <span className="flex flex-col gap-1 pt-0.5">
+                    {s.start ? <span className="text-[12px] font-semibold tracking-[0.02em] text-brand-text">Start here</span> : null}
                     <span className="text-[17px] leading-[22px] font-semibold text-label">{s.label}</span>
                     {s.body ? <span className="text-[15px] leading-[22px] text-label-2">{s.body}</span> : null}
+                    {s.next && stepIndex < steps.length - 1 ? (
+                      <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-label">
+                        Opens: {steps[stepIndex + 1].title} <ChevronRight size={14} aria-hidden />
+                      </span>
+                    ) : null}
                   </span>
                 </button>
               </li>

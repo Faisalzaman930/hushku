@@ -84,7 +84,7 @@ export default function HelpArticle({
               align="start"
               eyebrow="Interactive walkthrough"
               title="See each screen."
-              lead={`${steps.length} screens from the app. Tap a number to see what it does, then use the arrows to move through.`}
+              lead={`${steps.length} screens, starting from the tab bar. Tap a number to see what it does. Dark numbers open the next screen, just like in the app.`}
             />
             <AppTour steps={steps} label={`${title} walkthrough`} />
           </div>

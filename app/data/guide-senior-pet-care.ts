@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideSeniorPetCare: Guide = {
   slug: "senior-pet-care-complete-guide",
   title: "The Complete Guide to Senior Pet Care: Everything You Need to Know About Caring for Aging Dogs and Cats",
-  seoTitle: "Senior Pet Care Complete Guide: Aging Dogs & Cats | Hushku",
+  seoTitle: "Senior Pet Care Complete Guide: Aging Dogs & Cats",
   shortTitle: "Senior Pet Care Guide",
   seoDescription: "Expert guide to senior dog & cat care: nutrition, health screenings, pain recognition, mobility, cognitive health, and end-of-life quality of life.",
   category: "Expert Guides",

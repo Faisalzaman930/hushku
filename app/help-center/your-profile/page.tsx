@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Your Profile and Pets: Setup and Privacy | Hushku Help";
+const TITLE = "Your Profile and Pets: Setup and Privacy";
 const DESC = "How to set up your Hushku profile, add pets, choose a public or private account, manage your Circle, and block or report someone.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/your-profile" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/your-profile" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/your-profile", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

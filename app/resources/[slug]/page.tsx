@@ -1,3 +1,4 @@
+import { metaDesc, shortTitle } from "../../lib/seo";
 import { articles } from "../../data/articles";
 import { guides } from "../../data/guides";
 import { howToArticles } from "../../data/howto";
@@ -13,6 +14,10 @@ import BreedLayout from "../../components/BreedLayout";
 import DefinitionLayout from "../../components/DefinitionLayout";
 import PillarLayout from "../../components/PillarLayout";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+/** Only the articles listed below exist; anything else is a real 404. */
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return [
@@ -29,142 +34,142 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const canonicalUrl = `https://hushku.app/resources/${slug}`;
-  const ogImage = [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630 }];
+  const ogImage = [{ url: "https://hushku.app/og.png", width: 1200, height: 630 }];
 
   const article = articles.find((a) => a.slug === slug);
   if (article) {
     return {
-      title: article.seoTitle || article.title,
-      description: article.seoDescription,
+      title: shortTitle(article.seoTitle || article.title, 60),
+      description: metaDesc(article.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: article.seoTitle || article.title,
-        description: article.seoDescription,
+        title: shortTitle(article.seoTitle || article.title, 60),
+        description: metaDesc(article.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: article.publishDate,
         modifiedTime: article.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: article.seoTitle || article.title, description: article.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(article.seoTitle || article.title, 60), description: metaDesc(article.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const guide = guides.find((g) => g.slug === slug);
   if (guide) {
     return {
-      title: guide.seoTitle || guide.title,
-      description: guide.seoDescription,
+      title: shortTitle(guide.seoTitle || guide.title, 60),
+      description: metaDesc(guide.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: guide.seoTitle || guide.title,
-        description: guide.seoDescription,
+        title: shortTitle(guide.seoTitle || guide.title, 60),
+        description: metaDesc(guide.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: guide.publishDate,
         modifiedTime: guide.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: guide.seoTitle || guide.title, description: guide.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(guide.seoTitle || guide.title, 60), description: metaDesc(guide.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const howTo = howToArticles.find((a) => a.slug === slug);
   if (howTo) {
     return {
-      title: howTo.seoTitle || howTo.title,
-      description: howTo.seoDescription,
+      title: shortTitle(howTo.seoTitle || howTo.title, 60),
+      description: metaDesc(howTo.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: howTo.seoTitle || howTo.title,
-        description: howTo.seoDescription,
+        title: shortTitle(howTo.seoTitle || howTo.title, 60),
+        description: metaDesc(howTo.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: howTo.publishDate,
         modifiedTime: howTo.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: howTo.seoTitle || howTo.title, description: howTo.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(howTo.seoTitle || howTo.title, 60), description: metaDesc(howTo.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const symptom = symptomArticles.find((a) => a.slug === slug);
   if (symptom) {
     return {
-      title: symptom.seoTitle || symptom.title,
-      description: symptom.seoDescription,
+      title: shortTitle(symptom.seoTitle || symptom.title, 60),
+      description: metaDesc(symptom.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: symptom.seoTitle || symptom.title,
-        description: symptom.seoDescription,
+        title: shortTitle(symptom.seoTitle || symptom.title, 60),
+        description: metaDesc(symptom.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: symptom.publishDate,
         modifiedTime: symptom.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: symptom.seoTitle || symptom.title, description: symptom.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(symptom.seoTitle || symptom.title, 60), description: metaDesc(symptom.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const breed = breedArticles.find((a) => a.slug === slug);
   if (breed) {
     return {
-      title: breed.seoTitle || breed.title,
-      description: breed.seoDescription,
+      title: shortTitle(breed.seoTitle || breed.title, 60),
+      description: metaDesc(breed.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: breed.seoTitle || breed.title,
-        description: breed.seoDescription,
+        title: shortTitle(breed.seoTitle || breed.title, 60),
+        description: metaDesc(breed.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: breed.publishDate,
         modifiedTime: breed.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: breed.seoTitle || breed.title, description: breed.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(breed.seoTitle || breed.title, 60), description: metaDesc(breed.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const definition = definitionArticles.find((a) => a.slug === slug);
   if (definition) {
     return {
-      title: definition.seoTitle || definition.title,
-      description: definition.seoDescription,
+      title: shortTitle(definition.seoTitle || definition.title, 60),
+      description: metaDesc(definition.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: definition.seoTitle || definition.title,
-        description: definition.seoDescription,
+        title: shortTitle(definition.seoTitle || definition.title, 60),
+        description: metaDesc(definition.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: definition.publishDate,
         modifiedTime: definition.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: definition.seoTitle || definition.title, description: definition.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(definition.seoTitle || definition.title, 60), description: metaDesc(definition.seoDescription), images: [ogImage[0].url] },
     };
   }
 
   const pillar = pillarPages.find((p) => p.slug === slug);
   if (pillar) {
     return {
-      title: pillar.seoTitle || pillar.title,
-      description: pillar.seoDescription,
+      title: shortTitle(pillar.seoTitle || pillar.title, 60),
+      description: metaDesc(pillar.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: pillar.seoTitle || pillar.title,
-        description: pillar.seoDescription,
+        title: shortTitle(pillar.seoTitle || pillar.title, 60),
+        description: metaDesc(pillar.seoDescription),
         type: "article",
         url: canonicalUrl,
         images: ogImage,
         publishedTime: pillar.publishDate,
         modifiedTime: pillar.lastUpdated,
       },
-      twitter: { card: "summary_large_image", title: pillar.seoTitle || pillar.title, description: pillar.seoDescription, images: [ogImage[0].url] },
+      twitter: { card: "summary_large_image", title: shortTitle(pillar.seoTitle || pillar.title, 60), description: metaDesc(pillar.seoDescription), images: [ogImage[0].url] },
     };
   }
 
-  return { title: "Not Found" };
+  return { title: "Page not found", robots: { index: false } };
 }
 
 function JsonLd({ data }: { data: object }) {
@@ -355,9 +360,5 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
     );
   }
 
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-bold">Article not found</h1>
-    </div>
-  );
+  notFound();
 }

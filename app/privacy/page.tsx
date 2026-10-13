@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Hushku",
+  title: "Privacy Policy",
   description: "Learn how Hushku collects, uses, and protects your personal data — including location, pet profiles, messaging, health records, and push notifications.",
   alternates: { canonical: "https://hushku.app/privacy" },
   openGraph: {
-    title: "Privacy Policy | Hushku",
+    title: "Privacy Policy",
     description: "Learn how Hushku collects, uses, and protects your personal data.",
     type: "website",
     url: "https://hushku.app/privacy",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Privacy Policy | Hushku" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Privacy Policy | Hushku" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy | Hushku",
+    title: "Privacy Policy",
     description: "Learn how Hushku collects, uses, and protects your personal data.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
                 <li><strong>Adoption & foster requests</strong> — when you submit or receive a request, we store the request details and status.</li>
                 <li><strong>Messages</strong> — direct messages and playdate chat between matched users are stored on our servers to deliver and display them. We do not read your private messages for advertising purposes.</li>
                 <li><strong>Lost & Found reports</strong> — pet descriptions, photos, last-known location, and contact details you submit for lost or found animals.</li>
-                <li><strong>Vet interactions</strong> — vet searches, bookings, and any notes you attach to vet visits within the app.</li>
+                <li><strong>Health and care records</strong> — reminders, care logs, weight, vaccinations, vet visits, medication and any documents you attach, shared with the people on your pet&apos;s Care Team.</li>
                 <li><strong>Health records</strong> — vaccination records, weight logs, care reminders, heat cycle tracking, and flea/tick logs you choose to store in your pet's health wallet.</li>
                 <li><strong>Votes and feature requests</strong> — your votes and submissions on the product roadmap.</li>
               </ul>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             <Section title="2. How We Use Your Information">
               <p>We use the information we collect to:</p>
               <ul>
-                <li>Operate and deliver all core Hushku features — playdate matching, messaging, adoption, fostering, lost & found, vet discovery, and health records.</li>
+                <li>Operate and deliver all core Hushku features — playdate and walk requests, messaging, adoption, fostering, lost & found, care tracking with your Care Team, and health records.</li>
                 <li>Show you nearby pets, shelters, vets, and other owners based on your location.</li>
                 <li>Send push notifications for new matches, messages, adoption request updates, lost pet alerts, and care reminders (only if you have granted notification permission).</li>
                 <li>Send transactional emails — OTP codes for login, waitlist confirmation, and important account notices.</li>
@@ -227,7 +227,7 @@ function Intro() {
         (collectively, the &quot;Service&quot;).
       </p>
       <p className="text-sm leading-7 text-slate-gray mt-3">
-        Hushku is a pet super-app that includes playdate matching, direct messaging, adoption, fostering, shelter discovery, lost &amp; found alerts, vet discovery, pet health records, push notifications, and a community social feed. Each of these features involves different types of data — this policy covers all of them.
+        Hushku is an app for dog and cat owners and shelters that includes playdate and walk requests, messaging, adoption and fostering, shelter profiles, lost &amp; found alerts, pet care tracking with a shared Care Team, pet health records and push notifications. Each of these features involves different types of data — this policy covers all of them.
       </p>
       <p className="text-sm leading-7 text-slate-gray mt-3">
         By using Hushku, you agree to the collection and use of information as described in this policy.

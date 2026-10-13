@@ -11,22 +11,22 @@ export async function generateMetadata({
   const canonicalUrl = `https://hushku.app/breeds/${animal}`;
 
   return {
-    title: `${label} Breeds | Complete ${label} Breed Directory — Hushku`,
+    title: `${label} Breeds | Complete ${label} Breed Directory`,
     description: `Browse every ${label.toLowerCase()} breed with temperament scores, size guides, care information, and health data. Find your perfect ${label.toLowerCase().replace(/s$/, "")} breed on Hushku.`,
     keywords: `${animal} breeds, ${animal} breed directory, ${animal} breed list, all ${animal} breeds, ${animal} breed guide`,
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: `${label} Breeds | Complete ${label} Breed Directory — Hushku`,
+      title: `${label} Breeds | Complete ${label} Breed Directory`,
       description: `Browse every ${label.toLowerCase()} breed with temperament scores, size, and care guides.`,
       type: "website",
       url: canonicalUrl,
-      images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: `Hushku ${label} Breed Directory` }],
+      images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: `Hushku ${label} Breed Directory` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${label} Breeds Directory | Hushku`,
+      title: `${label} Breeds Directory`,
       description: `Browse every ${label.toLowerCase()} breed with scores, care guides, and health info.`,
-      images: ["https://hushku.app/screenshots/app-playdates.png"],
+      images: ["https://hushku.app/og.png"],
     },
   };
 }

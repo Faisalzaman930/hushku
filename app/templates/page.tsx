@@ -3,22 +3,22 @@ import Link from "next/link";
 import { templateDocs, templateCategories } from "../data/templates";
 
 export const metadata: Metadata = {
-  title: "Free Pet Templates: Contracts, Records & Forms | Hushku Hub",
+  title: "Free Pet Templates: Contracts, Records & Forms",
   description:
-    "Free, editable pet templates for every situation — custody agreements, adoption contracts, vaccination records, pet sitting invoices, lost pet posters, and more. Download instantly in PDF, Word, or Google Docs.",
+    "Free, editable pet templates: adoption contracts, vaccination records, pet sitter instructions and lost pet posters, in PDF, Word or Google Docs.",
   alternates: { canonical: "https://hushku.app/templates" },
   openGraph: {
-    title: "Free Pet Templates | Hushku",
+    title: "Free Pet Templates",
     description: "Free editable pet templates — adoption contracts, vaccination records, pet sitting forms and more.",
     type: "website",
     url: "https://hushku.app/templates",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Free Pet Templates | Hushku" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Free Pet Templates | Hushku" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Pet Templates | Hushku",
+    title: "Free Pet Templates",
     description: "Free editable pet templates — adoption contracts, vaccination records, pet sitting forms and more.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 

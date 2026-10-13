@@ -1,11 +1,35 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import CompareButton from "../../../components/CompareButton";
 import Image from "next/image";
 import { breedsByAnimal, getBreed, ANIMAL_LABELS } from "../../../data/breeds";
 import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
 import type { BreedDoc, CatBreedDoc, BreedScores, CatScores } from "../../../data/breeds";
 import BreedTabs from "./BreedTabs";
+import { comparisonsFor } from "../../../data/breeds/comparisons";
+
+function clamp(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,:;]$/, "") + "…";
+}
+
+/** Parent breeds of a mix, linked only when we have that breed's page. */
+const PARENT_ALIASES: Record<string, string> = { "english-bulldog": "bulldog", "rough-collie": "collie", "german-shepherd": "german-shepherd-dog" };
+function parentLinks(parentBreeds?: string | null) {
+  if (!parentBreeds) return [];
+  const known = new Set((breedsByAnimal.dogs as { slug: string }[]).map((b) => b.slug));
+  return parentBreeds.split(" and ").map((raw) => {
+    const name = raw.trim();
+    const base = name.toLowerCase().replace(/\s+/g, "-");
+    const slug = known.has(base) ? base : known.has(PARENT_ALIASES[base] ?? "") ? PARENT_ALIASES[base] : null;
+    return { name, slug };
+  });
+}
+
+/** Only known pages exist; anything else is a real 404. */
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const params: { animal: string; slug: string }[] = [];
@@ -30,18 +54,24 @@ export async function generateMetadata({
   const cat = isCat ? (breed as CatBreedDoc) : null;
   const dog = !isCat ? (breed as BreedDoc) : null;
 
-  const lifeStr = breed.lifeSpan ? ` Life expectancy: ${breed.lifeSpan}.` : "";
-  const sizeStr = dog?.size ? ` Size: ${dog.size}.` : cat?.origin ? ` Origin: ${cat.origin}.` : "";
-  const parentStr = dog?.parentBreeds ? ` A cross between the ${dog.parentBreeds}.` : "";
-  const weightStr = dog?.weight ? ` Weight: ${dog.weight}.` : cat?.weight ? ` Weight: ${cat.weight}.` : "";
 
   const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
   const ogImage = breed.image
     ? `https://hushku.app${breed.image}`
-    : `https://hushku.app/screenshots/app-playdates.png`;
+    : `https://hushku.app/og.png`;
 
-  const title = `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide: Temperament, Size, Care & Health | Hushku`;
-  const description = `Complete ${breed.name} breed guide.${parentStr}${sizeStr}${weightStr}${lifeStr} Temperament scores, grooming needs, training tips, health info & FAQs — by Hushku.`;
+  // Titles stay within ~60 characters and descriptions within 155, so Google shows them whole.
+  const long = `${breed.name} Breed Guide: Temperament & Care | Hushku`;
+  const title = long.length <= 60 ? long : `${breed.name} Breed Guide | Hushku`;
+  const facts = [
+    dog?.parentBreeds ? `a ${dog.parentBreeds} mix` : "",
+    dog?.size ? `${dog.size.toLowerCase()} size` : cat?.origin ? `from ${cat.origin}` : "",
+    breed.lifeSpan ? `lives ${breed.lifeSpan}` : "",
+  ].filter(Boolean);
+  const description = clamp(
+    `The ${breed.name}${facts.length ? `: ${facts.join(", ")}` : ""}. Temperament, grooming, training and health, with ratings and FAQs.`,
+    155
+  );
 
   return {
     title: { absolute: title },
@@ -144,7 +174,7 @@ export default async function BreedPage({
   // JSON-LD
   const faqs = content?.faqs ?? catFaqs;
   const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
-  const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/screenshots/app-playdates.png`;
+  const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/og.png`;
 
   const faqSchema = faqs.length > 0 ? {
     "@context": "https://schema.org",
@@ -159,7 +189,7 @@ export default async function BreedPage({
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${breed.name} ${isCat ? "Cat" : "Dog"} Breed Guide: Temperament, Size, Care & Health`,
+    headline: `${breed.name}${/\b(dog|cat|hound)$/i.test(breed.name) ? "" : isCat ? " Cat" : " Dog"} Breed Guide: Temperament, Size, Care & Health`,
     description: `Complete guide to the ${breed.name} — temperament, size, grooming, training, health, and suitability.`,
     image: ogImage,
     url: canonicalUrl,
@@ -266,10 +296,10 @@ export default async function BreedPage({
                   ) : null)}
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <Link href={`/tools/breed-compare?a=${breed.slug}`}
+                  <CompareButton slug={breed.slug}
                     className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors">
                     🆚 Compare
-                  </Link>
+                  </CompareButton>
                   <Link href={`/breeds/${animal}`}
                     className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors border border-white/10">
                     ← All {animalLabel}
@@ -302,7 +332,26 @@ export default async function BreedPage({
           animal={animal}
           related={related}
           animalLabel={animalLabel}
+          parentLinks={parentLinks(dog?.parentBreeds)}
         />
+
+        {/* ── Popular comparisons ─────────────────────────────────── */}
+        {comparisonsFor(animal, slug).length ? (
+          <section className="px-4 pt-16 md:px-8" aria-labelledby="compared-with">
+            <div className="mx-auto flex max-w-[1200px] flex-col gap-4">
+              <h2 id="compared-with" className="text-[24px] leading-[1.25] font-semibold tracking-[-0.008em] text-label">{breed.name} compared</h2>
+              <ul className="flex flex-wrap gap-2">
+                {comparisonsFor(animal, slug).map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/breeds/compare/${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label transition-colors hover:bg-separator">
+                      {c.a.name} vs {c.b.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
 
         {/* ── CTA ──────────────────────────────────────────────────── */}
         <section className="px-4 pt-16 md:px-8">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import BreedCompareTool from "./BreedCompareTool";
+import { COMPARISONS } from "../../data/breeds/comparisons";
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -47,6 +48,19 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <BreedCompareTool />
+      <section className="mx-auto max-w-4xl px-6 pt-12" aria-labelledby="popular-comparisons">
+        <h2 id="popular-comparisons" className="mb-4 text-[24px] leading-[1.25] font-semibold text-label">Popular comparisons</h2>
+        <ul className="flex flex-wrap gap-2">
+          {COMPARISONS.slice(0, 18).map((c) => (
+            <li key={c.slug}>
+              <Link href={`/breeds/compare/${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label hover:bg-separator">
+                {c.a.name} vs {c.b.name}
+              </Link>
+            </li>
+          ))}
+          <li><Link href="/breeds/compare" className="inline-flex min-h-11 items-center rounded-full px-4 text-[15px] font-medium text-brand-text ring-1 ring-separator hover:bg-surface">All comparisons</Link></li>
+        </ul>
+      </section>
 
       <section className="max-w-4xl mx-auto px-6 py-12 border-t border-gray-100">
         <div className="bg-brand-start/5 border border-brand-start/15 rounded-2xl px-6 py-4 mb-8">

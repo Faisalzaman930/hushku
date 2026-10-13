@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Care Team: Share a Pet’s Care, Step by Step | Hushku Help";
+const TITLE = "Care Team: Share a Pet’s Care, Step by Step";
 const DESC =
   "How to invite your partner, family or sitter to your pet’s Care Team in Hushku, choose caregiver or viewer, send a reminder, and remove someone.";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/care-team" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/care-team" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/care-team", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

@@ -6,22 +6,22 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Health Records App | Digital Vaccination Certificates, Vet Visits & Medication Logs — Hushku",
-  description: "Store your dog or cat's health records digitally. Upload vaccination certificates with batch numbers, log vet visits, track medications with dosage history, and store blood test results. Shareable with any vet. Free on iOS & Android.",
+  title: "Pet Health Records: Vaccines, Vet Visits & Meds",
+  description: "Keep vaccination certificates, vet visits, medication and lab reports in one place, with attachments and next due dates. Free.",
   keywords: "pet health records app, dog vaccination records, cat vaccination certificate, pet medical records app, vet visit log, pet medication tracker, digital pet health wallet, pet health history",
   alternates: { canonical: "https://hushku.app/health/records" },
   openGraph: {
-    title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More — Hushku",
+    title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More",
     description: "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure health wallet. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/records",
-    images: [{ url: "https://hushku.app/screenshots/app-health-records.png", width: 1200, height: 630, alt: "Hushku Pet Health Records App" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Pet Health Records App" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More — Hushku",
+    title: "Pet Health Records App | Store Vaccination Certificates, Vet Visits & More",
     description: "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports — all in one secure health wallet. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-health-records.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -71,7 +71,7 @@ const relatedLinks = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Pet Health Records App — Hushku",
+  "name": "Pet Health Records App",
   "description": "Store all your pet's health records digitally with Hushku. Upload vaccination certificates, log vet visits, track medications, and store lab reports.",
   "url": "https://hushku.app/health/records",
 };
@@ -120,7 +120,7 @@ export default function RecordsPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-health-records.png" alt="Hushku Pet Health Records" />
+                  <PhoneFrame src="/og.png" alt="Hushku Pet Health Records" />
                 </div>
               </div>
             </div>

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Shelters and Rescues on Hushku | Help";
+const TITLE = "Shelters and Rescues: Help";
 const DESC = "How to find shelters and rescues near you in Hushku, and how shelters set up a free account to list animals for adoption and fostering.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/shelters" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/shelters" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/shelters", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

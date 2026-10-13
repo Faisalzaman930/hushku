@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Lost and Found Pet Reports: How It Works | Hushku Help";
+const TITLE = "Lost and Found Pet Reports: How It Works";
 const DESC = "How to report a lost pet in Hushku, see lost, found and rescue alerts near you, and contact the person who posted a report.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/lost-and-found" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/lost-and-found" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/lost-and-found", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

@@ -104,7 +104,7 @@ export const resourcesData: Resource[] = [
     id: "10",
     title: "Pet Photography 101",
     category: "Social",
-    excerpt: "How to capture the perfect shot for your Hushku social feed. Lighting, timing, and treat-motivation.",
+    excerpt: "How to capture the perfect shot of your pet: lighting, timing and treat motivation.",
     date: "2024-04-18",
     readTime: "4 min read",
     emoji: "📸",

@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BookOpen, ClipboardList, Home, LifeBuoy, MessageCircle, Send, Users } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Pet Fostering App: Foster Dogs & Cats Near You | Hushku";
+const TITLE = "Pet Fostering App: Foster Dogs & Cats Near You";
 const DESC =
-  "Find dogs and cats who need a temporary home near you. Foster listings from shelters, rescues and owners, with requests and chat in one free app for iPhone and Android.";
+  "Foster a dog or cat near you, or find a foster for yours. Browse listings, send a request and arrange it in chat. Free on iPhone and Android.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "pet fostering app, foster a dog near me, foster cats, become a foster carer, rescue foster",
   alternates: { canonical: "https://hushku.app/fostering" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/fostering" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/fostering", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

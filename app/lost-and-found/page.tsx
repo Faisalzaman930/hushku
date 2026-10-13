@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BookOpen, Camera, CheckCircle2, Clock, LifeBuoy, MapPin, MessageCircle, ShieldCheck } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Lost & Found Pets Near You: Lost Dog & Cat Alerts | Hushku";
+const TITLE = "Lost & Found Pets Near You: Lost Dog & Cat Alerts";
 const DESC =
-  "See lost, found and rescue reports near you, with photos and when and roughly where each pet was last seen. Post a report in a minute and neighbours can reach you in the app. Free.";
+  "Report a lost or found pet with photos and roughly where they were last seen. People nearby see it in Alerts and can reach you. Free.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "lost dog app, lost cat near me, found dog near me, lost pet alert, report a lost pet, missing pet",
   alternates: { canonical: "https://hushku.app/lost-and-found" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/lost-and-found" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/lost-and-found", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

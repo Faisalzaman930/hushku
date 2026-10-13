@@ -6,22 +6,22 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Weight Tracker App | Monitor Dog & Cat Weight Gain or Loss — Hushku",
-  description: "Track your dog or cat's weight over time with Hushku. Log weight entries, visualise trends, and share history with your vet. Over 60% of pets are overweight — catch it early. Supports kg and lbs. Free on iOS & Android.",
+  title: "Pet Weight Tracker for Dogs & Cats",
+  description: "Track your dog’s or cat’s weight over time, see the trend, and keep the history ready for the vet. A free weight tracker.",
   keywords: "pet weight tracker app, dog weight tracker, cat weight monitor, pet obesity tracker, dog weight log, cat weight gain, pet body condition score, healthy dog weight, healthy cat weight",
   alternates: { canonical: "https://hushku.app/health/weight-tracker" },
   openGraph: {
-    title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight — Hushku",
+    title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight",
     description: "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet. Supports kg and lbs. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/weight-tracker",
-    images: [{ url: "https://hushku.app/screenshots/app-weight-tracker.png", width: 1200, height: 630, alt: "Hushku Pet Weight Tracker App" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Pet Weight Tracker App" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight — Hushku",
+    title: "Pet Weight Tracker App | Log & Monitor Your Pet's Weight",
     description: "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet. Supports kg and lbs. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-weight-tracker.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -70,7 +70,7 @@ const relatedLinks = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Pet Weight Tracker App — Hushku",
+  "name": "Pet Weight Tracker App",
   "description": "Track your dog or cat's weight over time with Hushku. Log weight entries, view trends, and share the history with your vet.",
   "url": "https://hushku.app/health/weight-tracker",
 };
@@ -119,7 +119,7 @@ export default function WeightTrackerPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-weight-tracker.png" alt="Hushku Pet Weight Tracker" />
+                  <PhoneFrame src="/og.png" alt="Hushku Pet Weight Tracker" />
                 </div>
               </div>
             </div>

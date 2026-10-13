@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Health and Care Tracking: How It Works | Hushku Help";
-const DESC = "How to set care reminders, log meals, water, walks and potty breaks, track weight, store health records, flea and tick and heat cycles, and share care with your care team in Hushku.";
+const TITLE = "Health and Care Tracking: How It Works";
+const DESC = "How to set care reminders, log meals and walks, track weight and store health records in Hushku, step by step with an interactive demo.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/health-care" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/health-care" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/health-care", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

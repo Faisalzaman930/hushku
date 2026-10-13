@@ -419,7 +419,7 @@ export default function PetPackingChecklist() {
 
       {/* Print-only header */}
       <div className="hidden print:block mb-8 text-center border-b-2 border-gray-200 pb-6">
-        <h1 className="text-3xl font-black text-ebony uppercase">Hushku — Pet Travel Checklist</h1>
+        <p className="text-3xl font-black text-ebony uppercase">Hushku — Pet Travel Checklist</p>
         <p className="text-sm text-gray-500 mt-2">{petEmojis[petType]} {petType.charAt(0).toUpperCase() + petType.slice(1)} · {tripDuration} · hushku.app/tools/packing-checklist</p>
       </div>
 

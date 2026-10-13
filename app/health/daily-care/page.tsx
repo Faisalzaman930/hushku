@@ -6,22 +6,22 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
-  description: "Track your dog or cat's daily care with Hushku. One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Daily progress bar included. Free on iOS & Android.",
+  title: "Daily Pet Care Tracker: Meals, Water & Walks",
+  description: "Log meals, water, walks and potty breaks with one tap, and see who did what. A free daily care tracker for dogs and cats.",
   keywords: "daily pet care tracker, dog feeding tracker, cat feeding log, pet water intake tracker, dog bowel movement log, pet care app, daily dog care, pet routine tracker",
   alternates: { canonical: "https://hushku.app/health/daily-care" },
   openGraph: {
-    title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
+    title: "Daily Pet Care Tracker: Meals, Water & Walks",
     description: "One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/daily-care",
-    images: [{ url: "https://hushku.app/screenshots/app-daily-care.png", width: 1200, height: 630, alt: "Hushku Daily Pet Care Tracker" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Daily Pet Care Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daily Pet Care Tracker | Log Dog & Cat Feeding, Water & Bowel Habits — Hushku",
+    title: "Daily Pet Care Tracker: Meals, Water & Walks",
     description: "One-tap logging for feeding, water intake, and bowel movements. Spot health changes early. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-daily-care.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -71,7 +71,7 @@ const relatedLinks = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Daily Pet Care Tracker — Hushku",
+  "name": "Daily Pet Care Tracker",
   "description": "Track your pet's daily care routine with Hushku. Log fed, watered, and poop with a single tap.",
   "url": "https://hushku.app/health/daily-care",
 };
@@ -120,7 +120,7 @@ export default function DailyCarePage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-daily-care.png" alt="Hushku Daily Care Tracker" />
+                  <PhoneFrame src="/og.png" alt="Hushku Daily Care Tracker" />
                 </div>
               </div>
             </div>

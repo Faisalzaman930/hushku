@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Messaging: How Chats Work | Hushku Help";
+const TITLE = "Messaging: How Chats Work";
 const DESC = "How chats work in Hushku: chats open when a request is accepted, and you can send photos, video and voice notes, reply, unsend, block and report.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/messaging" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/messaging" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/messaging", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

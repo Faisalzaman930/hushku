@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Hushku",
-  description: "Read the Terms and Conditions governing your use of the Hushku app — covering pet matching, adoption, fostering, messaging, lost & found, vets, and premium features.",
+  title: "Terms & Conditions",
+  description: "The terms for using Hushku, the free app for dog and cat owners and shelters.",
   alternates: { canonical: "https://hushku.app/terms" },
   openGraph: {
-    title: "Terms & Conditions | Hushku",
+    title: "Terms & Conditions",
     description: "Read the Terms and Conditions governing your use of the Hushku app.",
     type: "website",
     url: "https://hushku.app/terms",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Terms & Conditions | Hushku" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Terms & Conditions | Hushku" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terms & Conditions | Hushku",
+    title: "Terms & Conditions",
     description: "Read the Terms and Conditions governing your use of the Hushku app.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -118,13 +118,13 @@ export default function TermsPage() {
               </ul>
             </Section>
 
-            <Section title="8. Vet Discovery">
-              <p>Hushku's vet directory helps users find veterinary clinics. Please note:</p>
+            <Section title="8. Pet Health Information">
+              <p>Hushku helps you keep your pet&apos;s care organised. Please note:</p>
               <ul>
-                <li>Vet listings may be sourced from third-party directories or submitted by users. We do not guarantee the accuracy, availability, or quality of any listed veterinary service.</li>
-                <li>Hushku is not a medical service. Nothing on the platform constitutes veterinary advice. Always consult a qualified veterinarian for your pet's health needs.</li>
-                <li>Hushku is not responsible for any outcome resulting from a vet appointment arranged through the platform.</li>
-                <li>In a pet emergency, contact your nearest emergency veterinary clinic directly — do not rely solely on in-app searches.</li>
+                <li>Hushku is not a medical service. Nothing on the platform constitutes veterinary advice. Always consult a qualified veterinarian for your pet&apos;s health needs.</li>
+                <li>Reminders, logs and health records are entered by you and your Care Team. We do not check them for accuracy, and reminders may not arrive if notifications are turned off or your device is offline.</li>
+                <li>If we add vet listings in future, they may come from third-party directories or users, and we will not guarantee their accuracy, availability or quality.</li>
+                <li>In a pet emergency, contact your nearest emergency veterinary clinic directly.</li>
               </ul>
             </Section>
 
@@ -148,14 +148,11 @@ export default function TermsPage() {
               </ul>
             </Section>
 
-            <Section title="11. Premium Features">
-              <p>Hushku offers optional premium features available through a paid subscription (&quot;Hushku Premium&quot;). By purchasing Premium:</p>
+            <Section title="11. Price">
+              <p>Hushku is free to use. There are no subscriptions or in-app purchases.</p>
               <ul>
-                <li>Subscriptions are billed according to the pricing displayed at the time of purchase, via the Apple App Store or Google Play Store.</li>
-                <li>Subscriptions auto-renew unless cancelled at least 24 hours before the renewal date through your App Store or Google Play account settings.</li>
-                <li>Refunds are subject to the refund policies of Apple App Store or Google Play Store respectively. We do not issue direct refunds for in-app purchases.</li>
-                <li>We reserve the right to change premium pricing or features with reasonable notice to subscribers.</li>
-                <li>Free core features (matching, messaging, adoption browsing, lost & found, vet search, basic health records) will remain available to all users regardless of subscription status.</li>
+                <li>If we ever introduce optional paid features, we will update these Terms and tell you before anything is charged.</li>
+                <li>The core features (requests and messaging, adoption and fostering, lost and found alerts, care tracking and Care Team, and health records) will stay free.</li>
               </ul>
             </Section>
 
@@ -247,7 +244,7 @@ function Intro() {
         (collectively, the &quot;Service&quot;). Please read these Terms carefully before using the Service.
       </p>
       <p className="text-sm leading-7 text-slate-gray mt-3">
-        Hushku is a pet super-app offering playdate matching, direct messaging, adoption, fostering, shelter discovery, lost &amp; found alerts, vet discovery, pet health records, push notifications, and premium features. These Terms apply to all features of the Service.
+        Hushku is an app for dog and cat owners and shelters offering playdate and walk requests, messaging, adoption and fostering, shelter profiles, lost &amp; found alerts, pet care tracking with a shared Care Team, pet health records and push notifications. These Terms apply to all features of the Service.
       </p>
     </div>
   );

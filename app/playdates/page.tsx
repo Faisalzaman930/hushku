@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BookOpen, Footprints, Heart, LifeBuoy, MapPin, MessageCircle, SlidersHorizontal } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Dog & Cat Playdate App: Meet Pets Nearby | Hushku";
+const TITLE = "Dog & Cat Playdate App: Meet Pets Nearby";
 const DESC =
-  "Find dogs and cats nearby who want a playdate or a walk buddy. Filter by distance, species and purpose, send an invite from their profile, and plan it in chat. Free on iPhone and Android.";
+  "Find dogs and cats nearby for playdates and walks. Filter by distance and what they’re looking for, send an invite, and chat when it’s accepted.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "dog playdate app, find dog playdates near me, cat playdates, dog walking buddy, pet playdate app, puppy playdates",
   alternates: { canonical: "https://hushku.app/playdates" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/playdates" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/playdates", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

@@ -776,6 +776,7 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
       { slug: "what-is-hip-dysplasia-in-dogs", title: "What Is Hip Dysplasia?", type: "definition" },
       { slug: "what-is-bloat-in-dogs", title: "What Is Bloat / GDV in Dogs?", type: "definition" },
       { slug: "senior-pet-care-guide", title: "Senior Pet Care Guide", type: "guide" },
+      { slug: "why-is-my-dog-restless-at-night", title: "Why Is My Dog Restless at Night?", type: "guide" },
       { slug: "how-to-trim-dog-nails-at-home", title: "How to Trim Dog Nails at Home", type: "how-to" },
       { slug: "best-pet-health-parenting-apps", title: "Best Pet Health Tracking Apps", type: "article" },
     ],

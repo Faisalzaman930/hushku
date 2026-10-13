@@ -370,7 +370,17 @@ function CompareInner() {
 
 export default function BreedComparePage() {
   return (
-    <Suspense>
+    <Suspense
+      fallback={
+        <ToolLayout
+          title="Dog &amp; Cat Breed Comparison Tool"
+          subtitle="Side-by-Side Breed Analysis"
+          description="Search and compare any two dog breeds across 28 attributes — temperament, grooming, health, trainability, and more."
+        >
+          <div className="py-24 text-center text-[17px] text-label-2">Choose two breeds to compare.</div>
+        </ToolLayout>
+      }
+    >
       <CompareInner />
     </Suspense>
   );

@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BookOpen, Building2, HeartHandshake, Home, LifeBuoy, MapPin, MessageCircle, Users } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Animal Shelters & Rescues Near You | Hushku";
+const TITLE = "Animal Shelters & Rescues Near You";
 const DESC =
-  "Find animal shelters and rescues near you, see the dogs and cats they have for adoption and fostering, and get in touch in the app. Free for owners and for shelters.";
+  "Find animal shelters and rescues near you, see their dogs and cats for adoption and fostering, and get in touch. Free for owners and shelters.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "animal shelters near me, dog rescue near me, cat rescue near me, shelter app, rescue organisations",
   alternates: { canonical: "https://hushku.app/shelters" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/shelters" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/shelters", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

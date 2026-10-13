@@ -175,6 +175,90 @@ Witness (optional): _________________________ Date: __________`,
   },
 
   {
+    slug: "pet-sitter-instructions-template",
+    title: "Pet Sitter Instructions Template (Free Handover Sheet)",
+    seoTitle: "Pet Sitter Instructions Template: Free Handover Sheet",
+    shortTitle: "Pet Sitter Instructions",
+    seoDescription: "A free pet sitter instructions template: feeding, walks, medication, vet and emergency contacts, house notes and a daily log, all on one handover sheet.",
+    icon: "📝",
+    tier: 1,
+    category: "Care & Sitting",
+    targetKeywords: ["pet sitter instructions template", "dog sitter checklist", "pet sitter handover sheet", "cat sitter instructions"],
+    publishDate: "October 2026",
+    lastUpdated: "October 2026",
+    readTime: "5 Min Read",
+    quickAnswer: "A pet sitter instructions sheet tells whoever is looking after your pet everything they need: when and what to feed, walks, medication, quirks, house rules and who to call in an emergency.",
+    intro: `Whether it's a professional sitter, a dog walker, a neighbour or a family member, the person looking after your pet needs the same things: the routine, the quirks and the numbers to call. Writing it down once saves a dozen texts and means nothing important lives only in your head.
+
+This free template covers everything a sitter needs on one page. Fill it in, print it or share it, and leave it somewhere obvious. If you use the Hushku app, you can also add your sitter to your pet's Care Team for the days they're helping: they'll see the same reminders and checklist you do, tick things off as they go, and you'll see what's been done.`,
+    whenYouNeedIt: [
+      "Going away and leaving your pet with a sitter, friend or family member",
+      "A dog walker or drop-in sitter visiting while you're at work",
+      "Splitting care between two households or flatmates",
+      "Leaving your pet at a boarding kennel or cattery",
+    ],
+    whatToInclude: [
+      { title: "Pet details", items: ["Name, age, breed, weight", "Microchip number", "Photo for identification", "Personality, fears and quirks"] },
+      { title: "Daily routine", items: ["Meal times, food and amounts", "Water and treats", "Walk times, route and length", "Toilet routine and litter tray (cats)", "Bedtime and where they sleep"] },
+      { title: "Medication and health", items: ["Medication name, dose and timing", "How to give it (in food, with a treat)", "Allergies and foods to avoid", "Signs that something is wrong"] },
+      { title: "Contacts", items: ["Your phone number and where you'll be", "Vet name, address and phone", "Nearest 24-hour emergency vet", "A backup person who can help"] },
+      { title: "House notes", items: ["Keys, alarm and Wi-Fi", "Where food, leads and supplies are", "Rooms or furniture that are off limits", "Rules about visitors, other dogs and the garden"] },
+    ],
+    stateNotes: `**Emergencies:** Give your sitter written permission to take your pet to a vet and a spending limit for emergency treatment. Many vets will ask for it.\n\n**Microchip:** Make sure your contact details on the microchip database are up to date before you leave.`,
+    templateText: `PET SITTER INSTRUCTIONS
+
+Pet name: [NAME]          Species / breed: [SPECIES / BREED]
+Age: [AGE]                Weight: [WEIGHT]
+Microchip number: [NUMBER]
+
+ABOUT [NAME]
+Personality: [e.g. friendly with people, nervous of bikes]
+Fears and quirks: [e.g. hides during thunderstorms]
+
+DAILY ROUTINE
+Breakfast: [TIME] — [FOOD AND AMOUNT]
+Dinner: [TIME] — [FOOD AND AMOUNT]
+Treats allowed: [WHICH AND HOW MANY]
+Water: Fresh water [WHERE], refilled [HOW OFTEN]
+Walks: [TIMES], [LENGTH], usual route [ROUTE]. Lead on near [ROADS / OTHER DOGS].
+Toilet / litter tray: [ROUTINE]
+Bedtime: [TIME], sleeps [WHERE]
+
+MEDICATION
+Name: [MEDICATION]   Dose: [DOSE]   When: [TIME]
+How to give it: [e.g. hidden in cheese]
+Allergies / do not feed: [LIST]
+
+WATCH FOR
+Call me or the vet if you see: [e.g. not eating for a day, vomiting, limping, lethargy]
+
+CONTACTS
+Me: [NAME, PHONE]   Away at: [WHERE, DATES]
+Vet: [CLINIC, ADDRESS, PHONE]
+24-hour emergency vet: [CLINIC, ADDRESS, PHONE]
+Backup contact: [NAME, PHONE]
+Emergency spending limit agreed: [AMOUNT]
+
+HOUSE NOTES
+Keys / alarm: [DETAILS]
+Food and supplies are: [WHERE]
+Leads, bags and towels: [WHERE]
+Off limits: [ROOMS / FURNITURE]
+Other notes: [ANYTHING ELSE]
+
+DAILY LOG
+Date | Fed (AM/PM) | Walk | Medication | Notes
+[    ] | [    ] | [    ] | [    ] | [    ]`,
+    faqs: [
+      { q: "What should I leave for a pet sitter?", a: "Written instructions covering meals, walks, medication, quirks and house rules; your phone number and your vet's; the nearest 24-hour emergency vet; enough food, medication and supplies for the whole stay plus a few extra days; and written permission for the sitter to take your pet to a vet." },
+      { q: "How can my sitter and I keep track of what's been done?", a: "A daily log on the sheet works. If you both use the Hushku app, add your sitter to your pet's Care Team: they tick off meals, walks and medication as they go, and you see it on your phone, with who did it." },
+      { q: "Should I give my sitter permission to take my pet to the vet?", a: "Yes. Write a short note giving them permission to seek treatment, with a spending limit for emergencies, and tell your vet in advance if you can." },
+    ],
+    relatedSlugs: ["pet-sitting-contract-template-free", "pet-medical-history-template", "pet-sitting-invoice-template"],
+    downloadFormats: ["PDF", "Google Docs", "Word (.docx)"],
+  },
+
+  {
     slug: "pet-medical-history-template",
     title: "Pet Medical History Template (Free, Printable)",
     seoTitle: "Pet Medical History Template — Free Printable & Editable 2026",

@@ -1,5 +1,3 @@
-"use client";
-
 import { articles } from "../data/articles";
 import { guides } from "../data/guides";
 import { howToArticles } from "../data/howto";
@@ -8,7 +6,7 @@ import { breedArticles } from "../data/breed-articles";
 import { definitionArticles } from "../data/definition-articles";
 import { pillarPages } from "../data/pillars";
 import Link from "next/link";
-import { useMemo, useState, useEffect, Suspense } from "react";
+import ResourcesFilter from "./ResourcesFilter";
 import type { LucideIcon } from "lucide-react";
 import {
   AlertTriangle, ArrowRight, BookOpen, Calendar, ChevronRight, Dog, GraduationCap, Lightbulb,
@@ -210,6 +208,7 @@ const CLUSTERS: ClusterDef[] = [
       r.type === "symptom" ||
       r.slug === "complete-guide-to-pet-health" ||
       r.slug === "senior-pet-care-guide" ||
+      r.slug === "why-is-my-dog-restless-at-night" ||
       (r.type === "definition" && r.tags.some(t =>
         ["Respiratory", "Infectious Disease", "Dog Health", "Cat Health"].includes(t)
       )),
@@ -231,10 +230,7 @@ const CLUSTERS: ClusterDef[] = [
 ];
 
 function ResourcesHubContent() {
-  const [activeCluster, setActiveCluster] = useState<string>("all");
-  const [activeSection, setActiveSection] = useState<string>("");
-
-  const allResources: ResourceCard[] = useMemo(() => [
+  const allResources: ResourceCard[] = [
     ...pillarPages.map(p => ({ slug: p.slug, title: p.title, shortTitle: p.shortTitle, description: p.seoDescription, category: p.category, tags: p.tags, publishDate: p.publishDate, readTime: p.readTime, type: "pillar" as const })),
     ...guides.map(g => ({ slug: g.slug, title: g.title, shortTitle: g.shortTitle, description: g.seoDescription, category: g.category, tags: g.tags, publishDate: g.publishDate, readTime: g.readTime, type: "guide" as const })),
     ...howToArticles.map(a => ({ slug: a.slug, title: a.title, shortTitle: a.shortTitle, description: a.seoDescription, category: a.category, tags: a.tags, publishDate: a.publishDate, readTime: a.readTime, type: "how-to" as const })),
@@ -242,17 +238,14 @@ function ResourcesHubContent() {
     ...breedArticles.map(a => ({ slug: a.slug, title: a.title, shortTitle: a.shortTitle, description: a.seoDescription, category: a.category, tags: a.tags, publishDate: a.publishDate, readTime: a.readTime, type: "breed" as const })),
     ...definitionArticles.map(a => ({ slug: a.slug, title: a.title, shortTitle: a.shortTitle, description: a.seoDescription, category: a.category, tags: a.tags, publishDate: a.publishDate, readTime: a.readTime, type: "definition" as const })),
     ...articles.map(a => ({ slug: a.slug, title: a.title, shortTitle: a.shortTitle, description: a.seoDescription, category: a.category, tags: ["App Reviews"], publishDate: a.publishDate, readTime: "18 min read", type: "article" as const })),
-  ], []);
+  ];
 
   // Pillar article counts from source data
-  const pillarCounts = useMemo(
-    () => Object.fromEntries(pillarPages.map(p => [p.slug, p.clusterArticles.length])),
-    []
-  );
+  const pillarCounts: Record<string, number> = Object.fromEntries(pillarPages.map(p => [p.slug, p.clusterArticles.length]));
 
   // Item 7: first-section map for duplicate detection
   // Pillar slugs are pre-seeded as "Complete Topic Guides" (shown in hub section above clusters)
-  const slugFirstSection = useMemo(() => {
+  const slugFirstSection = (() => {
     const map = new Map<string, string>();
     allResources.filter(r => r.type === "pillar").forEach(r => map.set(r.slug, "Complete Topic Guides"));
     CLUSTERS.forEach(c => {
@@ -261,30 +254,7 @@ function ResourcesHubContent() {
       });
     });
     return map;
-  }, [allResources]);
-
-  // Item 11: scrollspy — update active section highlight in "all" view
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id.replace("section-", "");
-            setActiveSection(id);
-          }
-        });
-      },
-      { rootMargin: "-20% 0px -65% 0px" }
-    );
-    CLUSTERS.forEach(c => {
-      const el = document.getElementById(`section-${c.id}`);
-      if (el) obs.observe(el);
-    });
-    return () => obs.disconnect();
-  }, []);
-
-  const pill = (active: boolean) =>
-    `inline-flex min-h-9 flex-none items-center gap-1.5 whitespace-nowrap rounded-full px-4 text-[15px] font-medium transition-colors ${active ? "bg-label text-white" : "text-label-2 hover:bg-surface"}`;
+  })();
 
   return (
     <div className="bg-white">
@@ -327,24 +297,10 @@ function ResourcesHubContent() {
         </div>
       </header>
 
-      <nav className="sticky top-14 md:top-[52px] z-40 border-y border-separator bg-white/[0.85] backdrop-blur-[20px] backdrop-saturate-[1.8]" aria-label="Topic filter">
-        <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-          <div className="scrollbar-hide flex gap-1 overflow-x-auto py-2.5">
-            <button type="button" onClick={() => { setActiveCluster("all"); setActiveSection(""); }} aria-pressed={activeCluster === "all"} className={pill(activeCluster === "all")}>
-              All <span className="tabular-nums opacity-60">{allResources.length}</span>
-            </button>
-            {CLUSTERS.map((c) => {
-              const count = allResources.filter(c.filter).length;
-              const isActive = activeCluster === c.id || (activeCluster === "all" && activeSection === c.id);
-              return (
-                <button key={c.id} type="button" onClick={() => { setActiveCluster(c.id); setActiveSection(""); }} aria-pressed={activeCluster === c.id} className={pill(isActive)}>
-                  {c.label} <span className="tabular-nums opacity-60">{count}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
+      <ResourcesFilter
+        total={allResources.length}
+        clusters={CLUSTERS.map((c) => ({ id: c.id, label: c.label, count: allResources.filter(c.filter).length }))}
+      />
 
       <div>
         <QuickToolsStrip />
@@ -367,8 +323,7 @@ function ResourcesHubContent() {
         {CLUSTERS.map((cluster, ci) => {
           const clusterItems = allResources.filter(cluster.filter);
           if (clusterItems.length === 0) return null;
-          const isHidden = activeCluster !== "all" && activeCluster !== cluster.id;
-          const firstItems = clusterItems.filter((r) => slugFirstSection.get(r.slug) === cluster.label);
+                    const firstItems = clusterItems.filter((r) => slugFirstSection.get(r.slug) === cluster.label);
           const dupItems = clusterItems.filter((r) => slugFirstSection.get(r.slug) !== cluster.label);
           const visible = firstItems.slice(0, 6);
           const overflow = firstItems.slice(6);
@@ -379,7 +334,8 @@ function ResourcesHubContent() {
               id={`section-${cluster.id}`}
               aria-labelledby={`cluster-${cluster.id}-heading`}
               className={ci % 2 === 0 ? "bg-white" : "bg-bg-2"}
-              style={isHidden ? { maxHeight: 0, overflow: "hidden" } : { paddingTop: "4rem", paddingBottom: "4rem" }}
+              data-cluster={cluster.id}
+              style={{ paddingTop: "4rem", paddingBottom: "4rem" }}
             >
               <div className="mx-auto max-w-[1200px] px-4 md:px-8">
                 <div className="mb-8 flex items-start justify-between gap-4">
@@ -394,9 +350,9 @@ function ResourcesHubContent() {
                       <p className="mt-1 text-[15px] text-label-2">{cluster.description}</p>
                     </div>
                   </div>
-                  <button type="button" onClick={() => setActiveCluster(cluster.id)} className="mt-1 inline-flex flex-none items-center gap-1 whitespace-nowrap text-[15px] font-medium text-brand-text hover:underline underline-offset-[3px]">
+                  <a href={`#section-${cluster.id}`} data-filter={cluster.id} className="mt-1 inline-flex flex-none items-center gap-1 whitespace-nowrap text-[15px] font-medium text-brand-text hover:underline underline-offset-[3px]">
                     All {clusterItems.length} <ChevronRight size={16} aria-hidden />
-                  </button>
+                  </a>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -456,8 +412,6 @@ function ResourcesHubContent() {
 
 export default function ResourcesHubPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white" />}>
-      <ResourcesHubContent />
-    </Suspense>
+    <ResourcesHubContent />
   );
 }

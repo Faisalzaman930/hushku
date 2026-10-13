@@ -6,22 +6,22 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Flea & Tick Treatment Tracker for Dogs & Cats | Never Miss a Dose — Hushku",
-  description: "Track flea and tick treatments for your dog or cat. Log Frontline, Advocate, NexGard, Bravecto and more — with next-dose reminders and full treatment history. Free on iOS & Android.",
+  title: "Flea & Tick Treatment Tracker for Dogs & Cats",
+  description: "Track flea and tick treatments for your dog or cat, see when the next dose is due, and share it with your care team. Free.",
   keywords: "flea tick treatment tracker, dog flea treatment reminder, cat flea treatment log, flea prevention app, tick treatment reminder, Frontline tracker, NexGard reminder, pet parasite prevention",
   alternates: { canonical: "https://hushku.app/health/flea-tick" },
   openGraph: {
-    title: "Flea & Tick Treatment Tracker | Never Miss a Treatment — Hushku",
+    title: "Flea & Tick Treatment Tracker | Never Miss a Treatment",
     description: "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/flea-tick",
-    images: [{ url: "https://hushku.app/screenshots/app-flea-tick.png", width: 1200, height: 630, alt: "Hushku Flea & Tick Treatment Tracker" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Flea & Tick Treatment Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flea & Tick Treatment Tracker | Never Miss a Treatment — Hushku",
+    title: "Flea & Tick Treatment Tracker | Never Miss a Treatment",
     description: "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-flea-tick.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -70,7 +70,7 @@ const relatedLinks = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Flea & Tick Treatment Tracker — Hushku",
+  "name": "Flea & Tick Treatment Tracker",
   "description": "Track flea and tick treatments for your dog or cat with Hushku. Log treatment dates, set reminders for the next dose, and keep a full treatment history.",
   "url": "https://hushku.app/health/flea-tick",
 };
@@ -119,7 +119,7 @@ export default function FleaTickPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-flea-tick.png" alt="Hushku Flea & Tick Tracker" />
+                  <PhoneFrame src="/og.png" alt="Hushku Flea & Tick Tracker" />
                 </div>
               </div>
             </div>

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import HelpArticle from "../../components/HelpArticle";
 
-const TITLE = "Playdates and Walk Buddies: How It Works | Hushku Help";
+const TITLE = "Playdates and Walk Buddies: How It Works";
 const DESC = "How to find dogs and cats near you in Hushku, filter by what they’re looking for, and send a playdate or walk invite.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center/playdate-matching" },
-  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/playdate-matching" },
+  openGraph: { title: TITLE, description: DESC, type: "article", url: "https://hushku.app/help-center/playdate-matching", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

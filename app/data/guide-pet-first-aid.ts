@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guidePetFirstAid: Guide = {
   slug: "pet-first-aid-complete-guide",
   title: "Pet First Aid: The Complete Emergency Guide for Dog and Cat Owners",
-  seoTitle: "Pet First Aid Complete Guide 2026 | Dog & Cat Emergency Care | Hushku",
+  seoTitle: "Pet First Aid Complete Guide 2026 | Dog & Cat Emergency Care",
   shortTitle: "Pet First Aid Guide",
   seoDescription: "Learn pet first aid: build a kit, master DRSABC, treat bleeding, choking, heatstroke, seizures & poisoning. Be ready for any pet emergency.",
   category: "Expert Guides",
@@ -321,7 +321,7 @@ Bookmark this page, share it with every member of your household, and consider t
 <p class="mb-6">The way you move an injured pet can significantly affect their outcome. Incorrect handling of an animal with a fracture, spinal injury, or internal bleeding can cause additional damage and increase pain dramatically. The goal is to support the whole body, minimise movement, and keep the animal as calm and still as possible.</p>
 <p class="mb-6">For small dogs and cats, place the animal on a flat, rigid surface such as a chopping board or tray, lined with a folded towel. Wrap loosely in a blanket to provide warmth and a sense of security. For larger dogs, use a rigid board or have two people support the body — one at the head and shoulders, one at the hindquarters — lifting together smoothly and horizontally.</p>
 <p class="mb-6">Place the pet in a large, well-ventilated carrier for transport if possible. If not, position them on the back seat on their side, with a rolled towel or blanket preventing them from rolling. Drive smoothly, avoiding sharp braking or acceleration. Have another person ride with the pet to monitor breathing and level of consciousness if possible. Call the veterinary clinic ahead to warn them you are coming — they may be able to meet you at the car.</p>
-<p class="mb-6">If you have lost your pet during or after an emergency and need to report them or search for them, the <a href="/lost-found" class="text-brand-start font-bold hover:underline">Hushku Lost and Found board</a> connects pet owners with finders and local rescue networks across the country. Register your pet's details and upload a recent photograph so that if they are ever found by a stranger, they can be identified and returned quickly.</p>`,
+<p class="mb-6">If your pet goes missing during or after an emergency, post a lost pet report in the <a href="/lost-and-found" class="text-brand-start font-bold hover:underline">Hushku app’s Alerts tab</a> with recent photos and roughly where they were last seen. People nearby see it and can contact you in the app.</p>`,
     },
   ],
   conclusion: `Pet first aid is not a skill you learn once and forget. It requires periodic refreshing, especially as new research updates best practice guidelines and as your individual pet ages and their health needs change. The scenarios described in this guide — from a bee sting to a full cardiac arrest — span an enormous range of severity, but they share one thing in common: calm, prepared owners achieve better outcomes than panicked, unprepared ones.

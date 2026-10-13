@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import CompareButton from "../../../components/CompareButton";
 import Image from "next/image";
 import type { BreedDoc, CatBreedDoc, BreedScores, CatScores, AnyBreed } from "../../../data/breeds";
 import type { BreedContent } from "../../../data/breeds/content";
@@ -16,6 +17,7 @@ interface Props {
   animal: string;
   related: AnyBreed[];
   animalLabel: string;
+  parentLinks?: { name: string; slug: string | null }[];
 }
 
 function ScoreBar({ score, color = "bg-brand-start" }: { score: number | null; color?: string }) {
@@ -71,7 +73,7 @@ const TABS = [
 
 export default function BreedTabs({
   breed, content, catFaqs, dogScoreGroups, dogScoreLabels, catScoreLabels,
-  animal, related, animalLabel,
+  animal, related, animalLabel, parentLinks,
 }: Props) {
   const [activeTab, setActiveTab] = useState("overview");
   const isCat = breed.animal === "cats";
@@ -158,15 +160,16 @@ export default function BreedTabs({
               <div className="mt-4 pt-4 border-t border-brand-start/10">
                 <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-2">Learn about the parent breeds</p>
                 <div className="flex flex-wrap gap-2">
-                  {dog.parentBreeds.split(" and ").map((pb) => {
-                    const slug = pb.trim().toLowerCase().replace(/\s+/g, "-");
-                    return (
-                      <Link key={pb} href={`/breeds/dogs/${slug}`}
+                  {(parentLinks ?? []).map((pb) =>
+                    pb.slug ? (
+                      <Link key={pb.name} href={`/breeds/dogs/${pb.slug}`}
                         className="text-xs font-bold text-brand-start hover:underline bg-brand-start/10 px-3 py-1.5 rounded-full">
-                        {pb.trim()} →
+                        {pb.name} →
                       </Link>
-                    );
-                  })}
+                    ) : (
+                      <span key={pb.name} className="text-xs font-bold text-label-2 bg-surface px-3 py-1.5 rounded-full">{pb.name}</span>
+                    )
+                  )}
                 </div>
               </div>
             )}
@@ -405,10 +408,10 @@ export default function BreedTabs({
         <div className="mt-16 pt-12 border-t border-gray-100">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl font-black text-ebony uppercase tracking-tight">Related {animalLabel}</h2>
-            <Link href={`/tools/breed-compare?a=${breed.slug}`}
+            <CompareButton slug={breed.slug}
               className="text-[10px] font-black uppercase tracking-widest text-brand-start border border-brand-start/30 px-4 py-2 rounded-full hover:bg-brand-start/5 transition-colors">
               🆚 Compare breeds
-            </Link>
+            </CompareButton>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {related.map((b) => (

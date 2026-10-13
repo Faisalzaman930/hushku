@@ -79,7 +79,7 @@ const sampleBreeds = [
   { name: "Poodle", slug: "poodle", trait: "Best hypoallergenic" },
   { name: "Border Collie", slug: "border-collie", trait: "Best for active owners" },
   { name: "Labrador Retriever", slug: "labrador-retriever", trait: "Best for first-time owners" },
-  { name: "German Shepherd", slug: "german-shepherd", trait: "Best guard dog" },
+  { name: "German Shepherd", slug: "german-shepherd-dog", trait: "Best guard dog" },
   { name: "Cavalier King Charles Spaniel", slug: "cavalier-king-charles-spaniel", trait: "Best companion" },
   { name: "Beagle", slug: "beagle", trait: "Best family all-rounder" },
   { name: "Australian Shepherd", slug: "australian-shepherd", trait: "Best for large properties" },

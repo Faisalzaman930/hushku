@@ -3,22 +3,22 @@ import Link from "next/link";
 import { breedsByAnimal, ANIMAL_LABELS } from "../data/breeds";
 
 export const metadata: Metadata = {
-  title: "Dog & Cat Breed Directory | Hushku Hub",
+  title: "Dog & Cat Breed Directory: 450+ Breeds",
   description:
     "Browse 391 dog breeds and counting — full stats on size, temperament, trainability, health, and more. Free breed guides for every pet owner.",
   alternates: { canonical: "https://hushku.app/breeds" },
   openGraph: {
-    title: "Dog & Cat Breed Directory | Hushku",
+    title: "Dog & Cat Breed Directory",
     description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
     type: "website",
     url: "https://hushku.app/breeds",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Dog & Cat Breed Directory | Hushku" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Dog & Cat Breed Directory | Hushku" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dog & Cat Breed Directory | Hushku",
+    title: "Dog & Cat Breed Directory",
     description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -68,6 +68,9 @@ export default function BreedsHubPage() {
             Detailed stats on size, temperament, trainability, health, and
             grooming — for every breed. Free, no sign-up.
           </p>
+          <Link href="/breeds/compare" className="-mt-6 mb-10 inline-flex items-center gap-1 text-[17px] font-medium text-[#FF7A90] hover:underline underline-offset-[3px]">
+            Compare popular breeds side by side →
+          </Link>
           <div className="flex flex-wrap items-end gap-8">
             {animals.map((a) => (
               <div key={a}>

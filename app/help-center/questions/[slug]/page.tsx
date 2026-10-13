@@ -6,6 +6,9 @@ import AppTour from "../../../components/tour/AppTour";
 import { Section, SectionHeader } from "../../../components/ui";
 import { ALL_QUESTIONS, findQuestion } from "../data";
 
+/** Only known pages exist; anything else is a real 404. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return ALL_QUESTIONS.map((q) => ({ slug: q.slug }));
 }
@@ -14,12 +17,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const q = findQuestion(slug);
   if (!q) return {};
-  const title = `${q.q} | Hushku Help`;
+  const title = q.q;
   return {
-    title,
+    title: title.length > 51 || /hushku/i.test(title) ? { absolute: title } : title,
     description: q.short,
     alternates: { canonical: `https://hushku.app/help-center/questions/${q.slug}` },
-    openGraph: { title, description: q.short, type: "article", url: `https://hushku.app/help-center/questions/${q.slug}` },
+    openGraph: { title, description: q.short, type: "article", url: `https://hushku.app/help-center/questions/${q.slug}`, images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
     twitter: { card: "summary_large_image", title, description: q.short },
   };
 }

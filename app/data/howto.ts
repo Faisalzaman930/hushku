@@ -1070,7 +1070,7 @@ Growing in popularity, but require careful formulation. The [AVMA cautions](http
 
 ### Rotation Feeding
 
-Rotating between two or three AAFCO-complete foods reduces dependence on any single source and broadens nutrient diversity. Transition slowly (7–10 days per food) to avoid digestive disruption. See our [food transition guide](/resources/how-to-switch-dog-food) for the full protocol.`,
+Rotating between two or three AAFCO-complete foods reduces dependence on any single source and broadens nutrient diversity. Transition slowly (7–10 days per food) to avoid digestive disruption. See our [food transition guide](/resources/how-to-switch-dog-food-safely) for the full protocol.`,
         tip: "If your pet has a specific health condition (kidney disease, IBD, food allergies, diabetes), choose their food in consultation with a veterinarian or board-certified veterinary nutritionist — not based on marketing claims or online forums.",
       },
       {

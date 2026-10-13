@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BookOpen, Home, LifeBuoy, MessageCircle, Send, ShieldCheck, Sparkles } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Pet Adoption App: Adopt Dogs & Cats Near You | Hushku";
+const TITLE = "Pet Adoption App: Adopt Dogs & Cats Near You";
 const DESC =
-  "Browse dogs and cats waiting for a home near you, from shelters, rescues and owners. Send an adoption request from their profile and talk it through in chat. Free on iPhone and Android.";
+  "Adopt a dog or cat near you. Browse pets from owners and shelters, send an adoption request, and talk it through in chat. Free on iPhone and Android.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "pet adoption app, adopt a dog near me, adopt a cat near me, rescue dogs for adoption, shelter pets",
   alternates: { canonical: "https://hushku.app/adoption" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/adoption" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/adoption", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

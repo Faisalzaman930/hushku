@@ -26,9 +26,9 @@ import WaitingList from "../components/WaitingList";
 import SeeItInTheApp from "../components/tour/SeeItInTheApp";
 import { ChipList, Device, LinkCard, Section, SectionHeader, Steps } from "../components/ui";
 
-const TITLE = "Care Team: Share Your Pet’s Care With Family, Partners and Sitters | Hushku";
+const TITLE = "Care Team: Share Pet Care With Family and Sitters";
 const DESC =
-  "Hushku Care Team puts your pet’s day on everyone’s phone. Invite your partner, family or pet sitter, tick off feeds, walks and meds together, see who did what, and send a gentle reminder. Free.";
+  "Share your pet’s care with family, partners and sitters. Tick off feeds, walks and meds together, see who did what, and send a reminder. Free.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   keywords:
     "shared pet care app, pet care app for couples, family dog feeding tracker, did anyone feed the dog, share pet care with sitter, dog walker app, pet care schedule app, co-parenting pet app",
   alternates: { canonical: "https://hushku.app/care-team" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/care-team" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/care-team", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 
@@ -299,7 +299,7 @@ export default function CareTeamPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <LinkCard icon={LifeBuoy} title="Care Team: step by step" body="The full guide, with every screen." href="/help-center/care-team" />
             <LinkCard icon={Syringe} title="Health and care" body="Reminders, weight, records, flea and tick and heat cycles." href="/health" />
-            <LinkCard icon={Briefcase} title="Pet sitter cost calculator" body="What a sitter or walker costs near you." href="/tools/sitting-comparison" />
+            <LinkCard icon={Briefcase} title="Pet sitter instructions template" body="A free handover sheet for your sitter or walker." href="/templates/pet-sitter-instructions-template" />
           </div>
         </div>
       </Section>

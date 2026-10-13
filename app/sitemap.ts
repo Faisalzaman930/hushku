@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { ALL_QUESTIONS } from "./help-center/questions/data";
+import { COMPARISONS } from "./data/breeds/comparisons";
 import { articles } from "./data/articles";
 import { guides } from "./data/guides";
 import { howToArticles } from "./data/howto";
@@ -11,7 +12,18 @@ import { templateDocs } from "./data/templates";
 import { breedsByAnimal } from "./data/breeds";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.app";
-const TODAY = new Date();
+/** When the site's own pages last changed. Update it when they change, not on every build. */
+const TODAY = new Date("2026-10-14");
+
+/** An article's last-updated date from its data ("April 2026", "2026-03-02"), else the site date. */
+function contentDate(item: { lastUpdated?: string; updatedDate?: string; publishDate?: string }): Date {
+  for (const raw of [item.lastUpdated, item.updatedDate, item.publishDate]) {
+    if (!raw) continue;
+    const d = new Date(/^[A-Za-z]+ \d{4}$/.test(raw) ? `1 ${raw}` : raw);
+    if (!Number.isNaN(d.getTime())) return d;
+  }
+  return TODAY;
+}
 
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   // ── Core ─────────────────────────────────────────────────────────────────
@@ -27,6 +39,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/adoption`,                changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/playdates`,               changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/social`,                  changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
+  { url: `${BASE_URL}/vets`,                  changeFrequency: "weekly",  priority: 0.6, lastModified: TODAY },
   { url: `${BASE_URL}/fostering`,               changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/shelters`,                changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
   { url: `${BASE_URL}/lost-and-found`,          changeFrequency: "weekly",  priority: 0.9, lastModified: TODAY },
@@ -102,43 +115,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const resourceRoutes: MetadataRoute.Sitemap = [
     ...pillarPages.map((p) => ({
       url: `${BASE_URL}/resources/${p.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(p as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     })),
     ...guides.map((g) => ({
       url: `${BASE_URL}/resources/${g.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(g as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...breedArticles.map((b) => ({
       url: `${BASE_URL}/resources/${b.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(b as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...howToArticles.map((h) => ({
       url: `${BASE_URL}/resources/${h.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(h as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...symptomArticles.map((s) => ({
       url: `${BASE_URL}/resources/${s.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(s as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...definitionArticles.map((d) => ({
       url: `${BASE_URL}/resources/${d.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(d as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
     ...articles.map((a) => ({
       url: `${BASE_URL}/resources/${a.slug}`,
-      lastModified: TODAY,
+      lastModified: contentDate(a as { lastUpdated?: string; publishDate?: string }),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
@@ -170,5 +183,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: TODAY,
   }));
 
-  return [...STATIC_ROUTES, ...resourceRoutes, ...templateRoutes, ...breedRoutes, ...questionRoutes];
+  const compareRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/breeds/compare`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
+    ...COMPARISONS.map((c) => ({ url: `${BASE_URL}/breeds/compare/${c.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: TODAY })),
+  ];
+
+  // One entry per URL: the generated routes win over any hand-listed duplicate.
+  const all = [...STATIC_ROUTES, ...resourceRoutes, ...templateRoutes, ...breedRoutes, ...questionRoutes, ...compareRoutes];
+  const byUrl = new Map<string, MetadataRoute.Sitemap[number]>();
+  for (const entry of all) byUrl.set(entry.url, entry);
+  return [...byUrl.values()];
 }

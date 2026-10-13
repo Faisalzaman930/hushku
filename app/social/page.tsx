@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ComingSoonPage from "../components/ComingSoonPage";
 
-const TITLE = "Pet Social Feed: Coming Soon | Hushku";
+const TITLE = "Pet Social Feed: Coming Soon";
 const DESC =
   "A neighbourhood feed of the dogs and cats around you is planned for Hushku. It isn’t in the app yet. Join the waitlist to hear when it arrives.";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/social" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/social" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/social", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

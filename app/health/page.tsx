@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { Bell, CalendarDays, ClipboardList, FileHeart, Flower2, LifeBuoy, Scale, ShieldCheck, Users } from "lucide-react";
 import FeaturePage from "../components/FeaturePage";
 
-const TITLE = "Pet Health & Care App: Reminders, Weight & Records | Hushku";
+const TITLE = "Pet Health & Care App: Reminders, Weight & Records";
 const DESC =
-  "Your pet’s day in one place: care reminders, a quick log of meals and walks, weight tracking, health records, flea and tick treatments and heat cycles, shared with a care team. Free.";
+  "Reminders, a quick log of meals and walks, weight, health records, flea and tick and heat cycles, shared with your care team. Free.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   keywords: "pet health app, pet care reminders, dog weight tracker, pet health records, flea and tick reminder, dog heat cycle tracker",
   alternates: { canonical: "https://hushku.app/health" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/health" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/health", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

@@ -3,29 +3,29 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Free Pet Care Calculators & Tools | 25+ Free Tools | Hushku",
-  description: "25+ free interactive pet care tools — calorie calculators, breed quizzes, symptom checkers, toxic food databases, vaccination schedules, and more. Built for dog and cat owners worldwide. No account required.",
+  title: "Free Pet Care Calculators & Tools | 25+ Free Tools",
+  description: "25+ free pet tools that work in your browser: age calculator, toxic food checker, symptom checker, breed compare, calorie and exercise calculators.",
   keywords: "free pet care tools, dog calorie calculator, pet symptom checker, toxic food checker, dog breed quiz, cat breed quiz, pet age calculator, puppy weight predictor, dog exercise calculator",
   alternates: { canonical: "https://hushku.app/tools" },
   openGraph: {
-    title: "Free Pet Care Calculators & Tools | Hushku",
+    title: "Free Pet Care Calculators & Tools",
     description: "25+ free interactive pet care tools for dog and cat owners. Calorie calculators, breed quizzes, symptom checkers, and more.",
     type: "website",
     url: "https://hushku.app/tools",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Free Pet Care Tools" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Free Pet Care Tools" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "25+ Free Pet Care Tools | Hushku",
+    title: "25+ Free Pet Care Tools",
     description: "Free dog & cat calculators, breed quizzes, symptom checkers and more. No account required.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
 export default function ToolsHubPage() {
   const tools = [
     {
-      title: "Pet Sitter Cost Calculator",
+      title: "Pet Sitter Cost Calculator: What It Costs",
       desc: "Instant web estimator for professional care based on pet type and quantity.",
       href: "/tools/pet-sitter-cost",
       icon: "💰",
@@ -67,7 +67,7 @@ export default function ToolsHubPage() {
       category: "Safety Tool",
     },
     {
-      title: "Pet Symptom Checker",
+      title: "Pet Symptom Checker: Is It an Emergency?",
       desc: "Get an instant urgency rating for common pet health symptoms.",
       href: "/tools/symptom-checker",
       icon: "🏥",
@@ -81,7 +81,7 @@ export default function ToolsHubPage() {
       category: "Breed Guide",
     },
     {
-      title: "Pet Name Generator",
+      title: "Pet Name Generator: Dog & Cat Name Ideas",
       desc: "Find the perfect name based on species, color, or personality trait.",
       href: "/tools/name-generator",
       icon: "✨",
@@ -168,7 +168,7 @@ export default function ToolsHubPage() {
       category: "Growth Calculator",
     },
     {
-      title: "Pet Calorie Calculator",
+      title: "Pet Calorie Calculator: Daily Needs, Dogs & Cats",
       desc: "Calculate precise daily calorie needs using the RER formula — adjusts for life stage, activity, and neuter status.",
       href: "/tools/calorie-calculator",
       icon: "🔥",
@@ -189,7 +189,7 @@ export default function ToolsHubPage() {
       category: "Health Calculator",
     },
     {
-      title: "Dog Exercise Calculator",
+      title: "Dog Exercise Calculator: How Much Do They Need?",
       desc: "Get a daily exercise recommendation tailored to your dog's breed energy level, age, and health status.",
       href: "/tools/exercise-calculator",
       icon: "🏃",

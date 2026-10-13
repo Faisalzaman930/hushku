@@ -6,22 +6,22 @@ import PhoneFrame from "../../components/PhoneFrame";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pet Care Reminders App | Dog & Cat Medication, Vaccination & Vet Reminders — Hushku",
-  description: "Never miss a pet care task. Set recurring push notification reminders for dog and cat medication, vaccinations, vet appointments, flea treatment, feeding, and walks. Free on iOS & Android.",
+  title: "Pet Care Reminders: Meds, Vaccines & Vet Visits",
+  description: "Set feeding, walk, medication, vaccine and vet reminders that repeat daily, weekly or monthly, and share them with your care team.",
   keywords: "pet care reminders app, dog medication reminder, cat vaccination reminder, vet appointment reminder app, pet reminder app, flea treatment reminder, dog care schedule, pet health reminders",
   alternates: { canonical: "https://hushku.app/health/reminders" },
   openGraph: {
-    title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders — Hushku",
+    title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders",
     description: "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more. Push notifications straight to your phone. Free on iOS & Android.",
     type: "website",
     url: "https://hushku.app/health/reminders",
-    images: [{ url: "https://hushku.app/screenshots/app-reminders.png", width: 1200, height: 630, alt: "Hushku Pet Care Reminders App" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku Pet Care Reminders App" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders — Hushku",
+    title: "Pet Care Reminders App | Medication, Vaccination & Vet Appointment Reminders",
     description: "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more. Push notifications straight to your phone. Free on iOS & Android.",
-    images: ["https://hushku.app/screenshots/app-reminders.png"],
+    images: ["https://hushku.app/og.png"],
   },
 };
 
@@ -70,7 +70,7 @@ const relatedLinks = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Pet Care Reminders App — Hushku",
+  "name": "Pet Care Reminders App",
   "description": "Never miss a pet care task. Set recurring reminders for walks, feeding, medication, vaccinations, vet appointments, and more.",
   "url": "https://hushku.app/health/reminders",
 };
@@ -119,7 +119,7 @@ export default function RemindersPage() {
               </div>
               <div className="flex justify-center lg:justify-end">
                 <div className="w-[260px]" style={{ animation: "float-a 3.5s ease-in-out infinite" }}>
-                  <PhoneFrame src="/screenshots/app-reminders.png" alt="Hushku Pet Care Reminders" />
+                  <PhoneFrame src="/og.png" alt="Hushku Pet Care Reminders" />
                 </div>
               </div>
             </div>

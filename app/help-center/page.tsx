@@ -5,15 +5,15 @@ import { Section, SectionHeader } from "../components/ui";
 import QuestionSearch from "./questions/QuestionSearch";
 import { ALL_QUESTIONS, findQuestion } from "./questions/data";
 
-const TITLE = "Help Center: How to Use the Hushku App";
+const TITLE = "Help Center: How to Use the App";
 const DESC =
-  "Answers and step-by-step guides for the Hushku app: multiple pets, sharing care with family and sitters, reminders, playdates, adoption, lost pets, privacy and more, with interactive demos.";
+  "Answers and step-by-step guides for the Hushku app, with interactive demos: multiple pets, Care Team, reminders, adoption, lost pets and more.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/help-center" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/help-center" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/help-center", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

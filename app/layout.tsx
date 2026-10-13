@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "Hushku: The Free App for Dog & Cat Owners",
     template: "%s | Hushku",
   },
-  description: "Hushku is the free app for dog and cat owners: playdates, adoption and fostering, lost and found reports, shelters and your pet’s daily care, in one place. Coming soon to iPhone and Android.",
+  description: "The free app for dog and cat owners: playdates, adoption, lost and found alerts and shared daily care. Coming soon to iPhone and Android.",
   alternates: {
     canonical: BASE_URL,
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     url: BASE_URL,
     title: "Hushku: The Free App for Dog & Cat Owners",
-    description: "Hushku is the free app for dog and cat owners: playdates, adoption and fostering, lost and found reports, shelters and your pet’s daily care, in one place. Coming soon to iPhone and Android.",
+    description: "The free app for dog and cat owners: playdates, adoption, lost and found alerts and shared daily care. Coming soon to iPhone and Android.",
     images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }],
   },
   twitter: {

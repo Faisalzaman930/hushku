@@ -1,3 +1,4 @@
+import { metaDesc, shortTitle } from "../../lib/seo";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -8,6 +9,9 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+/** Only known pages exist; anything else is a real 404. */
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return templateDocs.map((t) => ({ slug: t.slug }));
 }
@@ -17,21 +21,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = templateDocs.find((d) => d.slug === slug);
   if (!t) return {};
   return {
-    title: t.seoTitle,
-    description: t.seoDescription,
+    title: shortTitle(t.seoTitle),
+    description: metaDesc(t.seoDescription),
     alternates: { canonical: `https://hushku.app/templates/${t.slug}` },
     openGraph: {
-      title: t.seoTitle,
-      description: t.seoDescription,
+      title: shortTitle(t.seoTitle),
+      description: metaDesc(t.seoDescription),
       type: "article",
       url: `https://hushku.app/templates/${t.slug}`,
-      images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630 }],
+      images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: t.seoTitle,
-      description: t.seoDescription,
-      images: ["https://hushku.app/screenshots/app-playdates.png"],
+      title: shortTitle(t.seoTitle),
+      description: metaDesc(t.seoDescription),
+      images: ["https://hushku.app/og.png"],
     },
   };
 }
@@ -41,7 +45,7 @@ function JsonLd({ t }: { t: (typeof templateDocs)[0] }) {
     "@context": "https://schema.org",
     "@type": "HowTo",
     name: t.title,
-    description: t.seoDescription,
+    description: metaDesc(t.seoDescription),
     datePublished: "2026-04-01",
     dateModified: "2026-04-01",
     step: t.whatToInclude.map((s, i) => ({

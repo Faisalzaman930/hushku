@@ -560,7 +560,7 @@ This is not disobedience. It is the dog operating precisely as designed. Selecti
     ],
     relatedSlugs: ["how-to-stop-dog-pulling-on-leash", "best-gps-pet-tracking-apps", "complete-guide-to-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
-    ctaFeature: "/lost-found",
+    ctaFeature: "/lost-and-found",
     ctaText: "Set Up Lost Pet Alerts",
   },
 ];

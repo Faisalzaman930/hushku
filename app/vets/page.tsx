@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import ComingSoonPage from "../components/ComingSoonPage";
 
-const TITLE = "Find a Vet Near You: Coming Soon | Hushku";
+const TITLE = "Find a Vet Near You: Coming Soon";
 const DESC = "Finding a trusted vet near you is planned for Hushku. It isn’t in the app yet. Join the waitlist to hear when it arrives.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
   alternates: { canonical: "https://hushku.app/vets" },
-  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/vets" },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/vets", images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku: every pet app, one quiet place" }] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 

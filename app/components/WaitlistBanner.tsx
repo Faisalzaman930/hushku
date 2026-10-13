@@ -33,8 +33,8 @@ export default function WaitlistBanner() {
             </Link>
           </p>
         </div>
-        <div className="flex justify-center self-end">
-          <Device screen="welcome" className="translate-y-6" />
+        <div className="flex justify-center pb-10 md:pb-16">
+          <Device screen="welcome" />
         </div>
       </div>
     </section>

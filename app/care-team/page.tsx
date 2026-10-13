@@ -116,19 +116,19 @@ export default function CareTeamPage() {
           </div>
 
           <figure className="flex flex-col items-center gap-4">
-            <div className="relative flex w-full items-end justify-center gap-4 overflow-hidden rounded-[32px] bg-surface px-4 pt-12 md:gap-16">
+            <div className="relative flex w-full items-start justify-center gap-4 overflow-hidden rounded-[32px] bg-surface px-4 py-10 md:gap-16 md:py-14">
               <div className="flex flex-col items-center gap-3">
                 <span className="rounded-full bg-white px-3 py-1 text-[13px] font-semibold text-label ring-1 ring-separator">Faisal’s phone</span>
-                <Device screen="home" size="sm" className="translate-y-6 md:hidden" />
-                <Device screen="home" className="hidden translate-y-6 md:block" priority />
+                <Device screen="home" size="sm" priority className="md:hidden" />
+                <Device screen="home" className="hidden md:block" priority />
               </div>
               <div aria-hidden className="absolute top-1/2 left-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full bg-white px-4 py-2 text-[15px] font-semibold text-label shadow-[0_8px_24px_rgba(29,27,25,0.12)] md:flex">
                 <ArrowLeftRight size={18} className="text-brand-text" /> In sync
               </div>
               <div className="flex flex-col items-center gap-3">
                 <span className="rounded-full bg-white px-3 py-1 text-[13px] font-semibold text-label ring-1 ring-separator">Sarah’s phone</span>
-                <Device screen="home-synced" size="sm" className="translate-y-6 md:hidden" />
-                <Device screen="home-synced" className="hidden translate-y-6 md:block" />
+                <Device screen="home-synced" size="sm" priority delay={200} className="md:hidden" />
+                <Device screen="home-synced" priority delay={200} className="hidden md:block" />
               </div>
             </div>
             <figcaption className="text-[13px] text-label-2">Faisal ticks off Bella’s heartworm tablet. On Sarah’s phone, it’s done, by Faisal.</figcaption>
@@ -233,7 +233,7 @@ export default function CareTeamPage() {
           />
           <div className="flex justify-center gap-6">
             <Device screen="remind-sheet" />
-            <Device screen="notifications" size="sm" tilt="right" className="hidden lg:block" />
+            <Device screen="notifications" size="sm" tilt="right" delay={150} className="hidden lg:block" />
           </div>
         </div>
       </Section>

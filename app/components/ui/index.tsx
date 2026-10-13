@@ -5,6 +5,7 @@
  */
 import Link from "next/link";
 import Image from "next/image";
+import DeviceMotion from "./DeviceMotion";
 import type { ReactNode } from "react";
 import { ChevronRight, type LucideIcon } from "lucide-react";
 
@@ -187,41 +188,46 @@ export function Device({
   size = "md",
   tilt,
   priority = false,
+  delay = 0,
   className = "",
 }: {
   screen: AppScreen;
   size?: "sm" | "md";
   tilt?: "left" | "right";
   priority?: boolean;
+  /** Entrance delay in ms, to stagger phones that appear together. */
+  delay?: number;
   className?: string;
 }) {
   const w = size === "sm" ? "w-[200px] md:w-[220px] rounded-[38px] p-2" : "w-[260px] md:w-[280px] rounded-[46px] p-2.5";
   const r = size === "sm" ? "rounded-[30px]" : "rounded-[36px]";
-  const t = tilt === "left" ? "motion-safe:-rotate-[4deg] translate-y-4" : tilt === "right" ? "motion-safe:rotate-[4deg] translate-y-4" : "";
+  const t = tilt === "left" ? "motion-safe:-rotate-[4deg]" : tilt === "right" ? "motion-safe:rotate-[4deg]" : "";
   return (
-    <div className={cx("relative shrink-0 bg-[#1D1B19] shadow-[inset_0_0_0_2px_#3A3633,0_0_0_1px_rgba(255,255,255,0.08),0_24px_60px_rgba(29,27,25,0.18)]", w, t, className)}>
-      <div className={cx("relative aspect-[393/852] overflow-hidden bg-bg-2", r)}>
-        <Image
-          src={`/app-screens/${screen}.webp`}
-          alt={SCREEN_ALT[screen]}
-          fill
-          sizes={size === "sm" ? "220px" : "280px"}
-          priority={priority}
-          className="object-cover"
-        />
-        <span aria-hidden className="absolute top-2.5 left-1/2 h-[22px] w-[30%] -translate-x-1/2 rounded-full bg-[#1D1B19]" />
+    <DeviceMotion className={cx("h-fit shrink-0 self-center", t, className)} delay={delay} onLoad={priority} radius={size === "sm" ? "rounded-[38px]" : "rounded-[46px]"}>
+      <div className={cx("relative bg-[#1D1B19] shadow-[inset_0_0_0_2px_#3A3633,0_0_0_1px_rgba(255,255,255,0.08),0_24px_60px_rgba(29,27,25,0.18)]", w)}>
+        <div className={cx("relative aspect-[393/852] overflow-hidden bg-bg-2", r)}>
+          <Image
+            src={`/app-screens/${screen}.webp`}
+            alt={SCREEN_ALT[screen]}
+            fill
+            sizes={size === "sm" ? "220px" : "280px"}
+            priority={priority}
+            className="object-cover"
+          />
+          <span aria-hidden className="absolute top-2.5 left-1/2 h-[22px] w-[30%] -translate-x-1/2 rounded-full bg-[#1D1B19]" />
+        </div>
       </div>
-    </div>
+    </DeviceMotion>
   );
 }
 
 /** Hero trio: Discover, Home (centre), Alerts. */
 export function DeviceTrio({ center = "home", left = "discover", right = "alerts" }: { center?: AppScreen; left?: AppScreen; right?: AppScreen }) {
   return (
-    <div className="flex items-end justify-center gap-6 overflow-hidden rounded-[32px] bg-surface px-4 pt-12 md:gap-8">
-      <Device screen={left} size="sm" tilt="left" className="hidden md:block" />
+    <div className="flex items-center justify-center gap-6 rounded-[32px] bg-surface px-4 py-12 md:gap-10 md:py-16">
+      <Device screen={left} size="sm" tilt="left" priority delay={150} className="hidden md:block" />
       <Device screen={center} priority />
-      <Device screen={right} size="sm" tilt="right" className="hidden md:block" />
+      <Device screen={right} size="sm" tilt="right" priority delay={300} className="hidden md:block" />
     </div>
   );
 }

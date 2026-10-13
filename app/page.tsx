@@ -180,8 +180,8 @@ export default function Home() {
       {/* Story: care team */}
       <Section>
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div className="order-2 flex justify-center gap-6 md:order-1">
-            <Device screen="home" size="sm" tilt="left" className="hidden lg:block" />
+          <div className="order-2 flex items-center justify-center gap-6 md:order-1">
+            <Device screen="home" size="sm" tilt="left" delay={150} className="hidden lg:block" />
             <Device screen="home-synced" />
           </div>
           <div className="order-1 md:order-2">
@@ -210,8 +210,8 @@ export default function Home() {
           >
             <TextLink href="/help-center/messaging">How messaging works</TextLink>
           </SectionHeader>
-          <div className="flex justify-center gap-6">
-            <Device screen="pet-profile" size="sm" tilt="left" className="hidden lg:block" />
+          <div className="flex items-center justify-center gap-6">
+            <Device screen="pet-profile" size="sm" tilt="left" delay={150} className="hidden lg:block" />
             <Device screen="chat" />
           </div>
         </div>

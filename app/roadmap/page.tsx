@@ -1,6 +1,6 @@
 import {
   Bell, Building2, Camera, Check, Globe, HeartPulse, Home, Mail, MapPin, MessageCircle,
-  Microscope, Newspaper, Search, ShieldCheck, ShoppingBag, Stethoscope, Users, Video,
+  Footprints, Microscope, Newspaper, Search, ShieldCheck, ShoppingBag, Stethoscope, Users, Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Badge, ButtonLink, Section, SectionHeader } from "../components/ui";
@@ -33,6 +33,7 @@ const PHASES: Phase[] = [
     items: [
       { icon: Newspaper, title: "Social feed", body: "Photos and short updates from the pets and shelters near you, with block, report and privacy controls from day one." },
       { icon: Stethoscope, title: "Vets", body: "Find vets near you and keep their details with your pet’s health records." },
+      { icon: Footprints, title: "Pet sitting and walking", body: "Find trusted sitters and dog walkers near you, and hand over care with your care team." },
       { icon: MapPin, title: "Pet-friendly places", body: "Parks, cafés and stays that welcome pets, near you." },
       { icon: Microscope, title: "Microchip details", body: "Keep your pet’s microchip number on their profile, ready for a lost pet report." },
     ],

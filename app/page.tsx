@@ -42,7 +42,9 @@ const COMPARE: { label: string; values: (boolean | string)[] }[] = [
   { label: "Playdates and walk buddies", values: [true, false, false] },
   { label: "Lost and found reports", values: [true, false, false] },
   { label: "Health and care tracking", values: [true, false, false] },
-  { label: "Pet sitting and walking services", values: [false, false, true] },
+  { label: "Pet sitting and walking services", values: ["Coming soon", false, true] },
+  { label: "Find a vet", values: ["Coming soon", false, false] },
+  { label: "Social feed", values: ["Coming soon", false, false] },
   { label: "Price", values: ["Free", "Free", "Paid services"] },
 ];
 
@@ -60,6 +62,12 @@ function Cell({ v, us }: { v: boolean | string; us: boolean }) {
         <Minus size={18} strokeWidth={2} className="mx-auto text-label-3" aria-hidden />
         <span className="sr-only">No</span>
       </>
+    );
+  if (v === "Coming soon")
+    return (
+      <span className="inline-flex min-h-6 items-center rounded-full bg-white px-2.5 text-[13px] font-semibold whitespace-nowrap text-brand-text ring-1 ring-brand/25">
+        Coming soon
+      </span>
     );
   return <>{v}</>;
 }

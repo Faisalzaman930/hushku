@@ -55,12 +55,12 @@ function ReadingProgress({
     <div className="fixed top-0 left-0 right-0 z-50" style={{ height: "4px", background: "rgba(15,52,96,0.08)" }}>
       <div
         className="h-full transition-all duration-100"
-        style={{ width: `${progress}%`, background: "linear-gradient(90deg,#1D9E75,#5DCAA5)" }}
+        style={{ width: `${progress}%`, background: "#E11A45" }}
       />
       {progress > 2 && (
         <div
           className="absolute right-3 top-1 text-[10px] font-black rounded-full px-2 py-0.5 -translate-y-1/2"
-          style={{ background: "#1D9E75", color: "#fff", marginTop: "10px" }}
+          style={{ background: "#E11A45", color: "#fff", marginTop: "10px" }}
         >
           Ch {activeChapter + 1}/{totalChapters}
         </div>
@@ -147,13 +147,13 @@ function ChapterNav({
             className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all"
             style={{
               background: isActive ? "rgba(29,158,117,0.08)" : "transparent",
-              color: isActive ? "#1D9E75" : "#6b7280",
+              color: isActive ? "#B8143C" : "#6b7280",
             }}
           >
             <span
               className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all"
               style={{
-                background: isActive ? "linear-gradient(135deg,#1D9E75,#5DCAA5)" : "#f3f4f6",
+                background: isActive ? "#E11A45" : "#f3f4f6",
                 color: isActive ? "#fff" : "#9ca3af",
               }}
             >
@@ -341,7 +341,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                     >
                       <span
                         className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[9px] text-white font-black"
-                        style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
+                        style={{ background: "#E11A45" }}
                       >
                         {i + 1}
                       </span>
@@ -373,12 +373,12 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                     >
                       <div
                         className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-lg font-black"
-                        style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+                        style={{ background: "#E11A45", color: "#fff" }}
                       >
                         {i + 1}
                       </div>
                       <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#5DCAA5" }}>
+                        <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#E11A45" }}>
                           Chapter {i + 1}
                         </p>
                         <h2 className="text-xl md:text-2xl font-black leading-tight" style={{ color: "#fff" }}>
@@ -405,7 +405,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                       dangerouslySetInnerHTML={{
                         __html: md(chapter.content).replace(
                           /border-left:[^;"]*(solid\s)?#E11D48/g,
-                          "border-left:4px solid #1D9E75"
+                          "border-left:4px solid #B8143C"
                         ),
                       }}
                     />
@@ -437,12 +437,12 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                       >
                         <div
                           className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-black group-hover:scale-110 transition-transform"
-                          style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}
+                          style={{ background: "#E11A45" }}
                         >
                           →
                         </div>
                         <div>
-                          <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#1D9E75" }}>
+                          <p className="text-[10px] font-black uppercase tracking-widest mb-0.5" style={{ color: "#B8143C" }}>
                             Deep Dive
                           </p>
                           <p className="font-black text-sm text-gray-800 group-hover:text-teal-600 transition-colors">
@@ -458,13 +458,13 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                         <a
                           href={`#${nextAnchor}`}
                           className="inline-flex items-center gap-2 text-sm font-black transition-all group"
-                          style={{ color: "#1D9E75" }}
+                          style={{ color: "#B8143C" }}
                         >
                           <span className="font-bold text-gray-400">Next:</span>
                           {nextChapter.title.split(":")[0].split("(")[0].trim()}
                           <span
                             className="w-7 h-7 rounded-full flex items-center justify-center transition-all"
-                            style={{ background: "rgba(29,158,117,0.1)", color: "#1D9E75" }}
+                            style={{ background: "#FDECEF", color: "#B8143C" }}
                           >
                             →
                           </span>
@@ -489,7 +489,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                 }}
               />
               <div className="relative">
-                <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#5DCAA5" }}>
+                <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#E11A45" }}>
                   {page.ctaFeature}
                 </p>
                 <p className="font-black text-2xl md:text-3xl mb-6 leading-tight" style={{ color: "#fff" }}>
@@ -498,7 +498,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                 <Link
                   href={page.ctaFeature}
                   className="inline-block font-black py-3.5 px-10 rounded-2xl uppercase tracking-widest text-sm hover:opacity-90 active:scale-95 transition-all shadow-xl"
-                  style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)", color: "#fff" }}
+                  style={{ background: "#E11A45", color: "#fff" }}
                 >
                   Learn More →
                 </Link>
@@ -512,7 +512,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
       <section id="cluster" className="py-20 border-t scroll-mt-20" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#1D9E75" }}>
+            <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "#B8143C" }}>
               Complete Resource Cluster
             </p>
             <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight">
@@ -593,7 +593,7 @@ export default function PillarLayout({ page }: { page: PillarPage }) {
                 >
                   <span
                     className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block"
-                    style={{ background: "rgba(29,158,117,0.1)", color: "#1D9E75" }}
+                    style={{ background: "#FDECEF", color: "#B8143C" }}
                   >
                     Complete Guide
                   </span>

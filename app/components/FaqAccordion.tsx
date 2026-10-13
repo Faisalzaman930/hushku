@@ -1,44 +1,26 @@
-"use client";
-
-import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 interface FaqItem {
   q: string;
   a: string;
 }
 
-export default function FaqAccordion({ faqs, title = "Frequently Asked Questions" }: { faqs: FaqItem[]; title?: string }) {
-  const [open, setOpen] = useState<number | null>(0);
-
+export default function FaqAccordion({ faqs, title = "Questions." }: { faqs: FaqItem[]; title?: string }) {
   return (
-    <section className="py-20 bg-white">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <h2 className="text-3xl font-black text-ebony uppercase tracking-tighter mb-12 text-center">{title}</h2>
-        <div className="space-y-3">
+    <section className="bg-bg-2 px-4 py-16 md:px-8 md:py-24">
+      <div className="mx-auto max-w-[680px]">
+        <h2 className="mb-10 text-center text-[32px] leading-[1.12] font-semibold tracking-[-0.015em] text-label md:text-[40px]">
+          {title === "Frequently Asked Questions" ? "Questions." : title}
+        </h2>
+        <div className="border-t border-separator">
           {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className={`border rounded-[1.5rem] overflow-hidden transition-all ${open === i ? "border-brand-start/30 shadow-md" : "border-gray-100"}`}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-7 py-5 text-left"
-              >
-                <span className="font-black text-ebony text-base leading-snug">{faq.q}</span>
-                <span
-                  className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-black transition-all ${
-                    open === i ? "bg-brand-start text-white rotate-45" : "bg-gray-100 text-slate-gray"
-                  }`}
-                >
-                  +
-                </span>
-              </button>
-              <div className={`overflow-hidden transition-all duration-300 ${open === i ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="px-7 pb-6 text-slate-gray leading-relaxed text-sm border-t border-gray-50 pt-4">
-                  {faq.a}
-                </div>
-              </div>
-            </div>
+            <details key={i} className="group border-b border-separator" open={i === 0}>
+              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 text-[19px] leading-[26px] font-semibold tracking-[-0.005em] text-label [&::-webkit-details-marker]:hidden">
+                {faq.q}
+                <ChevronDown size={20} className="flex-none text-label-2 transition-transform duration-200 group-open:rotate-180" />
+              </summary>
+              <p className="pr-10 pb-6 text-[17px] leading-[26px] tracking-[-0.011em] text-label-2">{faq.a}</p>
+            </details>
           ))}
         </div>
       </div>

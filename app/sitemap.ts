@@ -44,7 +44,6 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/help-center/shelters`,                 changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/lost-and-found`,           changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/health-care`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
-  { url: `${BASE_URL}/help-center/social-feed`,              changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/messaging`,                changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/help-center/your-profile`,             changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
 

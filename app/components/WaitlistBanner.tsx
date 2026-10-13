@@ -1,59 +1,40 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import WaitingList from "./WaitingList";
+import { Device, StoreStatus } from "./ui";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
+/** The one closing call to action at the foot of every page (except /join, which is the waitlist). */
 export default function WaitlistBanner() {
+  const pathname = usePathname();
+  if (pathname === "/join") return null;
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#7C3AED] via-[#6D28D9] to-[#4C1D95] py-24 md:py-32">
-      {/* decorative blobs */}
-      <div className="pointer-events-none absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-white/5 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full bg-white/5 blur-3xl" />
-      <div className="pointer-events-none absolute top-0 left-0 right-0 bottom-0"
-        style={{ backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 50%)" }}
-      />
-
-      <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-        {/* badge */}
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/80 uppercase tracking-widest mb-8">
-          <span className="h-2 w-2 rounded-full bg-green-400" />
-          App Store &amp; Google Play — Coming Very Soon
+    <section id="waitlist" aria-labelledby="waitlist-title" className="px-4 py-16 md:px-8 md:py-24">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 overflow-hidden rounded-[32px] bg-surface px-6 pt-10 md:grid-cols-[1.1fr_1fr] md:px-12 md:pt-16">
+        <div className="flex flex-col items-start gap-3 pb-2 md:pb-16">
+          <p className="text-[15px] font-semibold text-brand-text">Get the app</p>
+          <h2 id="waitlist-title" className="text-[28px] leading-[1.16] font-semibold tracking-[-0.012em] text-balance text-label md:text-[34px] lg:text-[40px] lg:leading-[1.1]">
+            Everything happens in the app.
+          </h2>
+          <p className="max-w-[52ch] text-[17px] leading-[26px] text-label-2">
+            Playdates, adoption, lost and found alerts and your pet&apos;s care all live in Hushku for iPhone and Android. The app is built and on its way to the stores.
+          </p>
+          <div className="mt-4 w-full">
+            <WaitingList />
+          </div>
+          <StoreStatus className="mt-4 !justify-start" />
+          <p className="mt-4 text-[15px] text-label-2">
+            Got a soft spot for animals?{" "}
+            <Link href="/about#volunteer" className="inline-flex items-center font-medium text-brand-text hover:underline underline-offset-[3px]">
+              Volunteer with us
+              <ChevronRight size={14} strokeWidth={2.25} />
+            </Link>
+          </p>
         </div>
-
-        {/* headline */}
-        <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight leading-[0.9] mb-6">
-          Be First.<br />
-          <span className="text-transparent bg-clip-text" style={{ WebkitTextFillColor: "transparent", backgroundImage: "linear-gradient(90deg, #FDE68A, #FCA5A5)" }}>
-            Join the Waitlist.
-          </span>
-        </h2>
-
-        {/* sub */}
-        <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-xl mx-auto mb-12">
-          Hushku is launching on iOS &amp; Android soon. Drop your email and get early access before the public — built by two pet lovers, for every pet lover on the planet.
-        </p>
-
-        {/* form */}
-        <div className="flex justify-center">
-          <WaitingList center large />
-        </div>
-
-        <p className="mt-5 text-white/40 text-xs font-bold uppercase tracking-widest">
-          No spam · One launch email · Unsubscribe anytime
-        </p>
-
-        {/* social proof */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6">
-          {[
-            { icon: "🎉", label: "Playdates" },
-            { icon: "📸", label: "Social Feed" },
-            { icon: "🏠", label: "Shelters" },
-            { icon: "💛", label: "Adoption" },
-            { icon: "🏥", label: "Vets — Soon" },
-            { icon: "🔍", label: "Lost & Found — Soon" },
-          ].map(f => (
-            <div key={f.label} className="flex items-center gap-2 bg-white/10 border border-white/10 rounded-2xl px-5 py-2.5">
-              <span>{f.icon}</span>
-              <span className="text-white/80 text-xs font-black uppercase tracking-widest">{f.label}</span>
-            </div>
-          ))}
+        <div className="flex justify-center self-end">
+          <Device screen="welcome" className="translate-y-6" />
         </div>
       </div>
     </section>

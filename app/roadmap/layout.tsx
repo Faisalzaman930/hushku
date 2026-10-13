@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
 
+const TITLE = "Roadmap: What’s Built and What’s Next | Hushku";
+const DESC =
+  "What’s already built into the Hushku app, what we’re working on next and what we’re exploring later. Tell us what you’d like to see.";
+
 export const metadata: Metadata = {
-  title: "Hushku Product Roadmap — Vote on What We Build Next",
-  description: "See what's live, what's coming, and what's planned for Hushku. Vote on features and submit your own ideas to shape the future of the app.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "https://hushku.app/roadmap" },
-  openGraph: {
-    title: "Hushku Product Roadmap — Vote on What We Build Next",
-    description: "See what's live, what's coming, and what's planned for Hushku. Vote on features and shape the future of the app.",
-    url: "https://hushku.app/roadmap",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Roadmap" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Hushku Product Roadmap — Vote on What We Build Next",
-    description: "See what's live, what's coming, and what's planned for Hushku. Vote on features and shape the future of the app.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
-  },
+  openGraph: { title: TITLE, description: DESC, url: "https://hushku.app/roadmap", type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 
 export default function RoadmapLayout({ children }: { children: React.ReactNode }) {

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { Metadata } from "next";
+import { Check, Code, Globe, Heart, Palette, PawPrint, Stethoscope, Users } from "lucide-react";
+import { Badge, Section, SectionHeader } from "../components/ui";
 
 // Can't export metadata from "use client" — handled via layout/head tag
 // export const metadata: Metadata = { title: "About Hushku — Faizan & Faisal" };
@@ -34,83 +34,64 @@ function VolunteerForm() {
 
   if (submitted) {
     return (
-      <div className="text-center py-16">
-        <div className="text-6xl mb-6">🎉</div>
-        <h3 className="text-3xl font-black text-ebony uppercase tracking-tight mb-4">Welcome to the Pack!</h3>
-        <p className="text-slate-gray text-lg max-w-md mx-auto leading-relaxed">
-          Faizan & Faisal will personally reach out to you. Together we&apos;re going to do something amazing for animals everywhere.
-        </p>
+      <div role="status" className="flex items-center gap-3 rounded-3xl bg-success-tint p-6">
+        <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-success text-white">
+          <Check size={20} strokeWidth={2.25} />
+        </span>
+        <div>
+          <p className="text-[17px] font-semibold text-label">Thank you. We’ve got your message.</p>
+          <p className="text-[15px] text-label-2">Faizan and Faisal will reply to you personally.</p>
+        </div>
       </div>
     );
   }
 
+  const field =
+    "w-full rounded-[14px] border border-control bg-white px-4 text-[17px] text-label placeholder:text-label-3 outline-none transition-shadow focus:border-brand focus:shadow-[0_0_0_3px_var(--color-brand-tint)]";
+  const label = "mb-2 block text-[15px] font-semibold text-label";
+
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div className="space-y-6">
+    <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="flex flex-col gap-5">
         <div>
-          <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-3">Your Name</label>
-          <input
-            type="text"
-            required
-            placeholder="e.g. Sarah Ahmed"
-            value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-2xl px-6 py-4 font-bold text-ebony placeholder:text-gray-300 focus:bg-white focus:border-brand-start outline-none transition-all"
-          />
+          <label htmlFor="v-name" className={label}>Your name</label>
+          <input id="v-name" type="text" required autoComplete="name" placeholder="Sarah Ahmed" value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })} className={`${field} min-h-12`} />
         </div>
         <div>
-          <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-3">Email Address</label>
-          <input
-            type="email"
-            required
-            placeholder="you@example.com"
-            value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-2xl px-6 py-4 font-bold text-ebony placeholder:text-gray-300 focus:bg-white focus:border-brand-start outline-none transition-all"
-          />
+          <label htmlFor="v-email" className={label}>Email</label>
+          <input id="v-email" type="email" required autoComplete="email" placeholder="you@example.com" value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })} className={`${field} min-h-12`} />
         </div>
         <div>
-          <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-3">How can you help?</label>
-          <select
-            value={form.skills}
-            onChange={e => setForm({ ...form, skills: e.target.value })}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-2xl px-6 py-4 font-bold text-ebony focus:bg-white focus:border-brand-start outline-none transition-all appearance-none"
-          >
-            <option value="">Select your skill</option>
-            <option value="developer">Software Developer</option>
-            <option value="designer">UI/UX Designer</option>
-            <option value="vet">Veterinarian / Animal Expert</option>
-            <option value="content">Content Writer / Editor</option>
-            <option value="marketing">Marketing / Social Media</option>
-            <option value="shelter">Shelter / Rescue Worker</option>
-            <option value="community">Community Manager</option>
-            <option value="other">Other — tell us below</option>
+          <label htmlFor="v-skills" className={label}>How would you like to help?</label>
+          <select id="v-skills" value={form.skills} onChange={(e) => setForm({ ...form, skills: e.target.value })} className={`${field} min-h-12`}>
+            <option value="">Choose one</option>
+            <option value="developer">Software development</option>
+            <option value="designer">Design</option>
+            <option value="vet">Vet or animal expert</option>
+            <option value="content">Writing and editing</option>
+            <option value="marketing">Marketing and social media</option>
+            <option value="shelter">Shelter or rescue work</option>
+            <option value="community">Community</option>
+            <option value="other">Something else</option>
           </select>
         </div>
       </div>
-      <div className="space-y-6">
-        <div>
-          <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-3">Tell us about yourself</label>
-          <textarea
-            rows={8}
-            placeholder="Why do you want to volunteer? What drives you? Tell us about your pets too if you have any!"
-            value={form.message}
-            onChange={e => setForm({ ...form, message: e.target.value })}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-[1.5rem] px-6 py-4 font-medium text-ebony placeholder:text-gray-300 focus:bg-white focus:border-brand-start outline-none transition-all resize-none"
-          />
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-1 flex-col">
+          <label htmlFor="v-message" className={label}>Tell us about yourself</label>
+          <textarea id="v-message" rows={7} placeholder="What would you like to do, and what drives you? Tell us about your pets too."
+            value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${field} flex-1 resize-none py-3`} />
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-brand-gradient text-white font-black py-5 rounded-2xl uppercase tracking-widest text-base hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-brand-start/20 disabled:opacity-70 flex items-center justify-center gap-3"
-        >
-          {loading ? (
-            <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          ) : (
-            <>🐾 Join the Mission</>
-          )}
+        <button type="submit" disabled={loading} aria-busy={loading || undefined}
+          className="relative inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 text-[17px] font-medium text-white transition-[background-color,transform] duration-150 hover:bg-brand-hover active:scale-[0.97]">
+          <span className={loading ? "invisible" : ""}>Send</span>
+          {loading ? <span aria-hidden className="absolute h-5 w-5 animate-spin rounded-full border-2 border-white border-r-transparent" /> : null}
         </button>
-        {error && <p className="text-red-500 text-sm font-bold text-center">{error}</p>}
+        {error ? (
+          <p role="alert" className="text-[13px] font-medium text-danger">That didn’t go through. Try once more, or email hello@hushku.app.</p>
+        ) : null}
       </div>
     </form>
   );
@@ -119,161 +100,111 @@ function VolunteerForm() {
 export default function AboutPage() {
   return (
     <div className="bg-white">
+      <Section className="!pt-16 lg:!pt-28">
+        <SectionHeader
+          as="h1"
+          size="xl"
+          eyebrow="Our story"
+          title="Two friends. One app for every pet."
+          lead="Hushku is built by Faizan and Faisal, two lifelong pet owners who got tired of juggling five apps, three Facebook groups and a WhatsApp chat to look after their dogs."
+        />
+      </Section>
 
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#7C3AED] via-[#6D28D9] to-[#4C1D95] py-28 md:py-36">
-        <div className="pointer-events-none absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-white/5 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-white/5 blur-3xl" />
-        <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <div className="text-6xl mb-6">🐾</div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-2 text-xs font-black text-white/80 uppercase tracking-widest mb-6">
-            Our Story
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight leading-[0.9] mb-6">
-            Two Friends.<br />
-            <span className="text-transparent bg-clip-text" style={{ WebkitTextFillColor: "transparent", backgroundImage: "linear-gradient(90deg, #FDE68A, #FCA5A5)" }}>
-              One Mission.
-            </span>
-          </h1>
-          <p className="text-white/70 text-xl leading-relaxed max-w-2xl mx-auto">
-            Improve the livelihoods of animals all across the world — one pet owner, one adoption, one community at a time.
-          </p>
-        </div>
-      </section>
-
-      {/* ── FOUNDERS STORY ── */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-
-            {/* Faizan */}
-            <div className="space-y-6">
-              <div className="w-20 h-20 bg-violet-100 rounded-[1.5rem] flex items-center justify-center text-4xl shadow-sm">🐕🐕</div>
+      <Section alt>
+        <div className="grid gap-6 md:grid-cols-2">
+          {[
+            {
+              name: "Faizan",
+              role: "Product and community",
+              pets: "Zeus and Titan, German Shepherds",
+              body: [
+                "Faizan has always had a dog by his side. Today he shares his home with two German Shepherds, Zeus and Titan.",
+                "Years of hunting for playdates, a trusted vet and help rehoming friends’ dogs across scattered apps and group chats became the reason for Hushku. He leads product and community, and makes sure the app works as well for a shepherd owner in Karachi as for a rescue worker in London.",
+              ],
+            },
+            {
+              name: "Faisal",
+              role: "Technology and growth",
+              pets: "Nova, a Siberian Husky",
+              body: [
+                "Faisal was the kid who brought home every stray. Today Nova, his Siberian Husky, runs his schedule.",
+                "He has felt the panic of a lost pet and seen good animals stuck in shelters nobody could find online. He leads technology and growth, building Hushku on one belief: every animal deserves a loving home, and finding it should be easy.",
+              ],
+            },
+          ].map((f) => (
+            <article key={f.name} className="flex flex-col gap-4 rounded-3xl bg-white p-8 ring-1 ring-separator">
               <div>
-                <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-2">Co-Founder</p>
-                <h2 className="text-4xl font-black text-ebony uppercase tracking-tight mb-6">Faizan</h2>
+                <p className="text-[15px] font-semibold text-brand-text">Co-founder · {f.role}</p>
+                <h2 className="mt-1 text-[32px] leading-[1.15] font-semibold tracking-[-0.015em] text-label">{f.name}</h2>
               </div>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                Faizan has grown up surrounded by animals his entire life. From the moment he could walk, there was always a dog by his side. Today he shares his home — and his heart — with two magnificent German Shepherds.
-              </p>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                Zeus and Titan, his two German Shepherds, aren&apos;t just pets to Faizan — they&apos;re family. He&apos;s spent years navigating the frustrating patchwork of apps, Facebook groups, and WhatsApp chats just to find playdates, locate a trusted vet, or help a friend rehome a dog in need.
-              </p>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                That frustration became his fuel. <strong className="text-ebony">Faizan leads product and community</strong> at Hushku — obsessing over making sure the app works as beautifully for a shepherd owner in Karachi as it does for a rescue worker in London.
-              </p>
-              <div className="flex gap-3 flex-wrap pt-2">
-                <span className="bg-violet-50 border border-violet-100 text-violet-700 text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">🐕 2 German Shepherds</span>
-                <span className="bg-gray-50 border border-gray-100 text-slate-gray text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">Product & Community</span>
+              {f.body.map((b) => (
+                <p key={b} className="text-[17px] leading-[26px] text-label-2">{b}</p>
+              ))}
+              <div className="flex flex-wrap gap-2 pt-1">
+                <Badge tone="brand">{f.pets}</Badge>
               </div>
-            </div>
-
-            {/* Faisal */}
-            <div className="space-y-6">
-              <div className="w-20 h-20 bg-amber-100 rounded-[1.5rem] flex items-center justify-center text-4xl shadow-sm">🐺</div>
-              <div>
-                <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-2">Co-Founder</p>
-                <h2 className="text-4xl font-black text-ebony uppercase tracking-tight mb-6">Faisal</h2>
-              </div>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                Faisal&apos;s bond with animals started in childhood — he was the kid who brought home every stray, nursed every injured bird, and argued passionately for every animal&apos;s right to be loved. That kid never really grew up, and that&apos;s a good thing.
-              </p>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                Today, Nova — his Siberian Husky — rules his apartment and his schedule. Anyone who knows Faisal knows that Nova comes first. He&apos;s experienced firsthand the stress of a lost pet, the joy of a perfect playdate match, and the heartbreak of seeing animals stuck in shelters with no digital presence.
-              </p>
-              <p className="text-lg text-slate-gray leading-relaxed">
-                <strong className="text-ebony">Faisal leads technology and growth</strong> at Hushku — building the platform from the ground up with one belief: every animal deserves a loving home, and technology should make finding that home effortless.
-              </p>
-              <div className="flex gap-3 flex-wrap pt-2">
-                <span className="bg-amber-50 border border-amber-100 text-amber-700 text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">🐺 1 Siberian Husky</span>
-                <span className="bg-gray-50 border border-gray-100 text-slate-gray text-xs font-black px-4 py-2 rounded-xl uppercase tracking-widest">Technology & Growth</span>
-              </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* ── THE MISSION ── */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Why We Built This</p>
-          <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl mb-8 leading-tight">
-            The World Needed One App.<br />Not Five.
-          </h2>
-          <p className="text-xl text-slate-gray leading-relaxed mb-6 max-w-3xl mx-auto">
-            When Faizan&apos;s German Shepherd needed emergency care late at night, he had to search through Google, call three clinics, and hope for the best. When Faisal&apos;s Husky Nova went missing for six terrifying hours, the only tool available was a WhatsApp group.
-          </p>
-          <p className="text-xl text-slate-gray leading-relaxed mb-12 max-w-3xl mx-auto">
-            They sat down over chai and made a decision: <strong className="text-ebony">if the tools don&apos;t exist, we build them.</strong> Not for profit. For every pet owner who&apos;s ever felt that same helplessness. For every animal in a shelter waiting to be found.
-          </p>
-          <div className="grid sm:grid-cols-3 gap-6">
+      <Section>
+        <div className="flex flex-col gap-12">
+          <SectionHeader
+            eyebrow="Why we built it"
+            title="One app, not five."
+            lead="When Zeus needed care late one night, Faizan was left searching, calling clinics and hoping. When Nova went missing for six hours, the only tool Faisal had was a WhatsApp group. So they decided to build the app they wished they’d had."
+          />
+          <div className="grid gap-4 md:grid-cols-3">
             {[
-              { icon: "🌍", title: "Global Mission", desc: "Built to serve pet owners and animals everywhere — not just one city or country." },
-              { icon: "🆓", title: "Free Forever", desc: "Core features will always be free. We believe access to pet welfare tools should never cost you." },
-              { icon: "🤝", title: "Community First", desc: "Hushku belongs to its community. Every feature is driven by real feedback from real pet owners." },
-            ].map((v, i) => (
-              <div key={i} className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-shadow">
-                <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="font-black text-ebony text-lg uppercase tracking-tight mb-3">{v.title}</h3>
-                <p className="text-slate-gray text-sm leading-relaxed">{v.desc}</p>
+              { icon: Globe, title: "For everyone, everywhere", body: "Built for pet owners and animals in every city, not just a few." },
+              { icon: Heart, title: "Free", body: "Hushku is free for owners, shelters and rescues, with no subscription." },
+              { icon: Users, title: "Shaped by its community", body: "What we build next comes from owners, shelters and your ideas." },
+            ].map((v) => (
+              <div key={v.title} className="flex flex-col gap-3 rounded-3xl bg-surface p-6">
+                <span className="grid h-12 w-12 place-items-center rounded-[14px] bg-brand-tint text-brand-text">
+                  <v.icon size={24} strokeWidth={1.75} />
+                </span>
+                <h3 className="text-[19px] leading-[26px] font-semibold text-label">{v.title}</h3>
+                <p className="text-[15px] leading-[22px] text-label-2">{v.body}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── VOLUNTEER SECTION ── */}
-      <section id="volunteer" className="py-24 bg-white border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-xs font-black text-brand-start uppercase tracking-widest mb-4">Hey you — yes, you 👋</p>
-            <h2 className="text-4xl font-black text-ebony uppercase tracking-tighter sm:text-5xl leading-tight mb-6">
-              We&apos;d Love Your Help.
-            </h2>
-            <p className="text-xl text-slate-gray max-w-2xl mx-auto leading-relaxed">
-              Hushku is completely free and always will be. It&apos;s a community project built by people who love animals. Whether you&apos;re a developer, a shelter worker, a vet, a designer, or just someone who cares deeply about animals — <strong className="text-ebony">we want you on this team.</strong>
-            </p>
-            <p className="text-lg text-slate-gray max-w-xl mx-auto leading-relaxed mt-4">
-              Help us save animals. Help us find them homes. Help us build something that actually makes the world a little better for every pet out there. 🐾
-            </p>
-          </div>
-
-          {/* What volunteers do */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      <Section alt id="volunteer">
+        <div className="flex flex-col gap-12">
+          <SectionHeader
+            eyebrow="Volunteer"
+            title="Got a soft spot for animals?"
+            lead="Hushku is built by people who love animals. If you’re a developer, a designer, a vet, a shelter worker or simply someone who cares, there’s a place for you."
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: "💻", role: "Developers", desc: "Got coding skills? Help us build features that connect pets with loving families worldwide." },
-              { icon: "🎨", role: "Designers", desc: "Make Hushku beautiful and easy to use for every pet owner on the planet." },
-              { icon: "🏥", role: "Vets & Shelters", desc: "You&apos;re on the front lines. Help us build tools that actually work for animal welfare." },
-              { icon: "❤️", role: "Pet Lovers", desc: "No skills needed — just passion. Spread the word, share stories, help animals get seen." },
-            ].map((v, i) => (
-              <div key={i} className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100 hover:shadow-lg transition-shadow text-center">
-                <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="font-black text-ebony text-base uppercase tracking-tight mb-3">{v.role}</h3>
-                <p className="text-slate-gray text-sm leading-relaxed">{v.desc}</p>
+              { icon: Code, role: "Developers", body: "Help build the features that connect pets with the people who need them." },
+              { icon: Palette, role: "Designers", body: "Make Hushku clear and calm for every owner." },
+              { icon: Stethoscope, role: "Vets and shelters", body: "You’re on the front line. Help us build tools that work for you." },
+              { icon: PawPrint, role: "Pet lovers", body: "No skills needed. Spread the word and help animals get seen." },
+            ].map((v) => (
+              <div key={v.role} className="flex flex-col gap-3 rounded-3xl bg-white p-6 ring-1 ring-separator">
+                <span className="grid h-12 w-12 place-items-center rounded-[14px] bg-brand-tint text-brand-text">
+                  <v.icon size={24} strokeWidth={1.75} />
+                </span>
+                <h3 className="text-[19px] leading-[26px] font-semibold text-label">{v.role}</h3>
+                <p className="text-[15px] leading-[22px] text-label-2">{v.body}</p>
               </div>
             ))}
           </div>
-
-          {/* Form */}
-          <div className="bg-white border-2 border-gray-100 rounded-[3rem] p-10 md:p-16 shadow-sm">
-            <div className="mb-12">
-              <h3 className="text-3xl font-black text-ebony uppercase tracking-tight mb-3">Come on, join us 🐶🐱</h3>
-              <p className="text-slate-gray text-lg leading-relaxed max-w-xl">
-                Faizan & Faisal personally read every single message. We don&apos;t care how big or small your contribution is — if you love animals and want to help, you&apos;re already one of us.
-              </p>
-            </div>
+          <div className="rounded-[32px] bg-white p-6 ring-1 ring-separator md:p-12">
+            <h3 className="text-[28px] leading-[1.2] font-semibold tracking-[-0.012em] text-label">Join us</h3>
+            <p className="mt-2 mb-8 max-w-[56ch] text-[17px] leading-[26px] text-label-2">
+              Faizan and Faisal read every message. However big or small your help, if you love animals you’re already one of us.
+            </p>
             <VolunteerForm />
           </div>
         </div>
-      </section>
-
-      {/* ── BACK TO HOME ── */}
-      <section className="py-12 bg-gray-50 border-t border-gray-100 text-center">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm font-black text-brand-start uppercase tracking-widest hover:underline">
-          ← Back to Hushku
-        </Link>
-      </section>
-
+      </Section>
     </div>
   );
 }

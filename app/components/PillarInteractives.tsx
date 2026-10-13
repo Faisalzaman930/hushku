@@ -31,7 +31,7 @@ function Pill({
           ? "border-transparent text-white"
           : "border-gray-200 text-gray-600 hover:border-gray-400 bg-white"
       }`}
-      style={active ? { background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" } : {}}
+      style={active ? { background: "#E11A45" } : {}}
     >
       {children}
     </button>
@@ -60,7 +60,7 @@ function InteractiveWrapper({
         <span className="text-white font-black text-sm uppercase tracking-widest">{title}</span>
         <span
           className="ml-auto text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full"
-          style={{ background: "rgba(29,158,117,.25)", color: "#5DCAA5" }}
+          style={{ background: "rgba(29,158,117,.25)", color: "#E11A45" }}
         >
           Interactive
         </span>
@@ -81,8 +81,8 @@ function OperantQuadrant() {
     {
       label: "Positive Reinforcement",
       short: "R+",
-      color: "#1D9E75",
-      bg: "#f0faf6",
+      color: "#B8143C",
+      bg: "#FDECEF",
       desc: "Adding something pleasant to increase a behavior. Example: giving a treat when the dog sits.",
       grade: "✅ Most effective, no side-effects",
     },
@@ -181,7 +181,7 @@ function CommandsChecklist() {
         <p className="text-sm text-gray-500">Check off each command as your dog masters it.</p>
         <span
           className="font-black text-sm px-3 py-1 rounded-full"
-          style={{ background: "#f0faf6", color: "#1D9E75" }}
+          style={{ background: "#FDECEF", color: "#B8143C" }}
         >
           {count}/{commands.length}
         </span>
@@ -189,7 +189,7 @@ function CommandsChecklist() {
       <div className="w-full h-2 rounded-full bg-gray-100 mb-5 overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-500"
-          style={{ width: `${(count / commands.length) * 100}%`, background: "linear-gradient(90deg,#1D9E75,#5DCAA5)" }}
+          style={{ width: `${(count / commands.length) * 100}%`, background: "#E11A45" }}
         />
       </div>
       <div className="space-y-2">
@@ -198,11 +198,11 @@ function CommandsChecklist() {
             key={i}
             onClick={() => toggle(i)}
             className="w-full flex items-start gap-3 rounded-xl p-3 text-left transition-all"
-            style={{ background: checked[i] ? "#f0faf6" : "#fff", border: `1.5px solid ${checked[i] ? "#1D9E75" : "#e5e7eb"}` }}
+            style={{ background: checked[i] ? "#FDECEF" : "#fff", border: `1.5px solid ${checked[i] ? "#B8143C" : "#e5e7eb"}` }}
           >
             <span
               className="flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs mt-0.5 transition-all"
-              style={{ borderColor: checked[i] ? "#1D9E75" : "#d1d5db", background: checked[i] ? "#1D9E75" : "transparent", color: "#fff" }}
+              style={{ borderColor: checked[i] ? "#B8143C" : "#d1d5db", background: checked[i] ? "#E11A45" : "transparent", color: "#fff" }}
             >
               {checked[i] ? "✓" : ""}
             </span>
@@ -214,7 +214,7 @@ function CommandsChecklist() {
         ))}
       </div>
       {count === commands.length && (
-        <div className="mt-4 rounded-xl p-4 text-center font-black text-sm" style={{ background: "#f0faf6", color: "#1D9E75" }}>
+        <div className="mt-4 rounded-xl p-4 text-center font-black text-sm" style={{ background: "#FDECEF", color: "#B8143C" }}>
           🎉 Your dog knows all 5 foundations!
         </div>
       )}
@@ -258,7 +258,7 @@ function LeashProblemSolver() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <p className="font-black text-sm text-gray-800 mb-1">{problems[sel].label}</p>
           <p className="text-sm text-gray-600 leading-relaxed">{problems[sel].fix}</p>
         </div>
@@ -304,7 +304,7 @@ function CrateScheduleBuilder() {
       <div className="mt-4 space-y-1">
         {s.routine.map((line, i) => (
           <div key={i} className="flex items-start gap-3 text-sm">
-            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ background: "#1D9E75" }} />
+            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2" style={{ background: "#E11A45" }} />
             <span className="text-gray-700">{line}</span>
           </div>
         ))}
@@ -333,7 +333,7 @@ function BehaviorSelector() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <p className="font-black text-sm text-gray-800 mb-2">{issues[sel].label}</p>
           <p className="text-sm text-gray-600 leading-relaxed">{issues[sel].fix}</p>
         </div>
@@ -362,7 +362,7 @@ function TrainerRedFlags() {
           <div
             key={i}
             className="flex items-start gap-3 rounded-xl p-3"
-            style={{ background: f.red ? "#fef2f2" : "#f0faf6", border: `1.5px solid ${f.red ? "#fca5a5" : "#6ee7b7"}` }}
+            style={{ background: f.red ? "#fef2f2" : "#FDECEF", border: `1.5px solid ${f.red ? "#fca5a5" : "#6ee7b7"}` }}
           >
             <span className="text-base mt-0.5">{f.red ? "🚩" : "✅"}</span>
             <span className="text-sm text-gray-700 leading-relaxed">{f.text}</span>
@@ -386,7 +386,7 @@ function ToolsSafetyMeter() {
     { name: "Shock / e-collar", safety: 10, label: "Avoid" },
     { name: "Choke chain", safety: 10, label: "Avoid" },
   ];
-  const color = (s: number) => s >= 80 ? "#1D9E75" : s >= 50 ? "#f59e0b" : "#ef4444";
+  const color = (s: number) => s >= 80 ? "#177A45" : s >= 50 ? "#f59e0b" : "#ef4444";
   return (
     <InteractiveWrapper title="Training Tool Safety Guide" icon="🛡️">
       <div className="space-y-3">
@@ -426,14 +426,14 @@ function AgeStageTraining() {
           <Pill key={i} active={sel === i} onClick={() => setSel(i)}>{s.age}</Pill>
         ))}
       </div>
-      <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+      <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
         <p className="font-black text-gray-800 mb-1">{s.title}</p>
         <p className="text-sm text-gray-600 leading-relaxed mb-3">{s.focus}</p>
         <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Goals for this stage</p>
         <ul className="space-y-1">
           {s.goals.map((g, i) => (
             <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-              <span style={{ color: "#1D9E75" }}>✓</span> {g}
+              <span style={{ color: "#B8143C" }}>✓</span> {g}
             </li>
           ))}
         </ul>
@@ -477,12 +477,12 @@ function PuppySupplyChecklist() {
     <InteractiveWrapper title="Puppy Prep Checklist" icon="🐾">
       <div className="flex justify-between items-center mb-3">
         <p className="text-sm text-gray-500">Check items off as you gather them.</p>
-        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#f0faf6", color: "#1D9E75" }}>
+        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#FDECEF", color: "#B8143C" }}>
           {count}/{allItems.length}
         </span>
       </div>
       <div className="w-full h-2 rounded-full bg-gray-100 mb-5 overflow-hidden">
-        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${(count / allItems.length) * 100}%`, background: "linear-gradient(90deg,#1D9E75,#5DCAA5)" }} />
+        <div className="h-full rounded-full transition-all duration-500" style={{ width: `${(count / allItems.length) * 100}%`, background: "#E11A45" }} />
       </div>
       {items.map((cat) => (
         <div key={cat.cat} className="mb-4">
@@ -493,11 +493,11 @@ function PuppySupplyChecklist() {
                 key={item}
                 onClick={() => toggle(item)}
                 className="w-full flex items-center gap-3 p-2.5 rounded-lg text-left transition-all"
-                style={{ background: checked[item] ? "#f0faf6" : "transparent" }}
+                style={{ background: checked[item] ? "#FDECEF" : "transparent" }}
               >
                 <span
                   className="flex-shrink-0 w-4 h-4 rounded border-2 flex items-center justify-center text-[10px]"
-                  style={{ borderColor: checked[item] ? "#1D9E75" : "#d1d5db", background: checked[item] ? "#1D9E75" : "transparent", color: "#fff" }}
+                  style={{ borderColor: checked[item] ? "#B8143C" : "#d1d5db", background: checked[item] ? "#E11A45" : "transparent", color: "#fff" }}
                 >
                   {checked[item] ? "✓" : ""}
                 </span>
@@ -524,7 +524,7 @@ function PuppyFeedingCalculator() {
       <p className="text-xs text-gray-400 mb-4">This is a starting estimate — always follow the specific food&apos;s feeding guide and adjust based on body condition.</p>
       <div className="space-y-5">
         <div>
-          <label className="text-sm font-black text-gray-700 block mb-2">Puppy&apos;s current weight: <span style={{ color: "#1D9E75" }}>{weight} lbs</span></label>
+          <label className="text-sm font-black text-gray-700 block mb-2">Puppy&apos;s current weight: <span style={{ color: "#B8143C" }}>{weight} lbs</span></label>
           <input type="range" min={2} max={80} value={weight} onChange={e => setWeight(Number(e.target.value))} className="w-full accent-green-500" />
         </div>
         <div>
@@ -536,12 +536,12 @@ function PuppyFeedingCalculator() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-xl p-4 text-center" style={{ background: "#f0faf6" }}>
-            <div className="text-2xl font-black" style={{ color: "#1D9E75" }}>{daily}g</div>
+          <div className="rounded-xl p-4 text-center" style={{ background: "#FDECEF" }}>
+            <div className="text-2xl font-black" style={{ color: "#B8143C" }}>{daily}g</div>
             <div className="text-xs text-gray-500 mt-1">Daily total (dry kibble)</div>
           </div>
-          <div className="rounded-xl p-4 text-center" style={{ background: "#f0faf6" }}>
-            <div className="text-2xl font-black" style={{ color: "#1D9E75" }}>{perMeal}g</div>
+          <div className="rounded-xl p-4 text-center" style={{ background: "#FDECEF" }}>
+            <div className="text-2xl font-black" style={{ color: "#B8143C" }}>{perMeal}g</div>
             <div className="text-xs text-gray-500 mt-1">Per meal (3× daily)</div>
           </div>
         </div>
@@ -564,16 +564,16 @@ function VaccineTimeline() {
   return (
     <InteractiveWrapper title="Core Vaccine Timeline" icon="💉">
       <div className="relative pl-4">
-        <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{ background: "linear-gradient(to bottom,#1D9E75,#5DCAA5)" }} />
+        <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{ background: "#E11A45" }} />
         <div className="space-y-3">
           {vaccines.map((v, i) => (
             <button
               key={i}
               onClick={() => setOpen(open === i ? null : i)}
               className="w-full text-left pl-4 rounded-xl p-3 transition-all relative"
-              style={{ background: open === i ? "#f0faf6" : "#fff", border: `1.5px solid ${open === i ? "#1D9E75" : "#e5e7eb"}` }}
+              style={{ background: open === i ? "#FDECEF" : "#fff", border: `1.5px solid ${open === i ? "#B8143C" : "#e5e7eb"}` }}
             >
-              <div className="absolute -left-5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2" style={{ background: "#fff", borderColor: "#1D9E75" }} />
+              <div className="absolute -left-5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2" style={{ background: "#fff", borderColor: "#B8143C" }} />
               <div className="flex justify-between items-center">
                 <div>
                   <span className="text-xs font-black text-gray-400">{v.week}</span>
@@ -615,7 +615,7 @@ function SocializationTracker() {
     <InteractiveWrapper title="Socialization Exposure Tracker" icon="🌍">
       <div className="flex justify-between items-center mb-3">
         <p className="text-sm text-gray-500">Track exposures before the window closes (12–16 weeks).</p>
-        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#f0faf6", color: "#1D9E75" }}>{count}/{experiences.length}</span>
+        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#FDECEF", color: "#B8143C" }}>{count}/{experiences.length}</span>
       </div>
       <div className="flex flex-wrap gap-2">
         {experiences.map((e) => (
@@ -624,9 +624,9 @@ function SocializationTracker() {
             onClick={() => toggle(e)}
             className="text-xs font-bold px-3 py-1.5 rounded-full border transition-all"
             style={{
-              background: done[e] ? "#1D9E75" : "#fff",
+              background: done[e] ? "#E11A45" : "#fff",
               color: done[e] ? "#fff" : "#6b7280",
-              borderColor: done[e] ? "#1D9E75" : "#e5e7eb",
+              borderColor: done[e] ? "#B8143C" : "#e5e7eb",
             }}
           >
             {done[e] ? "✓ " : ""}{e}
@@ -670,7 +670,7 @@ function DevelopmentStages() {
   const stages = [
     { age: "0–2 wks", name: "Neonatal", color: "#8b5cf6", facts: ["Eyes and ears sealed", "100% dependent on mother", "Stimulation by mother required for elimination"] },
     { age: "2–4 wks", name: "Transitional", color: "#3b82f6", facts: ["Eyes open around day 14–17", "First wobbly steps", "Startle response develops"] },
-    { age: "3–12 wks", name: "Socialization", color: "#1D9E75", facts: ["Critical window for exposure", "Fear of new things not yet strong", "Learning what is safe"] },
+    { age: "3–12 wks", name: "Socialization", color: "#177A45", facts: ["Critical window for exposure", "Fear of new things not yet strong", "Learning what is safe"] },
     { age: "8–10 wks", name: "Fear Imprint", color: "#f59e0b", facts: ["Traumatic events leave lasting impressions", "Avoid painful vet procedures if possible", "Gentle handling is critical"] },
     { age: "6–18 mo", name: "Adolescence", color: "#ef4444", facts: ["Sexual maturity arrives", "Recall may temporarily worsen", "Consistent training through the hard part pays off"] },
   ];
@@ -771,13 +771,13 @@ function GroomingChecklist() {
           <Pill key={k} active={sel === k} onClick={() => setSel(k)}>{k}</Pill>
         ))}
       </div>
-      <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+      <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
         <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Frequency</p>
         <p className="font-black text-gray-800 mb-3">{t.freq}</p>
         <ul className="space-y-1.5">
           {t.tasks.map((task, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-              <span style={{ color: "#1D9E75" }}>✓</span> {task}
+              <span style={{ color: "#B8143C" }}>✓</span> {task}
             </li>
           ))}
         </ul>
@@ -805,15 +805,15 @@ function VetVisitChecklist() {
     <InteractiveWrapper title="Annual Vet Visit Checklist" icon="🏥">
       <div className="flex justify-between items-center mb-3">
         <p className="text-sm text-gray-500">Prepare for and get the most from your annual exam.</p>
-        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#f0faf6", color: "#1D9E75" }}>{count}/{all.length}</span>
+        <span className="font-black text-sm px-3 py-1 rounded-full" style={{ background: "#FDECEF", color: "#B8143C" }}>{count}/{all.length}</span>
       </div>
       {items.map(cat => (
         <div key={cat.cat} className="mb-4">
           <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-2">{cat.cat}</p>
           <div className="space-y-1">
             {cat.items.map(item => (
-              <button key={item} onClick={() => toggle(item)} className="w-full flex items-start gap-2.5 p-2 rounded-lg text-left transition-all" style={{ background: checked[item] ? "#f0faf6" : "transparent" }}>
-                <span className="flex-shrink-0 w-4 h-4 rounded border-2 flex items-center justify-center text-[9px] mt-0.5" style={{ borderColor: checked[item] ? "#1D9E75" : "#d1d5db", background: checked[item] ? "#1D9E75" : "transparent", color: "#fff" }}>
+              <button key={item} onClick={() => toggle(item)} className="w-full flex items-start gap-2.5 p-2 rounded-lg text-left transition-all" style={{ background: checked[item] ? "#FDECEF" : "transparent" }}>
+                <span className="flex-shrink-0 w-4 h-4 rounded border-2 flex items-center justify-center text-[9px] mt-0.5" style={{ borderColor: checked[item] ? "#B8143C" : "#d1d5db", background: checked[item] ? "#E11A45" : "transparent", color: "#fff" }}>
                   {checked[item] ? "✓" : ""}
                 </span>
                 <span className={`text-sm ${checked[item] ? "line-through text-gray-400" : "text-gray-700"}`}>{item}</span>
@@ -844,7 +844,7 @@ function ParasiteSelector() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4 space-y-3" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4 space-y-3" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <div>
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Risk</p>
             <p className="text-sm text-gray-700">{parasites[sel].risk}</p>
@@ -887,9 +887,9 @@ function DentalHealthQuiz() {
     return (
       <InteractiveWrapper title="Dental Health Quiz" icon="🦷">
         <div className="text-center py-4">
-          <div className="text-4xl font-black mb-2" style={{ color: "#1D9E75" }}>{score}/{questions.length}</div>
+          <div className="text-4xl font-black mb-2" style={{ color: "#B8143C" }}>{score}/{questions.length}</div>
           <p className="text-gray-600 mb-4">{score === questions.length ? "Perfect score! 🎉" : score >= 2 ? "Good foundation!" : "Review the dental health chapter above."}</p>
-          <button onClick={reset} className="font-black text-sm px-5 py-2 rounded-full text-white" style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}>Retake Quiz</button>
+          <button onClick={reset} className="font-black text-sm px-5 py-2 rounded-full text-white" style={{ background: "#E11A45" }}>Retake Quiz</button>
         </div>
       </InteractiveWrapper>
     );
@@ -907,7 +907,7 @@ function DentalHealthQuiz() {
         {q.options.map((opt, i) => {
           let bg = "#fff", border = "#e5e7eb", color = "#374151";
           if (selected !== null) {
-            if (i === q.correct) { bg = "#f0faf6"; border = "#1D9E75"; color = "#1D9E75"; }
+            if (i === q.correct) { bg = "#FDECEF"; border = "#B8143C"; color = "#B8143C"; }
             else if (i === selected && i !== q.correct) { bg = "#fef2f2"; border = "#ef4444"; color = "#ef4444"; }
           }
           return (
@@ -922,7 +922,7 @@ function DentalHealthQuiz() {
       {selected !== null && (
         <div className="mt-3">
           <p className="text-sm text-gray-600 leading-relaxed mb-3">{q.explanation}</p>
-          <button onClick={next} className="font-black text-sm px-5 py-2 rounded-full text-white" style={{ background: "linear-gradient(135deg,#1D9E75,#5DCAA5)" }}>
+          <button onClick={next} className="font-black text-sm px-5 py-2 rounded-full text-white" style={{ background: "#E11A45" }}>
             {current + 1 >= questions.length ? "See Results" : "Next →"}
           </button>
         </div>
@@ -939,7 +939,7 @@ function BCSCalculator() {
     2: { label: "Underweight", color: "#f97316", desc: "Ribs visible. Minimal fat cover. Obvious waist and abdominal tuck.", action: "Increase calories gradually under vet guidance." },
     3: { label: "Thin", color: "#f59e0b", desc: "Ribs easily felt with no fat covering. Waist is obvious from above.", action: "Increase food slightly, recheck in 3 weeks." },
     4: { label: "Slightly thin", color: "#eab308", desc: "Ribs easily palpable with minimal covering. Waist easily visible.", action: "Modest calorie increase, monitor weekly." },
-    5: { label: "Ideal", color: "#1D9E75", desc: "Ribs palpable without excess fat. Waist visible from above. Abdomen tucked up.", action: "Maintain current feeding." },
+    5: { label: "Ideal", color: "#177A45", desc: "Ribs palpable without excess fat. Waist visible from above. Abdomen tucked up.", action: "Maintain current feeding." },
     6: { label: "Slightly overweight", color: "#eab308", desc: "Ribs palpable with slight excess covering. Waist visible from above but not prominent.", action: "Reduce portions by 10%, increase exercise." },
     7: { label: "Overweight", color: "#f59e0b", desc: "Ribs difficult to feel. Waist barely visible. Abdominal fat obvious.", action: "Vet check + weight loss plan." },
     8: { label: "Obese", color: "#f97316", desc: "Ribs hard to feel under heavy fat. No waist visible. Distended abdomen.", action: "Vet visit — prescription weight loss diet + exercise plan." },
@@ -992,13 +992,13 @@ function SeniorPetCare() {
           </>
         )}
       </div>
-      <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+      <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
         <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Senior age begins</p>
         <p className="font-black text-gray-800 mb-3">Around {d.seniorAge} years old</p>
         <ul className="space-y-1.5">
           {d.care.map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-              <span style={{ color: "#1D9E75" }}>●</span> {item}
+              <span style={{ color: "#B8143C" }}>●</span> {item}
             </li>
           ))}
         </ul>
@@ -1065,12 +1065,12 @@ function ChronicConditionCards() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4 space-y-3" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4 space-y-3" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <div>
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Signs to watch for</p>
             <ul className="space-y-1">
               {conditions[sel].signs.map((s, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-gray-700"><span style={{ color: "#1D9E75" }}>●</span>{s}</li>
+                <li key={i} className="flex items-center gap-2 text-sm text-gray-700"><span style={{ color: "#B8143C" }}>●</span>{s}</li>
               ))}
             </ul>
           </div>
@@ -1097,11 +1097,11 @@ function MonthlyMonitoring() {
       <p className="text-sm text-gray-500 mb-4">The foundation of preventive care is noticing change early. Healthy baselines matter.</p>
       {tasks.map(t => (
         <div key={t.freq} className="mb-4">
-          <p className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: "#1D9E75" }}>{t.freq}</p>
+          <p className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: "#B8143C" }}>{t.freq}</p>
           <div className="grid grid-cols-2 gap-1.5">
             {t.items.map((item, i) => (
               <div key={i} className="rounded-lg px-3 py-2 text-sm text-gray-700 flex items-center gap-2" style={{ background: "#f8f8f6" }}>
-                <span style={{ color: "#1D9E75" }}>✓</span> {item}
+                <span style={{ color: "#B8143C" }}>✓</span> {item}
               </div>
             ))}
           </div>
@@ -1127,7 +1127,7 @@ function LabelDecoder() {
     { name: "Carrageenan", verdict: "avoid", note: "Seaweed-derived thickener. Animal studies link it to gut inflammation. Increasingly removed from premium foods." },
     { name: "Brewers rice / Brewers yeast", verdict: "neutral", note: "Byproducts of beer production. Inexpensive carb filler. Not harmful, just not nutritionally impressive." },
   ];
-  const colors: Record<string, string> = { good: "#1D9E75", neutral: "#f59e0b", avoid: "#ef4444" };
+  const colors: Record<string, string> = { good: "#177A45", neutral: "#f59e0b", avoid: "#ef4444" };
   const [sel, setSel] = useState<number | null>(null);
   return (
     <InteractiveWrapper title="Pet Food Label Decoder" icon="🏷️">
@@ -1175,7 +1175,7 @@ function CalorieCalculator() {
       <p className="text-xs text-gray-400 mb-4">Based on Resting Energy Requirement (RER). Always adjust based on body condition, not just weight.</p>
       <div className="space-y-4">
         <div>
-          <label className="text-sm font-black text-gray-700 block mb-1">Weight: <span style={{ color: "#1D9E75" }}>{weight} lbs</span></label>
+          <label className="text-sm font-black text-gray-700 block mb-1">Weight: <span style={{ color: "#B8143C" }}>{weight} lbs</span></label>
           <input type="range" min={2} max={120} value={weight} onChange={e => setWeight(Number(e.target.value))} className="w-full" />
         </div>
         <div>
@@ -1191,7 +1191,7 @@ function CalorieCalculator() {
           </div>
         </div>
         <button onClick={() => setNeutered(!neutered)} className="flex items-center gap-2 text-sm font-bold text-gray-700">
-          <span className="w-5 h-5 rounded border-2 flex items-center justify-center" style={{ borderColor: neutered ? "#1D9E75" : "#d1d5db", background: neutered ? "#1D9E75" : "transparent", color: "#fff" }}>
+          <span className="w-5 h-5 rounded border-2 flex items-center justify-center" style={{ borderColor: neutered ? "#B8143C" : "#d1d5db", background: neutered ? "#E11A45" : "transparent", color: "#fff" }}>
             {neutered ? "✓" : ""}
           </span>
           Spayed / Neutered (reduces calorie needs ~10%)
@@ -1215,7 +1215,7 @@ function LifeStageSelector() {
       watch: "Overfeeding large-breed puppies accelerates bone growth and increases joint disease risk. Use large-breed specific puppy food.",
     },
     {
-      name: "Adult (1–7 yrs)", color: "#1D9E75",
+      name: "Adult (1–7 yrs)", color: "#177A45",
       protein: "≥18% DM", fat: "≥5% DM", key: "Maintenance diet. Protein and fat needs stable. Calorie density matched to activity level.",
       watch: "Many adult dogs are overfed. Measure food — don't free-feed. A cup is not a cup between different bowls.",
     },
@@ -1341,10 +1341,10 @@ function FeedingComparison() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4 space-y-3" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4 space-y-3" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <div>
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Pros</p>
-            <ul className="space-y-1">{methods[sel].pros.map((p, i) => <li key={i} className="flex items-center gap-2 text-sm text-gray-700"><span style={{ color: "#1D9E75" }}>✓</span>{p}</li>)}</ul>
+            <ul className="space-y-1">{methods[sel].pros.map((p, i) => <li key={i} className="flex items-center gap-2 text-sm text-gray-700"><span style={{ color: "#B8143C" }}>✓</span>{p}</li>)}</ul>
           </div>
           <div>
             <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Cons</p>
@@ -1383,7 +1383,7 @@ function SupplementRatings() {
               <span className="text-xs text-gray-400">{s.evidence}/5</span>
             </div>
             <div className="w-full h-2 rounded-full bg-gray-100 mb-1 overflow-hidden">
-              <div className="h-full rounded-full" style={{ width: `${(s.evidence / 5) * 100}%`, background: s.evidence >= 4 ? "#1D9E75" : s.evidence >= 3 ? "#f59e0b" : "#ef4444" }} />
+              <div className="h-full rounded-full" style={{ width: `${(s.evidence / 5) * 100}%`, background: s.evidence >= 4 ? "#177A45" : s.evidence >= 3 ? "#f59e0b" : "#ef4444" }} />
             </div>
             <p className="text-xs text-gray-500 leading-relaxed">{s.note}</p>
           </div>
@@ -1414,7 +1414,7 @@ function SpecialDietSelector() {
         ))}
       </div>
       {sel !== null && (
-        <div className="rounded-xl p-4" style={{ background: "#f0faf6", border: "1.5px solid #1D9E75" }}>
+        <div className="rounded-xl p-4" style={{ background: "#FDECEF", border: "1.5px solid #B8143C" }}>
           <p className="font-black text-sm text-gray-800 mb-2">{diets[sel].condition}</p>
           <p className="text-sm text-gray-600 leading-relaxed">{diets[sel].diet}</p>
         </div>
@@ -1440,14 +1440,14 @@ function NutritionMythBuster() {
         {myths.map((m, i) => (
           <button key={i} onClick={() => setSel(sel === i ? null : i)}
             className="w-full text-left rounded-xl p-3 border-2 transition-all"
-            style={{ background: sel === i ? "#f8f8f6" : "#fff", borderColor: sel === i ? "#1D9E75" : "#e5e7eb" }}>
+            style={{ background: sel === i ? "#f8f8f6" : "#fff", borderColor: sel === i ? "#B8143C" : "#e5e7eb" }}>
             <div className="flex justify-between items-center">
               <span className="font-black text-sm text-gray-800">❌ &quot;{m.myth}&quot;</span>
               <span className="text-gray-400 text-xs">{sel === i ? "▲" : "▼"}</span>
             </div>
             {sel === i && (
               <div className="mt-3 pt-3 border-t border-gray-100">
-                <p className="text-xs font-black uppercase tracking-widest mb-1" style={{ color: "#1D9E75" }}>✅ The truth</p>
+                <p className="text-xs font-black uppercase tracking-widest mb-1" style={{ color: "#B8143C" }}>✅ The truth</p>
                 <p className="text-sm text-gray-600 leading-relaxed">{m.truth}</p>
               </div>
             )}

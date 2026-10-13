@@ -1,40 +1,27 @@
+import type { Metadata } from "next";
 import ComingSoonPage from "../components/ComingSoonPage";
-import { Metadata } from "next";
+
+const TITLE = "Find a Vet Near You: Coming Soon | Hushku";
+const DESC = "Finding a trusted vet near you is planned for Hushku. It isn’t in the app yet. Join the waitlist to hear when it arrives.";
 
 export const metadata: Metadata = {
-  title: "Vet Discovery — Coming Soon | Hushku",
-  description: "Hushku's Vet Portal is coming soon. Find trusted clinics nearby, read verified reviews, and call in one tap — all inside the Hushku app.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "https://hushku.app/vets" },
-  openGraph: {
-    title: "Vet Discovery — Coming Soon | Hushku",
-    description: "Find trusted vets nearby, read verified reviews, and call in one tap. Coming soon to Hushku.",
-    type: "website",
-    url: "https://hushku.app/vets",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Vet Discovery" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Vet Discovery — Coming Soon | Hushku",
-    description: "Find trusted vets nearby. Coming soon to Hushku.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
-  },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/vets" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 
 export default function VetsPage() {
   return (
     <ComingSoonPage
-      icon="🏥"
-      feature="Vet Portal"
-      tagline="Find trusted vets near you — in seconds."
-      description="Real-time clinic discovery with verified reviews, live opening hours, and one-tap emergency calling. No more Googling at midnight when your pet needs help."
-      phase="Phase 2"
+      feature="Vets"
+      tagline="A trusted vet, close by."
+      description="Finding and contacting vets near you is on our roadmap. It isn’t in the app yet. In the meantime, keep your pet’s vet visits and vaccinations in the Health & care tools."
       bullets={[
-        "Real-time clinic discovery with live opening hours and distance",
-        "Verified reviews from real pet owners in your area",
-        "One-tap emergency call — no copying numbers",
-        "Specialist filters: exotic pets, 24-hour emergency, home visits",
-        "In-app appointment booking with calendar sync",
-        "Vaccination & medical record storage linked to your pet profile",
+        "Vets near you, with opening hours and distance",
+        "Emergency and out-of-hours clinics marked clearly",
+        "Your pet’s health records ready to share at the visit",
       ]}
     />
   );

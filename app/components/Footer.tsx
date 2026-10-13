@@ -1,130 +1,99 @@
 import Link from "next/link";
-import Logo from "./Logo";
+import { HushkuLogo } from "./Logo";
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+const COLUMNS: { title: string; links: { name: string; href: string }[] }[] = [
+  {
+    title: "Features",
+    links: [
+      { name: "Playdates", href: "/playdates" },
+      { name: "Adoption", href: "/adoption" },
+      { name: "Fostering", href: "/fostering" },
+      { name: "Shelters", href: "/shelters" },
+      { name: "Lost & found", href: "/lost-and-found" },
+      { name: "Health & care", href: "/health" },
+      { name: "Social feed", href: "/social" },
+    ],
+  },
+  {
+    title: "Free tools",
+    links: [
+      { name: "Pet age calculator", href: "/tools/age-calculator" },
+      { name: "Toxic food checker", href: "/tools/toxic-food" },
+      { name: "Symptom checker", href: "/tools/symptom-checker" },
+      { name: "Breed compare", href: "/tools/breed-compare" },
+      { name: "Pet sitter cost", href: "/tools/pet-sitter-cost" },
+      { name: "All tools", href: "/tools" },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      { name: "Help Center", href: "/help-center" },
+      { name: "Playdate guide", href: "/help-center/playdate-matching" },
+      { name: "Adoption guide", href: "/help-center/adoption-fostering" },
+      { name: "Lost & found guide", href: "/help-center/lost-and-found" },
+      { name: "Health & care guide", href: "/help-center/health-care" },
+      { name: "Messaging guide", href: "/help-center/messaging" },
+    ],
+  },
+  {
+    title: "Hushku",
+    links: [
+      { name: "About", href: "/about" },
+      { name: "Roadmap", href: "/roadmap" },
+      { name: "Join the waitlist", href: "/join" },
+      { name: "Volunteer", href: "/about#volunteer" },
+      { name: "Breeds", href: "/breeds" },
+      { name: "Resources", href: "/resources" },
+      { name: "Templates", href: "/templates" },
+      { name: "Editorial standards", href: "/about/editorial" },
+      { name: "Privacy", href: "/privacy" },
+      { name: "Terms", href: "/terms" },
+    ],
+  },
+];
 
+export default function Footer() {
   return (
-    <footer className="w-full bg-white">
-      {/* ── MAIN FOOTER ── */}
-      <div className="border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-8">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8 gap-y-12 flex flex-col">
-            <div className="space-y-6">
-              <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-                <Logo className="h-10 w-10" />
-                <span className="text-2xl font-black tracking-tighter text-ebony">
-                  Hush<span className="text-brand-gradient">ku</span>
-                </span>
-              </Link>
-              <p className="max-w-xs text-sm leading-6 text-slate-gray">
-                Built by Faizan and Faisal, two pet lovers on a mission to improve the livelihoods of animals all across the world.
-              </p>
-              <div className="flex gap-3">
-                <span className="text-xs font-black text-slate-gray uppercase tracking-widest bg-gray-50 border border-gray-100 rounded-xl px-4 py-2">Phase 1 Live</span>
-                <span className="text-xs font-black text-brand-start uppercase tracking-widest bg-brand-start/5 border border-brand-start/20 rounded-xl px-4 py-2">App Stores Soon</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 xl:col-span-2 text-sm">
-              <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Features</h3>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Playdates", href: "/playdates" },
-                    { name: "Adoption", href: "/adoption" },
-                    { name: "Fostering", href: "/fostering" },
-                    { name: "Shelters", href: "/shelters" },
-                    { name: "Lost & Found", href: "/lost-and-found" },
-                    { name: "Health & Care", href: "/health" },
-                    { name: "Social Feed", href: "/social" },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Help & Support</h3>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Help Center", href: "/help-center" },
-                    { name: "Playdate Guide", href: "/help-center/playdate-matching" },
-                    { name: "Adoption Guide", href: "/help-center/adoption-fostering" },
-                    { name: "Lost & Found Guide", href: "/help-center/lost-and-found" },
-                    { name: "Health & Care Guide", href: "/help-center/health-care" },
-                    { name: "Messaging Guide", href: "/help-center/messaging" },
-                    { name: "Contact Us", href: "mailto:hello@hushku.app" },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Free Tools</h3>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Pet Sitter Cost", href: "/tools/pet-sitter-cost" },
-                    { name: "Age Calculator", href: "/tools/age-calculator" },
-                    { name: "Toxic Food Checker", href: "/tools/toxic-food" },
-                    { name: "Symptom Checker", href: "/tools/symptom-checker" },
-                    { name: "Breed Compare", href: "/tools/breed-compare" },
-                    { name: "All Tools →", href: "/tools" },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-bold text-ebony uppercase tracking-widest text-xs mb-6">Company</h3>
-                <ul className="space-y-3">
-                  {[
-                    { name: "Join Waitlist", href: "/join" },
-                    { name: "Volunteer", href: "/join" },
-                    { name: "Roadmap", href: "/roadmap" },
-                    { name: "Help Center", href: "/help-center" },
-                    { name: "Resources", href: "/resources" },
-                    { name: "About", href: "/about" },
-                    { name: "Editorial Standards", href: "/about/editorial" },
-                    { name: "Privacy Policy", href: "/privacy" },
-                    { name: "Terms & Conditions", href: "/terms" },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-slate-gray hover:text-ebony transition-colors">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 border-t border-gray-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-slate-gray">
-              &copy; {currentYear} Hushku App. All rights reserved. Built for pet lovers worldwide.
+    <footer className="bg-bg-2 px-4 pt-16 pb-8 md:px-8">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="flex flex-col gap-10 border-b border-separator pb-10 lg:flex-row lg:justify-between">
+          <div className="flex max-w-[300px] flex-col items-start gap-3 text-brand">
+            <Link href="/" aria-label="Hushku home">
+              <HushkuLogo variant="horizontal" className="h-6 w-auto" title="" />
+            </Link>
+            <p className="text-[15px] leading-[22px] text-label-2">
+              The free app for dogs, cats and the people who love them. Built by two pet owners, Faizan and Faisal.
             </p>
-            <div className="flex items-center gap-4 text-xs text-slate-gray">
-              <Link href="https://instagram.com/hushkuapp" rel="me" className="hover:text-ebony transition-colors">Instagram</Link>
-              <Link href="https://tiktok.com/@hushkuapp" rel="me" className="hover:text-ebony transition-colors">TikTok</Link>
-              <span>Built by <strong className="text-ebony">Faizan &amp; Faisal</strong></span>
-            </div>
+            <p className="text-[15px] leading-[22px] text-label-2">
+              Questions? <a href="mailto:hello@hushku.app" className="font-medium text-label hover:underline underline-offset-[3px]">hello@hushku.app</a>
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4 lg:min-w-[640px]">
+            {COLUMNS.map((c) => (
+              <nav key={c.title} aria-label={c.title}>
+                <p className="mb-3 text-[13px] leading-[18px] font-semibold text-label">{c.title}</p>
+                <ul className="flex flex-col gap-2">
+                  {c.links.map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="text-[13px] leading-[18px] text-label-2 hover:text-label hover:underline underline-offset-[3px]">
+                        {l.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 text-[12px] leading-4 text-label-2">
+          <p>Copyright © {new Date().getFullYear()} Hushku. All rights reserved.</p>
+          <div className="flex gap-5">
+            <a href="https://instagram.com/hushkuapp" rel="me noopener" target="_blank" className="hover:text-label">Instagram</a>
+            <a href="https://tiktok.com/@hushkuapp" rel="me noopener" target="_blank" className="hover:text-label">TikTok</a>
           </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

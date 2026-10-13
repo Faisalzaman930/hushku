@@ -305,21 +305,17 @@ export default async function BreedPage({
         />
 
         {/* ── CTA ──────────────────────────────────────────────────── */}
-        <section className="py-20 bg-ebony">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-4">
-              Own a {breed.name}?
-            </h2>
-            <p className="text-white/50 mb-8 leading-7">
-              Track health records, set care reminders, and connect with other {breed.name} owners in Hushku.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/tools" className="inline-flex items-center gap-2 bg-brand-start text-white font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:opacity-90 transition-opacity text-sm">
-                Free Pet Tools →
-              </Link>
-              <Link href={`/breeds/${animal}`} className="inline-flex items-center gap-2 bg-white/10 text-white font-black uppercase tracking-widest px-8 py-4 rounded-2xl hover:bg-white/20 transition-colors text-sm">
-                Browse All {animalLabel}
-              </Link>
+        <section className="px-4 pt-16 md:px-8">
+          <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 rounded-3xl bg-bg-2 p-6 md:flex-row md:items-center md:p-8">
+            <div>
+              <h2 className="text-[24px] leading-[1.25] font-semibold tracking-[-0.008em] text-label">Own a {breed.name}?</h2>
+              <p className="mt-1 max-w-[56ch] text-[17px] leading-[26px] text-label-2">
+                Keep their reminders, weight and health records in Hushku, and find playmates nearby.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/tools" className="inline-flex min-h-11 items-center rounded-full bg-surface px-5 text-[17px] font-medium text-label hover:bg-separator">Free pet tools</Link>
+              <Link href={`/breeds/${animal}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-5 text-[17px] font-medium text-label hover:bg-separator">All {animalLabel.toLowerCase()}</Link>
             </div>
           </div>
         </section>

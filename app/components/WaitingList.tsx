@@ -1,95 +1,103 @@
 "use client";
-import { useState } from "react";
+
+import { useId, useState } from "react";
+import { AlertCircle, Check } from "lucide-react";
 
 interface WaitingListProps {
+  /** Kept for compatibility; the form is always the light pill. */
   light?: boolean;
   center?: boolean;
   large?: boolean;
+  cta?: string;
 }
 
-export default function WaitingList({ light = false, center = false, large = false }: WaitingListProps) {
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+export default function WaitingList({ center = false, cta = "Join the waitlist" }: WaitingListProps) {
+  const id = useId();
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [state, setState] = useState<"idle" | "loading" | "invalid" | "failed" | "done">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
-    if (!email) return;
-    setLoading(true);
+    if (!EMAIL.test(email.trim())) {
+      setState("invalid");
+      return;
+    }
+    setState("loading");
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       if (!res.ok) throw new Error();
-      setSubmitted(true);
+      setState("done");
     } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+      setState("failed");
     }
   }
 
-  if (submitted) {
+  if (state === "done") {
     return (
-      <div className={`flex flex-col gap-2 ${center ? "items-center text-center" : "items-start"}`}>
-        <div className={`flex items-center gap-3 rounded-2xl px-6 py-4 ${light ? "bg-white text-ebony ring-1 ring-gray-100" : "bg-white/10 text-white border border-white/20"}`}>
-          <span className="text-2xl">🎉</span>
-          <div>
-            <p className={`text-sm font-black uppercase tracking-widest ${light ? "text-brand-start" : "text-white"}`}>
-              You&apos;re on the list!
-            </p>
-            <p className={`text-xs font-medium mt-0.5 ${light ? "text-slate-gray" : "text-white/60"}`}>
-              We&apos;ll email you the moment we launch on App Store & Google Play.
-            </p>
-          </div>
-        </div>
+      <div role="status" className={`flex w-full max-w-[480px] items-center gap-3 rounded-full bg-success-tint py-3 pr-5 pl-3 text-left ${center ? "mx-auto" : ""}`}>
+        <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-success text-white">
+          <Check size={18} strokeWidth={2.25} />
+        </span>
+        <span>
+          <span className="block text-[15px] leading-5 font-semibold text-label">You&apos;re on the list.</span>
+          <span className="block text-[13px] leading-[18px] text-label-2">We&apos;ll email {email.trim()} once, when Hushku is on the App Store and Google Play.</span>
+        </span>
       </div>
     );
   }
 
+  const msg =
+    state === "invalid" ? "Enter an email like name@example.com." : state === "failed" ? "That didn’t go through. Try once more." : null;
+
   return (
-    <div className={`flex flex-col gap-2 ${center ? "items-center" : "items-start"}`}>
-      <form
-        onSubmit={handleSubmit}
-        className={`flex flex-col sm:flex-row gap-3 ${center ? "items-center justify-center" : "items-start"} w-full`}
+    <form onSubmit={handleSubmit} noValidate className={`flex w-full max-w-[480px] flex-col gap-3 ${center ? "mx-auto" : ""}`}>
+      <label htmlFor={id} className="sr-only">
+        Email address
+      </label>
+      <div
+        className={`flex flex-col gap-2 sm:flex-row sm:gap-0 sm:rounded-full sm:border sm:bg-white sm:p-1 sm:transition-shadow sm:focus-within:border-brand sm:focus-within:shadow-[0_0_0_3px_var(--color-brand-tint)] ${msg ? "sm:border-danger" : "sm:border-control"}`}
       >
         <input
+          id={id}
           type="email"
-          required
+          inputMode="email"
+          autoComplete="email"
+          placeholder="Email address"
           value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="Enter your email address"
-          className={`rounded-2xl px-6 py-4 text-sm font-bold outline-none transition-all ${large ? "py-5 text-base" : ""} ${
-            center ? "w-full max-w-sm" : "w-full sm:w-80"
-          } ${
-            light
-              ? "bg-gray-50 border-2 border-gray-200 text-ebony placeholder:text-gray-400 focus:border-brand-start"
-              : "bg-white border-2 border-gray-300 text-ebony placeholder:text-gray-400 focus:border-brand-start"
-          }`}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (state !== "loading") setState("idle");
+          }}
+          aria-invalid={msg ? true : undefined}
+          aria-describedby={`${id}-msg`}
+          className={`min-h-12 min-w-0 flex-1 rounded-full border bg-white px-5 text-[17px] text-label placeholder:text-label-3 outline-none focus:border-brand sm:min-h-11 sm:border-0 ${msg ? "border-danger" : "border-control"}`}
         />
         <button
           type="submit"
-          disabled={loading}
-          className={`flex items-center justify-center gap-2 rounded-2xl px-8 text-xs font-black uppercase tracking-widest shadow-xl whitespace-nowrap disabled:opacity-70 ${large ? "py-5 text-sm" : "py-4"} ${
-            light
-              ? "bg-ebony text-white hover:bg-zinc-800"
-              : "bg-white text-ebony hover:bg-gray-50"
-          }`}
+          disabled={state === "loading"}
+          aria-busy={state === "loading" || undefined}
+          className="relative inline-flex min-h-11 items-center justify-center rounded-full bg-brand px-5 text-[17px] font-medium tracking-[-0.011em] whitespace-nowrap text-white transition-[background-color,transform] duration-150 hover:bg-brand-hover active:scale-[0.97] active:bg-brand-pressed disabled:cursor-default"
         >
-          {loading ? (
-            <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-          ) : (
-            <>🐾 Join Waitlist</>
-          )}
+          <span className={state === "loading" ? "invisible" : ""}>{cta}</span>
+          {state === "loading" ? (
+            <span aria-hidden className="absolute h-[18px] w-[18px] animate-spin rounded-full border-2 border-white border-r-transparent" />
+          ) : null}
         </button>
-      </form>
-      {error && (
-        <p className={`text-xs font-bold ${light ? "text-red-500" : "text-red-300"}`}>{error}</p>
-      )}
-    </div>
+      </div>
+      <p
+        id={`${id}-msg`}
+        aria-live="polite"
+        className={`flex items-center gap-1.5 text-[13px] leading-[18px] ${center ? "justify-center" : ""} ${msg ? "font-medium text-danger" : "text-label-2"}`}
+      >
+        {msg ? <AlertCircle size={16} strokeWidth={2} /> : null}
+        {msg ?? "Free for every dog and cat. One email on launch day."}
+      </p>
+    </form>
   );
 }

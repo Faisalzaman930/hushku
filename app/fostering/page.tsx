@@ -1,40 +1,53 @@
-import ComingSoonPage from "../components/ComingSoonPage";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { BookOpen, ClipboardList, Home, LifeBuoy, MessageCircle, Send, Users } from "lucide-react";
+import FeaturePage from "../components/FeaturePage";
+
+const TITLE = "Pet Fostering App: Foster Dogs & Cats Near You | Hushku";
+const DESC =
+  "Find dogs and cats who need a temporary home near you. Foster listings from shelters, rescues and owners, with requests and chat in one free app for iPhone and Android.";
 
 export const metadata: Metadata = {
-  title: "Pet Fostering App — Coming Soon | Hushku",
-  description: "Hushku's Fostering platform is coming soon. Open your home temporarily and get matched with pets that need you most — dogs, cats, and small animals from verified shelters.",
+  title: TITLE,
+  description: DESC,
+  keywords: "pet fostering app, foster a dog near me, foster cats, become a foster carer, rescue foster",
   alternates: { canonical: "https://hushku.app/fostering" },
-  openGraph: {
-    title: "Pet Fostering App — Coming Soon | Hushku",
-    description: "Open your home temporarily and get matched with pets that need you most. Coming soon to Hushku.",
-    type: "website",
-    url: "https://hushku.app/fostering",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Hushku Pet Fostering" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pet Fostering App — Coming Soon | Hushku",
-    description: "Foster a dog or cat from a verified shelter near you. Coming soon to Hushku.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
-  },
+  openGraph: { title: TITLE, description: DESC, type: "website", url: "https://hushku.app/fostering" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 
 export default function FosteringPage() {
   return (
-    <ComingSoonPage
-      icon="💖"
-      feature="Fostering"
-      tagline="Open your home. Change a life."
-      description="Fostering saves lives. Hushku will match you with pets that need a temporary home based on your space, lifestyle, and experience — making fostering as easy as possible."
-      phase="Phase 2"
-      bullets={[
-        "Smart matching based on your home size, lifestyle, and experience",
-        "Direct connection with verified shelters and rescues near you",
-        "Foster care guides and 24/7 community support",
-        "Track your foster pet's health, milestones and adoption progress",
-        "Seamless handoff to permanent adoption when the time is right",
-        "Foster alumni community — stay connected with pets you've helped",
+    <FeaturePage
+      slug="fostering"
+      eyebrow="Fostering"
+      title="Open your home for a while."
+      lead="Foster listings from shelters, rescues and owners appear in the Foster tab in Discover. Find a pet near you who needs a temporary home, send a request and plan the details in chat."
+      included={[
+        { label: "Foster tab in Discover", icon: Users },
+        { label: "Listings near you", icon: Home },
+        { label: "Foster requests", icon: Send },
+        { label: "Chat with the lister", icon: MessageCircle },
+      ]}
+      screen="discover"
+      screenCaption="Discover. Pets who need a foster home are in the Foster tab."
+      howTitle="Temporary home, lasting difference."
+      how={[
+        { icon: Users, title: "Browse the Foster tab", body: "Dogs and cats near you who need somewhere to stay, with who is listing them." },
+        { icon: ClipboardList, title: "Check it fits", body: "Listings describe the pet and what they need, so you can tell whether your home and routine suit them." },
+        { icon: Send, title: "Send a request", body: "Offer to foster with one tap. You can cancel until the lister answers." },
+        { icon: MessageCircle, title: "Plan the details", body: "When they accept, a chat opens for dates, supplies, vet care and handover." },
+      ]}
+      faqs={[
+        { q: "Can I sign up to foster on the website?", a: "No. Foster listings and requests live in the Hushku app for iPhone and Android, coming soon to the App Store and Google Play." },
+        { q: "How long does fostering last?", a: "That depends on the listing. Some pets need a few days, others a few months. The lister will tell you in chat." },
+        { q: "Do I need experience?", a: "Not always. Many pets just need a calm, safe home. Each listing says what the pet needs, so you can choose one that suits you." },
+        { q: "Is it free?", a: "Hushku is free. Shelters and rescues usually cover a foster pet’s food and vet costs; ask them about it in chat." },
+        { q: "Can shelters post foster listings?", a: "Yes. Shelter accounts can post foster listings alongside adoption listings, for free." },
+      ]}
+      related={[
+        { title: "The foster carer’s manual", href: "/resources/logistics-and-heartbreak-foster-parent-manual", icon: BookOpen },
+        { title: "Introducing a new pet to resident pets", href: "/resources/how-to-introduce-new-pet-to-resident-pets", icon: BookOpen },
+        { title: "Adoption and fostering help", href: "/help-center/adoption-fostering", icon: LifeBuoy },
       ]}
     />
   );

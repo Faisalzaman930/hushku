@@ -1,7 +1,8 @@
-import WaitingList from "./WaitingList";
+import { StoreStatus } from "./ui";
 
-const DownloadButtons = ({ light = false, center = false }: { light?: boolean; center?: boolean }) => {
-  return <WaitingList light={light} center={center} />;
-};
+/** Pre-launch: availability status. At launch, replace with the official store badges. */
+const DownloadButtons = ({ center = false }: { light?: boolean; center?: boolean }) => (
+  <StoreStatus className={center ? "" : "!justify-start"} />
+);
 
 export default DownloadButtons;

@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
 
+const TITLE = "Join the Hushku Waitlist: Free Pet App for iPhone and Android";
+const DESC =
+  "Hushku is built and coming soon to the App Store and Google Play. Join the waitlist for one email on launch day, or volunteer to help build it.";
+
 export const metadata: Metadata = {
-  title: "Join Hushku — Get Early Access & Help Build the App",
-  description: "Join the Hushku waitlist for early access on iOS and Android, or volunteer your skills to help build the future of pet care. Free to join.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "https://hushku.app/join" },
-  openGraph: {
-    title: "Join Hushku — Get Early Access & Help Build the App",
-    description: "Join the Hushku waitlist for early access on iOS and Android, or volunteer your skills to help build the future of pet care.",
-    url: "https://hushku.app/join",
-    images: [{ url: "https://hushku.app/screenshots/app-playdates.png", width: 1200, height: 630, alt: "Join Hushku" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Join Hushku — Get Early Access & Help Build the App",
-    description: "Join the Hushku waitlist for early access on iOS and Android, or volunteer your skills to help build the future of pet care.",
-    images: ["https://hushku.app/screenshots/app-playdates.png"],
-  },
+  openGraph: { title: TITLE, description: DESC, url: "https://hushku.app/join", type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESC },
 };
 
 export default function JoinLayout({ children }: { children: React.ReactNode }) {

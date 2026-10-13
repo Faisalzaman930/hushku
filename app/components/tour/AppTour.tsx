@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Play, Square } from "lucide-react";
 import { SCREEN_ALT, type AppScreen } from "../ui";
 import { SCREEN_HOTSPOTS } from "./hotspots";
+import { resolveRoute } from "./routes";
 
 export type TourSpot = {
   /** Key of a tagged region on the screen (see hotspots.ts), or an explicit box. */
@@ -74,6 +75,9 @@ export default function AppTour({
   const [stepIndex, setStepIndex] = useState(0);
   const [active, setActive] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
+  /** Route demo: which frame of "How to get here" is on the phone (null = the step's own screen). */
+  const [routeAt, setRouteAt] = useState<number | null>(null);
+  const [playing, setPlaying] = useState(false);
   const uid = useId();
   const touch = useRef<{ x: number; y: number } | null>(null);
 
@@ -87,6 +91,8 @@ export default function AppTour({
       setStepIndex(n);
       setActive(null);
       setPinned(null);
+      setRouteAt(null);
+      setPlaying(false);
     },
     [steps.length]
   );
@@ -99,11 +105,37 @@ export default function AppTour({
     });
   }, [steps]);
 
+  const route = useMemo(() => resolveRoute(step.path, step.screen), [step]);
+  const frame = routeAt !== null ? route[routeAt] : null;
+  const screen = frame ? frame.screen : step.screen;
+  const frameBox = frame ? boxFor(frame.screen, frame.at) : null;
+
+  // Play the route: one tap every ~1.5s, then land on this step's screen.
+  useEffect(() => {
+    if (!playing) return;
+    const t = window.setTimeout(() => {
+      if (routeAt === null) setRouteAt(0);
+      else if (routeAt < route.length - 1) setRouteAt(routeAt + 1);
+      else {
+        setRouteAt(null);
+        setPlaying(false);
+      }
+    }, routeAt === null ? 50 : 1500);
+    return () => window.clearTimeout(t);
+  }, [playing, routeAt, route.length]);
+
+  useEffect(() => {
+    route.forEach((f) => {
+      const img = new window.Image();
+      img.src = `/app-screens/${f.screen}.webp`;
+    });
+  }, [route]);
+
   const spots = step.spots
     .map((s, i) => ({ ...s, i, box: boxFor(step.screen, s.at) }))
     .filter((s): s is typeof s & { box: Box } => s.box !== null);
   const pins = placePins(spots);
-  const activeBox = shown !== null ? spots.find((s) => s.i === shown)?.box ?? null : null;
+  const activeBox = frame ? frameBox : shown !== null ? spots.find((s) => s.i === shown)?.box ?? null : null;
 
   const onKeyDownSteps = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight") { e.preventDefault(); go(stepIndex + 1); }
@@ -132,9 +164,9 @@ export default function AppTour({
         >
           <div className="relative aspect-[393/852] overflow-hidden rounded-[36px] bg-bg-2">
             <Image
-              key={step.screen}
-              src={`/app-screens/${step.screen}.webp`}
-              alt={SCREEN_ALT[step.screen]}
+              key={screen}
+              src={`/app-screens/${screen}.webp`}
+              alt={SCREEN_ALT[screen]}
               fill
               unoptimized
               loading="eager"
@@ -161,10 +193,33 @@ export default function AppTour({
                   : { left: "50%", top: "50%", width: 0, height: 0 }
               }
             />
+
+            {/* Route demo: a finger tap on the next thing to press. */}
+            {frame && frameBox ? (
+              <span
+                key={`tap-${routeAt}`}
+                aria-hidden
+                className="pointer-events-none absolute z-20 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${frameBox[0] + frameBox[2] / 2}%`, top: `${frameBox[1] + frameBox[3] / 2}%` }}
+              >
+                <span className="block h-9 w-9 rounded-full bg-white/80 shadow-[0_2px_10px_rgba(29,27,25,0.35)] ring-2 ring-brand motion-safe:animate-[tour-tap_1.5s_ease-out_both]" />
+              </span>
+            ) : null}
+            {frame ? (
+              <span
+                aria-hidden
+                className={cx(
+                  "pointer-events-none absolute inset-x-3 z-20 rounded-2xl bg-label/90 px-3 py-2 text-center text-[13px] font-semibold text-white backdrop-blur",
+                  frameBox && frameBox[1] + frameBox[3] / 2 > 55 ? "top-[9%]" : "bottom-[12%]"
+                )}
+              >
+                {frame.label}
+              </span>
+            ) : null}
           </div>
 
           {/* Leader lines and pins, in the margin to the right of the phone. Same coordinates as the screen. */}
-          <div className="pointer-events-none absolute inset-2.5 z-30">
+          <div className={cx("pointer-events-none absolute inset-2.5 z-30 transition-opacity duration-200", frame && "opacity-0 [&_button]:!pointer-events-none")}>
             <svg aria-hidden className="absolute inset-0 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
               {pins.map(({ s, x, target, y }) => {
                 const on = shown === s.i;
@@ -270,15 +325,48 @@ export default function AppTour({
             </p>
           ) : null}
           {step.path?.length ? (
-            <nav aria-label="How to get to this screen" className="flex flex-wrap items-center gap-1.5 text-[13px] text-label-2">
-              <span className="mr-0.5 font-medium text-label-3">How to get here</span>
-              {step.path.map((p, i) => (
-                <span key={p + i} className="inline-flex items-center gap-1.5">
-                  {i > 0 ? <ChevronRight size={13} className="text-label-3" aria-hidden /> : null}
-                  <span className="rounded-full bg-surface px-2.5 py-0.5 font-medium text-label">{p}</span>
-                </span>
-              ))}
-            </nav>
+            <div className="flex flex-col gap-2">
+              <nav aria-label="How to get to this screen" className="flex flex-wrap items-center gap-1.5 text-[13px] text-label-2">
+                <span className="mr-0.5 font-medium text-label-3">How to get here</span>
+                {step.path.map((p, i) => {
+                  const first = route.findIndex((f) => f.crumb === i);
+                  const isOn = frame ? frame.crumb === i : false;
+                  const chip = cx("rounded-full px-2.5 py-0.5 font-medium transition-colors", isOn ? "bg-brand text-white" : "bg-surface text-label");
+                  return (
+                    <span key={p + i} className="inline-flex items-center gap-1.5">
+                      {i > 0 ? <ChevronRight size={13} className="text-label-3" aria-hidden /> : null}
+                      {first >= 0 ? (
+                        <button type="button" onClick={() => { setPlaying(false); setRouteAt(first); }} className={cx(chip, !isOn && "hover:bg-separator")} aria-pressed={isOn}>
+                          {p}
+                        </button>
+                      ) : (
+                        <span className={chip}>{p}</span>
+                      )}
+                    </span>
+                  );
+                })}
+              </nav>
+              {route.length ? (
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (playing || frame) { setPlaying(false); setRouteAt(null); }
+                      else { setActive(null); setPinned(null); setRouteAt(null); setPlaying(true); }
+                    }}
+                    className="inline-flex min-h-9 items-center gap-1.5 self-start rounded-full bg-brand-tint px-3.5 text-[13px] font-semibold text-brand-text transition-colors hover:bg-[#FBDDE3]"
+                  >
+                    {playing || frame ? <Square size={12} fill="currentColor" aria-hidden /> : <Play size={13} fill="currentColor" aria-hidden />}
+                    {playing ? "Stop" : frame ? "Back to this screen" : "Show me how to get here"}
+                  </button>
+                  {frame ? (
+                    <span className="text-[13px] text-label-2 tabular-nums" aria-live="polite">
+                      Tap {routeAt! + 1} of {route.length}: {frame.label}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
           ) : null}
           <h3 className={cx("font-semibold tracking-[-0.012em] text-label", compact ? "text-[22px] leading-[28px]" : "text-[26px] leading-[32px] md:text-[28px]")}>{step.title}</h3>
           {step.body ? <p className="max-w-[56ch] text-[17px] leading-[26px] text-label-2">{step.body}</p> : null}

@@ -906,7 +906,7 @@ export const CATEGORIES: Category[] = [
           },
           {
             screen: "shelter-signup",
-            path: ["Sign up", "Shelter profile"],
+            path: ["Sign up", "Shelter", "Shelter profile"],
             title: "Your shelter profile",
             spots: [
               { at: "logo", label: "Logo" },

@@ -809,6 +809,24 @@ export const SCREEN_HOTSPOTS = {
    91.86,
    34.27
   ],
+  "role-pet-owner": [
+   4.07,
+   26.17,
+   91.86,
+   11.27
+  ],
+  "role-shelter": [
+   4.07,
+   38.85,
+   91.86,
+   9.15
+  ],
+  "role-explorer": [
+   4.07,
+   49.41,
+   91.86,
+   11.03
+  ],
   "continue": [
    4.07,
    63.73,
@@ -912,7 +930,14 @@ export const SCREEN_HOTSPOTS = {
    16.67
   ]
  },
- "welcome": {},
+ "welcome": {
+  "create-account": [
+   5.09,
+   61.85,
+   89.82,
+   5.87
+  ]
+ },
  "home-synced": {
   "done-by": [
    66.65,

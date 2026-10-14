@@ -14,3 +14,15 @@ Needs network access to en.wikipedia.org, commons.wikimedia.org and upload.wikim
 
 Finally, in app/data/breeds/index.ts set each breed's `image` to `photoFor(animal, slug)` so breeds
 without an approved photo show the placeholder instead of an unverified one.
+
+## Work in progress (paused 2026-10-15)
+
+`work/` holds the state so far: `found.json` (308 breeds with a freely licensed Wikipedia lead photo),
+`candidates.json` (Commons search results for 66 of the 148 remaining breeds), `missing.json`, and
+`staged/` (25 downloaded, not yet reviewed). Resume with the polite scripts, which skip finished work:
+
+    cp scripts/breed-photos/fetch2_lib.py work-dir/ ...
+    python3 scripts/breed-photos/search3.py <dir with the work files>   # continue Commons search
+    python3 scripts/breed-photos/dl.py <dir> found.json                  # continue downloads (960px thumbs)
+
+Wikimedia rate-limits heavily (Retry-After up to 600s), so keep one request at a time.

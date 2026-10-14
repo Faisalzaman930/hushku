@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import BreedImage from "../../../components/BreedImage";
+import { photoCredit } from "../../../data/breeds/photos";
 import { Check, ChevronRight, CircleAlert } from "lucide-react";
 import CompareButton from "../../../components/CompareButton";
 import { breedsByAnimal, getBreed, ANIMAL_LABELS, BREED_CONTENT_UPDATED, BREED_CONTENT_PUBLISHED } from "../../../data/breeds";
@@ -113,7 +114,7 @@ function BreedCard({ b, animal }: { b: AnyBreed; animal: string }) {
     <li>
       <Link href={`/breeds/${animal}/${b.slug}`} className="group flex flex-col gap-3">
         <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
-          {b.image ? <Image src={b.image} alt={`${b.name} ${animal === "cats" ? "cat" : "dog"}`} fill sizes="(min-width: 768px) 200px, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" /> : null}
+          <BreedImage src={b.image} alt={`${b.name} ${animal === "cats" ? "cat" : "dog"}`} sizes="(min-width: 768px) 200px, 45vw" className="transition-transform duration-300 group-hover:scale-[1.03]" />
         </span>
         <span>
           <span className="block text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px]">{b.name}</span>
@@ -140,6 +141,7 @@ export default async function BreedPage({ params }: { params: Promise<{ animal: 
   const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
   const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/og.png`;
   const noun = isCat ? "cat" : "dog";
+  const credit = photoCredit(animal, slug);
 
   const facts = cat
     ? [
@@ -237,11 +239,16 @@ export default async function BreedPage({ params }: { params: Promise<{ animal: 
                 </Link>
               </div>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
-              {breed.image ? (
-                <Image src={breed.image} alt={dog?.parentBreeds ? `${breed.name}, a ${dog.parentBreeds} mix` : `${breed.name} ${noun}`} fill priority sizes="(min-width: 768px) 460px, 100vw" className="object-cover" />
+            <figure className="flex flex-col gap-2">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
+                <BreedImage src={breed.image} alt={dog?.parentBreeds ? `${breed.name}, a ${dog.parentBreeds} mix` : `${breed.name} ${noun}`} priority sizes="(min-width: 768px) 460px, 100vw" />
+              </div>
+              {credit ? (
+                <figcaption className="text-[12px] leading-[16px] text-label-2">
+                  Photo: {credit.artist}, <a href={credit.licenseUrl || credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener license" target="_blank">{credit.license}</a>, via <a href={credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener" target="_blank">Wikimedia Commons</a>
+                </figcaption>
               ) : null}
-            </div>
+            </figure>
           </div>
 
           <dl className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

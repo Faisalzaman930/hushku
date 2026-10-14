@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import BreedImage from "../../components/BreedImage";
 import { useMemo, useState } from "react";
 
 export type BreedListItem = { slug: string; name: string; image: string | null; group: string; size: string | null };
@@ -52,7 +52,7 @@ export default function BreedFilter({ animal, breeds, groupLabel }: { animal: st
           <li key={b.slug} hidden={!shown.has(b.slug)}>
             <Link href={`/breeds/${animal}/${b.slug}`} className="group flex flex-col gap-3">
               <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
-                {b.image ? <Image src={b.image} alt={`${b.name} ${animal === "cats" ? "cat" : "dog"}`} fill sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" /> : null}
+                <BreedImage src={b.image} alt={`${b.name} ${animal === "cats" ? "cat" : "dog"}`} sizes="(min-width: 1024px) 220px, (min-width: 640px) 30vw, 45vw" className="transition-transform duration-300 group-hover:scale-[1.03]" />
               </span>
               <span>
                 <span className="block text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px]">{b.name}</span>

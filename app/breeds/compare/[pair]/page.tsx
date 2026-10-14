@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import BreedImage from "../../../components/BreedImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
@@ -258,7 +258,7 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
             {[c.a, c.b].map((br) => (
               <Link key={br.slug} href={`/breeds/${c.animal}/${br.slug}`} className="group flex flex-col gap-3">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
-                  {br.image ? <Image src={br.image} alt={`${br.name} ${kind}`} fill sizes="(min-width: 768px) 560px, 45vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" /> : null}
+                  <BreedImage src={br.image} alt={`${br.name} ${kind}`} sizes="(min-width: 768px) 560px, 45vw" className="transition-transform duration-500 group-hover:scale-[1.03]" />
                 </div>
                 <span className="text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px] md:text-[21px]">{br.name}</span>
               </Link>

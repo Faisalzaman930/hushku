@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import BreedImage from "../components/BreedImage";
 import { ChevronRight } from "lucide-react";
 import { breedsByAnimal, getBreed } from "../data/breeds";
 
@@ -31,7 +31,7 @@ function Grid({ animal, slugs }: { animal: "dogs" | "cats"; slugs: string[] }) {
         <li key={b!.slug}>
           <Link href={`/breeds/${animal}/${b!.slug}`} className="group flex flex-col gap-3">
             <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
-              {b!.image ? <Image src={b!.image} alt={`${b!.name} ${animal === "cats" ? "cat" : "dog"}`} fill sizes="(min-width: 1024px) 180px, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" /> : null}
+              <BreedImage src={b!.image} alt={`${b!.name} ${animal === "cats" ? "cat" : "dog"}`} sizes="(min-width: 1024px) 180px, 45vw" className="transition-transform duration-300 group-hover:scale-[1.03]" />
             </span>
             <span className="text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px]">{b!.name}</span>
           </Link>

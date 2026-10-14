@@ -268,7 +268,7 @@ export default function CareTeamPage() {
         steps={7}
         alt
         title="Try it: one evening, two phones."
-        lead="Start from the Home tab and tap through. Dark numbers open the next screen."
+        lead="Watch Faisal invite Sarah, then see the same task tick off on both phones."
       />
 
       {/* Privacy */}

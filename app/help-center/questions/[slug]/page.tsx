@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookOpen, ChevronRight, LifeBuoy } from "lucide-react";
-import AppTour from "../../../components/tour/AppTour";
+import WalkthroughPlayer from "../../../components/tour/WalkthroughPlayer";
 import { Section, SectionHeader } from "../../../components/ui";
 import { ALL_QUESTIONS, findQuestion } from "../data";
 
@@ -86,11 +86,11 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
           <div className="mx-auto flex max-w-[1080px] flex-col gap-10">
             <SectionHeader
               align="start"
-              eyebrow="Interactive demo"
+              eyebrow="Watch it"
               title="See it in the app."
-              lead={q.demo.length > 1 ? `${q.demo.length} screens. Tap a number to see what it does. Dark numbers open the next screen.` : "Tap a number to see what it does."}
+              lead="A short walkthrough of the real app. It plays by itself; tap a step to jump to it."
             />
-            <AppTour steps={q.demo} label={`${q.q} demo`} />
+            <WalkthroughPlayer steps={q.demo} label={`${q.q} demo`} />
           </div>
         </Section>
       ) : null}

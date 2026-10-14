@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronRight, LifeBuoy } from "lucide-react";
 import FaqAccordion from "./FaqAccordion";
 import { Section, SectionHeader } from "./ui";
-import AppTour from "./tour/AppTour";
+import WalkthroughPlayer from "./tour/WalkthroughPlayer";
 import { TOURS } from "./tour/tours";
 import { ALL_QUESTIONS } from "../help-center/questions/data";
 
@@ -83,11 +83,11 @@ export default function HelpArticle({
           <div className="mx-auto flex max-w-[1080px] flex-col gap-10">
             <SectionHeader
               align="start"
-              eyebrow="Interactive walkthrough"
-              title="See each screen."
-              lead={`${steps.length} screens, starting from the tab bar. Tap a number to see what it does. Dark numbers open the next screen, just like in the app.`}
+              eyebrow="Watch it"
+              title="See how it works."
+              lead="A short walkthrough of the real app, starting from the tab bar. It plays by itself; tap a step to jump to it."
             />
-            <AppTour steps={steps} label={`${title} walkthrough`} />
+            <WalkthroughPlayer steps={steps} label={`${title} walkthrough`} />
           </div>
         </Section>
       ) : null}

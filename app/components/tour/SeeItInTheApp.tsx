@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import AppTour from "./AppTour";
+import WalkthroughPlayer from "./WalkthroughPlayer";
 import { TOURS } from "./tours";
 import { Section, SectionHeader } from "../ui";
 
@@ -10,7 +10,7 @@ export default function SeeItInTheApp({
   guide,
   steps = 3,
   title = "See it in the app.",
-  lead = "Start from the tab bar and tap through. Dark numbers open the next screen.",
+  lead = "A short walkthrough of the real app. It plays by itself; tap a step to jump to it.",
   alt = false,
 }: {
   tour: keyof typeof TOURS | string;
@@ -26,7 +26,7 @@ export default function SeeItInTheApp({
     <Section alt={alt} id="see-it-in-the-app">
       <div className="flex flex-col gap-12">
         <SectionHeader eyebrow="In the app" title={title} lead={lead} />
-        <AppTour steps={all.slice(0, steps)} compact label={`${title} Walkthrough`} />
+        <WalkthroughPlayer steps={all.slice(0, steps)} label={`${title} walkthrough`} />
         <div className="flex flex-col items-center gap-2 border-t border-separator pt-8 text-center">
           <p className="text-[17px] text-label-2">
             {all.length > steps ? `${all.length - steps} more screens in the full guide.` : "Every step, explained."}

@@ -1,4 +1,4 @@
-import type { TourStep } from "../../components/tour/AppTour";
+import type { TourStep } from "../../components/tour/types";
 
 export type Question = {
   slug: string;

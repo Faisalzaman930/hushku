@@ -1,4 +1,4 @@
-import type { TourStep } from "./AppTour";
+import type { TourStep } from "./types";
 
 /**
  * Walkthroughs of the real app, one per help topic. Each starts at the bottom tab bar and

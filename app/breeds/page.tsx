@@ -1,168 +1,129 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { breedsByAnimal, ANIMAL_LABELS } from "../data/breeds";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+import { breedsByAnimal, getBreed } from "../data/breeds";
+
+const DOG_COUNT = breedsByAnimal.dogs.length;
+const CAT_COUNT = breedsByAnimal.cats.length;
 
 export const metadata: Metadata = {
-  title: "Dog & Cat Breed Directory: 450+ Breeds",
-  description:
-    "Browse 391 dog breeds and counting — full stats on size, temperament, trainability, health, and more. Free breed guides for every pet owner.",
+  title: `Dog & Cat Breed Directory: ${DOG_COUNT + CAT_COUNT} Breed Guides`,
+  description: `Guides to ${DOG_COUNT} dog breeds and mixes and ${CAT_COUNT} cat breeds: history, temperament, exercise, grooming and the health problems each breed is known for.`,
   alternates: { canonical: "https://hushku.app/breeds" },
   openGraph: {
     title: "Dog & Cat Breed Directory",
-    description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
+    description: `Guides to ${DOG_COUNT + CAT_COUNT} dog and cat breeds, with history, temperament, care and breed health.`,
     type: "website",
     url: "https://hushku.app/breeds",
-    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Dog & Cat Breed Directory | Hushku" }],
+    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Dog and cat breed directory on Hushku" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Dog & Cat Breed Directory",
-    description: "Browse 450+ dog and cat breeds with temperament scores, care guides, and health information.",
-    images: ["https://hushku.app/og.png"],
-  },
+  twitter: { card: "summary_large_image", title: "Dog & Cat Breed Directory", description: `Guides to ${DOG_COUNT + CAT_COUNT} dog and cat breeds.`, images: ["https://hushku.app/og.png"] },
 };
 
+const POPULAR_DOGS = ["labrador-retriever", "french-bulldog", "golden-retriever", "german-shepherd-dog", "poodle", "dachshund", "beagle", "rottweiler", "bulldog", "cavalier-king-charles-spaniel", "border-collie", "cockapoo"];
+const POPULAR_CATS = ["maine-coon", "ragdoll", "british-shorthair", "persian", "siamese", "bengal", "sphynx", "abyssinian"];
+
+function Grid({ animal, slugs }: { animal: "dogs" | "cats"; slugs: string[] }) {
+  return (
+    <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+      {slugs.map((s) => getBreed(animal, s)).filter((b) => !!b).map((b) => (
+        <li key={b!.slug}>
+          <Link href={`/breeds/${animal}/${b!.slug}`} className="group flex flex-col gap-3">
+            <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
+              {b!.image ? <Image src={b!.image} alt={`${b!.name} ${animal === "cats" ? "cat" : "dog"}`} fill sizes="(min-width: 1024px) 180px, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" /> : null}
+            </span>
+            <span className="text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px]">{b!.name}</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function BreedsHubPage() {
-  const animals = Object.keys(breedsByAnimal);
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
-      { "@type": "ListItem", position: 2, name: "Breed Directory", item: "https://hushku.app/breeds" },
-    ],
-  };
-
-  const collectionSchema = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Dog & Cat Breed Directory",
-    "description": "Complete breed guides for 450+ dog and cat breeds — temperament scores, size, care requirements, health information, and FAQs.",
-    "url": "https://hushku.app/breeds",
-    "publisher": { "@type": "Organization", "name": "Hushku", "url": "https://hushku.app" },
-  };
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+        { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.app/breeds" },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Dog and cat breed directory",
+      description: `Guides to ${DOG_COUNT} dog breeds and mixes and ${CAT_COUNT} cat breeds.`,
+      url: "https://hushku.app/breeds",
+      publisher: { "@type": "Organization", name: "Hushku", url: "https://hushku.app" },
+    },
+  ];
+  const h2 = "text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label";
 
   return (
-    <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="bg-white">
-      {/* Hero */}
-      <div className="bg-ebony pt-32 pb-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-          <div className="absolute -top-20 -right-20 text-white/[0.025] text-[28rem] font-black leading-none">
-            🐾
-          </div>
-        </div>
-        <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-          <p className="text-[10px] font-black text-brand-start uppercase tracking-[0.25em] mb-5">
-            Breed Directory
-          </p>
-          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-8 max-w-3xl">
-            Dog &amp; Cat<br />
-            <span className="text-brand-start">Breed</span><br />
-            Directory.
-          </h1>
-          <p className="text-white/50 text-lg leading-7 max-w-xl mb-12">
-            Detailed stats on size, temperament, trainability, health, and
-            grooming — for every breed. Free, no sign-up.
-          </p>
-          <Link href="/breeds/compare" className="-mt-6 mb-10 inline-flex items-center gap-1 text-[17px] font-medium text-[#FF7A90] hover:underline underline-offset-[3px]">
-            Compare popular breeds side by side →
-          </Link>
-          <div className="flex flex-wrap items-end gap-8">
-            {animals.map((a) => (
-              <div key={a}>
-                <p className="text-3xl font-black text-white leading-none">
-                  {breedsByAnimal[a].length}
-                </p>
-                <p className="text-[10px] font-black text-white/30 uppercase tracking-widest mt-1">
-                  {ANIMAL_LABELS[a] ?? a} Breeds
-                </p>
-              </div>
-            ))}
-            <Link
-              href="/tools/breed-compare"
-              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors"
-            >
-              🆚 Compare Breeds
-            </Link>
-          </div>
-        </div>
-      </div>
+      {schema.map((s, i) => <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />)}
 
-      {/* Animal cards */}
-      <section className="py-24">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {animals.map((a) => (
-              <Link
-                key={a}
-                href={`/breeds/${a}`}
-                className="group relative flex flex-col bg-gray-50 rounded-[2rem] overflow-hidden border border-gray-100 transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-gray-200"
-              >
-                <div className="h-1.5 w-full bg-brand-gradient" />
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="h-16 w-16 flex items-center justify-center rounded-2xl bg-white shadow-sm text-4xl mb-6 group-hover:scale-110 transition-transform">
-                    {a === "dogs" ? "🐕" : a === "cats" ? "🐈" : "🐾"}
-                  </div>
-                  <h2 className="text-2xl font-black text-ebony uppercase tracking-tight mb-1 group-hover:text-brand-start transition-colors">
-                    {ANIMAL_LABELS[a] ?? a}
-                  </h2>
-                  <p className="text-sm text-slate-gray mb-6">
-                    {breedsByAnimal[a].length} breeds
-                  </p>
-                  <div className="mt-auto pt-5 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-ebony group-hover:text-brand-start transition-colors">
-                      Browse Breeds
-                    </span>
-                    <span className="h-8 w-8 flex items-center justify-center rounded-full bg-white border border-gray-200 text-ebony group-hover:bg-brand-start group-hover:border-brand-start group-hover:text-white transition-all text-sm font-black">
-                      →
-                    </span>
-                  </div>
-                </div>
+      <section className="px-4 pt-10 pb-12 md:px-8 md:pt-16">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
+          <p className="text-[15px] font-semibold text-brand-text">Breed directory</p>
+          <h1 className="max-w-[16ch] text-[40px] leading-[1.08] font-semibold tracking-[-0.02em] text-label md:text-[64px] md:leading-[1.05]">Find the breed that fits your life.</h1>
+          <p className="max-w-[640px] text-[19px] leading-[1.45] text-label-2 md:text-[21px]">
+            {DOG_COUNT} dog breeds and mixes and {CAT_COUNT} cat breeds, each with its history, temperament, exercise and grooming needs, and the health problems it is known for.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 md:max-w-[720px]">
+            {[
+              { href: "/breeds/dogs", title: "Dog breeds", meta: `${DOG_COUNT} guides, including mixes` },
+              { href: "/breeds/cats", title: "Cat breeds", meta: `${CAT_COUNT} guides` },
+            ].map((c) => (
+              <Link key={c.href} href={c.href} className="flex items-center gap-3 rounded-3xl bg-surface p-5 transition-colors hover:bg-separator">
+                <span className="flex-1"><span className="block text-[21px] font-semibold text-label">{c.title}</span><span className="text-[15px] text-label-2">{c.meta}</span></span>
+                <ChevronRight size={20} className="text-label-3" aria-hidden />
               </Link>
             ))}
           </div>
         </div>
       </section>
-      {/* Attribution */}
-      <section className="py-12 border-t border-gray-100 bg-gray-50">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <p className="text-[9px] font-black uppercase tracking-widest text-slate-gray mb-3">
-            Image Attribution
-          </p>
-          <p className="text-xs text-slate-gray/70 leading-6 max-w-3xl">
-            Dog breed photos sourced from the{" "}
-            <a
-              href="http://vision.stanford.edu/aditya86/ImageNetDogs/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-ebony transition-colors"
-            >
-              Stanford Dogs Dataset
-            </a>
-            . If you use this data in a publication, please cite:
-          </p>
-          <ul className="mt-3 space-y-2 text-[10px] text-slate-gray/60 leading-5 max-w-3xl list-disc list-inside">
-            <li>
-              Aditya Khosla, Nityananda Jayadevaprakash, Bangpeng Yao and Li Fei-Fei.{" "}
-              <em>Novel dataset for Fine-Grained Image Categorization.</em>{" "}
-              First Workshop on Fine-Grained Visual Categorization (FGVC), CVPR 2011.
-            </li>
-            <li>
-              J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li and L. Fei-Fei.{" "}
-              <em>ImageNet: A Large-Scale Hierarchical Image Database.</em>{" "}
-              IEEE CVPR 2009.
-            </li>
-          </ul>
-          <p className="mt-3 text-[10px] text-slate-gray/50 leading-5 max-w-3xl">
-            Additional images sourced from Wikipedia under their respective Creative Commons licences.
+
+      <section className="px-4 pb-16 md:px-8">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-14">
+          <div className="flex flex-col gap-6">
+            <div className="flex items-end justify-between gap-4"><h2 className={h2}>Popular dog breeds</h2><Link href="/breeds/dogs" className="text-[17px] font-medium text-brand-text hover:underline underline-offset-[3px]">All dogs</Link></div>
+            <Grid animal="dogs" slugs={POPULAR_DOGS} />
+          </div>
+          <div className="flex flex-col gap-6">
+            <div className="flex items-end justify-between gap-4"><h2 className={h2}>Popular cat breeds</h2><Link href="/breeds/cats" className="text-[17px] font-medium text-brand-text hover:underline underline-offset-[3px]">All cats</Link></div>
+            <Grid animal="cats" slugs={POPULAR_CATS} />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-2 px-4 py-16 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-3">
+          {[
+            { t: "How our guides are written", b: "Each guide covers what the breed was bred for, how that shows up at home, and the inherited conditions vets and breed clubs flag. Ratings run from 1 to 5 and describe typical dogs and cats, not every individual.", l: { href: "/about/editorial", text: "Editorial standards" } },
+            { t: "Compare before you choose", b: "Put two breeds side by side to see differences in size, energy, grooming and health at a glance.", l: { href: "/breeds/compare", text: "Popular comparisons" } },
+            { t: "Thinking of adopting?", b: "Plenty of purebreds and mixes end up in rescues. A breed guide tells you what to expect; a rescue can tell you about the individual.", l: { href: "/adoption", text: "Adoption on Hushku" } },
+          ].map((c) => (
+            <div key={c.t} className="flex flex-col gap-3">
+              <h2 className="text-[21px] font-semibold text-label">{c.t}</h2>
+              <p className="text-[17px] leading-[26px] text-label-2">{c.b}</p>
+              <Link href={c.l.href} className="inline-flex items-center gap-1 text-[17px] font-medium text-brand-text hover:underline underline-offset-[3px]">{c.l.text} <ChevronRight size={18} aria-hidden /></Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-4 py-12 md:px-8">
+        <div className="mx-auto max-w-[1200px] text-[13px] leading-[20px] text-label-2">
+          <p className="font-semibold text-label">Image credits</p>
+          <p className="mt-1 max-w-[80ch]">
+            Dog photos from the <a href="http://vision.stanford.edu/aditya86/ImageNetDogs/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-[3px]">Stanford Dogs Dataset</a> (Khosla, Jayadevaprakash, Yao and Fei-Fei, FGVC, CVPR 2011; Deng et al., ImageNet, CVPR 2009). Other images from Wikipedia under their Creative Commons licences.
           </p>
         </div>
       </section>
     </div>
-    </>
   );
 }

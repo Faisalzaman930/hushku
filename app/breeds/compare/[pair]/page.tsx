@@ -8,6 +8,14 @@ import { Section, SectionHeader } from "../../../components/ui";
 import { COMPARISONS, comparisonsFor, getComparison, type Comparison } from "../../../data/breeds/comparisons";
 import type { BreedScores, CatScores } from "../../../data/breeds/types";
 import { metaDesc, shortTitle } from "../../../lib/seo";
+import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
+import { dogNote, catNote } from "../../../data/breeds/notes";
+import type { BreedDoc, CatBreedDoc } from "../../../data/breeds/types";
+
+const noteFor = (c: Comparison, slug: string) => (c.animal === "dogs" ? dogNote(slug) : catNote(slug));
+const healthFor = (c: Comparison, which: "a" | "b") =>
+  c.animal === "dogs" ? generateBreedContent(c[which] as BreedDoc).health : generateCatContent(c[which] as CatBreedDoc).health;
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export const dynamicParams = false;
 
@@ -138,7 +146,7 @@ function rowsFor(c: Comparison): { label: string; a: React.ReactNode; b: React.R
   return [
     { label: "Origin", a: a.origin ?? "–", b: b.origin ?? "–" },
     { label: "Weight", a: a.weight ?? "–", b: b.weight ?? "–" },
-    { label: "Life span", a: a.lifeSpan ? `${a.lifeSpan} years` : "–", b: b.lifeSpan ? `${b.lifeSpan} years` : "–" },
+    { label: "Life span", a: a.lifeSpan ?? "–", b: b.lifeSpan ?? "–" },
     { label: "Lap cat", a: yn(a.lap), b: yn(b.lap) },
     { label: "Hypoallergenic", a: yn(a.hypoallergenic), b: yn(b.hypoallergenic) },
   ];
@@ -163,6 +171,17 @@ function faqsFor(c: Comparison) {
   if (kids) out.push({ q: `Which is better for families, the ${c.a.name} or the ${c.b.name}?`, a: kids });
   const shed = pick(c.animal === "dogs" ? "shedding" : "sheddingLevel", (w, l) => `The ${w} sheds less than the ${l}.`, `They shed about the same amount.`);
   if (shed) out.push({ q: `Which sheds less?`, a: shed + " No breed is completely hair-free; regular brushing helps with both." });
+  const ha = healthFor(c, "a");
+  const hb = healthFor(c, "b");
+  if (ha.length || hb.length) {
+    const shared = ha.filter((h) => hb.includes(h));
+    const parts = [
+      ha.length ? `The ${c.a.name} is prone to ${ha.slice(0, 3).join(", ")}.` : `The ${c.a.name} has no well-documented breed-specific problems.`,
+      hb.length ? `The ${c.b.name} is prone to ${hb.slice(0, 3).join(", ")}.` : `The ${c.b.name} has no well-documented breed-specific problems.`,
+      shared.length ? `Both share a risk of ${shared.slice(0, 2).join(" and ")}.` : "",
+    ];
+    out.push({ q: `What health problems do the ${c.a.name} and ${c.b.name} have?`, a: parts.filter(Boolean).join(" ") + " Ask any breeder for the parents' health test results." });
+  }
   return out;
 }
 
@@ -280,6 +299,33 @@ export default async function ComparePage({ params }: { params: Promise<{ pair: 
             </table>
           </div>
           <p className="text-[13px] text-label-2">Ratings are 1 to 5, from our breed database. Every pet is an individual.</p>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="flex flex-col gap-8">
+          <SectionHeader align="start" eyebrow="Background" title="Where they come from." />
+          <div className="grid gap-4 md:grid-cols-2">
+            {[c.a, c.b].map((br) => {
+              const n = noteFor(c, br.slug);
+              const hl = healthFor(c, br.slug === c.a.slug ? "a" : "b");
+              return (
+                <div key={br.slug} className="flex flex-col gap-3 rounded-3xl bg-bg-2 p-6">
+                  <h2 className="text-[21px] leading-[28px] font-semibold text-label">The {br.name}</h2>
+                  {n?.p ? <p className="text-[15px] leading-[24px] text-label-2">{n.p}</p> : null}
+                  {n?.k ? <p className="text-[15px] leading-[24px] text-label-2">{n.k}</p> : null}
+                  {hl.length ? (
+                    <>
+                      <h3 className="pt-2 text-[15px] font-semibold text-label">Health to watch</h3>
+                      <ul className="flex flex-col gap-1.5">
+                        {hl.slice(0, 5).map((h) => <li key={h} className="flex gap-3 text-[15px] leading-[22px] text-label-2"><span aria-hidden className="mt-[8px] h-1.5 w-1.5 flex-none rounded-full bg-label-3" />{cap(h)}</li>)}
+                      </ul>
+                    </>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Section>
 

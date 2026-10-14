@@ -11,10 +11,12 @@ interface ComingSoonPageProps {
   description: string;
   phase?: string;
   bullets?: string[];
+  /** Useful content for people who land here today, so the page answers something on its own. */
+  guide?: { title: string; intro: string; items: { h: string; p: string }[]; links?: { href: string; text: string }[] };
 }
 
 /** A feature that is planned but not in the app yet. Honest about status, one ask. */
-export default function ComingSoonPage({ feature, tagline, description, bullets = [] }: ComingSoonPageProps) {
+export default function ComingSoonPage({ feature, tagline, description, bullets = [], guide }: ComingSoonPageProps) {
   return (
     <>
       <Section className="!pt-10 md:!pt-16">
@@ -47,6 +49,32 @@ export default function ComingSoonPage({ feature, tagline, description, bullets 
               Plans change as we learn.{" "}
               <Link href="/roadmap" className="font-medium text-brand-text hover:underline underline-offset-[3px]">See the roadmap</Link>, or tell us what matters to you at hello@hushku.app.
             </p>
+          </div>
+        </Section>
+      ) : null}
+      {guide ? (
+        <Section>
+          <div className="mx-auto flex max-w-[880px] flex-col gap-8">
+            <div className="flex flex-col gap-3">
+              <h2 className="text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label md:text-[32px]">{guide.title}</h2>
+              <p className="text-[17px] leading-[28px] text-label-2">{guide.intro}</p>
+            </div>
+            <ol className="grid gap-4 md:grid-cols-2">
+              {guide.items.map((it, i) => (
+                <li key={it.h} className="flex flex-col gap-2 rounded-3xl bg-bg-2 p-6">
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[13px] font-semibold text-label tabular-nums">{i + 1}</span>
+                  <h3 className="text-[19px] font-semibold text-label">{it.h}</h3>
+                  <p className="text-[15px] leading-[24px] text-label-2">{it.p}</p>
+                </li>
+              ))}
+            </ol>
+            {guide.links?.length ? (
+              <ul className="flex flex-wrap gap-2">
+                {guide.links.map((l) => (
+                  <li key={l.href}><Link href={l.href} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label hover:bg-separator">{l.text}</Link></li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </Section>
       ) : null}

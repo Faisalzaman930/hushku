@@ -9,7 +9,7 @@ import { breedArticles } from "./data/breed-articles";
 import { definitionArticles } from "./data/definition-articles";
 import { pillarPages } from "./data/pillars";
 import { templateDocs } from "./data/templates";
-import { breedsByAnimal } from "./data/breeds";
+import { breedsByAnimal, BREED_CONTENT_UPDATED } from "./data/breeds";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.app";
 /** When the site's own pages last changed. Update it when they change, not on every build. */
@@ -170,7 +170,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ([animal, breeds]) =>
       breeds.map((b) => ({
         url: `${BASE_URL}/breeds/${animal}/${b.slug}`,
-        lastModified: TODAY,
+        lastModified: new Date(BREED_CONTENT_UPDATED),
         changeFrequency: "monthly" as const,
         priority: 0.7,
       }))

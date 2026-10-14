@@ -1,12 +1,13 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import CompareButton from "../../../components/CompareButton";
 import Image from "next/image";
-import { breedsByAnimal, getBreed, ANIMAL_LABELS } from "../../../data/breeds";
+import { Check, ChevronRight, CircleAlert } from "lucide-react";
+import CompareButton from "../../../components/CompareButton";
+import { breedsByAnimal, getBreed, ANIMAL_LABELS, BREED_CONTENT_UPDATED, BREED_CONTENT_PUBLISHED } from "../../../data/breeds";
 import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
-import type { BreedDoc, CatBreedDoc, BreedScores, CatScores } from "../../../data/breeds";
-import BreedTabs from "./BreedTabs";
+import { relatedDogs, relatedCats, mixesOf } from "../../../data/breeds/related";
+import type { BreedDoc, CatBreedDoc, BreedScores, CatScores, AnyBreed } from "../../../data/breeds";
 import { comparisonsFor } from "../../../data/breeds/comparisons";
 
 function clamp(text: string, max: number) {
@@ -15,61 +16,35 @@ function clamp(text: string, max: number) {
   return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,:;]$/, "") + "…";
 }
 
-/** Parent breeds of a mix, linked only when we have that breed's page. */
-const PARENT_ALIASES: Record<string, string> = { "english-bulldog": "bulldog", "rough-collie": "collie", "german-shepherd": "german-shepherd-dog" };
-function parentLinks(parentBreeds?: string | null) {
-  if (!parentBreeds) return [];
-  const known = new Set((breedsByAnimal.dogs as { slug: string }[]).map((b) => b.slug));
-  return parentBreeds.split(" and ").map((raw) => {
-    const name = raw.trim();
-    const base = name.toLowerCase().replace(/\s+/g, "-");
-    const slug = known.has(base) ? base : known.has(PARENT_ALIASES[base] ?? "") ? PARENT_ALIASES[base] : null;
-    return { name, slug };
-  });
-}
+const UPDATED_LABEL = new Date(BREED_CONTENT_UPDATED + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 
 /** Only known pages exist; anything else is a real 404. */
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const params: { animal: string; slug: string }[] = [];
-  for (const [animal, breeds] of Object.entries(breedsByAnimal)) {
-    for (const b of breeds) {
-      params.push({ animal, slug: b.slug });
-    }
-  }
-  return params;
+  return Object.entries(breedsByAnimal).flatMap(([animal, breeds]) => (breeds as AnyBreed[]).map((b) => ({ animal, slug: b.slug })));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ animal: string; slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ animal: string; slug: string }> }): Promise<Metadata> {
   const { animal, slug } = await params;
   const breed = getBreed(animal, slug);
   if (!breed) return {};
-  const animalLabel = ANIMAL_LABELS[animal] ?? animal;
   const isCat = breed.animal === "cats";
-  const cat = isCat ? (breed as CatBreedDoc) : null;
-  const dog = !isCat ? (breed as BreedDoc) : null;
-
-
+  const content = isCat ? generateCatContent(breed as CatBreedDoc) : generateBreedContent(breed as BreedDoc);
   const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
-  const ogImage = breed.image
-    ? `https://hushku.app${breed.image}`
-    : `https://hushku.app/og.png`;
+  const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/og.png`;
 
   // Titles stay within ~60 characters and descriptions within 155, so Google shows them whole.
-  const long = `${breed.name} Breed Guide: Temperament & Care | Hushku`;
-  const title = long.length <= 60 ? long : `${breed.name} Breed Guide | Hushku`;
-  const facts = [
-    dog?.parentBreeds ? `a ${dog.parentBreeds} mix` : "",
-    dog?.size ? `${dog.size.toLowerCase()} size` : cat?.origin ? `from ${cat.origin}` : "",
-    breed.lifeSpan ? `lives ${breed.lifeSpan}` : "",
-  ].filter(Boolean);
+  const variants = [
+    `${breed.name}: Temperament, Care & Health | Hushku`,
+    `${breed.name} Breed Guide: Temperament & Care | Hushku`,
+    `${breed.name} Breed Guide | Hushku`,
+    `${breed.name} | Hushku`,
+  ];
+  const title = variants.find((t) => t.length <= 60) ?? variants[variants.length - 1];
+  const health = content.health.slice(0, 2);
   const description = clamp(
-    `The ${breed.name}${facts.length ? `: ${facts.join(", ")}` : ""}. Temperament, grooming, training and health, with ratings and FAQs.`,
+    `${content.lead}${health.length ? ` Known health risks include ${health.join(" and ")}.` : ""} Temperament, exercise, grooming and FAQs.`,
     155
   );
 
@@ -82,64 +57,74 @@ export async function generateMetadata({
       description,
       type: "article",
       url: canonicalUrl,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: `${breed.name} ${isCat ? "cat" : "dog"} breed guide` }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${breed.name} ${isCat ? "cat" : "dog"}` }],
       siteName: "Hushku",
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
   };
 }
 
-const DOG_SCORE_GROUPS: { label: string; emoji: string; color: string; keys: (keyof BreedScores)[] }[] = [
-  { label: "Adaptability", emoji: "🏠", color: "from-violet-500 to-purple-600",
-    keys: ["adaptability","apartmentFriendly","goodForNovice","sensitivity","toleratesAlone","toleratesCold","toleratesHot"] },
-  { label: "Friendliness", emoji: "❤️", color: "from-rose-500 to-pink-600",
-    keys: ["friendliness","affectionate","kidFriendly","dogFriendly","strangerFriendly"] },
-  { label: "Health & Grooming", emoji: "✂️", color: "from-emerald-500 to-teal-600",
-    keys: ["shedding","drooling","easyToGroom","health","weightGain"] },
-  { label: "Trainability", emoji: "🎓", color: "from-blue-500 to-indigo-600",
-    keys: ["trainability","easyToTrain","intelligence","mouthiness","preyDrive","barkiness","wanderlust"] },
-  { label: "Physical Needs", emoji: "🏃", color: "from-orange-500 to-amber-600",
-    keys: ["energy","intensity","exerciseNeeds","playfulness"] },
+const DOG_SCORE_GROUPS: { label: string; keys: (keyof BreedScores)[] }[] = [
+  { label: "Living with it", keys: ["adaptability", "apartmentFriendly", "goodForNovice", "sensitivity", "toleratesAlone", "toleratesCold", "toleratesHot"] },
+  { label: "Friendliness", keys: ["affectionate", "kidFriendly", "dogFriendly", "strangerFriendly"] },
+  { label: "Coat and health", keys: ["shedding", "drooling", "easyToGroom", "health", "weightGain"] },
+  { label: "Training and behaviour", keys: ["easyToTrain", "intelligence", "mouthiness", "preyDrive", "barkiness", "wanderlust"] },
+  { label: "Exercise", keys: ["energy", "intensity", "exerciseNeeds", "playfulness"] },
 ];
 
 const DOG_SCORE_LABELS: Record<keyof BreedScores, string> = {
-  adaptability:"Overall Adaptability", apartmentFriendly:"Apartment Living", goodForNovice:"Good for Novice Owners",
-  sensitivity:"Sensitivity", toleratesAlone:"Tolerates Being Alone", toleratesCold:"Cold Weather", toleratesHot:"Hot Weather",
-  friendliness:"Overall Friendliness", affectionate:"Affectionate with Family", kidFriendly:"Kid-Friendly",
-  dogFriendly:"Dog-Friendly", strangerFriendly:"Friendly to Strangers", shedding:"Shedding", drooling:"Drooling",
-  easyToGroom:"Easy to Groom", health:"General Health", weightGain:"Weight Gain Tendency",
-  trainability:"Overall Trainability", easyToTrain:"Easy to Train", intelligence:"Intelligence",
-  mouthiness:"Mouthiness", preyDrive:"Prey Drive", barkiness:"Tendency to Bark", wanderlust:"Wanderlust",
-  energy:"Energy Level", intensity:"Intensity", exerciseNeeds:"Exercise Needs", playfulness:"Playfulness",
+  adaptability: "Adaptability", apartmentFriendly: "Apartment living", goodForNovice: "Good for first-time owners",
+  sensitivity: "Sensitivity", toleratesAlone: "Copes with being alone", toleratesCold: "Copes with cold", toleratesHot: "Copes with heat",
+  friendliness: "Friendliness", affectionate: "Affection with family", kidFriendly: "Good with kids",
+  dogFriendly: "Good with other dogs", strangerFriendly: "Friendly with strangers", shedding: "Shedding", drooling: "Drooling",
+  easyToGroom: "Easy to groom", health: "General health", weightGain: "Tendency to gain weight",
+  trainability: "Trainability", easyToTrain: "Easy to train", intelligence: "Intelligence",
+  mouthiness: "Mouthiness", preyDrive: "Prey drive", barkiness: "Barking", wanderlust: "Tendency to roam",
+  energy: "Energy", intensity: "Intensity", exerciseNeeds: "Exercise needs", playfulness: "Playfulness",
 };
 
 const CAT_SCORE_LABELS: Record<keyof CatScores, string> = {
-  adaptability:"Adaptability", affectionLevel:"Affection Level", childFriendly:"Child Friendly",
-  dogFriendly:"Dog Friendly", energyLevel:"Energy Level", grooming:"Grooming Needs",
-  healthIssues:"Health Issues", intelligence:"Intelligence", sheddingLevel:"Shedding Level",
-  socialNeeds:"Social Needs", strangerFriendly:"Stranger Friendly", vocalisation:"Vocalisation",
+  adaptability: "Adaptability", affectionLevel: "Affection", childFriendly: "Good with children",
+  dogFriendly: "Good with dogs", energyLevel: "Energy", grooming: "Grooming needs",
+  healthIssues: "Health issues", intelligence: "Intelligence", sheddingLevel: "Shedding",
+  socialNeeds: "Need for company", strangerFriendly: "Friendly with strangers", vocalisation: "Vocal",
 };
 
-function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function Rating({ label, score }: { label: string; score: number | null }) {
+  if (score === null) return null;
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-4 text-center shadow-sm">
-      <p className="text-[9px] font-black uppercase tracking-widest text-slate-gray mb-1">{label}</p>
-      <p className="text-sm font-black text-ebony leading-tight">{value}</p>
-      {sub && <p className="text-[10px] text-slate-gray/60 mt-0.5">{sub}</p>}
+    <div className="flex items-center gap-4 py-2.5">
+      <dt className="flex-1 text-[15px] text-label">{label}</dt>
+      <dd className="flex items-center gap-3">
+        <span className="flex gap-1" aria-hidden>
+          {[1, 2, 3, 4, 5].map((i) => (
+            <span key={i} className={`h-2 w-5 rounded-full ${i <= score ? "bg-brand" : "bg-surface"}`} />
+          ))}
+        </span>
+        <span className="w-8 text-right text-[13px] tabular-nums text-label-2">{score}/5</span>
+      </dd>
     </div>
   );
 }
 
-export default async function BreedPage({
-  params,
-}: {
-  params: Promise<{ animal: string; slug: string }>;
-}) {
+function BreedCard({ b, animal }: { b: AnyBreed; animal: string }) {
+  const meta = b.animal === "cats" ? (b as CatBreedDoc).origin : (b as BreedDoc).size;
+  return (
+    <li>
+      <Link href={`/breeds/${animal}/${b.slug}`} className="group flex flex-col gap-3">
+        <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
+          {b.image ? <Image src={b.image} alt={`${b.name} ${animal === "cats" ? "cat" : "dog"}`} fill sizes="(min-width: 768px) 200px, 45vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" /> : null}
+        </span>
+        <span>
+          <span className="block text-[17px] font-semibold text-label group-hover:underline underline-offset-[3px]">{b.name}</span>
+          {meta ? <span className="text-[13px] text-label-2">{meta}</span> : null}
+        </span>
+      </Link>
+    </li>
+  );
+}
+
+export default async function BreedPage({ params }: { params: Promise<{ animal: string; slug: string }> }) {
   const { animal, slug } = await params;
   const breed = getBreed(animal, slug);
   if (!breed) notFound();
@@ -148,227 +133,288 @@ export default async function BreedPage({
   const isCat = breed.animal === "cats";
   const cat = isCat ? (breed as CatBreedDoc) : null;
   const dog = !isCat ? (breed as BreedDoc) : null;
-  const today = new Date().toISOString().split("T")[0];
-
-  const content = isCat && cat ? generateCatContent(cat) : dog ? generateBreedContent(dog) : null;
-
-  // Related breeds
-  const related = (breedsByAnimal[animal] as (BreedDoc | CatBreedDoc)[])
-    .filter((b) => b.slug !== breed.slug && b.image)
-    .filter((b) => {
-      if (!isCat && dog && (b as BreedDoc).group) return (b as BreedDoc).group === dog.group;
-      return true;
-    })
-    .slice(0, 4);
-
-  // FAQ for cats (used for JSON-LD schema only — runtime uses content.faqs)
-  const catFaqs = cat ? [
-    { q: `Is the ${cat.name} good with children?`, a: cat.scores.childFriendly !== null ? (cat.scores.childFriendly >= 4 ? `Yes — the ${cat.name} is known for being gentle and patient with children.` : cat.scores.childFriendly >= 3 ? `The ${cat.name} generally gets along well with children with proper introductions.` : `The ${cat.name} can be reserved around young children and suits calmer households.`) : `Always supervise interactions between cats and young children.` },
-    { q: `Is the ${cat.name} hypoallergenic?`, a: cat.hypoallergenic ? `Yes, the ${cat.name} is considered hypoallergenic, making it a popular choice for allergy sufferers. No cat is 100% allergen-free, but this breed produces less Fel d 1 protein.` : `No, the ${cat.name} is not considered hypoallergenic. Regular grooming helps manage dander levels.` },
-    { q: `How vocal is the ${cat.name}?`, a: cat.scores.vocalisation !== null ? (cat.scores.vocalisation >= 4 ? `The ${cat.name} is a very vocal breed — expect plenty of conversation!` : cat.scores.vocalisation >= 3 ? `The ${cat.name} is moderately vocal and will let you know when it needs attention.` : `The ${cat.name} is a quiet breed, communicating more through body language than sound.`) : `Vocalisation varies by individual cat.` },
-    { q: `Is the ${cat.name} good with dogs?`, a: cat.scores.dogFriendly !== null ? (cat.scores.dogFriendly >= 4 ? `The ${cat.name} is typically dog-friendly and adapts well to multi-pet households.` : cat.scores.dogFriendly >= 3 ? `The ${cat.name} can coexist with dogs with slow, careful introductions.` : `The ${cat.name} generally prefers a cat-only household or careful managed introductions with dogs.`) : `Always introduce pets slowly and in a controlled environment.` },
-    { q: `How much grooming does the ${cat.name} need?`, a: cat.scores.grooming !== null ? (cat.scores.grooming >= 4 ? `The ${cat.name} requires significant grooming — daily brushing and regular professional grooming is recommended.` : cat.scores.grooming >= 3 ? `The ${cat.name} needs moderate grooming — a brush a few times per week keeps the coat in good condition.` : `The ${cat.name} is low-maintenance in the grooming department. A weekly brush is usually sufficient.`) : `Regular grooming keeps your cat healthy and reduces hairballs.` },
-    { q: `What is the ${cat.name}'s life expectancy?`, a: `The ${cat.name} typically lives ${cat.lifeSpan ?? "12–16 years"}. Regular vet visits, a balanced diet, and keeping them indoors significantly extends lifespan.` },
-  ] : [];
-
-  // JSON-LD
-  const faqs = content?.faqs ?? catFaqs;
+  const content = cat ? generateCatContent(cat) : generateBreedContent(dog!);
+  const related: AnyBreed[] = cat ? relatedCats(cat) : relatedDogs(dog!);
+  const mixes = dog && !dog.parentBreeds ? mixesOf(dog.slug) : [];
+  const comparisons = comparisonsFor(animal, slug);
   const canonicalUrl = `https://hushku.app/breeds/${animal}/${slug}`;
   const ogImage = breed.image ? `https://hushku.app${breed.image}` : `https://hushku.app/og.png`;
+  const noun = isCat ? "cat" : "dog";
 
-  const faqSchema = faqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  } : null;
+  const facts = cat
+    ? [
+        ["Origin", cat.origin],
+        ["Weight", cat.weight],
+        ["Life span", cat.lifeSpan],
+        ["Coat", cat.hypoallergenic ? "Often called hypoallergenic" : null],
+        ["Lap cat", cat.lap === null ? null : cat.lap ? "Yes" : "Not usually"],
+      ]
+    : [
+        ["Size", dog!.size],
+        ["Height", dog!.height],
+        ["Weight", dog!.weight],
+        ["Life span", dog!.lifeSpan],
+        ["Group", dog!.group?.replace(/ Dogs$/, "")],
+        ["Parent breeds", dog!.parentBreeds],
+      ];
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: `${breed.name}${/\b(dog|cat|hound)$/i.test(breed.name) ? "" : isCat ? " Cat" : " Dog"} Breed Guide: Temperament, Size, Care & Health`,
-    description: `Complete guide to the ${breed.name} — temperament, size, grooming, training, health, and suitability.`,
-    image: ogImage,
-    url: canonicalUrl,
-    datePublished: "2024-01-01",
-    dateModified: today,
-    author: {
-      "@type": "Organization",
-      name: "Hushku Editorial Team",
-      url: "https://hushku.app/about/editorial",
+  const toc = [
+    ...content.sections.map((s) => ({ id: s.id, title: s.title })),
+    { id: "ratings", title: "Ratings" },
+    ...(content.goodFit.length || content.thinkTwice.length ? [{ id: "fit", title: "Is it right for you?" }] : []),
+    { id: "faq", title: "Questions" },
+  ];
+
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${breed.name}: temperament, care and health`,
+      description: content.lead,
+      image: ogImage,
+      url: canonicalUrl,
+      datePublished: BREED_CONTENT_PUBLISHED,
+      dateModified: BREED_CONTENT_UPDATED,
+      author: { "@type": "Organization", name: "Hushku Editorial Team", url: "https://hushku.app/about/editorial" },
+      publisher: { "@type": "Organization", name: "Hushku", url: "https://hushku.app", logo: { "@type": "ImageObject", url: "https://hushku.app/icon.svg" } },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+      about: { "@type": "Thing", name: `${breed.name} (${noun} breed)` },
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Hushku",
-      url: "https://hushku.app",
-      logo: { "@type": "ImageObject", url: "https://hushku.app/icon.svg" },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: content.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
-    about: { "@type": "Thing", name: `${breed!.name} ${isCat ? "cat" : "dog"} breed` },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
+        { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.app/breeds" },
+        { "@type": "ListItem", position: 3, name: animalLabel, item: `https://hushku.app/breeds/${animal}` },
+        { "@type": "ListItem", position: 4, name: breed.name, item: canonicalUrl },
+      ],
+    },
+  ];
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://hushku.app" },
-      { "@type": "ListItem", position: 2, name: "Breeds", item: "https://hushku.app/breeds" },
-      { "@type": "ListItem", position: 3, name: animalLabel, item: `https://hushku.app/breeds/${animal}` },
-      { "@type": "ListItem", position: 4, name: breed.name, item: canonicalUrl },
-    ],
-  };
-
-  const quickStats = isCat && cat ? [
-    { label: "Origin", value: cat.origin ?? "Unknown" },
-    { label: "Life Span", value: cat.lifeSpan ?? "—" },
-    { label: "Weight", value: cat.weight ?? "—" },
-    { label: "Indoor", value: cat.indoor ? "Indoor" : "Indoor/Outdoor" },
-    { label: "Lap Cat", value: cat.lap ? "Yes" : "Not typically" },
-    { label: "Hypoallergenic", value: cat.hypoallergenic ? "Yes" : "No" },
-  ] : dog ? [
-    { label: "Size", value: dog.size ?? "—" },
-    { label: "Life Span", value: dog.lifeSpan ?? "—" },
-    { label: "Weight", value: dog.weight ?? "—" },
-    { label: "Height", value: dog.height ?? "—" },
-    { label: "Breed Group", value: dog.group ?? "—" },
-  ] : [];
+  const h2 = "text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label";
+  const body = "text-[17px] leading-[28px] text-label-2";
 
   return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    <div className="bg-white">
+      {schemas.map((s, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+      ))}
 
-      <div className="bg-white">
-        {/* ── Hero ─────────────────────────────────────────────────── */}
-        <div className="bg-ebony pt-32 pb-0 relative overflow-hidden">
-          <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-white/30 text-[10px] font-black uppercase tracking-widest mb-8">
-              <Link href="/breeds" className="hover:text-white/60 transition-colors">Breeds</Link>
-              <span>/</span>
-              <Link href={`/breeds/${animal}`} className="hover:text-white/60 transition-colors">{animalLabel}</Link>
-              <span>/</span>
-              <span className="text-white/60">{breed.name}</span>
-            </nav>
+      {/* ── Hero ── */}
+      <section className="px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-16">
+        <div className="mx-auto max-w-[1200px]">
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-1.5 text-[13px] text-label-2">
+              <li><Link href="/breeds" className="hover:text-label hover:underline underline-offset-[3px]">Breeds</Link></li>
+              <ChevronRight size={14} className="text-label-3" aria-hidden />
+              <li><Link href={`/breeds/${animal}`} className="hover:text-label hover:underline underline-offset-[3px]">{animalLabel}</Link></li>
+              <ChevronRight size={14} className="text-label-3" aria-hidden />
+              <li aria-current="page" className="font-medium text-label">{breed.name}</li>
+            </ol>
+          </nav>
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_minmax(0,460px)] md:gap-16">
+            <div className="flex flex-col gap-5">
+              <p className="text-[15px] font-semibold text-brand-text">
+                {cat ? `${cat.origin ? `${cat.origin} · ` : ""}Cat breed` : dog!.parentBreeds ? "Mixed breed" : `${dog!.group?.replace(/ Dogs$/, "") ?? ""} dog breed`.trim()}
+              </p>
+              <h1 className="text-[40px] leading-[1.08] font-semibold tracking-[-0.02em] text-balance text-label md:text-[56px] md:leading-[1.05]">{breed.name}</h1>
+              <p className="max-w-[60ch] text-[19px] leading-[1.45] text-label-2 md:text-[21px]">{content.lead}</p>
+              <p className="text-[13px] text-label-2">
+                Reviewed to our <Link href="/about/editorial" className="underline underline-offset-[3px] hover:text-label">editorial standards</Link> · Updated <time dateTime={BREED_CONTENT_UPDATED}>{UPDATED_LABEL}</time>
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <CompareButton slug={breed.slug} className="inline-flex min-h-11 items-center rounded-full bg-label px-5 text-[15px] font-medium text-white transition-colors hover:bg-label-2">
+                  Compare with another breed
+                </CompareButton>
+                <Link href={`/breeds/${animal}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-5 text-[15px] font-medium text-label transition-colors hover:bg-separator">
+                  All {animalLabel.toLowerCase()}
+                </Link>
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
+              {breed.image ? (
+                <Image src={breed.image} alt={dog?.parentBreeds ? `${breed.name}, a ${dog.parentBreeds} mix` : `${breed.name} ${noun}`} fill priority sizes="(min-width: 768px) 460px, 100vw" className="object-cover" />
+              ) : null}
+            </div>
+          </div>
 
-            <div className="flex flex-col md:flex-row gap-10 items-end pb-0">
-              {/* Image — bleeds into content area */}
-              <div className="flex-none w-52 h-52 md:w-72 md:h-72 rounded-t-3xl overflow-hidden bg-white/10 relative shadow-2xl self-end">
-                {breed.image ? (
-                  <Image
-                    src={breed.image}
-                    alt={dog?.parentBreeds ? `${breed.name} dog — ${dog.parentBreeds} mix` : `${breed.name} ${isCat ? "cat" : "dog"} breed`}
-                    fill className="object-cover object-top" sizes="288px" priority
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-7xl">
-                    {animal === "dogs" ? "🐕" : "🐈"}
+          <dl className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {facts.filter(([, v]) => v).map(([k, v]) => (
+              <div key={k} className={`rounded-2xl bg-bg-2 p-5 ${k === "Parent breeds" ? "col-span-2 sm:col-span-3 lg:col-span-2" : ""}`}>
+                <dt className="text-[13px] text-label-2">{k}</dt>
+                <dd className="mt-1 text-[17px] font-semibold text-label">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ── Body ── */}
+      <section className="px-4 pb-16 md:px-8 md:pb-24">
+        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[220px_1fr] lg:gap-16">
+          <nav aria-label="On this page" className="lg:sticky lg:top-24 lg:self-start">
+            <p className="mb-3 text-[13px] font-semibold text-label-2">On this page</p>
+            <ol className="flex flex-col gap-1 border-l border-separator">
+              {toc.map((t) => (
+                <li key={t.id}>
+                  <a href={`#${t.id}`} className="-ml-px block border-l border-transparent py-1.5 pl-4 text-[15px] text-label-2 hover:border-label hover:text-label">{t.title}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          <div className="flex max-w-[720px] flex-col gap-14">
+            {content.sections.map((s) => (
+              <section key={s.id} id={s.id} aria-labelledby={`${s.id}-h`} className="flex scroll-mt-24 flex-col gap-4">
+                <h2 id={`${s.id}-h`} className={h2}>{s.title}</h2>
+                {s.paragraphs.map((p) => <p key={p} className={body}>{p}</p>)}
+                {s.id === "about" && content.parents.length ? (
+                  <div className="flex flex-col gap-3 pt-1">
+                    <h3 className="text-[17px] font-semibold text-label">The parent breeds</h3>
+                    <ul className="grid gap-3 sm:grid-cols-2">
+                      {content.parents.map((p) => (
+                        <li key={p.name} className="flex flex-col gap-2 rounded-2xl bg-bg-2 p-5">
+                          {p.slug ? (
+                            <Link href={`/breeds/dogs/${p.slug}`} className="inline-flex items-center gap-1 text-[17px] font-semibold text-label hover:underline underline-offset-[3px]">{p.name} <ChevronRight size={16} aria-hidden /></Link>
+                          ) : (
+                            <span className="text-[17px] font-semibold text-label">{p.name}</span>
+                          )}
+                          {p.summary ? <p className="text-[15px] leading-[22px] text-label-2">{p.summary}</p> : null}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                )}
-              </div>
+                ) : null}
+                {s.id === "health" && content.health.length ? (
+                  <ul className="flex flex-col gap-2 rounded-2xl bg-bg-2 p-5">
+                    {content.health.map((h) => (
+                      <li key={h} className="flex gap-3 text-[15px] leading-[22px] text-label"><span aria-hidden className="mt-[8px] h-1.5 w-1.5 flex-none rounded-full bg-label-3" />{h.charAt(0).toUpperCase() + h.slice(1)}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {s.id === "care" ? (
+                  <p className="text-[15px] text-label-2">
+                    Work out their needs with the free{" "}
+                    <Link href="/tools/calorie-calculator" className="font-medium text-brand-text hover:underline underline-offset-[3px]">calorie calculator</Link>
+                    {!isCat ? <>, <Link href="/tools/exercise-calculator" className="font-medium text-brand-text hover:underline underline-offset-[3px]">exercise calculator</Link></> : null} and{" "}
+                    <Link href="/tools/water-calculator" className="font-medium text-brand-text hover:underline underline-offset-[3px]">water intake calculator</Link>.
+                  </p>
+                ) : null}
+              </section>
+            ))}
 
-              <div className="flex-1 pb-10">
-                <p className="text-[10px] font-black text-brand-start uppercase tracking-[0.25em] mb-3">
-                  {isCat ? (cat?.origin ?? "Cat Breed") : (dog?.group ?? animalLabel)}
-                </p>
-                <h1 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-3">
-                  {breed.name}
-                </h1>
-                {isCat && cat?.temperament && (
-                  <p className="text-white/40 text-xs mb-4 max-w-md">{cat.temperament}</p>
-                )}
-                <p className="text-white/30 text-xs mb-6">
-                  Reviewed to our{" "}
-                  <Link href="/about/editorial" className="underline hover:text-white/60 transition-colors">
-                    editorial standards
-                  </Link>
-                  {" "}· Updated {today}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {quickStats.slice(0, 4).map(({ label, value }) => value && value !== "—" ? (
-                    <span key={label} className="text-[9px] font-black uppercase tracking-widest px-3 py-1.5 bg-white/10 text-white/70 rounded-full">
-                      {label}: {value}
-                    </span>
-                  ) : null)}
+            <section id="ratings" aria-labelledby="ratings-h" className="flex scroll-mt-24 flex-col gap-4">
+              <h2 id="ratings-h" className={h2}>Ratings</h2>
+              <p className="text-[15px] text-label-2">Scored 1 to 5, where 5 is the most. Individual {noun}s vary.</p>
+              {cat ? (
+                <dl className="divide-y divide-separator border-y border-separator">
+                  {(Object.keys(CAT_SCORE_LABELS) as (keyof CatScores)[]).map((k) => <Rating key={k} label={CAT_SCORE_LABELS[k]} score={cat.scores[k]} />)}
+                </dl>
+              ) : (
+                <div className="grid gap-8 md:grid-cols-2">
+                  {DOG_SCORE_GROUPS.map((g) => (
+                    <div key={g.label}>
+                      <h3 className="mb-1 text-[15px] font-semibold text-label">{g.label}</h3>
+                      <dl className="divide-y divide-separator border-y border-separator">
+                        {g.keys.map((k) => <Rating key={k} label={DOG_SCORE_LABELS[k]} score={k === "goodForNovice" ? content.noviceScore : dog!.scores[k]} />)}
+                      </dl>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  <CompareButton slug={breed.slug}
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors">
-                    🆚 Compare
-                  </CompareButton>
-                  <Link href={`/breeds/${animal}`}
-                    className="inline-flex items-center gap-2 text-white/40 hover:text-white/70 text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-colors border border-white/10">
-                    ← All {animalLabel}
-                  </Link>
+              )}
+            </section>
+
+            {content.goodFit.length || content.thinkTwice.length ? (
+              <section id="fit" aria-labelledby="fit-h" className="flex scroll-mt-24 flex-col gap-4">
+                <h2 id="fit-h" className={h2}>Is the {breed.name} right for you?</h2>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {content.goodFit.length ? (
+                    <div className="rounded-2xl bg-success-tint p-5">
+                      <h3 className="mb-3 text-[15px] font-semibold text-success">Often a good fit for</h3>
+                      <ul className="flex flex-col gap-2">{content.goodFit.map((t) => <li key={t} className="flex gap-2 text-[15px] leading-[22px] text-label"><Check size={18} className="mt-0.5 flex-none text-success" aria-hidden />{t}</li>)}</ul>
+                    </div>
+                  ) : null}
+                  {content.thinkTwice.length ? (
+                    <div className="rounded-2xl bg-warning-tint p-5">
+                      <h3 className="mb-3 text-[15px] font-semibold text-warning">Less suited to</h3>
+                      <ul className="flex flex-col gap-2">{content.thinkTwice.map((t) => <li key={t} className="flex gap-2 text-[15px] leading-[22px] text-label"><CircleAlert size={18} className="mt-0.5 flex-none text-warning" aria-hidden />{t}</li>)}</ul>
+                    </div>
+                  ) : null}
                 </div>
+                <p className="text-[15px] text-label-2">
+                  Thinking of adopting? Read our <Link href="/resources/adopting-rescue-dog-complete-guide" className="font-medium text-brand-text hover:underline underline-offset-[3px]">guide to adopting a rescue</Link> or browse <Link href="/adoption" className="font-medium text-brand-text hover:underline underline-offset-[3px]">adoption on Hushku</Link>.
+                </p>
+              </section>
+            ) : null}
+
+            <section id="faq" aria-labelledby="faq-h" className="flex scroll-mt-24 flex-col gap-4">
+              <h2 id="faq-h" className={h2}>{breed.name} questions</h2>
+              <div className="flex flex-col divide-y divide-separator border-y border-separator">
+                {content.faqs.map((f) => (
+                  <div key={f.q} className="py-5">
+                    <h3 className="text-[17px] font-semibold text-label">{f.q}</h3>
+                    <p className="mt-2 text-[17px] leading-[26px] text-label-2">{f.a}</p>
+                  </div>
+                ))}
               </div>
-            </div>
+            </section>
           </div>
         </div>
+      </section>
 
-        {/* ── Quick stat cards ─────────────────────────────────────── */}
-        <div className="bg-gray-50 border-b border-gray-100">
-          <div className="mx-auto max-w-6xl px-6 lg:px-8 py-6">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {quickStats.map(({ label, value }) => value && value !== "—" ? (
-                <StatCard key={label} label={label} value={value} />
-              ) : null)}
+      {/* ── Mixes, related, comparisons ── */}
+      <section className="bg-bg-2 px-4 py-16 md:px-8 md:py-24">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-14">
+          {mixes.length ? (
+            <div className="flex flex-col gap-6">
+              <h2 className={h2}>{breed.name} mixes</h2>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+                {mixes.map((m) => <BreedCard key={m.slug} b={m} animal="dogs" />)}
+              </ul>
             </div>
+          ) : null}
+          <div className="flex flex-col gap-6">
+            <h2 className={h2}>Similar {animalLabel.toLowerCase()}</h2>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+              {related.map((r) => <BreedCard key={r.slug} b={r} animal={animal} />)}
+            </ul>
           </div>
-        </div>
-
-        {/* ── Tabbed content (client) ──────────────────────────────── */}
-        <BreedTabs
-          breed={breed}
-          content={content}
-          catFaqs={catFaqs}
-          dogScoreGroups={DOG_SCORE_GROUPS}
-          dogScoreLabels={DOG_SCORE_LABELS}
-          catScoreLabels={CAT_SCORE_LABELS}
-          animal={animal}
-          related={related}
-          animalLabel={animalLabel}
-          parentLinks={parentLinks(dog?.parentBreeds)}
-        />
-
-        {/* ── Popular comparisons ─────────────────────────────────── */}
-        {comparisonsFor(animal, slug).length ? (
-          <section className="px-4 pt-16 md:px-8" aria-labelledby="compared-with">
-            <div className="mx-auto flex max-w-[1200px] flex-col gap-4">
-              <h2 id="compared-with" className="text-[24px] leading-[1.25] font-semibold tracking-[-0.008em] text-label">{breed.name} compared</h2>
+          {comparisons.length ? (
+            <div className="flex flex-col gap-4">
+              <h2 className={h2}>{breed.name} compared</h2>
               <ul className="flex flex-wrap gap-2">
-                {comparisonsFor(animal, slug).map((c) => (
+                {comparisons.map((c) => (
                   <li key={c.slug}>
-                    <Link href={`/breeds/compare/${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label transition-colors hover:bg-separator">
-                      {c.a.name} vs {c.b.name}
-                    </Link>
+                    <Link href={`/breeds/compare/${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-white px-4 text-[15px] font-medium text-label transition-colors hover:bg-separator">{c.a.name} vs {c.b.name}</Link>
                   </li>
                 ))}
               </ul>
             </div>
-          </section>
-        ) : null}
+          ) : null}
+        </div>
+      </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────── */}
-        <section className="px-4 pt-16 md:px-8">
-          <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 rounded-3xl bg-bg-2 p-6 md:flex-row md:items-center md:p-8">
-            <div>
-              <h2 className="text-[24px] leading-[1.25] font-semibold tracking-[-0.008em] text-label">Own a {breed.name}?</h2>
-              <p className="mt-1 max-w-[56ch] text-[17px] leading-[26px] text-label-2">
-                Keep their reminders, weight and health records in Hushku, and find playmates nearby.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/tools" className="inline-flex min-h-11 items-center rounded-full bg-surface px-5 text-[17px] font-medium text-label hover:bg-separator">Free pet tools</Link>
-              <Link href={`/breeds/${animal}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-5 text-[17px] font-medium text-label hover:bg-separator">All {animalLabel.toLowerCase()}</Link>
-            </div>
+      {/* ── CTA ── */}
+      <section className="px-4 py-16 md:px-8">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 rounded-3xl bg-bg-2 p-6 md:flex-row md:items-center md:p-8">
+          <div>
+            <h2 className="text-[24px] leading-[1.25] font-semibold tracking-[-0.008em] text-label">Own {/^[aeiou]/i.test(breed.name) ? "an" : "a"} {breed.name}?</h2>
+            <p className="mt-1 max-w-[56ch] text-[17px] leading-[26px] text-label-2">
+              {isCat ? "Keep their vet visits, weight and reminders in Hushku, and share care with your household." : "Keep their reminders, weight and health records in Hushku, and find playmates nearby."}
+            </p>
           </div>
-        </section>
-      </div>
-    </>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/health" className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-[17px] font-medium text-label hover:bg-separator">Health and care</Link>
+            <Link href="/join" className="inline-flex min-h-11 items-center rounded-full bg-label px-5 text-[17px] font-medium text-white hover:bg-label-2">Join the waitlist</Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

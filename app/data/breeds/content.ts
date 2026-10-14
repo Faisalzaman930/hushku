@@ -1,335 +1,344 @@
 import type { BreedDoc, CatBreedDoc } from "./types";
+import { dogs } from "./index";
+import { dogNote, catNote, parentSlugs, type BreedNote } from "./notes";
 
-function scoreLabel(n: number | null, labels: [string, string, string]): string {
-  if (n === null) return labels[1];
-  if (n <= 2) return labels[0];
-  if (n >= 4) return labels[2];
-  return labels[1];
+/**
+ * Breed page copy. Specific facts come from the hand-written notes (notes/*.ts); the 1–5 ratings
+ * only shape the practical guidance. Phrasing varies by breed so pages don't read as one template,
+ * and nothing claims more than the data supports.
+ */
+
+export interface BreedSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  bullets?: string[];
 }
 
-function pick<T>(n: number | null, low: T, mid: T, high: T): T {
-  if (n === null) return mid;
-  if (n <= 2) return low;
-  if (n >= 4) return high;
-  return mid;
+export interface ParentInfo {
+  name: string;
+  slug: string | null;
+  summary?: string;
 }
 
 export interface BreedContent {
-  overview: string;
-  temperament: string;
-  careGrooming: string;
-  healthLifespan: string;
-  suitability: string;
+  lead: string;
+  sections: BreedSection[];
+  goodFit: string[];
+  thinkTwice: string[];
+  health: string[];
+  parents: ParentInfo[];
   faqs: { q: string; a: string }[];
+  /** First-time-owner rating shown on the page, capped for giant guardians and high-drive dogs. */
+  noviceScore: number | null;
+}
+
+// ── helpers ─────────────────────────────────────────────────────────────────
+
+function hash(s: string) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+  return h >>> 0;
+}
+
+/** Deterministic choice between phrasings, salted per sentence so pages vary independently. */
+function vary(slug: string, salt: string, options: string[]) {
+  return options[hash(slug + salt) % options.length];
+}
+
+type Level = "low" | "mid" | "high";
+function lvl(n: number | null | undefined): Level | null {
+  if (n === null || n === undefined) return null;
+  return n <= 2 ? "low" : n >= 4 ? "high" : "mid";
+}
+
+const firstSentence = (t?: string) => (t ? (t.match(/^.*?[.!?](\s|$)/)?.[0] ?? t).trim() : "");
+const an = (w: string) => (/^[aeiou]/i.test(w) ? "an" : "a");
+const theList = (items: string[]) => sentenceList(items.map((i) => `the ${i}`));
+const sentenceList = (items: string[]) =>
+  items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+function groupNoun(group: string | null | undefined) {
+  if (!group) return "dog";
+  const g = group.toLowerCase().replace(/ dogs$/, "");
+  if (g === "mixed breed" || g === "hybrid") return "mixed-breed dog";
+  if (g === "companion") return "companion breed";
+  return `${g} breed`;
+}
+
+// ── dogs ────────────────────────────────────────────────────────────────────
+
+const knownDogs = new Set(dogs.map((d) => d.slug));
+
+function dogParents(b: BreedDoc): ParentInfo[] {
+  return parentSlugs(b.parentBreeds, knownDogs).map((p) => ({
+    ...p,
+    summary: p.slug ? firstSentence(dogNote(p.slug)?.p) : undefined,
+  }));
+}
+
+/** A mix inherits risks from both sides; conditions both parents share come first. */
+function mixHealth(parents: ParentInfo[]): string[] {
+  const lists = parents.map((p) => (p.slug ? dogNote(p.slug)?.h ?? [] : [])).filter((l) => l.length);
+  const usable = (h: string) => !/^generally robust/.test(h);
+  const counts = new Map<string, number>();
+  for (const l of lists) for (const h of l.filter(usable)) counts.set(h, (counts.get(h) ?? 0) + 1);
+  const shared = [...counts].filter(([, n]) => n > 1).map(([h]) => h);
+  const rest = lists.flatMap((l) => l.filter(usable).slice(0, 3)).filter((h) => !shared.includes(h));
+  const clean = (h: string) => h.replace(/\s*\((in standards|in smaller sizes|in some lines|in hairless dogs)\)/, "");
+  const out = [...new Set([...shared, ...rest].map(clean))];
+  return out.filter((h) => !(h === "hip dysplasia" && out.includes("hip and elbow dysplasia"))).slice(0, 6);
 }
 
 export function generateBreedContent(b: BreedDoc): BreedContent {
   const s = b.scores;
   const name = b.name;
-  const group = b.group ?? "dog";
-  const size = b.size ?? "medium-sized";
-  const lifeSpan = b.lifeSpan ?? "10–14 years";
-  const weight = b.weight ?? "varies";
-  const height = b.height ?? "varies";
-  const animalSingular = "dog";
+  const slug = b.slug;
+  const note: BreedNote | undefined = dogNote(slug);
+  const parents = dogParents(b);
+  const isMix = parents.length > 0;
+  const size = (b.size ?? "medium").toLowerCase();
+  const kind = groupNoun(b.group);
+  const health = note?.h?.length ? note.h : isMix ? mixHealth(parents) : [];
 
-  // ── Overview ─────────────────────────────────────────────────────────────
-  // Cap apartment-friendly claim for high-energy breeds — prevents contradictions
-  // like "well-suited to apartment living" for a breed with exerciseNeeds: 5
-  const aptScore = (s.apartmentFriendly !== null && s.exerciseNeeds !== null && s.exerciseNeeds >= 4)
-    ? Math.min(s.apartmentFriendly, 3) as number
-    : s.apartmentFriendly;
-  const aptLabel = scoreLabel(aptScore, ["better suited to homes with outdoor space", "adaptable to most living situations", "well-suited to apartment living"]);
-  const noviceLabel = scoreLabel(s.goodForNovice, ["best matched with experienced owners", "manageable for most owners", "an excellent choice for first-time dog owners"]);
-  // Convert plural group name to singular adjective form ("Herding Dogs" → "herding dog")
-  const groupSingular = (group ?? "dog")
-    .toLowerCase()
-    .replace(/ dogs$/, " dog")
-    .replace(/ cats$/, " cat")
-    .replace(/breeds$/, "breed");
+  /** Giant guardians and high-drive working dogs are never pitched as beginner dogs, whatever the rating says. */
+  const demanding =
+    (b.size === "Very Large" && /Working/.test(b.group ?? "")) ||
+    (s.intensity ?? 0) >= 4 ||
+    (s.exerciseNeeds ?? 0) >= 5;
+  const novice: Level | null = demanding && lvl(s.goodForNovice) === "high" ? "mid" : lvl(s.goodForNovice);
+  const apartment: Level | null = (s.exerciseNeeds ?? 0) >= 4 && lvl(s.apartmentFriendly) === "high" ? "mid" : lvl(s.apartmentFriendly);
 
-  const parentBreedLine = b.parentBreeds
-    ? `The ${name} is a cross between the ${b.parentBreeds}${b.origin ? `, first developed in the ${b.origin}` : ""}. `
-    : "";
-  // Separate family affection from stranger temperament to prevent contradictions
-  // e.g. "outgoing nature" appearing for breeds that are aloof with strangers
-  const familyBondLabel = scoreLabel(s.affectionate, ["loyal and reserved", "affectionate", "deeply loving"]);
-  const socialLabel = scoreLabel(s.strangerFriendly, ["reserved with strangers", "friendly once acquainted", "outgoing and sociable"]);
-  const intelligenceLabel = scoreLabel(s.intelligence, ["straightforward", "capable", "highly intelligent"]);
-  const overview = `${parentBreedLine}The ${name} is a ${size.toLowerCase()} ${groupSingular} known for being ${familyBondLabel} with its family and ${socialLabel}. With a ${intelligenceLabel} mind, ${aptLabel}, the ${name} is ${noviceLabel}. Typically standing ${height} and weighing ${weight}, this breed has a life expectancy of ${lifeSpan}, making it a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived companion" : "devoted companion"} for the right family.
+  // Lead: one sentence a reader (or a search snippet) can stand on.
+  const parentLine = isMix ? `a cross between ${theList(parents.map((p) => p.name))}` : `${an(size)} ${size} ${kind}`;
+  const lead = isMix
+    ? `The ${name} is ${parentLine}, usually ${size} in size${b.lifeSpan ? ` and living ${b.lifeSpan}` : ""}.`
+    : `The ${name} is ${parentLine}${b.lifeSpan ? ` with a typical lifespan of ${b.lifeSpan}` : ""}.`;
 
-Originally classified within the ${group ?? "Mixed Breed"} group, the ${name} brings a distinct combination of traits that sets it apart. ${pick(s.energy, `On the calmer end of the energy spectrum, the ${name} is content with moderate daily activity.`, `The ${name} has a moderate energy level that suits an active household without being overwhelming.`, `The ${name} is a high-energy breed that thrives with plenty of daily exercise and mental stimulation.`)} ${pick(s.affectionate, `While not the most demonstrative breed, the ${name} forms loyal bonds with its family.`, `Affectionate with its family, the ${name} strikes a healthy balance between independence and closeness.`, `Deeply affectionate, the ${name} loves being close to its people and forms strong bonds with every member of the household.`)}`;
+  // ── About ──
+  const about: string[] = [];
+  if (isMix) {
+    about.push(
+      `The ${name} is a cross between ${theList(parents.map((p) => p.name))}.${note?.p ? ` ${note.p}` : ""} ${vary(slug, "mix", ["As with any mix, puppies can take after either parent, so size, coat and temperament vary more than in a pedigree breed.", `No two ${name}s are quite alike: a puppy may lean towards one parent in looks and the other in temperament.`, `Because it is a cross rather than a fixed breed, the best guide to a puppy is meeting both parents.`])}`
+    );
+  } else if (note?.p) {
+    about.push(note.p);
+  }
+  const build: string[] = [];
+  if (b.height) build.push(`stands ${b.height}`);
+  if (b.weight) build.push(`weighs ${b.weight}`);
+  if (build.length) about.push(`${vary(slug, "build", [`A typical adult ${build.join(" and ")}.`, `An adult ${name} usually ${build.join(" and ")}.`, `Fully grown, the ${name} ${build.join(" and ")}.`])}${note?.k ? ` ${note.k}` : ""}`);
+  else if (note?.k) about.push(note.k);
 
-  // ── Temperament ───────────────────────────────────────────────────────────
-  const kidLine = pick(s.kidFriendly,
-    `Around children, the ${name} can be reserved and does best in households with older, calmer kids.`,
-    `The ${name} generally gets along well with children, especially when socialised from puppyhood.`,
-    `The ${name} is famously gentle and patient with children of all ages, making it a wonderful family ${animalSingular}.`
+  // ── Temperament ──
+  const family = {
+    low: vary(slug, "fam", [`The ${name} is loyal but not clingy, and shows affection on its own terms.`, `Affection is quiet and understated with this ${isMix ? "mix" : "breed"}; it bonds closely but isn't a lap dog.`]),
+    mid: vary(slug, "fam", [`The ${name} is affectionate with its family while keeping some independence.`, `Expect a dog that enjoys company but is also happy to settle on its own.`]),
+    high: vary(slug, "fam", [`The ${name} is very affectionate and likes to be close to its people.`, `This is a people-focused dog that wants to be part of whatever the family is doing.`, `Most ${name}s attach strongly to their family and follow them from room to room.`]),
+  };
+  const kids = {
+    low: `With children it can be less tolerant, so it suits homes with older, calm kids and supervised contact.`,
+    mid: vary(slug, "kidm", [`It generally does well with children when it has been raised around them and play is supervised.`, `Around children it is usually fine, especially if it grew up with them.`, `It can live happily with children who know to give a dog space.`]),
+    high: vary(slug, "kids", [`It is usually patient with children, though supervision is still wise with any dog.`, `Families with children often find it gentle and tolerant, provided kids learn to respect its space.`, `Children tend to be a highlight for the ${name}, which is usually tolerant of noise and fuss.`, `With kids it is generally easygoing, and many ${name}s become a child's constant shadow.`]),
+  };
+  const strangers = {
+    low: vary(slug, "str", [`It tends to be wary of strangers, which makes it a natural watchdog but means socialisation matters from puppyhood.`, `New people are met with caution rather than enthusiasm.`]),
+    mid: `With strangers it is polite rather than effusive and warms up given time.`,
+    high: vary(slug, "str", [`Most ${name}s greet visitors as friends, so don't count on it as a guard dog.`, `It is outgoing with new people and rarely shy.`]),
+  };
+  const otherDogs = {
+    low: `It can be selective with other dogs, so introductions should be slow and on neutral ground.`,
+    mid: `It usually gets along with other dogs it has been introduced to properly.`,
+    high: `It generally enjoys the company of other dogs.`,
+  };
+  const bark = { low: `It is a fairly quiet dog.`, mid: `It barks to alert you but isn't usually a nuisance barker.`, high: `It can be vocal, so teach a quiet cue early, especially in apartments.` };
+  const prey = { low: "", mid: `Keep an eye on it around small pets until you know how it reacts.`, high: `A strong prey drive means it may chase cats, squirrels and small pets, so use a lead near wildlife.` };
+  const t1 = [lvl(s.affectionate) && family[lvl(s.affectionate)!], lvl(s.kidFriendly) && kids[lvl(s.kidFriendly)!], lvl(s.dogFriendly) && otherDogs[lvl(s.dogFriendly)!]].filter(Boolean).join(" ");
+  const t2 = [lvl(s.strangerFriendly) && strangers[lvl(s.strangerFriendly)!], lvl(s.barkiness) && bark[lvl(s.barkiness)!], lvl(s.preyDrive) && prey[lvl(s.preyDrive)!]].filter(Boolean).join(" ");
+
+  // ── Care ──
+  const exercise = {
+    low: vary(slug, "ex", [`Exercise needs are modest: two short walks and some play each day are usually enough.`, `A couple of relaxed walks a day keeps it fit; it is not built for long runs.`]),
+    mid: vary(slug, "ex", [`Plan on about an hour of activity a day, split between walks and play.`, `Around 45 to 60 minutes of exercise a day, plus some games, keeps it settled.`]),
+    high: vary(slug, "ex", [`It needs 1 to 2 hours of vigorous exercise a day; without it, expect boredom and destructive habits.`, `This is an athletic dog that needs a lot of daily exercise, ideally with a job such as fetch, scent games or dog sports.`, `A tired ${name} is a well-behaved one: count on long daily outings plus training or games that work its brain.`, `Daily exercise is not optional for the ${name}. Most need a long walk or run every day, and more on weekends.`]),
+  };
+  const groom = {
+    low: `Its coat needs regular work: frequent brushing and, for many coats, professional grooming every few weeks.`,
+    mid: vary(slug, "grm", [`Brushing once or twice a week keeps the coat in good order.`, `Expect to brush it a couple of times a week.`, `Its coat needs moderate care: regular brushing plus the odd bath.`]),
+    high: vary(slug, "grh", [`Grooming is easy, with a quick brush every week or so.`, `Its coat is low-maintenance; a weekly once-over with a brush is plenty.`, `Coat care is simple, mostly a weekly brush and the occasional bath.`]),
+  };
+  const shed = { low: vary(slug, "shl", [`It sheds very little.`, `Shedding is minimal.`]), mid: vary(slug, "shm", [`Shedding is moderate.`, `It sheds a moderate amount year-round.`]), high: vary(slug, "shh", [`It sheds heavily, especially in spring and autumn, so expect hair around the house.`, `Expect plenty of loose hair, with heavier moults twice a year.`, `It is a heavy shedder, so a good vacuum helps.`]) };
+  const drool = { low: "", mid: "", high: `It drools a fair amount.` };
+  const train = {
+    low: vary(slug, "tr", [`Training takes patience; it responds to short, reward-based sessions far better than to pressure.`, `It can be stubborn, so keep training sessions short, consistent and rewarding.`]),
+    mid: vary(slug, "trm", [`It learns readily with consistent, reward-based training.`, `Training goes smoothly with clear rules and plenty of rewards.`, `It is reasonably biddable; short daily sessions work better than long ones.`]),
+    high: vary(slug, "tr", [`It is quick to learn and enjoys training, so it does well in obedience and dog sports.`, `It picks up new cues quickly and benefits from regular mental challenges.`, `Training is usually a pleasure: the ${name} learns fast and likes having something to do.`, `It responds well to reward-based training and often enjoys learning tricks.`]),
+  };
+  const alone = { low: vary(slug, "al", [`It struggles when left alone for long periods and can develop separation anxiety.`, `Long days alone don't suit it; it is happiest when someone is home.`, `Left alone too long, it may bark, chew or fret, so build up time alone gradually from puppyhood.`]), mid: `It copes with a few hours alone once it is used to it.`, high: `It handles time alone better than many dogs.` };
+  const c1 = [lvl(s.exerciseNeeds) && exercise[lvl(s.exerciseNeeds)!], lvl(s.toleratesAlone) && alone[lvl(s.toleratesAlone)!]].filter(Boolean).join(" ");
+  const c2 = [lvl(s.easyToGroom) && groom[lvl(s.easyToGroom)!], lvl(s.shedding) && shed[lvl(s.shedding)!], lvl(s.drooling) && drool[lvl(s.drooling)!]].filter(Boolean).join(" ");
+  const c3 = [lvl(s.easyToTrain) && train[lvl(s.easyToTrain)!], (s.mouthiness ?? 0) >= 4 ? `Puppies are especially mouthy, so provide chew toys and teach bite inhibition early.` : ""].filter(Boolean).join(" ");
+  const climate = [
+    (s.toleratesHot ?? 3) <= 2 ? `It copes poorly with heat, so walk it in the cool of the day and watch for overheating.` : "",
+    (s.toleratesCold ?? 3) <= 2 ? `It feels the cold and may need a coat in winter.` : "",
+  ].filter(Boolean).join(" ");
+
+  // ── Health ──
+  const healthPara: string[] = [];
+  if (health.length && !/^generally robust/.test(health[0])) {
+    healthPara.push(
+      isMix && !note?.h
+        ? `The ${name} can inherit conditions from either parent breed. The ones most worth knowing about are ${sentenceList(health.slice(0, 4))}.`
+        : `${vary(slug, "hl", [`Conditions seen more often in the ${name} include`, `Health problems known in the breed include`, `Owners and breeders watch for`])} ${sentenceList(health.slice(0, 4))}.`
+    );
+  } else {
+    healthPara.push(`The ${name} has no well-documented breed-specific health problems, but routine vet checks still matter.`);
+  }
+  const screening = [
+    (b.size === "Large" || b.size === "Very Large" || health.some((h) => /hip|elbow/i.test(h))) && "hip and elbow scores",
+    health.some((h) => /retina|eye|cataract|collie eye|lens/i.test(h)) && "eye test results",
+    health.some((h) => /cardio|mitral|heart|aortic/i.test(h)) && "heart screening results",
+    health.some((h) => /deaf/i.test(h)) && "BAER hearing test results",
+  ].filter(Boolean) as string[];
+  healthPara.push(
+    `${b.lifeSpan ? `Typical life expectancy is ${b.lifeSpan}. ` : ""}${screening.length ? `If you buy a puppy, ask to see the parents' ${sentenceList(screening)}.` : `If you buy a puppy, ask the breeder what health testing the parents have had.`}${(s.weightGain ?? 0) >= 4 ? ` The ${name} puts on weight easily, so measure meals and go easy on treats.` : ""}`
   );
-  const dogLine = pick(s.dogFriendly,
-    `With other dogs the ${name} can be selective, and careful introductions are recommended.`,
-    `The ${name} is generally sociable with other dogs, particularly when introduced properly.`,
-    `The ${name} tends to love the company of other dogs and typically does well in multi-pet households.`
-  );
-  const strangerLine = pick(s.strangerFriendly,
-    `Around strangers, the ${name} is naturally reserved and can make an effective watchdog.`,
-    `The ${name} warms up to strangers at a steady pace and is neither overly suspicious nor blindly trusting.`,
-    `Friendly and open with new people, the ${name} rarely meets a stranger it doesn't like.`
-  );
-  const barkLine = pick(s.barkiness,
-    `This breed tends to be quiet and won't alert you to every passing noise.`,
-    `The ${name} barks at a moderate level — enough to alert you, not enough to disturb the neighbours.`,
-    `The ${name} can be vocal and will readily alert you to visitors or unusual activity.`
-  );
-  const temperament = `${pick(s.friendliness, `The ${name} has an independent, self-sufficient character`, `The ${name} is an even-tempered, well-balanced breed`, `The ${name} has a famously warm and sociable temperament`)} that makes it ${pick(s.sensitivity, "a resilient, unfussy companion", "responsive to its environment without being overly sensitive", "highly attuned to its family's emotions and moods")}. ${kidLine} ${dogLine}
 
-${strangerLine} ${barkLine} ${pick(s.wanderlust, "This breed has a low wanderlust potential and is unlikely to roam.", "The " + name + " has moderate wanderlust — a secure garden is always recommended.", "The " + name + " has a strong urge to explore, so a well-fenced yard and reliable recall training are essential.")} ${pick(s.preyDrive, "Prey drive is low, making off-lead exercise relatively safe in open areas.", "The " + name + " has a moderate prey drive — keep an eye on small animals nearby.", "A strong prey drive means the " + name + " should be kept on a lead around wildlife and small pets.")}`;
+  // ── Fit ──
+  const goodFit: string[] = [];
+  const thinkTwice: string[] = [];
+  const push = (cond: boolean, list: string[], text: string) => cond && list.push(text);
+  push(novice === "high", goodFit, "First-time owners willing to train consistently");
+  push(novice === "low" || demanding, thinkTwice, "First-time owners");
+  push(lvl(s.exerciseNeeds) === "high", goodFit, "Active people who hike, run or do dog sports");
+  push(lvl(s.exerciseNeeds) === "high", thinkTwice, "Homes that can manage only short daily walks");
+  push(lvl(s.exerciseNeeds) === "low", goodFit, "Quieter households and less active owners");
+  push(apartment === "high", goodFit, "Apartment living, with daily outings");
+  push(apartment === "low", thinkTwice, "Small apartments without a garden");
+  push(lvl(s.kidFriendly) === "high", goodFit, "Families with children");
+  push(lvl(s.kidFriendly) === "low", thinkTwice, "Homes with young children");
+  push(lvl(s.toleratesAlone) === "low", thinkTwice, "Owners who are out all day");
+  push(lvl(s.toleratesAlone) === "high", goodFit, "Owners who work some days away from home");
+  push(lvl(s.shedding) === "low", goodFit, "People who want a dog that sheds little");
+  push(lvl(s.shedding) === "high", thinkTwice, "People who don't want dog hair around the house");
+  push(lvl(s.preyDrive) === "high", thinkTwice, "Homes with cats or small pets, unless raised together");
+  push(lvl(s.strangerFriendly) === "low", goodFit, "Owners who want a natural watchdog");
 
-  // ── Care & Grooming ───────────────────────────────────────────────────────
-  const shed = pick(s.shedding, "minimal shedder", "moderate shedder", "heavy shedder");
-  const groomLine = pick(s.easyToGroom,
-    `Grooming the ${name} requires commitment — regular brushing, professional trims, and attention to coat maintenance are part of ownership.`,
-    `Grooming is straightforward with regular brushing and occasional professional grooming to keep the coat in good condition.`,
-    `The ${name} is low-maintenance in the grooming department — a quick brush a few times a week is usually sufficient.`
-  );
-  const droolLine = pick(s.drooling, "drools very little", "drools occasionally", "can drool quite a bit, so keep a towel handy");
-  const exerciseLine = pick(s.exerciseNeeds,
-    `Exercise needs are modest — a couple of short walks per day and some indoor play will keep a ${name} happy and healthy.`,
-    `Plan for at least 45–60 minutes of exercise daily. The ${name} enjoys walks, fetch, and interactive play sessions.`,
-    `The ${name} needs vigorous daily exercise — at least 1–2 hours of activity to stay physically and mentally balanced. Without enough stimulation, this breed can become destructive.`
-  );
-  const trainLine = pick(s.easyToTrain,
-    `Training requires patience and consistency. The ${name} responds best to positive reinforcement and short, engaging sessions.`,
-    `The ${name} is moderately easy to train and responds well to clear, reward-based methods.`,
-    `The ${name} is highly trainable and picks up new commands quickly, making it a joy to work with.`
-  );
-  const careGrooming = `The ${name} is a ${shed}, which ${pick(s.shedding, "means very little vacuuming — great for allergy-sensitive households", "means regular hoovering is part of life with this breed", "means significant coat management both on the dog and around your home")}. ${groomLine} The ${name} ${droolLine}.
-
-${exerciseLine} ${pick(s.playfulness, "Playtime is lower on the priority list for this breed, though enrichment toys and puzzle feeders are always welcomed.", "Interactive games and toys are a great supplement to daily walks and help keep the " + name + " mentally sharp.", "Highly playful and energetic, the " + name + " loves interactive games, agility, and any activity that challenges both body and mind.")}
-
-${trainLine} ${pick(s.intelligence, "While not the quickest learner, the " + name + " is steady and reliable once trained.", "Smart and attentive, the " + name + " benefits from varied training to prevent boredom.", "Exceptionally intelligent, the " + name + " excels at obedience, agility, and advanced trick training — and needs the mental challenge.")} ${pick(s.mouthiness, "Mouthiness is not a major trait in this breed.", "Like many breeds, puppies go through a mouthy phase that fades with consistent bite-inhibition training.", "This breed can be mouthy — early bite-inhibition training and providing plenty of chew toys is strongly recommended.")}`;
-
-  // ── Health & Lifespan ─────────────────────────────────────────────────────
-  const healthLine = pick(s.health,
-    `The ${name} can be prone to certain hereditary conditions. Responsible breeders will health-test their dogs — always ask for documented clearances.`,
-    `Overall a hardy breed, the ${name} benefits from routine vet check-ups and preventive care.`,
-    `The ${name} is considered a robust, healthy breed with fewer inherited conditions than many pedigrees.`
-  );
-  const weightLine = pick(s.weightGain,
-    `Weight gain is not a major concern for most ${name}s, though a balanced diet and regular exercise are always important.`,
-    `The ${name} has a moderate tendency to gain weight — monitor portion sizes and avoid too many treats.`,
-    `The ${name} can be prone to weight gain. Measure meals carefully, limit treats, and ensure adequate daily exercise to keep them at a healthy weight.`
-  );
-  const mixedBreedHealthNote = b.parentBreeds
-    ? `As a cross between the ${b.parentBreeds}, the ${name} may inherit health predispositions from either parent line. The Orthopedic Foundation for Animals (OFA) recommends health screening for hip and elbow dysplasia in all large-breed dogs, which is relevant for any mix involving high-risk breeds. Ask breeders for documented OFA clearances for both parent dogs. `
-    : "";
-  const healthLifespan = `With a life expectancy of ${lifeSpan}, the ${name} is a ${b.lifeSpanYears && b.lifeSpanYears >= 13 ? "long-lived breed — a serious commitment" : "medium-lived breed"}. ${healthLine}
-
-${mixedBreedHealthNote}Common health areas to discuss with your vet include joint health (hip and elbow dysplasia), dental hygiene, eye health, and routine parasite prevention including flea, tick, and heartworm. ${weightLine} Annual wellness bloodwork — including a complete blood count and biochemistry panel — is recommended from middle age onward to catch conditions like hypothyroidism, kidney disease, and diabetes early. Pet insurance is strongly recommended from puppyhood.`;
-
-  // ── Suitability ──────────────────────────────────────────────────────────
-  const suitability = `The ${name} is ${pick(s.goodForNovice, "best suited to experienced dog owners", "a good fit for a wide range of owners", "one of the most approachable breeds for first-time owners")} who can provide ${pick(s.exerciseNeeds, "a calm, low-activity lifestyle", "regular daily exercise and mental engagement", "an active lifestyle with plenty of outdoor time")}. ${pick(s.apartmentFriendly, "A home with outdoor space is strongly preferred.", "This breed can adapt to apartment life provided exercise needs are met.", "Compact living spaces are no problem for this breed.")}
-
-${pick(s.toleratesAlone, "The " + name + " handles alone time well and is less likely to develop separation anxiety.", "Like most dogs, the " + name + " is happiest when not left alone for extended periods.", "The " + name + " does not cope well with long periods alone and can develop separation anxiety — this breed thrives in homes where someone is present most of the day.")} ${pick(s.toleratesCold, "Cold climates suit this breed well.", "The " + name + " manages moderate climates comfortably.", "This breed prefers warmer climates and should be protected from extreme cold.")} ${pick(s.toleratesHot, "Hot weather should be approached with caution — ensure shade, water, and avoid exercise in peak heat.", "The " + name + " handles warm weather reasonably well with standard precautions.", "The " + name + " tolerates heat well, though fresh water and shade should always be available.")}
-
-In summary, the ${name} is a ${pick(s.friendliness, "loyal and independent", "versatile and well-rounded", "sociable and loving")} ${group.toLowerCase()} that ${pick(s.trainability, "rewards patient, experienced owners", "fits well into a variety of households", "is relatively easy to integrate into family life")}. Do thorough research, meet the breed in person if possible, and connect with a reputable breeder or rescue before bringing a ${name} home.`;
-
-  // ── FAQs ─────────────────────────────────────────────────────────────────
-  const faqs: { q: string; a: string }[] = [
-    {
-      q: `Is the ${name} good with kids?`,
-      a: pick(s.kidFriendly,
-        `The ${name} can be good with older, calmer children but may not be the best fit for homes with very young kids. Early socialisation and supervised interactions are key.`,
-        `Yes, the ${name} generally gets on well with children. As with any breed, supervised interactions and early socialisation produce the best results.`,
-        `The ${name} is known for being patient and gentle with children of all ages, making it a popular family choice.`
-      ),
-    },
-    {
-      q: `How much exercise does a ${name} need?`,
-      a: pick(s.exerciseNeeds,
-        `The ${name} has modest exercise needs. Two short walks a day and some indoor play are typically sufficient to keep this breed healthy and content.`,
-        `A ${name} needs around 45–60 minutes of exercise daily. A mix of walks, off-lead play, and mental stimulation keeps them balanced and well-behaved.`,
-        `The ${name} is a high-energy breed that needs at least 1–2 hours of vigorous exercise every day. Activities like fetch, hiking, and agility are ideal.`
-      ),
-    },
-    {
-      q: `Does the ${name} shed a lot?`,
-      a: pick(s.shedding,
-        `No — the ${name} is a minimal shedder, making it a popular option for households concerned about allergies or keeping the home clean.`,
-        `The ${name} sheds a moderate amount. Regular brushing a few times per week helps manage loose fur.`,
-        `Yes, the ${name} is a heavy shedder. Daily brushing, regular vacuuming, and seasonal grooming appointments are part of owning this breed.`
-      ),
-    },
-    {
-      q: `Is the ${name} easy to train?`,
-      a: pick(s.easyToTrain,
-        `Training a ${name} requires patience and experience. This breed responds best to consistent positive reinforcement and short, engaging sessions.`,
-        `The ${name} is moderately easy to train. Positive reinforcement, consistency, and early socialisation produce a well-mannered dog.`,
-        `Yes — the ${name} is highly trainable and eager to please. It picks up commands quickly and thrives with regular training sessions and mental challenges.`
-      ),
-    },
-    {
-      q: `How big does a ${name} get?`,
-      a: `A ${name} typically stands ${height ?? "varies"} and weighs ${weight ?? "varies"}. They are classified as ${size?.toLowerCase() ?? "medium-sized"}.`,
-    },
-    {
-      q: `What is the ${name}'s life expectancy?`,
-      a: `The ${name} has a typical life expectancy of ${lifeSpan}. Regular veterinary care, a balanced diet, and adequate exercise all contribute to a long, healthy life.`,
-    },
-    {
-      q: `Is the ${name} good for first-time owners?`,
-      a: pick(s.goodForNovice,
-        `The ${name} is better suited to owners with prior dog experience. Its independent nature and training requirements benefit from a confident, consistent handler.`,
-        `With the right research and commitment, the ${name} can be a rewarding choice for first-time owners. Puppy classes and consistent routines make a big difference.`,
-        `Yes — the ${name} is widely regarded as one of the better breeds for first-time owners thanks to its adaptable temperament and trainability.`
-      ),
-    },
-    {
-      q: `Does the ${name} bark a lot?`,
-      a: pick(s.barkiness,
-        `The ${name} is a relatively quiet breed and won't alert bark excessively — a plus for apartment living or noise-sensitive households.`,
-        `The ${name} barks at a moderate level. It will alert you to visitors but isn't known for excessive vocalisation.`,
-        `The ${name} can be a vocal breed. Training a "quiet" cue early and providing adequate mental stimulation helps manage excessive barking.`
-      ),
-    },
+  const sections: BreedSection[] = [
+    { id: "about", title: isMix ? `About the ${name}` : `History and purpose`, paragraphs: about },
+    { id: "temperament", title: "Temperament", paragraphs: [t1, t2].filter(Boolean) },
+    { id: "care", title: "Exercise, grooming and training", paragraphs: [c1, c2, c3, climate].filter(Boolean) },
+    { id: "health", title: "Health and lifespan", paragraphs: healthPara },
   ];
 
-  return { overview, temperament, careGrooming, healthLifespan, suitability, faqs };
+  const faqs: { q: string; a: string }[] = [];
+  const rated = (label: string, v: number | null) => (v === null ? "" : `${label} ${v} out of 5`);
+  const kg = b.weightKg ? ` (about ${Math.round(b.weightKg)} kg on average)` : "";
+  const heavy = (b.weightKg ?? 0) >= 30;
+  if (note?.p) faqs.push({ q: isMix ? `Why was the ${name} bred?` : `What was the ${name} originally bred for?`, a: firstSentence(note.p) + (isMix ? ` Puppies can take after either the ${parents.map((p) => p.name).join(" or the ")}.` : note.k ? ` Today, ${note.k.charAt(0).toLowerCase()}${note.k.slice(1)}` : "") });
+  else if (isMix) faqs.push({ q: `What two breeds make ${an(name)} ${name}?`, a: `The ${name} is a cross between ${theList(parents.map((p) => p.name))}. ${parents.filter((p) => p.summary).map((p) => `About the ${p.name}: ${p.summary}`).join(" ")}`.trim() });
+  if (health.length && !/^generally robust/.test(health[0])) faqs.push({ q: `What health problems do ${name}s have?`, a: `${cap(sentenceList(health.slice(0, 5)))} are the conditions most associated with the ${isMix ? `${name} and its parent breeds` : name}.${screening.length ? ` Ask a breeder for the parents' ${sentenceList(screening)} before you commit.` : ""}` });
+  if (lvl(s.kidFriendly)) {
+    const k = lvl(s.kidFriendly)!;
+    const sizeNote = heavy && (s.energy ?? 0) >= 4 ? ` At ${b.weight ?? "its size"}, an excited adult can knock over a small child, so teach calm greetings early.` : heavy ? ` Its size means play with small children should be supervised.` : (b.size === "Small") ? ` Small dogs can be hurt by rough handling, so teach children to sit on the floor to hold it.` : "";
+    faqs.push({ q: `Is the ${name} good with kids?`, a: `${k === "high" ? `Usually, yes. The ${name} is rated ${s.kidFriendly} out of 5 for getting along with children.` : k === "mid" ? `It can be. The ${name} scores ${s.kidFriendly} out of 5 with children, and does best when raised around them.` : `It is not the easiest choice. The ${name} scores ${s.kidFriendly} out of 5 with children and suits homes with older, calm kids.`}${sizeNote}` });
+  }
+  if (lvl(s.exerciseNeeds)) {
+    const e = lvl(s.exerciseNeeds)!;
+    const mins = e === "high" ? "90 minutes to 2 hours" : e === "mid" ? "about an hour" : "30 to 45 minutes";
+    const activity = /Herding/.test(b.group ?? "") ? "herding games, agility or long walks" : /Sporting/.test(b.group ?? "") ? "retrieving, swimming or running" : /Hound/.test(b.group ?? "") ? "scent games and long, varied walks on a lead" : /Terrier/.test(b.group ?? "") ? "tug, digging games and brisk walks" : /Working/.test(b.group ?? "") ? "hiking, pulling sports or structured training" : "walks and play";
+    faqs.push({ q: `How much exercise does ${an(name)} ${name} need?`, a: `Plan on ${mins} a day. With ${[rated("energy", s.energy), rated("exercise needs", s.exerciseNeeds)].filter(Boolean).join(" and ")}, it ${e === "low" ? "is happy with gentle outings" : `does well with ${activity}`}.${(s.toleratesHot ?? 3) <= 2 ? " Exercise it in the cool of the day in summer." : ""}` });
+  }
+  if (lvl(s.shedding)) faqs.push({ q: `Does the ${name} shed?`, a: `${lvl(s.shedding) === "high" ? "Yes, a lot" : lvl(s.shedding) === "mid" ? "A moderate amount" : "Very little"}: it rates ${s.shedding} out of 5 for shedding${s.easyToGroom !== null ? ` and ${s.easyToGroom} out of 5 for ease of grooming` : ""}. ${lvl(s.shedding) === "high" ? "Brush several times a week, and daily in shedding season." : lvl(s.shedding) === "low" ? "Low shedding doesn't mean no grooming; many low-shedding coats need clipping." : "A weekly brush keeps loose hair under control."}` });
+  if (novice) {
+    const reasons = [
+      heavy && `its size${kg}`,
+      (s.energy ?? 0) >= 4 && "its energy",
+      (s.easyToTrain ?? 3) <= 2 && "an independent streak in training",
+      (s.strangerFriendly ?? 3) <= 2 && "its wariness of strangers",
+      (s.preyDrive ?? 3) >= 4 && "a strong prey drive",
+    ].filter(Boolean) as string[];
+    faqs.push({ q: `Is the ${name} a good dog for first-time owners?`, a: novice === "low" || demanding ? `It is usually better with an experienced owner${reasons.length ? `, because of ${sentenceList(reasons)}` : ""}. A first-time owner who still wants one should budget for a training class from day one.` : novice === "high" ? `It can be. ${reasons.length ? `Plan for ${sentenceList(reasons)}, but` : "Like any dog, it needs consistent training, but"} it is one of the easier ${isMix ? "mixes" : "breeds"} to start with.` : `It can work for a well-prepared first-time owner.${reasons.length ? ` The main challenges are ${sentenceList(reasons)}.` : ""}` });
+  }
+  if (b.height || b.weight) faqs.push({ q: `How big does ${an(name)} ${name} get?`, a: `Adults typically ${[b.height && `stand ${b.height}`, b.weight && `weigh ${b.weight}`].filter(Boolean).join(" and ")}${kg}, which makes it ${an(size)} ${size} dog. ${isMix ? "Mixes vary more than pedigrees, so the parents' size is the best guide." : "Males are usually larger than females."}` });
+
+  return { lead, sections, goodFit, thinkTwice, health: /^generally robust/.test(health[0] ?? "") ? [] : health, parents, faqs, noviceScore: demanding && s.goodForNovice !== null ? Math.min(s.goodForNovice, 3) : s.goodForNovice };
 }
+
+// ── cats ────────────────────────────────────────────────────────────────────
 
 export function generateCatContent(b: CatBreedDoc): BreedContent {
   const s = b.scores;
   const name = b.name;
-  const origin = b.origin ?? "unknown origin";
-  const lifeSpan = b.lifeSpan ?? "12–16 years";
-  const weight = b.weight ?? "varies";
+  const slug = b.slug;
+  const note = catNote(slug);
+  const health = (note?.h ?? []).filter((h) => !/^generally robust|no current|limited data/.test(h));
 
-  // ── Overview ──────────────────────────────────────────────────────────────
-  const overview = `The ${name} is a ${scoreLabel(s.adaptability, ["somewhat selective", "adaptable", "highly versatile"])} cat of ${origin} origin, prized for its ${scoreLabel(s.affectionLevel, ["independent", "affectionate", "deeply loving"])} nature and ${scoreLabel(s.intelligence, ["calm", "capable", "keen and intelligent"])} personality. Weighing ${weight} with a typical life expectancy of ${lifeSpan}, this breed makes a ${scoreLabel(s.affectionLevel, ["loyal companion for those who appreciate independence", "wonderful companion for most households", "devoted companion that thrives on human connection"])}.
-${pick(s.energyLevel, `On the quieter end of the energy spectrum, the ${name} enjoys a relaxed lifestyle and is happy to spend much of the day lounging.`, `The ${name} has a moderate energy level — active enough to play but equally happy to settle beside you.`, `The ${name} is a high-energy cat that loves to climb, chase, and explore. Plenty of enrichment and interactive play are essential.`)} ${pick(s.socialNeeds, `This breed is relatively self-sufficient and handles quiet households well.`, `The ${name} enjoys companionship but isn't overly demanding of attention.`, `Highly social by nature, the ${name} craves company and does best in homes where someone is around for much of the day.`)}`;
+  const place = b.origin?.replace(/\s*\(.*\)$/, "");
+  const where = place ? (/^(United|Isle|Netherlands|Czech)/.test(place) ? `the ${place}` : place) : "";
+  const lead = `The ${name} is ${where ? `a cat breed from ${where}` : "a cat breed"}${b.temperament ? `, known for being ${b.temperament.split(", ").slice(0, 3).map((t) => t.toLowerCase()).join(", ")}` : ""}${b.lifeSpan ? `, with a typical lifespan of ${b.lifeSpan}` : ""}.`;
 
-  // ── Temperament ──────────────────────────────────────────────────────────
-  const childLine = pick(s.childFriendly,
-    `Around children, the ${name} can be reserved and suits calmer households or families with older children.`,
-    `The ${name} generally gets along well with children, especially when introduced calmly and given space to retreat.`,
-    `The ${name} is known for its gentle patience with children of all ages, making it a wonderful family cat.`
-  );
-  const dogLine = pick(s.dogFriendly,
-    `With dogs, the ${name} can be cautious and prefers a cat-only or carefully managed multi-pet household.`,
-    `The ${name} can coexist with dogs when introductions are handled slowly and patiently.`,
-    `The ${name} is dog-friendly and typically adapts well to multi-pet homes.`
-  );
-  const strangerLine = pick(s.strangerFriendly,
-    `Around strangers, the ${name} is naturally reserved and may take time to warm up to new people.`,
-    `The ${name} is generally friendly with new people, warming up steadily without being overly shy or clingy.`,
-    `Sociable and confident, the ${name} tends to greet new people with curiosity rather than caution.`
-  );
-  const vocLine = pick(s.vocalisation,
-    `This breed is on the quieter side, communicating more through body language than vocalisation.`,
-    `The ${name} is moderately vocal — it will let you know when it wants attention, without being overly demanding.`,
-    `The ${name} can be quite vocal and enjoys a good conversation with its owners.`
-  );
-  const temperament = `${pick(s.affectionLevel, `The ${name} has an independent, self-reliant character`, `The ${name} is an even-tempered, well-balanced cat`, `The ${name} is famously affectionate and people-oriented`)} with a ${scoreLabel(s.intelligence, ["steady", "capable", "sharp and curious"])} mind. ${childLine} ${dogLine}
+  const about = [note?.p, [b.weight && vary(slug, "w", [`Adults usually weigh ${b.weight}.`, `A typical adult weighs ${b.weight}.`]), note?.k].filter(Boolean).join(" ")].filter(Boolean) as string[];
 
-${strangerLine} ${vocLine} ${pick(s.socialNeeds, "This breed handles solitude better than most and suits busy or single-person households.", "The " + name + " enjoys company but copes reasonably well when left alone for moderate periods.", "The " + name + " thrives on interaction and should not be left alone for long stretches without stimulation or a feline companion.")}`;
+  const aff = { low: `It is independent and affectionate on its own terms.`, mid: `It is affectionate without being demanding.`, high: vary(slug, "aff", [`It is very affectionate and likes to be involved in everything you do.`, `Expect a cat that seeks out laps and company.`]) };
+  const energy = { low: `It is calm and happy to spend much of the day resting.`, mid: `It has moderate energy and enjoys daily play.`, high: vary(slug, "en", [`It is very active and needs climbing space and daily interactive play.`, `This is an energetic, athletic cat that gets bored without things to climb and chase.`]) };
+  const social = { low: `It copes well with quiet homes and time alone.`, mid: `It enjoys company but tolerates a working day alone.`, high: `It dislikes being alone for long periods and may do best with a companion animal.` };
+  const kids = { low: `It prefers calm homes and may avoid young children.`, mid: vary(slug, "ck", [`It gets along with considerate children.`, `Gentle, older children usually suit it best.`]), high: vary(slug, "ckh", [`It is usually tolerant and playful with children.`, `Children are often its favourite playmates.`, `It copes well with the noise of family life.`]) };
+  const dogsL = { low: `It may not welcome a dog in the house.`, mid: `It can live with a dog after slow introductions.`, high: `It usually accepts dogs well.` };
+  const voc = { low: `It is quiet.`, mid: `It is moderately vocal.`, high: `It is very talkative.` };
+  const groom = { low: vary(slug, "cg", [`A weekly brush is enough.`, `Its coat needs little care beyond a weekly brush.`]), mid: vary(slug, "cgm", [`Brush it a few times a week.`, `Plan on brushing two or three times a week.`]), high: vary(slug, "cgh", [`Its coat needs daily brushing to prevent mats.`, `Daily brushing is a must to keep mats away.`]) };
 
-  // ── Care & Grooming ──────────────────────────────────────────────────────
-  const groomLine = pick(s.grooming,
-    `The ${name} is low-maintenance in the grooming department — a weekly brush is usually sufficient to keep the coat healthy.`,
-    `Moderate grooming is needed: brush a few times per week and schedule occasional professional sessions.`,
-    `The ${name} requires significant grooming commitment — daily brushing and regular professional grooming keep the coat free of mats and tangles.`
-  );
-  const shedLine = pick(s.sheddingLevel, "minimal shedder", "moderate shedder", "heavy shedder");
-  const hypoNote = b.hypoallergenic
-    ? `The ${name} is considered hypoallergenic — it produces less of the Fel d 1 protein than most breeds, making it a popular choice for allergy-sensitive households. No cat is 100% allergen-free, so spending time with the breed before adopting is always advised.`
-    : `The ${name} is not considered hypoallergenic. Regular grooming and vacuuming help manage allergen levels in the home.`;
-  const careGrooming = `The ${name} is a ${shedLine}. ${groomLine} ${hypoNote}
+  const t1 = [lvl(s.affectionLevel) && aff[lvl(s.affectionLevel)!], lvl(s.energyLevel) && energy[lvl(s.energyLevel)!], lvl(s.socialNeeds) && social[lvl(s.socialNeeds)!]].filter(Boolean).join(" ");
+  const t2 = [lvl(s.childFriendly) && kids[lvl(s.childFriendly)!], lvl(s.dogFriendly) && dogsL[lvl(s.dogFriendly)!], lvl(s.vocalisation) && voc[lvl(s.vocalisation)!]].filter(Boolean).join(" ");
+  const shed = { low: `It sheds little.`, mid: `Shedding is moderate.`, high: `It sheds a lot, especially in spring.` };
+  const mind = { low: "", mid: `Rotate toys and use puzzle feeders to keep it interested.`, high: vary(slug, "iq", [`It is clever enough to learn tricks and open cupboards, so puzzle feeders and clicker games help.`, `It is quick to learn and needs mental challenges as well as play.`]) };
+  const care = [
+    lvl(s.energyLevel) === "high" ? `Give it cat trees, window perches and two or more play sessions a day with wand toys.` : lvl(s.energyLevel) === "low" ? `A couple of short play sessions a day and a comfortable perch keep it content.` : `Daily play with wand toys and somewhere to climb keep it fit.`,
+    [lvl(s.intelligence) && mind[lvl(s.intelligence)!]].filter(Boolean).join(" "),
+    [lvl(s.grooming) && groom[lvl(s.grooming)!], lvl(s.sheddingLevel) && shed[lvl(s.sheddingLevel)!], b.hypoallergenic ? `It is often described as hypoallergenic, but no cat is allergen-free, so spend time with the breed before committing.` : ""].filter(Boolean).join(" "),
+    b.indoor ? `It is well suited to indoor life, which also protects it from traffic and disease.` : "",
+  ].filter(Boolean);
 
-${pick(s.energyLevel, `Exercise needs are modest — a few short play sessions per day and access to a window perch or cat tree will keep the ${name} content.`, `Plan for at least two interactive play sessions daily. Wand toys, puzzle feeders, and climbing structures keep the ${name} physically and mentally engaged.`, `The ${name} needs abundant daily stimulation — vertical space, interactive toys, and regular active play are non-negotiable to prevent boredom and destructive behaviour.`)}
-
-${pick(s.intelligence, "The " + name + " is content with simple enrichment — a comfortable bed and quiet routine suit this breed well.", "Intelligent and curious, the " + name + " enjoys puzzle feeders and rotating toys to stay mentally sharp.", "Exceptionally clever, the " + name + " thrives with clicker training, complex puzzle toys, and new challenges — mental stimulation is just as important as physical exercise.")}`;
-
-  // ── Health & Lifespan ────────────────────────────────────────────────────
-  const healthLine = pick(s.healthIssues,
-    `The ${name} is considered a robust breed with fewer inherited health concerns than many pedigrees.`,
-    `Overall a healthy breed, the ${name} benefits from routine vet check-ups and preventive care.`,
-    `The ${name} can be prone to certain hereditary conditions. Ask breeders for documented health screenings and maintain regular vet visits.`
-  );
-  const indoorNote = b.indoor
-    ? `Keeping the ${name} indoors significantly extends its life expectancy and protects it from outdoor hazards.`
-    : `Whether kept indoors or allowed supervised outdoor access, the ${name} benefits from a stimulating, safe environment.`;
-  const healthLifespan = `With a typical life expectancy of ${lifeSpan}, the ${name} is a long-term commitment. ${healthLine}
-
-Routine health care — including annual vet visits, dental hygiene, parasite prevention, and appropriate vaccination — is essential for all cats. ${indoorNote} Pet insurance from kittenhood provides peace of mind and helps manage unexpected veterinary costs throughout your ${name}'s life.`;
-
-  // ── Suitability ──────────────────────────────────────────────────────────
-  const suitability = `The ${name} suits ${pick(s.adaptability, "owners who can provide a calm, consistent routine", "a wide range of households and lifestyles", "almost any living situation — apartments and houses alike")}. ${pick(s.socialNeeds, "Those who work long hours and prefer a more independent cat will find the " + name + " a comfortable match.", "This breed fits well in families, couples, and single-person households provided social needs are met.", "This is a breed for people who want an active, engaged companion — not a cat that's happy to be ignored.")}
-
-${pick(s.childFriendly, "Households with very young children may want to consider a more tolerant breed.", "Families with children will find the " + name + " a pleasant housemate with proper introductions.", "The " + name + " is an excellent choice for families with children, known for its patience and playful spirit.")} ${pick(s.dogFriendly, "A cat-only household or careful managed introductions with dogs are recommended.", "With patience, the " + name + " can share a home with a dog.", "Dog owners will find the " + name + " one of the easier cats to integrate into a multi-pet home.")}
-
-In summary, the ${name} is a ${pick(s.affectionLevel, "loyal and self-sufficient", "well-rounded and affectionate", "deeply loving and people-centred")} breed that ${pick(s.adaptability, "rewards patient, attentive owners", "fits comfortably into most households", "is relatively easy to integrate into daily life")}. Research breeders carefully or explore breed-specific rescues before bringing a ${name} home.`;
-
-  // ── FAQs ─────────────────────────────────────────────────────────────────
-  const faqs: { q: string; a: string }[] = [
-    {
-      q: `Is the ${name} good with children?`,
-      a: pick(s.childFriendly,
-        `The ${name} can be reserved around young children and suits calmer households. Supervised, gentle introductions are essential.`,
-        `Yes — the ${name} generally gets along well with children. Calm introductions and giving the cat a safe retreat space produce the best results.`,
-        `The ${name} is known for being patient and gentle with children of all ages, making it a great family cat.`
-      ),
-    },
-    {
-      q: `Is the ${name} hypoallergenic?`,
-      a: b.hypoallergenic
-        ? `Yes, the ${name} is considered hypoallergenic — it produces less of the Fel d 1 allergen than most breeds. No cat is 100% allergen-free, so spending time with the breed before adopting is always recommended.`
-        : `No, the ${name} is not considered hypoallergenic. Regular grooming and air filtration help manage allergen levels.`,
-    },
-    {
-      q: `How much grooming does the ${name} need?`,
-      a: pick(s.grooming,
-        `The ${name} is low-maintenance — a brush once a week is usually sufficient.`,
-        `The ${name} needs moderate grooming: brush a few times per week to prevent tangles and reduce shedding.`,
-        `The ${name} requires significant grooming. Daily brushing and regular professional grooming appointments are recommended.`
-      ),
-    },
-    {
-      q: `How vocal is the ${name}?`,
-      a: pick(s.vocalisation,
-        `The ${name} is a relatively quiet breed, communicating mostly through body language.`,
-        `The ${name} is moderately vocal — it will let you know when it needs something without being excessively noisy.`,
-        `The ${name} is a chatty breed that enjoys "talking" to its owners. Expect regular vocal check-ins throughout the day.`
-      ),
-    },
-    {
-      q: `Is the ${name} good with dogs?`,
-      a: pick(s.dogFriendly,
-        `The ${name} generally prefers a cat-only household or very carefully managed introductions with dogs.`,
-        `With slow, patient introductions the ${name} can coexist comfortably with dogs.`,
-        `The ${name} is typically dog-friendly and adapts well to multi-pet households.`
-      ),
-    },
-    {
-      q: `What is the ${name}'s life expectancy?`,
-      a: `The ${name} typically lives ${lifeSpan}. Regular vet visits, a balanced diet, and keeping them in a safe environment all contribute to a long, healthy life.`,
-    },
-    {
-      q: `Is the ${name} easy to care for?`,
-      a: pick(s.adaptability,
-        `The ${name} thrives with a consistent routine and a calm environment. It suits experienced cat owners who understand the breed's preferences.`,
-        `The ${name} is relatively easy to care for and adapts well to different households with standard cat care.`,
-        `Yes — the ${name} is one of the more adaptable breeds and suits a wide range of living situations and owner experience levels.`
-      ),
-    },
-    {
-      q: `Does the ${name} shed a lot?`,
-      a: pick(s.sheddingLevel,
-        `No — the ${name} is a minimal shedder. Great news for those concerned about cat hair on furniture.`,
-        `The ${name} sheds moderately. Regular brushing a few times a week keeps loose fur under control.`,
-        `Yes, the ${name} is a heavy shedder. Daily brushing and regular vacuuming are part of owning this breed.`
-      ),
-    },
+  const healthPara = [
+    health.length ? `${vary(slug, "hl", [`Conditions seen more often in the ${name} include`, `Health issues known in the breed include`])} ${sentenceList(health.slice(0, 4))}.` : `The ${name} has no well-documented breed-specific health problems, but yearly vet checks still matter.`,
+    `${b.lifeSpan ? `Typical life expectancy is ${b.lifeSpan}. ` : ""}${health.some((h) => /cardiomyopathy/i.test(h)) ? `Ask breeders whether parents are screened for heart disease by echocardiogram.` : health.some((h) => /kidney/i.test(h)) ? `Ask breeders for the parents' DNA or ultrasound results for kidney disease.` : `Ask breeders what health testing the parents have had.`}`,
   ];
 
-  return { overview, temperament, careGrooming, healthLifespan, suitability, faqs };
+  const goodFit: string[] = [];
+  const thinkTwice: string[] = [];
+  if (lvl(s.childFriendly) === "high") goodFit.push("Families with children");
+  if (lvl(s.dogFriendly) === "high") goodFit.push("Homes with a dog");
+  if (lvl(s.socialNeeds) === "low") goodFit.push("Owners out at work during the day");
+  if (lvl(s.socialNeeds) === "high") thinkTwice.push("Homes where it would be alone all day");
+  if (lvl(s.energyLevel) === "low") goodFit.push("Quiet homes and apartments");
+  if (lvl(s.energyLevel) === "high") thinkTwice.push("Small spaces without climbing room");
+  if (lvl(s.grooming) === "high") thinkTwice.push("Owners without time for daily grooming");
+  if (lvl(s.vocalisation) === "high") thinkTwice.push("People who want a quiet cat");
+  if (lvl(s.vocalisation) === "low") goodFit.push("People who want a quiet cat");
+
+  const faqs: { q: string; a: string }[] = [];
+  if (note?.p) faqs.push({ q: `Where does the ${name} come from?`, a: note.p });
+  if (health.length) faqs.push({ q: `What health problems do ${name}s have?`, a: `${cap(sentenceList(health.slice(0, 4)))} are the conditions most associated with the breed.` });
+  faqs.push({ q: `Is the ${name} hypoallergenic?`, a: b.hypoallergenic ? `It is often described as hypoallergenic, but no cat is completely allergen-free. Spend time with the breed before deciding.` : `No. It produces the usual cat allergens, so it isn't a good choice for people with cat allergies.` });
+  if (lvl(s.childFriendly)) faqs.push({ q: `Is the ${name} good with children?`, a: `${lvl(s.childFriendly) === "high" ? "Usually, yes" : lvl(s.childFriendly) === "mid" ? "With considerate children, yes" : "It prefers calmer homes"}: it scores ${s.childFriendly} out of 5 with children${s.dogFriendly !== null ? ` and ${s.dogFriendly} out of 5 with dogs` : ""}. Give it a high perch or a room where it can retreat from noise.` });
+  if (lvl(s.grooming)) faqs.push({ q: `How much grooming does the ${name} need?`, a: `${groom[lvl(s.grooming)!]} It rates ${s.grooming} out of 5 for grooming needs${s.sheddingLevel !== null ? ` and ${s.sheddingLevel} out of 5 for shedding` : ""}.${note?.k && /coat|hair|bath|groom/i.test(note.k) ? ` ${note.k}` : ""}` });
+  if (lvl(s.energyLevel)) faqs.push({ q: `Is the ${name} an active cat?`, a: `${lvl(s.energyLevel) === "high" ? "Yes" : lvl(s.energyLevel) === "mid" ? "Moderately" : "Not especially"}. It scores ${s.energyLevel} out of 5 for energy${s.intelligence !== null ? ` and ${s.intelligence} out of 5 for intelligence` : ""}, so ${lvl(s.energyLevel) === "high" ? "plan on climbing space and daily interactive play" : lvl(s.energyLevel) === "mid" ? "a couple of play sessions a day suit it" : "short, gentle play sessions are enough"}.` });
+  if (b.lifeSpan) faqs.push({ q: `How long do ${name}s live?`, a: `Typically ${b.lifeSpan}${b.indoor ? ", and indoor cats tend to live longest" : ""}. ${health.length ? `Regular checks for ${health[0]} help catch problems early.` : "Yearly vet checks help catch problems early."}` });
+
+  return {
+    lead,
+    sections: [
+      { id: "about", title: "History and origin", paragraphs: about },
+      { id: "temperament", title: "Personality", paragraphs: [t1, t2].filter(Boolean) },
+      { id: "care", title: "Care and grooming", paragraphs: care },
+      { id: "health", title: "Health and lifespan", paragraphs: healthPara },
+    ],
+    goodFit,
+    thinkTwice,
+    health,
+    parents: [],
+    faqs,
+    noviceScore: null,
+  };
 }

@@ -28,6 +28,7 @@ export const CATEGORIES: Category[] = [
         q: "Is Hushku free?",
         short: "Yes. Hushku is free for pet owners, shelters and rescues, with no subscription and no listing fees.",
         more: "Every feature in the app is included: care tracking, Care Team, Discover, adoption and fostering, lost and found alerts and messaging.",
+        note: "There are no paid tiers, no in-app purchases for features and no fees to list a pet for adoption or fostering. The free tools, breed guides and templates on this website are free too, and none of them need an account.",
         related: ["can-i-add-multiple-pets", "does-everyone-need-the-app", "how-do-shelters-join"],
       },
       {
@@ -92,6 +93,7 @@ export const CATEGORIES: Category[] = [
         q: "Does Hushku work for cats?",
         short: "Yes. Everything in Hushku works for dogs and cats, from care reminders to adoption and lost pet alerts.",
         more: "Choose Dogs or Cats in Discover filters to see only one or the other. Heat cycle tracking is available for female pets of both.",
+        note: "For cats, the most-used features are reminders for flea, worm and vaccination treatments, weight tracking, and health records you can share with a cat sitter through Care Team. Lost and found alerts cover cats too, including indoor cats that slip out.",
         related: ["can-i-add-multiple-pets", "how-do-i-find-playdates"],
       },
       {
@@ -99,7 +101,7 @@ export const CATEGORIES: Category[] = [
         keywords: "account type role change account explorer",
         q: "What’s the difference between Pet owner, Shelter and Explorer?",
         short: "Pet owners create profiles for their pets. Shelters list animals and manage adoptions. Explorers browse pets and shelters without adding a pet.",
-        more: "You choose when you sign up, and you can change it later.",
+        more: "You choose when you sign up. Explorers can add a pet from their Profile at any time. To switch between a personal account and a shelter account, email hello@hushku.app and we'll move it for you.",
         demo: [
           {
             screen: "role",
@@ -119,6 +121,7 @@ export const CATEGORIES: Category[] = [
         q: "Can I use Hushku on the website?",
         short: "No. Every feature lives in the Hushku app for iPhone and Android, coming soon to the App Store and Google Play.",
         more: "This website explains how the app works and has free guides, tools and breed profiles that work in your browser.",
+        note: "You can use the free tools, breed guides, templates and help center here without an account. To track care, share it with a Care Team, message people or post a listing, you'll need the app. Join the waitlist and we'll email you when it's available in your country.",
         related: ["is-hushku-free"],
       },
     ],
@@ -283,6 +286,14 @@ export const CATEGORIES: Category[] = [
         keywords: "account download partner",
         q: "Does everyone on my care team need the app?",
         short: "Yes. Each person needs a free Hushku account, so their phone stays in sync with yours.",
+        more: "Care Team works by sharing a pet with other Hushku accounts. When someone logs a walk, a meal or a dose of medicine, everyone else on the team sees it straight away, so nobody doubles a dose or forgets one. That only works if each person signs in on their own phone.",
+        steps: [
+          "Ask the person to download Hushku and create a free account.",
+          "Open the Home tab, choose the pet, and tap Invite on the Care Team card.",
+          "Search for their username or email.",
+          "Choose Caregiver if they should log care, or Viewer if they only need to see it.",
+          "They accept the invite from their notifications.",
+        ],
         related: ["how-do-i-sync-care-across-profiles", "is-hushku-free"],
       },
     ],
@@ -635,6 +646,15 @@ export const CATEGORIES: Category[] = [
         keywords: "foster temporary",
         q: "Can I foster a pet?",
         short: "Yes. Open Discover and choose Foster to see pets that need a temporary home, then send a request.",
+        more: "Fostering means caring for a pet in your home for a set time, usually while a shelter or owner finds a permanent home. Each foster listing says how long the pet needs a home and what it needs. Your request goes to the person or shelter that posted the listing, and they can choose you as the foster or decline.",
+        steps: [
+          "Open the Discover tab and choose Foster.",
+          "Use Filters to narrow by distance, species or size.",
+          "Open a listing to read the dates, care needs and the poster's notes.",
+          "Tap Request to Foster.",
+          "When the poster chooses you as the foster, you'll get a notification and can plan the handover in Messages.",
+        ],
+        note: "Shelters often have their own foster agreement and checks. Read the listing carefully and ask questions in Messages before you commit.",
         related: ["how-do-i-adopt", "how-do-i-rehome-my-pet"],
       },
     ],
@@ -923,6 +943,13 @@ export const CATEGORIES: Category[] = [
         keywords: "verified badge blue tick",
         q: "How does a shelter get the verified badge?",
         short: "Verified shelters show a blue badge on their profile and listings. Email hello@hushku.app and we’ll talk you through verification.",
+        more: "The badge tells adopters the shelter or rescue is a real, registered organisation. Like everything in Hushku, verification is free.",
+        steps: [
+          "Create a Shelter account in the app and complete your profile.",
+          "Email hello@hushku.app from your organisation's address with your shelter's name and username.",
+          "We'll reply with what we need to confirm you're a registered rescue or charity.",
+          "Once confirmed, the badge appears on your profile and listings.",
+        ],
         demo: [
           {
             screen: "shelters",

@@ -24,6 +24,23 @@ export default function SocialPage() {
         "Follow the pets and shelters you care about",
         "Block, report and privacy controls from day one",
       ]}
+      guide={{
+        title: "What you can do in Hushku today",
+        intro: "There's no feed yet, but the app already connects you with pet people nearby, and it was built with privacy first.",
+        items: [
+          { h: "Give your pet a profile", p: "Add photos, traits and a short bio so people nearby can find your dog or cat in Discover." },
+          { h: "Send a request", p: "Ask another owner for a walk or a playdate from their pet's profile. They accept or decline, and you plan the details in Messages." },
+          { h: "Build your Circle", p: "Add the people you trust to your Circle, and choose in Settings who can add you." },
+          { h: "Stay in control", p: "Make your account private, block anyone in two taps, and report anything that breaks the rules. A blocked person can't see your pets or message you." },
+          { h: "Share safely anywhere", p: "On any social app, avoid posting your pet's name with your street, or photos showing your house number. They help thieves and scammers target pets." },
+          { h: "Find shelters near you", p: "Browse local shelters' listings in Discover to see pets that need adopting or fostering." },
+        ],
+        links: [
+          { href: "/playdates", text: "Playdates" },
+          { href: "/help-center/your-profile", text: "Your profile and privacy" },
+          { href: "/resources/best-pet-social-media-apps", text: "Best pet social media apps" },
+        ],
+      }}
     />
   );
 }

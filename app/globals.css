@@ -402,3 +402,15 @@ body {
 .tool-ui .text-slate-gray { color: var(--color-label-2); }
 .tool-ui .hover\:scale-105:hover, .tool-ui .active\:scale-95:active { transform: none; }
 .tool-ui h1, .tool-ui h2, .tool-ui h3 { text-wrap: balance; }
+
+/* Free tools on phones: finger-sized controls, no iOS zoom on focus, nothing below 12px. */
+.tool-ui button, .tool-ui [role="radio"] { min-height: 44px; }
+.tool-ui td button, .tool-ui th button { min-height: 0; padding-block: 6px; }
+.tool-ui input:not([type="range"]):not([type="checkbox"]):not([type="radio"]), .tool-ui select, .tool-ui textarea { font-size: 16px; }
+.tool-ui [class*="text-[11px]"] { font-size: 13px; line-height: 18px; }
+.tool-ui input[type="range"] { height: 32px; background: transparent; touch-action: pan-y; }
+.tool-ui input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 999px; background: var(--color-surface); }
+.tool-ui input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; margin-top: -10px; border-radius: 999px; background: var(--color-brand); border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
+.tool-ui input[type="range"]::-moz-range-track { height: 8px; border-radius: 999px; background: var(--color-surface); }
+.tool-ui input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 999px; background: var(--color-brand); border: 3px solid #fff; }
+.tool-ui input[type="range"] { -webkit-appearance: none; appearance: none; }

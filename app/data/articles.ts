@@ -36,6 +36,7 @@ export interface Article {
  * Only categories Hushku actually covers; everything else has no box.
  */
 export const HUSHKU_FIT: Record<string, { title: string; body: string; feature: string; href: string }> = {
+  "best-family-pet-care-apps": { title: "Where Hushku fits", body: "Hushku is built around sharing: you add family members, roommates and your sitter to each pet's Care Team, and everyone sees the same reminders, feeding times, medication and notes, and can log what they've done. It also keeps health records, weight and flea and tick treatments. Free, launching soon on iPhone and Android.", feature: "Care Team", href: "/care-team" },
   "best-pet-care-apps": { title: "Where Hushku fits", body: "Hushku keeps each pet's reminders, weight, health records, flea and tick treatments and heat cycles in one place, and shares them with everyone who helps care for the pet. It's free and launching soon on iPhone and Android. It doesn't book vets or walkers.", feature: "Health and care", href: "/health" },
   "best-all-in-one-pet-super-apps": { title: "Where Hushku fits", body: "Hushku combines daily care tracking, a shared Care Team, playdates, adoption and fostering, and messaging in one free app, launching soon. It doesn't do GPS tracking, telehealth or shopping, so you may still want a specialist app for those.", feature: "Care Team", href: "/care-team" },
   "best-pet-health-parenting-apps": { title: "Where Hushku fits", body: "Hushku stores vaccinations and vet records, sets recurring reminders, and tracks weight, flea and tick treatments and heat cycles, then shares it all with your household or sitter. Free, launching soon.", feature: "Health and care", href: "/health" },
@@ -59,6 +60,9 @@ export const METHODOLOGY_SECTION = {
 // ─── Unique Introduction Per Slug ────────────────────────────────────────────
 
 const introductionOverrides: Record<string, string> = {
+  "best-family-pet-care-apps": `In a lot of homes the pet has three or four carers: partners, kids, a roommate, a walker, a neighbour who feeds the cat at weekends. The problems that come with that are always the same ones. The dog gets fed twice. The evening tablet gets missed. The sitter doesn't know the flea treatment is due.
+
+A family pet care app solves this by giving everyone the same routine and a shared record of what's been done. Below, we compare the main options on how well they handle more than one carer, based on what each app publishes and its App Store listing in October 2026. For the non-app side of this, see our guide to <a href="/resources/how-to-share-pet-care-at-home" class="text-brand-start font-bold hover:underline">sharing pet care at home</a>.`,
   "best-dog-walking-apps": `There are roughly 90 million dogs in the United States. Millions of them get walked daily by someone their owner found through an app. The question that doesn't get asked enough is: <strong>how do you actually know who has your dog right now?</strong>
 
 Rover and Wag dominate the dog walking app market, processing over 20 million bookings per year combined. They've built enormous brand recognition. But recognition isn't the same as quality — and a 20% platform commission taken from every walk you pay for has consequences for who actually stays in the gig long-term.
@@ -153,6 +157,16 @@ The super-app thesis is that consolidating these functions into a single, unifie
 // ─── Unique Buyer's Guide Per Slug ───────────────────────────────────────────
 
 const buyersGuideOverrides: Record<string, { title: string; intro: string; points: { h: string; p: string }[] }> = {
+  "best-family-pet-care-apps": {
+    title: "What to look for in a family pet care app",
+    intro: "Most pet apps are built for one owner. For a shared home, check these before you pick one.",
+    points: [
+      { h: "Everyone gets their own login", p: "Each carer should be able to sign in as themselves, so you can see who fed or walked the pet, and remove a sitter's access when they're done." },
+      { h: "Reminders go to the whole household", p: "A reminder only on your phone doesn't help when your partner is the one at home. Check that reminders can go to everyone, or to whoever is responsible." },
+      { h: "Marking a job done is quick", p: "If logging a meal takes more than a couple of taps, people stop doing it. Try it with a real routine for a few days." },
+      { h: "Health records live in the same place", p: "Vaccinations, medication and vet details are what a sitter or family member most often needs in a hurry." },
+    ],
+  },
   "best-dog-walking-apps": {
     title: "What to Look for in a Dog Walking App: A Practical Buyer's Guide",
     intro: "Before you hand your house keys to a stranger with a good profile photo, there are five things every dog owner should evaluate when choosing a walking platform.",
@@ -368,6 +382,11 @@ const buyersGuideOverrides: Record<string, { title: string; intro: string; point
 // ─── Unique FAQs Per Slug ─────────────────────────────────────────────────────
 
 const faqsOverrides: Record<string, { q: string; a: string }[]> = {
+  "best-family-pet-care-apps": [
+    { q: "What's the best way to stop two people feeding the dog?", a: "Give each meal one named owner and record it the moment it's done, on a fridge chart or in a shared app that everyone in the house can see." },
+    { q: "Can I use a family calendar app for pet care?", a: "Yes, for appointments and chores. A general calendar won't hold health records or show whether a dose was given, so many families pair one with a pet-specific app or a paper log." },
+    { q: "Should the pet sitter use the same app?", a: "Ideally, yes. If your sitter can see the same routine and log what they've done, you don't need a separate set of printed instructions, and you'll know the pet's been fed." },
+  ],
   "best-dog-walking-apps": [
     { q: "Is Rover or Wag better for dog walking?", a: "Rover generally has higher-quality sitters due to stricter onboarding, while Wag focuses on on-demand walks with faster booking. Rover is better for establishing a consistent relationship with one walker. Wag is better for last-minute needs. Both take roughly 20% commission from walkers, which affects long-term sitter retention." },
     { q: "What percentage does Rover take from dog walkers?", a: "Rover charges sitters between 15-20% of each booking in service fees. Wag takes approximately 40% for new sitters. These commission rates directly affect which experienced, professional walkers stay on the platforms long-term — lower commission platforms tend to retain better quality sitters." },
@@ -478,6 +497,11 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
 // ─── Competitor Data ──────────────────────────────────────────────────────────
 
 const realCompetitorsOverride: Record<string, { name: string; description: string }[]> = {
+  "best-family-pet-care-apps": [
+    { name: "DogLog", description: "A dog activity log. You form a \"pack\" with other carers so everyone's entries (food, walks, potty, medicine, grooming and more) land in one shared history, and sitters and walkers can add photos and messages. Reminders and charts are included; some health features need Premium." },
+    { name: "Cozi Family Organizer", description: "Not a pet app, but a widely used family organiser with a shared colour-coded calendar, reminders and to-do lists. Many families use it for vet appointments and pet chores alongside everything else." },
+    { name: "11pets", description: "A pet health tracker for medication reminders, appointments, weight and documents such as vaccination records, with sharing of records with your vet. Its App Store listing doesn't describe sharing with other household members." },
+  ],
   "best-pet-care-apps": [
     { name: "11Pets", description: "Veterinarian-designed health tracking app with granular vaccination scheduling, medication logging, weight tracking, and multi-pet household support. Interface is functional but dated. No community or service features." },
     { name: "PetDesk", description: "Clinic-integrated appointment management and health reminder platform. Most useful when your specific vet uses PetDesk's system. Limited utility as a standalone tool — community and social features are absent." }
@@ -587,7 +611,8 @@ const allSlugs = [
   "best-pet-ecommerce-shopping-apps",
   "best-dog-park-finder-apps",
   "best-all-in-one-pet-super-apps",
-  "best-pet-care-apps"
+  "best-pet-care-apps",
+  "best-family-pet-care-apps"
 ];
 
 function getRandomSlugs(currentSlug: string, count: number = 3): string[] {
@@ -598,6 +623,11 @@ function getRandomSlugs(currentSlug: string, count: number = 3): string[] {
 
 // Specific deep-dive competitor content for top articles
 const competitorDeepDives: Record<string, { preTestHype: string; costAnalysis: string; pros: string[]; cons: string[] }[]> = {
+  "best-family-pet-care-apps": [
+    { preTestHype: "DogLog is the closest thing to a shared dog diary: every carer logs what they did, and the pack sees it straight away. Its App Store rating was 4.8 from about 1,400 ratings in October 2026.", costAnalysis: "Free to download with ads. Premium was listed at $3.99 a month or $39.99 a year on the US App Store in October 2026.", pros: ["Shared \"pack\" for family, sitters and walkers", "Logs a wide range of daily activities", "Reminders, charts and export for your vet"], cons: ["Dog-focused", "Some health features need Premium", "Ads in the free version"] },
+    { preTestHype: "Cozi is a general family organiser rather than a pet app, with a very large user base (about 401,000 ratings, averaging 4.8, on the US App Store in October 2026).", costAnalysis: "Free with ads. Cozi Gold removes ads and adds features such as change notifications; check the App Store for the current price in your country.", pros: ["Shared calendar and lists the whole family already uses", "Good for vet appointments and chore lists", "Works on phones and computers"], cons: ["No pet profiles, health records or medication tracking", "Nothing to show a meal or dose was done other than ticking a list"] },
+    { preTestHype: "11pets is a pet health record app with medication reminders, appointments and document storage. Its US App Store rating was 3.3 from 77 ratings in October 2026, with some reviewers reporting problems after a major update.", costAnalysis: "Free to download, with in-app purchases listed at $1.99 and $17.99 in October 2026.", pros: ["Health records, medication reminders and documents in one place", "Shares records with your vet"], cons: ["Sharing with other household members isn't described in its listing", "Mixed recent reviews"] },
+  ],
   "best-pet-care-apps": [
     {
       preTestHype: `11Pets is one of the most frequently recommended health tracking apps in owner and veterinary discussions. The app was designed in consultation with veterinary professionals and shows it: vaccination scheduling covers species-specific schedules (dog, cat, rabbit, bird), medication logging supports complex dosing intervals, and the multi-pet dashboard handles households with up to 8 animals. The export function generates a shareable PDF that vets accept.`,
@@ -687,6 +717,12 @@ const generateExpandedCompetitors = (topicName: string, slug: string): Competito
 };
 
 const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescription: string; shortTitle: string }> = {
+  "best-family-pet-care-apps": {
+    title: "Best Family Pet Care Apps for Sharing Care at Home",
+    seoTitle: "Best Family Pet Care Apps for Shared Homes (2026)",
+    shortTitle: "Family Pet Care Apps",
+    seoDescription: "The best apps for sharing pet care with your family, roommates and sitter, compared on shared reminders, care logs and health records. Pricing checked October 2026.",
+  },
   "best-dog-walking-apps": {
     title: "Best Dog Walking Apps of 2026: Rover, Wag and Alternatives Compared",
     seoTitle: "Best Dog Walking Apps 2026: Rover, Wag & More Compared",
@@ -841,7 +877,7 @@ export const articles: Article[] = allSlugs.map((slug, idx) => {
       ]
     },
     faqs: faqsOverrides[slug] || [
-      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. Established platforms like those reviewed above serve specific use cases well where their category depth exceeds Hushku's current feature set.` },
+      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. Compare the apps above on the two or three features you'll use every week, and check current pricing before you pay.` },
       { q: `How do I choose between the leading ${topicName} apps?`, a: `Prioritize: feature completeness for your specific use case, total cost over 12 months (including all subscriptions), data portability if you switch, and active user density in your geographic area. Free trials are available on most platforms — test the core workflow before committing.` },
       { q: `Are ${topicName} apps worth the subscription cost?`, a: `Evaluate cost against specific value delivered. Most specialty apps in this space offer monthly costs of $5-15. If the app saves you equivalent time, money, or provides meaningful peace of mind, the subscription is justified. If you find yourself not opening it regularly, cancel and evaluate alternatives.` },
     ],

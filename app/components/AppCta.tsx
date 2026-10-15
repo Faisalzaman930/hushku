@@ -29,17 +29,11 @@ export default function AppCta({
       <div className="pt-1">
         <WaitingList cta="Get it at launch" source={source} />
       </div>
-      <p className="text-[13px] text-label-2">
-        Free on iPhone and Android, launching soon. One email when it&apos;s out, nothing else.
-        {link ? (
-          <>
-            {" "}
-            <Link href={link.href} className="inline-flex items-center font-medium text-brand-text hover:underline underline-offset-[3px]">
-              {link.label} <ChevronRight size={14} aria-hidden />
-            </Link>
-          </>
-        ) : null}
-      </p>
+      {link ? (
+        <Link href={link.href} className="inline-flex items-center self-start text-[15px] font-medium text-brand-text hover:underline underline-offset-[3px]">
+          {link.label} <ChevronRight size={16} aria-hidden />
+        </Link>
+      ) : null}
     </aside>
   );
 }

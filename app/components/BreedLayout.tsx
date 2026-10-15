@@ -87,7 +87,7 @@ export default function BreedLayout({ article }: { article: BreedArticle }) {
               <div className="bg-brand-start/5 border border-brand-start/20 rounded-[2rem] p-7">
                 <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">{article.ctaFeature}</p>
                 <p className="font-black text-ebony text-sm mb-5 leading-snug">{article.ctaText}</p>
-                <Link href="/#download" className="block text-center bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
+                <Link href="/join" className="block text-center bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
                   Get Hushku Free
                 </Link>
               </div>
@@ -210,7 +210,7 @@ export default function BreedLayout({ article }: { article: BreedArticle }) {
               <p className="text-white font-black text-2xl mb-2">Managing a {article.breedName}?</p>
               <p className="text-white/80 mb-8">Track vet visits, connect with other {article.breedName} owners, and find breed-aware care on Hushku.</p>
               <Link
-                href="/#download"
+                href="/join"
                 className="inline-block bg-white text-brand-start font-black py-4 px-10 rounded-[2rem] hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm shadow-xl"
               >
                 Get Hushku Free

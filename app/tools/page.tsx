@@ -175,6 +175,13 @@ export default function ToolsHubPage() {
       category: "Nutrition Calculator",
     },
     {
+      title: "Dog Heat Cycle Calculator",
+      desc: "Enter the first day of her last heat to see each phase, her likely fertile days and when her next three heats are due.",
+      href: "/tools/heat-cycle-calculator",
+      icon: "📆",
+      category: "Breeding Tool",
+    },
+    {
       title: "Whelping Due Date Calculator",
       desc: "Enter the mating date to get the expected whelping date and every key pregnancy milestone for dogs and cats.",
       href: "/tools/whelping-calculator",

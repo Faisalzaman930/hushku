@@ -3,6 +3,7 @@
 import { Guide } from "../data/guides";
 import Link from "next/link";
 import ContactSection from "./ContactSection";
+import AppCta from "./AppCta";
 import RelatedTools from "./RelatedTools";
 import { getRelatedArticles } from "../utils/related-articles";
 
@@ -54,9 +55,9 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
               </div>
               <div className="bg-brand-start/5 border border-brand-start/20 rounded-[2rem] p-7">
                 <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Ready to apply this?</p>
-                <p className="font-black text-ebony text-sm mb-5 leading-snug">Track progress, find local experts, and connect with other pet owners on Hushku.</p>
-                <Link href="/#download" className="block text-center bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
-                  Get Hushku Free
+                <p className="font-black text-ebony text-sm mb-5 leading-snug">Keep reminders and health records in one place, and share care with your household. Free, launching soon.</p>
+                <Link href="/join" className="block text-center bg-brand-gradient text-white font-black py-3 px-5 rounded-xl uppercase tracking-widest text-[10px] hover:scale-105 transition-transform">
+                  Get notified at launch
                 </Link>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -87,15 +88,19 @@ export default function GuideLayout({ guide }: { guide: Guide }) {
               ))}
             </div>
 
+            {guide.appCta ? (
+              <AppCta className="mb-16" title={guide.appCta.title} body={guide.appCta.body} link={guide.appCta.link} source={`guide:${guide.slug}`} />
+            ) : null}
+
             {/* Conclusion */}
             <div id="conclusion" className="bg-brand-gradient rounded-[3rem] p-10 text-center">
               <h3 className="text-white font-black text-2xl mb-5">Conclusion</h3>
               <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-xl mx-auto" dangerouslySetInnerHTML={{ __html: guide.conclusion }} />
               <Link
-                href="/#download"
+                href="/join"
                 className="inline-block bg-white text-brand-start font-black py-4 px-10 rounded-[2rem] shadow-xl hover:scale-105 active:scale-95 transition-transform uppercase tracking-widest text-sm"
               >
-                Get Hushku Free
+                Get notified at launch
               </Link>
             </div>
           </main>

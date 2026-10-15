@@ -9,6 +9,7 @@ import { breedArticles } from "./data/breed-articles";
 import { definitionArticles } from "./data/definition-articles";
 import { pillarPages } from "./data/pillars";
 import { templateDocs } from "./data/templates";
+import { COMPARE_PAGES, CHECKED_ISO } from "./data/compare";
 import { breedsByAnimal, BREED_CONTENT_UPDATED } from "./data/breeds";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.app";
@@ -77,6 +78,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/tools/water-calculator`,    changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/exercise-calculator`, changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/puppy-weight`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
+  { url: `${BASE_URL}/tools/heat-cycle-calculator`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
   { url: `${BASE_URL}/tools/whelping-calculator`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
   { url: `${BASE_URL}/tools/symptom-checker`,     changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/toxic-food`,          changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
@@ -186,6 +188,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const compareRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/breeds/compare`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
     ...COMPARISONS.map((c) => ({ url: `${BASE_URL}/breeds/compare/${c.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: TODAY })),
+    { url: `${BASE_URL}/compare`, changeFrequency: "monthly", priority: 0.6, lastModified: new Date(CHECKED_ISO) },
+    ...COMPARE_PAGES.map((c) => ({ url: `${BASE_URL}/compare/${c.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: new Date(CHECKED_ISO) })),
   ];
 
   // One entry per URL: the generated routes win over any hand-listed duplicate.

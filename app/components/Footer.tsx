@@ -48,6 +48,7 @@ const COLUMNS: { title: string; links: { name: string; href: string }[] }[] = [
       { name: "Breeds", href: "/breeds" },
       { name: "Resources", href: "/resources" },
       { name: "Templates", href: "/templates" },
+      { name: "Compare apps", href: "/compare" },
       { name: "Editorial standards", href: "/about/editorial" },
       { name: "Privacy", href: "/privacy" },
       { name: "Terms", href: "/terms" },

@@ -14,9 +14,11 @@ const APP_OFFER: Record<string, { title: string; body: string; link?: { href: st
   sitter: { title: "Skip the printout: share it with your sitter in the app", body: "Add your sitter to your pet's Care Team in Hushku. They see feeding times, medication and notes on their phone, and can log what they've done.", link: TEAM },
   adoption: { title: "Rehoming or adopting? Do it in the app", body: "Shelters and owners list pets for adoption in Hushku, and adopters send a request from the listing, with the whole conversation kept in one place.", link: { href: "/adoption", label: "See adoption" } },
   lost: { title: "Keep your pet's photos and records ready", body: "Hushku keeps an up-to-date profile, photos and health records for each pet. Lost and found alerts for nearby owners are planned but aren't in the app yet.", link: HEALTH },
+  routine: { title: "Turn this schedule into shared reminders", body: "Set feeding, walk and medication reminders in Hushku and share them with your household and sitter. Whoever does it logs it, so nobody doubles up or forgets.", link: TEAM },
   care: { title: "Share care with everyone who helps", body: "Hushku keeps your pet's reminders, routines and health records in one place, shared with your household and sitter.", link: TEAM },
 };
 function offerFor(slug: string) {
+  if (/schedule/.test(slug)) return APP_OFFER.routine;
   if (/medical|vaccination|health-record|travel/.test(slug)) return APP_OFFER.medical;
   if (/sitter|sitting|boarding|care-instructions/.test(slug)) return APP_OFFER.sitter;
   if (/adoption|adopt/.test(slug)) return APP_OFFER.adoption;

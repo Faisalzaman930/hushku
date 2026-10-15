@@ -1,3 +1,4 @@
+import { scheduleTemplates } from "./templates-schedules";
 export interface TemplateSection {
   title: string;
   items: string[];
@@ -3062,6 +3063,7 @@ Date: ______________________
     relatedSlugs: ["pet-adoption-certificate-template", "pet-medical-history-template"],
     downloadFormats: ["PDF (A4 / Letter)", "Word (.docx)", "Google Docs"],
   },
+  ...scheduleTemplates,
 ];
 
 export const templatesByTier = {

@@ -46,7 +46,7 @@ export default function ReviewCard({ competitor, rank }: { competitor: Competito
 
           <div className="flex items-center gap-3">
             {isWinner && (
-              <Link href="/#download" className="bg-brand-gradient text-white px-7 py-3.5 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform shadow-lg flex-shrink-0">
+              <Link href="/join" className="bg-brand-gradient text-white px-7 py-3.5 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-105 transition-transform shadow-lg flex-shrink-0">
                 Download Free
               </Link>
             )}

@@ -1,3 +1,4 @@
+import { guideSharedPetCare, guideRehoming, guideLostPet } from "./guide-conversion";
 import { guide333Rescue } from "./guide-333-rescue";
 import { guidePuppySocialization } from "./guide-puppy-socialization";
 import { guideCatNutrition } from "./guide-cat-nutrition";
@@ -32,9 +33,14 @@ export interface Guide {
   chapters: GuideChapter[];
   conclusion: string;
   relatedSlugs: string[];
+  /** Optional in-context app offer shown before the conclusion. Only features that are in the app. */
+  appCta?: { title: string; body: string; link?: { href: string; label: string } };
 }
 
 export const guides: Guide[] = [
+  guideSharedPetCare,
+  guideRehoming,
+  guideLostPet,
   guide333Rescue,
   guidePuppySocialization,
   guideCatNutrition,

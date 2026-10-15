@@ -15,6 +15,7 @@ export const ALL_TOOLS: Tool[] = [
   { slug: "water-calculator",   label: "Water Intake",          emoji: "💧", desc: "How much water should your pet drink?" },
   { slug: "exercise-calculator",label: "Exercise Calculator",   emoji: "🏃", desc: "Daily exercise needs by breed & age" },
   { slug: "puppy-weight",       label: "Puppy Weight Predictor",emoji: "⚖️",  desc: "Estimate your puppy's adult weight" },
+  { slug: "heat-cycle-calculator",label: "Heat Cycle Calculator", emoji: "📆", desc: "Predict your dog's next heat and fertile days" },
   { slug: "whelping-calculator",label: "Whelping Calculator",   emoji: "🐣", desc: "Calculate expected whelping due date" },
   { slug: "feeding-calculator", label: "Feeding Calculator",    emoji: "🥣", desc: "Get the right daily food portion" },
   { slug: "pet-bmi",            label: "Pet BMI Check",         emoji: "📊", desc: "Check your pet's body condition score" },

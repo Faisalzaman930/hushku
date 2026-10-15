@@ -757,5 +757,75 @@
   "artist": "Dragonfly47 at English Wikipedia",
   "source": "https://commons.wikimedia.org/wiki/File:Yorkipoo.jpg",
   "staged": "dogs-yorkipoo~0"
+ },
+ "cats-birman": {
+  "artist": "James E. Petts",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/14730981@N08/51707197922",
+  "staged": "cats-birman~ov1"
+ },
+ "dogs-australian-retriever": {
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6071742/free-public-domain-cc0-photo",
+  "staged": "dogs-australian-retriever~ov0"
+ },
+ "dogs-border-sheepdog": {
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6040717/photo-image-public-domain-border-dog",
+  "staged": "dogs-border-sheepdog~ov1"
+ },
+ "dogs-chi-chi": {
+  "artist": "miguel.discart",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/69506664@N06/53612767823",
+  "staged": "dogs-chi-chi~ov1"
+ },
+ "dogs-golden-cocker-retriever": {
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6064754/free-public-domain-cc0-photo",
+  "staged": "dogs-golden-cocker-retriever~ov0"
+ },
+ "dogs-golden-shepherd": {
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6077686/photo-image-public-domain-dog-animal",
+  "staged": "dogs-golden-shepherd~ov2"
+ },
+ "dogs-mastiff": {
+  "artist": "marneejill",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/7675787@N06/34542958993",
+  "staged": "dogs-mastiff~ov2"
+ },
+ "dogs-pomeagle": {
+  "artist": "Takeshi Life Goes On",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/45682148@N05/16141756622",
+  "staged": "dogs-pomeagle~ov0"
+ },
+ "dogs-shorkie": {
+  "artist": "MBAnimalPics",
+  "license": "CC BY 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+  "source": "https://www.flickr.com/photos/199001793@N03/53678482371",
+  "staged": "dogs-shorkie~ov0"
+ },
+ "dogs-staffordshire-bull-terrier": {
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/3338283/free-photo-image-animal-boxer-bulldog",
+  "staged": "dogs-staffordshire-bull-terrier~ov3"
  }
 }

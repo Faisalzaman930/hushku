@@ -245,7 +245,7 @@ export default async function BreedPage({ params }: { params: Promise<{ animal: 
               </div>
               {credit ? (
                 <figcaption className="text-[12px] leading-[16px] text-label-2">
-                  Photo: {credit.artist}, <a href={credit.licenseUrl || credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener license" target="_blank">{credit.license}</a>, via <a href={credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener" target="_blank">Wikimedia Commons</a>
+                  Photo: {credit.artist}, <a href={credit.licenseUrl || credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener license" target="_blank">{credit.license}</a>, via <a href={credit.source} className="underline underline-offset-2 hover:text-label" rel="noopener" target="_blank">{/flickr\.com/.test(credit.source) ? "Flickr" : "Wikimedia Commons"}</a>
                 </figcaption>
               ) : null}
             </figure>

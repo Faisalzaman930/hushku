@@ -2504,5 +2504,75 @@
   "license": "CC BY 2.5",
   "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
   "source": "https://commons.wikimedia.org/wiki/File:Yorkipoo.jpg"
+ },
+ "cats/birman": {
+  "src": "/breeds/cats/birman-wm.jpg",
+  "artist": "James E. Petts",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/14730981@N08/51707197922"
+ },
+ "dogs/australian-retriever": {
+  "src": "/breeds/dogs/australian-retriever-wm.jpg",
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6071742/free-public-domain-cc0-photo"
+ },
+ "dogs/border-sheepdog": {
+  "src": "/breeds/dogs/border-sheepdog-wm.jpg",
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6040717/photo-image-public-domain-border-dog"
+ },
+ "dogs/chi-chi": {
+  "src": "/breeds/dogs/chi-chi-wm.jpg",
+  "artist": "miguel.discart",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/69506664@N06/53612767823"
+ },
+ "dogs/golden-cocker-retriever": {
+  "src": "/breeds/dogs/golden-cocker-retriever-wm.jpg",
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6064754/free-public-domain-cc0-photo"
+ },
+ "dogs/golden-shepherd": {
+  "src": "/breeds/dogs/golden-shepherd-wm.jpg",
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/6077686/photo-image-public-domain-dog-animal"
+ },
+ "dogs/mastiff": {
+  "src": "/breeds/dogs/mastiff-wm.jpg",
+  "artist": "marneejill",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/7675787@N06/34542958993"
+ },
+ "dogs/pomeagle": {
+  "src": "/breeds/dogs/pomeagle-wm.jpg",
+  "artist": "Takeshi Life Goes On",
+  "license": "CC BY-SA 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "source": "https://www.flickr.com/photos/45682148@N05/16141756622"
+ },
+ "dogs/shorkie": {
+  "src": "/breeds/dogs/shorkie-wm.jpg",
+  "artist": "MBAnimalPics",
+  "license": "CC BY 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+  "source": "https://www.flickr.com/photos/199001793@N03/53678482371"
+ },
+ "dogs/staffordshire-bull-terrier": {
+  "src": "/breeds/dogs/staffordshire-bull-terrier-wm.jpg",
+  "artist": "Unknown author",
+  "license": "CC0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "source": "https://www.rawpixel.com/image/3338283/free-photo-image-animal-boxer-bulldog"
  }
 }

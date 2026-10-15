@@ -32,7 +32,9 @@ const TRAIN_CTA = { title: "Keep everyone consistent", body: "Training works whe
 const FEED_CTA = { title: "Share feeding routines with your household", body: "Set feeding reminders in Hushku and share them with everyone who feeds your pet, so meals aren't missed or doubled.", link: { href: "/care-team", label: "See the Care Team" } };
 const ADOPT_CTA = { title: "Adoption and fostering in one app", body: "Shelters and owners list pets for adoption and fostering in Hushku, and you send a request straight from the listing.", link: { href: "/adoption", label: "See adoption" } };
 
-export const EXTRAS: Record<string, ArticleExtras> = {};
+import { EXTRAS_DATA } from "./article-extras-data";
+
+export const EXTRAS: Record<string, ArticleExtras> = { ...EXTRAS_DATA };
 
 /** Adds extras for a slug (merged, so content files can each contribute). */
 export function addExtras(map: Record<string, ArticleExtras>) {

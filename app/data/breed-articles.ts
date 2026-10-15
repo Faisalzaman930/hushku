@@ -62,7 +62,7 @@ export const breedArticles: BreedArticle[] = [
     publishDate: "April 2026",
     lastUpdated: "April 2026",
     readTime: "14 Min Read",
-    quickAnswer: "French Bulldogs are affectionate, adaptable, and relatively low-energy — making them popular apartment dogs. Their significant downside is substantial health costs: 72% of French Bulldogs suffer from BOAS (breathing obstruction), they're prone to expensive spinal conditions (IVDD), cannot regulate body temperature in heat, and cannot swim. The average lifetime vet cost for a Frenchie is significantly above average for any breed.",
+    quickAnswer: "French Bulldogs are affectionate, adaptable, and relatively low-energy — making them popular apartment dogs. Their significant downside is substantial health costs: about half of French Bulldogs have clinically significant BOAS (breathing obstruction), they're prone to expensive spinal conditions (IVDD), cannot regulate body temperature in heat, and cannot swim. The average lifetime vet cost for a Frenchie is significantly above average for any breed.",
     overview: {
       originCountry: "France (via England)",
       size: "Small-Medium",
@@ -111,7 +111,7 @@ French Bulldogs also cannot swim. Their body shape — heavy front end, short le
       },
       {
         title: "The BOAS Problem: What Every Frenchie Owner Needs to Know",
-        content: `Brachycephalic Obstructive Airway Syndrome (BOAS) is not an occasional health issue in French Bulldogs — it is present to some degree in the majority of the breed. A Cambridge University study found that 72% of French Bulldogs have BOAS significant enough to affect quality of life. Most owners of affected dogs don't recognize it because they've normalized what they hear.
+        content: `Brachycephalic Obstructive Airway Syndrome (BOAS) is not an occasional health issue in French Bulldogs — it is present to some degree in the majority of the breed. In the University of Cambridge's BOAS screening, about 49% of French Bulldogs assessed had BOAS at a clinically significant grade, and many more had milder signs. Most owners of affected dogs don't recognize it because they've normalized what they hear.
 
 The condition involves a combination of: stenotic nares (pinched nostrils), elongated soft palate (excess soft tissue in the throat that partially blocks the airway), and sometimes a hypoplastic trachea (narrower-than-normal windpipe) and everted laryngeal saccules (tissue that turns inside out into the airway with increased respiratory effort).
 
@@ -158,7 +158,7 @@ Early socialization is important — Frenchies who are well-socialized as puppie
       },
     ],
     healthIssues: [
-      { condition: "BOAS (Brachycephalic Obstructive Airway Syndrome)", description: "Structural airway narrowing causing breathing compromise; affects 72%+ of the breed to varying degrees.", frequency: "very common", affectedAge: "All ages, progressive" },
+      { condition: "BOAS (Brachycephalic Obstructive Airway Syndrome)", description: "Structural airway narrowing causing breathing compromise; about half of French Bulldogs are clinically affected, many more mildly.", frequency: "very common", affectedAge: "All ages, progressive" },
       { condition: "IVDD (Intervertebral Disc Disease)", description: "Herniated spinal disc causing pain, nerve damage, or paralysis; French Bulldogs are a high-risk breed.", frequency: "common", affectedAge: "3–7 years most common" },
       { condition: "Skin fold dermatitis", description: "Bacterial or yeast infection in facial and tail pocket skin folds requiring regular cleaning and sometimes treatment.", frequency: "very common", affectedAge: "All ages" },
       { condition: "Hip dysplasia", description: "Malformation of the hip joint causing lameness and arthritis; common in compact, heavily built breeds.", frequency: "common", affectedAge: "From 1–2 years" },
@@ -184,13 +184,13 @@ Early socialization is important — Frenchies who are well-socialized as puppie
     seoTitle: "Golden Retriever Guide 2026: Care, Health & What to Expect",
     shortTitle: "Golden Retriever Guide",
     breedName: "Golden Retriever",
-    seoDescription: "Complete Golden Retriever owner guide: cancer risk (60% of Goldens die of cancer), hip and elbow dysplasia, coat care, exercise needs, and everything about their famously gentle temperament.",
+    seoDescription: "Complete Golden Retriever owner guide: cancer risk (about 60% of Goldens die of cancer), hip and elbow dysplasia, coat care, exercise needs, and everything about their famously gentle temperament.",
     category: "Breed Guide",
     tags: ["Breed Guide", "Golden Retriever", "Large Breeds"],
     publishDate: "April 2026",
     lastUpdated: "April 2026",
     readTime: "14 Min Read",
-    quickAnswer: "Golden Retrievers are intelligent, eager-to-please, gentle family dogs with moderate-to-high exercise needs. The significant health concern is cancer: approximately 60% of Golden Retrievers die of cancer — double the rate of most breeds. This makes early detection protocols, pet insurance, and awareness of warning signs more important for Goldens than for almost any other breed.",
+    quickAnswer: "Golden Retrievers are intelligent, eager-to-please, gentle family dogs with moderate-to-high exercise needs. The significant health concern is cancer: in a Golden Retriever Club of America health survey, about 60% of Goldens died of cancer, far more than most breeds. This makes early detection protocols, pet insurance, and awareness of warning signs more important for Goldens than for almost any other breed.",
     overview: {
       originCountry: "Scotland",
       size: "Large",
@@ -208,7 +208,7 @@ Early socialization is important — Frenchies who are well-socialized as puppie
     },
     introduction: `Golden Retrievers are one of the most popular breeds in the world for excellent reasons: they're intelligent, adaptable, gentle with children, easy to train, and consistently friendly. The breed's reputation for good temperament is well-earned — a properly bred and socialized Golden is genuinely one of the most reliably even-tempered dogs available.
 
-But popularity creates a shadow: the Golden Retriever is also one of the most overbred breeds in the world, which contributes to significant health problems. The cancer statistic is not widely known among prospective owners and should be: approximately 60% of Golden Retrievers in the US die from cancer — hemangiosarcoma and lymphoma being the most common. This is roughly double the rate of most other breeds.
+But popularity creates a shadow: the Golden Retriever is also one of the most overbred breeds in the world, which contributes to significant health problems. The cancer statistic is not widely known among prospective owners and should be: about 60% of Golden Retrievers in the US died from cancer in the Golden Retriever Club of America's health survey — hemangiosarcoma and lymphoma being the most common. This is roughly double the rate of most other breeds.
 
 Understanding both the genuine strengths of the breed and the health profile allows you to make an informed decision, structure appropriate preventive care, and give a Golden Retriever the best possible chance at a full, healthy life.`,
     sections: [
@@ -236,7 +236,7 @@ Puppies: exercise should be moderate until growth plates close (approximately 18
       },
       {
         title: "The Cancer Risk: What Every Golden Owner Should Know",
-        content: `The Golden Retriever cancer rate is one of the most important health facts in dog ownership. Studies consistently show that approximately 60% of Golden Retrievers in North America develop cancer during their lifetime, compared to a 25–30% rate across dog breeds overall. Hemangiosarcoma (a blood vessel cancer) and lymphoma are the most common specific cancers.
+        content: `The Golden Retriever cancer rate is one of the most important health facts in dog ownership. A Golden Retriever Club of America health survey found cancer was the cause of death in about 60% of Goldens, a much higher share than in most breeds. Hemangiosarcoma (a blood vessel cancer) and lymphoma are the most common specific cancers.
 
 The reasons for this elevated rate are not fully understood. Genetic factors are significant — certain Golden Retriever lines have higher rates than others, which is why responsible breeding and health testing matter. The Morris Animal Foundation has been running the Golden Retriever Lifetime Study for over a decade specifically to identify the causes.
 
@@ -264,7 +264,7 @@ The reasons for this elevated rate are not fully understood. Genetic factors are
       },
     ],
     healthIssues: [
-      { condition: "Cancer (hemangiosarcoma, lymphoma, osteosarcoma)", description: "Approximately 60% of Goldens develop cancer; highest rates among all breeds.", frequency: "very common", affectedAge: "Typically 8–12 years" },
+      { condition: "Cancer (hemangiosarcoma, lymphoma, osteosarcoma)", description: "About 60% of Goldens died of cancer in a breed club health survey; one of the highest rates of any breed.", frequency: "very common", affectedAge: "Typically 8–12 years" },
       { condition: "Hip dysplasia", description: "Malformation of the hip joint causing lameness and progressive arthritis; OFA health testing reduces risk from reputable breeders.", frequency: "common", affectedAge: "From 1–2 years, progressive" },
       { condition: "Elbow dysplasia", description: "Malformation of the elbow joint; causes forelimb lameness and arthritis.", frequency: "common", affectedAge: "From 1 year" },
       { condition: "Cardiac disease (subvalvular aortic stenosis)", description: "Heart valve narrowing; reputable breeders should have cardiac clearances.", frequency: "occasional", affectedAge: "Diagnosed young, may progress" },

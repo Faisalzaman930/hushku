@@ -282,7 +282,7 @@ No single guide can replace the personalised insight of a veterinarian or veteri
 The best food for your cat is ultimately the one that keeps them at an ideal body weight, supports healthy organ function, maintains a lustrous coat and clear eyes, and that they will reliably eat with enthusiasm. With the tools in this guide, you are now well-equipped to read labels critically, understand what your cat truly needs from a biological standpoint, and make informed choices at every life stage.`,
   relatedSlugs: [
     "complete-guide-to-puppy-care",
-    "senior-pet-care-guide",
+    "senior-pet-care-complete-guide",
     "how-to-choose-pet-food",
     "how-to-read-dog-body-language",
   ],

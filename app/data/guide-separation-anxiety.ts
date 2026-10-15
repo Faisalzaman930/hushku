@@ -374,7 +374,7 @@ What does work is the combination of correctly understanding your dog's anxiety,
 
 Your dog cannot tell you that they are frightened. But they are showing you, every time they destroy the door frame, every time they bark until they are hoarse, every time they refuse to eat the treat you left behind. They are asking for help. This guide is your starting point for giving it to them.`,
   relatedSlugs: [
-    "how-to-help-dog-with-separation-anxiety",
+    "dog-separation-anxiety-complete-guide",
     "how-to-crate-train-a-puppy",
     "puppy-socialization-masterclass",
     "complete-guide-to-dog-training",

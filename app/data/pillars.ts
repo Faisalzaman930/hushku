@@ -105,7 +105,7 @@ Modern, science-based training relies primarily on R+ and P-. The goal is to mak
         anchorId: "behavior-problems",
         callout: "**The growling rule:** Never punish growling. A growl is communication — the last warning before a bite. Suppressing it doesn't reduce the underlying tension; it removes your only advance warning signal.",
         summary: "Separation anxiety, excessive barking, destructive behavior, leash reactivity, resource guarding — what works and what makes problems worse.",
-        content: `**Separation anxiety:** A genuine anxiety disorder requiring systematic desensitization and often veterinary medication support. Not manageable through punishment or "toughing it out" or "just leaving them — they'll get used to it." Separation anxiety is driven by panic, not behavior; the dog is not being dramatic or manipulative. Treatment involves graduated desensitization (departures of seconds → minutes → hours over weeks), medication consultation for moderate-severe cases (fluoxetine and clomipramine are FDA-approved for canine separation anxiety), and often working with a veterinary behaviorist. See our <a href="/resources/how-to-help-dog-with-separation-anxiety" class="text-brand-start font-bold">complete separation anxiety guide</a>.
+        content: `**Separation anxiety:** A genuine anxiety disorder requiring systematic desensitization and often veterinary medication support. Not manageable through punishment or "toughing it out" or "just leaving them — they'll get used to it." Separation anxiety is driven by panic, not behavior; the dog is not being dramatic or manipulative. Treatment involves graduated desensitization (departures of seconds → minutes → hours over weeks), medication consultation for moderate-severe cases (fluoxetine and clomipramine are FDA-approved for canine separation anxiety), and often working with a veterinary behaviorist. See our <a href="/resources/dog-separation-anxiety-complete-guide" class="text-brand-start font-bold">complete separation anxiety guide</a>.
 
 **Excessive barking:** The trigger type determines the solution. Alert barking (at noises or movement) is managed through environmental management (limiting visual access to the street) and a "quiet" command trained separately from the barking. Demand barking (for attention, food, play) is extinguished by consistently withholding the demanded resource — the moment you give in once, you've put demand barking on a variable ratio schedule, which is the most resistant-to-extinction schedule possible. Anxiety barking requires addressing the underlying anxiety. Barking at other dogs on leash may indicate leash reactivity requiring counter-conditioning. See our <a href="/resources/how-to-stop-dog-barking" class="text-brand-start font-bold">complete bark-by-bark solution guide</a>.
 
@@ -116,7 +116,7 @@ Modern, science-based training relies primarily on R+ and P-. The goal is to mak
 **Resource guarding:** Normal canine behavior that exists on a spectrum from mild (stiffening over a bone) to dangerous (biting when approached near food). Management first: don't take things from a resource-guarder unnecessarily. Treatment: trade-up protocol (approach the guarded item → produce something far better → let the dog trade → return the original item or better). The dog learns that your approach near their resources predicts good things, not loss. Never punish growling over resources — this removes the warning and produces a dog who bites without warning.
 
 **Jumping up:** Eliminated by removing the reward (turning away, removing eye contact, no touching) consistently every single time the dog jumps. Inconsistency — allowing jumping sometimes — maintains the behavior indefinitely. Simultaneously teach and reward an alternative behavior (four paws on floor earns all the attention the dog wanted from jumping). The incompatible behavior approach (asking for a sit when greeting) is faster and more reliable. See our <a href="/resources/how-to-stop-dog-jumping-on-people" class="text-brand-start font-bold">complete jumping guide with visitor protocols</a>.`,
-        linkedSlug: "how-to-help-dog-with-separation-anxiety",
+        linkedSlug: "dog-separation-anxiety-complete-guide",
       },
       {
         title: "Reading Your Dog: Body Language Basics",
@@ -201,7 +201,7 @@ Dogs communicate continuously through their whole body — tail position and mov
 
 **Prong collar:** Distributes tracheal pressure to contact points around the neck. Often presented as "pressure" rather than pain. Research shows prong collar use associated with increased aggression and anxiety. Not recommended by the AVSAB.
 
-**E-collar (shock collar):** Electronic stimulation delivered to the dog's neck. Modern e-collars are marketed as operating at "low levels" — but the dog's sensation cannot be calibrated or verified by the trainer. Studies show increased anxiety and stress indicators in dogs trained with e-collars compared to reward-based methods. The AVSAB and British Veterinary Association oppose their use. A 2022 UK study found no evidence that e-collar training produces better outcomes than positive reinforcement for the same behaviors.`,
+**E-collar (shock collar):** Electronic stimulation delivered to the dog's neck. Modern e-collars are marketed as operating at "low levels" — but the dog's sensation cannot be calibrated or verified by the trainer. Studies show increased anxiety and stress indicators in dogs trained with e-collars compared to reward-based methods. The AVSAB and British Veterinary Association oppose their use. A 2020 UK study (China, Mills and Cooper, Frontiers in Veterinary Science) found no evidence that e-collar training produces better outcomes than positive reinforcement for the same behaviors.`,
       },
       {
         title: "Training Across Breeds and Temperaments",
@@ -252,7 +252,7 @@ The research on mental enrichment and behavior is consistent: dogs who receive a
       { slug: "how-to-crate-train-a-puppy", title: "How to Crate Train a Puppy", type: "how-to" },
       { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Dog Pulling on Leash", type: "how-to" },
       { slug: "how-to-read-dog-body-language", title: "How to Read Dog Body Language", type: "how-to" },
-      { slug: "how-to-help-dog-with-separation-anxiety", title: "How to Help a Dog With Separation Anxiety", type: "how-to" },
+      { slug: "dog-separation-anxiety-complete-guide", title: "How to Help a Dog With Separation Anxiety", type: "how-to" },
       { slug: "how-to-stop-dog-barking", title: "How to Stop Excessive Dog Barking", type: "how-to" },
       { slug: "how-to-stop-dog-jumping-on-people", title: "How to Stop a Dog Jumping on People", type: "how-to" },
       { slug: "how-to-teach-basic-dog-commands", title: "How to Teach Basic Dog Commands", type: "how-to" },
@@ -507,7 +507,7 @@ Examine ears weekly from puppyhood: touch the ear flap, look inside, pair with t
       { slug: "how-to-potty-train-a-puppy", title: "How to Potty Train a Puppy", type: "how-to" },
       { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Dog Pulling on Leash", type: "how-to" },
       { slug: "how-to-read-dog-body-language", title: "How to Read Dog Body Language", type: "how-to" },
-      { slug: "how-to-help-dog-with-separation-anxiety", title: "How to Help a Dog With Separation Anxiety", type: "how-to" },
+      { slug: "dog-separation-anxiety-complete-guide", title: "How to Help a Dog With Separation Anxiety", type: "how-to" },
       { slug: "how-to-switch-dog-food-safely", title: "How to Switch Dog Food Safely", type: "how-to" },
       { slug: "puppy-socialization-masterclass", title: "Puppy Socialization Masterclass", type: "guide" },
       { slug: "first-time-dog-owner-complete-guide", title: "First-Time Dog Owner Complete Guide", type: "guide" },
@@ -515,7 +515,7 @@ Examine ears weekly from puppyhood: touch the ear flap, look inside, pair with t
       { slug: "what-is-parvo-in-dogs", title: "What Is Parvo in Dogs?", type: "definition" },
       { slug: "what-is-kennel-cough", title: "What Is Kennel Cough?", type: "definition" },
       { slug: "what-is-positive-reinforcement-dog-training", title: "What Is Positive Reinforcement Training?", type: "definition" },
-      { slug: "what-is-separation-anxiety", title: "What Is Separation Anxiety?", type: "definition" },
+      { slug: "dog-separation-anxiety-complete-guide", title: "What Is Separation Anxiety?", type: "definition" },
       { slug: "why-is-my-dog-not-eating", title: "Why Is My Puppy Not Eating?", type: "symptom" },
       { slug: "why-does-my-dog-keep-licking-paws", title: "Why Does My Dog Keep Licking Paws?", type: "symptom" },
       { slug: "french-bulldog-complete-guide", title: "French Bulldog Owner Guide", type: "breed" },
@@ -568,10 +568,10 @@ Annual wellness exams as the baseline. DHPP and rabies per your vet's schedule (
 Senior bloodwork begins — establish baselines for kidney values, liver enzymes, thyroid, CBC, blood glucose. These baseline values are critical: you cannot interpret a kidney value of "slightly elevated" without knowing what's normal for this individual animal. Blood pressure measurement, particularly for cats. Orthopedic assessment for large-breed dogs. Twice-annual examinations now recommended by the AAHA for all dogs over 7.
 
 **Senior (9+ years for most dogs; 12+ for cats):**
-Twice-annual examinations as standard practice. Complete bloodwork twice yearly — changes from one biannual to the next are meaningful; annual comparison often misses significant disease progression. More frequent dental care as periodontal disease accelerates. Pain assessment for osteoarthritis (affects 80% of dogs over 8 and is dramatically underdiagnosed). Quality-of-life monitoring. The goal in the senior period shifts from prevention to detection and management.
+Twice-annual examinations as standard practice. Complete bloodwork twice yearly — changes from one biannual to the next are meaningful; annual comparison often misses significant disease progression. More frequent dental care as periodontal disease accelerates. Pain assessment for osteoarthritis (very common in older dogs and often missed). Quality-of-life monitoring. The goal in the senior period shifts from prevention to detection and management.
 
 **Cat-specific note:** Cats are exceptional at masking illness — a survival adaptation from their wild ancestors. A cat who seems "a bit quiet lately" may have advanced kidney disease. This is why twice-annual exams are more important in cats than the once-annually habit most owners maintain. The AAFP (American Association of Feline Practitioners) recommends twice-annual exams from middle age.`,
-        linkedSlug: "senior-pet-care-guide",
+        linkedSlug: "senior-pet-care-complete-guide",
       },
       {
         title: "Reading Symptoms: When to Call vs. When to Go",
@@ -618,7 +618,7 @@ Twice-annual examinations as standard practice. Complete bloodwork twice yearly 
 Measures red blood cells (anemia — is the animal losing blood, not making enough, or destroying it?), white blood cells (infection, inflammation, certain leukemias, immune disease), and platelets (clotting ability). The differential WBC count specifies which type of white cells are elevated, pointing toward specific disease processes: elevated neutrophils suggest bacterial infection; elevated eosinophils suggest allergy or parasites; lymphocytosis can indicate certain cancers.
 
 **The Comprehensive Metabolic Panel:**
-- *Kidney values:* BUN (blood urea nitrogen) and creatinine are traditional markers, but both are insensitive — kidney function must be reduced by approximately 75% before creatinine becomes abnormal. SDMA (symmetric dimethylarginine) is a newer marker that detects kidney disease when only 40% of function is lost. Ask your vet specifically about SDMA if they're running a senior panel.
+- *Kidney values:* BUN (blood urea nitrogen) and creatinine are traditional markers, but both are insensitive — kidney function must be reduced by approximately 75% before creatinine becomes abnormal. SDMA (symmetric dimethylarginine) is a newer marker that can rise when as little as 25% of kidney function is lost, compared with about 75% for creatinine. Ask your vet specifically about SDMA if they're running a senior panel.
 - *Liver enzymes:* ALT (hepatocellular damage), ALP (biliary disease, Cushing's, drug reactions), bilirubin (liver function, hemolysis). Mild elevations need context; significant elevations warrant follow-up testing.
 - *Blood glucose:* Elevated in diabetes (confirm with fasting glucose and urine glucose). Low in hypoglycemia (young puppies, toy breeds, insulinoma in older dogs).
 - *Total protein, albumin, globulins:* Protein loss through the gut (protein-losing enteropathy), kidney (protein-losing nephropathy), or production failure (liver disease, certain cancers).
@@ -683,7 +683,7 @@ Roundworms are nearly universal in puppies. Hookworms, whipworms, and giardia ar
         content: `Chronic disease management is increasingly central to pet health as pets live longer lives. Understanding the four most common chronic conditions helps owners be effective partners in their pet's care rather than passive recipients of vet instructions.
 
 **Osteoarthritis:**
-Affects 80% of dogs over 8 years and is dramatically underdiagnosed because pets mask pain and because owners attribute decreased activity to "normal aging." Signs: reluctance to jump or climb stairs, stiffness after rest that improves after movement, changed sleep positions, decreased play interest, difficulty rising. Diagnosis: physical examination + X-rays. Management:
+Very common: vets estimate at least 20% of adult dogs have it, and far more seniors, and it is widely underdiagnosed because pets mask pain and because owners attribute decreased activity to "normal aging." Signs: reluctance to jump or climb stairs, stiffness after rest that improves after movement, changed sleep positions, decreased play interest, difficulty rising. Diagnosis: physical examination + X-rays. Management:
 - *NSAIDs:* Galliprant, Rimadyl, Metacam — prescription veterinary NSAIDs are the current primary pain management (never use human NSAIDs, which are toxic to dogs and cats). Monthly bloodwork monitoring recommended for dogs on long-term NSAIDs.
 - *Librela (bedinvetmab):* A monthly injectable monoclonal antibody targeting NGF (nerve growth factor), a pain signaling molecule. First new class of OA drug in decades. Highly effective in many dogs; now approved in the US.
 - *Weight management:* Every pound of excess weight multiplies the force on joints. Weight loss is often more effective than any single medication.
@@ -696,7 +696,7 @@ The most common form of allergic skin disease in dogs is environmental allergy (
 - *Allergen-specific immunotherapy:* The only treatment that modifies the underlying immune response. Takes 12–18 months of injections or sublingual drops, but can produce lasting improvement or remission.
 
 **Diabetes mellitus:**
-More common in cats (usually type 2; insulin resistance) and intact female dogs. Presents as polydipsia (excessive drinking), polyuria, weight loss despite good appetite, cataracts in dogs. Treatment: insulin injections — typically twice daily. The goal in cats is remission (achievable in approximately 30% of newly diagnosed cats on appropriate low-carbohydrate diet + insulin). Diabetes management requires ongoing home monitoring and regular veterinary rechecks.
+More common in cats (usually type 2; insulin resistance) and intact female dogs. Presents as polydipsia (excessive drinking), polyuria, weight loss despite good appetite, cataracts in dogs. Treatment: insulin injections — typically twice daily. The goal in cats is remission, which is possible for a good share of newly diagnosed cats treated early with insulin and a low-carbohydrate diet (reported rates vary widely between studies). Diabetes management requires ongoing home monitoring and regular veterinary rechecks.
 
 **Chronic kidney disease (CKD):**
 Extremely common in senior cats; common in senior dogs. Often asymptomatic until advanced. IRIS staging (1–4 based on creatinine/SDMA/blood pressure) guides management intensity. Management: prescription kidney diet (phosphorus restriction is the most evidence-supported intervention for slowing progression), hydration support (subcutaneous fluids at home in many cats), phosphate binders, blood pressure medication if hypertensive, treatment of concurrent anemia. Early detection (via SDMA) allows intervention before significant function is lost.`,
@@ -775,7 +775,7 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
       { slug: "what-is-parvo-in-dogs", title: "What Is Parvo in Dogs?", type: "definition" },
       { slug: "what-is-hip-dysplasia-in-dogs", title: "What Is Hip Dysplasia?", type: "definition" },
       { slug: "what-is-bloat-in-dogs", title: "What Is Bloat / GDV in Dogs?", type: "definition" },
-      { slug: "senior-pet-care-guide", title: "Senior Pet Care Guide", type: "guide" },
+      { slug: "senior-pet-care-complete-guide", title: "Senior Pet Care Guide", type: "guide" },
       { slug: "why-is-my-dog-restless-at-night", title: "Why Is My Dog Restless at Night?", type: "guide" },
       { slug: "how-to-trim-dog-nails-at-home", title: "How to Trim Dog Nails at Home", type: "how-to" },
       { slug: "best-pet-health-parenting-apps", title: "Best Pet Health Tracking Apps", type: "article" },
@@ -984,7 +984,7 @@ Interest in the pet gut microbiome has led to a proliferation of probiotic produ
 Not recommended and potentially harmful. A complete commercial diet formulated to AAFCO standards already meets all vitamin and mineral requirements. Adding a multivitamin risks exceeding safe upper limits for fat-soluble vitamins (A, D, E, K), copper, zinc, and other nutrients. Supplement only when your vet has identified a specific deficiency or when feeding a homemade diet under veterinary nutritionist guidance.
 
 **CBD:**
-Veterinary research is in early stages but accelerating. A 2019 Cornell University study found CBD (4.4 mg/kg twice daily) reduced pain scores and increased mobility in dogs with osteoarthritis. A 2021 Frontiers in Veterinary Science study found benefit for epilepsy when CBD was added to existing anticonvulsant therapy. Product quality is highly variable — look for products with a Certificate of Analysis from an independent lab confirming CBD content and absence of contaminants. Note: THC is toxic to pets; any CBD product must have verified trace or zero THC content.`,
+Veterinary research is in early stages but accelerating. A small 2018 Cornell University trial in 16 dogs found CBD (2 mg/kg twice daily) improved comfort and activity in dogs with osteoarthritis. A 2021 Frontiers in Veterinary Science study found benefit for epilepsy when CBD was added to existing anticonvulsant therapy. Product quality is highly variable — look for products with a Certificate of Analysis from an independent lab confirming CBD content and absence of contaminants. Note: THC is toxic to pets; any CBD product must have verified trace or zero THC content.`,
       },
       {
         title: "Hydration, Weight Management, and Special Dietary Considerations",
@@ -1003,9 +1003,7 @@ Tips for increasing cat water intake:
 - Add water or low-sodium broth to wet food
 
 **The pet obesity epidemic:**
-An estimated 59% of dogs and 61% of cats in the US are overweight or obese, according to the Association for Pet Obesity Prevention. This is the most prevalent nutritional disease in pets and the most preventable. Yet only 15–30% of obese pets lose weight when owners are counseled by their vet — suggesting that current messaging is insufficient.
-
-The reasons obesity persists: owners don't recognize their pet is overweight (many overweight pets are considered "normal" by their owners because overweight pets are so common), portion estimates without a measuring cup are consistently inaccurate, treats are not counted, and multiple household members are feeding without coordinating.
+An estimated 59% of dogs and 61% of cats in the US are overweight or obese, according to the Association for Pet Obesity Prevention. This is the most prevalent nutritional disease in pets and the most preventable. The reasons obesity persists: owners don't recognize their pet is overweight (many overweight pets are considered "normal" by their owners because overweight pets are so common), portion estimates without a measuring cup are consistently inaccurate, treats are not counted, and multiple household members are feeding without coordinating.
 
 **Evidence-based weight loss protocol:**
 1. Calculate current body weight and target body weight (target: BCS 4–5 on a 9-point scale)

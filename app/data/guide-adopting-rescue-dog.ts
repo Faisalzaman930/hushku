@@ -314,6 +314,6 @@ Give your dog the gift of your patience. Give yourself the gift of community and
     "logistics-and-heartbreak-foster-parent-manual",
     "puppy-socialization-masterclass",
     "how-to-crate-train-a-puppy",
-    "introducing-pets-to-each-other",
+    "how-to-introduce-new-pet-to-resident-pets",
   ],
 };

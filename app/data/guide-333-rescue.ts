@@ -366,5 +366,5 @@ The behavioral emergence of weeks 2-3 isn't deterioration — it's recovery. The
 Give them the time the framework describes. Keep the environment calm and predictable. Build routine before building training. Seek professional support when the challenges are beyond what patient consistency alone can address. And understand that the dog you have at 90 days is the dog you chose — the real version, the settled version, the one worth everything you invested to get there.
 
 The relationship you build with a rescue dog is different from almost any other relationship available to humans. It's built on the foundation of having been the person who showed up when everything else was uncertain. That means something to them in ways that are expressed every day, for years, in the kind of loyalty and presence that makes all the hard early work feel, in hindsight, like the best investment you ever made.`,
-  relatedSlugs: ["puppy-socialization-masterclass", "introducing-pets-to-each-other", "first-time-dog-owner-complete-guide"]
+  relatedSlugs: ["puppy-socialization-masterclass", "how-to-introduce-new-pet-to-resident-pets", "first-time-dog-owner-complete-guide"]
 };

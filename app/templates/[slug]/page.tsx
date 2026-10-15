@@ -401,7 +401,7 @@ export default async function TemplatePage({ params }: Props) {
                     { href: "/resources/complete-guide-to-pet-health",     emoji: "❤️", label: "Complete Guide to Pet Health" },
                     { href: "/resources/complete-guide-to-puppy-care",     emoji: "🐶", label: "Complete Guide to Puppy Care" },
                     { href: "/resources/first-time-dog-owner-complete-guide", emoji: "🏠", label: "First-Time Dog Owner Guide" },
-                    { href: "/resources/senior-pet-care-guide",            emoji: "👴", label: "Senior Pet Care Guide" },
+                    { href: "/resources/senior-pet-care-complete-guide",            emoji: "👴", label: "Senior Pet Care Guide" },
                     { href: "/resources/logistics-and-heartbreak-foster-parent-manual", emoji: "💛", label: "Pet Foster Parent Manual" },
                   ].map(({ href, emoji, label }) => (
                     <Link key={href} href={href}

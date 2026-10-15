@@ -49,7 +49,7 @@ export default function ArticleShell({
   const x = cta ? { ...x0, cta } : x0;
   const topic = topicFor(slug);
   const tools = (x.tools ?? []).map(findTool).filter((t): t is NonNullable<typeof t> => !!t);
-  const related = getRelatedArticles(relatedSlugs).slice(0, 4);
+  const related = getRelatedArticles(Array.from(new Set(relatedSlugs.filter((r) => r !== slug)))).slice(0, 4);
   const h2 = "text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label";
   const toc2 = [...toc, ...(x.sources?.length ? [{ id: "sources", label: "Sources" }] : []), ...(faqs.length ? [{ id: "faqs", label: "Questions" }] : [])];
 

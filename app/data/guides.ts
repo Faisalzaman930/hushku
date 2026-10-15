@@ -1,3 +1,4 @@
+import { GUIDE_ADDITIONS } from "./article-extras-data";
 import { guideSharedPetCare, guideRehoming, guideLostPet } from "./guide-conversion";
 import { guide333Rescue } from "./guide-333-rescue";
 import { guidePuppySocialization } from "./guide-puppy-socialization";
@@ -125,7 +126,7 @@ This guide is the operational manual that most rescue organizations wish they ha
 The fosters who sustain this practice long-term do it by removing the operational friction that would otherwise drain their capacity. Digital records that work. Communication tools that don't require 12 text messages to coordinate a vet pickup. Clear protocols that prevent the preventable failures.
 
 Get the logistics right so you can give the animal everything else they need: presence, patience, and the consistent safety of a temporary home done well.`,
-    relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "introducing-pets-to-each-other", "best-pet-fostering-network-apps"]
+    relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "how-to-introduce-new-pet-to-resident-pets", "best-pet-fostering-network-apps"]
   },
 
   {
@@ -235,7 +236,7 @@ Everything after that is relationship — and relationships between dogs and the
     publishDate: "April 2026",
     lastUpdated: "April 2026",
     readTime: "14 Min Read",
-    introduction: `The pet food industry generates approximately $50 billion annually in the United States. It is also one of the least regulated consumer product markets in terms of marketing claim requirements. Words like "premium," "holistic," "natural," and "human-grade" have no regulated definition in pet food labeling. They mean whatever the company printing them chooses them to mean.
+    introduction: `Americans spend more than $60 billion a year on pet food and treats, according to the American Pet Products Association. It is also one of the least regulated consumer product markets in terms of marketing claim requirements. Words like "premium," "holistic," "natural," and "human-grade" have no regulated definition in pet food labeling. They mean whatever the company printing them chooses them to mean.
 
 The good news: there is a standardized framework for evaluating pet food quality that requires no nutrition degree to use. The Association of American Feed Control Officials (AAFCO) sets the minimum standards that define what claims manufacturers can make about nutritional completeness — and once you understand how to read the label's regulated sections, you can evaluate any product regardless of its marketing.
 
@@ -283,163 +284,15 @@ This guide walks through every section of a pet food label, explains what's regu
 The practical framework: verify the AAFCO statement and whether the claim is formulation-based or feeding-trial-based. Check that the first several ingredients are quality protein sources. Convert to dry matter basis when comparing foods of different moisture levels. Don't let marketing terms like "holistic," "natural," or "human-grade" substitute for reading the actual label.
 
 A food that meets AAFCO complete nutrition standards for the correct life stage, sourced from named protein ingredients, and supported by feeding trials is a quality product regardless of whether the bag says "premium" on it.`,
-    relatedSlugs: ["first-time-dog-owner-complete-guide", "best-pet-diet-nutrition-apps", "senior-pet-care-guide"]
+    relatedSlugs: ["first-time-dog-owner-complete-guide", "best-pet-diet-nutrition-apps", "senior-pet-care-complete-guide"]
   },
+  ];
 
-  {
-    slug: "senior-pet-care-guide",
-    title: "Senior Pet Care: The Complete Guide to Aging Dogs and Cats",
-    seoTitle: "Senior Pet Care Guide 2026: Aging Dogs & Cats",
-    shortTitle: "Senior Pet Care",
-    seoDescription: "When does a pet become 'senior'? What veterinary workups do they need? How do you manage pain, mobility decline, and quality of life decisions? A complete, evidence-based guide to caring for aging pets.",
-    category: "Expert Guides",
-    tags: ["Senior Pets", "Health", "Expert Guides"],
-    publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    readTime: "16 Min Read",
-    introduction: `"Senior" is one of the most loosely used terms in pet care. A Great Dane is considered geriatric at 5 years old. A small Terrier mix may not enter true senior status until 10-11. A cat can live healthily to 18-20 with appropriate care. The one-size label obscures meaningful differences in what aging actually looks like and when specific veterinary attention becomes critical.
-
-This guide provides a framework for understanding when and how pets age across different species and size categories, what the essential veterinary workups look like for aging animals, how to manage the most common age-related conditions (pain, cognitive decline, mobility loss), and how to navigate the quality-of-life questions that eventually face every pet owner.
-
-The goal is to give you tools for being proactive rather than reactive — because most of the conditions that reduce senior pet quality of life are significantly more manageable when identified early. <a href="/vets" class="text-brand-start font-bold hover:underline">Hushku's health records system</a> can help you track the longitudinal data that makes early detection possible.`,
-    chapters: [
-      {
-        title: "Chapter 1: When Is My Pet Actually 'Senior'?",
-        content: `
-          <h4 class="text-xl font-bold text-ebony mb-4">The Size-Lifespan Relationship in Dogs</h4>
-          <p class="mb-6">The inverse relationship between body size and lifespan in dogs is one of the most well-documented patterns in veterinary medicine — and one of the most counterintuitive. Large-breed dogs age faster than small-breed dogs and have shorter lifespans. The biological mechanisms aren't fully understood, but the clinical reality is consistent.</p>
-          <ul class="list-disc pl-6 mb-8 space-y-2">
-            <li><strong>Small breeds (under 20 lbs):</strong> Senior status approximately 10-12 years; lifespan commonly 13-16+ years</li>
-            <li><strong>Medium breeds (20-50 lbs):</strong> Senior status approximately 8-10 years; lifespan commonly 11-14 years</li>
-            <li><strong>Large breeds (50-90 lbs):</strong> Senior status approximately 7-8 years; lifespan commonly 10-12 years</li>
-            <li><strong>Giant breeds (90+ lbs):</strong> Senior status as early as 5-6 years; lifespan commonly 7-10 years</li>
-          </ul>
-          <p class="mb-6">These are ranges, not rules. Individual health history, diet, exercise, and genetic factors create significant variation. The clinically relevant question isn't "what age is my dog senior" — it's "what age should I start senior-appropriate veterinary monitoring for my specific dog?"</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Cats Age Differently Than Dogs</h4>
-          <p class="mb-6">Cats are generally considered senior at 10-11 years, with "geriatric" classification around 15+. Unlike dogs, cat lifespan doesn't vary dramatically by body size — the primary determinants are genetics, indoor vs. outdoor status, and healthcare quality. Indoor cats routinely live to 15-18 years with appropriate veterinary care.</p>
-          <p class="mb-6">The "cat years to human years" conversion charts are entertainment, not biology. What matters clinically is that cats are exceptional at masking illness — a survival adaptation that means owners and even veterinarians often don't detect significant health changes until they're advanced. This makes proactive veterinary monitoring more important in cats than in dogs, not less.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Behavioral Signs of Aging That Owners Commonly Miss</h4>
-          <p class="mb-6">Before measurable physiological changes appear on bloodwork, behavioral changes often signal the beginning of age-related decline. Common early signals:</p>
-          <ul class="list-disc pl-6 mb-8 space-y-2">
-            <li>Hesitation before jumping onto furniture previously accessed easily</li>
-            <li>Sleeping more than previously typical for the individual animal</li>
-            <li>Slower to rise after lying down, or reluctance to lie on hard surfaces</li>
-            <li>Reduced enthusiasm for activities (walks, play) that were previously enjoyed</li>
-            <li>Changes in appetite or water consumption</li>
-            <li>Altered social behavior (seeking more contact, or becoming more withdrawn)</li>
-          </ul>
-          <p class="mb-6">Any single change in a senior pet warrants veterinary attention — not because each one is necessarily serious, but because they're often the first visible signal of a manageable condition that benefits from early intervention.</p>
-        `
-      },
-      {
-        title: "Chapter 2: The Essential Senior Veterinary Workup",
-        content: `
-          <h4 class="text-xl font-bold text-ebony mb-4">Why Twice-Annual Visits Matter</h4>
-          <p class="mb-6">Annual veterinary visits are appropriate for adult pets in good health. For senior pets, most veterinary internists and the AAHA (American Animal Hospital Association) recommend twice-annual wellness exams. The reasoning is straightforward: age-related conditions evolve faster than annual monitoring can track. A kidney disease caught at Stage 1 (early, manageable) often presents no symptoms; the same disease at Stage 3 has a dramatically different prognosis.</p>
-          <p class="mb-6">Twice-annual exams also create a comparison baseline. Blood values that are "within normal range" but trending upward over several visits may indicate an emerging condition that a single data point would miss. Longitudinal data is the tool that makes senior care genuinely proactive.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">What to Ask for at the Senior Wellness Visit</h4>
-          <p class="mb-6">A complete senior wellness panel should include:</p>
-          <ul class="list-disc pl-6 mb-8 space-y-3">
-            <li><strong>Complete Blood Count (CBC):</strong> Evaluates red blood cells, white blood cells, and platelets. Screens for anemia, infection, and certain cancers.</li>
-            <li><strong>Comprehensive Metabolic Panel:</strong> Kidney values (BUN, creatinine, SDMA), liver enzymes (ALT, ALP), blood glucose, and electrolytes. SDMA is a newer kidney marker that detects early kidney disease before creatinine elevates — request it specifically if your vet doesn't include it routinely.</li>
-            <li><strong>Urinalysis:</strong> Kidney function, infection, and diabetes screening. Should be performed alongside bloodwork, not as an either/or.</li>
-            <li><strong>Thyroid panel:</strong> Hypothyroidism is extremely common in senior dogs; hyperthyroidism is the most common endocrine disorder in cats over 10 years old. Both are highly manageable when diagnosed.</li>
-            <li><strong>Blood pressure measurement:</strong> Hypertension is common in senior cats (often secondary to hyperthyroidism or kidney disease) and increasingly recognized in senior dogs. It is painless to measure and important to monitor.</li>
-            <li><strong>Dental examination:</strong> Periodontal disease affects approximately 80% of dogs and 70% of cats over age 3. In senior pets, dental disease has documented systemic effects on heart and kidney health. Discuss dental cleaning frequency with your vet.</li>
-          </ul>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Pain Assessment: The Underdiagnosed Problem</h4>
-          <p class="mb-6">Osteoarthritis affects an estimated 80% of dogs over 8 years old and is significantly underdiagnosed — primarily because dogs rarely vocalize pain the way humans do. The behavioral signs described in Chapter 1 (hesitation before jumping, slowing on walks, stiffness after lying down) are often the only external indicators of significant chronic pain.</p>
-          <p class="mb-6">If your senior dog is showing any of these signs, a specific conversation with your vet about pain assessment is warranted. This is not a conversation about "slowing down with age" — it's a conversation about managing a painful condition. Current pain management options for dogs include NSAIDs, gabapentin, monoclonal antibody therapy (Librela/Cytopoint), physical rehabilitation, and acupuncture. None of these are available if the pain isn't diagnosed.</p>
-        `
-      },
-      {
-        title: "Chapter 3: Quality of Life Assessment and End-of-Life Planning",
-        content: `
-          <h4 class="text-xl font-bold text-ebony mb-4">The Quality of Life Framework</h4>
-          <p class="mb-6">The hardest part of senior pet ownership is the quality-of-life assessment — the ongoing, honest evaluation of whether a pet's experience of daily life is positive enough to justify continuation of medical intervention. This question comes for every pet owner eventually, and it is easier to navigate with an established framework than to confront for the first time in a moment of crisis.</p>
-          <p class="mb-6">The HHHHHMM Scale, developed by Dr. Alice Villalobos, is the most widely used clinical framework. It assesses seven domains on a scale of 1-10: Hurt (pain management), Hunger, Hydration, Hygiene (ability to be kept clean without suffering), Happiness (engagement with life), Mobility, and More Good Days Than Bad. A total score under 35 out of 70 suggests quality of life may be compromised.</p>
-          <p class="mb-6">This scale is a guide for conversation, not a clinical verdict. But having a framework allows you to track changes over time rather than relying on the distorted perception of someone who loves the animal deeply and may unconsciously minimize decline.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">The 'Good Days vs. Bad Days' Tracking Method</h4>
-          <p class="mb-6">One of the most practical tools for quality-of-life assessment is simply tracking good days versus bad days on a calendar. Mark each day with a G (good) or B (bad) based on your pet's energy, engagement, eating, and comfort level. When bad days begin to outnumber good days consistently over a 2-3 week period, it's a signal worth acting on — either by pursuing additional palliative interventions or by having the end-of-life conversation with your vet.</p>
-          <p class="mb-6">This method works because it counteracts the psychological phenomenon where a single good day (the dog enthusiastically greeted you) can distort memory of a predominantly difficult week. The record doesn't lie. It also gives you concrete data to share with your veterinarian when discussing prognosis and options.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Palliative and Hospice Care Options</h4>
-          <p class="mb-6">The space between "actively treating" and "euthanasia" is larger than many pet owners realize. Palliative care — focused on comfort, pain management, and quality of life rather than cure — is a legitimate and humane approach for animals with terminal or progressive conditions. Veterinary hospice practitioners specifically specialize in this transition period and can provide home-based care that maintains quality of life in a familiar environment.</p>
-          <p class="mb-6">Discussing palliative options with your veterinarian before a crisis allows for thoughtful planning rather than reactive decisions. Ask about: at-home pain management options, veterinary hospice services in your area, at-home euthanasia services (significantly less stressful for most animals than a clinic environment), and grief support resources for after.</p>
-        `
-      }
-    ],
-    conclusion: `Caring for a senior pet is a privilege and a responsibility that rewards preparation. The owners who give their aging animals the best final years are usually not the ones who spend the most money — they're the ones who catch conditions early through consistent monitoring, manage pain proactively, and have the framework to make quality-of-life decisions with clarity rather than guilt-driven avoidance.
-
-Your senior pet's experience of each day is the most important metric. Build the veterinary relationship, maintain the records, and use the tools available to stay informed about what's happening internally before it's visible externally.`,
-    relatedSlugs: ["how-to-read-pet-food-labels", "best-virtual-vet-telehealth-apps", "best-pet-health-parenting-apps"]
-  },
-
-  {
-    slug: "introducing-pets-to-each-other",
-    title: "Introducing Dogs and Cats to Each Other: A Science-Based Protocol",
-    seoTitle: "How to Introduce a Dog and Cat 2026: Step-by-Step Protocol",
-    shortTitle: "Multi-Pet Introductions",
-    seoDescription: "The most common mistake in multi-pet introductions is moving too fast. Here's the complete, step-by-step protocol for introducing dogs and cats to each other — including the timeline, warning signs, and what to do when it doesn't go smoothly.",
-    category: "Expert Guides",
-    tags: ["Behavior", "Multi-Pet Households", "Expert Guides"],
-    publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    readTime: "13 Min Read",
-    introduction: `The internet is full of heartwarming videos of dogs and cats immediately becoming best friends. These videos exist because they're exceptional — not because they're representative of how most canine-feline introductions go.
-
-The majority of introductions between dogs and cats that go badly do so for one reason: the introduction was rushed. The animals were brought into physical proximity before either had enough time to process the other's presence through gradual, low-pressure exposure. Once a chase or attack has occurred — even a single incident — the behavioral associations formed can take months of careful work to modify.
-
-This guide provides the evidence-based protocol for multi-pet introductions, including the scent-exchange phase, visual introduction techniques, and how to manage the first 30 days of cohabitation. It applies to dog-dog introductions as well, with some modifications noted where the protocols differ. For fostering situations involving introductions to resident animals, also see our <a href="/resources/logistics-and-heartbreak-foster-parent-manual" class="text-brand-start font-bold hover:underline">foster parent manual</a>.`,
-    chapters: [
-      {
-        title: "Chapter 1: The Scent Exchange Phase — Before They Ever See Each Other",
-        content: `
-          <h4 class="text-xl font-bold text-ebony mb-4">Why Scent Comes First</h4>
-          <p class="mb-6">Cats and dogs are primarily olfactory animals. Their assessment of another creature begins with smell, long before visual or physical contact. The scent exchange phase allows both animals to process the presence of the other at a biochemical level — in a completely non-threatening context, without the arousal that direct sight triggers in either species.</p>
-          <p class="mb-6">The phase should begin before the new animal enters the home if possible. Bring a blanket or piece of bedding that smells of the incoming animal and place it in the resident animal's space. Observe the response: curiosity (sniffing, investigating) is positive. Significant agitation (panting, refusing to eat, prolonged fixation) suggests a longer scent-exchange phase is needed before progressing.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Active Scent Exchange Protocol</h4>
-          <p class="mb-6">Once both animals are in the home (with the new animal isolated in their own room), rotate bedding and feeding bowls between the spaces once daily. Feed both animals their regular meals near the door that separates them — but not directly at it initially. The goal is to create a strong positive association (food) with the smell of the other animal before any visual contact occurs.</p>
-          <p class="mb-6">Gradually move the feeding locations closer to the separation door over several days. By the end of the scent-exchange phase, both animals should be eating calmly within a foot or two of the closed door without significant stress signals. If either animal is too agitated to eat near the door, maintain more distance and progress more slowly.</p>
-          <p class="mb-6"><strong>Duration:</strong> Minimum 5-7 days for most cat-dog introductions. For cats with no prior dog exposure, or dogs with high prey drive, extend to 10-14 days. The scent phase cannot be rushed without cost.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Reading the Scent Response</h4>
-          <p class="mb-6">At the end of the scent exchange phase, do the sniff test: place a cloth with the other animal's scent in front of each animal and observe. Positive or neutral: brief sniff, looking away, returning to other activities. Concerning: sustained fixation, growling, hissing, refusal to disengage. If the scent response is still highly reactive after 14 days, consult a veterinary behaviorist before progressing to visual contact.</p>
-        `
-      },
-      {
-        title: "Chapter 2: Controlled Visual Introduction and Physical Meeting",
-        content: `
-          <h4 class="text-xl font-bold text-ebony mb-4">The Baby Gate or Cracked-Door Phase</h4>
-          <p class="mb-6">Once both animals are calm around the scent of the other, visual contact can begin — with a physical barrier between them. A tall baby gate (tall enough that the dog cannot jump over) or a cracked door allows both animals to see each other without the ability to make physical contact. This is a critical safety feature: even a "friendly" dog greeting a cat can cause serious injury if the cat panics and the dog escalates into chase mode.</p>
-          <p class="mb-6">During visual contact sessions, both animals should have an escape route. The cat especially must never be cornered or feel unable to retreat. Provide the cat with elevated surfaces (cat trees, shelves) that the dog cannot reach. These safe zones should be established before visual contact begins and maintained permanently in the household.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">Reading the Visual Contact Response</h4>
-          <p class="mb-6">Positive signals from the dog: looking at the cat then looking away (voluntary disengagement), lying down, showing relaxed body language (soft eyes, loose posture, slow tail wag). Concerning signals: stiff, intense stare; hackles raised; whining or crying; lunging or pawing at the barrier. If the dog shows concerning signals, the visual contact phase needs to be extended with more distance.</p>
-          <p class="mb-6">Positive signals from the cat: brief glance then looking away; returning to grooming or resting; hissing once and then disengaging. Concerning signals: sustained hissing and growling; refusing to eat in the visual contact area; attempting to hide completely and remaining hidden for extended periods. A single hiss is a communication — not necessarily a relationship-ender. Prolonged, repetitive aggression at the barrier indicates the visual phase needs to move more slowly.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">The First Physical Meeting</h4>
-          <p class="mb-6">Physical meetings without a barrier should only occur when both animals are showing calm, disengaged responses to visual contact consistently over several sessions. The dog should be on a leash and under control — not restrained tightly (which elevates arousal) but with a loose leash that allows you to redirect quickly if needed.</p>
-          <p class="mb-6">The cat should have multiple clear escape routes to elevated spaces or other rooms. Do not force the meeting — allow the cat to approach the dog at their own pace and distance. Keep initial sessions very short (5-10 minutes maximum) and end them while both animals are still calm, not when one of them is showing stress signals. Ending on calm reinforces calm.</p>
-          <p class="mb-6">Never allow the dog to chase the cat under any circumstances, even in play. A single chase sequence — even without contact — can trigger a prey-drive response in the dog and a trauma-level fear response in the cat that sets the relationship back significantly. If the dog begins to show chase interest, redirect immediately and end the session.</p>
-
-          <h4 class="text-xl font-bold text-ebony mb-4 mt-8">The First 30 Days of Cohabitation</h4>
-          <p class="mb-6">Separation when unsupervised is non-negotiable for the first 30 days minimum. This is not optional, and "they seemed fine for 10 minutes" is not evidence they should be left alone together unsupervised overnight. Most serious incidents between dogs and cats happen in unsupervised situations.</p>
-          <p class="mb-6">Progress is measured in weeks, not days. A cat and dog who can eat in the same room, sleep in the same space, and engage in parallel activity without significant stress after 30-60 days of careful introduction are on track for a stable long-term relationship. Some pairs become genuinely bonded companions. Others establish respectful coexistence. Both are successful outcomes.</p>
-        `
-      }
-    ],
-    conclusion: `Multi-pet introductions fail when humans are impatient and animals are not ready. The protocol works when it's followed completely — including the scent phase that feels unnecessary, the visual phase that feels redundant, and the supervised-only policy that feels excessive.
-
-The animals can't rush this. They're working through a biological process of threat-assessment and trust-building that has its own timeline. Your job is to manage the environment so that timeline can complete without an incident that resets everything.
-
-Done correctly, a multi-pet household can be one of the richest environments for both animals. Done incorrectly once, it creates behavioral problems that take months of careful management to address. Spend the time upfront.`,
-    relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "logistics-and-heartbreak-foster-parent-manual", "puppy-socialization-masterclass"]
+// Short answers and FAQs added in the October 2026 review.
+for (const g of guides) {
+  const add = GUIDE_ADDITIONS[g.slug];
+  if (add) {
+    g.quickAnswer ??= add.quickAnswer;
+    if (add.faqs && !g.faqs?.length) g.faqs = add.faqs;
   }
-];
+}

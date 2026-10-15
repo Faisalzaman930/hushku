@@ -390,5 +390,5 @@ The vaccine-safety paradox is real but navigable. Use risk stratification rather
 Use every tool available: puppy classes with certified trainers, carrying in high-stimulation environments, controlled playdates with known vaccinated dogs, systematic handling sessions at home, sound desensitization, and continued positive exposure to everything on the 100-experiences list.
 
 The investment of time and planning during the socialization window pays dividends that cannot be replicated at any later stage of development. The dog who benefits most from it will show you that it was worth it every day for the rest of their life.`,
-  relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "first-time-dog-owner-complete-guide", "introducing-pets-to-each-other"]
+  relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "first-time-dog-owner-complete-guide", "how-to-introduce-new-pet-to-resident-pets"]
 };

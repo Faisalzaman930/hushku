@@ -179,7 +179,7 @@ const CLUSTERS: ClusterDef[] = [
       r.tags.some(t => ["Puppies", "Adoption", "New Pet"].includes(t)) ||
       ["3-3-3-rule-for-rescue-dogs", "first-time-dog-owner-complete-guide",
        "complete-guide-to-puppy-care", "how-to-introduce-new-pet-to-resident-pets",
-       "introducing-pets-to-each-other", "logistics-and-heartbreak-foster-parent-manual"].includes(r.slug),
+       "how-to-introduce-new-pet-to-resident-pets", "logistics-and-heartbreak-foster-parent-manual"].includes(r.slug),
   },
   {
     id: "training",
@@ -207,7 +207,7 @@ const CLUSTERS: ClusterDef[] = [
     filter: (r) =>
       r.type === "symptom" ||
       r.slug === "complete-guide-to-pet-health" ||
-      r.slug === "senior-pet-care-guide" ||
+      r.slug === "senior-pet-care-complete-guide" ||
       r.slug === "why-is-my-dog-restless-at-night" ||
       (r.type === "definition" && r.tags.some(t =>
         ["Respiratory", "Infectious Disease", "Dog Health", "Cat Health"].includes(t)

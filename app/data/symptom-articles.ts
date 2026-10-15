@@ -256,119 +256,11 @@ This guide walks you through the at-home assessment, the most common causes of l
         a: "Watch your dog from behind as they walk toward you. For front-leg lameness, the dog's head will bob DOWN toward the sound limb and UP when weight is placed on the affected limb (the head rises to offload the painful leg). For hind-leg lameness, watch the hips: the hip on the affected side will rise higher than normal as the dog tries to reduce weight on that leg. This is easier to see at a slow walk than a trot.",
       },
     ],
-    relatedSlugs: ["what-is-hip-dysplasia-in-dogs", "senior-pet-care-guide", "complete-guide-to-pet-health"],
+    relatedSlugs: ["what-is-hip-dysplasia-in-dogs", "senior-pet-care-complete-guide", "complete-guide-to-pet-health"],
     pillarSlug: "complete-guide-to-pet-health",
     ctaFeature: "/vets",
     ctaText: "Book a Vet Appointment",
   },
-
-  {
-    slug: "why-is-my-dog-drinking-so-much-water",
-    title: "Why Is My Dog Drinking So Much Water? Causes & When to Worry",
-    seoTitle: "Why Is My Dog Drinking Too Much Water? Vet-Reviewed Guide 2026",
-    shortTitle: "Excessive Dog Thirst",
-    seoDescription: "Excessive thirst in dogs (polydipsia) is often an early sign of kidney disease, diabetes, or Cushing's disease. Learn the causes, how to measure your dog's intake, and when to see a vet.",
-    category: "Symptom Guide",
-    tags: ["Dog Health", "Symptoms", "Internal Medicine"],
-    publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    readTime: "9 Min Read",
-    quickAnswer: "A dog drinking more than 100ml of water per kg of body weight per day is considered polydipsic (excessively thirsty). The most common causes are diabetes mellitus, kidney disease, Cushing's disease, and pyometra in intact females. Measure your dog's daily intake for 3 days, then call your vet — this symptom is almost always medically significant.",
-    urgencyLevel: "urgent",
-    urgencyLabel: "See vet within 2–3 days",
-    introduction: `Increased water intake in dogs is one of the body's most reliable alarm systems for systemic disease. Unlike many symptoms that can be explained by behavioral or environmental factors, persistently increased thirst (polydipsia) accompanied by increased urination (polyuria) — a pairing so common it has its own medical abbreviation, PU/PD — is almost always a sign that something significant is happening internally.
-
-The conditions most commonly responsible — kidney disease, diabetes mellitus, Cushing's disease, and pyometra — are all serious but most are manageable when caught early. The challenge is that the early stages of these conditions are often invisible except for the drinking change. This makes excessive thirst one of the most important early warning signs you can monitor.
-
-How do you know if your dog is actually drinking too much? Measure it. This guide tells you how, explains the most likely causes based on your dog's age and other factors, and gives you a clear threshold for when this symptom requires same-day rather than scheduled attention.`,
-    causes: [
-      {
-        title: "Diabetes mellitus",
-        description: "When the body can't use glucose properly (either from insufficient insulin or insulin resistance), glucose spills into the urine, which pulls water with it, causing increased urination. Increased drinking compensates for the fluid loss. Classic presentation: increased thirst and urination, weight loss despite normal or increased appetite, often with a sweet or fruity smell to the breath. Common in middle-aged to older dogs, especially intact females and obese dogs.",
-        severity: "serious",
-      },
-      {
-        title: "Chronic kidney disease",
-        description: "As kidney function declines, the kidneys lose their ability to concentrate urine. More water must be consumed to produce adequate urine volume to excrete waste products. Increased thirst is often the first noticeable sign — bloodwork changes (elevated BUN and creatinine) may lag behind clinical signs. Common in senior dogs of all breeds.",
-        severity: "serious",
-      },
-      {
-        title: "Cushing's disease (hyperadrenocorticism)",
-        description: "Overproduction of cortisol (either from a pituitary tumor or adrenal tumor) causes a cluster of symptoms including PU/PD, pot-bellied appearance, thinning coat, muscle weakness, and increased appetite. PU/PD is the most common presenting symptom. Primarily affects middle-aged to older dogs, with Poodles, Dachshunds, Boxers, and Beagles overrepresented.",
-        severity: "serious",
-      },
-      {
-        title: "Pyometra",
-        description: "A uterine infection in intact (unspayed) female dogs causes toxins that impair kidney function and trigger PU/PD. PU/PD is often the first sign noticed by owners, preceding more obvious symptoms (vaginal discharge, distended abdomen, vomiting). This is a life-threatening emergency — a pyometra-affected uterus can rupture. Any intact female dog showing increased thirst and urination requires urgent evaluation.",
-        severity: "serious",
-      },
-      {
-        title: "Liver disease",
-        description: "The liver produces many hormones and processes toxins; liver dysfunction disrupts multiple systems including fluid regulation. Increased thirst may accompany jaundice (yellow tinge to skin and eyes), vomiting, ascites (fluid in the abdomen), and neurological signs in severe cases.",
-        severity: "serious",
-      },
-      {
-        title: "Hypercalcemia (elevated blood calcium)",
-        description: "High blood calcium — from cancer, certain toxins (rat poison, excess vitamin D), or primary hyperparathyroidism — causes the kidneys to produce excess dilute urine, driving thirst. Often suspected when PU/PD accompanies lethargy, vomiting, and muscle weakness.",
-        severity: "serious",
-      },
-      {
-        title: "Medications",
-        description: "Several commonly prescribed medications cause PU/PD as a side effect: prednisone and other corticosteroids (one of the most common causes), diuretics (furosemide), and phenobarbital (for seizures). If your dog started a new medication within weeks of the increased thirst, this is likely the cause — discuss with your prescribing vet before stopping any medication.",
-        severity: "mild",
-      },
-      {
-        title: "Heat and exercise",
-        description: "Increased drinking in hot weather or after vigorous exercise is normal physiological compensation. This is only concerning if it persists when your dog is at normal temperature and resting, or if the amount seems out of proportion to the activity level.",
-        severity: "mild",
-      },
-    ],
-    emergencyWarnings: [
-      "Intact female dog with excessive thirst and any vaginal discharge — potential pyometra emergency",
-      "Excessive thirst combined with vomiting, lethargy, and reduced or no urination — kidney failure signs",
-      "Dog unable to urinate despite frequent attempts — urinary blockage emergency (especially male cats and dogs)",
-      "Sweet or fruity breath odor with excessive thirst — potential diabetic ketoacidosis, which is life-threatening",
-      "Sudden onset of excessive thirst with weakness or collapse",
-    ],
-    homeCareTips: [
-      "Measure water intake: for 3 consecutive days, fill your dog's water bowl with a measured amount at the start of each day, track additions, and measure what's left at the end. The normal intake range for a healthy dog is 50–100ml per kg of body weight per day. Write down the daily totals — your vet will need this information.",
-      "Do NOT restrict water access. The kidneys may be using increased urination to compensate for a metabolic problem, and restricting water in this context is dangerous.",
-      "Note associated symptoms: changes in urination frequency, color, or smell; changes in appetite; changes in energy; weight changes; any abnormal discharge. This information significantly helps with diagnosis.",
-      "Collect a urine sample if possible: use a clean container to catch a midstream urine sample during the morning walk. Refrigerate and bring to the vet appointment. A fresh sample within 2 hours of collection provides the most diagnostically useful information.",
-    ],
-    whenToSeeVet: [
-      "Any persistent increase in thirst lasting more than 3 days — this symptom is medically significant and warrants evaluation",
-      "Increased thirst in an intact female dog — rule out pyometra urgently",
-      "Increased thirst with any other symptoms: weight loss, vomiting, lethargy, changes in appetite, changes in coat condition",
-      "Increased thirst that begins after starting a new medication — may require dose adjustment or alternative",
-      "Increased thirst in a diabetic dog who is already on insulin — blood glucose may need regulation",
-    ],
-    prevention: [
-      "Annual veterinary bloodwork from age 7 onward (age 5 for large breeds) — early kidney disease, diabetes, and Cushing's disease are all diagnosable before symptoms are obvious.",
-      "Spay female dogs — eliminates pyometra risk entirely.",
-      "Maintain healthy body weight — obesity is a significant risk factor for both diabetes and Cushing's disease.",
-      "Keep fresh, clean water available at all times — don't mistake a dog drinking to compensate for insufficient access for pathological polydipsia.",
-    ],
-    faqs: [
-      {
-        q: "How much water should a dog drink in a day?",
-        a: "The general guideline is 50–100ml of water per kilogram of body weight per day. A 20kg (44lb) dog should drink approximately 1–2 liters. Active dogs in warm weather will drink toward the high end. This is a guide — what matters more than hitting a number is whether your individual dog is drinking significantly more than their own baseline.",
-      },
-      {
-        q: "My dog is drinking a lot but seems otherwise fine. Should I worry?",
-        a: "Yes — seek veterinary evaluation. Many of the conditions causing PU/PD (kidney disease, Cushing's, early diabetes) are entirely asymptomatic except for the drinking change in their early stages. 'Otherwise fine' typically means the disease is early and eminently treatable. Waiting until other symptoms develop reduces the treatment window.",
-      },
-      {
-        q: "Can anxiety cause a dog to drink more water?",
-        a: "Yes, but this is overstated as a cause of PU/PD. Anxious dogs may drink more in specific situations (visitors arriving, thunderstorms), but persistent baseline increased thirst across all conditions is not a typical anxiety presentation. If your dog is drinking more consistently regardless of stress levels, medical causes should be investigated.",
-      },
-    ],
-    relatedSlugs: ["why-is-my-dog-not-eating", "senior-pet-care-guide", "complete-guide-to-pet-health"],
-    pillarSlug: "complete-guide-to-pet-health",
-    ctaFeature: "/vets",
-    ctaText: "Consult a Vet About This Symptom",
-  },
-
   {
     slug: "why-does-my-dog-keep-licking-paws",
     title: "Why Does My Dog Keep Licking His Paws? Causes and Treatments",
@@ -568,7 +460,7 @@ This guide teaches you how to measure the respiratory rate accurately, explains 
         a: "Fast breathing during REM sleep — along with leg twitching, small vocalizations, and rapid eye movements — is completely normal and indicates dreaming. However, labored or effortful breathing during sleep is not normal and should be evaluated. The distinction: dreaming-related fast breathing is regular and the dog seems otherwise restful; pathological fast breathing during sleep is often accompanied by discomfort, inability to settle in a comfortable position, or obvious respiratory effort.",
       },
     ],
-    relatedSlugs: ["what-is-kennel-cough", "senior-pet-care-guide", "complete-guide-to-pet-health"],
+    relatedSlugs: ["what-is-kennel-cough", "senior-pet-care-complete-guide", "complete-guide-to-pet-health"],
     pillarSlug: "complete-guide-to-pet-health",
     ctaFeature: "/vets",
     ctaText: "Emergency Vet Guidance",

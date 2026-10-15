@@ -359,7 +359,7 @@ Appropriate for mild-to-moderate cases and dogs who are not surgical candidates.
       { q: "At what age is hip dysplasia diagnosed in dogs?", a: "Hip dysplasia can be suspected as early as 4–6 months of age in severely affected puppies (hind-end weakness, bunny hopping). Formal radiographic diagnosis is typically made from 6 months onward; OFA's standard evaluation requires 24 months. PennHIP can evaluate from 16 weeks. Many dogs don't show obvious clinical symptoms until secondary arthritis develops at 1–2 years or later." },
       { q: "What breeds are most commonly affected by hip dysplasia?", a: "Large and giant breeds are most affected. Highest rates: German Shepherds, Labrador Retrievers, Golden Retrievers, Rottweilers, Bulldogs, Mastiffs, Saint Bernards, and Great Danes. Smaller breeds are affected at lower rates but not immune. Mixed-breed dogs have lower average rates than purebreds in high-risk lines." },
     ],
-    relatedSlugs: ["why-is-my-dog-limping", "senior-pet-care-guide", "complete-guide-to-pet-health"],
+    relatedSlugs: ["why-is-my-dog-limping", "senior-pet-care-complete-guide", "complete-guide-to-pet-health"],
     pillarSlug: "complete-guide-to-pet-health",
     ctaFeature: "/vets",
     ctaText: "Book an Orthopedic Assessment",
@@ -395,7 +395,7 @@ This guide covers what bloat is, why it happens, the exact symptoms to recognize
 - Male dogs are at slightly higher risk than females
 
 **Breeds at highest risk:**
-Great Dane (highest — lifetime risk approximately 37%), Weimaraner, Irish Setter, Gordon Setter, Standard Poodle, Basset Hound, Doberman Pinscher, Old English Sheepdog, German Shepherd, Boxer.
+Great Dane (highest — lifetime risk about 42%), Weimaraner, Irish Setter, Gordon Setter, Standard Poodle, Basset Hound, Doberman Pinscher, Old English Sheepdog, German Shepherd, Boxer.
 
 **Behavioral and management risk factors:**
 - Single large meal rather than two smaller meals
@@ -490,7 +490,7 @@ If you own a Great Dane, Standard Poodle, Irish Setter, Weimaraner, or similar d
     faqs: [
       { q: "What does bloat look like in a dog?", a: "The signature sign is a dog trying repeatedly to vomit but producing nothing or only small amounts of white frothy saliva — called unproductive retching. Combined with this, the abdomen becomes visibly enlarged and hard. The dog is typically extremely distressed, cannot settle, may drool excessively, and appears to be in significant discomfort. Any dog showing unproductive retching should be treated as a bloat emergency and taken to a vet immediately." },
       { q: "Can bloat resolve on its own?", a: "No. Gastric dilatation (stomach distended with gas, no rotation) can sometimes be relieved with decompression and may seem to partially resolve, but this is not resolution — the stomach can twist at any point afterward. Gastric volvulus (stomach twisted) is always a surgical emergency that cannot resolve without intervention. Do not wait at home to see if it gets better." },
-      { q: "Which dog breeds get bloat most often?", a: "Great Danes have the highest lifetime risk at approximately 37%. Other high-risk breeds: Irish Setter (~30% lifetime risk), Weimaraner, Gordon Setter, Standard Poodle, Basset Hound, Doberman Pinscher, Old English Sheepdog, and German Shepherd. Essentially, any large or giant breed with a deep, narrow chest has elevated risk. Prophylactic gastropexy is strongly recommended for Great Danes and Irish Setters at minimum." },
+      { q: "Which dog breeds get bloat most often?", a: "Great Danes have the highest lifetime risk, at about 42%. Other high-risk breeds: Irish Setter, Weimaraner, Gordon Setter, Standard Poodle, Basset Hound, Doberman Pinscher, Old English Sheepdog, and German Shepherd. Essentially, any large or giant breed with a deep, narrow chest has elevated risk. Prophylactic gastropexy is strongly recommended for Great Danes and Irish Setters at minimum." },
     ],
     relatedSlugs: ["dog-breathing-fast-at-rest", "german-shepherd-complete-guide", "complete-guide-to-pet-health"],
     pillarSlug: "complete-guide-to-pet-health",
@@ -610,7 +610,7 @@ Understanding what AAFCO is, what they do, and what their standards mean in prac
 
 ### Why AAFCO Matters
 
-The pet food market generates over [$50 billion annually in the US](https://www.americanpetproducts.org/press_industrytrends.asp). It is also a market where marketing terms like "premium," "holistic," and "natural" carry no regulatory definition. The only claims that require substantiation are nutritional adequacy claims — and those standards are set by AAFCO.
+Americans spend [more than $60 billion a year on pet food and treats](https://www.americanpetproducts.org/press_industrytrends.asp). It is also a market where marketing terms like "premium," "holistic," and "natural" carry no regulatory definition. The only claims that require substantiation are nutritional adequacy claims — and those standards are set by AAFCO.
 
 For any owner trying to evaluate pet food quality, AAFCO's standards are the objective framework that marketing cannot substitute for. This article explains exactly how to use them.`,
     sections: [
@@ -762,187 +762,6 @@ For these cases, consult a veterinarian or [board-certified veterinary nutrition
     ctaFeature: "/vets",
     ctaText: "Get a Personalized Nutrition Plan From a Vet",
   },
-
-  {
-    slug: "what-is-separation-anxiety",
-    title: "What Is Separation Anxiety in Dogs? Signs, Causes & Treatment",
-    seoTitle: "Dog Separation Anxiety: Signs, Causes & Treatment (2026)",
-    shortTitle: "Separation Anxiety in Dogs",
-    seoDescription: "True separation anxiety vs. boredom: how to tell the difference, what causes it, evidence-based treatments including protocol training and medication, and what doesn't work.",
-    category: "Pet Health Glossary",
-    tags: ["Dog Behavior", "Anxiety", "Training"],
-    publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    readTime: "12 Min Read",
-    quickAnswer: "Separation anxiety is a clinical anxiety disorder — not stubbornness or spite — in which dogs experience significant distress when separated from attachment figures. It affects an estimated 14–20% of dogs. Treatment requires systematic desensitization to departures (the Malena DeMartini protocol) rather than reassurance, exercise, or punishment. Severe cases benefit from medication in combination with behavioral modification.",
-    definition: "Separation anxiety (SA) is a behavior disorder characterized by excessive distress responses — including destructive behavior, house soiling, excessive vocalization, and self-injury — that occur specifically in the absence of an attachment figure, and cannot be explained by inadequate confinement training, boredom, or insufficient exercise alone.",
-    introduction: `Separation anxiety is one of the most misunderstood and mismanaged behavior problems in dogs. It is simultaneously over-diagnosed (normal confinement protest labeled as anxiety), under-treated (dismissed as a training failure), and mis-treated (punishment for symptoms that are driven by panic, not choice).
-
-**The foundational fact:** True separation anxiety is a clinical anxiety condition. A dog with separation anxiety is not "misbehaving" when left alone — they are in a panic state driven by genuine distress. Approaches based on punishment, dominance, or simply "letting them figure it out" do not address the underlying physiological anxiety response and typically make the condition worse.
-
-Understanding what separation anxiety actually is — and isn't — is the prerequisite to treating it effectively. The [American Veterinary Society of Animal Behavior](https://avsab.org/resources/pet-owners/) classifies separation anxiety as a medical-behavioral condition warranting professional guidance in moderate to severe cases.
-
-### What's at Stake
-
-Untreated separation anxiety is one of the leading reasons dogs are surrendered to shelters. It affects the dog's welfare, the owner's quality of life, and often the owner's housing stability (noise complaints, property damage). The good news: it is highly treatable with the correct approach. The bad news: the correct approach requires time, structure, and often professional support.`,
-    sections: [
-      {
-        title: "True Separation Anxiety vs. Confinement Frustration vs. Boredom",
-        content: `These three presentations often look similar but have different causes and require different interventions. Distinguishing them is the first step to effective treatment.
-
-### True Separation Anxiety
-
-Defined by distress that occurs specifically in the absence of the attachment figure — not in response to confinement itself. Key characteristics:
-
-- Symptoms begin **immediately upon departure** (within minutes of owner leaving) rather than after extended time
-- The dog may show pre-departure anxiety: panting, pacing, following owner, trembling as the owner prepares to leave
-- Symptoms occur even when the dog has adequate space, exercise, and enrichment
-- A camera recording during owner absence shows the dog cannot settle — continuous pacing, vocalization, destructive behavior, or self-soothing behaviors
-- Symptoms are specific to the owner's absence: the dog may be fine with a pet-sitter, at a friend's house, or when a different household member is home
-
-### Confinement Frustration (Often Mislabeled as Separation Anxiety)
-
-Dogs who were never properly crate trained or taught to be alone may protest confinement — but the trigger is the physical restriction, not the absence of the owner. These dogs often settle after 20–30 minutes of vocalization. They may be fine in a larger room or with access to the house. This is a training problem with a training solution, not a clinical anxiety disorder.
-
-### Boredom / Inadequate Stimulation
-
-Some destructive behavior during owner absence is driven by insufficient physical and cognitive stimulation. These dogs are not distressed — they're finding their own entertainment. A camera will show a relaxed dog who eventually gets into something. The fix is enrichment, not anxiety treatment.
-
-### How to Tell the Difference
-
-**Set up a camera** (any smartphone or security camera will do) and record your dog during the first 20–30 minutes after your departure. What you're looking for:
-
-- Immediate high-arousal distress (panting, pacing, vocalizing, door/window fixation) = consistent with true SA
-- Brief protest then settling = confinement frustration responding to training
-- Calm initial period then opportunistic problem-solving = boredom/enrichment deficit
-
-This distinction matters because the treatment protocols are fundamentally different.`,
-      },
-      {
-        title: "Causes of Separation Anxiety: What We Know",
-        content: `Separation anxiety is likely multifactorial — a combination of genetic predisposition, early life experience, and environmental triggers. Research has identified several contributing factors, though the complete picture is not fully understood.
-
-### Genetic and Breed Factors
-
-Some breeds appear to have higher rates of separation anxiety, possibly related to selective breeding for close human partnership. [Research published in Applied Animal Behaviour Science](https://www.sciencedirect.com/science/article/abs/pii/S0168159120301507) found breed-related differences in social attachment and separation response in dogs. Individual variation within breeds is substantial, and SA occurs across all breeds.
-
-### Early Life Experience
-
-Dogs without early positive experiences being alone — those who were never taught through gradual desensitization that being alone is safe — are more vulnerable to developing SA. Over-attachment to a single person, formed early, is a risk factor.
-
-### Life Event Triggers
-
-Separation anxiety can develop or worsen following:
-
-- **Changes in routine:** Return to work after an extended period at home (remote work-to-office transitions have driven significant increases in SA cases)
-- **Loss of a companion animal:** The surviving animal loses both a social companion and behavioral anchor
-- **Rehoming or shelter stays:** Dogs with previous abandonment history have higher SA rates
-- **Traumatic events during owner absence:** A significant scare (loud noise, intruder) experienced while alone can create anxiety conditioning around the state of being alone
-
-### Neurobiological Basis
-
-SA involves the same neurobiological pathways as anxiety disorders in humans: amygdala activation, dysregulated HPA axis (stress hormone system), and impaired prefrontal cortex inhibition of fear responses. This is why behavioral modification alone often works less efficiently than a combination approach involving both systematic desensitization and medication in moderate-to-severe cases.`,
-      },
-      {
-        title: "Evidence-Based Treatment: The DeMartini Protocol",
-        content: `The most evidence-supported behavioral treatment for separation anxiety is **systematic desensitization to departures** — building the dog's tolerance for alone time in extremely small, graduated increments below the anxiety threshold.
-
-### The Core Principle
-
-The key insight that makes this protocol work: the dog must **never experience a level of distress** during training sessions. Every exposure that produces the anxiety response reinforces the anxiety state. The goal is to stay below the threshold at which anxiety is triggered at every session, building tolerance incrementally.
-
-This is the opposite of flooding (exposing the dog to the full feared stimulus) and the opposite of "just leaving them to settle" — both of which expose the dog to distress and worsen conditioning.
-
-### The Malena DeMartini Protocol
-
-[Certified separation anxiety trainer Malena DeMartini](https://malenademartini.com/) developed the most comprehensive protocol for treating SA, detailed in her book *Treating Separation Anxiety in Dogs*. The core elements:
-
-**Step 1 — Establish the threshold.** Determine the exact duration at which the dog begins showing anxiety (30 seconds? 2 minutes? 10 minutes?). Your training sessions must stay **below** this threshold, often beginning with absences of 10–30 seconds.
-
-**Step 2 — Graduated absences.** Increase alone time in tiny increments — seconds initially — always returning before anxiety develops. The dog should greet your return calmly. An anxious greeting means you were gone too long.
-
-**Step 3 — Vary the pattern.** Do not increase linearly. Mix longer and shorter absences: 1 minute, 30 seconds, 2 minutes, 45 seconds, 3 minutes. Predictability itself can become a trigger.
-
-**Step 4 — Departure cues.** Many SA dogs have learned specific departure predictors (picking up keys, putting on shoes). Desensitize these cues separately by performing them without leaving.
-
-### Medications as Adjuncts
-
-For moderate to severe SA, behavioral modification alone is significantly less effective. [Research in the Journal of Veterinary Behavior](https://www.journalvetbehavior.com/) consistently shows that fluoxetine (Reconcile) and other SSRIs in combination with desensitization produce better outcomes than either alone. Medication reduces the neurobiological anxiety load, making the dog more responsive to behavioral conditioning.
-
-Medication for SA is not sedation — it addresses the anxiety state at a physiological level. Consult a veterinarian or veterinary behaviorist for evaluation.
-
-### What Doesn't Work
-
-- **Punishment for SA behaviors:** The behaviors are anxiety-driven, not choice-driven. Punishment increases anxiety and worsens the condition.
-- **Another dog as a companion:** Dogs with true SA are attached to their owner, not to dogs generally. A companion animal helps some dogs; it does not resolve SA and sometimes creates two anxious dogs.
-- **Flooding / prolonged departures to 'break the cycle':** Extended departures when the dog is already anxious produce escalating distress, not adaptation.
-- **Reassurance before departure:** Extended pre-departure rituals increase attachment and prime the anxiety response.`,
-      },
-    ],
-    symptoms: [
-      "Destructive behavior specifically targeted at exit points (doors, windows) during owner absence",
-      "Excessive vocalization (barking, howling, whining) immediately after owner departure",
-      "House soiling in a dog who is otherwise housetrained, only during owner absence",
-      "Pre-departure anxiety signs: panting, trembling, following owner, refusing to eat",
-      "Self-injurious behavior (scratching, licking to excess) during alone time",
-      "Inability to settle, continuous pacing during owner absence captured on camera",
-    ],
-    causes: [
-      "Genetic predisposition toward high human social attachment",
-      "Inadequate habituation to being alone during early development",
-      "Major schedule changes (new work schedule, moving, loss of household member)",
-      "Loss of companion animal to whom the dog was socially bonded",
-      "Previous abandonment, rehoming, or shelter history",
-      "Traumatic event during owner absence (creating anxiety conditioning)",
-    ],
-    treatment: [
-      "Systematic desensitization to departures using the DeMartini protocol",
-      "SSRI medications (fluoxetine/Reconcile) as adjunct for moderate-to-severe cases",
-      "Removal of departure routine predictors (desensitizing keys, shoes, coat)",
-      "Camera monitoring to maintain below-threshold training sessions",
-      "Consultation with certified separation anxiety trainer (CSAT) for complex cases",
-      "Veterinary behaviorist (DACVB) for medication evaluation and management",
-    ],
-    prevention: [
-      "Practice alone time from puppyhood: crate training builds positive confinement associations",
-      "Avoid over-attachment patterns that make your absence unpredictable by contrast",
-      "Maintain brief, routine separations even when working from home",
-      "Transition schedule changes gradually rather than abruptly",
-    ],
-    faqs: [
-      {
-        q: "Is separation anxiety curable?",
-        a: `The more accurate framing is **manageable and significantly improvable** — most dogs with SA can reach the point of comfortably tolerating typical owner absence durations with the correct treatment. "Cured" in the sense of a dog who will never experience any anxiety about being alone is a high bar that isn't always achievable, particularly in dogs with severe histories.
-
-The [ASPCA guidance on separation anxiety](https://www.aspca.org/pet-care/dog-care/common-dog-behavior-issues/separation-anxiety) emphasizes that outcomes vary by severity and the consistency of the treatment protocol. Mild SA frequently resolves fully with systematic desensitization. Severe SA usually improves substantially but may require ongoing management.`,
-      },
-      {
-        q: "How long does treatment take?",
-        a: "Treatment timelines vary significantly. Dogs with mild SA often show meaningful improvement in 4–8 weeks of consistent desensitization sessions. Dogs with severe SA may require 6–12 months of treatment before reaching functional tolerance of typical owner absences. Progress is rarely linear — plateaus and temporary regression after life events (illness, schedule change, household disruption) are normal.",
-      },
-      {
-        q: "Can I treat separation anxiety without a trainer?",
-        a: "Mild cases of SA can often be treated effectively by owners using published protocols (DeMartini's book or the free resources at her website). Moderate to severe SA benefits significantly from professional guidance — a Certified Separation Anxiety Trainer (CSAT) can provide objective observation via camera, adjust the protocol based on real-time data, and prevent common mistakes that stall progress. Veterinary involvement is important for cases that may benefit from medication.",
-      },
-      {
-        q: "What about products marketed for anxiety — CBD, calming chews, pheromone diffusers?",
-        a: `These are adjuncts at best, not primary treatments:
-
-**Pheromone products (Adaptil for dogs, Feliway for cats):** Some studies show modest benefit for general anxiety; evidence specifically for SA is limited. Unlikely to harm; unlikely to be sufficient alone.
-
-**CBD:** Anecdotal reports are positive, but clinical evidence for SA specifically is limited. The [AVMA notes](https://www.avma.org/resources-tools/pet-owners/petcare/cannabis-and-pets) that dosing, efficacy, and interaction data are insufficient for formal recommendations.
-
-**Calming chews (L-theanine, tryptophan-based):** Some evidence for general anxiety reduction; not validated specifically for SA. May provide slight benefit as part of a comprehensive plan.
-
-None of these substitute for systematic desensitization and, where indicated, veterinary-prescribed medication.`,
-      },
-    ],
-    relatedSlugs: ["how-to-crate-train-a-puppy", "how-to-introduce-new-pet-to-resident-pets", "what-is-positive-reinforcement-dog-training"],
-    pillarSlug: "complete-guide-to-dog-training",
-    ctaFeature: "/vets",
-    ctaText: "Connect With a Vet About Anxiety Treatment",
-  },
-
   {
     slug: "what-is-clicker-training",
     title: "What Is Clicker Training? How Marker Training Works and Why It's So Effective",

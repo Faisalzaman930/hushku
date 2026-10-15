@@ -551,146 +551,6 @@ Your job: intervene at steps 1–4. Create distance, remove the dog from the str
     ctaFeature: "/playdates",
     ctaText: "Find Safe, Verified Playdates",
   },
-
-  {
-    slug: "how-to-help-dog-with-separation-anxiety",
-    title: "How to Help a Dog with Separation Anxiety: The Evidence-Based Protocol",
-    seoTitle: "How to Help Dog Separation Anxiety: Treatment Guide 2026",
-    shortTitle: "Separation Anxiety Help",
-    seoDescription: "Treat dog separation anxiety using gradual departure desensitization and systematic counter-conditioning. Understand the difference between separation anxiety and boredom, and when to involve a vet.",
-    category: "How-To",
-    tags: ["Dog Behavior", "Anxiety", "Training"],
-    publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    readTime: "15 Min Read",
-    quickAnswer: "Treat separation anxiety by building your dog's tolerance for alone time through systematic desensitization — starting with departures of seconds and extending to hours over weeks. The core principle: never exceed the duration that triggers anxiety. Medication from your vet significantly improves outcomes for moderate-to-severe cases and is not optional if the anxiety is distressing your dog daily.",
-    introduction: `Separation anxiety affects an estimated 14–29% of all dogs and is one of the most distressing behavioral conditions for both dogs and owners. It is not misbehavior, spite, or "dominance." It is a genuine panic response triggered by isolation from attachment figures — physiologically similar to panic disorder in humans.
-
-Dogs with true separation anxiety show distress that begins before you leave (at departure cues: picking up keys, putting on shoes) and peaks in the first 20–30 minutes after departure. They may bark, howl, destroy, eliminate, self-harm, or refuse to eat when left alone. Crucially, they cannot be trained out of this anxiety by punishment — punishing a panicking animal increases anxiety, it doesn't reduce it.
-
-This guide covers the evidence-based treatment protocol: systematic desensitization combined with counter-conditioning, medication support, and the management strategies that prevent your dog from practicing the anxiety response while treatment progresses.`,
-    supplies: [
-      { item: "Camera with audio capability", note: "Essential for monitoring your dog's anxiety during desensitization practice. You need to see when distress begins to know your current threshold. See our <a href='/resources/best-pet-camera-monitoring-apps' class='text-brand-start font-bold'>pet camera roundup</a>." },
-      { item: "Food puzzle or frozen Kong", note: "A high-value food puzzle deployed only during departures creates a positive association with the departure cue." },
-      { item: "Veterinary consultation", note: "For moderate-to-severe cases, medication (typically fluoxetine or clomicalm, prescribed by your vet) dramatically improves treatment outcomes. This is not a last resort — it's part of first-line treatment." },
-    ],
-    steps: [
-      {
-        number: 1,
-        title: "Distinguish separation anxiety from boredom or under-stimulation",
-        content: `Before beginning treatment, confirm you're dealing with separation anxiety rather than boredom-driven destruction, which requires a different approach.
-
-**Separation anxiety characteristics:**
-- Distress is specifically triggered by being left alone or isolated from attachment figures
-- Behavior begins immediately at departure or even before (pre-departure anxiety)
-- The dog cannot relax even if physically tired
-- Distress peaks within the first 30 minutes (most cases)
-- Behavior stops immediately upon your return
-
-**Boredom/under-stimulation characteristics:**
-- Destruction happens after 2+ hours, not immediately
-- The dog settles after the first 30 minutes
-- Destruction is selective (favorite items, accessible food areas)
-- Problem resolves significantly with more physical exercise and enrichment
-
-A camera running during your absence reveals the difference clearly. Watch the first 30 minutes: distress during this period, regardless of duration, indicates anxiety. Calm during this period followed by later destruction is almost always an exercise/enrichment problem.`,
-        tip: "Film at least 3 departures before beginning any protocol. The recording tells you your dog's current threshold — the point at which distress begins — which is the starting point for desensitization.",
-      },
-      {
-        number: 2,
-        title: "Stop all practice of the anxiety response immediately",
-        content: `The most important first step in anxiety treatment is stopping the anxiety from occurring daily. Every time your dog reaches a full panic state while alone, the anxiety pathway is reinforced. Treatment cannot progress if your dog is experiencing panic several times per week.
-
-**Management strategies:**
-- Arrange for a dog sitter, dog walker, or doggy daycare to cover departures that exceed your dog's current threshold
-- Have a family member or roommate stay with the dog when you leave
-- Work remotely where possible during the treatment period
-- Do not leave your dog for longer than they can handle until treatment has extended their threshold to that duration
-
-This is expensive and inconvenient, and it is non-negotiable for treatment to work. You cannot simultaneously be extending the dog's tolerance and exposing them to panic-level departures. The two cancel each other out.`,
-        warning: "Do not use a crate as a management tool for separation anxiety unless the dog was crate trained before developing anxiety. A panicking dog in a crate can injure themselves attempting to escape.",
-      },
-      {
-        number: 3,
-        title: "Desensitize to pre-departure cues",
-        content: `Dogs with separation anxiety often begin showing distress before you leave, in response to departure cues — picking up keys, putting on shoes, getting a bag. The cues have become conditioned predictors of abandonment.
-
-To desensitize these cues, repeat them out of context and without leaving. Pick up your keys → sit back down and watch TV. Put on your shoes → read a book. Put on your coat → do the dishes. Repeat each cue 20–30 times per day until the dog stops responding to it with anxiety.
-
-You can tell desensitization is working when the dog stops tracking you when you pick up keys, stops shadowing you when you put on shoes, and resumes normal activity (lying down, playing) after these previously anxiety-triggering events.`,
-        tip: "This desensitization phase takes 1–2 weeks before moving to actual departure practice. Don't rush it — the pre-departure anxiety can be as distressing as the departure itself.",
-      },
-      {
-        number: 4,
-        title: "Build alone-time tolerance using systematic desensitization",
-        content: `Systematic desensitization means exposing the dog to departures at a duration and intensity below their distress threshold, then incrementally and gradually extending that duration as the dog's tolerance builds.
-
-**The protocol:**
-1. Identify the dog's current threshold from camera footage (the point distress begins — might be 30 seconds, might be 5 minutes)
-2. Practice departures at 50% of that threshold consistently — if threshold is 5 minutes, start with 2-minute departures
-3. Do 3–5 repetitions per day with full recovery time between repetitions
-4. Only extend duration after 5 consecutive repetitions with zero distress
-
-Progress is not linear. You may practice 2-minute departures for two weeks before advancing. That is the work. Rushing produces setbacks that require returning to shorter durations.
-
-**Sample progression (highly individual):**
-Week 1: 30-second → 1-minute departures
-Week 2: 1–3 minute departures
-Week 3: 3–8 minute departures
-Week 4: 8–20 minute departures
-...continue until you reach your target duration`,
-        tip: "Deploy a frozen Kong or high-value food puzzle exclusively during departure practice. The Kong becomes a counter-conditioned positive cue that predicts both departure and a very good thing.",
-      },
-      {
-        number: 5,
-        title: "Talk to your vet about medication",
-        content: `Veterinary behaviorists strongly recommend medication as part of treatment for moderate-to-severe separation anxiety — not as a last resort, but as a first-line tool that improves the efficacy of behavioral treatment.
-
-The most commonly used medications for separation anxiety in dogs are fluoxetine (Reconcile) and clomipramine (Clomicalm), both FDA-approved for canine anxiety. These are not sedatives — they reduce baseline anxiety levels so the dog is capable of learning during desensitization rather than being in a constant state of panic.
-
-Trazodone is sometimes used as a situational medication for known high-anxiety events (thunderstorms, fireworks) while long-term medications are being established. Ask your vet specifically about separation anxiety treatment, not just "anxiety medication" — the treatment goals differ.
-
-Most dogs on appropriate medication combined with behavioral treatment show significant improvement within 4–8 weeks.`,
-        tip: "Hushku's telehealth feature connects you with veterinary professionals 24/7 for initial guidance — but separation anxiety medication requires an in-person exam and prescription from your regular vet.",
-      },
-    ],
-    commonMistakes: [
-      {
-        mistake: "Getting another dog to 'fix' separation anxiety",
-        why: "Separation anxiety is typically specific to attachment figures (the owner), not a general fear of being alone. A second dog does not substitute for the owner's presence in most cases, though some dogs do show reduced anxiety with another dog present.",
-        fix: "Trial it before committing: leave both dogs together with a camera. Some dogs do show reduced anxiety with a companion. Many don't — the distress about the owner's absence continues regardless.",
-      },
-      {
-        mistake: "Dramatic arrivals and departures",
-        why: "Long emotional goodbyes and excited, high-energy greetings amplify the contrast between 'owner present' and 'owner absent,' making the absent state feel more significant and distressing.",
-        fix: "Arrivals and departures should be calm and businesslike. Leave without extended goodbyes. Return calmly, greet your dog only after they've settled from the excitement of your arrival.",
-      },
-      {
-        mistake: "Expecting rapid results",
-        why: "Separation anxiety treatment takes weeks to months depending on severity. Owners who see slow progress often increase departure duration too quickly, causing setbacks that require returning to shorter durations.",
-        fix: "The only metric that matters is whether your dog is below threshold during practice. Stay at the current duration until you have five consecutive zero-distress repetitions, regardless of how long that takes.",
-      },
-    ],
-    faqs: [
-      {
-        q: "Can you cure dog separation anxiety?",
-        a: "Many dogs achieve full or near-full resolution of separation anxiety with appropriate behavioral treatment and, where indicated, medication. 'Cure' is a strong word — some dogs maintain a lower-level anxiety that requires ongoing management. But the goal is achievable for most dogs: being able to stay alone for a normal workday without distress.",
-      },
-      {
-        q: "Does getting a second dog help separation anxiety?",
-        a: "Sometimes. Dogs whose anxiety is specifically triggered by the absence of other dogs (versus the human owner) may show improvement with a canine companion. The easiest way to test this before acquiring a second dog: borrow a friend's calm, known dog and leave both together with camera recording. If distress is dramatically reduced, a second dog may help. If distress continues, the anxiety is owner-specific and a second dog won't resolve it.",
-      },
-      {
-        q: "At what age do dogs develop separation anxiety?",
-        a: "Separation anxiety can develop at any age. Common onset periods include: post-adoption (especially from shelters), after a change in owner schedule, following a period of continuous human presence (like a remote work period ending), after the loss of a companion animal, and in senior dogs as cognitive decline affects emotional regulation. Sudden onset in an older dog without apparent trigger warrants a veterinary exam to rule out medical causes.",
-      },
-    ],
-    relatedSlugs: ["how-to-stop-dog-barking", "how-to-crate-train-a-puppy", "complete-guide-to-dog-training"],
-    pillarSlug: "complete-guide-to-dog-training",
-    ctaFeature: "/vets",
-    ctaText: "Talk to a Vet About Anxiety",
-  },
-
   {
     slug: "how-to-trim-dog-nails-at-home",
     title: "How to Trim Dog Nails at Home Without Stress or Injury",
@@ -806,7 +666,7 @@ One quick-cut does not set back desensitization permanently, but cutting quickly
         a: "Use the progressive sliver technique: cut 1–2mm at a time, examining the cross-section after each cut. White/chalky center = safe to continue. Gray or pink oval appearing in the center = stop immediately, you're 1mm from the quick. This method takes longer per nail but removes the guesswork. Some owners find a Dremel tool easier for black nails because it removes small amounts of material gradually rather than in discrete cuts.",
       },
     ],
-    relatedSlugs: ["how-to-switch-dog-food-safely", "complete-guide-to-pet-health", "senior-pet-care-guide"],
+    relatedSlugs: ["how-to-switch-dog-food-safely", "complete-guide-to-pet-health", "senior-pet-care-complete-guide"],
     pillarSlug: "complete-guide-to-pet-health",
     ctaFeature: "/vets",
     ctaText: "Book a Vet Visit for Grooming Help",
@@ -1350,7 +1210,7 @@ The [ASPCA recommends](https://www.aspca.org/pet-care/cat-care/cats-and-other-an
         a: "This requires professional guidance, not a DIY introduction protocol. A history of predatory behavior toward cats is a significant risk factor that requires assessment by a certified veterinary behaviorist (DACVB) or Certified Applied Animal Behaviorist (CAAB). Depending on the nature of the previous incident, safe cohabitation may not be achievable.",
       },
     ],
-    relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "complete-guide-to-dog-training", "what-is-separation-anxiety"],
+    relatedSlugs: ["3-3-3-rule-for-rescue-dogs", "complete-guide-to-dog-training", "dog-separation-anxiety-complete-guide"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/adoption",
     ctaText: "Find Your Next Pet Through Hushku Adoption",
@@ -1444,7 +1304,7 @@ The solution is extinction: completely and consistently withholding the demanded
 
 **For moderate to severe cases:** A veterinary consultation is appropriate. Fluoxetine and clomipramine are FDA-approved for canine separation anxiety and work synergistically with behavior modification. Medication alone doesn't solve separation anxiety, but behavior modification alone is significantly harder without it for severe cases.
 
-See our complete <a href="/resources/how-to-help-dog-with-separation-anxiety" class="text-brand-start font-bold">separation anxiety treatment guide</a> for the full protocol.`,
+See our complete <a href="/resources/dog-separation-anxiety-complete-guide" class="text-brand-start font-bold">separation anxiety treatment guide</a> for the full protocol.`,
         tip: "A camera with two-way audio (Furbo, Petcube) is highly useful for separation anxiety work — you can see exactly when barking starts and monitor progress without being present.",
       },
     ],
@@ -1479,7 +1339,7 @@ See our complete <a href="/resources/how-to-help-dog-with-separation-anxiety" cl
         a: "For demand barking with a consistent extinction protocol, significant improvement is often seen within 1–2 weeks. Alert barking management through environmental modification works immediately. Separation anxiety desensitization typically takes 4–12 weeks depending on severity and consistency of practice.",
       },
     ],
-    relatedSlugs: ["how-to-help-dog-with-separation-anxiety", "how-to-manage-leash-reactive-dog", "complete-guide-to-dog-training"],
+    relatedSlugs: ["dog-separation-anxiety-complete-guide", "how-to-manage-leash-reactive-dog", "complete-guide-to-dog-training"],
     pillarSlug: "complete-guide-to-dog-training",
     ctaFeature: "/playdates",
     ctaText: "Find Calm Socialization Partners for Your Dog",

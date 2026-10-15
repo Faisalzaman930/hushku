@@ -173,7 +173,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "When is a dog a senior?", a: "Roughly the last quarter of their expected lifespan: around 7 years for giant breeds and 10 or later for small breeds. Senior pets benefit from twice-yearly vet checks." },
     ],
     related: ["kitten-age-calculator", "insurance-cost", "vaccine-tracker", "pet-bmi"],
-    guides: [{ href: "/resources/senior-pet-care-guide", label: "Senior pet care guide" }],
+    guides: [{ href: "/resources/senior-pet-care-complete-guide", label: "Senior pet care guide" }],
   },
   {
     slug: "pet-bmi",

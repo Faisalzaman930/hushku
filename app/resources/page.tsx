@@ -9,6 +9,8 @@ import { definitionArticles } from "../data/definition-articles";
 import { pillarPages } from "../data/pillars";
 import { ARTICLE_TOPICS, topicFor, type TopicId } from "../data/article-extras";
 import AppCta from "../components/AppCta";
+import { TOOLS } from "../data/tools";
+import GuideSearch, { type SearchItem } from "./GuideSearch";
 
 type Card = { slug: string; title: string; desc: string; kind: string };
 
@@ -22,6 +24,17 @@ const all: Card[] = [
   ...articles.map((a) => ({ slug: a.slug, title: a.shortTitle, desc: a.seoDescription, kind: "App guide" })),
 ];
 const unique = Array.from(new Map(all.map((c) => [c.slug, c])).values());
+
+/** Searchable text for each guide: SEO title, H1, tags and description (searched, not shown). */
+type Src = { slug: string; title: string; seoTitle?: string; tags?: string[]; seoDescription: string };
+const extra = new Map<string, string>();
+for (const a of [...pillarPages, ...guides, ...symptomArticles, ...definitionArticles, ...howToArticles, ...breedArticles, ...articles] as Src[]) {
+  extra.set(a.slug, [a.seoTitle, a.title, ...(a.tags ?? []), a.seoDescription].filter(Boolean).join(" "));
+}
+const searchItems: SearchItem[] = [
+  ...unique.map((c) => ({ href: `/resources/${c.slug}`, title: c.title, kind: c.kind, topic: ARTICLE_TOPICS[topicFor(c.slug)], text: extra.get(c.slug) ?? c.desc })),
+  ...TOOLS.map((t) => ({ href: `/tools/${t.slug}`, title: t.name, kind: "Free tool", topic: t.category, text: `${t.title} ${t.h1} ${t.description}` })),
+];
 
 const ORDER: TopicId[] = ["health", "cats", "training", "puppies", "nutrition", "everyday", "adoption", "breeds", "apps"];
 const INTRO: Record<TopicId, string> = {
@@ -55,24 +68,25 @@ export default function ResourcesPage() {
   return (
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <header className="px-4 pt-10 pb-8 md:px-8 md:pt-16">
-        <div className="mx-auto flex max-w-[880px] flex-col gap-5">
+      <header className="px-4 pt-10 pb-6 md:px-8 md:pt-16">
+        <div className="mx-auto flex max-w-[1080px] flex-col gap-5">
           <h1 className="text-[34px] leading-[1.1] font-semibold tracking-[-0.02em] text-balance text-label md:text-[56px] md:leading-[1.05]">Pet care guides</h1>
-          <p className="text-[19px] leading-[29px] text-label-2 md:text-[21px] md:leading-[31px]">
+          <p className="max-w-[880px] text-[19px] leading-[29px] text-label-2 md:text-[21px] md:leading-[31px]">
             {unique.length} practical guides for dog and cat owners. Each starts with a short answer, lists its sources and tells you clearly when to call a vet. <Link href="/about/editorial" className="font-medium text-brand-text hover:underline underline-offset-[3px]">How we write and check them</Link>.
           </p>
-          <nav aria-label="Topics">
-            <ul className="flex flex-wrap gap-2">
-              {ORDER.filter((t) => byTopic.get(t)?.length).map((t) => (
-                <li key={t}><a href={`#${t}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label hover:bg-separator">{ARTICLE_TOPICS[t]}</a></li>
-              ))}
-            </ul>
-          </nav>
         </div>
       </header>
 
       <div className="px-4 pb-16 md:px-8">
-        <div className="mx-auto flex max-w-[1080px] flex-col gap-14">
+        <div className="mx-auto flex max-w-[1080px] flex-col gap-10">
+          <GuideSearch items={searchItems}>
+              <nav aria-label="Topics" className="-mt-6">
+                <ul className="flex flex-wrap gap-2">
+                  {ORDER.filter((t) => byTopic.get(t)?.length).map((t) => (
+                    <li key={t}><a href={`#${t}`} className="inline-flex min-h-11 items-center rounded-full bg-surface px-4 text-[15px] font-medium text-label hover:bg-separator">{ARTICLE_TOPICS[t]}</a></li>
+                  ))}
+                </ul>
+              </nav>
           <section aria-labelledby="start-h" className="flex flex-col gap-4">
             <h2 id="start-h" className="text-[26px] font-semibold text-label">Start here</h2>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -109,6 +123,7 @@ export default function ResourcesPage() {
               </ul>
             </section>
           ))}
+          </GuideSearch>
 
           <AppCta eyebrow="Hushku is launching soon" title="Put the advice into practice" body="Keep reminders, health records and routines for each pet in Hushku, and share them with everyone who helps care for them." source="guide:hub" link={{ href: "/health", label: "See health and care" }} />
           <p className="text-[13px] text-label-2">Guides are general information, not veterinary advice. If your pet seems unwell, call your vet.</p>

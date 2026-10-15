@@ -15,6 +15,7 @@ import DefinitionLayout from "../../components/DefinitionLayout";
 import PillarLayout from "../../components/PillarLayout";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { extrasFor } from "../../data/article-extras";
 
 /** Only the articles listed below exist; anything else is a real 404. */
 export const dynamicParams = false;
@@ -48,8 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: article.publishDate,
-        modifiedTime: article.lastUpdated,
+        publishedTime: isoDate(article.publishDate),
+        modifiedTime: isoDate(extrasFor(article.slug).updated ?? article.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(article.seoTitle || article.title, 60), description: metaDesc(article.seoDescription), images: [ogImage[0].url] },
     };
@@ -67,8 +68,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: guide.publishDate,
-        modifiedTime: guide.lastUpdated,
+        publishedTime: isoDate(guide.publishDate),
+        modifiedTime: isoDate(extrasFor(guide.slug).updated ?? guide.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(guide.seoTitle || guide.title, 60), description: metaDesc(guide.seoDescription), images: [ogImage[0].url] },
     };
@@ -86,8 +87,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: howTo.publishDate,
-        modifiedTime: howTo.lastUpdated,
+        publishedTime: isoDate(howTo.publishDate),
+        modifiedTime: isoDate(extrasFor(howTo.slug).updated ?? howTo.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(howTo.seoTitle || howTo.title, 60), description: metaDesc(howTo.seoDescription), images: [ogImage[0].url] },
     };
@@ -105,8 +106,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: symptom.publishDate,
-        modifiedTime: symptom.lastUpdated,
+        publishedTime: isoDate(symptom.publishDate),
+        modifiedTime: isoDate(extrasFor(symptom.slug).updated ?? symptom.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(symptom.seoTitle || symptom.title, 60), description: metaDesc(symptom.seoDescription), images: [ogImage[0].url] },
     };
@@ -124,8 +125,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: breed.publishDate,
-        modifiedTime: breed.lastUpdated,
+        publishedTime: isoDate(breed.publishDate),
+        modifiedTime: isoDate(extrasFor(breed.slug).updated ?? breed.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(breed.seoTitle || breed.title, 60), description: metaDesc(breed.seoDescription), images: [ogImage[0].url] },
     };
@@ -143,8 +144,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: definition.publishDate,
-        modifiedTime: definition.lastUpdated,
+        publishedTime: isoDate(definition.publishDate),
+        modifiedTime: isoDate(extrasFor(definition.slug).updated ?? definition.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(definition.seoTitle || definition.title, 60), description: metaDesc(definition.seoDescription), images: [ogImage[0].url] },
     };
@@ -162,8 +163,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         type: "article",
         url: canonicalUrl,
         images: ogImage,
-        publishedTime: pillar.publishDate,
-        modifiedTime: pillar.lastUpdated,
+        publishedTime: isoDate(pillar.publishDate),
+        modifiedTime: isoDate(extrasFor(pillar.slug).updated ?? pillar.lastUpdated),
       },
       twitter: { card: "summary_large_image", title: shortTitle(pillar.seoTitle || pillar.title, 60), description: metaDesc(pillar.seoDescription), images: [ogImage[0].url] },
     };
@@ -181,19 +182,29 @@ function JsonLd({ data }: { data: object }) {
   );
 }
 
+const MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+/** "April 2026" or "2026-04-12" → ISO date; falls back to the input. */
+function isoDate(d: string) {
+  if (/^\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 10);
+  const m = d.toLowerCase().match(/([a-z]+)\s+(\d{4})/);
+  if (m && MONTHS.includes(m[1])) return `${m[2]}-${String(MONTHS.indexOf(m[1]) + 1).padStart(2, "0")}-01`;
+  return d;
+}
+
 function buildArticleSchema(item: { title: string; seoDescription: string; publishDate: string; lastUpdated: string; slug: string; shortTitle: string }, type: "Article" | "MedicalWebPage" = "Article") {
+  const x = extrasFor(item.slug);
   return {
     "@context": "https://schema.org",
     "@type": type,
     "headline": item.title,
     "description": item.seoDescription,
-    "datePublished": item.publishDate,
-    "dateModified": item.lastUpdated,
-    "author": {
-      "@type": "Organization",
-      "name": "Hushku Editorial Team",
-      "url": "https://hushku.app/resources#editorial-standards",
-    },
+    "datePublished": isoDate(item.publishDate),
+    "dateModified": isoDate(x.updated ?? item.lastUpdated),
+    "image": "https://hushku.app/og.png",
+    "inLanguage": "en",
+    ...(type === "MedicalWebPage" ? { "lastReviewed": isoDate(x.updated ?? item.lastUpdated) } : {}),
+    ...(x.sources?.length ? { "citation": x.sources.map((s) => ({ "@type": "CreativeWork", "name": s.label, "url": s.url })) } : {}),
+    "author": { "@type": "Organization", "name": "Hushku Editorial Team", "url": "https://hushku.app/about/editorial" },
     "publisher": {
       "@type": "Organization",
       "name": "Hushku",
@@ -205,7 +216,7 @@ function buildArticleSchema(item: { title: string; seoDescription: string; publi
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hushku.app" },
-        { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://hushku.app/resources" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://hushku.app/resources" },
         { "@type": "ListItem", "position": 3, "name": item.shortTitle, "item": `https://hushku.app/resources/${item.slug}` },
       ],
     },
@@ -297,6 +308,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ slug:
     return (
       <>
         <JsonLd data={buildArticleSchema(guide)} />
+        {guide.faqs?.length ? <JsonLd data={buildFaqSchema(guide.faqs)} /> : null}
         <GuideLayout guide={guide} />
       </>
     );

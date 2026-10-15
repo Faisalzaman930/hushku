@@ -33,6 +33,9 @@ export interface Guide {
   chapters: GuideChapter[];
   conclusion: string;
   relatedSlugs: string[];
+  /** One or two sentences answering the main question, shown first. */
+  quickAnswer?: string;
+  faqs?: { q: string; a: string }[];
   /** Optional in-context app offer shown before the conclusion. Only features that are in the app. */
   appCta?: { title: string; body: string; link?: { href: string; label: string } };
 }

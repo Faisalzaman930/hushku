@@ -6,7 +6,7 @@ export const guideDogWontWalk: Guide = {
   seoTitle: "Why Won't My Dog Walk Anymore? 11 Causes Explained (2026)",
   shortTitle: "Dog Refuses to Walk",
   seoDescription:
-    "Dog suddenly refusing to go on walks? Discover the 11 most common causes — from pain and fear to leash reactivity and surface sensitivity — with vet-backed solutions for each.",
+    "Dog suddenly refusing to go on walks? Discover the 11 most common causes — from pain and fear to leash reactivity and surface sensitivity, and what to do about each.",
   category: "Dog Behavior",
   tags: [
     "why won't my dog walk",

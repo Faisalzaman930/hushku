@@ -1,3 +1,4 @@
+import { howToArticles2 } from "./howto-2";
 export interface HowToSupply {
   item: string;
   note: string;
@@ -1748,3 +1749,6 @@ The dog learns: trigger appears → treats rain from the sky. Trigger leaves →
     ctaText: "Find Calm, Compatible Dogs for Gradual Socialization",
   },
 ];
+
+// Added in the October 2026 review.
+howToArticles.push(...howToArticles2);

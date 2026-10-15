@@ -6,7 +6,7 @@ export const guideSeparationAnxiety: Guide = {
   seoTitle: "Dog Separation Anxiety: Complete Treatment Guide (2026)",
   shortTitle: "Dog Separation Anxiety Guide",
   seoDescription:
-    "Learn how to diagnose and treat dog separation anxiety with vet-backed methods: desensitization, medication options, and prevention tips for puppies.",
+    "Learn how to diagnose and treat dog separation anxiety with methods recommended by veterinary behaviourists: desensitization, medication options, and prevention tips for puppies.",
   category: "Expert Guides",
   tags: [
     "dog separation anxiety",

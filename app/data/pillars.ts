@@ -277,9 +277,9 @@ The research on mental enrichment and behavior is consistent: dogs who receive a
   {
     slug: "complete-guide-to-puppy-care",
     title: "The Complete Puppy Care Guide: Everything You Need for the First Year",
-    seoTitle: "Complete Puppy Care Guide 2026: Vet-Backed, Week-by-Week",
+    seoTitle: "Complete Puppy Care Guide: The First Year, Week by Week",
     shortTitle: "Puppy Care Hub",
-    seoDescription: "Complete puppy care guide 2026: vet-backed vaccination schedule, puppy nutrition, housetraining method, socialization science, health issues, and grooming — week by week through the first year.",
+    seoDescription: "Complete puppy care guide: vaccination schedule based on AAHA guidelines, puppy nutrition, housetraining method, socialization science, health issues, and grooming — week by week through the first year.",
     category: "Complete Guide",
     tags: ["Puppies", "New Owners", "Expert Guide"],
     publishDate: "April 2026",
@@ -503,6 +503,9 @@ Examine ears weekly from puppyhood: touch the ear flap, look inside, pair with t
       },
     ],
     clusterArticles: [
+      { slug: "intestinal-worms-in-dogs-and-cats", title: "Worms and deworming", type: "definition" },
+      { slug: "when-to-spay-or-neuter", title: "When to spay or neuter", type: "definition" },
+      { slug: "how-to-stop-puppy-biting", title: "How to stop puppy biting", type: "guide" },
       { slug: "how-to-crate-train-a-puppy", title: "How to Crate Train a Puppy", type: "how-to" },
       { slug: "how-to-potty-train-a-puppy", title: "How to Potty Train a Puppy", type: "how-to" },
       { slug: "how-to-stop-dog-pulling-on-leash", title: "How to Stop Dog Pulling on Leash", type: "how-to" },
@@ -618,7 +621,7 @@ Twice-annual examinations as standard practice. Complete bloodwork twice yearly 
 Measures red blood cells (anemia — is the animal losing blood, not making enough, or destroying it?), white blood cells (infection, inflammation, certain leukemias, immune disease), and platelets (clotting ability). The differential WBC count specifies which type of white cells are elevated, pointing toward specific disease processes: elevated neutrophils suggest bacterial infection; elevated eosinophils suggest allergy or parasites; lymphocytosis can indicate certain cancers.
 
 **The Comprehensive Metabolic Panel:**
-- *Kidney values:* BUN (blood urea nitrogen) and creatinine are traditional markers, but both are insensitive — kidney function must be reduced by approximately 75% before creatinine becomes abnormal. SDMA (symmetric dimethylarginine) is a newer marker that can rise when as little as 25% of kidney function is lost, compared with about 75% for creatinine. Ask your vet specifically about SDMA if they're running a senior panel.
+- *Kidney values:* BUN (blood urea nitrogen) and creatinine are traditional markers, but both are insensitive — kidney function must be reduced by approximately 75% before creatinine becomes abnormal. SDMA (symmetric dimethylarginine) is a newer marker that can rise when roughly 25–40% of kidney function is lost, compared with about 75% for creatinine. Ask your vet specifically about SDMA if they're running a senior panel.
 - *Liver enzymes:* ALT (hepatocellular damage), ALP (biliary disease, Cushing's, drug reactions), bilirubin (liver function, hemolysis). Mild elevations need context; significant elevations warrant follow-up testing.
 - *Blood glucose:* Elevated in diabetes (confirm with fasting glucose and urine glucose). Low in hypoglycemia (young puppies, toy breeds, insulinoma in older dogs).
 - *Total protein, albumin, globulins:* Protein loss through the gut (protein-losing enteropathy), kidney (protein-losing nephropathy), or production failure (liver disease, certain cancers).
@@ -766,6 +769,25 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
       },
     ],
     clusterArticles: [
+      { slug: "why-is-my-dog-vomiting", title: "Why is my dog vomiting?", type: "symptom" },
+      { slug: "why-does-my-dog-have-diarrhea", title: "Dog diarrhoea", type: "symptom" },
+      { slug: "why-is-my-dog-so-itchy", title: "Why is my dog so itchy?", type: "symptom" },
+      { slug: "why-is-my-dog-shaking", title: "Why is my dog shaking?", type: "symptom" },
+      { slug: "why-is-my-dog-scooting", title: "Why is my dog scooting?", type: "symptom" },
+      { slug: "why-do-dogs-eat-grass", title: "Why do dogs eat grass?", type: "symptom" },
+      { slug: "why-is-my-cat-vomiting", title: "Why is my cat vomiting?", type: "symptom" },
+      { slug: "why-is-my-cat-not-eating", title: "Why is my cat not eating?", type: "symptom" },
+      { slug: "why-is-my-cat-drinking-so-much-water", title: "Cat drinking a lot of water", type: "symptom" },
+      { slug: "heartworm-in-dogs-and-cats", title: "Heartworm in dogs and cats", type: "definition" },
+      { slug: "intestinal-worms-in-dogs-and-cats", title: "Worms in dogs and cats", type: "definition" },
+      { slug: "when-to-spay-or-neuter", title: "When to spay or neuter", type: "definition" },
+      { slug: "dental-disease-in-dogs-and-cats", title: "Dental disease", type: "definition" },
+      { slug: "cat-urinary-blockage-and-flutd", title: "Cat urinary blockage", type: "definition" },
+      { slug: "chronic-kidney-disease-in-cats", title: "Kidney disease in cats", type: "definition" },
+      { slug: "hyperthyroidism-in-cats", title: "Hyperthyroidism in cats", type: "definition" },
+      { slug: "how-to-get-rid-of-fleas", title: "How to get rid of fleas", type: "how-to" },
+      { slug: "how-to-brush-your-dogs-teeth", title: "How to brush your dog's teeth", type: "how-to" },
+      { slug: "how-to-give-a-pill-to-a-dog-or-cat", title: "How to give a pill", type: "how-to" },
       { slug: "why-is-my-dog-not-eating", title: "Why Is My Dog Not Eating?", type: "symptom" },
       { slug: "why-is-my-dog-limping", title: "Why Is My Dog Limping?", type: "symptom" },
       { slug: "why-is-my-dog-drinking-so-much-water", title: "Why Is My Dog Drinking So Much Water?", type: "symptom" },
@@ -797,7 +819,7 @@ Normal gums are pink and moist. Press a finger to the gum — color should retur
     title: "The Complete Pet Nutrition Guide: What to Feed, How Much, and Why",
     seoTitle: "Complete Pet Nutrition Guide 2026: Feeding Dogs & Cats Right",
     shortTitle: "Pet Nutrition Hub",
-    seoDescription: "Pet nutrition guide 2026: read food labels, calculate calories, compare raw vs kibble vs fresh, identify toxic foods, evaluate supplements, and manage weight — vet-reviewed and evidence-based.",
+    seoDescription: "Pet nutrition guide 2026: read food labels, calculate calories, compare raw vs kibble vs fresh, identify toxic foods, evaluate supplements, and manage weight, based on veterinary nutrition guidelines.",
     category: "Complete Guide",
     tags: ["Nutrition", "Feeding", "Pet Health"],
     publishDate: "April 2026",

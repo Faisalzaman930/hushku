@@ -1,3 +1,4 @@
+import { symptomArticles2 } from "./symptom-articles-2";
 export type UrgencyLevel = "emergency" | "urgent" | "monitor" | "routine";
 
 export interface SymptomCause {
@@ -37,7 +38,7 @@ export const symptomArticles: SymptomArticle[] = [
   {
     slug: "why-is-my-dog-not-eating",
     title: "Why Is My Dog Not Eating? 9 Causes and What to Do",
-    seoTitle: "Why Is My Dog Not Eating? Causes, What to Do (Vet Guide)",
+    seoTitle: "Why Is My Dog Not Eating? Causes and When to Call a Vet",
     shortTitle: "Dog Not Eating",
     seoDescription: "Your dog won't eat? Discover 9 common causes of appetite loss in dogs — from stress to serious illness — plus clear guidance on when to wait, when to call your vet, and what to try at home.",
     category: "Symptom Guide",
@@ -466,3 +467,6 @@ This guide teaches you how to measure the respiratory rate accurately, explains 
     ctaText: "Emergency Vet Guidance",
   },
 ];
+
+// Added in the October 2026 review.
+symptomArticles.push(...symptomArticles2);

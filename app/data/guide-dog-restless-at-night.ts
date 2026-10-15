@@ -6,7 +6,7 @@ export const guideDogRestlessAtNight: Guide = {
   seoTitle: "Why Is My Dog Restless at Night? 10 Causes Explained (2026)",
   shortTitle: "Dog Restless at Night",
   seoDescription:
-    "Dog pacing, panting, or can't settle at night? Learn the 10 most common causes of nighttime restlessness in dogs — from pain and anxiety to cognitive dysfunction — with vet-backed solutions.",
+    "Dog pacing, panting, or can't settle at night? Learn the 10 most common causes of nighttime restlessness in dogs — from pain and anxiety to cognitive dysfunction, and what to do about each.",
   category: "Dog Health",
   tags: [
     "why is my dog restless at night",

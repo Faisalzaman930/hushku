@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideDogDrinkingTooMuchWater: Guide = {
   slug: "why-is-my-dog-drinking-so-much-water",
   title: "Why Is My Dog Drinking So Much Water? Causes, Warning Signs & When to See a Vet",
-  seoTitle: "Why Is My Dog Drinking So Much Water? Vet-Backed Guide (2026)",
+  seoTitle: "Why Is My Dog Drinking So Much Water? Causes and When to Worry",
   shortTitle: "Dog Drinking Too Much Water",
   seoDescription:
     "Dog drinking excessive water? Learn the 12 most common causes — from heat and diet to diabetes, Cushing's disease, and kidney failure — plus exactly when to call your vet.",

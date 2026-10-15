@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Editorial Standards & Review Process",
-  description: "How Hushku researches, writes, fact-checks, and updates its pet care content. Our editorial standards, sourcing policy, and veterinary review process.",
+  description: "How Hushku researches, writes, fact-checks, and updates its pet care content. Our editorial standards, sourcing policy and review process.",
   alternates: { canonical: "https://hushku.app/about/editorial" },
   openGraph: {
     title: "Editorial Standards & Review Process",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Editorial Standards",
-    description: "Our editorial standards, sourcing policy, and veterinary review process.",
+    description: "Our editorial standards, sourcing policy and review process.",
     images: ["https://hushku.app/og.png"],
   },
 };

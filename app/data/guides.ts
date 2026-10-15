@@ -1,3 +1,4 @@
+import { guideKittenCare } from "./guide-kitten-care";
 import { GUIDE_ADDITIONS } from "./article-extras-data";
 import { guideSharedPetCare, guideRehoming, guideLostPet } from "./guide-conversion";
 import { guide333Rescue } from "./guide-333-rescue";
@@ -42,6 +43,7 @@ export interface Guide {
 }
 
 export const guides: Guide[] = [
+  guideKittenCare,
   guideSharedPetCare,
   guideRehoming,
   guideLostPet,

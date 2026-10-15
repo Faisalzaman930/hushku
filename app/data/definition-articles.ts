@@ -1,3 +1,4 @@
+import { definitionArticles2 } from "./definition-articles-2";
 export interface DefinitionArticle {
   slug: string;
   title: string;
@@ -866,3 +867,6 @@ The result: you can mark at the exact millisecond of correct behavior — from a
     ctaText: "Practice Training With Community Dogs",
   },
 ];
+
+// Added in the October 2026 review.
+definitionArticles.push(...definitionArticles2);

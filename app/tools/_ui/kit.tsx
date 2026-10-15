@@ -107,3 +107,29 @@ export function ToolGrid({ children }: { children: ReactNode }) {
 
 export const toKg = (v: number, unit: "kg" | "lb") => (unit === "lb" ? v * 0.453592 : v);
 export const fmt = (n: number, d = 0) => n.toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: d });
+
+/** A dose-based risk band display for the poisoning calculators. */
+export function RiskBands({ value, bands, unit }: { value: number; unit: string; bands: { at: number; label: string }[] }) {
+  return (
+    <ol className="flex flex-col gap-1.5" aria-label="Risk levels">
+      {bands.map((b, i) => {
+        const next = bands[i + 1]?.at ?? Infinity;
+        const on = value >= b.at && value < next;
+        return (
+          <li key={b.label} className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-[14px] ${on ? "bg-label text-white" : "bg-bg-2 text-label-2"}`}>
+            <span className={on ? "font-semibold" : ""}>{b.label}</span>
+            <span className="tabular-nums">{b.at > 0 ? `${b.at}+ ${unit}` : `under ${bands[1]?.at} ${unit}`}</span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+export function Emergency({ children }: { children: ReactNode }) {
+  return (
+    <div className="rounded-2xl bg-brand-tint px-4 py-3 text-[15px] leading-[22px] text-label" role="note">
+      {children}
+    </div>
+  );
+}

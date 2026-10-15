@@ -10,6 +10,7 @@ import { definitionArticles } from "./data/definition-articles";
 import { pillarPages } from "./data/pillars";
 import { templateDocs } from "./data/templates";
 import { COMPARE_PAGES, CHECKED_ISO } from "./data/compare";
+import { TOOLS, TOOLS_REVIEWED_ISO } from "./data/tools";
 import { breedsByAnimal, BREED_CONTENT_UPDATED } from "./data/breeds";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.app";
@@ -189,6 +190,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/breeds/compare`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
     ...COMPARISONS.map((c) => ({ url: `${BASE_URL}/breeds/compare/${c.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: TODAY })),
     { url: `${BASE_URL}/compare`, changeFrequency: "monthly", priority: 0.6, lastModified: new Date(CHECKED_ISO) },
+    ...TOOLS.map((t) => ({ url: `${BASE_URL}/tools/${t.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: new Date(TOOLS_REVIEWED_ISO) })),
     ...COMPARE_PAGES.map((c) => ({ url: `${BASE_URL}/compare/${c.slug}`, changeFrequency: "monthly" as const, priority: 0.7, lastModified: new Date(CHECKED_ISO) })),
   ];
 

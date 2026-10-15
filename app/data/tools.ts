@@ -14,7 +14,7 @@ export type ToolDoc = {
   description: string;
   /** One or two sentences that answer the main query directly. */
   answer: string;
-  category: "Health" | "Food and water" | "Puppies and breeding" | "Breeds" | "Costs" | "Everyday";
+  category: "Health" | "Food and water" | "Puppies, kittens and breeding" | "Breeds" | "Costs" | "Everyday";
   emoji: string;
   howItWorks: string[];
   sources: Source[];
@@ -78,7 +78,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "How many times a day should I feed my dog?", a: "Most adult dogs do well on two meals a day. Puppies under six months usually need three or four smaller meals." },
       { q: "Why is my food's feeding guide different?", a: "Bag guides cover a wide range of dogs and are often generous. A calculation based on your dog's weight and life stage, then adjusted to keep a healthy body condition, is usually more accurate." },
     ],
-    related: ["calorie-calculator", "pet-bmi", "water-calculator", "puppy-weight"],
+    related: ["calorie-calculator", "food-transition-calculator", "weight-loss-calculator", "raw-food-calculator"],
     guides: [{ href: "/templates/dog-feeding-schedule-template", label: "Free feeding schedule template" }, { href: "/resources/how-to-switch-dog-food-safely", label: "How to switch dog food safely" }],
   },
   {
@@ -125,7 +125,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "How much exercise does a puppy need?", a: "A common guide is 5 minutes of structured exercise per month of age, up to twice a day, plus free play at home. Avoid long runs and lots of stairs until your vet says your puppy's joints are mature." },
       { q: "What are signs my dog isn't getting enough exercise?", a: "Restlessness, chewing, barking, weight gain and pulling hard on the lead are common signs. Mental work like sniffing games and training also tires dogs out." },
     ],
-    related: ["calorie-calculator", "puppy-weight", "pet-bmi", "water-calculator"],
+    related: ["hot-pavement-checker", "calorie-calculator", "puppy-weight", "pet-bmi"],
     guides: [{ href: "/templates/dog-walking-schedule-template", label: "Free dog walking schedule" }, { href: "/resources/how-to-stop-dog-pulling-on-leash", label: "How to stop your dog pulling on the lead" }],
   },
   {
@@ -135,7 +135,7 @@ export const TOOLS: ToolDoc[] = [
     h1: "How big will my puppy get?",
     description: "Estimate your puppy's adult weight from its age and current weight. Free puppy growth calculator for toy to giant breeds, with a growth chart.",
     answer: "As a rough guide, small breeds reach about half their adult weight at around 3 to 4 months and are fully grown by 9 to 12 months; large and giant breeds reach half at 5 to 6 months and keep growing until 15 to 24 months.",
-    category: "Puppies and breeding",
+    category: "Puppies, kittens and breeding",
     emoji: "📈",
     howItWorks: [
       "The calculator uses typical growth curves for five size groups, showing roughly what share of adult weight a puppy has reached at each age. It divides your puppy's current weight by that share to estimate adult weight.",
@@ -148,7 +148,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "When do puppies stop growing?", a: "Small breeds by around 9 to 12 months, medium breeds by about 12 months, and large and giant breeds between 15 and 24 months." },
       { q: "Is my puppy growing too fast?", a: "Rapid growth in large breeds increases the risk of joint problems. Feed a large-breed puppy food, keep your puppy lean, and ask your vet to check body condition at each visit." },
     ],
-    related: ["feeding-calculator", "exercise-calculator", "vaccine-tracker", "whelping-calculator"],
+    related: ["crate-collar-harness-size", "feeding-calculator", "exercise-calculator", "vaccine-tracker"],
     guides: [{ href: "/templates/puppy-schedule-template", label: "Free puppy schedule template" }, { href: "/resources/complete-guide-to-puppy-care", label: "Complete guide to puppy care" }],
   },
   {
@@ -172,7 +172,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "How old is my cat in human years?", a: "About 15 at 1 year, 24 at 2, and then about 4 human years per year: a 10-year-old cat is about 56." },
       { q: "When is a dog a senior?", a: "Roughly the last quarter of their expected lifespan: around 7 years for giant breeds and 10 or later for small breeds. Senior pets benefit from twice-yearly vet checks." },
     ],
-    related: ["insurance-cost", "vaccine-tracker", "pet-bmi", "birthday-countdown"],
+    related: ["kitten-age-calculator", "insurance-cost", "vaccine-tracker", "pet-bmi"],
     guides: [{ href: "/resources/senior-pet-care-guide", label: "Senior pet care guide" }],
   },
   {
@@ -195,7 +195,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "What is a healthy body condition score?", a: "4 to 5 out of 9 for dogs and 5 out of 9 for cats. You should feel the ribs with light pressure and see a waist." },
       { q: "How much should my dog weigh?", a: "The ideal weight is the weight at which your dog scores 4 to 5. Breed ranges help, but body shape matters more than the number on the scale." },
     ],
-    related: ["calorie-calculator", "feeding-calculator", "exercise-calculator", "age-calculator"],
+    related: ["weight-loss-calculator", "calorie-calculator", "feeding-calculator", "exercise-calculator"],
     medical: true,
   },
   {
@@ -248,7 +248,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "Can dogs eat peanut butter?", a: "Yes, plain peanut butter in small amounts, as long as it doesn't contain xylitol (sometimes listed as birch sugar). Check the label every time." },
       { q: "Are grapes really dangerous for dogs?", a: "Yes. Grapes and raisins can cause sudden kidney failure in dogs, and there's no known safe amount. Treat any amount as an emergency." },
     ],
-    related: ["symptom-checker", "first-aid-quiz", "feeding-calculator", "calorie-calculator"],
+    related: ["chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "onion-garlic-toxicity-calculator", "dog-ate-grapes"],
     guides: [{ href: "/resources/complete-guide-to-pet-health", label: "Complete guide to pet health" }],
     medical: true,
   },
@@ -271,7 +271,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "Should I wait to see if my dog gets better?", a: "For mild, single episodes (one vomit, a slightly soft stool) in an otherwise bright dog, monitoring for a day is often fine. If symptoms continue, get worse or your dog stops eating or drinking, call your vet." },
       { q: "Can this tool diagnose my pet?", a: "No. It's a triage guide to help you decide how quickly to get help. Only a vet who examines your pet can diagnose them." },
     ],
-    related: ["toxic-food", "first-aid-quiz", "water-calculator", "vaccine-tracker"],
+    related: ["toxic-food", "chocolate-toxicity-calculator", "first-aid-quiz", "water-calculator"],
     guides: [{ href: "/resources/complete-guide-to-pet-health", label: "Complete guide to pet health" }, { href: "/resources/dog-breathing-fast-at-rest", label: "Dog breathing fast at rest" }],
     medical: true,
   },
@@ -408,7 +408,7 @@ export const TOOLS: ToolDoc[] = [
     h1: "Dog and cat pregnancy due date calculator",
     description: "Enter the mating date to get your dog's or cat's due date and a pregnancy timeline: scans, X-ray, whelping box and temperature checks. Free whelping calculator.",
     answer: "Dogs are pregnant for about 63 days from ovulation, and usually give birth 58 to 68 days after mating. Cats average about 65 days, with a normal range of about 63 to 69.",
-    category: "Puppies and breeding",
+    category: "Puppies, kittens and breeding",
     emoji: "🍼",
     howItWorks: [
       "The calculator counts forward from the first mating date to give the expected due date and key milestones: when heartbeats show on ultrasound, when an X-ray can count puppies or kittens, and when to start temperature checks.",
@@ -431,7 +431,7 @@ export const TOOLS: ToolDoc[] = [
     h1: "Dog heat cycle calculator",
     description: "Enter the first day of her last heat to see each phase, her likely fertile days and when her next three heats are due. Free dog heat cycle calculator.",
     answer: "Most dogs come into heat about every six months, and each heat lasts two to three weeks. She's usually most fertile around days 9 to 14, but only progesterone tests from a vet can pin down ovulation.",
-    category: "Puppies and breeding",
+    category: "Puppies, kittens and breeding",
     emoji: "📆",
     howItWorks: [
       "The calculator counts from the first day of her last heat (the day you first saw swelling or spotting) and shows the typical phases: proestrus around days 1 to 9, the likely fertile window around days 9 to 14, and the end of estrus around day 21.",
@@ -468,7 +468,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "Does pet insurance get more expensive with age?", a: "Usually, yes. Most insurers raise premiums as pets get older, and some limit new policies for older pets. Pre-existing conditions are generally not covered." },
       { q: "Is pet insurance worth it?", a: "It depends on whether you could pay a large unexpected vet bill. Compare a year of premiums with your savings, and read what each policy excludes before you buy." },
     ],
-    related: ["age-calculator", "vaccine-tracker", "pet-sitter-cost", "breed-compare"],
+    related: ["cost-of-owning-a-pet", "age-calculator", "vaccine-tracker", "pet-sitter-cost"],
   },
   {
     slug: "pet-sitter-cost",
@@ -593,6 +593,259 @@ export const TOOLS: ToolDoc[] = [
   },
 ];
 
+const MERCK_CHOC: Source = { label: "Merck Veterinary Manual: Chocolate toxicosis in animals", url: "https://www.merckvetmanual.com/toxicology/food-hazards/chocolate-toxicosis-in-animals" };
+const ASPCA_APCC = "ASPCA Animal Poison Control Center on (888) 426-4435";
+
+TOOLS.push(
+  {
+    slug: "chocolate-toxicity-calculator",
+    name: "Chocolate toxicity calculator",
+    title: "Dog Ate Chocolate? Chocolate Toxicity Calculator",
+    h1: "My dog ate chocolate: how much is dangerous?",
+    description: "Enter your dog's weight, the type of chocolate and how much they ate to see the dose in mg/kg and whether to call a vet now. Based on Merck Veterinary Manual figures.",
+    answer: "Mild signs can start at about 20 mg of theobromine and caffeine per kg of body weight, heart effects at 40 to 50 mg/kg and seizures from 60 mg/kg. Dark and baking chocolate are far more dangerous than milk chocolate: 1 oz of baking chocolate has about 7 times the dose of 1 oz of milk chocolate.",
+    category: "Health",
+    emoji: "🍫",
+    howItWorks: [
+      "Chocolate is dangerous because of methylxanthines, mainly theobromine with some caffeine. The calculator multiplies the amount eaten by the methylxanthine content of that type of chocolate, from the Merck Veterinary Manual: about 64 mg per oz for milk chocolate, 150 to 160 for dark, 440 for baking chocolate and 807 for cocoa powder.",
+      "It divides that by your dog's weight to give a dose in mg/kg and compares it with the levels at which signs have been seen: 20 mg/kg for mild signs, 40 to 50 for heart effects and 60 or more for seizures.",
+      `Dogs vary, and signs can take 6 to 12 hours to appear, so if you're unsure, call your vet or the ${ASPCA_APCC} straight away rather than waiting.`,
+    ],
+    sources: [MERCK_CHOC],
+    faqs: [
+      { q: "How much chocolate can kill a dog?", a: "Severe poisoning and death can happen at much lower doses than the 100 to 200 mg/kg reported as lethal in studies. The Merck Veterinary Manual notes that about 1 oz of milk chocolate per lb of body weight is potentially lethal; dark and baking chocolate are dangerous in much smaller amounts." },
+      { q: "My dog ate chocolate but seems fine. What should I do?", a: "Work out the dose with this calculator and call your vet if it's 20 mg/kg or more, even if your dog seems fine. Signs often start 6 to 12 hours later, and treatment works best early." },
+      { q: "Is white chocolate dangerous for dogs?", a: "It contains almost no theobromine, so poisoning is very unlikely, but the fat and sugar can still cause vomiting, diarrhoea and, in some dogs, pancreatitis." },
+      { q: "How long does chocolate poisoning last?", a: "Signs usually start within 6 to 12 hours and can last up to 72 hours, because dogs clear theobromine slowly." },
+    ],
+    related: ["xylitol-toxicity-calculator", "toxic-food", "dog-ate-grapes", "symptom-checker"],
+    medical: true,
+  },
+  {
+    slug: "xylitol-toxicity-calculator",
+    name: "Xylitol toxicity calculator",
+    title: "Dog Ate Gum? Xylitol Toxicity Calculator for Dogs",
+    h1: "My dog ate gum: xylitol toxicity calculator",
+    description: "Work out how much xylitol your dog ate from gum, mints or a label, and whether it reaches the level that causes low blood sugar or liver damage. Free calculator.",
+    answer: "Dogs that eat more than 0.1 g of xylitol per kg of body weight are at risk of dangerously low blood sugar, and liver failure has been seen from about 0.5 g/kg. One piece of sugar-free gum can contain around 0.3 g, so a few pieces can poison a small dog.",
+    category: "Health",
+    emoji: "🍬",
+    howItWorks: [
+      "Enter the number of pieces of gum or mints, or the grams of xylitol from the label. When the label doesn't list xylitol separately, the calculator uses 0.3 g per piece, the estimate recommended in veterinary toxicology guidance.",
+      "It divides the xylitol by your dog's weight and compares the result with the published risk levels: over 0.1 g/kg for low blood sugar and from 0.5 g/kg for liver failure.",
+      "Because labels are often unclear and some dogs react to less, any xylitol is worth an immediate call to your vet.",
+    ],
+    sources: [{ label: "dvm360: New findings on the effects of xylitol ingestion in dogs", url: "https://www.dvm360.com/view/new-findings-effects-xylitol-ingestion-dogs" }, ASPCA_FOODS],
+    faqs: [
+      { q: "How much xylitol is toxic to dogs?", a: "Doses over 0.1 g per kg can cause low blood sugar, and liver failure has been reported from about 0.5 g per kg. For a 10 kg dog that's just 1 g and 5 g." },
+      { q: "Which products contain xylitol?", a: "Sugar-free gum and mints, some peanut and nut butters, sugar-free sweets, baked goods, toothpaste, mouthwash and some chewable vitamins. It may be listed as birch sugar or E967." },
+      { q: "How fast does xylitol affect dogs?", a: "Low blood sugar can start within 10 to 60 minutes, but with some gums it can be delayed for up to 12 hours. Liver damage can follow within 1 to 3 days." },
+    ],
+    related: ["chocolate-toxicity-calculator", "toxic-food", "onion-garlic-toxicity-calculator", "symptom-checker"],
+    medical: true,
+  },
+  {
+    slug: "onion-garlic-toxicity-calculator",
+    name: "Onion and garlic toxicity",
+    title: "Dog Ate Onion or Garlic? Toxicity Calculator",
+    h1: "Did my dog or cat eat too much onion or garlic?",
+    description: "Check how much onion, garlic, chives or onion powder your dog or cat ate against the levels linked to anaemia, and what to do next. Free calculator.",
+    answer: "In dogs, signs of onion poisoning have followed 15 to 30 g of onion per kg of body weight; cats react to as little as 5 g/kg. Garlic is 3 to 5 times more toxic than onion, and dried powders are far stronger than fresh.",
+    category: "Health",
+    emoji: "🧅",
+    howItWorks: [
+      "The calculator converts what was eaten into an onion equivalent: garlic counts as 5 times onion (the cautious end of the 3 to 5 times in the Merck Veterinary Manual), and dried onion or garlic powder as about 8 times fresh, because fresh onion is mostly water. The powder figure is our approximation.",
+      "It divides that by your pet's weight and shows it as a share of the level at which signs have been reported: 15 g/kg for dogs and 5 g/kg for cats.",
+      "Onion and garlic damage red blood cells over several days, and repeated small amounts add up, so watch your pet for up to 5 days and call your vet if in doubt.",
+    ],
+    sources: [{ label: "MSD Veterinary Manual: Allium species toxicosis in animals", url: "https://www.msdvetmanual.com/toxicology/food-hazards/allium-spp-toxicosis-in-animals" }],
+    faqs: [
+      { q: "How much onion is toxic to a dog?", a: "Signs have been reported after 15 to 30 g of raw onion per kg of body weight, so about 150 g (one medium onion) could affect a 10 kg dog. Smaller amounts eaten repeatedly can also cause problems." },
+      { q: "Is garlic bad for dogs?", a: "Yes. Garlic is 3 to 5 times more toxic than onion. A small amount of garlic cooked into food is unlikely to harm a large dog, but avoid feeding it and keep garlic powder and supplements away." },
+      { q: "What are the signs of onion poisoning?", a: "Weakness, pale gums, fast breathing, red-brown urine and sometimes vomiting, usually appearing 1 to 5 days after eating." },
+    ],
+    related: ["toxic-food", "chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "symptom-checker"],
+    medical: true,
+  },
+  {
+    slug: "dog-ate-grapes",
+    name: "Dog ate grapes",
+    title: "Dog Ate Grapes or Raisins? What to Do Right Now",
+    h1: "My dog ate grapes or raisins: what to do",
+    description: "Grapes and raisins can cause sudden kidney failure in dogs, and there's no known safe amount. Get the right next steps for when your dog ate them and how they are now.",
+    answer: "Call your vet or an emergency vet now, whatever the amount. There is no known safe dose of grapes or raisins for dogs: some develop kidney failure after a few, and if they're seen within about 2 hours a vet can often make them vomit before the toxin is absorbed.",
+    category: "Health",
+    emoji: "🍇",
+    howItWorks: [
+      "Unlike chocolate, there's no dose calculator for grapes, because the amount that causes kidney failure varies hugely between dogs and can't be predicted. Recent research points to tartaric acid, which dogs handle poorly.",
+      "Instead, answer three questions and the page gives you the next steps for your situation, based on standard veterinary poison advice.",
+    ],
+    sources: [ASPCA_FOODS],
+    faqs: [
+      { q: "How many grapes can a dog eat?", a: "None. There's no known safe amount, so treat any grapes, raisins, sultanas or currants as an emergency." },
+      { q: "Should I make my dog throw up?", a: "Only if a vet tells you to and explains how. Home methods can be dangerous, and some dogs shouldn't be made to vomit." },
+      { q: "When do signs of grape poisoning appear?", a: "Vomiting often starts within 24 hours. Kidney damage can follow over 1 to 3 days, sometimes before obvious signs, which is why vets check blood tests." },
+    ],
+    related: ["chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "toxic-food", "symptom-checker"],
+    medical: true,
+  },
+  {
+    slug: "weight-loss-calculator",
+    name: "Weight loss calculator",
+    title: "Dog & Cat Weight Loss Calculator: Calories & Timeline",
+    h1: "Dog and cat weight loss calculator",
+    description: "Get a daily calorie target for your dog's or cat's weight loss, how much to feed, and how many weeks it should take at a safe pace. Based on AAHA guidelines.",
+    answer: "Feed for the target weight, not the current one: about 1.0 × RER at the target weight for dogs and 0.8 × RER for cats. A safe pace is 1 to 2% of body weight a week for dogs and 0.5 to 1% for cats, so losing 5 kg from a 30 kg dog takes roughly 10 to 19 weeks.",
+    category: "Health",
+    emoji: "📉",
+    howItWorks: [
+      "The calculator works out the resting energy requirement (RER = 70 × weight in kg^0.75) at your pet's target weight and applies the AAHA 2021 weight-loss factor: 1.0 for dogs and 0.8 for cats.",
+      "It then estimates how long the loss will take at 1 to 2% of body weight per week for dogs and 0.5 to 1% for cats, within the 0.5 to 2% per week range used in veterinary weight-loss plans. Cats are kept to the slower end because rapid weight loss can cause a serious liver disease.",
+      "Plans need adjusting as you go: weigh every 2 weeks and, with your vet, cut by about 10% if your pet stops losing.",
+    ],
+    sources: [AAHA_NUTRITION, { label: "Veterinary Practice News: Designing weight-loss plans for cats and dogs", url: "https://veterinarypracticenews.com/obesity-august-2019/2" }],
+    faqs: [
+      { q: "How fast should my dog lose weight?", a: "About 1 to 2% of body weight a week. For a 30 kg dog that's 300 to 600 g a week. Faster loss risks losing muscle and is hard to keep up." },
+      { q: "How many calories should an overweight dog eat?", a: "Roughly 1.0 × RER at the target weight. For a dog aiming for 25 kg, that's about 780 kcal a day, including treats." },
+      { q: "Why can't cats lose weight quickly?", a: "When cats eat too little, they can develop hepatic lipidosis (fatty liver), which can be fatal. Keep weight loss slow and supervised by your vet." },
+    ],
+    related: ["pet-bmi", "calorie-calculator", "feeding-calculator", "exercise-calculator"],
+    medical: true,
+  },
+  {
+    slug: "food-transition-calculator",
+    name: "Food switch schedule",
+    title: "How to Switch Dog Food: 7-Day Transition Calculator",
+    h1: "How to switch your dog's or cat's food: transition schedule",
+    description: "Get a day-by-day plan for switching your dog or cat to a new food, with exact amounts of old and new food each day. Choose 7, 10 or 14 days.",
+    answer: "Switch over about 7 days: roughly 25% new food on days 1 and 2, 50% on days 3 and 4, 75% on days 5 and 6, and all new food on day 7. Pets with sensitive stomachs do better over 10 to 14 days.",
+    category: "Food and water",
+    emoji: "🔄",
+    howItWorks: [
+      "Enter how much your pet eats a day and choose a 7, 10 or 14-day plan. The calculator splits that daily amount between old and new food for each day, following the common 25/50/75% steps that pet food makers and vets recommend, or smaller steps for the slower plans.",
+      "Keep the total the same during the switch, unless the new food has a different calorie content, in which case adjust the final amount with our feeding calculator.",
+    ],
+    sources: [{ label: "Purina: 7-day transition guide", url: "https://www.purina.co.nz/articles/dogs/feeding/guides/7-day-transition-guide" }],
+    faqs: [
+      { q: "Can I switch dog food without mixing?", a: "It's better not to. A sudden change often causes vomiting or diarrhoea. If you have to (for example, after a recall), feed small, frequent meals and watch the stools." },
+      { q: "How long does it take a dog to adjust to new food?", a: "Most dogs adjust within the 7 to 10 days of a gradual switch. Some take a few weeks for their stools to settle completely." },
+      { q: "What if my dog gets diarrhoea when switching food?", a: "Go back to the previous day's mix for 2 to 3 days, then continue more slowly. Call your vet if it lasts more than a day or two, or if there's blood, vomiting or lethargy." },
+    ],
+    related: ["feeding-calculator", "calorie-calculator", "raw-food-calculator", "toxic-food"],
+    guides: [{ href: "/resources/how-to-switch-dog-food-safely", label: "How to switch dog food safely" }],
+  },
+  {
+    slug: "raw-food-calculator",
+    name: "Raw food calculator",
+    title: "Raw Dog Food Calculator: How Much Raw to Feed",
+    h1: "Raw dog food calculator",
+    description: "How much raw food to feed your dog or puppy a day, split into muscle meat, bone, liver and other organ. With the safety caveats vets want you to know.",
+    answer: "Adult dogs on raw food usually eat 2 to 3% of their ideal body weight a day, so about 500 g for a 20 kg dog. Puppies need much more, about 8% of their current weight up to 4 months, falling to adult levels by around 12 months.",
+    category: "Food and water",
+    emoji: "🥩",
+    howItWorks: [
+      "The calculator uses the common raw-feeding guide of 2 to 3% of body weight a day for adults (2.5% to maintain, 2% to lose weight, 3% for very active dogs) and, for puppies, about 8% up to 4 months tapering to 2.5% at 12 months.",
+      "It splits the total into a typical prey-model ratio: 80% muscle meat, 10% raw edible bone, 5% liver and 5% other secreting organ.",
+      "Raw feeding is controversial. The American Veterinary Medical Association discourages raw diets because of the risk of bacteria such as Salmonella to pets and people, and home-made diets are often unbalanced. If you feed raw, use a complete commercial food or a recipe from a veterinary nutritionist.",
+    ],
+    sources: [{ label: "AVMA policy: Raw or undercooked animal-source protein in cat and dog diets", url: "https://www.avma.org/policies/raw-or-undercooked-animal-source-protein-cat-and-dog-diets" }, { label: "Omni Calculator: Raw dog food (portion percentages from EPOCH)", url: "https://www.omnicalculator.com/biology/raw-dog-food" }],
+    faqs: [
+      { q: "How much raw food should I feed my dog?", a: "About 2 to 3% of ideal body weight a day for adults: 200 to 300 g for a 10 kg dog, 400 to 600 g for 20 kg and 600 to 900 g for 30 kg. Adjust by body condition." },
+      { q: "Is raw food safe for dogs?", a: "It carries real risks: bacteria such as Salmonella and Listeria, which can also infect people in the home, and nutritional gaps in home-made diets. Many vets advise against it, especially in homes with young children, older people or anyone with a weak immune system." },
+      { q: "What is the 80/10/10 rule?", a: "A common raw-feeding ratio: 80% muscle meat, 10% raw edible bone and 10% organ, half of it liver. It isn't automatically complete and balanced without other ingredients." },
+    ],
+    related: ["feeding-calculator", "food-transition-calculator", "calorie-calculator", "pet-bmi"],
+  },
+  {
+    slug: "cost-of-owning-a-pet",
+    name: "Cost of owning a pet",
+    title: "Cost of Owning a Dog or Cat: Yearly Cost Calculator",
+    h1: "How much does a dog or cat cost a year?",
+    description: "Add up the yearly and first-year cost of a dog or cat, by life stage: food, vet care, flea prevention, insurance, grooming and more. Based on Rover's 2026 US survey.",
+    answer: "An adult dog costs about $1,930 to $5,305 a year in the US, and a cat about $850 to $4,400, according to Rover's 2026 survey. The first year costs more: getting a dog adds $1,195 to $4,650 in one-off costs, and a cat $705 to $2,960.",
+    category: "Costs",
+    emoji: "💵",
+    howItWorks: [
+      "The calculator adds up Rover's May 2026 survey ranges for each cost category for your pet's life stage. Untick anything you won't pay for, such as insurance or professional grooming.",
+      "Choose 'first year' to add the one-off costs of getting a pet: adoption or breeder fees, spay or neuter, microchip, first vaccines and starter supplies.",
+      "The ranges are wide because food choice, pet size and where you live change costs a lot. Emergencies aren't included and can cost hundreds or thousands of dollars, so plan for them.",
+    ],
+    sources: [{ label: "Rover: The cost of dog parenthood (2026)", url: "https://www.rover.com/blog/cost-of-dog-parenthood/" }, { label: "Rover: The cost of cat parenthood (2026)", url: "https://www.rover.com/blog/cost-of-cat-parenthood/" }],
+    faqs: [
+      { q: "How much does a dog cost per month?", a: "About $145 to $505 a month for a medium-sized adult dog in the US, according to Rover's 2026 survey, before emergencies." },
+      { q: "Is a cat cheaper than a dog?", a: "Usually, yes: a cat's yearly costs are typically lower, mainly because of food, training and grooming, though vet costs for older cats can be high." },
+      { q: "What is the biggest cost of owning a dog?", a: "Food, followed by insurance or vet care. Food alone can range from under $800 to over $2,600 a year depending on size and brand." },
+    ],
+    related: ["insurance-cost", "pet-sitter-cost", "best-dog-quiz", "best-cat-quiz"],
+  },
+  {
+    slug: "hot-pavement-checker",
+    name: "Hot pavement checker",
+    title: "Is It Too Hot to Walk My Dog? Pavement Temperature",
+    h1: "Is it too hot to walk my dog?",
+    description: "Estimate how hot the pavement is from the air temperature and sun, whether it can burn your dog's paws, and the heatstroke risk on a walk. Free checker.",
+    answer: "On a sunny day asphalt gets far hotter than the air: at 25 °C (77 °F) it can reach about 52 °C (125 °F), hot enough to burn paw pads in about a minute. If you can't hold the back of your hand on the ground for 7 seconds, it's too hot for your dog.",
+    category: "Everyday",
+    emoji: "🌡️",
+    howItWorks: [
+      "The checker estimates the surface temperature from typical readings of asphalt in full sun: about 52 °C (125 °F) at an air temperature of 25 °C (77 °F), 62 °C (143 °F) at 31 °C (87 °F) and 72 °C (161 °F) at 36 °C (97 °F). Concrete, sand, grass, cloud and shade are scaled down from that; those adjustments are our estimates.",
+      "Paw burns become a serious risk from about 52 °C (125 °F) surface temperature.",
+      "The heatstroke guide uses lower air temperatures for flat-faced, overweight, older or thick-coated dogs, which overheat more easily. It's a rule of thumb, so watch your dog rather than the number.",
+    ],
+    sources: [{ label: "Chewy: How hot is pavement for dogs?", url: "https://www.chewy.com/education/dog/general/how-hot-is-pavement-for-dogs" }],
+    faqs: [
+      { q: "What temperature is too hot to walk a dog?", a: "On a sunny day, pavement can burn paws when the air is around 25 °C (77 °F) or more. For heatstroke, many dogs struggle above about 30 °C (86 °F), and flat-faced, overweight and older dogs at lower temperatures." },
+      { q: "How can I tell if the pavement is too hot?", a: "Use the 7-second test: press the back of your hand flat on the ground. If you can't hold it there for 7 seconds, it's too hot for paws." },
+      { q: "What are the signs of burnt paw pads?", a: "Limping, licking or chewing the feet, darker or red pads, blisters or missing skin. Cool the paws with cool water and see your vet." },
+    ],
+    related: ["exercise-calculator", "water-calculator", "first-aid-quiz", "symptom-checker"],
+  },
+  {
+    slug: "kitten-age-calculator",
+    name: "Kitten age calculator",
+    title: "How Old Is My Kitten? Kitten Age Calculator",
+    h1: "How old is my kitten?",
+    description: "Estimate a kitten's age in weeks from its weight, eyes, movement and eating. Useful for found and rescued kittens. Based on Alley Cat Allies' age guide.",
+    answer: "A newborn kitten weighs about 85 to 225 g with closed eyes; eyes open at 1 to 2 weeks, first wobbly steps come at about 3 weeks, adult eye colour and solid food at 4 to 5 weeks, and at 8 weeks a kitten weighs about 900 g (2 lb).",
+    category: "Puppies, kittens and breeding",
+    emoji: "🐱",
+    howItWorks: [
+      "Each answer (eyes, movement, eating and, if you have it, weight) matches a range of ages from the Alley Cat Allies kitten development guide. The calculator shows where those ranges overlap.",
+      "Weight is the most precise guide in the first 8 weeks. After that, kittens gain roughly 450 g (1 lb) a month until about 5 months.",
+      "Very young kittens need urgent care: if your kitten is under 4 weeks old, contact a vet or rescue today.",
+    ],
+    sources: [{ label: "Alley Cat Allies: How to determine a kitten's age", url: "https://www.alleycat.org/community-cat-care/kitten-age/" }],
+    faqs: [
+      { q: "How can I tell how old a kitten is?", a: "Check weight, whether the eyes are open and what colour they are, whether the ears are upright, how well the kitten walks and whether it eats solid food. Together they give a good estimate up to about 8 weeks." },
+      { q: "What should I do if I find a kitten?", a: "Watch from a distance for a few hours if the kitten seems healthy, as the mother is often nearby. If it's cold, injured or alone for a long time, keep it warm and call a vet or local rescue. Never give cow's milk." },
+      { q: "When can kittens leave their mother?", a: "Not before 8 weeks, and ideally 10 to 12 weeks, when they're weaned and have learned from their mother and littermates." },
+    ],
+    related: ["age-calculator", "vaccine-tracker", "best-cat-quiz", "name-generator"],
+  },
+  {
+    slug: "crate-collar-harness-size",
+    name: "Crate, collar and harness size",
+    title: "Dog Crate Size Calculator (Plus Collar & Harness Size)",
+    h1: "What size crate, collar and harness does my dog need?",
+    description: "Measure your dog once to find the right crate size, collar length and harness size. Free calculator with how-to-measure instructions, in inches or cm.",
+    answer: "Measure your dog standing: nose to tail tip and floor to top of head, then add 3 to 4 inches (8 to 10 cm) to each for the crate. For a collar, measure the neck and allow room to fit two fingers underneath; for a harness, measure the widest part of the chest just behind the front legs.",
+    category: "Everyday",
+    emoji: "📏",
+    howItWorks: [
+      "Following the American Kennel Club's advice, the calculator adds 4 inches to your dog's length and height and picks the smallest standard crate length (18 to 54 inches) that fits.",
+      "For collars it gives a range around your dog's neck measurement so you can choose an adjustable collar that fits with two fingers' room. For harnesses, it gives the chest measurement to match against the brand's size chart.",
+      "Brands size differently, so always check the maker's own chart before you buy.",
+    ],
+    sources: [{ label: "AKC: How to choose the best crate for your dog", url: "https://www.akc.org/expert-advice/lifestyle/choose-best-crate-dog/" }, { label: "AKC: How to measure your dog for gear", url: "https://www.akc.org/expert-advice/lifestyle/measure-dog-gear/" }],
+    faqs: [
+      { q: "How big should a dog crate be?", a: "Big enough for your dog to stand without ducking, turn around and lie stretched out: about 3 to 4 inches longer and taller than your dog. Too big a crate can slow house training for puppies." },
+      { q: "What size crate for a puppy?", a: "Buy the crate for your puppy's expected adult size and use a divider to make the space smaller while they're young. Our puppy weight calculator can estimate adult size." },
+      { q: "How tight should a dog collar be?", a: "You should be able to slide two fingers flat between the collar and your dog's neck, and it shouldn't slip over their head." },
+    ],
+    related: ["puppy-weight", "packing-checklist", "breed-compare", "exercise-calculator"],
+  },
+);
+
 export const findTool = (slug: string) => TOOLS.find((t) => t.slug === slug);
 
-export const TOOL_CATEGORIES: ToolDoc["category"][] = ["Health", "Food and water", "Puppies and breeding", "Costs", "Breeds", "Everyday"];
+export const TOOL_CATEGORIES: ToolDoc["category"][] = ["Health", "Food and water", "Puppies, kittens and breeding", "Costs", "Breeds", "Everyday"];

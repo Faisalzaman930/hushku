@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const CATEGORY_INTRO: Record<string, string> = {
   Health: "Check symptoms, weight, vaccines and what's safe to eat.",
   "Food and water": "How much to feed, how many calories and how much water.",
-  "Puppies and breeding": "Growth, heat cycles and pregnancy dates.",
+  "Puppies, kittens and breeding": "Growth, kitten age, heat cycles and pregnancy dates.",
   Costs: "What insurance and pet sitters really cost.",
   Breeds: "Find and compare breeds that suit your life.",
   Everyday: "Exercise, age, travel and the fun stuff.",

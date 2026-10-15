@@ -1,4 +1,5 @@
 import { symptomArticles2 } from "./symptom-articles-2";
+import { symptomArticles3 } from "./symptom-articles-3";
 export type UrgencyLevel = "emergency" | "urgent" | "monitor" | "routine";
 
 export interface SymptomCause {
@@ -38,7 +39,7 @@ export const symptomArticles: SymptomArticle[] = [
   {
     slug: "why-is-my-dog-not-eating",
     title: "Why Is My Dog Not Eating? 9 Causes and What to Do",
-    seoTitle: "Why Is My Dog Not Eating? Causes and When to Call a Vet",
+    seoTitle: "Dog Not Eating? 9 Causes and When to Call a Vet",
     shortTitle: "Dog Not Eating",
     seoDescription: "Your dog won't eat? Discover 9 common causes of appetite loss in dogs — from stress to serious illness — plus clear guidance on when to wait, when to call your vet, and what to try at home.",
     category: "Symptom Guide",
@@ -154,7 +155,7 @@ This guide covers the nine most common causes of appetite loss in dogs, the warn
   {
     slug: "why-is-my-dog-limping",
     title: "Why Is My Dog Limping? Causes, Severity Guide & When to See a Vet",
-    seoTitle: "Why Is My Dog Limping? Complete Cause & Treatment Guide 2026",
+    seoTitle: "Dog Limping: Causes, Treatment and When to See a Vet",
     shortTitle: "Dog Limping",
     seoDescription: "Dog limping explained: causes from paw injuries to joint disease, how to assess severity at home, and clear guidance on when limping requires emergency vet care versus monitoring.",
     category: "Symptom Guide",
@@ -265,7 +266,7 @@ This guide walks you through the at-home assessment, the most common causes of l
   {
     slug: "why-does-my-dog-keep-licking-paws",
     title: "Why Does My Dog Keep Licking His Paws? Causes and Treatments",
-    seoTitle: "Why Does My Dog Keep Licking Paws? All Causes Explained 2026",
+    seoTitle: "Why Does My Dog Lick His Paws? Causes and Treatment",
     shortTitle: "Dog Licking Paws",
     seoDescription: "Chronic paw licking in dogs is almost always driven by allergies, pain, or anxiety — not habit. Learn the causes, how to examine the paws yourself, and the treatment options that actually work.",
     category: "Symptom Guide",
@@ -366,7 +367,7 @@ Understanding whether you're looking at an allergy problem, a local injury or in
   {
     slug: "dog-breathing-fast-at-rest",
     title: "My Dog Is Breathing Fast at Rest: When It's Normal and When It's Not",
-    seoTitle: "Dog Breathing Fast at Rest: Causes & Emergency Signs 2026",
+    seoTitle: "Dog Breathing Fast at Rest: Causes and When to Worry",
     shortTitle: "Dog Breathing Fast",
     seoDescription: "A dog breathing fast at rest can signal heart disease, pain, anxiety, or respiratory distress. Learn the normal respiratory rate, how to count it, and exactly when rapid breathing is an emergency.",
     category: "Symptom Guide",
@@ -469,4 +470,4 @@ This guide teaches you how to measure the respiratory rate accurately, explains 
 ];
 
 // Added in the October 2026 review.
-symptomArticles.push(...symptomArticles2);
+symptomArticles.push(...symptomArticles2, ...symptomArticles3);

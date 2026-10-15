@@ -15,7 +15,7 @@ const TYPES = [
 
 const BANDS = [
   { at: 0, label: "Unlikely to cause signs" },
-  { at: 20, label: "Mild signs: vomiting, diarrhoea, thirst" },
+  { at: 20, label: "Mild signs: vomiting, diarrhea, thirst" },
   { at: 40, label: "Heart effects: racing heart, restlessness" },
   { at: 60, label: "Severe: tremors and seizures possible" },
 ];

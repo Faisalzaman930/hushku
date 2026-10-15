@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guidePetFirstAid: Guide = {
   slug: "pet-first-aid-complete-guide",
   title: "Pet First Aid: The Complete Emergency Guide for Dog and Cat Owners",
-  seoTitle: "Pet First Aid Complete Guide 2026 | Dog & Cat Emergency Care",
+  seoTitle: "Pet First Aid Guide: Dog and Cat Emergencies",
   shortTitle: "Pet First Aid Guide",
   seoDescription: "Learn pet first aid: build a kit, master DRSABC, treat bleeding, choking, heatstroke, seizures & poisoning. Be ready for any pet emergency.",
   category: "Expert Guides",
@@ -129,7 +129,7 @@ Bookmark this page, share it with every member of your household, and consider t
   <li>Drooling excessively or producing thick, ropy saliva</li>
   <li>Bright red, dark red, or pale gums</li>
   <li>Rapid heart rate</li>
-  <li>Vomiting or diarrhoea (may contain blood)</li>
+  <li>Vomiting or diarrhea (may contain blood)</li>
   <li>Staggering, muscle tremors, or collapse</li>
   <li>Glazed, unfocused eyes</li>
   <li>Loss of consciousness or seizures in severe cases</li>
@@ -235,7 +235,7 @@ Bookmark this page, share it with every member of your household, and consider t
 <ul class="list-disc pl-6 mb-8 space-y-3">
   <li>Sudden onset of facial swelling, particularly around the muzzle, eyes, or throat</li>
   <li>Hives or widespread skin redness</li>
-  <li>Vomiting and/or diarrhoea</li>
+  <li>Vomiting and/or diarrhea</li>
   <li>Pale or white gums</li>
   <li>Collapse or profound weakness</li>
   <li>Difficulty breathing or wheezing</li>

@@ -53,7 +53,7 @@ export const breedArticles: BreedArticle[] = [
   {
     slug: "french-bulldog-complete-guide",
     title: "French Bulldog Owner's Guide: Temperament, Health, and What Nobody Tells You",
-    seoTitle: "French Bulldog Owner Guide 2026: Health, Care & Temperament",
+    seoTitle: "French Bulldog Guide: Health Problems, Care, Temperament",
     shortTitle: "French Bulldog Guide",
     breedName: "French Bulldog",
     seoDescription: "The complete French Bulldog owner guide: BOAS breathing issues, spinal problems, cost of ownership, personality traits, exercise needs, and heat safety for this popular but high-maintenance breed.",
@@ -181,7 +181,7 @@ Early socialization is important — Frenchies who are well-socialized as puppie
   {
     slug: "golden-retriever-complete-guide",
     title: "Golden Retriever Owner's Guide: The Breed Everyone Loves and What to Actually Expect",
-    seoTitle: "Golden Retriever Guide 2026: Care, Health & What to Expect",
+    seoTitle: "Golden Retriever Guide: Temperament, Health and Care",
     shortTitle: "Golden Retriever Guide",
     breedName: "Golden Retriever",
     seoDescription: "Complete Golden Retriever owner guide: cancer risk (about 60% of Goldens die of cancer), hip and elbow dysplasia, coat care, exercise needs, and everything about their famously gentle temperament.",
@@ -285,7 +285,7 @@ The reasons for this elevated rate are not fully understood. Genetic factors are
   {
     slug: "labrador-retriever-complete-guide",
     title: "Labrador Retriever Owner's Guide: America's Most Popular Dog, Fully Explained",
-    seoTitle: "Labrador Retriever Guide 2026: Care, Health & Temperament",
+    seoTitle: "Labrador Retriever Guide: Temperament, Health and Care",
     shortTitle: "Labrador Guide",
     breedName: "Labrador Retriever",
     seoDescription: "Complete Labrador Retriever owner guide: the obsessive food drive explained, hip and elbow dysplasia, exercise needs by age, coat types, color differences, and why Labs are the top assistance dog breed.",
@@ -378,7 +378,7 @@ This has two major implications:
   {
     slug: "german-shepherd-complete-guide",
     title: "German Shepherd Owner's Guide: Intelligence, Loyalty, and What the Breed Demands",
-    seoTitle: "German Shepherd Guide 2026: Full Owner Guide & Health Info",
+    seoTitle: "German Shepherd Guide: Temperament, Training and Health",
     shortTitle: "German Shepherd Guide",
     breedName: "German Shepherd",
     seoDescription: "Complete German Shepherd owner guide: understanding their working dog drives, degenerative myelopathy and hip dysplasia risks, high exercise and mental stimulation needs, and why they're not beginner dogs.",
@@ -472,7 +472,7 @@ The disease is caused by a mutation in the SOD1 gene. Genetic testing can determ
   {
     slug: "beagle-complete-guide",
     title: "Beagle Owner's Guide: The Nose That Rules the Dog",
-    seoTitle: "Beagle Owner Guide 2026: Temperament, Training & Health",
+    seoTitle: "Beagle Guide: Temperament, Training and Health",
     shortTitle: "Beagle Guide",
     breedName: "Beagle",
     seoDescription: "Complete Beagle owner guide: why their nose overrides their brain, escape artistry, vocal tendencies, epilepsy risk, and training strategies that actually work with scent hound mentality.",

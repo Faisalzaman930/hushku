@@ -719,73 +719,73 @@ const generateExpandedCompetitors = (topicName: string, slug: string): Competito
 const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescription: string; shortTitle: string }> = {
   "best-family-pet-care-apps": {
     title: "Best Family Pet Care Apps for Sharing Care at Home",
-    seoTitle: "Best Family Pet Care Apps for Shared Homes (2026)",
+    seoTitle: "Best Family Pet Care Apps 2026: Share Pet Care at Home",
     shortTitle: "Family Pet Care Apps",
     seoDescription: "The best apps for sharing pet care with your family, roommates and sitter, compared on shared reminders, care logs and health records. Pricing checked October 2026.",
   },
   "best-dog-walking-apps": {
     title: "Best Dog Walking Apps of 2026: Rover, Wag and Alternatives Compared",
-    seoTitle: "Best Dog Walking Apps 2026: Rover, Wag & More Compared",
+    seoTitle: "Best Dog Walking Apps 2026: Rover vs Wag and More",
     shortTitle: "Dog Walking Platforms",
     seoDescription: "Rover and Wag compared on walker vetting, walk tracking, pricing and what happens when a walk is cancelled, plus what to check before you book."
   },
   "best-pet-social-media-apps": {
     title: "The Best Pet Social Media Apps in 2026 (That Actually Show Your Content)",
-    seoTitle: "Best Pet Social Media Apps 2026: Beyond Instagram's Algorithm",
+    seoTitle: "Best Pet Social Media Apps 2026: Dog & Cat Networks",
     shortTitle: "Pet Social Media",
     seoDescription: "Instagram organic reach for pet accounts has collapsed. We compare dedicated pet social apps and where pet communities are still active in 2026."
   },
   "best-pet-dating-playdate-apps": {
     title: "Best Dog Playdate Apps in 2026: Safer Alternatives to the Dog Park",
-    seoTitle: "Best Dog Playdate Apps 2026: Verified, Safe Socialization",
+    seoTitle: "Best Dog Playdate Apps 2026: Find Dog Friends Nearby",
     shortTitle: "Playdate Finders",
     seoDescription: "Dog parks are unpredictable. We compare playdate apps and groups for finding vaccinated, well-matched playmates for controlled socialization."
   },
   "best-pet-sitting-apps": {
     title: "Best Pet Sitting Apps of 2026: Trust, Insurance, and Background Check Rankings",
-    seoTitle: "Best Pet Sitting Apps 2026: Trust & Safety Ranked",
+    seoTitle: "Best Pet Sitting Apps 2026: Trust and Safety Compared",
     shortTitle: "Pet Sitters",
     seoDescription: "Someone needs your house keys and your pet's trust. We compare Rover, Care.com and others on background checks, insurance cover and what happens if a sitter cancels."
   },
   "best-pet-health-parenting-apps": {
     title: "Best Pet Health Tracking Apps of 2026: Vaccination Records, Logs & Vet Integration",
-    seoTitle: "Best Pet Health Tracking Apps 2026: Vet-Ready Records",
+    seoTitle: "Best Pet Health Tracking Apps 2026: Records & Reminders",
     shortTitle: "Health Trackers",
     seoDescription: "Stop losing your pet's vaccination records. We ranked the best health tracking apps for managing vet records, vaccine schedules, and medication logs in 2026."
   },
   "best-virtual-vet-telehealth-apps": {
     title: "Best Telehealth Vet Apps of 2026: Who You Can Reach at 2 AM",
-    seoTitle: "Best Virtual Vet Apps 2026: Pawp, Vetster & More Compared",
+    seoTitle: "Best Virtual Vet Apps 2026: Online Vet Chat Compared",
     shortTitle: "24/7 Telehealth",
     seoDescription: "Pawp and Vetster compared on availability, who you actually speak to, emergency cover and whether they can prescribe medication."
   },
   "best-pet-adoption-rescue-apps": {
     title: "Best Pet Adoption Apps of 2026: Which Platforms Actually Get Applications Reviewed",
-    seoTitle: "Best Pet Adoption Apps 2026: Beyond Petfinder's PDF Forms",
+    seoTitle: "Best Pet Adoption Apps 2026: Find Dogs and Cats to Adopt",
     shortTitle: "Rescue Apps",
     seoDescription: "How the main pet adoption apps handle applications, why so many go unanswered, and which platforms are modernizing the rescue process."
   },
   "best-pet-fostering-network-apps": {
     title: "Best Apps for Pet Fostering in 2026: Solving the Logistics That Burn Fosters Out",
-    seoTitle: "Best Pet Fostering Apps 2026: Logistics & Communication Tools",
+    seoTitle: "Best Pet Foster Apps 2026: Tools for Foster Parents",
     shortTitle: "Fostering Tech",
     seoDescription: "Most fosters quit due to poor organizational communication, not lack of willingness. We review the apps actually solving medication schedules, records, and supply coordination."
   },
   "best-gps-pet-tracking-apps": {
     title: "Best GPS Pet Tracker Apps of 2026: Refresh Rate, Coverage and True Cost",
-    seoTitle: "Best GPS Pet Tracking Apps 2026: Fi vs Tractive Compared",
+    seoTitle: "Best GPS Dog Tracker Apps 2026: Fi vs Tractive & More",
     shortTitle: "GPS Collars",
     seoDescription: "The GPS tracker detail most reviews skip is refresh rate. Fi and Tractive compared on live tracking, battery life, coverage and three-year cost."
   },
   "best-lost-pet-recovery-apps": {
     title: "Best Lost Pet Apps of 2026: Alert Speed and Shelter Integration Compared",
-    seoTitle: "Best Lost Pet Recovery Apps 2026: Alert Speed Ranked",
+    seoTitle: "Best Lost Pet Apps 2026: Find a Lost Dog or Cat Faster",
     shortTitle: "Lost & Found",
     seoDescription: "The first two hours are critical. We compare how the leading recovery apps spread alerts, connect to shelters and mobilise local help."
   },
   "best-dog-training-apps": {
     title: "Best Dog Training Apps of 2026: AI Feedback vs. Live Trainers vs. Curriculum Apps",
-    seoTitle: "Best Dog Training Apps 2026: AI, Live, and Self-Guided Compared",
+    seoTitle: "Best Dog Training Apps 2026: Self-Guided vs Live Trainers",
     shortTitle: "Digital Trainers",
     seoDescription: "Puppr, Dogo, and AI video analysis compared head-to-head. We compare which training approaches change behaviour and which only get short-term compliance."
   },
@@ -797,55 +797,55 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
   },
   "best-pet-diet-nutrition-apps": {
     title: "Best Pet Diet Apps of 2026: Calorie Tracking, Food Databases, and Vet Nutrition Tools",
-    seoTitle: "Best Pet Diet & Nutrition Apps 2026: Food Databases Compared",
+    seoTitle: "Best Pet Nutrition Apps 2026: Calorie and Food Trackers",
     shortTitle: "Calorie Counters",
     seoDescription: "60% of US pets are overweight. We compare pet nutrition apps on food databases, calorie calculations and veterinary nutritionist involvement."
   },
   "best-pet-first-aid-apps": {
     title: "Best Pet First Aid Apps of 2026: Offline Capability and Emergency Accuracy Ranked",
-    seoTitle: "Best Pet First Aid Apps 2026: Offline Emergency Tools Ranked",
+    seoTitle: "Best Pet First Aid Apps 2026: Offline Emergency Help",
     shortTitle: "First Aid & CPR",
     seoDescription: "In an emergency you need an app that works without internet. We ranked pet first aid apps on offline functionality, poison database accuracy, and vet review dates."
   },
   "best-pet-insurance-estimators": {
     title: "Best Pet Insurance Comparison Apps of 2026: Beyond the Premium Quote",
-    seoTitle: "Best Pet Insurance Comparison Apps 2026: True Cost Revealed",
+    seoTitle: "Best Pet Insurance Comparison Apps 2026",
     shortTitle: "Insurance Quotes",
     seoDescription: "Most pet insurance apps are lead-generation in disguise. We evaluated which comparison tools actually show deductibles, reimbursement percentages, and pre-existing condition terms."
   },
   "best-pet-photography-apps": {
     title: "Best Pet Photography Apps of 2026: AI Tracking, Burst Mode, and Fur-Ready Editing",
-    seoTitle: "Best Pet Photography Apps 2026: Sharp Dog Photos",
+    seoTitle: "Best Pet Photography Apps 2026: Sharp Dog & Cat Photos",
     shortTitle: "Action Cameras",
     seoDescription: "Getting sharp dog photos requires AI subject tracking, fast burst mode, and attention-grabbing tools. We compare the apps that solve each challenge of pet photography."
   },
   "best-pet-travel-hotel-finder-apps": {
     title: "Best Pet Travel Apps of 2026: Finding Hotels That Actually Accept Your Dog",
-    seoTitle: "Best Pet Travel Apps 2026: Real Pet-Friendly Hotel Finders",
+    seoTitle: "Best Pet Travel Apps 2026: Find Pet-Friendly Hotels",
     shortTitle: "Travel Planning",
     seoDescription: "'Pet-friendly' is the most abused hotel marketing term. We compare travel apps on how current their pet policies are, fee transparency and weight-limit filters for large dogs."
   },
   "best-pet-ecommerce-shopping-apps": {
     title: "Best Pet Food Delivery Apps of 2026: Chewy Alternatives and Prescription Diet Handling",
-    seoTitle: "Best Pet Food Delivery Apps 2026: Chewy vs. Alternatives",
+    seoTitle: "Best Pet Food Delivery Apps 2026: Chewy Alternatives",
     shortTitle: "Local E-commerce",
     seoDescription: "Chewy dominates, but it isn't always the best option. We evaluated prescription diet workflows, auto-ship flexibility, and local store alternatives in the pet ecommerce market."
   },
   "best-dog-park-finder-apps": {
     title: "Best Dog Park Finder Apps of 2026: Real-Time Crowd Data and Safety Reporting",
-    seoTitle: "Best Dog Park Finder Apps 2026: Live Data and Safety Ranked",
+    seoTitle: "Best Dog Park Finder Apps 2026: Find Parks Near You",
     shortTitle: "Park Radars",
     seoDescription: "Static park directories are useless. We compare dog park apps on live crowd data, incident reports and amenity accuracy, the features that matter for safe visits."
   },
   "best-pet-care-apps": {
     title: "Best Pet Care Apps of 2026: Health Records, Reminders and Shared Care Compared",
-    seoTitle: "Best Pet Care Apps 2026: Health, Wellness & Community Ranked",
+    seoTitle: "Best Pet Care Apps 2026: Health, Reminders & Sharing",
     shortTitle: "Pet Care Platforms",
     seoDescription: "The leading pet care apps compared on health records, reminders, shared care and emergency preparedness, and what each one leaves out."
   },
   "best-all-in-one-pet-super-apps": {
     title: "Best All-in-One Pet Apps of 2026: Does Consolidation Actually Work?",
-    seoTitle: "Best Pet Super Apps 2026: Consolidation vs. Specialists",
+    seoTitle: "Best All-in-One Pet Apps 2026: Do Super Apps Work?",
     shortTitle: "Ecosystem Review",
     seoDescription: "The average pet owner has 7+ separate pet apps. We look at whether all-in-one pet apps can really replace specialist ones."
   }

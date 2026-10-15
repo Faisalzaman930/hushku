@@ -94,7 +94,7 @@ export const symptomData: SymptomRecord[] = [
     }
   },
   {
-    name: "Diarrhoea (bloody)",
+    name: "Diarrhea (bloody)",
     icon: "🔴",
     category: "Gastrointestinal",
     urgency: "emergency",

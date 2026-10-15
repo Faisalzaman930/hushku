@@ -1,4 +1,4 @@
-import { metaDesc, shortTitle } from "../../lib/seo";
+import { metaDesc, searchTitle, shortTitle } from "../../lib/seo";
 import { articles } from "../../data/articles";
 import { guides } from "../../data/guides";
 import { howToArticles } from "../../data/howto";
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = articles.find((a) => a.slug === slug);
   if (article) {
     return {
-      title: shortTitle(article.seoTitle || article.title, 60),
+      title: searchTitle(article.seoTitle || article.title),
       description: metaDesc(article.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const guide = guides.find((g) => g.slug === slug);
   if (guide) {
     return {
-      title: shortTitle(guide.seoTitle || guide.title, 60),
+      title: searchTitle(guide.seoTitle || guide.title),
       description: metaDesc(guide.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const howTo = howToArticles.find((a) => a.slug === slug);
   if (howTo) {
     return {
-      title: shortTitle(howTo.seoTitle || howTo.title, 60),
+      title: searchTitle(howTo.seoTitle || howTo.title),
       description: metaDesc(howTo.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const symptom = symptomArticles.find((a) => a.slug === slug);
   if (symptom) {
     return {
-      title: shortTitle(symptom.seoTitle || symptom.title, 60),
+      title: searchTitle(symptom.seoTitle || symptom.title),
       description: metaDesc(symptom.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const breed = breedArticles.find((a) => a.slug === slug);
   if (breed) {
     return {
-      title: shortTitle(breed.seoTitle || breed.title, 60),
+      title: searchTitle(breed.seoTitle || breed.title),
       description: metaDesc(breed.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -135,7 +135,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const definition = definitionArticles.find((a) => a.slug === slug);
   if (definition) {
     return {
-      title: shortTitle(definition.seoTitle || definition.title, 60),
+      title: searchTitle(definition.seoTitle || definition.title),
       description: metaDesc(definition.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {
@@ -154,7 +154,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const pillar = pillarPages.find((p) => p.slug === slug);
   if (pillar) {
     return {
-      title: shortTitle(pillar.seoTitle || pillar.title, 60),
+      title: searchTitle(pillar.seoTitle || pillar.title),
       description: metaDesc(pillar.seoDescription),
       alternates: { canonical: canonicalUrl },
       openGraph: {

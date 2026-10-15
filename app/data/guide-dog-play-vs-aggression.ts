@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideDogPlayVsAggression: Guide = {
   slug: "is-my-dog-playing-or-being-aggressive",
   title: "Is My Dog Playing or Being Aggressive? How to Read Dog Body Language Accurately",
-  seoTitle: "Dog Play vs Aggression: How to Tell the Difference (2026 Guide)",
+  seoTitle: "Is My Dog Playing or Being Aggressive? How to Tell",
   shortTitle: "Dog Play vs Aggression",
   seoDescription:
     "Learn how to tell if dogs are playing or fighting — the 12 key body language signals, play signals, escalation warning signs, and when to intervene. Vet and behaviourist backed.",

@@ -1,4 +1,5 @@
 import { howToArticles2 } from "./howto-2";
+import { howToArticles3 } from "./howto-3";
 export interface HowToSupply {
   item: string;
   note: string;
@@ -45,7 +46,7 @@ export const howToArticles: HowToArticle[] = [
   {
     slug: "how-to-crate-train-a-puppy",
     title: "How to Crate Train a Puppy: A Step-by-Step Guide That Actually Works",
-    seoTitle: "How to Crate Train a Puppy: Step-by-Step Guide (2026)",
+    seoTitle: "How to Crate Train a Puppy: A Step-by-Step Guide",
     shortTitle: "Crate Train a Puppy",
     seoDescription: "Learn how to crate train a puppy correctly in 1–3 weeks. Step-by-step method using positive association — no crying, no force, just a puppy that loves their crate.",
     category: "How-To",
@@ -181,7 +182,7 @@ Build leaving duration gradually over 2 weeks: 30 minutes → 1 hour → 2 hours
   {
     slug: "how-to-potty-train-a-puppy",
     title: "How to Potty Train a Puppy: The Complete Housetraining Method",
-    seoTitle: "How to Potty Train a Puppy Fast: The Method That Works (2026)",
+    seoTitle: "How to Potty Train a Puppy: Step-by-Step Guide",
     shortTitle: "Potty Train a Puppy",
     seoDescription: "Potty train your puppy in 2–4 weeks using scheduled trips, positive reinforcement, and the crate method. Full step-by-step housetraining guide for puppies 8 weeks and older.",
     category: "How-To",
@@ -301,7 +302,7 @@ Signs a puppy needs to go out immediately: circling, sniffing the floor intently
   {
     slug: "how-to-stop-dog-pulling-on-leash",
     title: "How to Stop Your Dog Pulling on the Leash: The Method That Sticks",
-    seoTitle: "How to Stop Dog Pulling on Leash: Complete Training Guide 2026",
+    seoTitle: "How to Stop a Dog Pulling on the Leash",
     shortTitle: "Stop Leash Pulling",
     seoDescription: "Stop your dog from pulling on the leash permanently using the stop-and-redirect method. No prong collars, no choke chains — a positive reinforcement protocol that works for any age or breed.",
     category: "How-To",
@@ -409,7 +410,7 @@ High-value distractions (other dogs, bicycles, squirrels) require management as 
   {
     slug: "how-to-read-dog-body-language",
     title: "How to Read Dog Body Language: A Complete Visual Guide",
-    seoTitle: "How to Read Dog Body Language: Signs, Signals & Warnings 2026",
+    seoTitle: "Dog Body Language: How to Read Your Dog's Signals",
     shortTitle: "Read Dog Body Language",
     seoDescription: "Learn to read dog body language accurately — tail positions, ear signals, whale eye, calming signals, and stress indicators that most people miss. Essential knowledge for every dog owner.",
     category: "How-To",
@@ -555,7 +556,7 @@ Your job: intervene at steps 1–4. Create distance, remove the dog from the str
   {
     slug: "how-to-trim-dog-nails-at-home",
     title: "How to Trim Dog Nails at Home Without Stress or Injury",
-    seoTitle: "How to Trim Dog Nails at Home: Step-by-Step Guide 2026",
+    seoTitle: "How to Trim Dog Nails at Home Without Hitting the Quick",
     shortTitle: "Trim Dog Nails",
     seoDescription: "Trim your dog's nails safely at home without cutting the quick. Learn the correct technique, how to identify the quick in dark nails, and how to desensitize a nail-phobic dog.",
     category: "How-To",
@@ -676,7 +677,7 @@ One quick-cut does not set back desensitization permanently, but cutting quickly
   {
     slug: "how-to-switch-dog-food-safely",
     title: "How to Switch Dog Food Safely: Avoiding Digestive Upset",
-    seoTitle: "How to Switch Dog Food Safely Without Digestive Problems 2026",
+    seoTitle: "How to Switch Dog Food: 7–10 Day Transition Schedule",
     shortTitle: "Switch Dog Food",
     seoDescription: "Switch your dog's food safely using a 7-10 day transition protocol. Learn how to avoid vomiting and diarrhea, when a slow transition is critical, and what to do if your dog refuses the new food.",
     category: "How-To",
@@ -785,7 +786,7 @@ A healthy dog will not voluntarily starve themselves. If your dog is refusing fo
   {
     slug: "how-to-choose-pet-food",
     title: "How to Choose the Right Food for Your Pet: A Label-Reading Guide",
-    seoTitle: "How to Choose Pet Food 2026: AAFCO Labels, Ingredients & More",
+    seoTitle: "How to Choose Dog and Cat Food: What Actually Matters",
     shortTitle: "Choose the Right Pet Food",
     seoDescription: "Learn how to evaluate pet food using AAFCO nutritional adequacy statements, ingredient lists, and guaranteed analysis panels. Practical framework for dogs and cats.",
     category: "How-To",
@@ -1019,7 +1020,7 @@ Dogs can eat small amounts of cat food without acute harm, but cat food is too p
   {
     slug: "how-to-introduce-new-pet-to-resident-pets",
     title: "How to Introduce a New Pet to Resident Pets: Dogs, Cats, and Multi-Species",
-    seoTitle: "How to Introduce a New Pet to Resident Pets (2026 Guide)",
+    seoTitle: "How to Introduce a New Dog or Cat to Your Other Pets",
     shortTitle: "Introduce a New Pet to Resident Pets",
     seoDescription: "Step-by-step guide to introducing a new dog or cat to your existing pets. Includes the scent-exchange method, parallel walking, and multi-species introductions. Backed by behavioral science.",
     category: "How-To",
@@ -1220,7 +1221,7 @@ The [ASPCA recommends](https://www.aspca.org/pet-care/cat-care/cats-and-other-an
   {
     slug: "how-to-stop-dog-barking",
     title: "How to Stop Excessive Dog Barking: A Trigger-by-Trigger Guide",
-    seoTitle: "How to Stop Dog Barking: Proven Methods for Every Bark Type 2026",
+    seoTitle: "How to Stop a Dog Barking: Fixes for Every Type of Bark",
     shortTitle: "Stop Excessive Barking",
     seoDescription: "Stop your dog barking with trigger-specific methods: alert barking, demand barking, separation barking, and leash reactivity. Positive reinforcement protocols that work without bark collars.",
     category: "How-To",
@@ -1349,7 +1350,7 @@ See our complete <a href="/resources/dog-separation-anxiety-complete-guide" clas
   {
     slug: "how-to-stop-dog-jumping-on-people",
     title: "How to Stop a Dog Jumping on People: The Method That Actually Works",
-    seoTitle: "How to Stop Dog Jumping on People: Positive Training Guide 2026",
+    seoTitle: "How to Stop a Dog Jumping Up on People",
     shortTitle: "Stop Dog Jumping",
     seoDescription: "Stop your dog jumping on people with the only method that produces lasting results: removing the reward consistently and teaching an incompatible behavior. No knee-in-chest, no corrections.",
     category: "How-To",
@@ -1462,7 +1463,7 @@ Build this by:
   {
     slug: "how-to-teach-basic-dog-commands",
     title: "How to Teach Basic Dog Commands: Sit, Stay, Down, Come & Leave It",
-    seoTitle: "How to Teach Basic Dog Commands: Step-by-Step Guide 2026",
+    seoTitle: "How to Teach Basic Dog Commands: Sit, Stay, Down, Come",
     shortTitle: "Teach Basic Commands",
     seoDescription: "Step-by-step instructions for teaching sit, stay, down, come, and leave it using positive reinforcement. Includes timing, luring technique, adding cues, and proofing in real-world environments.",
     category: "How-To",
@@ -1622,7 +1623,7 @@ This guide covers the mechanics of each behavior from first lure to real-world r
   {
     slug: "how-to-manage-leash-reactive-dog",
     title: "How to Manage a Leash Reactive Dog: Counter-Conditioning That Works",
-    seoTitle: "How to Manage Leash Reactive Dog: Training Protocol 2026",
+    seoTitle: "How to Help a Leash Reactive Dog: Training That Works",
     shortTitle: "Leash Reactive Dog",
     seoDescription: "Train a leash reactive dog using counter-conditioning and desensitization below threshold. Step-by-step protocol for dogs who bark, lunge, and pull toward other dogs or people on leash.",
     category: "How-To",
@@ -1751,4 +1752,4 @@ The dog learns: trigger appears → treats rain from the sky. Trigger leaves →
 ];
 
 // Added in the October 2026 review.
-howToArticles.push(...howToArticles2);
+howToArticles.push(...howToArticles2, ...howToArticles3);

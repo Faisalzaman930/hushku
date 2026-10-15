@@ -615,7 +615,7 @@ TOOLS.push(
     faqs: [
       { q: "How much chocolate can kill a dog?", a: "Severe poisoning and death can happen at much lower doses than the 100 to 200 mg/kg reported as lethal in studies. The Merck Veterinary Manual notes that about 1 oz of milk chocolate per lb of body weight is potentially lethal; dark and baking chocolate are dangerous in much smaller amounts." },
       { q: "My dog ate chocolate but seems fine. What should I do?", a: "Work out the dose with this calculator and call your vet if it's 20 mg/kg or more, even if your dog seems fine. Signs often start 6 to 12 hours later, and treatment works best early." },
-      { q: "Is white chocolate dangerous for dogs?", a: "It contains almost no theobromine, so poisoning is very unlikely, but the fat and sugar can still cause vomiting, diarrhoea and, in some dogs, pancreatitis." },
+      { q: "Is white chocolate dangerous for dogs?", a: "It contains almost no theobromine, so poisoning is very unlikely, but the fat and sugar can still cause vomiting, diarrhea and, in some dogs, pancreatitis." },
       { q: "How long does chocolate poisoning last?", a: "Signs usually start within 6 to 12 hours and can last up to 72 hours, because dogs clear theobromine slowly." },
     ],
     related: ["xylitol-toxicity-calculator", "toxic-food", "dog-ate-grapes", "symptom-checker"],
@@ -727,9 +727,9 @@ TOOLS.push(
     ],
     sources: [{ label: "Purina: 7-day transition guide", url: "https://www.purina.co.nz/articles/dogs/feeding/guides/7-day-transition-guide" }],
     faqs: [
-      { q: "Can I switch dog food without mixing?", a: "It's better not to. A sudden change often causes vomiting or diarrhoea. If you have to (for example, after a recall), feed small, frequent meals and watch the stools." },
+      { q: "Can I switch dog food without mixing?", a: "It's better not to. A sudden change often causes vomiting or diarrhea. If you have to (for example, after a recall), feed small, frequent meals and watch the stools." },
       { q: "How long does it take a dog to adjust to new food?", a: "Most dogs adjust within the 7 to 10 days of a gradual switch. Some take a few weeks for their stools to settle completely." },
-      { q: "What if my dog gets diarrhoea when switching food?", a: "Go back to the previous day's mix for 2 to 3 days, then continue more slowly. Call your vet if it lasts more than a day or two, or if there's blood, vomiting or lethargy." },
+      { q: "What if my dog gets diarrhea when switching food?", a: "Go back to the previous day's mix for 2 to 3 days, then continue more slowly. Call your vet if it lasts more than a day or two, or if there's blood, vomiting or lethargy." },
     ],
     related: ["feeding-calculator", "calorie-calculator", "raw-food-calculator", "toxic-food"],
     guides: [{ href: "/resources/how-to-switch-dog-food-safely", label: "How to switch dog food safely" }],

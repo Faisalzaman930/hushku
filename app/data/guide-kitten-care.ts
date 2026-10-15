@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideKittenCare: Guide = {
   slug: "complete-guide-to-kitten-care",
   title: "Kitten Care: The Complete Guide for the First Year",
-  seoTitle: "Kitten Care Guide: Feeding, Vaccines and the First Year",
+  seoTitle: "Kitten Care Guide: Feeding, Vaccines & the First Year",
   shortTitle: "Kitten Care Guide",
   seoDescription: "Everything a new kitten needs in its first year: setting up your home, feeding, litter training, vaccines, worming, neutering, play and handling.",
   category: "Expert Guides",
@@ -47,7 +47,7 @@ Book a vet check within the first few days to check for fleas, worms, ear mites 
 - **6 to 12 months:** 2 to 3 meals a day
 - Use the feeding guide on the pack as a starting point and adjust to keep your kitten lean
 - Keep fresh water available at all times; wet food helps cats take in more water
-- Never give cow's milk: many cats can't digest lactose and it causes diarrhoea
+- Never give cow's milk: many cats can't digest lactose and it causes diarrhea
 
 Change foods gradually over a week or more. Our [cat nutrition guide](/resources/cat-nutrition-science-complete-guide) explains what cats need.`,
     },
@@ -88,7 +88,7 @@ Microchip your kitten (often done at neutering) and keep the registration detail
       title: "Signs your kitten needs a vet",
       content: `Kittens can become seriously unwell quickly. Call your vet the same day for:
 - Not eating for more than a few hours (very young kittens) or a day (older kittens)
-- Vomiting or diarrhoea, especially with lethargy
+- Vomiting or diarrhea, especially with lethargy
 - Sneezing with eye discharge and not eating (cat flu)
 - Breathing difficulty, pale gums or collapse
 - Straining in the litter box`,

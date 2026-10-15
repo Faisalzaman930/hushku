@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guidePuppySocialization: Guide = {
   slug: "puppy-socialization-masterclass",
   title: "The Puppy Socialization Window: A Science-Based Complete Guide",
-  seoTitle: "Puppy Socialization Guide 2026: The Critical Window Explained",
+  seoTitle: "Puppy Socialization Guide: The Critical Period Explained",
   shortTitle: "Puppy Socialization",
   seoDescription: "The socialization window closes at 12-16 weeks. Here's exactly how to use it — balancing vaccine safety, positive exposure, and behavioral development during the most critical period of a dog's life.",
   category: "Expert Guides",

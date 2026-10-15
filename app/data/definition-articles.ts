@@ -1,4 +1,5 @@
 import { definitionArticles2 } from "./definition-articles-2";
+import { definitionArticles3 } from "./definition-articles-3";
 export interface DefinitionArticle {
   slug: string;
   title: string;
@@ -29,7 +30,7 @@ export const definitionArticles: DefinitionArticle[] = [
   {
     slug: "what-is-kennel-cough",
     title: "What Is Kennel Cough? Causes, Symptoms, Treatment and Prevention",
-    seoTitle: "What Is Kennel Cough? Symptoms, Treatment & Prevention Guide",
+    seoTitle: "Kennel Cough in Dogs: Symptoms, Treatment and Recovery",
     shortTitle: "Kennel Cough",
     seoDescription: "Kennel cough explained: causes (Bordetella, parainfluenza, adenovirus), the characteristic honking cough, when it's serious, treatment options, and vaccination. Vet-reviewed guide.",
     category: "Pet Health Glossary",
@@ -134,7 +135,7 @@ Bordetella bronchiseptica is a bacterial pathogen — and severe or prolonged ca
   {
     slug: "what-is-parvo-in-dogs",
     title: "What Is Parvo in Dogs? Symptoms, Survival Rate & Prevention",
-    seoTitle: "What Is Parvo in Dogs? Survival Rate, Symptoms & Prevention",
+    seoTitle: "Parvo in Dogs: Symptoms, Survival Rate and Prevention",
     shortTitle: "Parvo in Dogs",
     seoDescription: "Canine parvovirus explained: how it spreads, the 72-hour survival window, symptoms to watch for, treatment options, and the vaccination schedule that prevents it. Critical information for puppy owners.",
     category: "Pet Health Glossary",
@@ -244,7 +245,7 @@ This guide provides the information that puppy owners need: what parvo looks lik
   {
     slug: "what-is-hip-dysplasia-in-dogs",
     title: "What Is Hip Dysplasia in Dogs? Causes, Signs, and Treatment Options",
-    seoTitle: "What Is Hip Dysplasia in Dogs? Symptoms & Treatment Guide 2026",
+    seoTitle: "Hip Dysplasia in Dogs: Signs, Treatment and Surgery",
     shortTitle: "Hip Dysplasia",
     seoDescription: "Hip dysplasia explained: what causes abnormal hip joint development, which breeds are most affected, how to recognize signs at home, and the full treatment spectrum from medication to surgery.",
     category: "Pet Health Glossary",
@@ -369,7 +370,7 @@ Appropriate for mild-to-moderate cases and dogs who are not surgical candidates.
   {
     slug: "what-is-bloat-in-dogs",
     title: "What Is Bloat in Dogs (GDV)? The Emergency Every Owner Must Know",
-    seoTitle: "What Is Bloat in Dogs? GDV Symptoms, Treatment & Prevention",
+    seoTitle: "Bloat (GDV) in Dogs: Symptoms and What to Do",
     shortTitle: "Bloat / GDV",
     seoDescription: "Gastric dilatation-volvulus (GDV / bloat) is one of the most rapidly fatal conditions in dogs — stomach twists, blood supply is cut off, and death can occur within hours. Know the signs and act immediately.",
     category: "Pet Health Glossary",
@@ -502,7 +503,7 @@ If you own a Great Dane, Standard Poodle, Irish Setter, Weimaraner, or similar d
   {
     slug: "what-is-positive-reinforcement-dog-training",
     title: "What Is Positive Reinforcement Dog Training? The Science and the Practice",
-    seoTitle: "What Is Positive Reinforcement Training? Complete Dog Guide 2026",
+    seoTitle: "Positive Reinforcement Dog Training: How It Works",
     shortTitle: "Positive Reinforcement Training",
     seoDescription: "Positive reinforcement dog training explained: the scientific basis, how reward-based training actually works neurologically, why it outperforms punishment-based methods, and how to implement it.",
     category: "Pet Health Glossary",
@@ -595,7 +596,7 @@ The marker itself becomes powerfully conditioned to the reward through repetitio
   {
     slug: "what-is-aafco",
     title: "What Is AAFCO? How Pet Food Standards Actually Work",
-    seoTitle: "What Is AAFCO? Pet Food Standards Explained (2026)",
+    seoTitle: "What Is AAFCO? Pet Food Standards Explained",
     shortTitle: "AAFCO Explained",
     seoDescription: "AAFCO sets the nutritional standards behind every 'complete and balanced' claim on pet food labels. Here's what they actually do, what their standards mean, and how to use them when buying food.",
     category: "Pet Health Glossary",
@@ -766,7 +767,7 @@ For these cases, consult a veterinarian or [board-certified veterinary nutrition
   {
     slug: "what-is-clicker-training",
     title: "What Is Clicker Training? How Marker Training Works and Why It's So Effective",
-    seoTitle: "What Is Clicker Training? Complete Guide for Dog Owners 2026",
+    seoTitle: "Clicker Training for Dogs: How It Works and How to Start",
     shortTitle: "Clicker Training Explained",
     seoDescription: "What is clicker training for dogs? How the clicker works as a conditioned reinforcer, why timing is faster than verbal markers, how to condition the clicker, and when to use it.",
     category: "Pet Health Glossary",
@@ -869,4 +870,4 @@ The result: you can mark at the exact millisecond of correct behavior — from a
 ];
 
 // Added in the October 2026 review.
-definitionArticles.push(...definitionArticles2);
+definitionArticles.push(...definitionArticles2, ...definitionArticles3);

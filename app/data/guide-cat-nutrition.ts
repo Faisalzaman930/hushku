@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideCatNutrition: Guide = {
   slug: "cat-nutrition-science-complete-guide",
   title: "The Science of Cat Nutrition: A Complete Guide for Cat Owners",
-  seoTitle: "Cat Nutrition Guide: What to Feed a Cat for Optimal Health (2026)",
+  seoTitle: "Cat Nutrition Guide: What to Feed Your Cat",
   shortTitle: "Cat Nutrition Science Guide",
   seoDescription:
     "Discover the science behind cat nutrition — protein needs, taurine, hydration, wet vs dry food, life stage feeding, and how to read ingredient labels.",

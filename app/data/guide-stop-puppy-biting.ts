@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideStopPuppyBiting: Guide = {
   slug: "how-to-stop-puppy-biting",
   title: "How to Stop Puppy Biting: The Complete Bite Inhibition Guide for New Owners",
-  seoTitle: "How to Stop Puppy Biting: Bite Inhibition Guide (2026)",
+  seoTitle: "How to Stop Puppy Biting (and When It Stops)",
   shortTitle: "Stop Puppy Biting",
   seoDescription:
     "Puppy biting too hard? Learn the science of bite inhibition, the methods that actually work, and which techniques to avoid. Complete guide for puppies 8 weeks to 6 months.",

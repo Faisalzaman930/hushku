@@ -7,7 +7,7 @@ export const definitionArticles2: DefinitionArticle[] = [
     ...base,
     slug: "heartworm-in-dogs-and-cats",
     title: "Heartworm in Dogs and Cats: Signs, Testing and Prevention",
-    seoTitle: "Heartworm in Dogs and Cats: Symptoms, Testing, Prevention",
+    seoTitle: "Heartworm in Dogs and Cats: Symptoms and Prevention",
     shortTitle: "Heartworm",
     seoDescription: "Heartworm is spread by mosquitoes and has been found in all 50 US states. How it harms dogs and cats, how it's tested for, and why year-round prevention is advised.",
     tags: ["Parasites", "Dog Health", "Cat Health"],
@@ -47,7 +47,7 @@ Heartworm was once thought of as a disease of the southern US, but the American 
     introduction: `Worms are extremely common, especially in young animals. Roundworm larvae lie dormant in an adult dog's tissues and reactivate late in pregnancy, so puppies are often infected before they're even born. Kittens pick them up from their environment, from prey and, if the mother is infected while nursing, through milk.
 
 Many infected pets show no signs, which is why vets recommend regular deworming and stool tests rather than waiting for symptoms.`,
-    symptoms: ["A pot-bellied appearance in puppies and kittens", "Diarrhoea, sometimes with blood or mucus", "Vomiting, sometimes with worms visible", "Weight loss or poor growth", "A dull coat", "Rice-like segments around the bottom (tapeworm)", "Scooting", "Pale gums from blood loss (hookworm)"],
+    symptoms: ["A pot-bellied appearance in puppies and kittens", "Diarrhea, sometimes with blood or mucus", "Vomiting, sometimes with worms visible", "Weight loss or poor growth", "A dull coat", "Rice-like segments around the bottom (tapeworm)", "Scooting", "Pale gums from blood loss (hookworm)"],
     causes: ["Passed from mother to young before birth or through milk", "Swallowing eggs from contaminated soil, grass or faeces", "Eating infected prey such as mice and birds", "Swallowing fleas while grooming (flea tapeworm)", "Hookworm larvae burrowing through the skin"],
     treatment: ["A dewormer prescribed for the worms found or likely", "Repeat doses, as many dewormers don't kill immature stages", "Flea control alongside tapeworm treatment", "Stool tests to confirm treatment worked"],
     prevention: ["Puppies and kittens: deworm from 2 weeks, every 2 weeks, then monthly prevention", "Adults: year-round monthly parasite control, or deworming 4 times a year", "Stool tests at least 4 times in the first year and twice a year in adults", "Pick up faeces promptly and wash hands", "Year-round flea control"],
@@ -66,7 +66,7 @@ Many infected pets show no signs, which is why vets recommend regular deworming 
     ...base,
     slug: "when-to-spay-or-neuter",
     title: "When to Spay or Neuter a Dog or Cat: Ages, Benefits and Risks",
-    seoTitle: "When to Spay or Neuter Your Dog or Cat (by Size)",
+    seoTitle: "When to Spay or Neuter a Dog or Cat: Best Age by Size",
     shortTitle: "Spay and Neuter Timing",
     seoDescription: "The right age to spay or neuter depends on species and adult size. AAHA guidance for cats and small and large dogs, plus benefits, risks and recovery.",
     tags: ["Dog Health", "Cat Health", "Puppies", "Kittens"],
@@ -161,7 +161,7 @@ Female cats get urinary problems too but rarely block.`,
     ...base,
     slug: "chronic-kidney-disease-in-cats",
     title: "Chronic Kidney Disease in Cats: Signs, Stages and Care",
-    seoTitle: "Kidney Disease in Cats: Signs, Stages, Diet and Outlook",
+    seoTitle: "Kidney Disease in Cats: Symptoms, Stages and Diet",
     shortTitle: "Kidney Disease in Cats",
     seoDescription: "Chronic kidney disease affects up to 40% of cats over 10. Early signs, how it's diagnosed and staged, kidney diets, fluids and what to expect.",
     tags: ["Cat Health", "Senior Pets", "Kidney"],
@@ -189,7 +189,7 @@ Vets stage CKD from 1 to 4 using the International Renal Interest Society (IRIS)
     ...base,
     slug: "hyperthyroidism-in-cats",
     title: "Hyperthyroidism in Cats: Signs, Treatment Options and Costs",
-    seoTitle: "Hyperthyroidism in Cats: Signs and the 4 Treatment Options",
+    seoTitle: "Hyperthyroidism in Cats: Symptoms and Treatment Options",
     shortTitle: "Hyperthyroidism in Cats",
     seoDescription: "An overactive thyroid is common in older cats. The classic signs, how it's diagnosed, and the four treatments: medication, radioactive iodine, surgery and diet.",
     tags: ["Cat Health", "Senior Pets", "Hormones"],
@@ -199,7 +199,7 @@ Vets stage CKD from 1 to 4 using the International Renal Interest Society (IRIS)
     introduction: `Because it often starts slowly in older cats, owners may put the early signs down to age. Untreated, hyperthyroidism can lead to heart disease, high blood pressure and blindness, so a vet check is worth it for any older cat that's losing weight.
 
 Diagnosis is usually straightforward: a blood test shows a high T4 level in most cats, and your vet may feel an enlarged thyroid in the neck. Because hyperthyroidism can mask kidney disease, your vet will check kidney function before and during treatment.`,
-    symptoms: ["Weight loss despite eating more", "Increased thirst and urination", "Restlessness, yowling or night-time activity", "Vomiting or diarrhoea", "Unkempt, matted or greasy coat", "Fast heart rate"],
+    symptoms: ["Weight loss despite eating more", "Increased thirst and urination", "Restlessness, yowling or night-time activity", "Vomiting or diarrhea", "Unkempt, matted or greasy coat", "Fast heart rate"],
     causes: ["A benign thyroid growth in most cats (rarely cancer)", "The exact trigger is unknown; it's linked to age"],
     treatment: ["Anti-thyroid medication (tablets or a gel rubbed on the ear), usually lifelong", "Radioactive iodine: a single treatment that cures most cats, with a hospital stay of a few days", "Surgery to remove the affected gland", "A prescription iodine-restricted diet fed exclusively"],
     sections: [

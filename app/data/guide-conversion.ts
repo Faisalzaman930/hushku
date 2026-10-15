@@ -9,7 +9,7 @@ const a = (href: string, text: string) => `<a href="${href}" class="text-brand-s
 export const guideSharedPetCare: Guide = {
   slug: "how-to-share-pet-care-at-home",
   title: "How to Share Pet Care at Home Without Missed Meals or Double Doses",
-  seoTitle: "How to Share Pet Care at Home: A Family Guide",
+  seoTitle: "How to Share Pet Care With Your Family",
   shortTitle: "Sharing Pet Care at Home",
   seoDescription: "A practical guide to splitting pet care between partners, kids, roommates and sitters: who does what, how to avoid double-feeding and missed medication, and what to write down.",
   category: "Expert Guides",
@@ -91,7 +91,7 @@ The fix isn't more effort, it's a clearer system: one agreed routine, one named 
 export const guideRehoming: Guide = {
   slug: "how-to-rehome-a-pet-without-a-shelter",
   title: "How to Rehome a Pet Without a Shelter: A Safe, Step-by-Step Guide",
-  seoTitle: "How to Rehome a Pet Without a Shelter, Safely",
+  seoTitle: "How to Rehome a Dog or Cat Without a Shelter",
   shortTitle: "Rehoming Without a Shelter",
   seoDescription: "How to rehome your dog or cat yourself, safely: when to consider it, how to write the listing, screen adopters, meet safely, and hand over records. Plus free alternatives.",
   category: "Expert Guides",
@@ -183,7 +183,7 @@ It also puts the responsibility on you to do it safely. This guide covers how to
 export const guideLostPet: Guide = {
   slug: "lost-pet-first-24-hours",
   title: "Lost Dog or Cat? What to Do in the First 24 Hours",
-  seoTitle: "Lost Pet? What to Do in the First 24 Hours",
+  seoTitle: "Lost Dog or Cat? What to Do in the First 24 Hours",
   shortTitle: "Lost Pet: First 24 Hours",
   seoDescription: "Your pet is missing. A clear, hour-by-hour plan for the first 24 hours: where to search, who to call, how to use the microchip, flyers and social media, and what to do next.",
   category: "Expert Guides",

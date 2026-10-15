@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideDogRestlessAtNight: Guide = {
   slug: "why-is-my-dog-restless-at-night",
   title: "Why Is My Dog Restless at Night? 10 Causes and What to Do About Each",
-  seoTitle: "Why Is My Dog Restless at Night? 10 Causes Explained (2026)",
+  seoTitle: "Dog Restless at Night? 10 Causes and How to Help",
   shortTitle: "Dog Restless at Night",
   seoDescription:
     "Dog pacing, panting, or can't settle at night? Learn the 10 most common causes of nighttime restlessness in dogs — from pain and anxiety to cognitive dysfunction, and what to do about each.",

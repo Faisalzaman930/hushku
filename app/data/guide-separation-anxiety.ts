@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideSeparationAnxiety: Guide = {
   slug: "dog-separation-anxiety-complete-guide",
   title: "Dog Separation Anxiety: The Complete Guide for Pet Owners",
-  seoTitle: "Dog Separation Anxiety: Complete Treatment Guide (2026)",
+  seoTitle: "Dog Separation Anxiety: Signs, Causes and Treatment",
   shortTitle: "Dog Separation Anxiety Guide",
   seoDescription:
     "Learn how to diagnose and treat dog separation anxiety with methods recommended by veterinary behaviourists: desensitization, medication options, and prevention tips for puppies.",

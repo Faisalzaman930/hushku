@@ -51,7 +51,7 @@ const foods: { name: string; dog: "safe" | "toxic" | "caution"; cat: "safe" | "t
   { name: "Turkey", dog: "safe", cat: "safe", reason: "Plain, cooked turkey is a great protein. No skin or seasoning." },
   { name: "Beef", dog: "safe", cat: "safe", reason: "Cooked lean beef is excellent for both." },
   { name: "Tuna", dog: "caution", cat: "caution", reason: "Occasional tuna OK. High mercury — not a regular diet item." },
-  { name: "Coconut", dog: "caution", cat: "caution", reason: "Small amounts OK. High fat — can cause diarrhoea." },
+  { name: "Coconut", dog: "caution", cat: "caution", reason: "Small amounts OK. High fat — can cause diarrhea." },
   { name: "Honey", dog: "safe", cat: "caution", reason: "Small amounts OK for dogs. Cats don't need sweetness." },
   { name: "Popcorn", dog: "caution", cat: "caution", reason: "Plain, air-popped is OK occasionally. Never buttered or salted." },
 ];

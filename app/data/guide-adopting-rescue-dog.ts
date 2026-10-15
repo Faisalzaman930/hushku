@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideAdoptingRescueDog: Guide = {
   slug: "adopting-rescue-dog-complete-guide",
   title: "Adopting a Rescue Dog: The Complete Guide for New Pet Parents",
-  seoTitle: "Adopting a Rescue Dog: Complete Guide — 3-3-3 Rule & First Days Home",
+  seoTitle: "Adopting a Rescue Dog: What to Expect and First Days",
   shortTitle: "Adopting a Rescue Dog",
   seoDescription:
     "Everything you need to know about adopting a rescue dog — the 3-3-3 rule, first 24 hours, building trust, and setting up your home for success.",

@@ -33,8 +33,9 @@ const FEED_CTA = { title: "Share feeding routines with your household", body: "S
 const ADOPT_CTA = { title: "Adoption and fostering in one app", body: "Shelters and owners list pets for adoption and fostering in Hushku, and you send a request straight from the listing.", link: { href: "/adoption", label: "See adoption" } };
 
 import { EXTRAS_DATA } from "./article-extras-data";
+import { EXTRAS_DATA_2 } from "./article-extras-data-2";
 
-export const EXTRAS: Record<string, ArticleExtras> = { ...EXTRAS_DATA };
+export const EXTRAS: Record<string, ArticleExtras> = { ...EXTRAS_DATA, ...EXTRAS_DATA_2 };
 
 /** Adds extras for a slug (merged, so content files can each contribute). */
 export function addExtras(map: Record<string, ArticleExtras>) {

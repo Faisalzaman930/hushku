@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guide333Rescue: Guide = {
   slug: "3-3-3-rule-for-rescue-dogs",
   title: "The 3-3-3 Rule for Rescue Dogs: A Complete Decompression Guide",
-  seoTitle: "The 3-3-3 Rule For Rescue Dogs: Complete 2026 Guide",
+  seoTitle: "3-3-3 Rule for Rescue Dogs: 3 Days, 3 Weeks, 3 Months",
   shortTitle: "3-3-3 Rescue Rule",
   seoDescription: "A detailed breakdown of the 3-3-3 decompression rule for newly adopted dogs. Learn what to expect in the first 3 days, 3 weeks, and 3 months — and how to handle each phase.",
   category: "Expert Guides",

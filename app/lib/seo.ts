@@ -28,3 +28,12 @@ export function shortTitle(text: string, max = 51): string {
   }
   return t;
 }
+
+/**
+ * A page <title> that Google shows whole. The root layout appends " | Hushku" (9 characters), so
+ * titles up to 51 characters keep the brand; longer ones (up to 60) drop it rather than get cut off.
+ */
+export function searchTitle(text: string): string | { absolute: string } {
+  const t = shortTitle(text, 60);
+  return t.length <= 51 ? t : { absolute: t };
+}

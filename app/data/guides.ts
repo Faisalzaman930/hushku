@@ -63,7 +63,7 @@ export const guides: Guide[] = [
   {
     slug: "logistics-and-heartbreak-foster-parent-manual",
     title: "The Pet Foster Parent Manual: Logistics, Medicine, and the Heartbreak",
-    seoTitle: "The Complete Pet Foster Parent Guide 2026",
+    seoTitle: "How to Foster a Pet: A Guide for New Foster Parents",
     shortTitle: "Fostering Manual",
     seoDescription: "A complete operational manual for pet fostering — covering the Two-Door introduction method, medication protocols, digital record management, and how to survive the heartbreak of successful placement.",
     category: "Expert Guides",
@@ -134,7 +134,7 @@ Get the logistics right so you can give the animal everything else they need: pr
   {
     slug: "first-time-dog-owner-complete-guide",
     title: "First-Time Dog Owner: The Complete Preparation and First-Year Guide",
-    seoTitle: "First-Time Dog Owner Guide 2026: Complete Year-One Preparation",
+    seoTitle: "First-Time Dog Owner Guide: What You Need to Know",
     shortTitle: "First-Time Owners",
     seoDescription: "Everything you need to know before and after bringing home your first dog — from home preparation and supplies to vet visits, training foundations, and the first-year milestones most guides skip.",
     category: "Expert Guides",
@@ -230,7 +230,7 @@ Everything after that is relationship — and relationships between dogs and the
   {
     slug: "how-to-read-pet-food-labels",
     title: "How to Read a Pet Food Label: What the Packaging Doesn't Tell You",
-    seoTitle: "How to Read Pet Food Labels 2026: Ingredient Guide",
+    seoTitle: "How to Read Pet Food Labels: Dog and Cat Food Guide",
     shortTitle: "Pet Food Labels",
     seoDescription: "Most pet food labels are designed to sell, not inform. Here's how to read ingredient lists, guaranteed analysis panels, and AAFCO statements to actually evaluate what you're feeding your pet.",
     category: "Expert Guides",

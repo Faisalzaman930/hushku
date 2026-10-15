@@ -3,7 +3,7 @@ import type { Guide } from "./guides";
 export const guideDogWontWalk: Guide = {
   slug: "why-wont-my-dog-walk-anymore",
   title: "Why Won't My Dog Walk Anymore? 11 Real Causes and How to Fix Each One",
-  seoTitle: "Why Won't My Dog Walk Anymore? 11 Causes Explained (2026)",
+  seoTitle: "Why Won't My Dog Walk? 11 Causes and What to Do",
   shortTitle: "Dog Refuses to Walk",
   seoDescription:
     "Dog suddenly refusing to go on walks? Discover the 11 most common causes — from pain and fear to leash reactivity and surface sensitivity, and what to do about each.",
@@ -45,7 +45,7 @@ You can also track your dog's walk history and flag changes in behaviour using <
 <p class="mb-6">Signs of orthopaedic pain during walks include: stiffness after resting, difficulty rising from lying down, reluctance to use stairs, intermittent lameness, sitting down mid-walk on longer routes, and a changed gait (shifting weight, shortened stride on one side). If you observe any of these, a veterinary orthopaedic assessment is warranted before continuing walk training.</p>
 
 <h4 class="text-xl font-bold text-ebony mb-4 mt-6">3. Illness or General Malaise</h4>
-<p class="mb-6">Dogs who are unwell — with conditions ranging from gastrointestinal discomfort to early-stage infectious disease — often reduce their activity and may refuse walks as a general sign of not feeling right. If walk refusal is accompanied by decreased appetite, lethargy, vomiting, diarrhoea, or unusual behaviour, prioritise a vet visit over walk training. The walk problem will resolve when the underlying illness is addressed.</p>`,
+<p class="mb-6">Dogs who are unwell — with conditions ranging from gastrointestinal discomfort to early-stage infectious disease — often reduce their activity and may refuse walks as a general sign of not feeling right. If walk refusal is accompanied by decreased appetite, lethargy, vomiting, diarrhea, or unusual behaviour, prioritise a vet visit over walk training. The walk problem will resolve when the underlying illness is addressed.</p>`,
     },
     {
       title: "Fear and Anxiety Causes",

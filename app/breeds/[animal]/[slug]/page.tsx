@@ -5,6 +5,8 @@ import BreedImage from "../../../components/BreedImage";
 import { photoCredit } from "../../../data/breeds/photos";
 import { Check, ChevronRight, CircleAlert } from "lucide-react";
 import CompareButton from "../../../components/CompareButton";
+import AppCta from "../../../components/AppCta";
+import { Fragment } from "react";
 import { breedsByAnimal, getBreed, ANIMAL_LABELS, BREED_CONTENT_UPDATED, BREED_CONTENT_PUBLISHED } from "../../../data/breeds";
 import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
 import { relatedDogs, relatedCats, mixesOf } from "../../../data/breeds/related";
@@ -278,7 +280,8 @@ export default async function BreedPage({ params }: { params: Promise<{ animal: 
 
           <div className="flex max-w-[720px] flex-col gap-14">
             {content.sections.map((s) => (
-              <section key={s.id} id={s.id} aria-labelledby={`${s.id}-h`} className="flex scroll-mt-24 flex-col gap-4">
+              <Fragment key={s.id}>
+              <section id={s.id} aria-labelledby={`${s.id}-h`} className="flex scroll-mt-24 flex-col gap-4">
                 <h2 id={`${s.id}-h`} className={h2}>{s.title}</h2>
                 {s.paragraphs.map((p) => <p key={p} className={body}>{p}</p>)}
                 {s.id === "about" && content.parents.length ? (
@@ -314,6 +317,16 @@ export default async function BreedPage({ params }: { params: Promise<{ animal: 
                   </p>
                 ) : null}
               </section>
+              {s.id === "health" ? (
+                <AppCta
+                  eyebrow={`For ${breed.name} owners`}
+                  title={content.health.length ? `Stay on top of ${content.health.slice(0, 2).join(" and ").length > 70 ? content.health[0] : content.health.slice(0, 2).join(" and ")}` : `Stay on top of your ${breed.name}'s health`}
+                  body={`Log vet visits, weight and treatments for your ${breed.name} in Hushku, set reminders for check-ups, vaccines and flea and tick treatments, and share it all with your household and sitter.`}
+                  source={`breed:${breed.slug}`}
+                  link={{ href: "/health", label: "See health and care" }}
+                />
+              ) : null}
+              </Fragment>
             ))}
 
             <section id="ratings" aria-labelledby="ratings-h" className="flex scroll-mt-24 flex-col gap-4">

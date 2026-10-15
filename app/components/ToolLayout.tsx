@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Hero from "./Hero";
 import { ALL_TOOLS } from "./RelatedTools";
+import ToolAppCta from "./ToolAppCta";
 
 interface ToolLayoutProps {
   title: string;
@@ -149,6 +150,8 @@ const ToolLayout = ({ title, description, subtitle, children, illustration, rela
 
           {children}
         </div>
+
+        <ToolAppCta />
 
         {/* ── Related Tools ─────────────────────────────────────────── */}
         {relatedToolSlugs && relatedToolSlugs.length > 0 && (() => {

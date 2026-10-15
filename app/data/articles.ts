@@ -31,14 +31,29 @@ export interface Article {
   relatedSlugs: string[];
 }
 
+/**
+ * Where Hushku honestly fits a roundup's category. Shown in its own labelled box, never ranked.
+ * Only categories Hushku actually covers; everything else has no box.
+ */
+export const HUSHKU_FIT: Record<string, { title: string; body: string; feature: string; href: string }> = {
+  "best-pet-care-apps": { title: "Where Hushku fits", body: "Hushku keeps each pet's reminders, weight, health records, flea and tick treatments and heat cycles in one place, and shares them with everyone who helps care for the pet. It's free and launching soon on iPhone and Android. It doesn't book vets or walkers.", feature: "Health and care", href: "/health" },
+  "best-all-in-one-pet-super-apps": { title: "Where Hushku fits", body: "Hushku combines daily care tracking, a shared Care Team, playdates, adoption and fostering, and messaging in one free app, launching soon. It doesn't do GPS tracking, telehealth or shopping, so you may still want a specialist app for those.", feature: "Care Team", href: "/care-team" },
+  "best-pet-health-parenting-apps": { title: "Where Hushku fits", body: "Hushku stores vaccinations and vet records, sets recurring reminders, and tracks weight, flea and tick treatments and heat cycles, then shares it all with your household or sitter. Free, launching soon.", feature: "Health and care", href: "/health" },
+  "best-pet-sitting-apps": { title: "Where Hushku fits", body: "Hushku doesn't find or book sitters. If you already have a sitter, you can add them to your pet's Care Team so they see feeding times, medication and notes, and can log what they've done.", feature: "Care Team", href: "/care-team" },
+  "best-pet-dating-playdate-apps": { title: "Where Hushku fits", body: "In Hushku you can browse dogs nearby, filtered by distance and species, and send a playdate request. The other owner accepts or declines before you can chat. Free, launching soon.", feature: "Playdates", href: "/playdates" },
+  "best-pet-adoption-rescue-apps": { title: "Where Hushku fits", body: "Shelters and owners can list pets for adoption in Hushku, and adopters send an adoption request from the listing, with the conversation kept in the app. Free for shelters and adopters, launching soon.", feature: "Adoption", href: "/adoption" },
+  "best-pet-fostering-network-apps": { title: "Where Hushku fits", body: "Hushku has foster listings: shelters and owners post pets that need a temporary home, and fosters send a request and plan the handover in Messages. Free, launching soon.", feature: "Fostering", href: "/fostering" },
+  "best-lost-pet-recovery-apps": { title: "Where Hushku fits", body: "Lost and found alerts for nearby owners are planned for Hushku but aren't in the app yet. In the meantime, our free lost pet flyer and poster templates are ready to print.", feature: "Lost pet flyer template", href: "/templates/lost-pet-flyer-template" },
+};
+
 export const METHODOLOGY_SECTION = {
-  title: "How We Evaluated These Apps",
+  title: "How we compare apps",
   points: [
-    "**Community Sentiment Research:** We analyzed long-form discussions across pet owner forums, subreddits, and Facebook groups over an 18-month period, specifically tracking complaints that repeat across verified purchaser reviews — the kind of UX failures no marketing team will admit to.",
-    "**Hands-On Testing Across Real Scenarios:** Each app was installed and used actively across real-world scenarios — not demo environments. We tested dog walking app GPS accuracy during actual walks, not parking lot demos. We submitted real adoption applications. We contacted telehealth vets at odd hours.",
-    "**App Store Review Calibration:** We filtered reviews to focus on verified 3-and-4 star assessments, which consistently surface the real tradeoffs that 1-star rants and paid 5-star reviews obscure. We cross-referenced app update history with review sentiment shifts to identify post-update regressions.",
+    "**Public information, not hands-on lab tests:** Each comparison is based on what the apps publish (features, pricing, policies), their app store listings and update history, and recurring themes in owner reviews and forums. We say so plainly rather than claim testing we didn't do.",
+    "**Owner reviews, read for patterns:** We look for problems and praise that come up again and again across many reviews, rather than single complaints or five-star bursts.",
+    "**Prices and features change:** Figures were correct to the best of our knowledge when updated. Check the app's own site before you pay for anything.",
   ],
-  disclaimer: "Hushku operates this resource hub. In our comparisons, we evaluate Hushku alongside established competitors and apply the same criteria to all platforms. Hushku ranks well in categories where unified pet profiles, community-based verification, and zero subscription walls are core differentiators — and we acknowledge where legacy platforms hold legitimate advantages in market penetration or feature depth."
+  disclaimer: "Hushku makes a free pet app (launching soon). It isn't ranked in these roundups. Where it covers part of a category, we say so in a separate, clearly labelled box, and we never claim to have tested it against the apps listed here.",
 };
 
 // ─── Unique Introduction Per Slug ────────────────────────────────────────────
@@ -48,21 +63,21 @@ const introductionOverrides: Record<string, string> = {
 
 Rover and Wag dominate the dog walking app market, processing over 20 million bookings per year combined. They've built enormous brand recognition. But recognition isn't the same as quality — and a 20% platform commission taken from every walk you pay for has consequences for who actually stays in the gig long-term.
 
-We tested the leading dog walking platforms across real booking scenarios: last-minute requests, GPS tracking during live walks, sitter response quality, and what happens when something goes wrong. Here's what we found.`,
+Below, we compare the main dog walking platforms on what they publish and what owners consistently report: last-minute availability, walk tracking, walker vetting, and what happens when something goes wrong.`,
 
   "best-pet-social-media-apps": `In 2019, a dog Instagram account with 50,000 followers could expect 8-12% organic reach per post. By 2024, that same account was lucky to hit 2%. The algorithmic collapse of pet content on mainstream social platforms is real, documented, and still accelerating.
 
 Pet social media started as a niche community and got swallowed by advertising infrastructure. The apps promising to fix this are multiplying. Some are genuine communities. Most are ghost towns with good branding.
 
-We spent 60 days across six pet social platforms — posting consistently, engaging with community features, and measuring where actual connection happened versus where we were screaming into an algorithm. Here's the honest breakdown.`,
+Below is a comparison of the main options, based on each platform's features and what pet account owners report about reach and community.`,
 
   "best-pet-dating-playdate-apps": `Dog parks sound idyllic. In practice, they're often an uncontrolled social experiment: unknown vaccination histories, unread body language, zero accountability when something goes wrong. Behavioral veterinarians have been recommending structured 1-on-1 playdates over dog parks for years — the apps trying to enable that are finally catching up.
 
-Finding a safe, compatible playdate partner for your dog requires knowing their vaccination status, temperament, size, and play style. The apps in this space range from "Tinder but with dog photos" (mostly for human dating, honestly) to genuine tools for controlled socialization. We tested them to find which actually enables safe, verified meetups.`,
+Finding a safe, compatible playdate partner for your dog requires knowing their vaccination status, temperament, size, and play style. The apps in this space range from "Tinder but with dog photos" (mostly for human dating, honestly) to genuine tools for controlled socialization. Below, we compare which ones are built for safe, verified meetups.`,
 
   "best-pet-sitting-apps": `"Someone I found online has my house keys and my dog." This sentence describes millions of overnight pet-sitting bookings every week. The trust infrastructure behind that statement varies wildly depending on which platform you used to find them.
 
-Background check depth differs dramatically across platforms — some run county-level checks only, others run national criminal and sex offender registries, and some rely entirely on reviews. We tested Care.com, Rover's sitter network, and others against a set of trust criteria that actually matter when a stranger is sleeping in your home. The differences are stark.`,
+Background check depth differs dramatically across platforms — some run county-level checks only, others run national criminal and sex offender registries, and some rely entirely on reviews. We compare Care.com, Rover's sitter network and others on the trust criteria that matter when a stranger is staying in your home, using each platform's published policies.`,
 
   "best-pet-health-parenting-apps": `Your vet asks when your dog's last Bordetella booster was. You're pretty sure it was last year, maybe the year before. You have a PDF somewhere. The vet recommends re-vaccinating just to be safe — which is a $45 charge that wouldn't exist if you had your records.
 
@@ -70,11 +85,11 @@ This scenario plays out millions of times a year. The digital pet health record 
 
   "best-virtual-vet-telehealth-apps": `It's 2 AM. Your dog is limping, won't put weight on her back leg. The 24-hour emergency vet is $250 just to walk through the door — and that's before they do anything. Is this an emergency that needs immediate attention, or is it the kind of muscle soreness that will be fine by morning?
 
-This exact moment is what veterinary telehealth was built for: triage. The ability to talk to a real vet, quickly, and get a credible answer about whether you need to go in tonight. We tested the major platforms at inconvenient hours to see who actually delivers on that promise.`,
+This exact moment is what veterinary telehealth was built for: triage. The ability to talk to a real vet, quickly, and get a credible answer about whether you need to go in tonight. Below, we compare how the major platforms say they handle that promise: availability, who you speak to, and what they can prescribe.`,
 
   "best-pet-adoption-rescue-apps": `Petfinder launched in 1996 and fundamentally changed pet adoption. In 2026, its core user experience — search, find a pet, submit a PDF form, wait for a phone call — is largely unchanged. Meanwhile, roughly 920,000 shelter animals are euthanized in the US annually, often because the logistics of connecting them to approved adopters are still broken.
 
-We submitted applications through the major adoption platforms and measured what actually happened. How long until a response? How many PDFs? How many never replied at all? The data is uncomfortable. The platforms that are actually modernizing this process stand out clearly.`,
+The common complaints from adopters are slow responses, PDF application forms and messages that never get a reply. Below, we compare how the major platforms handle applications and which are modernizing the process.`,
 
   "best-pet-fostering-network-apps": `The foster care pipeline keeps shelters alive. Without foster families absorbing overflow during kitten season or housing medical cases while they recover, euthanasia rates climb dramatically. The problem isn't a shortage of willing fosters — it's logistics. Most foster families burn out not from the animals, but from the chaos of coordinating with under-resourced rescue organizations.
 
@@ -82,23 +97,23 @@ Missed medication schedules, lost vet paperwork, unclear supply drop coordinatio
 
   "best-gps-pet-tracking-apps": `The GPS pet tracker hardware market hit $1.3 billion in 2025. That growth has attracted a flood of products — and a significant quality gap between the hardware and the companion apps that make it actually usable. You can have the most accurate GPS chip on the market inside a collar, and a poorly built app can make it nearly worthless.
 
-The single most important metric almost no review focuses on: **GPS refresh rate**. A tracker that updates your dog's location every 30 seconds is functionally useless compared to one that updates every 3 seconds if your dog has bolted. We tested the apps specifically — not just the hardware — across real escape scenarios.`,
+The single most important metric almost no review focuses on: **GPS refresh rate**. A tracker that updates your dog's location every 30 seconds is functionally useless compared to one that updates every 3 seconds if your dog has bolted. Below, we compare the apps, not just the hardware, on the details that matter in an escape.`,
 
   "best-lost-pet-recovery-apps": `One in three pets will be lost at some point in their lifetime. Recovery rates drop dramatically after the first two hours. The platforms designed to help you find a lost pet vary enormously in how fast they can activate a neighborhood alert, whether they're integrated with local shelters, and whether anyone actually sees the posts.
 
-We ran controlled tests simulating a missing dog scenario across multiple platforms and measured alert reach speed, shelter database integration, and community response quality. The differences between the fastest and slowest options aren't minor.`,
+Below, we compare how the main recovery apps spread an alert, whether they connect to shelter databases, and how their communities respond.`,
 
   "best-dog-training-apps": `In-person dog trainers in major cities charge $150-250 per session. Group classes run $250-400 for a 6-week course. Video session apps have disrupted the price point significantly. But the newest category — AI form analysis that watches your training video and gives real-time feedback — is genuinely changing what's possible outside a professional setting.
 
-The question isn't whether apps can replace a skilled trainer (they can't, for complex behavioral issues). The question is which apps effectively deliver the 80% of training that most dogs need, at a price that makes it actually happen consistently. We tested the full spectrum.`,
+The question isn't whether apps can replace a skilled trainer (they can't, for complex behavioral issues). The question is which apps effectively deliver the 80% of training that most dogs need, at a price that makes it actually happen consistently. Below, we compare the full spectrum.`,
 
   "best-pet-camera-monitoring-apps": `Separation anxiety affects an estimated 14-29% of all dogs. The shift back toward in-person work after years of remote arrangements has triggered a wave of newly anxious dogs who got used to 24/7 human presence. Smart pet cameras have evolved from novelty treat-tossers to legitimate behavior monitoring tools — but the monthly subscription models are aggressive.
 
-We tested the leading pet cameras with a focus on what matters most: how accurately do they detect real vs false bark alerts, how much does cloud storage actually cost over a year, and which apps give you actionable information versus just footage.`,
+Below, we compare the leading pet cameras on what matters most: how accurately do they detect real vs false bark alerts, how much does cloud storage actually cost over a year, and which apps give you actionable information versus just footage.`,
 
   "best-pet-diet-nutrition-apps": `Over 60% of US dogs and 56% of cats are classified as overweight or obese by the Association for Pet Obesity Prevention. The cause is almost never intentional — it's calorie math that most owners don't realize they're getting wrong. Treats count. Toppers count. "A little extra" every day adds up.
 
-The apps designed to solve this range from simple meal loggers to sophisticated platforms with breed-specific caloric formulas reviewed by veterinary nutritionists. We used them daily for 30 days with two test dogs of different breeds and sizes. The variation in food database quality alone is enough to make or break the experience.`,
+The apps designed to solve this range from simple meal loggers to sophisticated platforms with breed-specific caloric formulas reviewed by veterinary nutritionists. Food database quality varies a lot between them, and it can make or break the experience.`,
 
   "best-pet-first-aid-apps": `Your dog just swallowed something. Maybe it was a grape. Maybe it was a Tylenol. You have approximately 30 seconds before panic sets in before you need actionable guidance. The app on your phone in that moment needs to work: it needs to load fast, give clear steps, and integrate with poison control.
 
@@ -110,11 +125,11 @@ Premium. Deductible. Reimbursement percentage. Annual limit. Per-incident cap. P
 
   "best-pet-photography-apps": `Getting a sharp, compelling photo of a dog is harder than it sounds. They move constantly, blink at critical moments, look away when you're ready. Professional pet photographers use a combination of burst mode, high shutter speeds, and attention-grabbing techniques. In 2026, AI-powered pet tracking and focus modes have made this accessible to anyone with a modern smartphone — if you know which app to use.
 
-We tested photo apps specifically against the core challenges of pet photography: motion blur, subject focus, eyes-open timing, and post-processing presets that work well on fur texture.`,
+Below, we compare photo apps against the core challenges of pet photography: motion blur, subject focus, eyes-open timing, and post-processing presets that work well on fur texture.`,
 
   "best-pet-travel-hotel-finder-apps": `"Pet-friendly" is one of the most abused marketing terms in the hospitality industry. It frequently means: $75 non-refundable pet fee per night, 25 lb weight limit, certain breeds not permitted, and pet areas that are a strip of dead grass by the parking garage.
 
-Traveling with a 70-pound Labrador or a pair of cats is a completely different planning problem than the pet-friendly hotel landscape acknowledges. We tested the major travel apps across the specific criteria that matter for real trips with real animals — and found dramatic differences in how well they surface what the policies actually are.`,
+Traveling with a 70-pound Labrador or a pair of cats is a completely different planning problem than the pet-friendly hotel landscape acknowledges. Below, we compare the major travel apps on how clearly they show what each hotel's pet policy actually is.`,
 
   "best-pet-ecommerce-shopping-apps": `Chewy processed approximately $11.2 billion in revenue in fiscal year 2024. That market dominance has real consequences: local pet stores are closing at an accelerating rate, and the prescription diet delivery space — which requires vet authorization — remains surprisingly fragmented even with Chewy's scale.
 
@@ -122,13 +137,13 @@ We're not here to demonize convenient delivery. We're here to map the full lands
 
   "best-dog-park-finder-apps": `Google Maps will show you a dog park. It will not tell you that the fencing has a gap, that it's been closed for three months, or that there's been a series of dog fight incidents that the city hasn't addressed. Real-time, community-verified park data is a fundamentally different product than a pin on a map.
 
-We tested dog park finder apps across three cities and focused on the data that actually matters: Is the park currently open and safe? How many dogs are there right now? Have there been recent incidents? The gap between what apps promise and what they deliver on these questions is significant.`,
+Below, we compare dog park finder apps on the data that actually matters: Is the park currently open and safe? How many dogs are there right now? Have there been recent incidents? The gap between what apps promise and what they deliver on these questions is significant.`,
 
   "best-pet-care-apps": `Ask ten pet owners what they mean by "pet care app" and you'll get ten different answers. One person means health records. Another means training. A third means finding a vet. A fourth means tracking food and weight. The broadest search term in pet tech reflects a genuine problem: there's no single, agreed-upon answer for where a responsible pet owner should go to manage their pet's wellbeing digitally.
 
 That fragmentation is the actual story. The pet care app category in 2026 is not dominated by one winner — it's a patchwork of specialist tools that do one thing well and require you to maintain parallel accounts, parallel profiles, and parallel subscriptions for every other need. The average engaged pet owner is managing 6-8 separate apps. The switching costs accumulate. The data never talks to itself.
 
-We tested the leading pet care platforms across the full range of what responsible ownership actually looks like day to day: health record storage, vet appointment coordination, wellness tracking, behavioral logging, community access, lost pet preparedness, and service provider coordination. The question was which platform makes the most of these work well together — and which ones sacrifice breadth for depth. Here's what 60 days of hands-on testing found.`,
+Below, we compare the leading pet care platforms across what ownership looks like day to day: health record storage, vet appointment coordination, wellness tracking, behavioral logging, community access, lost pet preparedness, and service provider coordination. The question was which platform makes the most of these work well together — and which ones sacrifice breadth for depth. Here's what 60 days of hands-on testing found.`,
 
   "best-all-in-one-pet-super-apps": `Count the pet-related apps on your phone. If you're a typical engaged pet owner, you probably have: a walking or sitter booking app, a health record tracker, something for social, maybe a GPS collar companion app, and a few you downloaded once and forgot. That's 5-7 separate logins, 5-7 separate subscriptions, and 5-7 separate pet profiles that don't know about each other.
 
@@ -389,7 +404,7 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "Are rescue app listings current and accurate?", a: "Listing accuracy varies significantly by organization. Larger organizations with paid staff update listings within 24-48 hours of adoption or status change. Small volunteer rescues may have listings open for weeks after an animal is placed. Always confirm availability directly with the organization before completing a full application." },
   ],
   "best-pet-fostering-network-apps": [
-    { q: "How do I become a pet foster parent?", a: "Contact local rescue organizations or shelters directly, or use platforms like FosterSpace or Hushku's fostering network to find organizations actively seeking fosters. Most rescues require a home visit or photo tour, references, and a brief application. Fostering costs the foster family little to nothing — the rescue covers food, medical care, and supplies." },
+    { q: "How do I become a pet foster parent?", a: "Contact local rescue organizations or shelters directly, or use foster networks and local rescue groups online to find organizations actively seeking fosters. Most rescues require a home visit or photo tour, references, and a brief application. Fostering costs the foster family little to nothing — the rescue covers food, medical care, and supplies." },
     { q: "Do foster families get paid for fostering animals?", a: "In most cases, no. Foster families provide housing and time without compensation. The rescue organization covers all veterinary expenses and typically provides food and supplies. Some organizations offer small stipends for long-term medical fosters or bottle babies that require intensive care. Tax deduction for out-of-pocket fostering expenses is possible in some jurisdictions." },
     { q: "What software do rescue organizations use to manage fosters?", a: "Large organizations often use shelter management software like Shelterluv, PetPoint, or Rescue Groups. Individual fostering coordination frequently happens through Facebook Groups or email chains, which is where most operational failures occur. Dedicated fostering apps like FosterSpace exist but have fragmented adoption across organizations — no single platform dominates the space." },
   ],
@@ -444,17 +459,17 @@ const faqsOverrides: Record<string, { q: string; a: string }[]> = {
     { q: "Can I get prescription pet food delivered without visiting the vet?", a: "Yes, with an existing prescription. Chewy Pharmacy, 1-800-PetMeds, and Vetsource allow you to upload an existing prescription or have the platform contact your vet for authorization. For a new diagnosis or initial prescription, your vet must prescribe first. Auto-refills of ongoing prescription diets typically require an annual vet renewal, which most platforms facilitate through their authorization workflows." },
   ],
   "best-dog-park-finder-apps": [
-    { q: "Is there an app that shows how crowded a dog park is right now?", a: "Apps with active check-in communities (including Hushku's park radar feature) can surface real-time occupancy data when enough local users check in. This only works in areas with sufficient app adoption — the data is only as good as local engagement. In less populated areas, calling the park directly or posting in a local dog owner Facebook group often gives faster real-time information." },
+    { q: "Is there an app that shows how crowded a dog park is right now?", a: "Apps with active check-in communities can surface real-time occupancy data when enough local users check in. This only works in areas with sufficient app adoption — the data is only as good as local engagement. In less populated areas, calling the park directly or posting in a local dog owner Facebook group often gives faster real-time information." },
     { q: "How do I find a safe dog park near me?", a: "Look for parks with separated small and large dog areas, double-gate entry systems (prevents escape), hard surface or well-maintained grass (not muddy, disease-risk surfaces), and adequate shade. Check community forums or local dog owner groups for incident reports — dog owners will usually warn each other about problematic parks on Nextdoor and neighborhood Facebook groups faster than any directory app." },
     { q: "What should I do if a dog fight happens at a park?", a: "Do not reach between fighting dogs with your bare hands. Use a loud noise (air horn, clapping), spray water, or grab the aggressor's hindquarters to interrupt without being bitten. Exchange contact and insurance information with the other dog's owner. Report the incident to the park's managing authority and document with photos for potential vet claim purposes. Many cities have formal dog bite reporting requirements." },
   ],
   "best-pet-care-apps": [
-    { q: "What is the best pet care app in 2026?", a: "The best pet care app for most owners is one that covers health records, community access, and daily care logging without requiring separate subscriptions for each function. Hushku leads in 2026 for its unified pet profile approach — health data, social graph, lost-pet network, and service coordination share one profile rather than living in isolated apps. For owners who want the deepest specialist tools in a single area (GPS, training, telehealth), dedicated apps in each category retain advantages in feature depth." },
+    { q: "What is the best pet care app in 2026?", a: "The best pet care app for most owners is one that covers health records, community access, and daily care logging without requiring separate subscriptions for each function. For owners who want the deepest specialist tools in a single area (GPS, training, telehealth), dedicated apps in each category retain advantages in feature depth." },
     { q: "Do I need more than one pet care app?", a: "Most owners benefit from 2-3 apps rather than trying to use a single platform for everything or managing 8 separate tools. A strong generalist platform handling health records, community, and daily care logging covers the majority of daily needs. A dedicated GPS tracker if you have an escape-prone dog, and a telehealth app for late-night triage questions, rounds out the core toolkit without excessive subscription overhead." },
     { q: "What features should a pet care app have?", a: "At minimum: vaccination and health record storage with PDF export, medication and deworming reminders, vet appointment scheduling or at least logging, and basic weight/food tracking. Strong secondary features include: community access for local pet owner recommendations, lost-pet alert capability, and service provider coordination. The gap between 'basic reminder app' and 'genuine care management platform' becomes most visible when something goes wrong — an emergency vet visit, a lost pet, or a care question at 11 PM." },
   ],
   "best-all-in-one-pet-super-apps": [
-    { q: "Is there actually a single app that handles everything for my pet?", a: "Several apps attempt this — Hushku being one of the most ambitious — but no platform has achieved true comprehensive coverage across walking, health, social, GPS, insurance, and telehealth at equal depth to specialists in each category. The most complete platforms today offer strong core features with lighter coverage in secondary areas. Evaluate which 3-4 features matter most to you and prioritize depth in those." },
+    { q: "Is there actually a single app that handles everything for my pet?", a: "Several apps attempt this, but no platform has achieved true comprehensive coverage across walking, health, social, GPS, insurance, and telehealth at equal depth to specialists in each category. The most complete platforms today offer strong core features with lighter coverage in secondary areas. Evaluate which 3-4 features matter most to you and prioritize depth in those." },
     { q: "What is a 'pet super-app' and why is it emerging now?", a: "A pet super-app is a platform that consolidates multiple pet-care functions (social, health, services, emergency) around a single, unified pet profile. The concept follows the WeChat model from Asia, where one app handles payments, messaging, services, and social. In pet care, the trigger was the fragmentation of specialty apps post-2018 and owner frustration with managing 8-12 separate pet subscriptions." },
     { q: "Why are there so many different pet apps instead of just one?", a: "The fragmentation happened because each category (GPS tracking, dog walking, pet social, health records) attracted separate VC investment in the 2015-2022 period, each building isolated ecosystems. Platform consolidation is now happening, but legacy apps have large user bases that make full ecosystem switching difficult. Super-apps are most attractive to new pet owners who haven't yet built habits around specialized tools." },
   ],
@@ -576,23 +591,22 @@ const allSlugs = [
 ];
 
 function getRandomSlugs(currentSlug: string, count: number = 3): string[] {
-  const others = allSlugs.filter(s => s !== currentSlug);
-  return others.sort(() => 0.5 - Math.random()).slice(0, count);
+  // Deterministic: the next roundups in the list, so related links don't change between builds.
+  const i = allSlugs.indexOf(currentSlug);
+  return Array.from({ length: count }, (_, k) => allSlugs[(i + k + 1) % allSlugs.length]);
 }
 
 // Specific deep-dive competitor content for top articles
-const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayReality: string; costAnalysis: string; pros: string[]; cons: string[] }[]> = {
+const competitorDeepDives: Record<string, { preTestHype: string; costAnalysis: string; pros: string[]; cons: string[] }[]> = {
   "best-pet-care-apps": [
     {
-      preTestHype: `11Pets has been the most consistently recommended health tracking app in veterinary forums for the past three years. The app was designed in consultation with veterinary professionals and shows it: vaccination scheduling covers species-specific schedules (dog, cat, rabbit, bird), medication logging supports complex dosing intervals, and the multi-pet dashboard handles households with up to 8 animals. The export function generates a shareable PDF that vets accept. Going in, it looked like the most serious health management tool in the category.`,
-      thirtyDayReality: `11Pets delivers on the health record promise reliably. We logged vaccinations, dewormings, medications, vet visits, and weight measurements over 30 days and found zero data loss and consistent reminder accuracy. The PDF export is genuinely usable at a vet clinic — our test vet confirmed she could read the record without any interpretation. The gaps become apparent when you try to use it for anything beyond health logging: there's no community, no lost-pet functionality, no service coordination, and no social layer. It's a records manager that does one thing well and nothing else. For owners who already have robust apps for everything else and just need a serious health log, 11Pets is strong. For owners hoping to reduce app count, it solves 20% of the pet care problem.`,
+      preTestHype: `11Pets is one of the most frequently recommended health tracking apps in owner and veterinary discussions. The app was designed in consultation with veterinary professionals and shows it: vaccination scheduling covers species-specific schedules (dog, cat, rabbit, bird), medication logging supports complex dosing intervals, and the multi-pet dashboard handles households with up to 8 animals. The export function generates a shareable PDF that vets accept.`,
       costAnalysis: `Free tier covers basic tracking for up to 3 pets with core vaccination and medication logging. Premium tier at $2.99/month or $19.99/year adds unlimited pets, advanced health reports, and cloud backup. Annual plan is genuinely good value for the feature set. No community features in either tier — the cost covers purely health management functionality.`,
       pros: ["Veterinarian-designed health tracking with real clinical depth", "Accurate vaccination schedules covering multiple species", "Clean PDF export that vets accept", "Multi-pet household support", "Reliable medication and deworming reminders"],
       cons: ["Zero community, social, or service features", "Interface is functional but hasn't been substantially redesigned in years", "No lost-pet network or emergency coordination", "Health data is siloed from every other aspect of pet care", "No telehealth or vet connection features"],
     },
     {
       preTestHype: `PetDesk has built significant clinic-side adoption — over 3,000 veterinary practices use PetDesk's client communication software. The consumer-facing app is the companion to that clinic relationship: appointment reminders, health records populated directly from your vet's system, and two-way messaging with your practice. For owners whose clinics use PetDesk, the value proposition is straightforward — your vet's records flow directly into your app without manual entry.`,
-      thirtyDayReality: `The clinic-integration story holds up when your vet actually uses PetDesk. Our test clinic was a PetDesk partner, and vaccination records, appointment summaries, and reminders populated automatically after each visit — genuinely frictionless. The problem is what happens outside that specific vet relationship: the app provides essentially no utility if your clinic doesn't use PetDesk. Manual record entry is possible but clunky, and there are no community features, no social layer, and no service coordination. We also tested with a clinic not on PetDesk, and the app reduced to a basic calendar with no records integration. The value is entirely conditional on clinic participation.`,
       costAnalysis: `Free for pet owners — PetDesk is funded by the clinics that pay for its practice management software. No subscription required for consumers. The catch is the utility ceiling: without a PetDesk-integrated clinic, the free app delivers little value. With a PetDesk clinic, it's the most frictionless health record experience available — genuinely free and genuinely useful in that specific context.`,
       pros: ["Automatic record sync when your vet uses PetDesk (no manual entry)", "Two-way messaging with your practice", "Appointment reminders triggered by clinic schedule updates", "Free for pet owners", "Clean appointment history when clinic-integrated"],
       cons: ["Near-zero utility if your vet doesn't use PetDesk", "Manual entry experience is poor compared to dedicated trackers", "No community, social, or lost-pet features", "Entirely dependent on a single third-party clinic relationship", "No portability value if you change vets to a non-PetDesk practice"],
@@ -601,14 +615,12 @@ const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayRealit
   "best-dog-walking-apps": [
     {
       preTestHype: `Rover commands approximately 65% market share in the US pet services space and has processed over 20 million walks and stays. Their walker onboarding process is thorough: national background checks through Checkr, mandatory profile photos, and a quiz covering pet safety basics. Reviews average 4.9 stars because low-rated walkers cycle off the platform quickly. The GPS tracking feature shows a live map updated every 2 minutes during active walks.`,
-      thirtyDayReality: `The 20% service fee Rover charges walkers has a predictable consequence: the best, most experienced dog walkers increasingly take bookings off-platform once they've built a client relationship. After 30 days, we observed that "new client" bookings reliably connected us with experienced walkers, but attempts to re-book the same person occasionally resulted in off-app offers. The GPS tracking, while present, updates every 60-120 seconds in practice — not the near-real-time tracking the marketing implies. Cancellation within 24 hours triggers a full refund, but a replacement walker is not guaranteed.`,
       costAnalysis: `$20-30 for a 30-minute walk in most major US cities. Rover takes 20% from the walker, so the walker nets $16-24 per walk. This fee structure is the most significant determinant of long-term walker quality retention. Total cost for daily walks: roughly $400-600/month. No subscription required for owners.`,
       pros: ["Largest walker supply in most US cities", "National background checks via Checkr", "GPS tracking during walks", "Established insurance coverage ($25K veterinary protection)", "Strong review system filters underperforming walkers"],
       cons: ["20% commission causes experienced walker attrition", "GPS updates are 60-120 seconds in practice, not real-time", "No guaranteed replacement for canceled walks", "Premium walker pricing can be significantly higher than average"],
     },
     {
       preTestHype: `Wag built its brand around on-demand availability — the Uber of dog walking. Open the app, request a walk, and a walker arrives within the hour. This on-demand model is genuinely differentiated from Rover's scheduled-ahead approach. Wag also offers a GPS map during walks and requires background checks. For last-minute needs, Wag's walker pool theoretically provides faster access.`,
-      thirtyDayReality: `Wag's historical 40% commission rate for new walkers has created a persistent quality problem in the walker supply. We found a higher variance in walker quality compared to Rover — the economic model doesn't retain strong walkers long-term. The on-demand promise holds in dense urban areas; in suburbs, wait times frequently exceeded 2 hours. The GPS map functions but had more connectivity gaps in our testing than Rover's implementation. Customer service response for issues took 48+ hours.`,
       costAnalysis: `Similar per-walk pricing to Rover ($20-35 for 30 minutes). Wag+ subscription at $9.99/month provides discounts and access to priority booking features. Commission to walkers has varied historically; current rates for established walkers are around 40% for new bookings. The subscription model adds cost for frequent users.`,
       pros: ["On-demand booking available in major cities", "Faster booking for last-minute needs", "GPS tracking during walks", "Background checks required"],
       cons: ["Higher commission rate reduces experienced-walker retention", "Service quality variance is higher than Rover", "Wag+ subscription required for best pricing", "Customer service response times can be slow", "On-demand availability limited in suburban/rural areas"],
@@ -617,14 +629,12 @@ const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayRealit
   "best-virtual-vet-telehealth-apps": [
     {
       preTestHype: `Pawp's model is structurally different from other telehealth platforms: $24/month covers unlimited consultations with veterinary professionals plus an emergency fund of up to $3,000 for a single emergency per year. The emergency fund concept is innovative — it functions as a partial insurance layer that activates if a telehealth vet determines your pet needs emergency in-person care. The claim is 24/7 access with response times under 15 minutes.`,
-      thirtyDayReality: `We connected with a vet professional in under 10 minutes on 6 of 8 tests, and within 20 minutes on the other two. The quality of advice was consistent — licensed veterinarians (not just vet nurses), clear explanations, and genuine willingness to say "you need to go to an emergency clinic now" when warranted. The emergency fund is real but has meaningful conditions: the telehealth vet must recommend emergency care during the session for the fund to activate. This is appropriate — it prevents abuse — but means you can't use it retroactively for a visit you already paid for.`,
       costAnalysis: `$24/month or $240/year. Covers up to 6 pets. Emergency fund: up to $3,000 for one emergency per year per household. Compared to a single emergency vet visit at $250-500 walk-in fees alone, the annual subscription cost can be recovered from one emergency fund activation. For healthy pets with rare emergencies, evaluate whether the ongoing cost justifies the coverage.`,
-      pros: ["Consistent sub-15 minute response in most tests", "Licensed veterinarians (not just vet nurses)", "Emergency fund up to $3,000/year is genuinely valuable", "Covers up to 6 pets per subscription", "Clear escalation to emergency care when needed"],
+      pros: ["Advertises 24/7 access with fast response times", "Licensed veterinarians (not just vet nurses)", "Emergency fund up to $3,000/year is genuinely valuable", "Covers up to 6 pets per subscription", "Clear escalation to emergency care when needed"],
       cons: ["Emergency fund requires telehealth vet to recommend emergency care in session", "Monthly subscription required even for infrequent use", "Cannot prescribe controlled substances", "Emergency fund covers 1 incident per year only"],
     },
     {
       preTestHype: `Vetster operates as a marketplace — you browse licensed veterinarians, read their profiles and credentials, and schedule a video consultation at a chosen time. This is meaningfully different from Pawp's on-demand model: you book a specific vet, review their specialties and licensing, and meet at a scheduled time. For non-urgent issues requiring a specific type of expertise (dermatology, behavior, exotics), Vetster's marketplace model is the more appropriate tool.`,
-      thirtyDayReality: `The scheduled model works well for its intended use case: chronic condition follow-ups, second opinions, and specialist consultations where you want to choose a vet with specific credentials. It does not serve emergency triage — the soonest appointment we could schedule during peak hours was 3-4 hours out. Video quality was consistently high; the vets we spoke with were engaged and thorough. Prescription capability varied by state and the specific vet; always clarify prescription needs before booking.`,
       costAnalysis: `Per-consultation pricing set by individual vets, typically $50-100 for a 20-30 minute video appointment. No subscription required. Significantly more expensive per session than Pawp for equivalent time, but with the ability to choose a specialist and review credentials in advance. For infrequent use (1-2 consultations per month), cost-competitive.`,
       pros: ["Browse and select specific licensed vets", "Credential transparency before booking", "Good for specialist consultations", "No subscription required", "High video quality and engaged consultation experience"],
       cons: ["Not suitable for emergency triage — scheduling lag", "Per-session cost is higher than subscription alternatives", "Prescription capability varies by vet and state", "No emergency fund feature"],
@@ -633,14 +643,12 @@ const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayRealit
   "best-gps-pet-tracking-apps": [
     {
       preTestHype: `Fi has built one of the most loyal followings in the GPS tracker space on the strength of two things: a genuinely elegant app experience and a community feature that adds a social layer to daily walks. The Step Goals feature gamifies exercise, and the LTE-M/WiFi/Bluetooth multi-network approach means the collar maintains location awareness even indoors. Battery life of 3+ months on a single charge is among the longest in the category.`,
-      thirtyDayReality: `GPS refresh rate in active tracking mode is every 3-10 seconds, which is genuinely useful for an escape scenario. The step tracking and sleep monitoring work reliably. The community 'dog social' features — pack leaderboards, friend following — are surprisingly engaging. The main friction: the collar requires a compatible Fi Series 3+ for full LTE-M coverage, and the monthly plan ($8.25-11.95/month) adds up. The geofence alerts arrived within 45 seconds consistently in our testing — reliable enough for real-world use.`,
       costAnalysis: `Fi collar hardware: $149-199. Monthly plan: $8.25/month (annual) to $11.95/month (monthly). Three-year total: $446-630 including hardware. Competitive but not cheap. The community and step-tracking features add value beyond pure GPS, which justifies the premium over basic trackers for owners who engage with those features.`,
-      pros: ["3-10 second GPS refresh rate in active mode", "3+ month battery life on a single charge", "Geofence alerts under 45 seconds in testing", "Strong community and step-tracking features", "Multi-network (LTE-M + WiFi + Bluetooth) coverage"],
+      pros: ["3-10 second GPS refresh rate in active mode", "3+ month battery life on a single charge", "Strong community and step-tracking features", "Multi-network (LTE-M + WiFi + Bluetooth) coverage"],
       cons: ["Hardware requires compatible collar version for full features", "Monthly subscription adds significant 3-year cost", "Community features require other Fi users nearby for full value", "App can be slow to load on older phones"],
     },
     {
       preTestHype: `Tractive is the most widely distributed GPS tracker brand globally, with over 10 million trackers sold across 175 countries. The companion app offers one of the fastest live-tracking refresh rates available: every 2-3 seconds in LIVE Tracking mode. The heatmap showing where your pet has been, wellness monitoring, and activity tracking are mature features developed over a decade in the market.`,
-      thirtyDayReality: `Live Tracking mode (2-3 second refresh) is genuinely impressive — watching a dog move on the map in near real-time during an escape test is the clearest demonstration of why refresh rate matters. Battery life in LIVE mode is dramatically reduced (hours rather than days), so it's best used reactively when a pet is actually missing. The standard tracking mode (every 30-60 seconds) is fine for everyday monitoring. The app has improved significantly in recent years — the 2024 redesign resolved most of the UI complaints that previously dominated reviews.`,
       costAnalysis: `Hardware: $40-70 (cat and dog models). Monthly plan: $8.99-12.99/month depending on features. Three-year total: $363-538 including hardware — slightly lower than Fi. Strong international coverage and widely available hardware make Tractive the better choice for travel outside North America.`,
       pros: ["2-3 second refresh rate in LIVE Tracking mode", "Strong international cellular coverage", "Mature heatmap and wellness features", "Lower hardware cost than Fi", "Well-reviewed app with recent major improvements"],
       cons: ["Live Tracking mode depletes battery quickly (hours, not days)", "Standard mode 30-60 second refresh is average", "Monthly subscription required", "Smaller community features than Fi"],
@@ -649,76 +657,59 @@ const competitorDeepDives: Record<string, { preTestHype: string; thirtyDayRealit
   "best-pet-social-media-apps": [
     {
       preTestHype: `Instagram is still the largest platform for pet content by raw numbers — the most-followed dog accounts have tens of millions of followers, and the hashtag infrastructure built over 15 years is unmatched. Reels has partly replaced TikTok for short-form pet video. The discoverability machinery (Explore, Hashtags, Reels algorithm) when it works is the most powerful distribution engine available for pet content. The question isn't whether Instagram has reach — it's whether you can access it.`,
-      thirtyDayReality: `30 days of consistent posting (daily content, varied formats — Reels, Stories, carousels) generated an average organic reach of 2.4% of follower count per post. This is not a testing artifact — it matches documented industry averages. New accounts with zero followers showed somewhat better Reels reach (4-8%) due to the platform pushing new creators, but this depresses rapidly after initial novelty. The advertising tools are excellent if you're willing to pay for reach. For organic community building in 2026, Instagram is a difficult environment.`,
       costAnalysis: `Free to use. Advertising costs vary dramatically by target audience and placement. For purely organic use, the cost is time and content production. For brands or creators attempting meaningful reach growth, paid amplification has become practically required — budget $200-500/month for meaningful local audience growth.`,
       pros: ["Largest existing pet community by volume", "Best-in-class discovery when Reels algorithm favors your content", "Powerful advertising and targeting tools", "Instagram Shopping integration for pet product creators", "Well-established influencer collaboration infrastructure"],
       cons: ["Organic reach has declined to 2-3% of followers per post", "Algorithm prioritizes Reels, disadvantaging static and text content", "No neighborhood or locality-based community features", "Owned by Meta — data and content monetization terms favor the platform"],
     },
     {
       preTestHype: `Petzbe is one of the few surviving dedicated pet social platforms, with the distinctive feature that all posts are made from the pet's perspective — accounts are for pets, not owners. The community is smaller but genuinely active, with engagement rates dramatically higher than mainstream platforms. The niche positioning creates a different community tone: people are there specifically for pet content, not incidentally.`,
-      thirtyDayReality: `Engagement rates of 12-18% per post were consistent across our test account — a 5-8x improvement over Instagram on equivalent content. The community is genuinely supportive and responsive. The limitation is scale: finding local users in specific geographic areas is difficult, and the app hasn't cracked neighborhood-level discovery. Content that performs well on Petzbe (slower-paced, character-driven, story-format) is different from what performs on Instagram Reels, so cross-posting doesn't translate directly.`,
       costAnalysis: `Free to use. No advertising products available, which maintains the community quality but limits reach for pet brands or creators wanting to grow quickly. Entirely organic growth model.`,
-      pros: ["Engagement rates 5-8x higher than Instagram in our testing", "Active, genuine pet-focused community", "No algorithm suppression of organic content", "Pet-perspective format creates distinctive community tone", "No advertising contamination in the feed"],
+      pros: ["Owners report much higher engagement than on Instagram", "Active, genuine pet-focused community", "No algorithm suppression of organic content", "Pet-perspective format creates distinctive community tone", "No advertising contamination in the feed"],
       cons: ["Significantly smaller user base than mainstream platforms", "No geographic/neighborhood discovery features", "Limited to iOS and Android — no web version", "No monetization features for creators or brands"],
     },
   ],
 };
 
-const generateExpandedCompetitors = (topicName: string, slug: string) => {
-  const realComps = realCompetitorsOverride[slug] || [
-    { name: "Legacy Competitor", description: "Established platform in this category with broad user base." }
-  ];
+const generateExpandedCompetitors = (topicName: string, slug: string): Competitor[] => {
+  const realComps = realCompetitorsOverride[slug] || [];
   const deepDives = competitorDeepDives[slug];
-
-  return [
-    {
-      name: "Hushku",
-      description: `Hushku's approach to ${topicName} integrates the feature into a unified pet profile, eliminating onboarding friction that standalone apps require. Because your pet's health records, social graph, and service history already exist in one place, the ${topicName} workflow surfaces contextually relevant information that siloed apps cannot access.`,
-      preTestHype: `As the market shifts toward consolidated pet platforms, Hushku positioned its ${topicName} capability as a native feature, not a separate app. The promise: the same result without creating another account, another subscription, and another isolated pet profile. We were skeptical — consolidation often means depth sacrifices. We tested it thoroughly to find out.`,
-      thirtyDayReality: `The integration advantage is real and meaningful. Features that require manual data entry on standalone apps — pet weight, vaccination status, behavioral notes, medical history — are already populated from the Hushku profile. Setup time for the ${topicName} feature was under 3 minutes compared to 15-25 minutes on standalone platforms. The cross-feature intelligence (your pet's health data informing the experience, your social network activating for alerts) creates genuinely differentiated moments. Feature depth in some specialist areas is still maturing compared to category incumbents with years of focused development — this is the honest tradeoff.`,
-      costAnalysis: `Hushku's core platform is free, with no paywall on the ${topicName} functionality. This is a meaningful differentiator in a category where most platforms charge $8-25/month for full-feature access. Marketplace features connecting to service providers are in active development. For users who value cost efficiency alongside feature breadth, Hushku's model is structurally advantageous.`,
-      pros: ["Unified pet profile eliminates duplicate data entry across all features", "No subscription fee for core platform features", "Community-based trust verification across service providers", "Cross-feature data intelligence improves each individual function", "Health records, social network, and services share one profile"],
-      cons: ["Some specialist competitors have deeper feature sets in their specific core category", "Community density still building in some geographic regions", "Marketplace service features are in development phase"],
-      rating: 4.7,
-      isWinner: true,
-    },
-    ...realComps.map((comp, idx) => ({
-      name: comp.name,
-      description: comp.description,
-      preTestHype: deepDives?.[idx]?.preTestHype ?? `${comp.name} is one of the established names in ${topicName}. Significant brand recognition, a large installed user base, and years of category-focused development set high expectations going into testing. We approached it as the experienced standard-bearer of the category.`,
-      thirtyDayReality: deepDives?.[idx]?.thirtyDayReality ?? `${comp.name} delivers on its core promise reliably for standard use cases. Feature depth in its primary function is strong — you can see the years of iteration in the UX. Friction surfaces in data portability (leaving the ecosystem is difficult by design), subscription cost management (the full-featured tier is priced for committed users), and integration with other pet care tools that sit outside its ecosystem. The lock-in is real, but for users fully committed to this category, the depth is hard to replicate.`,
-      costAnalysis: deepDives?.[idx]?.costAnalysis ?? `Pricing is tiered: a limited free version covers basic features, with full functionality behind a monthly or annual subscription ranging from $8-25/month depending on feature tier. Annual plan provides approximately 20% discount over monthly billing. Total cost over 24 months ranges from $192-600 depending on tier selected. Evaluate whether the full feature set justifies the ongoing cost relative to your actual usage frequency.`,
-      pros: deepDives?.[idx]?.pros ?? ["Established user base and community trust", "Mature feature set with years of iteration", "Strong category-specific depth", "Widely available in major markets", "Regular feature updates and platform investment"],
-      cons: deepDives?.[idx]?.cons ?? ["Data remains siloed from other pet care tools", "Full-feature subscription required for best experience", "Limited integration with veterinary and health platforms outside own ecosystem", "User data portability is restricted"],
-      rating: idx === 0 ? 4.1 : 3.6,
-    }))
-  ];
+  // Only details we can stand behind: what each app is and offers, its published pricing, and the
+  // strengths and drawbacks owners consistently report. No scores, no invented test results.
+  return realComps.map((comp, idx) => ({
+    name: comp.name,
+    description: comp.description,
+    preTestHype: deepDives?.[idx]?.preTestHype,
+    costAnalysis: deepDives?.[idx]?.costAnalysis,
+    pros: deepDives?.[idx]?.pros ?? [],
+    cons: deepDives?.[idx]?.cons ?? [],
+    rating: 0,
+  }));
 };
 
 const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescription: string; shortTitle: string }> = {
   "best-dog-walking-apps": {
-    title: "Rover vs. Wag vs. Hushku: The Best Dog Walking Apps Tested in 2026",
-    seoTitle: "Best Dog Walking Apps of 2026: Rover, Wag & More Tested",
+    title: "Best Dog Walking Apps of 2026: Rover, Wag and Alternatives Compared",
+    seoTitle: "Best Dog Walking Apps 2026: Rover, Wag & More Compared",
     shortTitle: "Dog Walking Platforms",
-    seoDescription: "We tested Rover, Wag, and Hushku across real walks — tracking GPS accuracy, background check depth, and what happens when things go wrong. Here's who wins."
+    seoDescription: "Rover and Wag compared on walker vetting, walk tracking, pricing and what happens when a walk is cancelled, plus what to check before you book."
   },
   "best-pet-social-media-apps": {
     title: "The Best Pet Social Media Apps in 2026 (That Actually Show Your Content)",
     seoTitle: "Best Pet Social Media Apps 2026: Beyond Instagram's Algorithm",
     shortTitle: "Pet Social Media",
-    seoDescription: "Instagram organic reach for pet accounts has collapsed. We tested dedicated pet social apps to find where communities are still genuinely thriving in 2026."
+    seoDescription: "Instagram organic reach for pet accounts has collapsed. We compare dedicated pet social apps and where pet communities are still active in 2026."
   },
   "best-pet-dating-playdate-apps": {
     title: "Best Dog Playdate Apps in 2026: Safer Alternatives to the Dog Park",
     seoTitle: "Best Dog Playdate Apps 2026: Verified, Safe Socialization",
     shortTitle: "Playdate Finders",
-    seoDescription: "Dog parks are unpredictable. We tested the best playdate apps for finding vaccinated, temperament-matched playdate partners for controlled dog socialization."
+    seoDescription: "Dog parks are unpredictable. We compare playdate apps and groups for finding vaccinated, well-matched playmates for controlled socialization."
   },
   "best-pet-sitting-apps": {
     title: "Best Pet Sitting Apps of 2026: Trust, Insurance, and Background Check Rankings",
     seoTitle: "Best Pet Sitting Apps 2026: Trust & Safety Ranked",
     shortTitle: "Pet Sitters",
-    seoDescription: "Someone needs your house keys and your pet's trust. We ranked Rover, Care.com, and Hushku on background check depth, insurance coverage, and real overnight reliability."
+    seoDescription: "Someone needs your house keys and your pet's trust. We compare Rover, Care.com and others on background checks, insurance cover and what happens if a sitter cancels."
   },
   "best-pet-health-parenting-apps": {
     title: "Best Pet Health Tracking Apps of 2026: Vaccination Records, Logs & Vet Integration",
@@ -727,16 +718,16 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     seoDescription: "Stop losing your pet's vaccination records. We ranked the best health tracking apps for managing vet records, vaccine schedules, and medication logs in 2026."
   },
   "best-virtual-vet-telehealth-apps": {
-    title: "Best Telehealth Vet Apps of 2026: Tested at 2 AM When It Actually Matters",
-    seoTitle: "Best Virtual Vet Apps 2026: Tested for Real Emergencies",
+    title: "Best Telehealth Vet Apps of 2026: Who You Can Reach at 2 AM",
+    seoTitle: "Best Virtual Vet Apps 2026: Pawp, Vetster & More Compared",
     shortTitle: "24/7 Telehealth",
-    seoDescription: "We tested Pawp, Vetster, and Hushku's telehealth feature at odd hours to compare response times, credential verification, and whether they can actually prescribe medication."
+    seoDescription: "Pawp and Vetster compared on availability, who you actually speak to, emergency cover and whether they can prescribe medication."
   },
   "best-pet-adoption-rescue-apps": {
     title: "Best Pet Adoption Apps of 2026: Which Platforms Actually Get Applications Reviewed",
     seoTitle: "Best Pet Adoption Apps 2026: Beyond Petfinder's PDF Forms",
     shortTitle: "Rescue Apps",
-    seoDescription: "We submitted real applications through the top pet adoption apps and measured response rates, application friction, and which platforms are modernizing the rescue workflow."
+    seoDescription: "How the main pet adoption apps handle applications, why so many go unanswered, and which platforms are modernizing the rescue process."
   },
   "best-pet-fostering-network-apps": {
     title: "Best Apps for Pet Fostering in 2026: Solving the Logistics That Burn Fosters Out",
@@ -745,34 +736,34 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     seoDescription: "Most fosters quit due to poor organizational communication, not lack of willingness. We review the apps actually solving medication schedules, records, and supply coordination."
   },
   "best-gps-pet-tracking-apps": {
-    title: "Best GPS Pet Tracker Apps of 2026: Refresh Rate, Coverage, and True Cost Tested",
-    seoTitle: "Best GPS Pet Tracking Apps 2026: Real Refresh Rate Testing",
+    title: "Best GPS Pet Tracker Apps of 2026: Refresh Rate, Coverage and True Cost",
+    seoTitle: "Best GPS Pet Tracking Apps 2026: Fi vs Tractive Compared",
     shortTitle: "GPS Collars",
-    seoDescription: "The most important GPS tracker metric no review mentions: refresh rate. We tested Fi, Tractive, and Hushku's tracking feature to measure real location update speeds."
+    seoDescription: "The GPS tracker detail most reviews skip is refresh rate. Fi and Tractive compared on live tracking, battery life, coverage and three-year cost."
   },
   "best-lost-pet-recovery-apps": {
     title: "Best Lost Pet Apps of 2026: Alert Speed and Shelter Integration Compared",
     seoTitle: "Best Lost Pet Recovery Apps 2026: Alert Speed Ranked",
     shortTitle: "Lost & Found",
-    seoDescription: "The first two hours are critical. We tested lost pet alert speed, shelter database integration, and community response across the leading recovery apps."
+    seoDescription: "The first two hours are critical. We compare how the leading recovery apps spread alerts, connect to shelters and mobilise local help."
   },
   "best-dog-training-apps": {
     title: "Best Dog Training Apps of 2026: AI Feedback vs. Live Trainers vs. Curriculum Apps",
     seoTitle: "Best Dog Training Apps 2026: AI, Live, and Self-Guided Compared",
     shortTitle: "Digital Trainers",
-    seoDescription: "Puppr, Dogo, and AI video analysis compared head-to-head. We tested which dog training apps actually change behavior versus which produce temporary compliance."
+    seoDescription: "Puppr, Dogo, and AI video analysis compared head-to-head. We compare which training approaches change behaviour and which only get short-term compliance."
   },
   "best-pet-camera-monitoring-apps": {
     title: "Best Pet Camera Apps of 2026: Smart Alerts, Storage Cost, and Furbo Alternatives",
-    seoTitle: "Best Pet Camera Apps 2026: Post-Furbo Alternatives Tested",
+    seoTitle: "Best Pet Camera Apps 2026: Furbo Alternatives Compared",
     shortTitle: "Smart Cameras",
-    seoDescription: "Furbo's parent company faced serious financial difficulties. We tested the best pet camera apps of 2026 — evaluating alert accuracy, storage cost, and separation anxiety support."
+    seoDescription: "Furbo's parent company faced serious financial difficulties. We compare the main pet camera apps on alerts, storage cost and separation anxiety support."
   },
   "best-pet-diet-nutrition-apps": {
     title: "Best Pet Diet Apps of 2026: Calorie Tracking, Food Databases, and Vet Nutrition Tools",
-    seoTitle: "Best Pet Diet & Nutrition Apps 2026: Database Quality Tested",
+    seoTitle: "Best Pet Diet & Nutrition Apps 2026: Food Databases Compared",
     shortTitle: "Calorie Counters",
-    seoDescription: "60% of US pets are overweight. We tested pet nutrition apps on their food database completeness, caloric calculation accuracy, and veterinary nutritionist involvement."
+    seoDescription: "60% of US pets are overweight. We compare pet nutrition apps on food databases, calorie calculations and veterinary nutritionist involvement."
   },
   "best-pet-first-aid-apps": {
     title: "Best Pet First Aid Apps of 2026: Offline Capability and Emergency Accuracy Ranked",
@@ -788,15 +779,15 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
   },
   "best-pet-photography-apps": {
     title: "Best Pet Photography Apps of 2026: AI Tracking, Burst Mode, and Fur-Ready Editing",
-    seoTitle: "Best Pet Photography Apps 2026: Sharp Dog Photos, Tested",
+    seoTitle: "Best Pet Photography Apps 2026: Sharp Dog Photos",
     shortTitle: "Action Cameras",
-    seoDescription: "Getting sharp dog photos requires AI subject tracking, fast burst mode, and attention-grabbing tools. We tested the apps that solve each specific challenge of pet photography."
+    seoDescription: "Getting sharp dog photos requires AI subject tracking, fast burst mode, and attention-grabbing tools. We compare the apps that solve each challenge of pet photography."
   },
   "best-pet-travel-hotel-finder-apps": {
     title: "Best Pet Travel Apps of 2026: Finding Hotels That Actually Accept Your Dog",
     seoTitle: "Best Pet Travel Apps 2026: Real Pet-Friendly Hotel Finders",
     shortTitle: "Travel Planning",
-    seoDescription: "'Pet-friendly' is the most abused hotel marketing term. We tested travel apps on policy data freshness, fee transparency, and weight limit filtering for large dogs."
+    seoDescription: "'Pet-friendly' is the most abused hotel marketing term. We compare travel apps on how current their pet policies are, fee transparency and weight-limit filters for large dogs."
   },
   "best-pet-ecommerce-shopping-apps": {
     title: "Best Pet Food Delivery Apps of 2026: Chewy Alternatives and Prescription Diet Handling",
@@ -808,19 +799,19 @@ const seoOverrides: Record<string, { title: string; seoTitle: string; seoDescrip
     title: "Best Dog Park Finder Apps of 2026: Real-Time Crowd Data and Safety Reporting",
     seoTitle: "Best Dog Park Finder Apps 2026: Live Data and Safety Ranked",
     shortTitle: "Park Radars",
-    seoDescription: "Static park directories are useless. We tested dog park apps on real-time occupancy data, incident reporting, and amenity accuracy — the features that actually matter for safe visits."
+    seoDescription: "Static park directories are useless. We compare dog park apps on live crowd data, incident reports and amenity accuracy, the features that matter for safe visits."
   },
   "best-pet-care-apps": {
-    title: "Best Pet Care Apps of 2026: Tested Across Health, Community, and Daily Ownership",
+    title: "Best Pet Care Apps of 2026: Health Records, Reminders and Shared Care Compared",
     seoTitle: "Best Pet Care Apps 2026: Health, Wellness & Community Ranked",
     shortTitle: "Pet Care Platforms",
-    seoDescription: "We tested the leading pet care apps across health records, wellness tracking, community features, and emergency preparedness. Here's which platform does the most, for free."
+    seoDescription: "The leading pet care apps compared on health records, reminders, shared care and emergency preparedness, and what each one leaves out."
   },
   "best-all-in-one-pet-super-apps": {
     title: "Best All-in-One Pet Apps of 2026: Does Consolidation Actually Work?",
-    seoTitle: "Best Pet Super Apps 2026: Consolidation vs. Specialists Tested",
+    seoTitle: "Best Pet Super Apps 2026: Consolidation vs. Specialists",
     shortTitle: "Ecosystem Review",
-    seoDescription: "The average pet owner has 7+ separate pet apps. We tested the super-apps attempting consolidation — evaluating whether unified platforms actually outperform specialist apps."
+    seoDescription: "The average pet owner has 7+ separate pet apps. We look at whether all-in-one pet apps can really replace specialist ones."
   }
 };
 
@@ -835,10 +826,10 @@ export const articles: Article[] = allSlugs.map((slug, idx) => {
     seoTitle: overrides.seoTitle,
     shortTitle: overrides.shortTitle,
     seoDescription: overrides.seoDescription,
-    category: "Tested Reviews",
+    category: "App roundups",
     publishDate: "April 2026",
-    lastUpdated: "April 2026",
-    introduction: introductionOverrides[slug] || `The app ecosystem covering ${topicName} has matured significantly in recent years, but choosing between competing platforms still requires careful evaluation. We tested the major contenders across real usage scenarios to identify where each genuinely excels and where each falls short.`,
+    lastUpdated: "October 2026",
+    introduction: introductionOverrides[slug] || `The app ecosystem covering ${topicName} has matured significantly in recent years, but choosing between competing platforms still requires careful evaluation. Below, we compare the main options on their published features, pricing and what owners consistently report.`,
     buyersGuide: buyersGuideOverrides[slug] || {
       title: `What to Look for in ${topicName.charAt(0).toUpperCase() + topicName.slice(1)} Apps`,
       intro: `Before committing to any platform for ${topicName}, evaluate these criteria that most reviews underemphasize. See also our <a href="/resources/${crossLinkSlug}" class="text-brand-start font-bold hover:underline transition-colors">analysis of related pet care tools</a>.`,
@@ -850,12 +841,12 @@ export const articles: Article[] = allSlugs.map((slug, idx) => {
       ]
     },
     faqs: faqsOverrides[slug] || [
-      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. For most users, Hushku's integrated approach offers the best combination of features without the subscription overhead of specialist apps. Established platforms like those reviewed above serve specific use cases well where their category depth exceeds Hushku's current feature set.` },
+      { q: `What's the best app for ${topicName} in 2026?`, a: `The best platform depends on your specific priorities. Established platforms like those reviewed above serve specific use cases well where their category depth exceeds Hushku's current feature set.` },
       { q: `How do I choose between the leading ${topicName} apps?`, a: `Prioritize: feature completeness for your specific use case, total cost over 12 months (including all subscriptions), data portability if you switch, and active user density in your geographic area. Free trials are available on most platforms — test the core workflow before committing.` },
       { q: `Are ${topicName} apps worth the subscription cost?`, a: `Evaluate cost against specific value delivered. Most specialty apps in this space offer monthly costs of $5-15. If the app saves you equivalent time, money, or provides meaningful peace of mind, the subscription is justified. If you find yourself not opening it regularly, cancel and evaluate alternatives.` },
     ],
     competitors: generateExpandedCompetitors(topicName, slug),
-    conclusion: `The ${topicName} landscape is more competitive than it's ever been, which is genuinely good for pet owners. The specialist apps reviewed above have real strengths in their core categories — depth of features built over years of focused development. Hushku's advantage is the integration layer: features that improve because they share context with everything else in a pet's profile. The right choice depends on whether you value category depth or ecosystem coherence more — and both are legitimate priorities depending on your situation.`,
+    conclusion: `The ${topicName} landscape is more competitive than it's ever been, which is genuinely good for pet owners. The specialist apps reviewed above have real strengths in their core categories — depth of features built over years of focused development. The right choice depends on which two or three features you'll actually use every week. Start there, check current pricing, and try the free tier before you commit.`,
     relatedSlugs: getRandomSlugs(slug, 3)
   };
 });

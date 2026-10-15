@@ -5,6 +5,7 @@ import { BookOpen, ChevronRight, LifeBuoy } from "lucide-react";
 import WalkthroughPlayer from "../../../components/tour/WalkthroughPlayer";
 import { Section, SectionHeader } from "../../../components/ui";
 import { ALL_QUESTIONS, findQuestion } from "../data";
+import AppCta from "../../../components/AppCta";
 
 /** Only known pages exist; anything else is a real 404. */
 export const dynamicParams = false;
@@ -97,6 +98,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ slug:
 
       <Section>
         <div className="mx-auto flex max-w-[880px] flex-col gap-10">
+          <AppCta eyebrow="Hushku is launching soon" title="Get notified at launch" body="Leave your email and we'll send one message the day you can download it." source={`help:${q.slug}`} />
           {related.length || sameCategory.length ? (
             <div className="flex flex-col gap-4">
               <h2 className="text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-label">Related questions</h2>

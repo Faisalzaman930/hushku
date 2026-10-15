@@ -4,6 +4,25 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { templateDocs } from "../../data/templates";
 import TemplateBuilder from "../../components/TemplateBuilder";
+import AppCta from "../../components/AppCta";
+
+const HEALTH = { href: "/health", label: "See health and care" };
+const TEAM = { href: "/care-team", label: "See the Care Team" };
+/** "Do this in the app" offers, keyed by template slug. Only features that exist in the app. */
+const APP_OFFER: Record<string, { title: string; body: string; link?: { href: string; label: string } }> = {
+  medical: { title: "Keep this record in the app instead", body: "Hushku stores vaccinations, vet visits, medication and weight for each pet, with reminders before anything's due, and shares them with your household.", link: HEALTH },
+  sitter: { title: "Skip the printout: share it with your sitter in the app", body: "Add your sitter to your pet's Care Team in Hushku. They see feeding times, medication and notes on their phone, and can log what they've done.", link: TEAM },
+  adoption: { title: "Rehoming or adopting? Do it in the app", body: "Shelters and owners list pets for adoption in Hushku, and adopters send a request from the listing, with the whole conversation kept in one place.", link: { href: "/adoption", label: "See adoption" } },
+  lost: { title: "Keep your pet's photos and records ready", body: "Hushku keeps an up-to-date profile, photos and health records for each pet. Lost and found alerts for nearby owners are planned but aren't in the app yet.", link: HEALTH },
+  care: { title: "Share care with everyone who helps", body: "Hushku keeps your pet's reminders, routines and health records in one place, shared with your household and sitter.", link: TEAM },
+};
+function offerFor(slug: string) {
+  if (/medical|vaccination|health-record|travel/.test(slug)) return APP_OFFER.medical;
+  if (/sitter|sitting|boarding|care-instructions/.test(slug)) return APP_OFFER.sitter;
+  if (/adoption|adopt/.test(slug)) return APP_OFFER.adoption;
+  if (/lost|missing/.test(slug)) return APP_OFFER.lost;
+  return APP_OFFER.care;
+}
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -191,6 +210,11 @@ export default async function TemplatePage({ params }: Props) {
                 <p className="text-[10px] font-black text-brand-start uppercase tracking-widest mb-3">Quick Answer</p>
                 <p className="text-ebony font-bold leading-7">{t.quickAnswer}</p>
               </div>
+
+              {(() => {
+                const o = offerFor(t.slug);
+                return <AppCta eyebrow="Do this in the Hushku app" title={o.title} body={o.body} link={o.link} source={`template:${t.slug}`} />;
+              })()}
 
               {/* Intro */}
               <section>

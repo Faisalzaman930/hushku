@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight, LifeBuoy } from "lucide-react";
 import FaqAccordion from "./FaqAccordion";
+import AppCta from "./AppCta";
 import { Section, SectionHeader } from "./ui";
 import WalkthroughPlayer from "./tour/WalkthroughPlayer";
 import { TOURS } from "./tour/tours";
@@ -135,6 +136,7 @@ export default function HelpArticle({
                 {s.note ? <p className="rounded-2xl bg-surface px-5 py-4 text-[15px] leading-[22px] text-label-2">{s.note}</p> : null}
               </section>
             ))}
+            <AppCta eyebrow="Hushku is launching soon" title="Get notified at launch" body="Leave your email and we'll send one message the day you can download it." source={`help:${slug}`} />
           </div>
         </div>
       </Section>

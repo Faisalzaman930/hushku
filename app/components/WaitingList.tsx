@@ -9,11 +9,19 @@ interface WaitingListProps {
   center?: boolean;
   large?: boolean;
   cta?: string;
+  /** What brought this person here, e.g. "breed:labrador-retriever" or "tool:calorie-calculator". Defaults to the page path. */
+  source?: string;
+}
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
 }
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-export default function WaitingList({ center = false, cta = "Join the waitlist" }: WaitingListProps) {
+export default function WaitingList({ center = false, cta = "Join the waitlist", source }: WaitingListProps) {
   const id = useId();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "invalid" | "failed" | "done">("idle");
@@ -29,10 +37,12 @@ export default function WaitingList({ center = false, cta = "Join the waitlist" 
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({ email: email.trim(), page: window.location.pathname, source: source ?? window.location.pathname }),
       });
       if (!res.ok) throw new Error();
       setState("done");
+      // GA4 recommended event, so signups can be reported by page and topic.
+      window.gtag?.("event", "sign_up", { method: "waitlist", page_path: window.location.pathname, source: source ?? window.location.pathname });
     } catch {
       setState("failed");
     }

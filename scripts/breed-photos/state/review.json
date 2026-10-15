@@ -1,0 +1,18 @@
+{
+ "reject": {
+  "dogs-akita-shepherd": "shows Akitas",
+  "dogs-belgian-laekenois": "4-variety collage",
+  "dogs-belgian-malinois": "4-variety collage",
+  "dogs-belgian-sheepdog": "4-variety collage",
+  "dogs-belgian-tervuren": "4-variety collage",
+  "dogs-bassador": "wrong dog (poodle cross)",
+  "dogs-akita": "collage",
+  "dogs-catahoula-bulldog": "shows Catahoula Leopard Dog",
+  "dogs-jack-a-poo": "shows a different doodle",
+  "dogs-king-shepherd": "German Shepherd photo",
+  "dogs-shiloh-shepherd": "German Shepherd photo",
+  "cats-savannah": "landscape, not a cat",
+  "dogs-mastiff": "old sepia print",
+  "dogs-shorkie": "wrong dog"
+ }
+}

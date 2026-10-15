@@ -18,15 +18,7 @@ function tidy(v: string | null | undefined): string | null {
     .trim();
 }
 
-/**
- * Old photos are being replaced breed by breed with verified Wikimedia Commons photos. Until a
- * breed's turn comes it keeps its old photo, unless that photo was confirmed wrong.
- */
-const WRONG_LEGACY = new Set<string>(["bassador", "akita-shepherd", "catahoula-bulldog"]);
-function legacyPhoto(b: { slug: string; image: string | null }) {
-  return WRONG_LEGACY.has(b.slug) ? null : b.image;
-}
-
+/** Freely licensed Wikimedia Commons photos, each checked against the breed; others show a placeholder. */
 function dedupe<T extends { slug: string }>(list: T[]): T[] {
   const seen = new Set<string>();
   return list.filter((b) => (seen.has(b.slug) ? false : (seen.add(b.slug), true)));
@@ -37,7 +29,7 @@ export const dogs: BreedDoc[] = dedupe(rawDogs).map((d) => {
   return {
     ...d,
     group: n?.g ?? d.group,
-    image: photoFor("dogs", d.slug) ?? legacyPhoto(d),
+    image: photoFor("dogs", d.slug),
     parentBreeds: d.parentBreeds ?? n?.parents,
     lifeSpan: tidy(d.lifeSpan),
     height: tidy(d.height),
@@ -49,7 +41,7 @@ export const cats: CatBreedDoc[] = dedupe(rawCats).map((c) => {
   const n = catNote(c.slug);
   const f = c.weight || c.lifeSpan ? undefined : catFill(c.slug);
   const merged = { ...c, ...(f ?? {}), scores: f?.scores ?? c.scores };
-  return { ...merged, image: photoFor("cats", c.slug) ?? legacyPhoto(c), origin: n?.o ?? (c.origin || null), lifeSpan: tidy(merged.lifeSpan), weight: tidy(merged.weight) };
+  return { ...merged, image: photoFor("cats", c.slug), origin: n?.o ?? (c.origin || null), lifeSpan: tidy(merged.lifeSpan), weight: tidy(merged.weight) };
 });
 
 export const ANIMAL_LABELS: Record<string, string> = {

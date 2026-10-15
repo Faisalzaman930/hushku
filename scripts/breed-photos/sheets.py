@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 OUT, start, end, tag = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
 names = {b["animal"] + "-" + b["slug"]: b["name"] for b in json.load(open(OUT + "/breeds.json"))}
 done = set(open(OUT + "/reviewed.txt").read().split()) if os.path.exists(OUT + "/reviewed.txt") else set()
-files = [f for f in sorted(os.listdir(OUT + "/staged")) if f.endswith(".jpg") and f not in done][start:end]
+files = [f for f in sorted(os.listdir(OUT + "/staged")) if f.endswith(".jpg") and f not in done and ("~" in f) == tag.startswith("c")][start:end]
 if tag.startswith("mark"):
     open(OUT + "/reviewed.txt", "a").write("\n" + "\n".join(files)); sys.exit()
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)

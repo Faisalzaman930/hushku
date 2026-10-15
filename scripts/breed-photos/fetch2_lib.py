@@ -44,3 +44,16 @@ def meta_for(files):
             out[norm.get(p["title"], p["title"]).removeprefix("File:")] = info
             out[info["file"].replace(" ", "_")] = info
     return out
+
+
+def info_from(p):
+    ii = p["imageinfo"][0]
+    md = ii.get("extmetadata", {})
+    val = lambda k: html.unescape(re.sub(r"<[^>]+>", "", md.get(k, {}).get("value", ""))).strip()
+    lic = val("LicenseShortName")
+    if not FREE.match(lic) or ii.get("mime") not in ("image/jpeg", "image/png", "image/webp"):
+        return None
+    return {"file": p["title"].removeprefix("File:"), "thumb": ii.get("thumburl") or ii["url"], "width": ii.get("width"), "height": ii.get("height"),
+            "license": lic, "licenseUrl": val("LicenseUrl"), "artist": re.sub(r"\s+", " ", val("Artist"))[:120] or "Unknown author", "source": ii.get("descriptionurl")}
+
+

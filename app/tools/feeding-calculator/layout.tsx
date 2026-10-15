@@ -1,24 +1,6 @@
-import type { Metadata } from "next";
+import { toolMetadata } from "../../components/ToolPage";
 
-export const metadata: Metadata = {
-  title: "Pet Feeding Calculator: How Much to Feed",
-  description: "Calculate the right daily food portion for your dog or cat based on weight, age, and activity level. Free pet feeding calculator by Hushku.",
-  keywords: "feeding calculator, dog breed quiz, find my dog breed, best dog breed for me, Hushku",
-  alternates: { canonical: "https://hushku.app/tools/feeding-calculator" },
-  openGraph: {
-    title: "Pet Feeding Calculator: How Much to Feed",
-    description: "Get accurate daily feeding amounts for your dog or cat based on weight, age, and activity level. Stop guessing — feed right.",
-    type: "website",
-    url: "https://hushku.app/tools/feeding-calculator",
-    images: [{ url: "https://hushku.app/og.png", width: 1200, height: 630, alt: "Hushku — Feeding Calculator" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pet Feeding Calculator: How Much to Feed",
-    description: "Calculate the right daily food portion for your pet. Free tool by Hushku.",
-    images: ["https://hushku.app/og.png"],
-  },
-};
+export const metadata = toolMetadata("feeding-calculator");
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

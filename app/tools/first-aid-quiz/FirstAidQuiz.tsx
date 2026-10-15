@@ -23,7 +23,7 @@ const questions = [
       { t: "Induce vomiting", isCorrect: false },
       { t: "Give them water", isCorrect: false },
     ],
-    explanation: "First, check the mouth and try to sweep the object out with your finger. Be careful not to get bitten or push it deeper."
+    explanation: "Look in the mouth. If you can see the object and grasp it safely, remove it, but don't sweep blindly with your finger: you can push it deeper or be bitten. If you can't remove it, get to a vet immediately."
   },
   {
     q: "True or False: Hydrogen peroxide can be used to induce vomiting in cats.",

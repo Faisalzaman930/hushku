@@ -19,7 +19,7 @@ export const ALL_TOOLS: Tool[] = [
   { slug: "whelping-calculator",label: "Whelping Calculator",   emoji: "🐣", desc: "Calculate expected whelping due date" },
   { slug: "feeding-calculator", label: "Feeding Calculator",    emoji: "🥣", desc: "Get the right daily food portion" },
   { slug: "pet-bmi",            label: "Pet BMI Check",         emoji: "📊", desc: "Check your pet's body condition score" },
-  { slug: "vaccine-tracker",    label: "Vaccine Tracker",       emoji: "💉", desc: "Track vaccination schedules" },
+  { slug: "vaccine-tracker",    label: "Vaccination Schedule",  emoji: "💉", desc: "Puppy and kitten vaccine schedule" },
   { slug: "toxic-food",         label: "Toxic Food Checker",    emoji: "🚫", desc: "Check if a food is safe for your pet" },
   { slug: "best-dog-quiz",      label: "Best Dog Breed Quiz",   emoji: "🐕", desc: "Find your perfect dog breed match" },
   { slug: "best-cat-quiz",      label: "Best Cat Breed Quiz",   emoji: "🐈", desc: "Find your perfect cat breed match" },

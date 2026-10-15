@@ -5,17 +5,17 @@ import ToolIllustration from "../../components/ToolIllustration";
 
 const foods: { name: string; dog: "safe" | "toxic" | "caution"; cat: "safe" | "toxic" | "caution"; reason: string }[] = [
   { name: "Chocolate", dog: "toxic", cat: "toxic", reason: "Contains theobromine and caffeine — causes vomiting, seizures, and can be fatal." },
-  { name: "Grapes", dog: "toxic", cat: "toxic", reason: "Causes acute kidney failure even in small amounts." },
+  { name: "Grapes", dog: "toxic", cat: "toxic", reason: "Can cause sudden kidney failure in dogs, and there is no known safe amount. Cats are less studied, so avoid them too." },
   { name: "Raisins", dog: "toxic", cat: "toxic", reason: "Same as grapes — kidney damage risk." },
-  { name: "Xylitol", dog: "toxic", cat: "toxic", reason: "Found in gum and peanut butter — causes blood sugar crash and liver failure." },
-  { name: "Onions", dog: "toxic", cat: "toxic", reason: "Damages red blood cells, leading to anaemia." },
-  { name: "Garlic", dog: "toxic", cat: "toxic", reason: "More toxic than onions — causes haemolytic anaemia." },
-  { name: "Avocado", dog: "toxic", cat: "toxic", reason: "Persin toxin causes vomiting, diarrhoea, heart damage." },
+  { name: "Xylitol", dog: "toxic", cat: "toxic", reason: "A sweetener in sugar-free gum, sweets and some peanut butters (also called birch sugar). Causes a dangerous drop in blood sugar and can damage the liver." },
+  { name: "Onions", dog: "toxic", cat: "toxic", reason: "Raw, cooked or powdered, onions damage red blood cells and can cause anaemia. Cats are more sensitive than dogs." },
+  { name: "Garlic", dog: "toxic", cat: "toxic", reason: "Stronger than onion: damages red blood cells and can cause anaemia. Cats are more sensitive than dogs." },
+  { name: "Avocado", dog: "caution", cat: "caution", reason: "The flesh is high in fat and can upset the stomach; the pit can cause a blockage. Persin is mainly dangerous to birds, rabbits and horses, not dogs and cats." },
   { name: "Macadamia Nuts", dog: "toxic", cat: "caution", reason: "Causes weakness, vomiting, tremors, fever in dogs." },
   { name: "Alcohol", dog: "toxic", cat: "toxic", reason: "Even tiny amounts cause vomiting, seizures, coma." },
   { name: "Caffeine", dog: "toxic", cat: "toxic", reason: "Found in coffee, tea, energy drinks — causes rapid heart rate, tremors." },
   { name: "Raw Dough", dog: "toxic", cat: "toxic", reason: "Live yeast produces alcohol in the stomach and causes bloating." },
-  { name: "Nutmeg", dog: "toxic", cat: "toxic", reason: "Causes tremors, seizures, hallucinations." },
+  { name: "Nutmeg", dog: "caution", cat: "caution", reason: "A pinch in baked goods is unlikely to harm, but larger amounts (myristicin) can cause tremors, a racing heart and disorientation." },
   { name: "Cooked Bones", dog: "caution", cat: "caution", reason: "Splinter easily and can puncture the digestive tract." },
   { name: "Salt", dog: "caution", cat: "caution", reason: "In large amounts causes sodium poisoning, seizures." },
   { name: "Dairy (Milk)", dog: "caution", cat: "caution", reason: "Many pets are lactose intolerant. Small amounts usually fine." },
@@ -24,7 +24,7 @@ const foods: { name: string; dog: "safe" | "toxic" | "caution"; cat: "safe" | "t
   { name: "Blueberries", dog: "safe", cat: "safe", reason: "Antioxidant-rich superfood. Great as a treat." },
   { name: "Watermelon", dog: "safe", cat: "caution", reason: "Safe seedless for dogs. Cats don't benefit much (no sweet receptors)." },
   { name: "Cooked Chicken", dog: "safe", cat: "safe", reason: "Excellent lean protein source. Plain, boneless only." },
-  { name: "Cooked Salmon", dog: "safe", cat: "safe", reason: "Rich in omega-3. Never raw — risk of parasites." },
+  { name: "Cooked Salmon", dog: "safe", cat: "safe", reason: "Plain, boneless cooked salmon is a good source of omega-3. Never feed raw salmon: it can carry parasites." },
   { name: "Eggs", dog: "safe", cat: "safe", reason: "Cooked eggs are a great protein boost." },
   { name: "Apples", dog: "safe", cat: "caution", reason: "Safe for dogs (no seeds/core). Cats rarely eat fruit." },
   { name: "Bananas", dog: "safe", cat: "caution", reason: "Fine as an occasional treat for dogs. Too sugary for cats." },
@@ -32,7 +32,7 @@ const foods: { name: string; dog: "safe" | "toxic" | "caution"; cat: "safe" | "t
   { name: "Spinach", dog: "caution", cat: "caution", reason: "High in oxalic acid — fine occasionally but not for pets with kidney issues." },
   { name: "Pineapple", dog: "safe", cat: "caution", reason: "Fine fresh for dogs. Avoid canned (high sugar)." },
   { name: "Mango", dog: "safe", cat: "caution", reason: "Pit is toxic — flesh is safe for dogs in small amounts." },
-  { name: "Tomatoes", dog: "caution", cat: "toxic", reason: "Ripe tomato flesh is OK for dogs. Green tomatoes and plants are toxic to cats." },
+  { name: "Tomatoes", dog: "caution", cat: "caution", reason: "Ripe tomato flesh is fine in small amounts. Green tomatoes, stems and leaves contain solanine and can cause stomach upset." },
   { name: "Mushrooms", dog: "caution", cat: "caution", reason: "Wild mushrooms very dangerous. Store-bought plain ones less risky." },
   { name: "Cinnamon", dog: "caution", cat: "caution", reason: "Not acutely toxic but irritates mouth, can cause vomiting." },
   { name: "Shrimp", dog: "safe", cat: "safe", reason: "Cooked, plain shrimp is fine. Rich in protein." },
@@ -40,10 +40,10 @@ const foods: { name: string; dog: "safe" | "toxic" | "caution"; cat: "safe" | "t
   { name: "Corn", dog: "safe", cat: "caution", reason: "Plain corn kernels OK for dogs. Never give corncobs — choking hazard." },
   { name: "Cheese", dog: "caution", cat: "caution", reason: "High fat, many pets lactose intolerant. Small treat only." },
   { name: "Peaches", dog: "caution", cat: "caution", reason: "Flesh is fine. Pit contains cyanide — always remove." },
-  { name: "Cherries", dog: "toxic", cat: "toxic", reason: "Pits, leaves, stems contain cyanide. Very dangerous." },
-  { name: "Lemons/Limes", dog: "toxic", cat: "toxic", reason: "Citric acid causes vomiting, depression, photosensitivity." },
+  { name: "Cherries", dog: "caution", cat: "caution", reason: "The flesh isn't toxic, but pits, stems and leaves contain cyanide compounds and pits can cause a blockage. Safer to avoid." },
+  { name: "Lemons/Limes", dog: "caution", cat: "caution", reason: "The fruit usually causes only mild stomach upset; peels, seeds, leaves and stems can irritate, and large amounts are a problem." },
   { name: "Chives", dog: "toxic", cat: "toxic", reason: "Same family as onions — causes haemolytic anaemia." },
-  { name: "Walnuts", dog: "toxic", cat: "caution", reason: "Black walnuts are highly toxic to dogs. Causes tremors." },
+  { name: "Walnuts", dog: "caution", cat: "caution", reason: "High in fat and can cause stomach upset or pancreatitis. Mouldy or black walnuts can contain toxins that cause tremors." },
   { name: "Almonds", dog: "caution", cat: "caution", reason: "Not toxic but hard to digest, choking risk." },
   { name: "Cucumber", dog: "safe", cat: "safe", reason: "Hydrating, low calorie, great snack for both." },
   { name: "Sweet Potato", dog: "safe", cat: "caution", reason: "Cooked, plain sweet potato is great for dogs." },
@@ -81,8 +81,8 @@ export default function ToxicFoodChecker() {
     >
       <div className="max-w-2xl mx-auto">
         <div className="relative mb-8">
-          <input type="text" placeholder="Type a food (e.g. chocolate, carrots, grapes...)" value={query} onChange={e => setQuery(e.target.value)}
-            className="w-full bg-gray-50 border-2 border-transparent rounded-[2.5rem] px-8 py-6 text-lg font-bold focus:bg-white focus:border-brand-start outline-none transition-all shadow-inner" />
+          <input type="text" placeholder="Search a food, e.g. grapes" aria-label="Search a food" value={query} onChange={e => setQuery(e.target.value)}
+            className="w-full bg-gray-50 border-2 border-transparent rounded-2xl px-5 py-4 text-[17px] font-medium focus:bg-white focus:border-brand-start outline-none transition-all shadow-inner" />
           {query && <button onClick={() => setQuery("")} className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-gray hover:text-red-400 font-black text-xl">×</button>}
         </div>
 
@@ -124,18 +124,31 @@ export default function ToxicFoodChecker() {
             <p className="text-sm mt-2">Try another spelling or browse our quick search above.</p>
           </div>
         ) : (
-          <div className="space-y-4">
-            <h3 className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-6">Browse All Foods</h3>
-            {foods.map(f => (
-              <button key={f.name} onClick={() => setQuery(f.name)}
-                className="w-full flex items-center justify-between px-8 py-5 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-md border border-transparent hover:border-gray-100 transition-all group">
-                <span className="font-bold text-ebony group-hover:text-brand-start">{f.name}</span>
-                <div className="flex gap-3">
-                  <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase ${statusConfig[f.dog].badge}`}>Dog {statusConfig[f.dog].label}</span>
-                  <span className={`px-3 py-1 rounded-full text-[9px] font-black uppercase ${statusConfig[f.cat].badge}`}>Cat {statusConfig[f.cat].label}</span>
-                </div>
-              </button>
-            ))}
+          <div className="flex flex-col gap-3">
+            <h2 className="text-[21px] font-semibold text-label">All {foods.length} foods</h2>
+            <div className="overflow-hidden rounded-3xl border border-separator">
+              <table className="w-full text-left text-[15px] leading-[21px]">
+                <thead className="bg-bg-2 text-label-2">
+                  <tr><th className="p-3 font-medium">Food</th><th className="w-[84px] p-3 font-medium">Dogs</th><th className="w-[84px] p-3 font-medium">Cats</th></tr>
+                </thead>
+                <tbody>
+                  {foods.map((f) => (
+                    <tr key={f.name} className="border-t border-separator align-top">
+                      <th scope="row" className="p-3 font-normal">
+                        <button type="button" onClick={() => setQuery(f.name)} className="text-left font-semibold text-label hover:underline underline-offset-[3px]">{f.name}</button>
+                        <span className="mt-0.5 block text-[13px] leading-[18px] text-label-2">{f.reason}</span>
+                      </th>
+                      {(["dog", "cat"] as const).map((a) => (
+                        <td key={a} className="p-3">
+                          <span className={`inline-block rounded-full px-2.5 py-0.5 text-[12px] font-semibold ${f[a] === "toxic" ? "bg-brand-tint text-brand-text" : f[a] === "caution" ? "bg-warning-tint text-label" : "bg-success-tint text-label"}`}>{f[a] === "toxic" ? "Toxic" : f[a] === "caution" ? "Care" : "Safe"}</span>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[13px] text-label-2">Safe = fine in small, plain amounts as a treat. Care = depends on the part, amount or preparation. Toxic = keep away.</p>
           </div>
         )}
       </div>

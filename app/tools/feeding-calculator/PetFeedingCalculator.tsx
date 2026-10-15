@@ -1,106 +1,84 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import { useState } from "react";
+import { Field, Segmented, Choice, NumberInput, Result, Note, ToolGrid, toKg, fmt } from "../_ui/kit";
+
+/** Life stage factors (× RER) from the AAHA 2021 nutrition guidelines; midpoints where a range is given. */
+const DOG = [
+  { value: "puppy-young", label: "Puppy under 4 months", factor: 3.0 },
+  { value: "puppy", label: "Puppy 4 months to adult", factor: 2.0 },
+  { value: "neutered", label: "Neutered adult", factor: 1.6 },
+  { value: "intact", label: "Intact adult", factor: 1.8 },
+  { value: "inactive", label: "Inactive or gains weight easily", factor: 1.2 },
+  { value: "active", label: "Active or working (light work)", factor: 2.0 },
+] as const;
+const CAT = [
+  { value: "kitten", label: "Kitten", factor: 2.5 },
+  { value: "neutered", label: "Neutered adult", factor: 1.2 },
+  { value: "intact", label: "Intact adult", factor: 1.4 },
+  { value: "inactive", label: "Inactive or gains weight easily", factor: 1.0 },
+] as const;
 
 export default function PetFeedingCalculator() {
-  const [petType, setPetType] = useState("dog");
-  const [weight, setWeight] = useState(10);
-  const [age, setAge] = useState("adult");
-  const [feedingAmount, setFeedingAmount] = useState({ min: 0, max: 0 });
+  const [species, setSpecies] = useState<"dog" | "cat">("dog");
+  const [unit, setUnit] = useState<"kg" | "lb">("kg");
+  const [weight, setWeight] = useState("10");
+  const [stage, setStage] = useState<string>("neutered");
+  const [foodUnit, setFoodUnit] = useState<"cup" | "kg">("cup");
+  const [kcal, setKcal] = useState("350");
+  const [meals, setMeals] = useState<"1" | "2" | "3" | "4">("2");
 
-  useEffect(() => {
-    // Basic feeding logic (simplified)
-    // Adult Dog: ~2-3% of body weight in calories/amount
-    let base = weight * 0.25; // Base cups/units
-    if (age === "puppy") base *= 1.5;
-    if (age === "senior") base *= 0.8;
-    if (petType === "cat") base *= 0.4;
-    
-    setFeedingAmount({
-       min: Math.round(base * 0.9 * 10) / 10,
-       max: Math.round(base * 1.1 * 10) / 10,
-    });
-  }, [petType, weight, age]);
+  const stages = species === "dog" ? DOG : CAT;
+  const factor = (stages as readonly { value: string; factor: number }[]).find((s) => s.value === stage)?.factor ?? stages[1].factor;
+  const kg = toKg(parseFloat(weight) || 0, unit);
+  const rer = kg > 0 ? 70 * Math.pow(kg, 0.75) : 0;
+  const daily = rer * factor;
+  const density = parseFloat(kcal) || 0;
+  const amount = density > 0 ? (foodUnit === "cup" ? daily / density : (daily / density) * 1000) : 0;
+  const perMeal = amount / Number(meals);
+  const ok = kg > 0 && density > 0;
+
+  const switchSpecies = (s: "dog" | "cat") => {
+    setSpecies(s);
+    setStage("neutered");
+    setWeight(s === "dog" ? "10" : "4");
+    setKcal(s === "dog" ? "350" : "400");
+  };
 
   return (
-    <ToolLayout 
-      subtitle="Feeding Calculator"
-      relatedToolSlugs={["calorie-calculator","water-calculator","toxic-food","pet-bmi"]}
-      relatedArticles={[
-        { slug: "how-to-read-pet-food-labels", title: "How to Read a Pet Food Label", category: "Expert Guide", emoji: "🥫" },
-        { slug: "complete-guide-to-pet-nutrition", title: "Complete Guide to Pet Nutrition", category: "Pillar Guide", emoji: "🥗" },
-        { slug: "how-to-switch-dog-food-safely", title: "How to Switch Dog Food Safely", category: "How-To", emoji: "🔄" },
-      ]}
-      title="Pet Feeding Schedule"
-      description="Calculate the optimal daily feeding amounts for your pet based on weight, age, and activity level."
-      illustration={<ToolIllustration type="food" />}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-         <div className="space-y-10">
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Pet Species</label>
-               <div className="flex gap-4">
-                  {["dog", "cat"].map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setPetType(t)}
-                      className={`flex-1 py-6 rounded-3xl border-4 transition-all flex flex-col items-center gap-2 ${petType === t ? 'bg-ebony text-white border-ebony shadow-xl' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-white hover:border-gray-100 hover:shadow-lg'}`}
-                    >
-                      <span className="text-4xl">{t === "dog" ? "🐕" : "🐈"}</span>
-                      <span className="font-black uppercase tracking-tight text-xs">{t}</span>
-                    </button>
-                  ))}
-               </div>
-            </div>
-
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Pet Weight ({weight}kg)</label>
-               <input 
-                  type="range" 
-                  min="1" 
-                  max="50" 
-                  step="1"
-                  value={weight}
-                  onChange={(e) => setWeight(parseInt(e.target.value))}
-                  className="w-full h-4 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start"
-               />
-               <div className="flex justify-between text-[10px] font-black text-slate-gray mt-4 uppercase tracking-tighter">
-                  <span>1kg</span>
-                  <span>50kg+</span>
-               </div>
-            </div>
-
-            <div>
-               <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-6 px-2">Life Stage</label>
-               <div className="flex gap-4">
-                  {["puppy", "adult", "senior"].map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => setAge(s)}
-                      className={`flex-1 py-4 rounded-2xl font-black uppercase tracking-wide text-[10px] border-2 transition-all ${age === s ? 'bg-brand-start text-white border-brand-start shadow-md' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                    >
-                      {s}
-                    </button>
-                  ))}
-               </div>
-            </div>
-         </div>
-
-         <div className="bg-gray-50 rounded-[4.5rem] p-16 flex flex-col items-center justify-center text-center relative overflow-hidden group shadow-inner">
-            <div className="absolute top-0 right-0 p-12 text-brand-start/5 text-9xl transform translate-x-1/4 -translate-y-1/4 select-none font-black opacity-30 group-hover:scale-110 transition-transform">Bowl</div>
-            <div className="h-48 w-48 rounded-full border-8 border-white bg-white shadow-2xl flex items-center justify-center text-8xl mb-8 group-hover:rotate-12 transition-transform">🥣</div>
-            <h4 className="text-sm font-black text-slate-gray uppercase tracking-widest mb-6 leading-none">Daily Feeding Recommendation</h4>
-            <div className="flex items-baseline gap-2 mb-6">
-               <span className="text-7xl font-black text-ebony">{feedingAmount.min}</span>
-               <span className="text-2xl font-bold text-slate-gray">−</span>
-               <span className="text-7xl font-black text-ebony">{feedingAmount.max}</span>
-            </div>
-            <p className="text-2xl font-black text-brand-start uppercase tracking-widest leading-none">Cups Per Day</p>
-            <p className="mt-8 text-xs font-bold text-slate-gray max-w-xs mx-auto leading-relaxed italic opacity-80 uppercase tracking-widest">Calculations are based on 350-400 kcal per cup. Consult your vet for precise dietary medical needs.</p>
-         </div>
+    <ToolGrid>
+      <div className="flex flex-col gap-6">
+        <Field label="Pet">
+          <Segmented label="Pet" value={species} onChange={switchSpecies} options={[{ value: "dog", label: "Dog" }, { value: "cat", label: "Cat" }]} />
+        </Field>
+        <Field label="Current weight" htmlFor="feed-weight" hint="If your pet is overweight, use their ideal weight and agree a plan with your vet.">
+          <NumberInput id="feed-weight" value={weight} onChange={setWeight} min={0.2} max={120} unit={<Segmented label="Weight unit" value={unit} onChange={setUnit} options={[{ value: "kg", label: "kg" }, { value: "lb", label: "lb" }]} />} />
+        </Field>
+        <Field label="Life stage">
+          <Choice label="Life stage" value={stage} onChange={setStage} options={stages.map((s) => ({ value: s.value, label: s.label, sub: `${s.factor} × RER` }))} />
+        </Field>
+        <Field label="Calories in your food" htmlFor="feed-kcal" hint="Printed on the bag or tin as kcal per cup or kcal/kg. Typical dry food is 300 to 450 kcal per cup.">
+          <NumberInput id="feed-kcal" value={kcal} onChange={setKcal} min={1} unit={<Segmented label="Calorie unit" value={foodUnit} onChange={(u) => { setFoodUnit(u); setKcal(u === "cup" ? (species === "dog" ? "350" : "400") : (species === "dog" ? "3700" : "4000")); }} options={[{ value: "cup", label: "per cup" }, { value: "kg", label: "per kg" }]} />} />
+        </Field>
+        <Field label="Meals a day">
+          <Segmented label="Meals a day" value={meals} onChange={setMeals} options={[{ value: "1", label: "1" }, { value: "2", label: "2" }, { value: "3", label: "3" }, { value: "4", label: "4" }]} />
+        </Field>
       </div>
-    </ToolLayout>
+
+      <div className="flex flex-col gap-4 lg:sticky lg:top-24">
+        <Result label="Feed per day" value={ok ? (foodUnit === "cup" ? fmt(amount, 1) : fmt(amount)) : "–"} unit={foodUnit === "cup" ? "cups" : "g"}>
+          <p className="text-[15px] leading-[22px] text-label-2">
+            {ok ? <>That&apos;s {foodUnit === "cup" ? `${fmt(perMeal, 2)} cups` : `${fmt(perMeal)} g`} per meal, {meals} {meals === "1" ? "meal" : "meals"} a day, for about {fmt(daily)} kcal a day.</> : "Enter a weight and your food's calories."}
+          </p>
+        </Result>
+        {ok ? (
+          <dl className="grid grid-cols-2 gap-3 text-[15px]">
+            <div className="rounded-2xl bg-bg-2 p-4"><dt className="text-label-2">Resting energy (RER)</dt><dd className="text-[21px] font-semibold text-label tabular-nums">{fmt(rer)} kcal</dd></div>
+            <div className="rounded-2xl bg-bg-2 p-4"><dt className="text-label-2">Treat allowance (10%)</dt><dd className="text-[21px] font-semibold text-label tabular-nums">{fmt(daily * 0.1)} kcal</dd></div>
+          </dl>
+        ) : null}
+        <Note>A starting point: weigh your pet every 2 to 4 weeks and change the amount by about 10% if they gain or lose weight. If you give treats, feed slightly less food. Cups are standard 8 fl oz measuring cups, levelled, not mugs or scoops.</Note>
+      </div>
+    </ToolGrid>
   );
 }

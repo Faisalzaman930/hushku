@@ -34,8 +34,7 @@ const KIBBLE_DENSITIES = [
   { brand: "Average dry kibble",  kcalPerCup: 350 },
   { brand: "High-protein kibble", kcalPerCup: 425 },
   { brand: "Diet / light kibble", kcalPerCup: 280 },
-  { brand: "Wet food (per 100g)", kcalPerCup: 90  },
-];
+  ];
 
 export default function PetCalorieCalculator() {
   const [species, setSpecies] = useState<"dog" | "cat">("dog");

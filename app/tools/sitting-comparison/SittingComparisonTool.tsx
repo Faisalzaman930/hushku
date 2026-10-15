@@ -1,87 +1,50 @@
 "use client";
 
 import { useState } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import { Field, Segmented } from "../_ui/kit";
 
-export default function PetSittingComparison() {
-  const platforms = [
-    { name: "Rover", price: "$$$", platform: "iOS / Android", rating: "4.8", feature: "Dog Walking & Sitting", bestFor: "Local Variety" },
-    { name: "Wag!", price: "$$", platform: "iOS / Android", rating: "4.6", feature: "On-demand Walking", bestFor: "Speed" },
-    { name: "TrustedHousesitters", price: "$$$$", platform: "Web / iOS", rating: "4.7", feature: "Free Sits (Membership)", bestFor: "Long Travel" },
-    { name: "Meowtel", price: "$$", platform: "iOS / Android", rating: "4.9", feature: "Strictly Cats", bestFor: "Cat Owners" },
-  ];
+/** From each company's own description of its service. No ratings: we haven't tested them. */
+const PLATFORMS = [
+  { name: "Rover", for: ["dog", "cat"], trip: ["short", "long"], services: "Dog walking, drop-in visits, house sitting, boarding and daycare", pay: "Per booking; sitters set their rates and the platform adds a service fee", best: "Choosing a local sitter or walker from many profiles and reviews" },
+  { name: "Wag!", for: ["dog"], trip: ["short"], services: "On-demand and scheduled dog walks, plus sitting and boarding", pay: "Per booking, with an optional paid membership", best: "Quick or same-day dog walks" },
+  { name: "TrustedHousesitters", for: ["dog", "cat"], trip: ["long"], services: "Sitters stay in your home and care for your pets", pay: "Annual membership for owners; sits themselves are free", best: "Longer trips if you're happy to host a vetted stranger" },
+  { name: "Meowtel", for: ["cat"], trip: ["short", "long"], services: "In-home cat sitting visits", pay: "Per visit", best: "Cat owners who want a cat specialist" },
+];
 
-  const [filter, setFilter] = useState("");
-
-  const filtered = platforms.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.bestFor.toLowerCase().includes(filter.toLowerCase()));
+export default function SittingComparisonTool() {
+  const [pet, setPet] = useState<"any" | "dog" | "cat">("any");
+  const [trip, setTrip] = useState<"any" | "short" | "long">("any");
+  const list = PLATFORMS.filter((p) => (pet === "any" || p.for.includes(pet)) && (trip === "any" || p.trip.includes(trip)));
 
   return (
-    <ToolLayout 
-      subtitle="Comparison Guide"
-      title="Pet Sitting App Comparison"
-      description="Compare the top platforms for pet sitting and dog walking. Filter by price, availability, and specialty."
-      illustration={<ToolIllustration type="calculator" />}
-    >
-      <div className="space-y-12">
-         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <input 
-               type="text" 
-               placeholder="Search by platform or specialty..."
-               value={filter}
-               onChange={(e) => setFilter(e.target.value)}
-               className="w-full md:max-w-md bg-gray-50 border-2 border-transparent rounded-[2rem] px-8 py-5 focus:bg-white focus:border-brand-start outline-none transition-all font-bold placeholder:text-gray-300 shadow-inner"
-            />
-            <div className="text-xs font-black text-slate-gray uppercase tracking-widest bg-gray-50 px-6 py-3 rounded-full border border-gray-100">
-               Comparing {filtered.length} Platforms
-            </div>
-         </div>
-
-         <div className="relative overflow-hidden rounded-[4rem] border border-gray-100 shadow-2xl bg-white animate-in fade-in duration-700">
-            <div className="overflow-x-auto">
-               <table className="w-full text-left border-collapse">
-                  <thead>
-                     <tr className="bg-gray-50 border-b-2 border-gray-100">
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Platform</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Price Tier</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Availability</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest text-center">Rating</th>
-                        <th className="px-10 py-10 text-xs font-black text-ebony uppercase tracking-widest">Best For</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {filtered.map((item, idx) => (
-                        <tr key={idx} className={`border-b border-gray-50 transition-colors hover:bg-gray-50/50 group`}>
-                           <td className="px-10 py-10">
-                              <span className="text-xl font-black text-ebony group-hover:text-brand-start transition-colors uppercase tracking-tight">{item.name}</span>
-                              <p className="text-xs text-slate-gray uppercase font-bold tracking-widest mt-1 opacity-60">{item.feature}</p>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-lg font-black text-brand-start">{item.price}</span>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-sm font-bold text-slate-gray uppercase tracking-widest">{item.platform}</span>
-                           </td>
-                           <td className="px-10 py-10 text-center">
-                              <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-black uppercase tracking-widest border border-emerald-100">★ {item.rating}</span>
-                           </td>
-                           <td className="px-10 py-10">
-                              <span className="text-sm font-black text-ebony opacity-80 uppercase tracking-tight italic">"{item.bestFor}"</span>
-                           </td>
-                        </tr>
-                     ))}
-                  </tbody>
-               </table>
-            </div>
-         </div>
-         
-         <div className="p-10 bg-gray-50 rounded-[3rem] border border-gray-100 text-center relative overflow-hidden group">
-            <div className="absolute top-0 left-0 p-8 text-brand-start/5 text-8xl font-black select-none pointer-events-none group-hover:scale-110 transition-transform">ℹ️</div>
-            <p className="text-sm font-black text-slate-gray uppercase tracking-widest max-w-2xl mx-auto leading-relaxed relative">
-               Pricing tiers indicate relative cost: $ (Free/Low Membership) to $$$$ (High-End Premium). Rankings are based on aggregated community feedback and platform reviews.
-            </p>
-         </div>
+    <div className="flex flex-col gap-6">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Field label="Your pet">
+          <Segmented label="Your pet" value={pet} onChange={setPet} options={[{ value: "any", label: "Any" }, { value: "dog", label: "Dog" }, { value: "cat", label: "Cat" }]} />
+        </Field>
+        <Field label="What you need">
+          <Segmented label="What you need" value={trip} onChange={setTrip} options={[{ value: "any", label: "Any" }, { value: "short", label: "Walks or visits" }, { value: "long", label: "Care while away" }]} />
+        </Field>
       </div>
-    </ToolLayout>
+      <div className="overflow-x-auto rounded-3xl border border-separator">
+        <table className="w-full min-w-[680px] text-left text-[15px] leading-[21px]">
+          <thead className="bg-bg-2 text-label-2">
+            <tr><th className="p-4 font-medium">Platform</th><th className="p-4 font-medium">What it offers</th><th className="p-4 font-medium">How you pay</th><th className="p-4 font-medium">Best for</th></tr>
+          </thead>
+          <tbody>
+            {list.map((p) => (
+              <tr key={p.name} className="border-t border-separator align-top">
+                <th scope="row" className="p-4 text-[17px] font-semibold text-label">{p.name}</th>
+                <td className="p-4 text-label">{p.services}</td>
+                <td className="p-4 text-label-2">{p.pay}</td>
+                <td className="p-4 text-label-2">{p.best}</td>
+              </tr>
+            ))}
+            {list.length === 0 ? <tr><td colSpan={4} className="p-4 text-label-2">No platform here matches both. Try &quot;Any&quot;.</td></tr> : null}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-[13px] text-label-2">Availability depends on where you live. Services and fees change, so check each platform before booking.</p>
+    </div>
   );
 }

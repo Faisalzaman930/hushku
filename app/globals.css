@@ -387,3 +387,18 @@ body {
   46% { opacity: 1; }
   78%, 100% { transform: scale(2.1); opacity: 0; }
 }
+
+/* Free tools: the calculators were built in the old style (black-weight uppercase labels, very
+   round corners, heavy shadows). Inside .tool-ui those are toned down to match the current design. */
+.tool-ui { color: var(--color-label); }
+.tool-ui .font-black { font-weight: 600; }
+.tool-ui .uppercase { text-transform: none; }
+.tool-ui [class*="tracking-wid"], .tool-ui [class*="tracking-tight"] { letter-spacing: normal; }
+.tool-ui [class*="rounded-[4rem]"], .tool-ui [class*="rounded-[3.5rem]"], .tool-ui [class*="rounded-[3rem]"], .tool-ui [class*="rounded-[2.5rem]"] { border-radius: 24px; }
+.tool-ui [class*="rounded-[2rem]"] { border-radius: 20px; }
+.tool-ui [class*="shadow-2xl"], .tool-ui [class*="shadow-xl"] { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05); }
+.tool-ui [class*="text-[10px]"], .tool-ui [class*="text-[9px]"] { font-size: 13px; line-height: 18px; }
+.tool-ui .text-xs { font-size: 13px; line-height: 19px; }
+.tool-ui .text-slate-gray { color: var(--color-label-2); }
+.tool-ui .hover\:scale-105:hover, .tool-ui .active\:scale-95:active { transform: none; }
+.tool-ui h1, .tool-ui h2, .tool-ui h3 { text-wrap: balance; }

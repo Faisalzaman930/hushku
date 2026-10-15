@@ -1,124 +1,99 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import { useEffect, useState } from "react";
+import { Field, Segmented, Note, ToolGrid } from "../_ui/kit";
 
-const dogVaccines = [
-  { name: "Distemper, Adenovirus, Parvovirus (DHP)", schedule: "6-8 weeks, 10-12 weeks, 14-16 weeks, then every 3 years", category: "Core" },
-  { name: "Rabies (1-year or 3-year)", schedule: "12-16 weeks, then according to local law", category: "Core" },
-  { name: "Bordetella (Kennel Cough)", schedule: "6-8 weeks, then every 6-12 months", category: "Non-Core" },
-  { name: "Leptospirosis", schedule: "10-12 weeks, 14-16 weeks, then annually", category: "Non-Core" },
-  { name: "Lyme Disease", schedule: "Initial series (2 doses), then annually", category: "Non-Core" },
-  { name: "Canine Influenza", schedule: "Initial series (2 doses), then annually", category: "Non-Core" }
+/**
+ * Schedules from the 2022 AAHA canine and 2020 AAHA/AAFP feline vaccination guidelines.
+ * Weeks are the usual first-series ages; the clinic's own protocol takes precedence.
+ */
+type Vaccine = { name: string; short: string; core: boolean; weeks: number[]; boost: string; adult: string; note?: string };
+
+const DOG: Vaccine[] = [
+  { name: "Distemper, adenovirus, parvovirus (DAPP or DHPP)", short: "DAPP", core: true, weeks: [8, 12, 16], boost: "Within a year of the last puppy dose", adult: "Every 3 years", note: "Doses every 2 to 4 weeks from 6 to 8 weeks; the last dose at 16 weeks or later." },
+  { name: "Rabies", short: "Rabies", core: true, weeks: [14], boost: "1 year later", adult: "Every 1 or 3 years, by label and local law", note: "First dose at 12 to 16 weeks, as local law requires." },
+  { name: "Leptospirosis", short: "Lepto", core: true, weeks: [12, 16], boost: "1 year later", adult: "Every year", note: "Core since the 2022 AAHA guidelines: two doses 2 to 4 weeks apart, from 8 weeks or later." },
+  { name: "Bordetella (kennel cough)", short: "Bordetella", core: false, weeks: [8], boost: "Depends on the product", adult: "Every year for dogs that board, groom or meet many dogs" },
+  { name: "Canine influenza", short: "Flu", core: false, weeks: [12, 15], boost: "1 year later", adult: "Every year where flu is a risk" },
+  { name: "Lyme disease", short: "Lyme", core: false, weeks: [12, 15], boost: "1 year later", adult: "Every year in tick areas" },
+];
+const CAT: Vaccine[] = [
+  { name: "Feline herpesvirus, calicivirus, panleukopenia (FVRCP)", short: "FVRCP", core: true, weeks: [8, 12, 16], boost: "At 6 months or 1 year", adult: "Every 3 years (injectable)", note: "From 6 weeks, every 3 to 4 weeks until 16 to 20 weeks." },
+  { name: "Rabies", short: "Rabies", core: true, weeks: [12], boost: "1 year later", adult: "Every 1 or 3 years, by label and local law" },
+  { name: "Feline leukaemia (FeLV)", short: "FeLV", core: true, weeks: [8, 12], boost: "1 year later", adult: "Every 1 to 3 years for cats that go outside or live with FeLV-positive cats", note: "Core for kittens and cats under 1 year; test before vaccinating." },
 ];
 
-const catVaccines = [
-  { name: "Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia (FVRCP)", schedule: "6-8 weeks, then every 3-4 weeks until 16-20 weeks, then every 3 years", category: "Core" },
-  { name: "Rabies", schedule: "12-16 weeks, then according to local law", category: "Core" },
-  { name: "Feline Leukaemia (FeLV)", schedule: "Initial series (2 doses), then annually", category: "Non-Core" },
-  { name: "Bordetella", schedule: "When risk is high, annually", category: "Non-Core" }
-];
+function addWeeks(d: Date, w: number) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + w * 7);
+}
+const fmtDate = (d: Date) => d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 
-export default function VaccinationTracker() {
-  const [petType, setPetType] = useState<"dog" | "cat">("dog");
-  const [ageRange, setAgeRange] = useState<"puppy" | "adult">("puppy");
+export default function VaccineTrackerTool() {
+  const [species, setSpecies] = useState<"dog" | "cat">("dog");
+  const [birth, setBirth] = useState("");
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => setToday(new Date()), []);
 
-  const vaccines = petType === "dog" ? dogVaccines : catVaccines;
+  const list = species === "dog" ? DOG : CAT;
+  const b = birth ? (() => { const [y, m, d] = birth.split("-").map(Number); return new Date(y, m - 1, d); })() : null;
+  const visits = Array.from(new Set(list.flatMap((v) => v.weeks))).sort((x, y) => x - y).map((w) => ({
+    w,
+    date: b ? addWeeks(b, w) : null,
+    items: list.filter((v) => v.weeks.includes(w)),
+  }));
 
   return (
-    <ToolLayout 
-      subtitle="Preventative Care"
-      relatedToolSlugs={["symptom-checker","age-calculator","insurance-cost","pet-health-quiz"]}
-      relatedArticles={[
-        { slug: "complete-guide-to-pet-health", title: "Complete Guide to Pet Health", category: "Pillar Guide", emoji: "❤️" },
-        { slug: "what-is-kennel-cough", title: "What Is Kennel Cough?", category: "Definition", emoji: "🤧" },
-        { slug: "what-is-parvo-in-dogs", title: "What Is Parvo in Dogs?", category: "Definition", emoji: "⚠️" },
-      ]}
-      title="Pet Vaccination Schedule Tracker"
-      description="Stay on top of your pet's health. Get the recommended vaccination schedule for puppies, kittens, and adult dogs and cats."
-      illustration={<ToolIllustration type="health" />}
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-8">
-            <div className="flex gap-4">
-              {["dog", "cat"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setPetType(t as "dog" | "cat")}
-                  className={`flex-1 py-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-2 ${petType === t ? 'bg-ebony text-white border-ebony shadow-xl' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                >
-                  <span className="text-3xl">{t === "dog" ? "🐕" : "🐈"}</span>
-                  <span className="font-black uppercase tracking-widest text-[10px]">{t}</span>
-                </button>
+    <div className="flex flex-col gap-8">
+      <ToolGrid>
+        <Field label="Pet">
+          <Segmented label="Pet" value={species} onChange={setSpecies} options={[{ value: "dog", label: "Puppy" }, { value: "cat", label: "Kitten" }]} />
+        </Field>
+        <Field label="Date of birth (optional)" htmlFor="vax-birth" hint="Add it to turn the schedule into dates.">
+          <input id="vax-birth" type="date" value={birth} onChange={(e) => setBirth(e.target.value)} className="min-h-12 max-w-[220px] rounded-2xl border border-separator bg-white px-4 text-[17px] text-label outline-none focus:border-label" />
+        </Field>
+      </ToolGrid>
+
+      <section aria-labelledby="vax-visits-h" className="flex flex-col gap-3">
+        <h2 id="vax-visits-h" className="text-[21px] font-semibold text-label">First-year visits</h2>
+        <ol className="grid gap-3 md:grid-cols-3">
+          {visits.map((v) => {
+            const past = v.date && today ? v.date < today : false;
+            return (
+              <li key={v.w} className={`flex flex-col gap-2 rounded-2xl p-4 ${past ? "bg-bg-2 opacity-70" : "bg-bg-2"}`}>
+                <p className="text-[17px] font-semibold text-label">{v.w} weeks{v.date ? <span className="font-normal text-label-2"> · {fmtDate(v.date)}</span> : null}</p>
+                <ul className="flex flex-wrap gap-1.5">
+                  {v.items.map((i) => (
+                    <li key={i.short} className={`rounded-full px-2.5 py-1 text-[13px] font-medium ${i.core ? "bg-label text-white" : "bg-white text-label ring-1 ring-separator"}`}>{i.short}</li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ol>
+        <p className="text-[13px] text-label-2">Dark tags are core vaccines; outlined tags are lifestyle vaccines your vet may suggest.</p>
+      </section>
+
+      <section aria-labelledby="vax-table-h" className="flex flex-col gap-3">
+        <h2 id="vax-table-h" className="text-[21px] font-semibold text-label">{species === "dog" ? "Dog" : "Cat"} vaccines at a glance</h2>
+        <div className="overflow-x-auto rounded-3xl border border-separator">
+          <table className="w-full min-w-[640px] text-left text-[15px] leading-[21px]">
+            <thead className="bg-bg-2 text-label-2">
+              <tr><th className="p-3 font-medium">Vaccine</th><th className="p-3 font-medium">Type</th><th className="p-3 font-medium">First booster</th><th className="p-3 font-medium">Adults</th></tr>
+            </thead>
+            <tbody>
+              {list.map((v) => (
+                <tr key={v.name} className="border-t border-separator align-top">
+                  <th scope="row" className="p-3 font-medium text-label">{v.name}{v.note ? <span className="mt-1 block text-[13px] font-normal text-label-2">{v.note}</span> : null}</th>
+                  <td className="p-3">{v.core ? "Core" : "Lifestyle"}</td>
+                  <td className="p-3 text-label-2">{v.boost}</td>
+                  <td className="p-3 text-label-2">{v.adult}</td>
+                </tr>
               ))}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-               {["puppy", "adult"].map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => setAgeRange(l as "puppy" | "adult")}
-                    className={`flex-1 py-4 rounded-2xl border-2 transition-all font-black text-[10px] uppercase tracking-[0.2em] ${ageRange === l ? 'bg-brand-start text-white border-brand-start' : 'bg-gray-50 text-slate-gray border-transparent'}`}
-                  >
-                    {l === "puppy" ? (petType === "dog" ? "Puppy" : "Kitten") : "Adult"}
-                  </button>
-                ))}
-            </div>
-          </div>
-
-          <div className="bg-ebony rounded-[3rem] p-10 text-white relative overflow-hidden group shadow-2xl">
-            <div className="relative z-10 flex flex-col h-full justify-between">
-               <div>
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-4">Why Vaccinate?</h3>
-                  <p className="text-white/60 text-sm leading-relaxed mb-8">Vaccines protect your pet from deadly diseases. Core vaccines are essential for every pet, while non-core vaccines depend on your pet's lifestyle and surroundings.</p>
-               </div>
-               <div className="bg-white/10 p-6 rounded-2xl border border-white/10 text-xs font-medium backdrop-blur-sm">
-                  <span className="font-black text-brand-start uppercase tracking-widest block mb-2 underline decoration-brand-start decoration-2 underline-offset-4">Veterinary Tip</span>
-                  Always consult with your local vet for a personalized immunisation plan tailored to your area.
-               </div>
-            </div>
-            <div className="absolute top-0 right-0 p-8 text-white/5 text-9xl font-black select-none leading-none pointer-events-none transform translate-x-1/4 -translate-y-1/4">VAX</div>
-          </div>
+            </tbody>
+          </table>
         </div>
-
-        <div className="space-y-6">
-           <div className="flex items-center justify-between px-4">
-              <h3 className="text-[10px] font-black text-ebony uppercase tracking-widest">Recommended Vaccines</h3>
-              <div className="flex gap-4">
-                 <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
-                    <span className="text-[10px] font-black uppercase text-slate-gray">Core</span>
-                 </div>
-                 <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-sky-500" />
-                    <span className="text-[10px] font-black uppercase text-slate-gray">Non-Core</span>
-                 </div>
-              </div>
-           </div>
-
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {vaccines.map((v, index) => (
-                <div key={index} className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 hover:bg-white transition-all shadow-sm hover:shadow-xl relative overflow-hidden group">
-                  <div className={`absolute top-0 right-0 h-16 w-16 -mr-4 -mt-4 rounded-full opacity-10 group-hover:scale-150 transition-transform ${v.category === "Core" ? "bg-emerald-500" : "bg-sky-500"}`} />
-                  <div className="relative">
-                    <div className="flex justify-between items-center mb-6">
-                        <span className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white ${v.category === "Core" ? "bg-emerald-500" : "bg-sky-500"}`}>
-                          {v.category}
-                        </span>
-                    </div>
-                    <h4 className="text-lg font-black text-ebony leading-tight mb-4 uppercase tracking-tight">{v.name}</h4>
-                    <div className="bg-white/50 p-4 rounded-2xl border border-gray-100">
-                       <p className="text-[10px] font-black text-slate-gray uppercase tracking-widest mb-1">Standard Schedule</p>
-                       <p className="text-xs font-bold text-ebony">{v.schedule}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-           </div>
-        </div>
-      </div>
-    </ToolLayout>
+      </section>
+      <Note>Your vet may change timing for your pet&apos;s health, history and local disease risks, and rabies rules vary by country and state. Keep your pet away from unvaccinated dogs and public dog areas until a week or two after the last puppy dose, unless your vet advises otherwise.</Note>
+    </div>
   );
 }

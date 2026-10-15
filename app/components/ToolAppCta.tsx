@@ -36,5 +36,5 @@ const DEFAULT: Offer = { title: "Everyday care, shared with your household", bod
 export default function ToolAppCta() {
   const slug = (usePathname() ?? "").split("/").filter(Boolean)[1] ?? "";
   const o = OFFERS[slug] ?? DEFAULT;
-  return <AppCta title={o.title} body={o.body} link={o.link} source={`tool:${slug || "unknown"}`} className="mt-12" />;
+  return <AppCta title={o.title} body={o.body} link={o.link} source={`tool:${slug || "unknown"}`} />;
 }

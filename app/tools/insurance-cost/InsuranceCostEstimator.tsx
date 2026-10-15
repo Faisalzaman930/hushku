@@ -1,148 +1,90 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import ToolLayout from "../../components/ToolLayout";
-import ToolIllustration from "../../components/ToolIllustration";
+import { useState } from "react";
+import { Field, Segmented, Choice, Result, Note, ToolGrid, fmt } from "../_ui/kit";
 
-export default function PetInsuranceEstimator() {
-  const [petType, setPetType] = useState<"dog" | "cat">("dog");
-  const [age, setAge] = useState(1);
-  const [breedType, setBreedType] = useState<"purebred" | "mixed">("mixed");
-  const [coverage, setCoverage] = useState<"accident" | "comprehensive" | "premium">("comprehensive");
+/**
+ * Starting point: NAPHIA 2025 State of the Industry average accident & illness premiums
+ * (US $749.29 dog / $386.47 cat a year; Canada C$1,070.20 / C$550.35).
+ * The adjustments below are illustrative ranges showing the direction each factor usually moves
+ * a quote; they are not published industry figures, and the page says so.
+ */
+const AVG = {
+  us: { dog: 749.29, cat: 386.47, cur: "$", note: "US" },
+  ca: { dog: 1070.2, cat: 550.35, cur: "C$", note: "Canada" },
+} as const;
 
-  const estimate = useMemo(() => {
-    let base = petType === "dog" ? 25 : 15;
-    
-    // Age multiplier: 10% increase per year after 1
-    const ageMulti = 1 + (age - 1) * 0.15;
-    
-    // Breed risk: Purebreds are often 20% more expensive
-    const breedMulti = breedType === "purebred" ? 1.25 : 1.0;
-    
-    // Coverage levels
-    const coverageRates = {
-      accident: 0.6,
-      comprehensive: 1.0,
-      premium: 1.5
-    };
-    
-    const finalMin = Math.round(base * ageMulti * breedMulti * coverageRates[coverage]);
-    const finalMax = Math.round(finalMin * 1.4);
-    
-    return { min: finalMin, max: finalMax };
-  }, [petType, age, breedType, coverage]);
+const AGE = [
+  { value: "young", label: "Under 2 years", sub: "Usually below average", lo: 0.7, hi: 0.95 },
+  { value: "adult", label: "2 to 7 years", sub: "Around average", lo: 0.85, hi: 1.2 },
+  { value: "senior", label: "8 years or older", sub: "Usually well above average", lo: 1.3, hi: 2.2 },
+] as const;
+const BREED = [
+  { value: "mixed", label: "Mixed breed or low-risk breed", lo: 0.85, hi: 1.0 },
+  { value: "pure", label: "Breed with known health problems", sub: "e.g. French Bulldog, Bulldog, Great Dane", lo: 1.15, hi: 1.6 },
+] as const;
+const COVER = [
+  { value: "accident", label: "Accident only", sub: "Injuries, not illness", lo: 0.2, hi: 0.4 },
+  { value: "ai", label: "Accident and illness", sub: "The most common policy", lo: 1, hi: 1 },
+  { value: "ai-wellness", label: "Accident, illness and wellness", sub: "Adds routine care", lo: 1.2, hi: 1.5 },
+] as const;
+const AREA = [
+  { value: "low", label: "Small town or rural", lo: 0.85, hi: 0.95 },
+  { value: "mid", label: "Suburban", lo: 0.95, hi: 1.05 },
+  { value: "high", label: "Big city", lo: 1.05, hi: 1.3 },
+] as const;
+
+export default function InsuranceCostEstimator() {
+  const [country, setCountry] = useState<"us" | "ca">("us");
+  const [pet, setPet] = useState<"dog" | "cat">("dog");
+  const [age, setAge] = useState<string>("adult");
+  const [breed, setBreed] = useState<string>("mixed");
+  const [cover, setCover] = useState<string>("ai");
+  const [area, setArea] = useState<string>("mid");
+
+  const base: number = AVG[country][pet];
+  const pick = <T extends { value: string; lo: number; hi: number }>(list: readonly T[], v: string) => list.find((x) => x.value === v) ?? list[0];
+  const f: { lo: number; hi: number }[] = [pick(AGE, age), pick(BREED, breed), pick(COVER, cover), pick(AREA, area)];
+  const lo = f.reduce((m: number, x) => m * x.lo, base) / 12;
+  const hi = f.reduce((m: number, x) => m * x.hi, base) / 12;
+  const cur = AVG[country].cur;
 
   return (
-    <ToolLayout 
-      subtitle="Financial Planning"
-      title="Pet Insurance Cost Estimator"
-      description="Estimate monthly insurance premiums based on pet type, age, and coverage level. Avoid unexpected vet bills today!"
-      illustration={<ToolIllustration type="calculator" />}
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <div className="grid grid-cols-2 gap-4">
-               {["dog", "cat"].map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setPetType(t as "dog" | "cat")}
-                    className={`py-6 rounded-3xl border-2 transition-all flex flex-col items-center gap-2 ${petType === t ? 'bg-ebony text-white border-ebony' : 'bg-gray-50 text-slate-gray border-transparent hover:bg-gray-100'}`}
-                  >
-                    <span className="text-3xl">{t === "dog" ? "🐕" : "🐈"}</span>
-                    <span className="font-black uppercase tracking-widest text-[10px]">{t}</span>
-                  </button>
-                ))}
-            </div>
-
-            <div className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 space-y-6">
-               <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <label className="text-[10px] font-black text-ebony uppercase tracking-widest">Pet Age ({age} years)</label>
-                  </div>
-                  <input 
-                    type="range" min="1" max="15" step="1" 
-                    value={age} onChange={(e) => setAge(parseInt(e.target.value))}
-                    className="w-full h-2 bg-white rounded-full appearance-none cursor-pointer accent-brand-start border border-gray-100 shadow-inner"
-                  />
-               </div>
-
-               <div>
-                  <label className="block text-[10px] font-black text-ebony uppercase tracking-widest mb-4">Breed Type</label>
-                  <div className="flex gap-2">
-                     {(["purebred", "mixed"] as const).map(type => (
-                        <button key={type} onClick={() => setBreedType(type)}
-                          className={`flex-1 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${breedType === type ? 'bg-brand-start text-white border-brand-start' : 'bg-white border-gray-100 text-slate-gray'}`}>
-                           {type}
-                        </button>
-                     ))}
-                  </div>
-               </div>
-            </div>
-
-            <div>
-               <label className="block text-[10px] font-black text-ebony uppercase tracking-widest mb-6">Coverage Level</label>
-               <div className="space-y-4">
-                  {(["accident", "comprehensive", "premium"] as const).map(lev => (
-                     <button key={lev} onClick={() => setCoverage(lev)}
-                        className={`w-full flex items-center justify-between p-6 rounded-[2.5rem] border-2 transition-all text-left ${coverage === lev ? 'bg-white border-brand-start shadow-xl ring-4 ring-brand-start/5' : 'bg-gray-50 border-transparent hover:border-gray-100'}`}>
-                        <div>
-                           <h4 className="text-sm font-black text-ebony uppercase tracking-tight capitalize">{lev} Plan</h4>
-                           <p className="text-[10px] text-slate-gray mt-1">
-                              {lev === "accident" && "Covers emergencies, fractures, and toxins."}
-                              {lev === "comprehensive" && "Includes accidents, illness, and hereditary conditions."}
-                              {lev === "premium" && "Full coverage plus wellness checks and dental."}
-                           </p>
-                        </div>
-                        <div className={`h-6 w-6 rounded-full border-2 flex items-center justify-center ${coverage === lev ? 'bg-brand-start border-brand-start text-white' : 'bg-white border-gray-100'}`}>
-                           {coverage === lev && <span className="text-[8px] font-black">✓</span>}
-                        </div>
-                     </button>
-                  ))}
-               </div>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-             <div className="bg-ebony rounded-[4.5rem] p-12 md:p-16 text-center text-white relative overflow-hidden group shadow-2xl">
-                <div className="absolute top-0 right-0 p-12 text-white/5 text-[15rem] leading-none select-none font-black opacity-30 transform translate-x-1/4 -translate-y-1/4">COST</div>
-                <div className="relative">
-                   <span className="px-6 py-2 rounded-full bg-brand-start text-white text-[10px] font-black uppercase tracking-widest mb-8 border border-white/20 leading-none">Monthly Estimate</span>
-                   <div className="flex items-baseline justify-center gap-4 mt-8 mb-4">
-                      <span className="text-2xl font-black text-white/30">$</span>
-                      <span className="text-7xl md:text-8xl font-black tracking-tighter leading-none">{estimate.min} - {estimate.max}</span>
-                   </div>
-                   <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em]">Predicted Premium Range</p>
-                </div>
-             </div>
-
-             <div className="bg-gray-50 p-10 rounded-[3rem] border border-gray-100 flex flex-col gap-6">
-                <div className="flex justify-between items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                   <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xs font-black">🛡️</div>
-                      <span className="text-[10px] font-black text-ebony uppercase tracking-widest">Typical Annual Limit</span>
-                   </div>
-                   <span className="text-sm font-black text-ebony">{coverage === "premium" ? "$Unlimited" : "$10,000"}</span>
-                </div>
-                <div className="flex justify-between items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                   <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-lg bg-sky-500/10 text-sky-600 flex items-center justify-center text-xs font-black">💸</div>
-                      <span className="text-[10px] font-black text-ebony uppercase tracking-widest">Deductible Estimate</span>
-                   </div>
-                   <span className="text-sm font-black text-ebony">$250 - $500</span>
-                </div>
-             </div>
-
-             <div className="bg-brand-start p-10 rounded-[3rem] text-white flex items-center justify-between gap-6 hover:scale-[1.02] transition-all cursor-pointer">
-                <div>
-                   <h4 className="text-sm font-black uppercase tracking-tight">Need specific quotes?</h4>
-                   <p className="text-[10px] text-white/80 mt-1">Get pre-approved in the Hushku app.</p>
-                </div>
-                <div className="text-2xl">→</div>
-             </div>
-          </div>
-        </div>
+    <ToolGrid>
+      <div className="flex flex-col gap-6">
+        <Field label="Where you live">
+          <Segmented label="Country" value={country} onChange={setCountry} options={[{ value: "us", label: "United States" }, { value: "ca", label: "Canada" }]} />
+        </Field>
+        <Field label="Pet">
+          <Segmented label="Pet" value={pet} onChange={setPet} options={[{ value: "dog", label: "Dog" }, { value: "cat", label: "Cat" }]} />
+        </Field>
+        <Field label="Age when you buy the policy">
+          <Choice label="Age" value={age} onChange={setAge} options={AGE.map((o) => ({ value: o.value, label: o.label, sub: o.sub }))} />
+        </Field>
+        <Field label="Breed">
+          <Choice label="Breed" value={breed} onChange={setBreed} options={BREED.map((o) => ({ value: o.value, label: o.label, sub: "sub" in o ? o.sub : undefined }))} />
+        </Field>
+        <Field label="Type of cover">
+          <Choice label="Cover" value={cover} onChange={setCover} options={COVER.map((o) => ({ value: o.value, label: o.label, sub: o.sub }))} />
+        </Field>
+        <Field label="Area">
+          <Segmented label="Area" value={area} onChange={setArea} options={AREA.map((o) => ({ value: o.value, label: o.label }))} />
+        </Field>
       </div>
-    </ToolLayout>
+
+      <div className="flex flex-col gap-4 lg:sticky lg:top-24">
+        <Result label="Likely monthly premium" value={`${cur}${fmt(lo)} to ${cur}${fmt(hi)}`}>
+          <p className="text-[15px] leading-[22px] text-label-2">
+            About {cur}{fmt(lo * 12)} to {cur}{fmt(hi * 12)} a year.
+          </p>
+        </Result>
+        <div className="rounded-3xl bg-bg-2 p-5">
+          <p className="text-[13px] font-semibold text-label-2">{AVG[country].note} average, accident and illness ({pet})</p>
+          <p className="mt-1 text-[24px] font-semibold text-label tabular-nums">{cur}{fmt(base / 12, 2)} a month</p>
+          <p className="text-[13px] text-label-2">{cur}{fmt(base, 2)} a year · NAPHIA, 2025 report</p>
+        </div>
+        <Note>Only the average comes from published data. The range around it is our rough illustration of how age, breed, cover and location usually move a quote, so get real quotes before you decide. A higher deductible or lower reimbursement rate lowers the premium; pre-existing conditions are usually excluded.</Note>
+      </div>
+    </ToolGrid>
   );
 }

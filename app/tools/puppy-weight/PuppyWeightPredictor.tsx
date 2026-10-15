@@ -5,30 +5,29 @@ import { Metadata } from "next";
 import ToolLayout from "../../components/ToolLayout";
 
 // Growth % of adult weight at each age (weeks) by size category
+// Approximate share of adult weight reached at each age (weeks), by adult size. Built from typical
+// breed growth charts (e.g. Chihuahua, Beagle, Border Collie, Labrador, Great Dane); individual
+// puppies vary by about ±15%.
 const GROWTH_TABLES: Record<string, { week: number; pct: number }[]> = {
   toy: [
-    { week: 6, pct: 60 }, { week: 8, pct: 75 }, { week: 10, pct: 84 },
-    { week: 12, pct: 90 }, { week: 16, pct: 96 }, { week: 20, pct: 99 }, { week: 24, pct: 100 },
+    { week: 8, pct: 25 }, { week: 12, pct: 37 }, { week: 16, pct: 52 }, { week: 20, pct: 66 },
+    { week: 26, pct: 80 }, { week: 34, pct: 92 }, { week: 40, pct: 97 }, { week: 52, pct: 100 },
   ],
   small: [
-    { week: 6, pct: 52 }, { week: 8, pct: 65 }, { week: 10, pct: 74 },
-    { week: 12, pct: 80 }, { week: 16, pct: 88 }, { week: 20, pct: 94 },
-    { week: 24, pct: 98 }, { week: 28, pct: 100 },
+    { week: 8, pct: 25 }, { week: 12, pct: 39 }, { week: 16, pct: 53 }, { week: 20, pct: 65 },
+    { week: 26, pct: 77 }, { week: 34, pct: 89 }, { week: 40, pct: 95 }, { week: 52, pct: 100 },
   ],
   medium: [
-    { week: 6, pct: 40 }, { week: 8, pct: 52 }, { week: 10, pct: 60 },
-    { week: 12, pct: 66 }, { week: 16, pct: 76 }, { week: 20, pct: 83 },
-    { week: 24, pct: 89 }, { week: 28, pct: 94 }, { week: 32, pct: 98 }, { week: 36, pct: 100 },
+    { week: 8, pct: 22 }, { week: 12, pct: 35 }, { week: 16, pct: 48 }, { week: 20, pct: 60 },
+    { week: 26, pct: 74 }, { week: 34, pct: 86 }, { week: 40, pct: 92 }, { week: 52, pct: 98 }, { week: 60, pct: 100 },
   ],
   large: [
-    { week: 8, pct: 36 }, { week: 10, pct: 43 }, { week: 12, pct: 50 },
-    { week: 16, pct: 60 }, { week: 20, pct: 69 }, { week: 24, pct: 77 },
-    { week: 28, pct: 84 }, { week: 32, pct: 90 }, { week: 40, pct: 97 }, { week: 52, pct: 100 },
+    { week: 8, pct: 20 }, { week: 12, pct: 32 }, { week: 16, pct: 45 }, { week: 20, pct: 57 },
+    { week: 26, pct: 71 }, { week: 34, pct: 83 }, { week: 40, pct: 89 }, { week: 52, pct: 97 }, { week: 65, pct: 100 },
   ],
   giant: [
-    { week: 8, pct: 25 }, { week: 12, pct: 35 }, { week: 16, pct: 45 },
-    { week: 20, pct: 55 }, { week: 24, pct: 64 }, { week: 32, pct: 75 },
-    { week: 40, pct: 85 }, { week: 52, pct: 93 }, { week: 65, pct: 100 },
+    { week: 8, pct: 14 }, { week: 12, pct: 24 }, { week: 16, pct: 35 }, { week: 20, pct: 46 },
+    { week: 26, pct: 62 }, { week: 34, pct: 75 }, { week: 40, pct: 82 }, { week: 52, pct: 91 }, { week: 78, pct: 100 },
   ],
 };
 
@@ -78,8 +77,8 @@ export default function PuppyGrowthPredictor() {
   }, [unit, size, ageWeeks, weight]);
 
   const confidenceLabel =
-    ageWeeks < 6  ? "Low — too young for accuracy" :
-    ageWeeks < 10 ? "Moderate" : "Good";
+    ageWeeks < 10 ? "Low: estimates at this age can be well out" :
+    ageWeeks < 16 ? "Moderate" : "Good";
 
   return (
     <ToolLayout
@@ -135,11 +134,11 @@ export default function PuppyGrowthPredictor() {
             <label className="block text-xs font-black text-ebony uppercase tracking-widest mb-2">
               Current Age: <span className="text-brand-start">{ageWeeks} weeks</span>
             </label>
-            <input type="range" min="4" max="52" step="1" value={ageWeeks}
+            <input type="range" min="8" max="52" step="1" value={ageWeeks}
               onChange={e => setAgeWeeks(+e.target.value)}
               className="w-full h-3 bg-gray-100 rounded-full appearance-none cursor-pointer accent-brand-start" />
             <div className="flex justify-between text-[10px] font-bold text-slate-gray mt-2 uppercase tracking-tighter">
-              <span>4 wks</span><span>52 wks</span>
+              <span>8 wks</span><span>52 wks</span>
             </div>
           </div>
 

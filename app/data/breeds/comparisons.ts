@@ -20,6 +20,22 @@ const DOG_PAIRS: [string, string][] = [
   ["labrador-retriever", "chesapeake-bay-retriever"], ["boxer", "bulldog"], ["bernese-mountain-dog", "golden-retriever"],
   ["pembroke-welsh-corgi", "dachshund"], ["pug", "shih-tzu"], ["papillon", "chihuahua"], ["cavalier-king-charles-spaniel", "shih-tzu"],
   ["australian-cattle-dog", "border-collie"], ["chow-chow", "akita"], ["collie", "shetland-sheepdog"],
+  // Added October 2026: more popular match-ups
+  ["cane-corso", "american-pit-bull-terrier"], ["american-pit-bull-terrier", "rottweiler"], ["boxer", "american-pit-bull-terrier"],
+  ["great-pyrenees", "anatolian-shepherd-dog"], ["golden-retriever", "flat-coated-retriever"], ["golden-retriever", "nova-scotia-duck-tolling-retriever"],
+  ["golden-retriever", "irish-setter"], ["labrador-retriever", "german-shorthaired-pointer"], ["labrador-retriever", "boxer"],
+  ["belgian-malinois", "dutch-shepherd"], ["german-shepherd-dog", "dutch-shepherd"], ["doberman-pinscher", "belgian-malinois"],
+  ["miniature-schnauzer", "standard-schnauzer"], ["standard-schnauzer", "giant-schnauzer"], ["cavalier-king-charles-spaniel", "english-toy-spaniel"],
+  ["bichon-frise", "coton-de-tulear"], ["havanese", "coton-de-tulear"], ["havanese", "shih-tzu"], ["havanese", "maltese"],
+  ["cavapoo", "cockapoo"], ["maltipoo", "cavapoo"], ["goldendoodle", "bernedoodle"], ["bernedoodle", "bernese-mountain-dog"], ["cockapoo", "cocker-spaniel"],
+  ["poodle", "bichon-frise"], ["poodle", "portuguese-water-dog"], ["portuguese-water-dog", "lagotto-romagnolo"],
+  ["bernese-mountain-dog", "greater-swiss-mountain-dog"], ["newfoundland", "leonberger"], ["alaskan-malamute", "samoyed"], ["chow-chow", "chinese-shar-pei"],
+  ["great-dane", "irish-wolfhound"], ["irish-wolfhound", "scottish-deerhound"], ["bullmastiff", "mastiff"], ["bullmastiff", "cane-corso"],
+  ["bloodhound", "basset-hound"], ["dachshund", "miniature-pinscher"], ["chihuahua", "miniature-pinscher"], ["jack-russell-terrier", "border-terrier"],
+  ["west-highland-white-terrier", "cairn-terrier"], ["scottish-terrier", "west-highland-white-terrier"], ["bull-terrier", "staffordshire-bull-terrier"],
+  ["greyhound", "saluki"], ["afghan-hound", "saluki"], ["shetland-sheepdog", "border-collie"], ["australian-shepherd", "australian-cattle-dog"],
+  ["brittany", "english-springer-spaniel"], ["irish-setter", "english-setter"], ["vizsla", "german-shorthaired-pointer"], ["vizsla", "rhodesian-ridgeback"],
+  ["pekingese", "shih-tzu"], ["japanese-chin", "pekingese"], ["brussels-griffon", "pug"], ["basenji", "shiba-inu"], ["boston-terrier", "pug"],
 ];
 
 const CAT_PAIRS: [string, string][] = [
@@ -27,6 +43,11 @@ const CAT_PAIRS: [string, string][] = [
   ["british-shorthair", "russian-blue"], ["siamese", "balinese"], ["bengal", "savannah"], ["bengal", "abyssinian"], ["persian", "exotic-shorthair"],
   ["sphynx", "devon-rex"], ["siberian", "norwegian-forest-cat"], ["ragdoll", "persian"], ["persian", "himalayan"], ["siamese", "oriental"],
   ["ragdoll", "ragamuffin"], ["burmese", "tonkinese"],
+  // Added October 2026
+  ["siamese", "ragdoll"], ["british-shorthair", "american-shorthair"], ["sphynx", "peterbald"], ["sphynx", "donskoy"], ["maine-coon", "siberian"],
+  ["ragdoll", "british-shorthair"], ["scottish-fold", "munchkin"], ["abyssinian", "somali"], ["russian-blue", "chartreux"], ["russian-blue", "nebelung"],
+  ["burmese", "bombay"], ["turkish-angora", "turkish-van"], ["cornish-rex", "devon-rex"], ["savannah", "serengeti"], ["bengal", "ocicat"],
+  ["bengal", "toyger"], ["siamese", "tonkinese"], ["birman", "himalayan"], ["maine-coon", "bengal"], ["persian", "british-shorthair"],
 ];
 
 export type Comparison =

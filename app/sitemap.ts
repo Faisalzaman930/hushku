@@ -12,10 +12,14 @@ import { templateDocs } from "./data/templates";
 import { COMPARE_PAGES, CHECKED_ISO } from "./data/compare";
 import { TOOLS, TOOLS_REVIEWED_ISO } from "./data/tools";
 import { breedsByAnimal, BREED_CONTENT_UPDATED } from "./data/breeds";
+import { FOODS } from "./data/foods";
+import { VACCINE_PAGES } from "./data/vaccine-schedules";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hushku.app";
 /** When the site's own pages last changed. Update it when they change, not on every build. */
 const TODAY = new Date("2026-10-14");
+/** When the food and vaccine schedule pages were written. */
+const FOODS_DATE = new Date("2026-10-16");
 
 /** An article's last-updated date from its data ("April 2026", "2026-03-02"), else the site date. */
 function contentDate(item: { lastUpdated?: string; updatedDate?: string; publishDate?: string }): Date {
@@ -80,7 +84,6 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${BASE_URL}/tools/exercise-calculator`, changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/puppy-weight`,        changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/heat-cycle-calculator`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
-  { url: `${BASE_URL}/tools/whelping-calculator`, changeFrequency: "monthly", priority: 0.7, lastModified: TODAY },
   { url: `${BASE_URL}/tools/symptom-checker`,     changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/toxic-food`,          changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
   { url: `${BASE_URL}/tools/vaccine-tracker`,     changeFrequency: "monthly", priority: 0.8, lastModified: TODAY },
@@ -158,6 +161,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...VACCINE_PAGES.map((v) => ({ url: `${BASE_URL}/resources/${v.slug}`, lastModified: FOODS_DATE, changeFrequency: "monthly" as const, priority: 0.8 })),
+    // "Can dogs / cats eat …?" hubs and pages
+    ...(["dogs", "cats"] as const).map((sp) => ({ url: `${BASE_URL}/can-${sp}-eat`, lastModified: FOODS_DATE, changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...FOODS.map((f) => ({ url: `${BASE_URL}/can-${f.species}-eat/${f.slug}`, lastModified: FOODS_DATE, changeFrequency: "monthly" as const, priority: 0.7 })),
   ];
 
   // ── Templates ───────────────────────────────────────────────────────────

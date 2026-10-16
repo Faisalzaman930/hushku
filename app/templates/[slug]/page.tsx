@@ -1,4 +1,4 @@
-import { metaDesc, shortTitle } from "../../lib/seo";
+import { metaDesc, searchTitle, shortTitle } from "../../lib/seo";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = templateDocs.find((d) => d.slug === slug);
   if (!t) return {};
   return {
-    title: shortTitle(t.seoTitle),
+    title: searchTitle(t.seoTitle),
     description: metaDesc(t.seoDescription),
     alternates: { canonical: `https://hushku.app/templates/${t.slug}` },
     openGraph: {

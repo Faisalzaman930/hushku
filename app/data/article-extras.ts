@@ -34,8 +34,10 @@ const ADOPT_CTA = { title: "Adoption and fostering in one app", body: "Shelters 
 
 import { EXTRAS_DATA } from "./article-extras-data";
 import { EXTRAS_DATA_2 } from "./article-extras-data-2";
+import { VACCINE_PAGES } from "./vaccine-schedules";
 
 export const EXTRAS: Record<string, ArticleExtras> = { ...EXTRAS_DATA, ...EXTRAS_DATA_2 };
+for (const v of VACCINE_PAGES) EXTRAS[v.slug] = { ...v.extras, updated: "October 2026" };
 
 /** Adds extras for a slug (merged, so content files can each contribute). */
 export function addExtras(map: Record<string, ArticleExtras>) {

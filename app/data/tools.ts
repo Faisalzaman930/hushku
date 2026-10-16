@@ -200,16 +200,16 @@ export const TOOLS: ToolDoc[] = [
   },
   {
     slug: "vaccine-tracker",
-    name: "Vaccination schedule",
-    title: "Puppy & Kitten Vaccination Schedule (Free Chart)",
-    h1: "Puppy and kitten vaccination schedule",
-    description: "When do puppies and kittens need their shots? Core and lifestyle vaccines by age, with booster timing, based on AAHA and AAFP guidelines. Free schedule.",
+    name: "Vaccine due date calculator",
+    title: "Puppy & Kitten Vaccine Calculator: Shot Due Dates",
+    h1: "Puppy and kitten vaccine due date calculator",
+    description: "Enter your puppy or kitten's birth date to see when each vaccine and booster is due, based on AAHA and AAFP guidelines. Free, with a printable plan.",
     answer: "Puppies start core vaccines (distemper, adenovirus, parvovirus) at 6 to 8 weeks with doses every 2 to 4 weeks until 16 weeks, plus rabies and leptospirosis. Kittens start FVRCP at 6 weeks every 3 to 4 weeks until 16 to 20 weeks, plus rabies and FeLV.",
     category: "Health",
     emoji: "💉",
     howItWorks: [
       "The schedule follows the 2022 AAHA canine and 2020 AAHA/AAFP feline vaccination guidelines. Core vaccines are recommended for every pet; lifestyle (non-core) vaccines depend on where your pet lives and what they do.",
-      "Leptospirosis became a core vaccine for dogs in the 2022 AAHA guidelines. FeLV is core for kittens and cats under one year.",
+      "AAHA updated its canine guidelines in 2024 to make leptospirosis a core vaccine for all dogs. FeLV is core for kittens and cats under one year.",
       "Rabies timing is set by local law, and your vet may adjust the schedule for your pet's history and local disease risk. Use this as a guide to plan visits, not a replacement for your vet's advice.",
     ],
     sources: [
@@ -224,7 +224,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "How often do adult dogs need vaccines?", a: "After the first-year booster, the DAPP core vaccine is usually given every 3 years, leptospirosis every year and rabies as the label and local law require." },
     ],
     related: ["age-calculator", "puppy-weight", "symptom-checker", "insurance-cost"],
-    guides: [{ href: "/templates/pet-vaccination-record-template", label: "Free vaccination record template" }, { href: "/resources/what-is-parvo-in-dogs", label: "What is parvo in dogs?" }],
+    guides: [{ href: "/templates/pet-vaccination-record-template", label: "Free vaccination record template" }, { href: "/resources/what-is-parvo-in-dogs", label: "What is parvo in dogs?" }, { href: "/resources/puppy-vaccine-schedule", label: "Puppy vaccine schedule chart" }, { href: "/resources/kitten-vaccine-schedule", label: "Kitten vaccine schedule chart" }, { href: "/resources/dog-vaccine-schedule", label: "Adult dog vaccine schedule" }, { href: "/resources/cat-vaccine-schedule", label: "Adult cat vaccine schedule" }],
     medical: true,
   },
   {
@@ -249,7 +249,7 @@ export const TOOLS: ToolDoc[] = [
       { q: "Are grapes really dangerous for dogs?", a: "Yes. Grapes and raisins can cause sudden kidney failure in dogs, and there's no known safe amount. Treat any amount as an emergency." },
     ],
     related: ["chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "onion-garlic-toxicity-calculator", "dog-ate-grapes"],
-    guides: [{ href: "/resources/complete-guide-to-pet-health", label: "Complete guide to pet health" }],
+    guides: [{ href: "/resources/complete-guide-to-pet-health", label: "Complete guide to pet health" }, { href: "/can-dogs-eat", label: "What can dogs eat? Safe and toxic foods" }, { href: "/can-cats-eat", label: "What can cats eat? Safe and toxic foods" }],
     medical: true,
   },
   {
@@ -620,6 +620,7 @@ TOOLS.push(
     ],
     related: ["xylitol-toxicity-calculator", "toxic-food", "dog-ate-grapes", "symptom-checker"],
     medical: true,
+    guides: [{ href: "/can-dogs-eat", label: "What can dogs eat? Safe and toxic foods" }, { href: "/can-cats-eat", label: "What can cats eat? Safe and toxic foods" }],
   },
   {
     slug: "xylitol-toxicity-calculator",
@@ -643,6 +644,7 @@ TOOLS.push(
     ],
     related: ["chocolate-toxicity-calculator", "toxic-food", "onion-garlic-toxicity-calculator", "symptom-checker"],
     medical: true,
+    guides: [{ href: "/can-dogs-eat", label: "What can dogs eat? Safe and toxic foods" }, { href: "/can-cats-eat", label: "What can cats eat? Safe and toxic foods" }],
   },
   {
     slug: "onion-garlic-toxicity-calculator",
@@ -666,6 +668,7 @@ TOOLS.push(
     ],
     related: ["toxic-food", "chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "symptom-checker"],
     medical: true,
+    guides: [{ href: "/can-dogs-eat", label: "What can dogs eat? Safe and toxic foods" }, { href: "/can-cats-eat", label: "What can cats eat? Safe and toxic foods" }],
   },
   {
     slug: "dog-ate-grapes",
@@ -688,6 +691,7 @@ TOOLS.push(
     ],
     related: ["chocolate-toxicity-calculator", "xylitol-toxicity-calculator", "toxic-food", "symptom-checker"],
     medical: true,
+    guides: [{ href: "/can-dogs-eat", label: "What can dogs eat? Safe and toxic foods" }, { href: "/can-cats-eat", label: "What can cats eat? Safe and toxic foods" }],
   },
   {
     slug: "weight-loss-calculator",

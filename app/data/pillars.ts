@@ -330,19 +330,20 @@ Keep the environment calm. Resist the urge to immediately expose the puppy to ma
         summary: "Complete DHPP schedule, core vs. non-core vaccines, the parvo paradox, and what to avoid before the series is complete.",
         content: `The puppy vaccination series is one of the most important things you will do for your dog's health. Puppies are born with some maternal antibody protection that wanes over the first weeks of life — the vaccination series is timed to build active immunity as maternal antibodies decline.
 
-**Standard DHPP (DA2PP) core vaccine schedule:**
-- **6–8 weeks:** First DHPP (distemper, adenovirus/hepatitis, parainfluenza, parvovirus) + Bordetella (especially if attending puppy class, boarding, or grooming)
-- **10–12 weeks:** Second DHPP + Leptospirosis (first dose) if indicated by lifestyle/geography
-- **14–16 weeks:** Third DHPP + Rabies (legally required in most jurisdictions) + Leptospirosis booster
-- **12–16 months:** Boosters for all core vaccines
-- **Subsequent years:** Per your vet's recommended schedule (many core vaccines are now given every 3 years after the booster year for adult dogs)
+**Core vaccine schedule (AAHA 2022, updated 2024):**
+- **6–8 weeks:** First DAPP/DHPP (distemper, adenovirus, parvovirus, ± parainfluenza)
+- **10–12 weeks:** Second DAPP. First leptospirosis dose from 12 weeks
+- **14–16 weeks:** Third DAPP (doses continue every 2–4 weeks until 16 weeks or older). Second leptospirosis dose. Rabies, as required by law
+- **Within a year of the last puppy dose:** DAPP and leptospirosis boosters
+- **Adult dogs:** DAPP every 3 years, leptospirosis every year, rabies every 1 or 3 years by vaccine and law
 
-**Core vs. non-core:**
-Core vaccines (DHPP + rabies) are recommended for all dogs regardless of lifestyle. Non-core vaccines are given based on individual risk factors:
-- *Bordetella (kennel cough):* Any dog attending daycare, boarding, grooming, or dog parks
-- *Leptospirosis:* Dogs with exposure to wildlife, standing water, or rural environments; urban dogs in areas with known leptospirosis incidence
-- *Lyme:* Dogs in tick-endemic areas
-- *Canine influenza (H3N2/H3N8):* Dogs in high-density dog environments where outbreaks have occurred
+See the full [puppy vaccine schedule](/resources/puppy-vaccine-schedule) chart, or use our [vaccine due date calculator](/tools/vaccine-tracker) to turn it into dates.
+
+**Core vs. lifestyle vaccines:**
+Core vaccines are recommended for every dog: distemper, adenovirus, parvovirus, rabies and, since AAHA's 2024 update, leptospirosis. Lifestyle (non-core) vaccines depend on your dog's risks:
+- *Bordetella (kennel cough):* Dogs attending daycare, boarding, grooming, classes or dog parks
+- *Lyme:* Dogs in areas with blacklegged ticks
+- *Canine influenza (H3N2/H3N8):* Social dogs where outbreaks occur
 
 **The parvo paradox:** Parvovirus is a highly contagious, often fatal disease that can survive in the environment for up to a year. The socialization window (8–16 weeks, covered in the next chapter) overlaps almost exactly with the period before the vaccination series is complete. This creates a genuine dilemma: prevent parvovirus exposure (keep puppy away from all unknown dogs and public ground) or prevent behavioral deficits from socialization deprivation.
 

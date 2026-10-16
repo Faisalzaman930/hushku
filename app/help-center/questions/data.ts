@@ -99,7 +99,7 @@ export const CATEGORIES: Category[] = [
       {
         slug: "owner-shelter-or-explorer",
         keywords: "account type role change account explorer",
-        q: "What’s the difference between Pet owner, Shelter and Explorer?",
+        q: "Pet owner, Shelter or Explorer: what’s the difference?",
         short: "Pet owners create profiles for their pets. Shelters list animals and manage adoptions. Explorers browse pets and shelters without adding a pet.",
         more: "You choose when you sign up. Explorers can add a pet from their Profile at any time. To switch between a personal account and a shelter account, email hello@hushku.app and we'll move it for you.",
         demo: [

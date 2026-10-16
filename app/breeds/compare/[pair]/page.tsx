@@ -7,7 +7,7 @@ import FaqAccordion from "../../../components/FaqAccordion";
 import { Section, SectionHeader } from "../../../components/ui";
 import { COMPARISONS, comparisonsFor, getComparison, type Comparison } from "../../../data/breeds/comparisons";
 import type { BreedScores, CatScores } from "../../../data/breeds/types";
-import { metaDesc, shortTitle } from "../../../lib/seo";
+import { metaDesc, searchTitle, shortTitle } from "../../../lib/seo";
 import { generateBreedContent, generateCatContent } from "../../../data/breeds/content";
 import { dogNote, catNote } from "../../../data/breeds/notes";
 import type { BreedDoc, CatBreedDoc } from "../../../data/breeds/types";
@@ -185,7 +185,7 @@ function faqsFor(c: Comparison) {
   return out;
 }
 
-const titleFor = (c: Comparison) => shortTitle(`${c.a.name} vs ${c.b.name}: Differences and Which to Choose`, 51);
+const titleFor = (c: Comparison) => shortTitle(`${c.a.name} vs ${c.b.name}: Differences and Which to Choose`, 60);
 
 export async function generateMetadata({ params }: { params: Promise<{ pair: string }> }): Promise<Metadata> {
   const { pair } = await params;
@@ -197,11 +197,11 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   const url = `https://hushku.app/breeds/compare/${c.slug}`;
   const img = c.a.image ? `https://hushku.app${c.a.image}` : "https://hushku.app/og.png";
   return {
-    title,
+    title: searchTitle(title),
     description,
     alternates: { canonical: url },
-    openGraph: { title: `${title} | Hushku`, description, type: "article", url, images: [{ url: img, alt: `${c.a.name} vs ${c.b.name}` }] },
-    twitter: { card: "summary_large_image", title: `${title} | Hushku`, description },
+    openGraph: { title, description, type: "article", url, images: [{ url: img, alt: `${c.a.name} vs ${c.b.name}` }] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

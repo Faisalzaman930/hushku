@@ -28,6 +28,7 @@ export default function ArticleShell({
   medical = false,
   banner,
   cta,
+  crumbs,
   children,
 }: {
   slug: string;
@@ -43,6 +44,8 @@ export default function ArticleShell({
   medical?: boolean;
   banner?: ReactNode;
   cta?: { title: string; body: string; link?: { href: string; label: string } };
+  /** Breadcrumb trail; defaults to Guides › topic. */
+  crumbs?: { href: string; label: string }[];
   children: ReactNode;
 }) {
   const x0 = extrasFor(slug);
@@ -59,9 +62,12 @@ export default function ArticleShell({
         <div className="mx-auto flex max-w-[760px] flex-col gap-5">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-1.5 text-[13px] text-label-2">
-              <li><Link href="/resources" className="hover:text-label hover:underline underline-offset-[3px]">Guides</Link></li>
-              <ChevronRight size={14} className="text-label-3" aria-hidden />
-              <li><Link href={`/resources#${topic}`} className="hover:text-label hover:underline underline-offset-[3px]">{ARTICLE_TOPICS[topic]}</Link></li>
+              {(crumbs ?? [{ href: "/resources", label: "Guides" }, { href: `/resources#${topic}`, label: ARTICLE_TOPICS[topic] }]).map((c, i) => (
+                <li key={c.href} className="flex items-center gap-1.5">
+                  {i > 0 ? <ChevronRight size={14} className="text-label-3" aria-hidden /> : null}
+                  <Link href={c.href} className="hover:text-label hover:underline underline-offset-[3px]">{c.label}</Link>
+                </li>
+              ))}
             </ol>
           </nav>
           <p className="text-[13px] font-semibold text-brand-text">{kind}</p>

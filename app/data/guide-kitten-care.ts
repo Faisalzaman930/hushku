@@ -66,7 +66,7 @@ Change foods gradually over a week or more. Our [cat nutrition guide](/resources
 
 **Fleas:** use a kitten-safe product recommended by your vet. Never use dog flea products on cats.
 
-Use our [vaccination schedule tool](/tools/vaccine-tracker) to turn this into dates.`,
+See the full [kitten vaccine schedule](/resources/kitten-vaccine-schedule), and use our [vaccine due date calculator](/tools/vaccine-tracker) to turn it into dates.`,
     },
     {
       title: "Neutering and microchipping",

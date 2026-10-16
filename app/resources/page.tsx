@@ -10,6 +10,8 @@ import { pillarPages } from "../data/pillars";
 import { ARTICLE_TOPICS, topicFor, type TopicId } from "../data/article-extras";
 import AppCta from "../components/AppCta";
 import { TOOLS } from "../data/tools";
+import { VACCINE_PAGES } from "../data/vaccine-schedules";
+import { FOODS } from "../data/foods";
 import GuideSearch, { type SearchItem } from "./GuideSearch";
 
 type Card = { slug: string; title: string; desc: string; kind: string };
@@ -22,18 +24,26 @@ const all: Card[] = [
   ...howToArticles.map((a) => ({ slug: a.slug, title: a.shortTitle, desc: a.seoDescription, kind: "How-to" })),
   ...breedArticles.map((a) => ({ slug: a.slug, title: a.shortTitle, desc: a.seoDescription, kind: "Breed guide" })),
   ...articles.map((a) => ({ slug: a.slug, title: a.shortTitle, desc: a.seoDescription, kind: "App guide" })),
+  ...VACCINE_PAGES.map((v) => ({ slug: v.slug, title: v.shortTitle, desc: v.seoDescription, kind: "Vaccine schedule" })),
+];
+/** Section pages outside /resources that belong on the hub (they link with an absolute path). */
+const FOOD_HUBS = [
+  { href: "/can-dogs-eat", title: "What Can Dogs Eat?", desc: `Safe and toxic human foods for dogs: ${FOODS.filter((f) => f.species === "dogs").length} foods explained.`, kind: "Food guide" },
+  { href: "/can-cats-eat", title: "What Can Cats Eat?", desc: `Safe and toxic human foods for cats: ${FOODS.filter((f) => f.species === "cats").length} foods explained.`, kind: "Food guide" },
 ];
 const unique = Array.from(new Map(all.map((c) => [c.slug, c])).values());
 
 /** Searchable text for each guide: SEO title, H1, tags and description (searched, not shown). */
 type Src = { slug: string; title: string; seoTitle?: string; tags?: string[]; seoDescription: string };
 const extra = new Map<string, string>();
-for (const a of [...pillarPages, ...guides, ...symptomArticles, ...definitionArticles, ...howToArticles, ...breedArticles, ...articles] as Src[]) {
+for (const a of [...pillarPages, ...guides, ...symptomArticles, ...definitionArticles, ...howToArticles, ...breedArticles, ...articles, ...VACCINE_PAGES.map((v) => ({ ...v, tags: ["vaccines", "shots", "vaccination", "booster"] }))] as Src[]) {
   extra.set(a.slug, [a.seoTitle, a.title, ...(a.tags ?? []), a.seoDescription].filter(Boolean).join(" "));
 }
 const searchItems: SearchItem[] = [
   ...unique.map((c) => ({ href: `/resources/${c.slug}`, title: c.title, kind: c.kind, topic: ARTICLE_TOPICS[topicFor(c.slug)], text: extra.get(c.slug) ?? c.desc })),
   ...TOOLS.map((t) => ({ href: `/tools/${t.slug}`, title: t.name, kind: "Free tool", topic: t.category, text: `${t.title} ${t.h1} ${t.description}` })),
+  ...FOOD_HUBS.map((h) => ({ href: h.href, title: h.title, kind: h.kind, topic: ARTICLE_TOPICS.nutrition, text: `${h.desc} human food safe toxic` })),
+  ...FOODS.map((f) => ({ href: `/can-${f.species}-eat/${f.slug}`, title: `Can ${f.species} eat ${f.food}?`, kind: "Food guide", topic: ARTICLE_TOPICS.nutrition, text: `${f.food} ${f.species === "dogs" ? "dog" : "cat"} ${f.answer}` })),
 ];
 
 const ORDER: TopicId[] = ["health", "cats", "training", "puppies", "nutrition", "everyday", "adoption", "breeds", "apps"];
@@ -109,6 +119,17 @@ export default function ResourcesPage() {
                 <p className="text-[17px] text-label-2">{INTRO[t]}</p>
               </div>
               <ul className="grid gap-x-8 border-t border-separator md:grid-cols-2">
+                {t === "nutrition" ? FOOD_HUBS.map((h) => (
+                  <li key={h.href} className="border-b border-separator">
+                    <Link href={h.href} className="group flex min-h-16 items-center gap-3 py-3">
+                      <span className="flex-1">
+                        <span className="block text-[13px] text-label-2">{h.kind}</span>
+                        <span className="text-[17px] font-medium text-label group-hover:underline underline-offset-[3px]">{h.title}</span>
+                      </span>
+                      <ChevronRight size={18} className="flex-none text-label-3" aria-hidden />
+                    </Link>
+                  </li>
+                )) : null}
                 {byTopic.get(t)!.map((c) => (
                   <li key={c.slug} className="border-b border-separator">
                     <Link href={`/resources/${c.slug}`} className="group flex min-h-16 items-center gap-3 py-3">
